@@ -11,22 +11,6 @@ class Controller extends CController
                 array('url' => 'goods/create&goodsType=0', 'label' => '添加淘宝'),
                 array('url' => 'goods/create&goodsType=1', 'label' => '添加B2C'),
                 array('url' => 'goods/create&goodsType=2', 'label' => '添加活动'),
-                array('url' => 'goods/getUHtml', 'label' => '添加U站'),
-                array('url' => 'zhe800/admin', 'label' => '折800商品管理'),
-                array('url' => 'goods/count', 'label' => '添加数量统计'),
-            )
-        ),
-        array(
-            'label' => '用户管理',
-            'items' => array(
-                array('url' => 'user/getGold', 'label' => '集分宝'),
-            )
-        ),
-        array(
-            'label' => 'U站',
-            'items' => array(
-                array('url' => 'goods/getu', 'label' => '商品推送'),
-                array('url' => 'links/list', 'label' => '友情链接'),
             )
         ),
         array(
