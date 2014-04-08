@@ -28,7 +28,7 @@ return array(
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=meipin',
             'username' => 'root',
-            'password' => 'q1w2e3r4t5y6',
+            'password' => '',
             'charset' => 'utf8',
             'tablePrefix' => '',
             'emulatePrepare' => true,
