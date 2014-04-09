@@ -48,7 +48,7 @@ input{background:none}
 .Q_login {background:url(images/con_bg.png) right top no-repeat;width:124px;height:24px;text-indent:-999999px;display:block;}
 .sina_login {background:url(images/con_bg.png) right -39px no-repeat;width:124px;height:24px;text-indent:-999999px;display:block;}
 .tao_login {background:url(images/con_bg.png) right -78px no-repeat;width:124px;height:25px;text-indent:-999999px;display:block;}
-.logo_info h1 a{background:url(images/logo.png) left top no-repeat;width:380px;height:68px;padding:10px 0 0 0px;display:block;text-indent:-999999px}
+.logo_info h1 a{background:url(images/logo.jpg) left top no-repeat;width:380px;height:68px;padding:10px 0 0 0px;display:block;text-indent:-999999px}
 .logo_info {background:url(images/mod_banner_bg.png) center top no-repeat;}
 .nav {background:#BB3500;border-bottom:5px solid #E5E6E7}
 .nav ul {height:39px;position:relative;z-index:1;}
@@ -1298,7 +1298,7 @@ transform:rotateY(0deg)}
 
 #tmallSearch {width:423px;}
 #tmallSearch button,#tmallSearch button:hover{background:url(images/search_new.png) no-repeat}
-#tmallSearch .search_new {background:url(images/new_search_bg.png) 0 0 no-repeat;border:none;width:265px;float:left;height:18px;padding:8px 8px 8px 30px;color:#666}
+#tmallSearch .search_new {background:url(images/new_search_bg.png) 0 0 no-repeat;border:none;width:357px;float:left;height:18px;padding:8px 8px 8px 30px;color:#666}
 #tmallSearch .mallSearch-input{background:#fff;border-radius:2px;height:34px;position:relative;margin-left:0}
 #tmallSearch button{float:right;width:60px;border:0;font-size:12px;font-weight:bold;cursor:pointer;color:#fff;background-color:#462824;background-position:0 0;line-height:30 px\9;padding-bottom:3px;padding-bottom:0 \9;height:34px;overflow:hidden;text-indent:-9999px}
 #tmallSearch button:hover{background-color:#866150;background-position:0 -34px}
