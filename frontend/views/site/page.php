@@ -1,31 +1,5 @@
-<?php
-$banner = Banner::getAll();
-$this->widget(
-	'CLinkPager',
-	array(
-		'pages' => $pager,
-		'header' => false,
-		'cssFile' => '',
-		'maxButtonCount' => '5',
-		'hiddenPageCssClass' => '',
-		'selectedPageCssClass' => 'select',
-		'lastPageLabel' => '尾页',
-		'firstPageLabel' => '首页',
-		'nextPageLabel' => '下一页',
-		'prevPageLabel' => '上一页',
-		'htmlOptions' => array(
-			'class' => 'goods-page',
-		)
-	)
-);
-?>
-<p class="today-goods-item-tips">
-合作联系qq：534095228
-</p>
-
-<div class="pr">
-<!--
-	<a class="footFavorite" href="javascript:void(0)" onclick="goods.utils.addFavorite('http://www.jtzdm.com','收藏这些值得买，随时发现精彩分享');"></a>
-	<img src="http://www.40zhe.com/static/footFatorite_40zhe.jpg" alt="下次怎么找到我" />
--->
+<div class="page_div clear page_bottom wp">
+    <div class="list_page">
+        <span class="current">1</span><span class=""><a href="/index2.html">2</a></span><span class=""><a href="/index3.html">3</a></span><span class=""><a href="/index4.html">4</a></span><span class=""><a href="/index5.html">5</a></span><span class=""><a href="/index6.html">6</a></span><span class=""><a href="/index7.html">7</a></span><span class="next"><a href="/index2.html" style="width: 100px;" rel="next">下一页</a></span>
+    </div>
 </div>
