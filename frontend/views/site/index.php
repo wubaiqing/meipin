@@ -14,9 +14,7 @@
     <?php $this->renderPartial('page'); ?>
 </div>
 
-<div class="side_nav">
-    <?php $this->renderPartial('side'); ?>
-</div>
+<?php $this->renderPartial('side'); ?>
 
 <div id="footer" class="footer">
     <?php $this->renderPartial('footer'); ?>
