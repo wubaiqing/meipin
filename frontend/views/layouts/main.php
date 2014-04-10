@@ -8,6 +8,25 @@
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
         <link rel="stylesheet" type="text/css"  href="/assets/main.css" />
+        <script type="text/javascript" src="http://www.vip800.com/data/static/78df5a3f36d83192e43966bc05d643b2.js"></script>
+        <script type="text/javascript" src="http://www.vip800.com/data/static/images/pp18610_v2.min.js"></script>
+        <script type="text/javascript" src="http://www.vip800.com/data/static/images/tuanpub3.0.min.js"></script>
+        <script src="http://www.vip800.com/data/static/images/index1.0.min.js" type="text/javascript"></script>
+        <script src="http://www.vip800.com/static/jz/scripts/jquery.lazyload.min.js" type="text/javascript"></script>
+        <script src="http://www.vip800.com/static/jz/scripts/loaddeal.js" type="text/javascript"></script>
+        <script language="javascript">
+            $(function() {
+                $shortcuts = get_cookie('shortcuts');
+                if ($shortcuts != "no") {
+                    $("#shortcuts").show();
+                }
+            });
+            function close_shortcut() {
+                add_cookie("shortcuts", "no", 24 * 7);
+            }
+        </script>
+
+
     </head>
     <body>
         <?php echo $content;?>
