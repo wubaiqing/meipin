@@ -5,9 +5,7 @@
 </div>
 
 
-<div class="newuserbanner1" id="shortcuts" style="">
-    <?php $this->renderPartial('banner'); ?>
-</div>
+<?php $this->renderPartial('banner'); ?>
 
 <div id="content" class="wp">
     <?php $this->renderPartial('menu'); ?>
