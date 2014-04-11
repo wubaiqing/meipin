@@ -6,6 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
-    'Likai\\YiiWebserver' => array($vendorDir . '/likai/yii-webserver/src'),
-    'Likai\\YiiRestful' => array($vendorDir . '/likai/yii-restful/src'),
 );
