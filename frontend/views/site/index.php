@@ -4,6 +4,9 @@
     <?php $this->renderPartial('nav'); ?>
 </div>
 
+
+<?php $this->renderPartial('banner'); ?>
+
 <div id="content" class="wp">
     <?php $this->renderPartial('menu'); ?>
     <?php $this->renderPartial('menuWp'); ?>
@@ -11,9 +14,7 @@
     <?php $this->renderPartial('page'); ?>
 </div>
 
-<div class="side_nav">
-    <?php $this->renderPartial('side'); ?>
-</div>
+<?php $this->renderPartial('side'); ?>
 
 <div id="footer" class="footer">
     <?php $this->renderPartial('footer'); ?>

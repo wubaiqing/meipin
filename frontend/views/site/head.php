@@ -1,5 +1,5 @@
 <div class="logo_info wp" style="position:relative">
-    <a href="http://www.vip800.com/mobile" target="_blank" style="position:absolute;right:0;top:0;">
+    <a href="javascript:void(0);" target="_blank" style="position:absolute;right:0;top:0;">
         <img src="/assets/images/appsss.png">
     </a>
     <div class="ccc" id="ccc" style="right:260px;">
