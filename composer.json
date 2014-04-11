@@ -1,0 +1,13 @@
+{
+    "config": {
+        "vendor-dir": "common/vendors"
+    },
+    "require": {
+        "yiisoft/yii": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "common/exceptions.php"
+        ]
+    }
+}
