@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
-        <link rel="stylesheet" type="text/css"  href="/assets/main.css" />
+        <link rel="stylesheet" type="text/css"  href="/assets/main.css?v=201404131000" />
         <script type="text/javascript" src="http://www.vip800.com/data/static/78df5a3f36d83192e43966bc05d643b2.js"></script>
         <script type="text/javascript" src="http://www.vip800.com/data/static/images/pp18610_v2.min.js"></script>
         <script type="text/javascript" src="http://www.vip800.com/data/static/images/tuanpub3.0.min.js"></script>
