@@ -10,14 +10,14 @@ class SiteController extends Controller
     /**
      * @var string $layout 继承视图
      */
-    protected $layout = '//layouts/main';
+    public $layout = '//layouts/main';
 
     /**
      * 今天值得买首页
      */
     public function actionIndex($cat = 0, $page = 1, $hot = 0)
     {
-        $this->render('index', array());
+        $this->render('index');
     }
 
 }

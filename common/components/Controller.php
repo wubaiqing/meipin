@@ -48,23 +48,6 @@ class Controller extends CController
         return array('accessControl');
     }
 
-    public function accessRules()
-    {
-        return array(
-            array('allow',
-				'actions' => array('index', 'view'),
-				'users'=>array('*'),
-			),
-			array('allow',
-				'actions' => array('create', 'update', 'admin', 'delete'),
-				'users' => array('@'),
-			),
-			array('deny',
-				'users'=>array('*'),
-			),
-        );
-    }
-
     /**
      * 返回接口数据
      * @param integer $status 接口状态

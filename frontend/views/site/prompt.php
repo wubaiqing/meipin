@@ -13,7 +13,7 @@
                 美品网
             </em>
             加入收藏夹或者
-            <a href="http://www.meipin.com/" id="btn_bc" _hover-ignore="1">
+            <a href="<?php echo $this->createUrl('down/url');?>" id="btn_bc" _hover-ignore="1">
                 下载快捷方式到桌面
             </a>
             <span>
