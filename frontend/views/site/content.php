@@ -1,19 +1,108 @@
-<div class="list_main">
-    <ul>
-        <li class="time"><a title="" target="_blank" href="http://www.vip800.com/index/muyingwanju.html" class="on"><img alt="母婴专场" class="lazy" src="/huodong/532ff357b62b4.png" data-original="/huodong/532ff357b62b4.png" width="290" height="274" style="margin-bottom: 4px; display: block;"><!--p class="price"><img src="/data/static/images/qkk.jpg" style="position:absolute;right:40px;margin-top:-10px;">全场<span class="new_price"><em>0.0</em></span>元起,快快行动吧！</p--><!--p class="price" style="font-size:14px;height:30px;"><img src="/data/static/images/qkk.jpg" style="position:absolute;right:40px;margin-top:-10px;">新款母婴用品1折起</p-->
-                <div class="info_line">
-                    <div class="left">
-                        <p class="info_txt">
-                            <span class="tag tag_p">返</span><span class="txt">会员购买后返积分</span>
-                        </p>
-                        <p class="info_txt">
-                            <span class="tag tag_b">邮</span><span class="txt">该商品包邮</span>
-                        </p>
-                    </div>
-                    <div class="right fr" style="margin-top:5px;">
-                        <img style="position:absolute;right:40px;margin-top:-12px;" src="http://www.vip800.com/data/static/images/qkk.jpg">
-                    </div>
-                </div>
-        </a></li>
-    </ul>
+<div class="today-goods-list">
+    <!--单个商品 start-->
+    <div class="area">
+        <div class="dealbox">
+            <div class="deal figure1 zt1">
+                <div class="">
+                    <p>
+                        <a href="/site/details/goodsId/62609.html" target="_blank">
+                            <img class="goods-item-img" data-url="http://img03.taobaocdn.com/bao/uploaded/i3/T1C8xfFS4XXXXXXXXX_!!0-item_pic.jpg_290x290.jpg" src="http://img03.taobaocdn.com/bao/uploaded/i3/T1C8xfFS4XXXXXXXXX_!!0-item_pic.jpg_290x290.jpg" title="藤席沙发垫45*45-80*210CM2片装 原价31-206 秒杀价9.9-29元多数地区包邮 " alt="藤席沙发垫45*45-80*210CM2片装 原价31-206 秒杀价9.9-29元多数地区包邮 " width="290" height="290">
+                        </a>
+                    </p>
+                    <h2>
+                        <strong>
+                            <a href="/site/details/goodsId/62609.html" target="_blank">
+                                【淘宝网】
+                            </a>
+                        </strong>
+                        <a href="/site/details/goodsId/62609.html" target="_blank">
+                            藤席沙发垫45*45-80*210CM2片装 原价31-206 秒杀价9.9-29元多数地区包邮 					</a>
+                    </h2>
+                    <h4>
+                        <span>
+                            <em>
+                                <b>¥</b>
+                                <em>9.90</em>
+                            </em>
+                        </span>
+                        <span>
+                            <i>¥31.00</i>
+                        </span>
+                        <a href="/site/details/goodsId/62609.html" target="_blank"></a>
+                    </h4>
+                    <span class="mgicon"></span>
+                    <span class="newicon"></span>			</div>
+            </div>
+        </div>
+
+        <div class="dealbox">
+            <div class="deal figure1 zt1">
+                <div class="">
+                    <p>
+                        <a href="/site/details/goodsId/62586.html" target="_blank">
+                            <img class="goods-item-img" data-url="http://img02.taobaocdn.com/bao/uploaded/i2/T1Q9PkFANdXXXXXXXX_!!0-item_pic.jpg_290x290.jpg" src="http://img02.taobaocdn.com/bao/uploaded/i2/T1Q9PkFANdXXXXXXXX_!!0-item_pic.jpg_290x290.jpg" title="春夏打底短裙 原价108元 拍下价格15元多数地区包邮 " alt="春夏打底短裙 原价108元 拍下价格15元多数地区包邮 " width="290" height="290">
+                        </a>
+                    </p>
+                    <h2>
+                        <strong>
+                            <a href="/site/details/goodsId/62586.html" target="_blank">
+                                【淘宝网】
+                            </a>
+                        </strong>
+                        <a href="/site/details/goodsId/62586.html" target="_blank">
+                            春夏打底短裙 原价108元 拍下价格15元多数地区包邮 					</a>
+                    </h2>
+                    <h4>
+                        <span>
+                            <em>
+                                <b>¥</b>
+                                <em>15.00</em>
+                            </em>
+                        </span>
+                        <span>
+                            <i>¥108.00</i>
+                        </span>
+                        <a href="/site/details/goodsId/62586.html" target="_blank"></a>
+                    </h4>
+                    <span class="mgicon"></span>
+                    <span class="newicon"></span>			</div>
+            </div>
+        </div>
+
+
+        <div class="dealbox">
+            <div class="deal figure1 zt1">
+                <div class="">
+                    <p>
+                        <a href="/site/details/goodsId/62634.html" target="_blank">
+                            <img class="goods-item-img" data-url="http://img04.taobaocdn.com/bao/uploaded/i4/1590711529/T2n1ikXL0XXXXXXXXX_!!1590711529.jpg_460x460.jpg" src="http://img04.taobaocdn.com/bao/uploaded/i4/1590711529/T2n1ikXL0XXXXXXXXX_!!1590711529.jpg_460x460.jpg" title="新款坡跟女布鞋 原价150元 拍下价格24元多数地区包邮 " alt="新款坡跟女布鞋 原价150元 拍下价格24元多数地区包邮 " width="290" height="290">
+                        </a>
+                    </p>
+                    <h2>
+                        <strong>
+                            <a href="/site/details/goodsId/62634.html" target="_blank">
+                                【淘宝网】
+                            </a>
+                        </strong>
+                        <a href="/site/details/goodsId/62634.html" target="_blank">
+                            新款坡跟女布鞋 原价150元 拍下价格24元多数地区包邮 					</a>
+                    </h2>
+                    <h4>
+                        <span>
+                            <em>
+                                <b>¥</b>
+                                <em>24.00</em>
+                            </em>
+                        </span>
+                        <span>
+                            <i>¥150.00</i>
+                        </span>
+                        <a href="/site/details/goodsId/62634.html" target="_blank"></a>
+                    </h4>
+                    <span class="mgicon"></span>
+                    <span class="newicon"></span>			</div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
 </div>
