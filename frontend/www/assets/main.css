@@ -1106,11 +1106,15 @@ transform:rotateY(0deg)}
 #tmallSearch button,#tmallSearch button:hover{background:url(images/search_new.png) no-repeat}
 #tmallSearch .search_new {background:url(images/new_search_bg.png) 0 0 no-repeat;border:none;width:357px;float:left;height:18px;padding:8px 8px 8px 30px;color:#666}
 #tmallSearch .mallSearch-input{background:#fff;border-radius:2px;height:34px;position:relative;margin-left:0}
-#tmallSearch button{float:right;width:60px;border:0;font-size:12px;font-weight:bold;cursor:pointer;color:#fff;background-color:#462824;background-position:0 0;line-height:30 px\9;padding-bottom:3px;padding-bottom:0 \9;height:34px;overflow:hidden;text-indent:-9999px}
-#tmallSearch button:hover{background-color:#866150;background-position:0 -34px}
+#tmallSearch button{float:right;width:70px;border:0;font-size:12px;font-weight:bold;cursor:pointer;color:#fff;background-position:0 0;line-height:30 px\9;padding-bottom:3px;padding-bottom:0 \9;height:34px;overflow:hidden;text-indent:-9999px}
 button::-moz-focus-inner{border:0;padding:0;margin:0}
 #tmallSearch .currShopBtn{background-position:-60px 0}
 #tmallSearch .currShopBtn:hover{background-position:-60px -34px}
+#tmallSearch #search{
+    position:absolute;
+    top:0px;
+    right:30px;
+}
 
 .side_nav{position:absolute;top:245px;width:128px;left:50%;text-align:left;margin-left:-635px;z-index:999;}
 .side_nav .logo{display:none;}
