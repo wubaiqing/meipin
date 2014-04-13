@@ -1,10 +1,10 @@
 <div class="side_nav">
 	<div class="logo">
-		<a href="http://club.jinzhe.com/"><img src="http://www.meipin.com/assets/images/side_logo.jpg" alt="金折会旗下"></a>
+		<a href="www.meipin.com"><img src="http://www.meipin.com/assets/images/side_logo.jpg" alt="金折会旗下"></a>
 	</div>
 	<div class="content">
 		<div class="hd">
-			<h3><a href="http://www.vip800.com/">金折网</a>精选</h3>
+			<h3><a href="http://www.meipin.com/">美品网</a>精选</h3>
 		</div>
 		<div class="bd">
 			<ul>
@@ -21,7 +21,7 @@
 			</ul>
 		</div>
 		<div class="hd">
-			<h3><a href="http://www.vip800.com">金折网</a>推荐</h3>
+			<h3><a href="http://www.vip800.com">美品网</a>推荐</h3>
 		</div>
 		<div class="bd">
 			<ul>
@@ -30,17 +30,6 @@
 				<li><a href="http://www.vip800.com/smzdm">值得买</a></li>
 				<li><a href="http://www.vip800.com/ppzk/">品牌团</a></li>
 			</ul>
-		</div>
-		<div class="hd">
-			<h3>下载金<a href="http://www.vip800.com/">折800</a></h3>
-		</div>
-		<div class="bd">
-			<div class="qrcode">
-				<img src="http://www.meipin.com/assets/images/weicode.png">
-				<p>
-					下载手机客户端
-				</p>
-			</div>
 		</div>
 	</div>
 	<div class="bottom">
