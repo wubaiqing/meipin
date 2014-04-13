@@ -11,10 +11,10 @@
             </a>
         </li>
         <li class="nav_r">
-            <a href="javascript:;" onclick="biztip();">
+            <a href="javascript:;">
                 卖家中心
             </a>
-            <a href="/help/">
+            <a href="javascript:;">
                 帮助中心
             </a>
         </li>
