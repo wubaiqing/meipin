@@ -1240,12 +1240,12 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 #tmallSearch .currShopBtn{background-position:-60px 0}
 #tmallSearch .currShopBtn:hover{background-position:-60px -34px}
 
-.side_nav{position:absolute;top:245px;width:128px;left:50%;text-align:left;margin-left:-635px;z-index:999;background:#cf201c}
+.side_nav{position:absolute;top:245px;width:128px;left:50%;text-align:left;margin-left:-635px;z-index:999;}
 .side_nav .logo{display:none;}
 .side_nav.affix{padding-top:70px;}
 .side_nav.affix-bottom{position: absolute;top: auto;padding-top: 70px;}
 .side_nav.affix .logo,.side_nav.affix-bottom .logo{display:block;}
-.side_nav .logo{position:absolute;left:-4px;top:0;width:132px;}
+.side_nav .logo{position:absolute;top:0;width:132px;}
 .side_nav .content,.side_nav .bottom{border:1px solid #e2e2e2;border-left:none;border-top:none;background:#fff;}
 
 .side_nav .hd{background:#ffeed9;color:#bf7c53;line-height:30px;padding-left:10px;}
