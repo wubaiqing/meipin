@@ -1,5 +1,6 @@
 <div id="header">
     <?php $this->renderPartial('prompt'); ?>
+    <?php $this->renderPartial('login'); ?>
     <?php $this->renderPartial('head'); ?>
     <?php $this->renderPartial('nav'); ?>
 </div>
