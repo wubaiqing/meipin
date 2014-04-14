@@ -15,9 +15,14 @@ class SiteController extends Controller
     /**
      * 今天值得买首页
      */
-    public function actionIndex($cat = 0, $page = 1, $hot = 0)
+    public function actionIndex($page = 1, $hot = 0, $cat = 0)
     {
-        $this->render('index');
+        $goods = Goods::getGoods($page, $cat, $hot);
+        var_dump($goods);
+        exit;
+        $this->render('index', array(
+            'goods' => $goods
+        ));
     }
 
 }

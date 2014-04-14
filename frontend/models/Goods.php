@@ -17,26 +17,16 @@ class Goods extends ActiveRecord implements IArrayable
     }
 
 	/**
-	 * 商品列表缓存Key
-	 * @param string $condition 缓存条件
-	 * @return string 缓存名称
-	 */
-	public static function getGoodsListCacheKey($condition)
-	{
-		return 'get-goods-list-cachekey-'. $condition;
-	}
-
-	/**
 	 * 商品列表
 	 * @param string $list 是否是列表
 	 * @param intger $page 当前页数
 	 * @param integer $cat 当前分类
 	 * @return array 商品条件
 	 */
-	public static function getGoodsList($page, $cat, $hot)
+	public static function getGoodsList($page, $hot, $cat)
 	{
 		// 缓存名称
-		$cacheKey = Goods::getGoodsListCacheKey($page . '-' . $cat . '-' .$hot);
+		$cacheKey = 'get-goods-list-cachekey-'.$page.'-'.$cat.'-'.$hot;
 
 		// 商品列表
 		$goodsList = Yii::app()->cache->get($cacheKey);
