@@ -23,7 +23,7 @@ class Goods extends ActiveRecord implements IArrayable
 	 * @param integer $cat 当前分类
 	 * @return array 商品条件
 	 */
-	public static function getGoodsList($page, $hot, $cat)
+	public static function getGoodsList($page, $cat, $hot)
 	{
 		// 缓存名称
 		$cacheKey = 'get-goods-list-cachekey-'.$page.'-'.$cat.'-'.$hot;

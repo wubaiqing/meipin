@@ -49,7 +49,7 @@ input{background:none}
 .sina_login {background:url(images/con_bg.png) right -39px no-repeat;width:124px;height:24px;text-indent:-999999px;display:block;}
 .tao_login {background:url(images/con_bg.png) right -78px no-repeat;width:124px;height:25px;text-indent:-999999px;display:block;}
 .logo_info h1 a{background:url(images/logo.jpg) left top no-repeat;width:380px;height:68px;padding:10px 0 0 0px;display:block;text-indent:-999999px}
-.logo_info {background:url(images/mod_banner_bg.png) center top no-repeat;}
+.logo_info {}
 .nav {background:#BB3500;border-bottom:5px solid #E5E6E7}
 .nav ul {height:39px;position:relative;z-index:1;}
 .nav li {float:left;position:relative;z-index:111;}

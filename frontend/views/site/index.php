@@ -11,7 +11,7 @@
 <div id="content" class="wp">
     <?php $this->renderPartial('menu'); ?>
     <?php $this->renderPartial('menuWp'); ?>
-    <?php $this->renderPartial('content'); ?>
+    <?php $this->renderPartial('content', array('goods' => $goods)); ?>
     <?php $this->renderPartial('page'); ?>
 </div>
 

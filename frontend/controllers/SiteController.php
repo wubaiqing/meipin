@@ -17,11 +17,9 @@ class SiteController extends Controller
      */
     public function actionIndex($page = 1, $hot = 0, $cat = 0)
     {
-        $goods = Goods::getGoods($page, $cat, $hot);
-        var_dump($goods);
-        exit;
+        $goods = Goods::getGoodsList($page, $cat, $hot);
         $this->render('index', array(
-            'goods' => $goods
+            'goods' => $goods['data']
         ));
     }
 
