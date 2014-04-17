@@ -39,7 +39,12 @@
         </dl>
     </div>
     <div class="footer_yq_div">
-        <h3 class="footer_yq_h3 fl"><a href="http://www.vip.com/help/link.html" target="_blank">友情链接</a></h3>
-        <a target="_blank" class="youq_a" href="http://www.weixinz.com" title="微信">微信</a><a target="_blank" class="youq_a" href="http://www.jufanli.com" title="聚返利">聚返利</a><a target="_blank" class="youq_a" href="http://www.hl.cn" title="互联中国">互联中国</a><a target="_blank" class="youq_a" href="http://www.butao.com" title="聚划算">聚划算</a><a target="_blank" class="youq_a" href="http://www.eb.cn" title="电商网">电商网</a><a target="_blank" class="youq_a" href="http://www.eb.com.cn" title="第一商务">第一商务</a><a target="_blank" class="youq_a" href="http://www.22.cn" title="爱名网">爱名网</a><a target="_blank" class="youq_a" href="http://www.huangtao.com.cn" title="奉贤黄桃">奉贤黄桃</a><a target="_blank" class="youq_a" href="http://www.nanhuimitao.com" title="南汇水蜜桃">南汇水蜜桃</a>
+        <h3 class="footer_yq_h3 fl"><a href="javascript:;" target="_blank">友情链接</a></h3>
+        <?php
+            $links = Links::getLink();
+            foreach ($links as $link) :
+        ?>
+        <a target="_blank" class="youq_a" href="<?php echo $link->url;?>" title="<?php echo $link->image_url;?>"><?php echo $link->image_url;?></a>
+        <?php endforeach; ?>
     </div>
 </div>
