@@ -1,10 +1,10 @@
 <div class="menu_wp">
     <div class="junav">
-        <span>全部折扣<em>(1091)</em></span>
+        <span>全部折扣<em>(<?php echo $count;?>)</em></span>
         <div class="new_bg r">
             <ul>
-                <li class="on"><a href="/">全站新品<em>(14)</em></a></li>
-                <li><a href="/yugao.html">明日精选<em>(0)</em></a></li>
+                <li class="on"><a href="/">最热<em></em></a></li>
+                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 0, 'hot' => 1));?>">最新<em></em></a></li>
                 <!--li ><a href="/index/index/order/hot.html">最热</a></li-->
             </ul>
         </div>

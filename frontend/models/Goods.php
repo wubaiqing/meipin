@@ -23,10 +23,10 @@ class Goods extends ActiveRecord implements IArrayable
 	 * @param integer $cat 当前分类
 	 * @return array 商品条件
 	 */
-	public static function getGoodsList($page, $cat, $hot)
+	public static function getGoodsList($cat, $hot)
 	{
 		// 缓存名称
-		$cacheKey = 'get-goods-list-cachekey-'.$page.'-'.$cat.'-'.$hot;
+		$cacheKey = 'get-goods-list-cachekey-'.$cat.'-'.$hot;
 
 		// 商品列表
 		$goodsList = Yii::app()->cache->get($cacheKey);
@@ -61,7 +61,7 @@ class Goods extends ActiveRecord implements IArrayable
 		$criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
 		if ($hot == 0) {
-			$criteria->order = 'day DESC, t.list_order DESC, rand()';
+			$criteria->order = 'day DESC, t.list_order DESC';
 		} else {
 			$criteria->order = 't.id DESC';
 		}
