@@ -5,7 +5,6 @@
     <?php $this->renderPartial('nav'); ?>
 </div>
 
-
 <?php $this->renderPartial('banner'); ?>
 
 <div id="content" class="wp">
