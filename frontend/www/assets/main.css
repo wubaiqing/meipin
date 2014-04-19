@@ -352,10 +352,6 @@ textarea {border:1px solid #ccc;background:#fff;padding:3px;font-size:12px;}
 .table_user tr td em {margin:0 5px;color:#777}
 .table_user tr td input.input_on {font-weight:800;font-family:Arial,Helvetica,sans-serif}
 .table_user tr td img {padding:1px;border:1px solid #ccc}
-.page{text-align:center;padding:10px;}
-.page a{border:1px solid #DDDDDD;color:#666;margin-right:2px;text-decoration:none;padding:4px 8px;background:#fff}
-.page span.current{background-color:#FFEEE5;border:1px solid #FF5500;color:#FF5500;font-weight:700;margin-right:2px;padding:4px 8px;margin-left:4px}
-.page a:hover,.page a:active{border:1px solid #FF5500;color:#FF5500}
 .hei {height:auto}
 .submit{width:55px;height:25px;line-height:25px;text-align:center;color:#fff;font-size:14px;background:url(images/con_bg.png) -593px -36px no-repeat;border:none;cursor:pointer;font-size:14px;font-weight:800;text-indent:-9999px}
 .data {background:url(images/data.png) 0 0 no-repeat;height:380px;margin-top:8px;position:relative}
@@ -1216,3 +1212,12 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .zt3 .mgicon{display:block}
 .deal .diacol{display:none}
 
+
+/* */
+.goods-page{text-align:center;width:520px;height:50px;margin:20px auto 0px auto;}
+.goods-page li{float:left;padding:5px 10px 5px 10px;background-color:white;margin-left:5px;}
+.goods-page li a{font-size:20px;}
+.goods-page li a:hover{color:#BB3500;}
+.select a {
+    color: #BB3500;
+}
