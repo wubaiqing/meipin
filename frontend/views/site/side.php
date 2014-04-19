@@ -8,27 +8,16 @@
 		</div>
 		<div class="bd">
 			<ul>
-				<li><a href="/nvzhuang">女装</a></li>
-				<li><a href="/nanzhuang" _hover-ignore="1">男装</a></li>
-				<li><a href="/home">居家</a></li>
-				<li><a href="/muying">母婴</a></li>
-				<li><a href="/xiangbaoxiexue">鞋包</a></li>
-				<li><a href="/baihuo">配饰</a></li>
-				<li><a href="/shipinjiushui">美食</a></li>
-				<li><a href="/bodycare" _hover-ignore="1">化妆</a></li>
-				<li><a href="/sport">文体</a></li>
-				<li><a href="/shumajiadian">数码</a></li>
-			</ul>
-		</div>
-		<div class="hd">
-			<h3><a href="http://www.vip800.com">美品网</a>推荐</h3>
-		</div>
-		<div class="bd">
-			<ul>
-				<li><a href="http://www.vip800.com/baoyou/">九块邮</a></li>
-				<li><a href="http://www.vip800.com/tttj/" _hover-ignore="1">聚金折</a></li>
-				<li><a href="http://www.vip800.com/smzdm">值得买</a></li>
-				<li><a href="http://www.vip800.com/ppzk/">品牌团</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 1));?>">女装</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 4));?>" _hover-ignore="1">男装</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 5));?>">居家</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 6));?>">母婴</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 7));?>">鞋包</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 8));?>">配饰</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 9));?>">美食</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 11));?>" _hover-ignore="1">化妆</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 12));?>">文体</a></li>
+				<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 10));?>">数码</a></li>
 			</ul>
 		</div>
 	</div>
