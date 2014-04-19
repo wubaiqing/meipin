@@ -15,7 +15,7 @@
     <?php $this->renderPartial('menu', array('cat' => $cat)); ?>
     <?php $this->renderPartial('menuWp', array('count' => $count)); ?>
     <?php $this->renderPartial('content', array('goods' => $goods)); ?>
-    <?php $this->renderPartial('page'); ?>
+    <?php $this->renderPartial('page', array('pager' => $pager)); ?>
 </div>
 
 <?php $this->renderPartial('side'); ?>

@@ -21,9 +21,10 @@ class SiteController extends Controller
         $count = count(Goods::getGoodsList(0, 0)['data']);
         $cat = Yii::app()->request->getQuery('cat');
         $this->render('index', array(
+            'cat' => $cat,
             'count' => $count,
             'goods' => $goods['data'],
-            'cat' => $cat
+            'pager' => $goods['pager'],
         ));
     }
 
