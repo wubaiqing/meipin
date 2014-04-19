@@ -5,7 +5,7 @@ $this->widget(
         'pages' => $pager,
         'header' => false,
         'cssFile' => '',
-        'maxButtonCount' => '7',
+        'maxButtonCount' => '5',
         'hiddenPageCssClass' => '',
         'selectedPageCssClass' => 'select',
         'lastPageLabel' => '尾页',
