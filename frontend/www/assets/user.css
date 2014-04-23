@@ -1,0 +1,247 @@
+.mains {width: 1000px;margin: 0 auto;overflow: hidden;text-align: left;}
+.piece {margin-bottom: 15px;width: 1000px;overflow: hidden;}
+.jiu_goods {background: url(/static/vip800/images/background_bg.png) repeat;}
+.jiu_bd {width: 760px;overflow: visible;min-height: 180px;}
+.content_body {margin-right: 10px;margin-top: 10px;background: white;padding: 15px 35px 15px 15px;width: 710px !important;min-height: 500px;}
+.content_body .c_b_menu {border-bottom: 2px solid #FF940A;height: 29px;border-left: #E5E5E5 solid 1px;}
+.c_b_menu .cur {border-right: #FF940A solid 1px;border-top: #FF940A solid 1px;border-top-width: 2px;position: relative;line-height: 26px;background: #FF9C16;height: 27px;left: -1px;}
+.c_b_menu li {border-right: #E5E5E5 solid 1px;border-top: #E5E5E5 solid 1px;float: left;height: 28px;line-height: 28px;overflow: hidden;}
+.c_b_menu li a {font-size: 12px;padding: 0 17px;height: 28px;display: block;overflow: hidden;float: left;}
+.c_b_menu .cur a {color: white;}
+.c_b_menu li a span {font-weight: bold;}
+.c_b_body {height: auto;width: 710px;margin-top: 1px;padding-bottom: 50px;min-height: 500px;}
+.c_b_body .find_gift {height: auto;overflow: hidden;width: 685px;padding-top: 100px;}
+.c_b_body .find_gift p {text-align: center;font-size: 14px;line-height: 30px;}
+.c_b_body .find_gift p a {color: #0289CD;text-decoration: underline;}
+.mains .jiu_right {width: 230px;height: auto;overflow: hidden;margin-top: 10px;}
+.mains .jiu_right .per_logo {padding: 10px;background: url(/static/vip800/images/per_bg.jpg) repeat;width: 210px !important;border-bottom: #E7E7E7 solid 1px;}
+.mains .jiu_right .per_logo .per_info {width: 195px;height: auto;overflow: hidden;background: white;padding: 7px;height: 74px;width: 198px !important;padding-bottom: 0px;}
+.mains .jiu_right .per_logo .per_info .per_icon {height: 54px;width: 54px;overflow: hidden;float: left;margin-right: 10px;}
+.mains .jiu_right .per_logo .per_info .per_detail {float: left;height: auto;overflow: hidden;width: 124px;_margin-top: -2px;}
+.mains .jiu_right .per_logo .per_info .per_detail .per_user {height: 16px;line-height: 16px;overflow: hidden;}
+.mains .jiu_right .per_logo .per_info .per_detail .per_name {color: #6CAF11;font-size: 14px;font-weight: bold;}
+.mains .jiu_right .per_logo .per_info .per_detail .all_juandou {color: #727272;margin-top: 4px;}
+.mains .jiu_right .per_logo .per_info .per_detail .all_juandou a {color: #0289CD;cursor: pointer;}
+.mains .jiu_right .per_logo .juan_btn {height: auto;overflow: hidden;width: 210px;}
+.mains .jiu_right .per_logo .juan_btn a {height: 30px;width: 75px !important;text-align: center;line-height: 28px;background: url(/static/vip800/images/newftx_total.gif) no-repeat 0 -206px;padding-left: 25px;color: #FF7600;display: block;float: left;}
+.mains .jiu_right .per_logo .juan_btn .visit_btn {color: #93BD2F;background-position: 0 -240px;margin-left: 10px;}
+.mains .jiu_right .exchange_info {background: white;padding: 15px;height: auto;overflow: hidden;width: 200px;}
+.mains .jiu_right .exchange_info h3 {color: #8F8F8F;font-size: 14px;overflow: hidden;height: 24px;}
+.mains .jiu_right .exchange_info h3 span {display: block;float: left;}
+.mains .jiu_right .exchange_info h3 .more {color: #8F8F8F;float: right;font-size: 12px;font-weight: normal;display: block;}
+.mains .jiu_right .exchange_info .goods_info {padding: 12px 0px;border-bottom: whiteSmoke dashed 1px;height: auto;overflow: hidden;clear: both;}
+.mains .jiu_right .exchange_info .goods_info .goods_img {width: 54px;height: 54px;overflow: hidden;float: left;margin-right: 10px;}
+.mains .jiu_right .exchange_info .goods_info .goods_detail {float: left;width: 136px;height: auto;overflow: hidden;margin-top: -3px;}
+.mains .jiu_right .exchange_info .goods_info .goods_detail p {color: #8D8D8D;}
+.mains .jiu_right .exchange_info .goods_info .goods_detail .goods_title {height: 15px;line-height: 15px;overflow: hidden;}
+.mains .jiu_right .exchange_info .goods_info .goods_detail .goods_title a {color: #8D8D8D;}
+.mains .jiu_right .exchange_info .goods_info .goods_detail .goods_price, .mains .jiu_right .exchange_info .goods_info .goods_detail .exchange_price {margin-top: 5px;}
+.mains .jiu_right .exchange_info .goods_info .goods_detail .exchange_price b {color: #FF7201;font-weight: normal;margin-right: 2px;}
+
+.per_content {margin-left: 60px;_margin-left: 30px;padding: 20px 0px 30px;}
+.per_content ul {list-style: none outside none;}
+.per_content li {clear: both;display: block;margin-top: 20px;overflow: hidden;position: relative;padding-bottom: 5px;}
+.per_content li label {display: block;float: left;height: 26px;line-height: 26px;text-align: right;width: 130px;}
+.per_content li input[type="text"], .per_content li input[type="password"] {border-color: #AAA #DDD #DDD #AAA;border-style: solid;border-width: 1px;float: left;font-size: 14px;height: 26px;line-height: 26px;padding-left: 5px;margin-right: 5px;background: white;}
+
+.link a {color: #5E5E5E;text-decoration: none;}
+.tao_n {background: url(/static/vip800/images/total_alert.gif) no-repeat 0 -66px;display: inline-block;height: 16px;width: 16px;vertical-align: -4px;margin-right: 5px;}
+.tao_t {background: url(/static/vip800/images/total_alert.gif) no-repeat -130px -66px;display: inline-block;height: 16px;width: 16px;vertical-align: -2px;margin-right: 5px;}
+.smt {background: url(/static/vip800/images/btn_total.gif) no-repeat;color: white;cursor: pointer;display: block;float: left;font-size: 14px;font-weight: bold;height: 30px;line-height: 28px;line-height: 32px 9;padding-bottom: 2px;margin-top: 0px;text-align: center;width: 104px;border: none medium;}
+
+
+.jiu_shi {height: auto;overflow: hidden;width: 1000px;padding-bottom: 20px;}
+.jiu_shi .title {height: auto;clear: both;overflow: hidden;margin-bottom: 5px;}
+.jiu_shi .title span {display: block;height: 30px;color: #DB4C4C;font-size: 20px;width: 167px;font-family: "΢���ź�","����";line-height: 30px;float: left;margin-top: 10px;}
+.jiu_shi .title .kanmore {float: right;display: block;height: 30px;line-height: 36px;margin-right: 5px;margin-top: 10px;}
+.jiu_shi .title .kanmore .txt {display: block;float: left;color: #404040;background: none;font-weight: normal;color: #404040;font-size: 12px;margin-right: 5px;}
+.jiu_shi .title .kanmore em {display: block;background: url(/static/vip800/images/go_go.gif) no-repeat;height: 13px;width: 13px;float: left;margin-top: 12px;}
+.jiu_shi .line_top {height: 1px;background: #D3D6D1;width: 1000px;overflow: hidden;}
+.jiu_shi .line_bottom {height: 1px;background: white;width: 1000px;overflow: hidden;}
+.jiu_shi .shijiu_list {clear: both;height: auto;overflow: hidden;margin-top: 13px;}
+.jiu_shi .shijiu_list li {float: left;margin-left: 20px;_margin-left: 20px;height: auto;width: 150px;}
+.jiu_shi .shijiu_list li .pic {display: block;height: 148px;width: 148px;overflow: hidden;border: #E5E5E5 solid 1px;}
+.jiu_shi .shijiu_list li .pic img {width: 148px;}
+.jiu_shi .shijiu_list li .title_name {height: 25px;line-height: 25px;overflow: hidden;}
+.jiu_shi .shijiu_list li .title_name a {text-decoration: none;color: #5A5A5A;}
+.jiu_shi .shijiu_list li .detail {height: 25px;line-height: 25px;margin-top: 3px;}
+.jiu_shi .shijiu_list li .detail .price {color: #DB4C4C;font-family: "΢���ź�","Arial";font-size: 18px;display: block;float: left;}
+.jiu_shi .shijiu_list li .detail a {float: right;text-decoration: none;}
+.jiu_shi .shijiu_list li .detail .go_buy {color: #DB4C4C;text-decoration: none;}
+
+.list{ width:980px; margin-top:5px;}
+.buy{ float:left; width:315px; background:#fff; border:1px solid #E5E5E5; margin-left:7px;margin-right: 2px;margin-bottom:20px;z-index:3;position: relative;}
+.buy:hover{border:#F50 solid 1px}
+.buy p{ text-align:left;width:285px; line-height:23px; height:46px;margin:0 17px 0 17px; margin-top:10px;font-weight: normal;overflow: hidden;font-size: 14px;}
+.buy .item_class{ font-size:14px; font-weight:bold;}
+.buy .item_title{ font-size:14px;}
+.tao_n {background: url(/static/vip800/images/total_alert.gif) no-repeat 0 -66px;display: inline-block;height: 16px;width: 16px;vertical-align: -4px;margin-right: 5px;}
+.tao_t {background: url(/static/vip800/images/total_alert.gif) no-repeat -130px -66px;display: inline-block;height: 16px;width: 16px;vertical-align: -2px;margin-right: 5px;}
+.buy p span{ color:#078701;}
+.buy p a{ color:#666;}
+.buy_cen{ width:310px; height:185px; margin:0 auto; position:relative; border:0px solid #b9e295;}
+.buy_cen .buy_state{position:absolute; display:block; width:285px;; height:20px; line-height:20px; color:#fff;left:12px; bottom:0; background:#898a8c; filter:alpha(opacity=50);background-color: black;opacity: 0.5;vertical-align:middle;}
+
+.buy_state .orig_price {float:left;font-size: 12px;padding: 0 4px 0 10px;}
+
+.buy_state .buy_ed {color: white;float: right;font-size: 12px;padding-right: 2px;}
+.buy_state .buy_ed strong {font-family: Arial;font-weight: bold;color: #B0E553;}
+
+
+.buy_cen img {margin: 0px auto;width: 285px;height: 185px;vertical-align:middle;}
+.buy_bt span.one{float:left; font-size:15px; color:#fff; font-family:"Microsoft Yahei","Arial","Verda","tahoma"; margin-top:5px;letter-spacing: -2px;text-shadow: 0 0 0 transparent, 1px 1px 1px #8A181B;}
+
+
+.buy a.tag_buy{ display:block; width:285px; height:44px;  line-height:44px; margin:0 auto 7px; background:url(/static/vip800/images/goods_tag_status.png) no-repeat scroll 0 0px transparent;}
+
+.buy a.tag_buy:hover{ background:url(/static/vip800/images/goods_tag_status.png) no-repeat scroll 0 -44px transparent;text-decoration: none}
+.buy a.tag_sellout{  display:block; width:285px; height:44px;line-height:44px; margin:0 auto  7px; background:url(/static/vip800/images/goods_tag_status.png) no-repeat scroll 0 -135px transparent;text-decoration: none}
+.buy a.tag_wait{  display:block; width:285px; height:44px;  line-height:44px; margin:0 auto  7px; background:url(/static/vip800/images/goods_tag_status.png) no-repeat scroll 0 -88px transparent;text-decoration: none}
+
+.buy a.tag_end{ display:block; width:285px; height:44px; line-height:44px; margin:0 auto  7px; background:url(/static/vip800/images/goods_tag_status.png) no-repeat scroll 0 -177px transparent;text-decoration: none}
+.tag_buy span.one{  color:#fff; font-family:"Microsoft Yahei","Arial","Verda","tahoma"; margin-top:18px;font: bold 18px "Arial";letter-spacing: -2px;text-shadow: 0 0 0 transparent, 1px 1px 1px #8A181B;}
+.buy_bt span.two{float:left; margin-top:10px;  color:#fff; font-weight:bold;font: bold 28px "Arial";letter-spacing: -2px;text-shadow: 0 0 0 transparent, 1px 1px 1px #8A181B;}
+.buy_bt span.three{float:left; color: white;display: inline-block;font-size: 14px;height: 38px !important;line-height: 38px;margin-left: 5px;padding-top: 10px;text-decoration: line-through;}
+.buy_bt a:hover{ background:url(/static/vip800/images/miao_69.jpg) no-repeat;text-decoration: none}
+.buy_bt a{ display:block;}
+.buy a.star{ background:url(/static/vip800/images/miao_72.jpg) no-repeat;}
+.buy a.star:hover{ background:url(/static/vip800/images/miao_72.jpg) no-repeat;text-decoration: none}
+.buy span.li_bg{background:url(/static/vip800/images/li_bg.png) no-repeat;height:11px;width:183px;position:absolute;margin-top: 0px;margin-left: 15px;}
+
+.search{ float:right; width:260px; margin-top:25px;}
+.search .text{ float:left; width:166px !important;line-height: 26px; height:26px; border:0 none;outline: 0 none;color: #999; background:url(/static/vip800/images/bg_09.gif) left center no-repeat;padding-left: 28px;}
+.search .button{ float:right; width:65px; height:26px; margin-top:1px;border:0; background:url(/static/vip800/images/bg_06.jpg) no-repeat; font-weight:bold; color:#424242; }.mains{margin:15px auto}
+.white_top_left,.white_top_right,.white_bottom_left,.white_bottom_right{background:#fff}
+.white_bg {height: auto;background-color: white;text-align:left;}
+.wrap{width:980px;clear:both;overflow:hidden;padding:20px 0px}
+.wrap_left{float:left;padding-left:40px;width:640px;border-right:1px solid #ddd;overflow:hidden}
+.wrap_left h1{color:#F50;font-size:24px;font-family:'微软雅黑','黑体',Arial,'宋体'}
+.cur_input,.bg,.yz{border:1px solid #ccc;font-size:14px;height:28px;line-height:28px;padding-left:6px;width:228px}
+.cur_input{border-color:#139C00}
+.w_reg p{line-height:25px;color:#5e5e5e;font-family:'微软雅黑','黑体',Arial,'宋体'}
+.w_reg{position:relative}
+.w_reg .redbg_tip{background:url("/static/vip800/images/error_bg2.gif")  no-repeat;height:47px;left:260px;position:absolute;line-height:20px;top:5px;width:230px;padding:5px 5px 0px 13px;z-index:100;color:#f50;font-weight:bold}
+.w_reg .redbg_tip em{width:30px;height:30px;float:left;margin-top:5px;margin-right:5px;position:relative}
+.w_reg .redbg_ok em{background:url("/static/vip800/images/redbag_ok.gif") no-repeat}
+.w_reg .redbg_ok span{color:#139C00}
+.w_reg .redbg_erro em{background:url("/static/vip800/images/redbag_erro.gif") no-repeat}
+.fill{padding-bottom:40px}
+.fill ul{list-style:none outside none;margin:20px 0px 0px}
+.fill li{display:block;font-size:14px;height:45px;padding:10px 0px 0}
+.fill .ipt_box{margin-left:76px;overflow:hidden;padding-top:5px;height:25px}
+.fill .ipt_box .box{margin-right:2px;display:inline;float:left;_margin-top:-4px}
+.fill .ipt_box span{color:#999;font-size:12px;line-height:12px;margin-top:0;float:left;display:inline}
+.fill .ipt_box span a{color:#999;text-decoration:none}
+.fill .ipt_smt{float:left}
+.fill li .input_left{float:left;height:28px}
+.fill li label{display:block;float:left;font-size:14px;height:30px;line-height:30px;text-align:right;width:75px}
+.fill li span{color:#B5B4B4;display:none;float:left;font-size:12px}
+.fill li .input_left .rdo1,.fill li .input_left .rdo2{margin-top:8px;margin-right:2px}
+.fill li .input_left .rdo2{margin-top:8px;margin-left:10px}
+.fill li .tips-red, .fill li .tips-green{background:url("/static/vip800/images/total_alert.gif") no-repeat scroll -211px -448px;display:block;float:left;font-size:12px;line-height:18px;margin-left:15px;margin-top:1px;padding:5px 10px 5px 20px}
+.fill li .tips-red{background-position:-211px -478px;color:#FF8502}
+.fill li .normal{height:30px;line-height:30px;margin-left:15px}
+.fill li .smt{margin-left:75px;_margin-left:78px}
+.w_login{padding-left:70px;width:610px;position:relative}
+.w_login ul{list-style:none outside none;padding-bottom:100px}
+.w_login li{font-size:14px;margin-top:28px}
+.w_login li span{_float:left;_margin-top:7px}
+.w_login .fs12 span{_float:none;_margin-top:0px}
+.w_login .fs12{font-size:12px}
+.w_login li .usergray{border:1px solid #ccc;color:#999;font-size:14px;height:26px;line-height:26px;padding-left:6px;width:228px}
+.w_login li .cur_input{border-color:#139C00}
+.w_login li .err_name,.w_login li .err_pass{background:url("/static/vip800/images/total_alert.gif") no-repeat scroll -205px -474px transparent;padding-left:25px;padding-top:10px;color:#FF6C01;font-weight:bold;margin-left:8px;font-size:12px}
+.w_login li .forget1{font-size:12px;padding-left:10px}
+.w_login li .forget1 a{color:#ff6c01;text-decoration:underline}
+.w_login .checkbox{float:left;margin-left:55px;margin-right:3px;margin-top:3px;margin-top:1px 9;_margin-top:-2px;_margin-right:0px}
+
+.w_login font{font-size:12px}
+.w_login font span{color:#B5B4B4}
+.w_login .tips_err{background:url("/static/vip800/images/error_bg.png") no-repeat scroll left center  transparent;height:133px;left:360px;top:55px;position:absolute;width:248px}
+.w_login .tips_err1{top:110px}
+.w_login .tips_err .war{padding-left:35px;padding-top:10px;height:16px;_height:15px;_padding:13px
+0px 0px 35px;background:url("/static/vip800/images/total_alert.gif") no-repeat scroll -190px -474px;background-position:-190px -476px \9;_background-position:-190px -472px}
+.w_login .tips_err .war span{color:#ff6c01;font-weight:bold;margin-left:6px}
+.w_login .tips_err .content{margin-left:25px;margin-top:8px;_margin-top:6px;line-height:20px;font-size:12px}
+.w_login .tips_err pre{color:#666;white-space:pre-wrap;width:99%;word-wrap:break-word}
+.wrap_left .smt{background:url("/assets/images/loginreg_total.gif") no-repeat scroll 0 0 transparent;border:medium none;cursor:pointer;height:36px;width:122px;font-size:16px;color:#FFF;font-weight:bold;margin-left:58px;overflow:hidden}
+.wrap_right{float:left;padding-left:40px;padding-top:10px;width:220px}
+.wrap_right p{margin-bottom:20px;clear:both;overflow:hidden}
+.wrap_refer p{font-size:14px;margin-bottom:10px}
+.wrap_right p a,.wrap_refer a{display:block;float:left;width:85px;height:29px;font-size:14px;text-align:center;line-height:29px;color:#fff;margin-top:10px;font-weight:bold;background:url("/assets/images/loginreg_total.gif") no-repeat -136px 0}
+.wrap_right p a:hover{text-decoration:none;color:#fff}
+.wrap_right .union a{background:url("/assets/images/total_alert.gif") no-repeat scroll 0 -189px transparent;display:block;float:left;height:22px;margin:5px 15px 5px 0;width:80px}
+.wrap_right .union .qq{background-position:-95px -189px;margin-right:0}
+.wrap_right .union .taobao{background-position:0 -222px}
+.wrap_right .union .qqweibo{background-position:0 -615px;margin-right:0}
+.wrap_right .union .kaixin{background-position:-95px -615px}
+.wrap_right .union .rr{background-position:-95px -222px;margin-right:0}
+.wrap .fanli_load{border:1px solid #DADADA;width:918px;height:auto;overflow:hidden;margin:0px auto;margin-bottom:15px}
+.wrap .daren_box{height:auto;overflow:hidden;width:950px}
+.fanli_load .taobao,.fanli_load .shop,.fanli_load .tuan{width:305px;border-right:1px solid #DADADA;height:auto;overflow:hidden;padding:10px 0px;float:left}
+.fanli_load .taobao .pic{background-position:0px -109px}
+.fanli_load .shop .pic{background-position:-49px -109px}
+.fanli_load .taobao .tit{background-position:-155px -106px}
+.fanli_load .shop .tit{background-position:-155px -143px}
+.fanli_load .tuan{border-right:none}
+.fanli_load a{display:block}
+.fanli_load a:hover{text-decoration:none}
+.fanli_load .pic{margin-left:70px;_margin-left:35px;height:33px;width:33px;float:left;background:url("/static/vip800/images/loginreg_total.gif") 0px -109px}
+.fanli_load .tit{margin-left:15px;_margin-left:7px;margin-top:5px;height:26px;width:102px;float:left;background:url("/static/vip800/images/loginreg_total.gif") -155px -67px}
+.fanli_load .one,.fanli_load .two,.fanli_load .three{margin-top:10px;margin-left:118px;_margin-left:59px;clear:both;width:200px;height:14px;float:left;background:url("/static/vip800/images/loginreg_total.gif") 0px -188px}
+.fanli_load .taobao .two{background-position:0px -208px}
+.fanli_load .taobao .three{background-position:0px -228px}
+.fanli_load .shop .one{background-position:0px -256px}
+.fanli_load .shop .two{background-position:0px -276px}
+.fanli_load .shop .three{background-position:0px -296px}
+.fanli_load .tuan .one{background-position:0px -324px}
+.fanli_load .tuan .two{background-position:0px -344px}
+.fanli_load .tuan .three{background-position:0px -365px}
+.fanli_load .go_help{margin-top:10px;margin-left:80px;_margin-left:40px;clear:both;width:136px;height:24px;float:left;background:url("/static/vip800/images/loginreg_total.gif") 0px -152px;font-size:14px;font-weight:bold;color:#fff;text-align:center;line-height:22px;line-height:24px \9}
+.wrap .daren_box .daren_tit{padding:10px 20px;clear:both;height:20px;overflow:hidden}
+.wrap .daren_box .daren_tit .tui{color:#21A121;font-size:16px;float:left}
+.wrap .daren_box .daren_tit .all{float:right}
+.daren_box .daren_tit div input{margin-right:5px}
+.daren_box .daren{clear:both}
+.daren_box .daren li{margin-left:12px;_margin-left:9px;margin-bottom:12px;height:100px;width:222px;padding:0px;overflow:hidden;float:left;background:url("/static/vip800/images/loginreg_total.gif") no-repeat 0 -435px}
+.daren_box .daren li div{margin:8px;_margin-left:4px}
+.daren_box .daren li a:hover{text-decoration:none}
+.daren_box .daren li input{float:left}
+.daren_box .daren li .pic{height:80px;width:80px;margin-left:8px;_margin-left:4px;display:block;float:left}
+.daren_box .daren li .pic img{height:80px;width:80px}
+.daren_box .daren li .name,.daren_box .daren li .intr{display:block;padding-left:8px;float:left;width:95px;overflow:hidden}
+.daren_box .daren li .name{color:#FF5403;font-size:16px;margin-bottom:5px}
+.daren_box .daren li .intr{height:50px;line-height:16px;color:#5E5E5E}
+.daren_box .sub{height:36px;width:258px;background:url("/static/vip800/images/loginreg_total.gif") 0 -392px;border:none;color:#fff;font-size:16px;font-weight:bold;text-align:center;margin-left:360px;_margin-left:340px;cursor:pointer}
+.get_password{border-right:none;padding:0px 60px;width:830px;height:440px}
+.get_password_way{margin:20px 0px 0px 0px;overflow:hidden}
+.get_password_way .yz{width:65px}
+.get_password_way ul{margin-top:15px}
+.get_password_way li{clear:both;overflow:hidden;margin-top:15px}
+.get_password_way .msg {color: red;font-size: 14px;height: 50px;line-height: 50px;text-align: center;width: 830px;}
+.get_password_way ul span{font-size:14px;width:100px;line-height:28px;height:28px;text-align:right;display:block;float:left}
+.get_password_way input{float:left}
+.get_password_way .smt{margin-left:100px;_margin-left:50px}
+.get_password_way .code{float:left;line-height:28px;padding-left:10px}
+.get_password_way .code img{float:left;margin-top:4px;cursor:pointer}
+.get_password .org{text-decoration:underline;color:#ff6c01}
+.get_password_way .tit{background:#FFFCEB;border-radius:5px;border:1px solid #FFEBDD;text-indent:15px;height:30px;line-height:30px;width:828px;cursor:pointer;color:#000;font-size:14px}
+.get_password_way .tit p{float:left}
+.get_password_way .tit p .org{text-decoration:none}
+.get_password_way .tit em{float:right;display:block;height:20px;width:20px;background:url("/static/vip800/images/loginreg_total.gif") -238px -20px;margin-top:5px;margin-right:15px}
+.get_password_way .tit .up{background-position:-238px 0px}
+.get_password_way .set_tit{cursor:auto}
+.get_password_way .msg{color:#F00;font-size:14px;height:50px;line-height:50px;text-align:center;width:830px}
+.get_password_way .normal{height:30px;line-height:30px;margin-left:15px;width:460px;color:#B5B4B4;text-align:left;display:none;font-size:12px}
+
+
+
+/*表单验证*/
+.onShow,.onFocus,.onError,.onCorrect,.onLoad,.onTime{display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline; vertical-align:middle;background:url(/static/vip800/images/msg_bg.png) no-repeat;	color:#444;line-height:18px;padding:2px 10px 2px 23px; margin-left:10px;_margin-left:5px}
+.onShow{background:none;color:#999;padding:2px 10px 2px 2px;}
+.onFocus{background-position:3px -147px;color:#999;}
+.onLoad{background-position:3px -47px;color:#999;}
+.onError{background-position:3px -47px;color:#FF89A7;}
+.onCorrect{background:none;color:#999;padding:2px 10px 2px 2px;}
+.onLamp{background-position:3px -200px}
+.onTime{background-position:3px -1356px}

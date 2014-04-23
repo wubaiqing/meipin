@@ -7,6 +7,8 @@
  */
 class UserController extends Controller
 {
+	public $layout = '//layouts/user';
+			
 	/**
 	 * 页面访问权限
 	 * @return array 权限列表
@@ -16,18 +18,16 @@ class UserController extends Controller
 		return array();
 	}
 
-    public function rules()
-    {
-        return array(  
-            array('verifyCode', 'captcha', 'allowEmpty'=> !extension_loaded('gd')),  
-        );  
-    }
+    
 
     public function actionLogin()
     {
-//		$verfiyCodeMatch = $this->createAction('captcha')->getVerifyCode();
-//		var_dump($verfiyCodeMatch);
-		$model = new LoginForm;
+		$model = new Users('register');
+		var_dump($model);
+		$code = Yii::app()->controller->createAction('captcha');
+		var_dump($code);
+		exit;
+		$model = new LoginForm();
 		$model->attributes = $_POST;
 		var_dump($model->save());
         var_dump($_POST);
@@ -46,7 +46,7 @@ class UserController extends Controller
 				echo '123';
 			}
 		}
-		$this->render('register', array(
+		$this->render('index', array(
 			'model' => $model
 		));
 	}

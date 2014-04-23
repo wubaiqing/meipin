@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2013 今天值得买
  * @since 1.5
  */
-class Users extends ActiveRecord implements IArrayable
+class User extends ActiveRecord implements IArrayable
 {
 	/**
 	 * 表名
@@ -24,6 +24,8 @@ class Users extends ActiveRecord implements IArrayable
     {
         return array(
             array('id, username, password, salt, created_at, updated_at', 'safe'),
+            array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd') ,'on'=>'register'),
+            array('verifyCode', 'activeCaptcha', 'on'=>'register')
         );
     }
 
