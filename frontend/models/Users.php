@@ -26,5 +26,8 @@ class Users extends ActiveRecord implements IArrayable
             array('id, username, password, salt, created_at, updated_at', 'safe'),
         );
     }
+
+
+
 }
 

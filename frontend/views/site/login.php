@@ -7,17 +7,16 @@
 			<div id="showjs">
 				<div class="neir">
 					<h3><a href="javascript:;" onclick="TINY.box.hide();" target="_self"></a>用户登录</h3>
-					<!--form method="post" action="/user/login.html" onsubmit="javascript:return F_dlogin_form();"-->
-					<form method="post" action="">
+                    <form method="post" action="<?php echo $this->createUrl('user/login');?>">
 						<p>
-							<em>用户名：</em><input type="text" class="text" name="username" id="J_username">
+							<em>用户名：</em><input type="text" class="text" name="User[username]">
 						</p>
 						<p>
-							<em>密   码：</em><input type="password" class="text" name="password" id="J_password">
+							<em>密   码：</em><input type="password" class="text" name="User[password]">
 						</p>
                         <p id="pvaliCode">
                             <em>验证码：</em>
-                            <input type="text" class="text code" name="captcha" id="J_captcha">
+                            <input type="text" class="text code" name="User[verifyCode]">
                             <?php $this->widget('CCaptcha',array('showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer', 'onclick' => 'captch(this)'))); ?>
                         </p>
 						<p>

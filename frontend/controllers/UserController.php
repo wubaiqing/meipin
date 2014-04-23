@@ -16,13 +16,30 @@ class UserController extends Controller
 		return array();
 	}
 
+    public function rules()
+    {
+        return array(  
+            array('verifyCode', 'captcha', 'allowEmpty'=> !extension_loaded('gd')),  
+        );  
+    }
+
+    public function actionLogin()
+    {
+//		$verfiyCodeMatch = $this->createAction('captcha')->getVerifyCode();
+//		var_dump($verfiyCodeMatch);
+		$model = new LoginForm;
+		$model->attributes = $_POST;
+		var_dump($model->save());
+        var_dump($_POST);
+        exit;
+    }
+
 	/**
 	 * 用户注册
 	 */
 	public function actionRegister()
 	{
 		$model = new User;
-		$model->scenario = 'register';
 		if (isset($_POST['User'])) {
 			$model->attributes = $_POST['User'];
 			if ($model->save()) {
