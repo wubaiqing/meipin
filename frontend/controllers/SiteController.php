@@ -16,11 +16,11 @@ class SiteController extends Controller
                 'backColor'=>0xFFFFFF, 
                 'maxLength'=>'4',       // 最多生成几个字符
                 'minLength'=>'4',       // 最少生成几个字符
-                'height'=>'40',
+                'height'=>'30',
+                'width'=>'80',
             ), 
         ); 
     }
-
 
     public function rules()
     {

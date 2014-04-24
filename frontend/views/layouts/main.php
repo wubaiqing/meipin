@@ -31,6 +31,11 @@
             function close_shortcut() {
                 add_cookie("shortcuts", "no", 24 * 7);
             }
+			
+
+
+	
+	
 
         </script>
 

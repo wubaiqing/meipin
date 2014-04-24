@@ -48,3 +48,15 @@ $.ajax({url:"index.php/user/login_check",type:"POST",data:$pd,cache:false,dataTy
 function u_report(id){$.ajax({url:"index.php/sign/u_report",type:"POST",async:false,data:{item_id:id},cache:false,dataType:"json",success:function($data){if($data.data==2){alert('此产品正在举报处理中。。。');}
 if($data.data==1){commonopen();}
 if($data.data==0){if(confirm('您确定要举报该宝贝吗？')){window.open('/report/'+id+'.html');}}}});};
+function captch(input)
+{
+	$.ajax({
+		url: "\/index.php?r=site\/captcha&refresh=1",
+		dataType: 'json',
+		cache: false,
+		success: function(data) {
+			$(input).attr('src', data['url']);
+			$('body').data('captcha.hash', [data['hash1'], data['hash2']]);
+		}
+	});
+}
