@@ -7,15 +7,14 @@
  */
 class SiteController extends Controller
 {
-
     public function actions()
     { 
         return array( 
             'captcha'=>array(
                 'class'=>'CCaptchaAction',
                 'backColor'=>0xFFFFFF, 
-                'maxLength'=>'4',       // 最多生成几个字符
-                'minLength'=>'4',       // 最少生成几个字符
+                'maxLength'=>'4',
+                'minLength'=>'4',
                 'height'=>'30',
                 'width'=>'80',
             ), 
