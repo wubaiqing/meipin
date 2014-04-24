@@ -50,6 +50,8 @@ return array(
 		'cache'=>array(
             'class'=>'CFileCache',
         ),
+
+        
     ),
 
     'params' => array(

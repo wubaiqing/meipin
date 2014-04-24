@@ -34,11 +34,11 @@ input{background:none}
 #loginbox{position:absolute;display:none;z-index:999999;}
 #loginmask{position:absolute;display:none;top:0;left:0;height:100%;width:100%;background:#000;z-index:99999;}
 #showjs {display:none;}
-.neir {position:relative;border:8px solid #ccc;background:#fff url(images/admn01.gif) left top repeat-x;padding:15px;width:420px}
+.neir {position:relative;border:8px solid #ccc;background:#fff url(images/admn01.gif) left top repeat-x;padding:15px;width:325px}
 .neir h3 {line-height:30px;font-size:14px;color:#C40000;margin-bottom:5px}
 .neir h3 a {float:right;background:url(images/con_bg.png) 0 -79px no-repeat;width:18px;height:18px;}
 .neir h3 a:hover {background-position:0 -99px}
-.neir form {color:#444;border-right:1px solid #ccc;width:240px;padding:10px}
+.neir form {color:#444;width:240px;padding:10px}
 .neir form input.text {padding:3px;font-size:12px;border:1px solid #ccc;width:130px; background:#fff}
 .neir form input.submit {margin-right:5px;background:url(images/con_bg.png) 0 0 no-repeat; width:82px;height:28px;color:#2473A2;text-align:center;line-height:28px;border:0;font-size:14px;cursor:pointer;text-indent:0}
 .neir form p {padding:3px 0}

@@ -16,4 +16,4 @@
 
 
 <div class="newuserbanner2" style="display: none;">    <a href="javascript:void(0);"></a> </div>
-<script type="text/javascript">tuan800ued.getModule('banner_slide_show').init();</script>
+

@@ -15,8 +15,8 @@
         </div>
     </div>
     <h1>
-        <a href="/" title="金折VIP800网，独家秒杀优惠">
-            金折VIP800网
+        <a href="/" title="美品网，独家秒杀优惠">
+            美品网
         </a>
     </h1>
 </div>

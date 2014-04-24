@@ -49,4 +49,6 @@
         </div>
         <?php endforeach; ?>
     </div>
+<div style="clear:both;"></div>
+
 </div>
