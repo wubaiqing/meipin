@@ -637,9 +637,6 @@ textarea {border:1px solid #ccc;background:#fff;padding:3px;font-size:12px;}
 .search .txt{color:#777;font-size:14px;line-height:26px}.main .tips-con .con .txt-tips .txt
 a{color:#0289cd;text-decoration:none}
 .search .txt a:hover,.search .txt a{text-decoration:none;font-size:14px;}
-.error {background:#fff url(images/jky-bg.png) center center no-repeat;height:400px;width:100%;position:relative}
-.error .back-sy, .error .back-jkj {position:absolute;bottom:20px;left:320px;display:block;width:135px;height:65px}
-.error .back-jkj {left:520px;}
 .menu_wp h3 {font-weight:normal;line-height:38px;font-family:"宋体";color:#999;position:absolute;_position:relative;_margin-top:-45px}
 .menu_wp h3 a {font-family:none;color:#666;font-size:14px;}
 .item {margin-top:16px;position:relative}
