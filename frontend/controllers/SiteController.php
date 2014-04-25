@@ -7,27 +7,6 @@
  */
 class SiteController extends Controller
 {
-    public function actions()
-    { 
-        return array( 
-            'captcha'=>array(
-                'class'=>'CCaptchaAction',
-                'backColor'=>0xFFFFFF, 
-                'maxLength'=>'4',
-                'minLength'=>'4',
-                'height'=>'30',
-                'width'=>'80',
-            ), 
-        ); 
-    }
-
-    public function rules()
-    {
-        return array(  
-            array('verifyCode', 'captcha', 'on'=>'login', 'allowEmpty'=> !extension_loaded('gd')),  
-        );  
-    }
-
     /**
      * @var string $layout 继承视图
      */

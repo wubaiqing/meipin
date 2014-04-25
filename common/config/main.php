@@ -25,6 +25,11 @@ return array(
     'preload' => array('log'),
 
     'components' => array(
+        // 禁止调用内置的jquery文件
+		'clientScript' => array(
+			'packages' => array(
+			),
+		),
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=meipin',
             'username' => 'root',

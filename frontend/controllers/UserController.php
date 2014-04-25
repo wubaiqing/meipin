@@ -7,6 +7,9 @@
  */
 class UserController extends Controller
 {
+    /**
+     * @var string $layout 继承视图
+     */
 	public $layout = '//layouts/user';
 
     /**
