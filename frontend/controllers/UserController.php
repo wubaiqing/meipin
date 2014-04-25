@@ -52,7 +52,7 @@ class UserController extends Controller
 		if (isset($_POST['User'])) {
 			$model->attributes = $_POST['User'];
 			if ($model->save()) {
-                $this->redirect('site/index');
+                $this->redirect(array('user/login'));
 			}
 		}
 		$this->render('register', array(

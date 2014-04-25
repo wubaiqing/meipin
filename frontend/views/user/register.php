@@ -8,11 +8,11 @@
         <div class="wrap_left w_reg zc_x" style="border:none ;border-right: 1px solid #DDDDDD;float: left;overflow: hidden;padding-left: 40px;width: 640px;height:auto">
             <h1>新用户注册</h1>
             <?php $form=$this->beginWidget('CActiveForm', array(
-            'id' => 'login-form',
-            'enableClientValidation' => false,
-            'clientOptions' => array(
-            'validateOnSubmit'=>true,
-            )
+                'id' => 'login-form',
+                'enableClientValidation' => false,
+                'clientOptions' => array(
+                    'validateOnSubmit'=>true,
+                )
             )); ?>
             <div>
                 <?php echo $form->errorSummary($model, '');?>

@@ -33,10 +33,10 @@ class User extends ActiveRecord implements IArrayable
     public function rules()
     {
         return array(
-            array('id, username, email, password, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'),
-            array('username', 'checkUsername'),
-            array('password', 'checkPassword'),
-            array('verifyCode', 'checkVerifyCode'),
+            array('id, username, password, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'),
+            array('username', 'checkUsername', 'on' => 'register'),
+            array('password', 'checkPassword', 'on' => 'register'),
+            array('verifyCode', 'checkVerifyCode', 'on' => 'register'),
         );
     }
 
@@ -49,8 +49,9 @@ class User extends ActiveRecord implements IArrayable
             $this->addError('password', '密码不能为空');
         } elseif ($this->password != $this->confirmPassword) {
             $this->addError('password', '两次密码不一致');
-        } else {
+        } elseif (empty($this->getErrors())) {
             $this->password = md5($this->password);
+            $this->salt = self::randSalt(6);
         }
     }
 
@@ -63,6 +64,11 @@ class User extends ActiveRecord implements IArrayable
             $this->addError('username', '用户名不能为空');
         } elseif (strlen($this->username) > 50) {
             $this->addError('username', '用户名不能大于50个字符');
+        } else {
+            $user = self::model()->findByAttributes(array('username' => $this->username));
+            if (!empty($user)) {
+                $this->addError('username', '用户名已被注册');
+            }
         }
     }
 
@@ -78,5 +84,20 @@ class User extends ActiveRecord implements IArrayable
             $this->addError('verifyCode', '验证码不正确');
         }
     }
+
+    /**
+	 * 随机字符串生成
+	 * @param integer $length 随机码长度
+     * @return string
+	 */
+	public function randSalt($length = 6) {
+		$chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjklmnpqrstuvwxyz123456789';
+		$string = '';
+		for ($i = 1; $i <= $length; $i++) {
+			$position = mt_rand() % strlen($chars);
+			$string.=substr($chars, $position, 1);
+		}
+		return $string;
+	}
 }
 
