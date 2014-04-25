@@ -7,35 +7,42 @@
     <div class="white_bg wrap user_login">
         <div class="wrap_left w_reg zc_x" style="border:none ;border-right: 1px solid #DDDDDD;float: left;overflow: hidden;padding-left: 40px;width: 640px;height:auto">
             <h1>新用户注册</h1>
+            <?php $form=$this->beginWidget('CActiveForm', array(
+                'id' => 'login-form',
+                'enableClientValidation' => false,
+                'clientOptions' => array(
+                    'validateOnSubmit'=>true,
+                )
+            )); ?>
             <form id="J_register_form" action="/user/register.html" method="post" class="regbox">
                 <div class="fill">
                     <ul>
 
-                        <li><div class="input_left">
+                        <li>
+                            <div class="input_left">
                                 <label for="username">用户名：</label>
-                                <input onblur="this.className='input_off';" onfocus="this.className='input_on';this.onmouseout=''" type="text" name="username" class="bg" id="J_username" tabindex="2">
+                                <?php echo $form->textField($model, 'username', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                             </div>
                         </li>
                         <li><div class="input_left">
                                 <label for="password">密码：</label>
-                                <input onblur="this.className='input_off';" onfocus="this.className='input_on';this.onmouseout=''" type="password" name="password" class="bg" id="J_password" maxlength="36" tabindex="3">
+                                <?php echo $form->passwordField($model, 'password', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                             </div>
                         </li>
                         <li><div class="input_left">
                                 <label for="repassword">确认密码：</label>
-                                <input onblur="this.className='input_off';" onfocus="this.className='input_on';this.onmouseout=''" type="password" name="repassword" class="bg" id="J_repassword" maxlength="36" tabindex="4">
+                                <?php echo $form->passwordField($model, 'confirmPassword', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                             </div>
                         </li>
                         <li><div class="input_left">
                                 <label for="email">电子邮箱：</label>
-                                <input onblur="this.className='input_off';" onfocus="this.className='input_on';this.onmouseout=''" type="text" name="email" class="bg" id="J_email" tabindex="5">
+                                <?php echo $form->textField($model, 'email', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                             </div>
                         </li>
                         <li><div class="ipt_check">
                                 <label for="captcha">验证码：</label>
-                                <input onblur="this.className='input_off_c';this.onmouseout=function(){this.className='input_out_c'};" onfocus="this.className='input_on_c';this.onmouseout=''" type="text" name="captcha" id="J_captcha" maxlength="10" class="check input_text bg text code ">
-                                <img src="/captcha/1398264949.html" id="J_captcha_img_reg" class="captcha_img" alt="验证码" onclick="this.src='/captcha/index.html?'+Math.random();" style="cursor:pointer;">
-                                <a href="javascript:;" onclick="javascript:document.getElementById('J_captcha_img_reg').src='/captcha/index.html?'+Math.random();">看不清？换张图</a>
+                                <?php echo $form->textField($model, 'verifyCode', array('class'=>'check input_text bg text code ', 'onblur' => 'this.className="input_off_c";this.onmouseout=function(){this.className="input_out_c"};', 'onfocus' => 'this.className="input_on_c";this.onmouseout=""', 'maxlength' => 4)); ?>
+                                <?php $this->widget('CCaptcha',array('showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer', 'onclick' => 'captch(this)'))); ?>
                             </div>
                         </li>
                         <li class="ipt_smt">
@@ -43,7 +50,7 @@
                             <input type="hidden" name="action" id="reg" value="reg"></li>
                     </ul>
                 </div>
-            </form>
+                <?php $this->endWidget(); ?>
         </div>
         <div class="wrap_right">
             <p>

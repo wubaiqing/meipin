@@ -11,7 +11,15 @@
 		<link rel="stylesheet" type="text/css"  href="/assets/user.css?v=201404131000" />
     </head>
     <body>
+        <div id="header">
+            <?php $this->renderPartial('//site/login'); ?>
+            <?php $this->renderPartial('//site/head'); ?>
+            <?php $this->renderPartial('//site/nav'); ?>
+        </div>
         <?php echo $content;?>
+        <div id="footer" class="footer">
+            <?php $this->renderPartial('//site/footer'); ?>
+        </div>
         <div style="display:none;">
             <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000359564'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000359564%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>

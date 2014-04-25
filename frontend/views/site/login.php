@@ -17,7 +17,6 @@
                         <p id="pvaliCode">
                             <em>验证码：</em>
                             <input type="text" class="text code" name="User[verifyCode]">
-                            <?php $this->widget('CCaptcha',array('showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer', 'onclick' => 'captch(this)'))); ?>
                         </p>
 						<p>
 							<em>&nbsp;</em><input type="submit" value="登 录" class="submit"><label for="cookietime"><input type="checkbox" name="remember" value="ok" checked="checked" id="J_remember">记住我</label>

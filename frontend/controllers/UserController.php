@@ -8,17 +8,23 @@
 class UserController extends Controller
 {
 	public $layout = '//layouts/user';
-			
-	/**
-	 * 页面访问权限
-	 * @return array 权限列表
-	 */
-	public function accessRules()
-	{
-		return array();
-	}
 
-    
+    /**
+     * 验证码
+     */
+    public function actions()
+    { 
+        return array( 
+            'captcha'=>array(
+                'class'=>'CCaptchaAction',
+                'backColor'=>0xFFFFFF, 
+                'maxLength'=>'4',
+                'minLength'=>'4',
+                'height'=>'40',
+                'width'=>'120',
+            ), 
+        ); 
+    }
 
     public function actionLogin()
     {
@@ -39,14 +45,14 @@ class UserController extends Controller
 	 */
 	public function actionRegister()
 	{
-		$model = new User;
+		$model = new User('register');
 		if (isset($_POST['User'])) {
 			$model->attributes = $_POST['User'];
 			if ($model->save()) {
-				echo '123';
+                $this->redirect('site/index');
 			}
 		}
-		$this->render('index', array(
+		$this->render('register', array(
 			'model' => $model
 		));
 	}
