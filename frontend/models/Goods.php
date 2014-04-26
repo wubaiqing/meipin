@@ -147,8 +147,15 @@ class Goods extends ActiveRecord implements IArrayable
 	 */
 	public static function getGoods($goodsId)
 	{
-		return Goods::model()->findByPk($goodsId);
-	
+        $cacheKey = 'meipin-get-goods-'.$goodsId;
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        }
+
+		$goods = Goods::model()->findByPk($goodsId);
+        Yii::app()->cache->set($cacheKey, $goods);
+        return $goods;
 	}
 
 	public static function getGoodsCateId($catId)

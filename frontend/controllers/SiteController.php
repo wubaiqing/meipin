@@ -28,4 +28,16 @@ class SiteController extends Controller
         ));
     }
 
+    /**
+     * 今天值得买首页
+     */
+    public function actionOut($id)
+    {
+        $goods = Goods::getGoods($goodsId);
+        if ($goods) {
+            return $goods->id;
+        }
+    }
+
+
 }

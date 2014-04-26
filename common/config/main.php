@@ -30,6 +30,7 @@ return array(
 			'packages' => array(
 			),
 		),
+
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=meipin',
             'username' => 'root',
