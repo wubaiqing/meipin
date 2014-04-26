@@ -7,7 +7,7 @@
                 <div class="">
                     <p>
                         <a href="<?php echo $item->url;?>" target="_blank">
-                            <img class="goods-item-img" src="<?php echo $item->picture;?>" alt="<?php echo $item->title;?>" width="290" height="290">
+                            <img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://www.40zhe.com/static/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="290">
                         </a>
                     </p>
                     <h2>
