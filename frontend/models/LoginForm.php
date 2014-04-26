@@ -78,6 +78,16 @@ class LoginForm extends CFormModel
 			$this->setReferer();
 			return true;
         } else {
+			$code = Yii::app()->controller->createAction('captcha')->verifyCode;
+			if (empty($this->verifyCode)) {
+				$this->addError('verifyCode', '验证码不允许为空');
+			} elseif ($this->verifyCode != $code) {
+				$this->addError('verifyCode', '验证码不正确');
+			} else {
+				if ($this->_identity->errorCode == UserIdentity::ERROR_USERNAME_INVALID || $this->_identity->errorCode == UserIdentity::ERROR_PASSWORD_INVALID) {
+					$this->addError('username', '用户名或密码不正确');
+				}
+			}
             return false;
         }
 	}

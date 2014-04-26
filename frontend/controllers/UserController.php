@@ -36,13 +36,19 @@ class UserController extends Controller
     {
 		$model = new LoginForm();
         if (!Yii::app()->user->isGuest) {
-			$this->redirect('site/index');
+			$this->redirect(array(
+				'site/index'
+			));
         }
 
 		if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->login()) {
-                $this->redirect('site/index');
+                $this->render('loginSuccess', array(
+					'status' => 'yes',
+					'message' => '登陆成功'
+				));
+                Yii::app()->end();
             }
         }
 		$this->render('login', array(
@@ -56,7 +62,11 @@ class UserController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-        $this->redirect('site/index');
+		$this->render('loginSuccess', array(
+			'status' => 'yes',
+			'message' => '成功退出',
+			'url' => $this->createAbsoluteUrl('site/index')
+		));
 	}
 
 	/**
@@ -68,7 +78,15 @@ class UserController extends Controller
 		if (isset($_POST['User'])) {
 			$model->attributes = $_POST['User'];
 			if ($model->save()) {
-                $this->redirect(array('user/login'));
+				$model = new LoginForm();
+				$model->attributes = $_POST['User'];
+				$model->login();
+                $this->render('loginSuccess', array(
+					'status' => 'yes',
+					'message' => '注册成功',
+					'url' => $this->createAbsoluteUrl('site/index')
+				));
+                Yii::app()->end();
 			}
 		}
 		$this->render('register', array(
