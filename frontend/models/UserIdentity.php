@@ -45,6 +45,7 @@ class UserIdentity extends CUserIdentity
 			// 设置用户属性
 			Yii::app()->user->setState( 'singleLoginTime' , $currentTime );
 			Yii::app()->user->setState( 'id' , $user->id );
+			Yii::app()->user->setState( 'name' , $user->username );
 
 			// 更新用户最后登陆时间
 			$affect = User::model()->updateByPk($user->id, array(
@@ -62,36 +63,12 @@ class UserIdentity extends CUserIdentity
 
 	public function getId()
 	{
-		return $this->adminid;
+		return $this->id;
 	}
 
 	public function getName()
 	{
-		return $this->admin_name;
+		return $this->name;
 	}
-
-	public function getCityId() {
-		return $this->city_id;
-	}
-
-        public function getSourceId() {
-		return $this->source_id;
-	}
-
-	public function getActionList() {
-		return $this->action_list;
-	}
-
-	public function getPersistentStates()
-	{
-		return array('adminid'=>$this->adminid,
-			'admin_id'=>$this->admin_id,
-			'admin_name'=>$this->admin_name,
-			'city_id'=>$this->city_id,
-                        'source_id'=>$this->source_id,
-			'action_list'=>$this->action_list
-			);
-	}
-
 }
 

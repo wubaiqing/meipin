@@ -10,6 +10,9 @@
                     'validateOnSubmit'=>true,
                 )
             )); ?>
+            <div>
+                <?php echo $form->errorSummary($model, '');?>
+            </div>
                 <p><em>用户名：</em>
                 <?php echo $form->textField($model, 'username', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                 <p><em>密   码：</em>

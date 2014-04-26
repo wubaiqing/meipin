@@ -78,8 +78,9 @@ class LoginForm extends CFormModel
 			// 设置跳转页面的cookie
 			$this->setReferer();
 			return true;
-		} else
-			return false;
+        } else {
+            return false;
+        }
 	}
 
 	/**

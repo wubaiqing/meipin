@@ -35,7 +35,7 @@ class UserController extends Controller
     public function actionLogin()
     {
 		$model = new LoginForm();
-        if (Yii::app()->user->id) {
+        if (!Yii::app()->user->isGuest) {
 			$this->redirect('site/index');
         }
 
