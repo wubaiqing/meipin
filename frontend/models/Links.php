@@ -7,31 +7,31 @@
  */
 class Links extends ActiveRecord implements IArrayable
 {
-	/**
-	 * 表名
-	 * @return string
-	 */
+    /**
+     * 表名
+     * @return string
+     */
     public function tableName()
     {
         return '{{links}}';
     }
 
-	/**
-	 * 验证规则
-	 * @return array
-	 */
-	public function rules()
-	{
-		return array(
-			array('image_url, url', 'required'),
-			array('id, image_url, url, created_at, updated_at', 'safe'),
-		);
-	}
+    /**
+     * 验证规则
+     * @return array
+     */
+    public function rules()
+    {
+        return array(
+            array('image_url, url', 'required'),
+            array('id, image_url, url, created_at, updated_at', 'safe'),
+        );
+    }
 
-	/**
-	 * 字段属性名称
-	 * @return array
-	 */
+    /**
+     * 字段属性名称
+     * @return array
+     */
     public function attributeLabels()
     {
         return array(
@@ -40,7 +40,6 @@ class Links extends ActiveRecord implements IArrayable
             'url' => '链接地址',
         );
     }
-
 
     public static function getLink()
     {
@@ -55,6 +54,7 @@ class Links extends ActiveRecord implements IArrayable
             'order' => 'id Desc'
         ));
         Yii::app()->cache->set($cacheKey, $links, 86400);
+
         return $links;
     }
 

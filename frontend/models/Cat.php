@@ -7,49 +7,50 @@
  */
 class Cat extends ActiveRecord implements IArrayable
 {
-	/**
-	 * 表名
-	 * @return string
-	 */
+    /**
+     * 表名
+     * @return string
+     */
     public function tableName()
     {
         return '{{category}}';
     }
 
-	/**
-	 * 分类列表缓存Key
-	 * @return string 缓存名称
-	 */
-	public static function getAllCatCacheKey()
-	{
-		return 'get-cate-all-cachekey';
-	}
+    /**
+     * 分类列表缓存Key
+     * @return string 缓存名称
+     */
+    public static function getAllCatCacheKey()
+    {
+        return 'get-cate-all-cachekey';
+    }
 
-	/**
-	 * 得到所有分类
-	 */
-	public static function getAllCat()
-	{
-		// 缓存名称
-		$cacheName = self::getAllCatCacheKey();
+    /**
+     * 得到所有分类
+     */
+    public static function getAllCat()
+    {
+        // 缓存名称
+        $cacheName = self::getAllCatCacheKey();
 
-		$catArr = array();
-		$catArr = Yii::app()->cache->get($cacheName);
-		if (!empty($catArr)) {
-			return $catArr;
-		}
+        $catArr = array();
+        $catArr = Yii::app()->cache->get($cacheName);
+        if (!empty($catArr)) {
+            return $catArr;
+        }
 
-		$cate = self::model()->findAll(array(
-			'order' => 't.id asc'
-		));
-		foreach ($cate as $key => $item) {
-			$array = array();
-			$array['id'] = $item->id; 
-			$array['name'] = $item->name; 
-			$catArr[$item->id] = $array;
-		}
+        $cate = self::model()->findAll(array(
+            'order' => 't.id asc'
+        ));
+        foreach ($cate as $key => $item) {
+            $array = array();
+            $array['id'] = $item->id;
+            $array['name'] = $item->name;
+            $catArr[$item->id] = $array;
+        }
 
-		Yii::app()->cache->set($cacheName, $catArr, 86400);
-		return $catArr;
-	}
+        Yii::app()->cache->set($cacheName, $catArr, 86400);
+
+        return $catArr;
+    }
 }

@@ -5,7 +5,7 @@ return array(
     'behaviors' => array(),
     'controllerMap' => array(),
     'modules' => array(),
-	'name' => '美品网_折800网、九块邮、会员购等9.9包邮精选',
+    'name' => '美品网_折800网、九块邮、会员购等9.9包邮精选',
     'components' => array(
         'urlManager' => array(
             'urlFormat' => 'path',

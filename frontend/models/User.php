@@ -86,36 +86,39 @@ class User extends ActiveRecord implements IArrayable
     }
 
     /**
-	 * 随机字符串生成
-	 * @param integer $length 随机码长度
+     * 随机字符串生成
+     * @param  integer $length 随机码长度
      * @return string
-	 */
-	public function randSalt($length = 6) {
-		$chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjklmnpqrstuvwxyz123456789';
-		$string = '';
-		for ($i = 1; $i <= $length; $i++) {
-			$position = mt_rand() % strlen($chars);
-			$string.=substr($chars, $position, 1);
-		}
-		return $string;
-	}
+     */
+    public function randSalt($length = 6)
+    {
+        $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjklmnpqrstuvwxyz123456789';
+        $string = '';
+        for ($i = 1; $i <= $length; $i++) {
+            $position = mt_rand() % strlen($chars);
+            $string.=substr($chars, $position, 1);
+        }
+
+        return $string;
+    }
 
     /**
-	 * 验证用户密码
-	 * @params string $password 密码
-	 * @return boolean
-	 */
-	public function validatePassword($password) {
-		return $this->hashPassword($password) === $this->password;
-	}
+     * 验证用户密码
+     * @params string $password 密码
+     * @return boolean
+     */
+    public function validatePassword($password)
+    {
+        return $this->hashPassword($password) === $this->password;
+    }
 
-	/**
-	 * Generates the password hash.
-	 * @param string password
-	 * @return string hash
-	 */
-	public function hashPassword($password) {
+    /**
+     * Generates the password hash.
+     * @param string password
+     * @return string hash
+     */
+    public function hashPassword($password)
+    {
         return md5(md5($password).$this->salt);
-	}
+    }
 }
-

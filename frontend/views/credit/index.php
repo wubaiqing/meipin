@@ -7,12 +7,9 @@
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"> -->
-    
 
-    
-    
-    <link href="/assets/jifen.css" rel="stylesheet" type="text/css">  
-   
+    <link href="/assets/jifen.css" rel="stylesheet" type="text/css">
+
   </head>
 <body>
   <div id="toolbar">
@@ -23,7 +20,7 @@
         |
         <a class="mobile" href="http://www.tuan800.com/m/tuan800"><i></i>手机版</a>
       </div>
-      <div class="right" id="login"> <em id="tblogin"></em> 
+      <div class="right" id="login"> <em id="tblogin"></em>
       </div>
     </div>
   </div>
@@ -35,10 +32,10 @@
         <ul class="dropdown-menu">
           <li>
             <a href="/jifen/faq" target="_blank">常见问题</a>
-					</li>
-					<li>
+                    </li>
+                    <li>
             <a href="/jifen/rule" target="_blank">积分规则</a>
-					</li>
+                    </li>
         </ul>
       </div>
       <h1 class="l">
@@ -60,15 +57,9 @@
     </div>
   </div>
 
-  
-
-  
-
 <div class="area user_intro" id="contentA">
         亲们，由于近期很多用户填写的收件电话和地址有误，导致无法正常收货，请在个人中心填写正确的电话和地址。若长期因电话或地址填写错误导致无法正常收货，最终会因此取消您参加积分活动的资格。<br />
     如有疑问可联系我们的在线客服：<a class="contractKf"><img border="0" style="cursor:pointer"  src="http://z0.tuanimg.com/v1/2012/images/kficon.gif" /></a>
-
-
 
 </div>
 <div class="area" id="contentB">
@@ -105,7 +96,7 @@
     <a class="showOthers" href="javascript:void(0)"><em>其他</em></a>
   </b>
   <span class="">
-  <a class=""href="/jifen/welfare?category=2&start=0&rank=0"><em>虚拟代币</em></a>          
+  <a class=""href="/jifen/welfare?category=2&start=0&rank=0"><em>虚拟代币</em></a>
     <a id="citySel" class="" href="/jifen/welfare?category=3&start=0&rank=0"><em>本地吃喝玩乐
               <u>
           [<u></u>
@@ -129,7 +120,7 @@
     <em>1117人已参与</em> <span>价值：5.0元</span>  兑换名额：<b>1300</b>
   </p>
   <h4><span><em>300</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112023' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112025" target="_blank">
@@ -140,7 +131,7 @@
     <em>138人已参与</em> <span>价值：5.0元</span>  兑换名额：<b>200</b>
   </p>
   <h4><span><em>300</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112025' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_118221" target="_blank">
@@ -151,7 +142,7 @@
     <em>0人已参与</em> <span>价值：128.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>799</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_118221' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_106907" target="_blank">
@@ -162,7 +153,7 @@
     <em>0人已参与</em> <span>价值：28.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_106907' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_110867" target="_blank">
@@ -173,7 +164,7 @@
     <em>0人已参与</em> <span>价值：43.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_110867' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_110949" target="_blank">
@@ -184,7 +175,7 @@
     <em>0人已参与</em> <span>价值：20.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_110949' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_110953" target="_blank">
@@ -195,7 +186,7 @@
     <em>0人已参与</em> <span>价值：69.0元</span>  兑换名额：<b>5</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_110953' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111021" target="_blank">
@@ -206,7 +197,7 @@
     <em>2人已参与</em> <span>价值：112.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>555</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111021' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111027" target="_blank">
@@ -217,7 +208,7 @@
     <em>0人已参与</em> <span>价值：268.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>799</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111027' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111035" target="_blank">
@@ -228,7 +219,7 @@
     <em>1人已参与</em> <span>价值：100.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111035' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111043" target="_blank">
@@ -239,7 +230,7 @@
     <em>1人已参与</em> <span>价值：299.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>725</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111043' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111069" target="_blank">
@@ -250,7 +241,7 @@
     <em>1人已参与</em> <span>价值：109.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>750</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111069' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111289" target="_blank">
@@ -261,7 +252,7 @@
     <em>0人已参与</em> <span>价值：128.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>799</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111289' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111297" target="_blank">
@@ -272,7 +263,7 @@
     <em>0人已参与</em> <span>价值：66.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>629</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111297' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111355" target="_blank">
@@ -283,7 +274,7 @@
     <em>0人已参与</em> <span>价值：99.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>760</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111355' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111365" target="_blank">
@@ -294,7 +285,7 @@
     <em>0人已参与</em> <span>价值：189.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>825</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111365' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111401" target="_blank">
@@ -305,7 +296,7 @@
     <em>0人已参与</em> <span>价值：58.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111401' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111415" target="_blank">
@@ -316,7 +307,7 @@
     <em>0人已参与</em> <span>价值：119.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>755</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111415' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111455" target="_blank">
@@ -327,7 +318,7 @@
     <em>0人已参与</em> <span>价值：6.8元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>449</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111455' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111449" target="_blank">
@@ -338,7 +329,7 @@
     <em>2人已参与</em> <span>价值：24.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>575</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111449' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111471" target="_blank">
@@ -349,7 +340,7 @@
     <em>1人已参与</em> <span>价值：78.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>799</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111471' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111519" target="_blank">
@@ -360,7 +351,7 @@
     <em>0人已参与</em> <span>价值：42.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111519' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111567" target="_blank">
@@ -371,7 +362,7 @@
     <em>0人已参与</em> <span>价值：213.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>759</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111567' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111553" target="_blank">
@@ -382,7 +373,7 @@
     <em>2人已参与</em> <span>价值：128.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>755</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111553' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111705" target="_blank">
@@ -393,7 +384,7 @@
     <em>0人已参与</em> <span>价值：24.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>559</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111705' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111765" target="_blank">
@@ -404,7 +395,7 @@
     <em>0人已参与</em> <span>价值：25.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>655</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111765' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_111795" target="_blank">
@@ -415,7 +406,7 @@
     <em>3人已参与</em> <span>价值：69.0元</span>  兑换名额：<b>5</b>
   </p>
   <h4><span><em>549</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_111795' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112059" target="_blank">
@@ -426,7 +417,7 @@
     <em>1人已参与</em> <span>价值：198.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>789</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112059' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112081" target="_blank">
@@ -437,7 +428,7 @@
     <em>0人已参与</em> <span>价值：29.9元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>625</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112081' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112103" target="_blank">
@@ -448,7 +439,7 @@
     <em>1人已参与</em> <span>价值：28.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>555</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112103' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112115" target="_blank">
@@ -459,7 +450,7 @@
     <em>1人已参与</em> <span>价值：15.7元</span>  兑换名额：<b>5</b>
   </p>
   <h4><span><em>449</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112115' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112141" target="_blank">
@@ -470,7 +461,7 @@
     <em>0人已参与</em> <span>价值：58.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112141' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112393" target="_blank">
@@ -481,7 +472,7 @@
     <em>0人已参与</em> <span>价值：44.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>699</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112393' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112399" target="_blank">
@@ -492,7 +483,7 @@
     <em>2人已参与</em> <span>价值：38.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112399' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112407" target="_blank">
@@ -503,7 +494,7 @@
     <em>0人已参与</em> <span>价值：7.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112407' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112449" target="_blank">
@@ -514,7 +505,7 @@
     <em>3人已参与</em> <span>价值：98.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>625</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112449' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112475" target="_blank">
@@ -525,7 +516,7 @@
     <em>1人已参与</em> <span>价值：58.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>655</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112475' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112479" target="_blank">
@@ -536,7 +527,7 @@
     <em>2人已参与</em> <span>价值：108.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>685</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112479' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112605" target="_blank">
@@ -547,7 +538,7 @@
     <em>0人已参与</em> <span>价值：25.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112605' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112615" target="_blank">
@@ -558,7 +549,7 @@
     <em>1人已参与</em> <span>价值：178.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>865</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112615' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112643" target="_blank">
@@ -569,7 +560,7 @@
     <em>0人已参与</em> <span>价值：60.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>655</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112643' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112743" target="_blank">
@@ -580,7 +571,7 @@
     <em>1人已参与</em> <span>价值：19.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112743' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112761" target="_blank">
@@ -591,7 +582,7 @@
     <em>0人已参与</em> <span>价值：9.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>569</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112761' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112783" target="_blank">
@@ -602,7 +593,7 @@
     <em>0人已参与</em> <span>价值：108.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>769</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112783' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112807" target="_blank">
@@ -613,7 +604,7 @@
     <em>0人已参与</em> <span>价值：58.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112807' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112837" target="_blank">
@@ -624,7 +615,7 @@
     <em>2人已参与</em> <span>价值：28.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112837' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112853" target="_blank">
@@ -635,7 +626,7 @@
     <em>1人已参与</em> <span>价值：38.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>695</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112853' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112915" target="_blank">
@@ -646,7 +637,7 @@
     <em>1人已参与</em> <span>价值：173.0元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>699</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112915' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112913" target="_blank">
@@ -657,7 +648,7 @@
     <em>1人已参与</em> <span>价值：35.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>589</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112913' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112941" target="_blank">
@@ -668,7 +659,7 @@
     <em>1人已参与</em> <span>价值：30.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>575</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112941' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112991" target="_blank">
@@ -679,7 +670,7 @@
     <em>0人已参与</em> <span>价值：119.0元</span>  兑换名额：<b>6</b>
   </p>
   <h4><span><em>759</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112991' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_112997" target="_blank">
@@ -690,7 +681,7 @@
     <em>1人已参与</em> <span>价值：104.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>839</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_112997' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113001" target="_blank">
@@ -701,7 +692,7 @@
     <em>1人已参与</em> <span>价值：228.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>919</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113001' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113013" target="_blank">
@@ -712,7 +703,7 @@
     <em>0人已参与</em> <span>价值：131.11元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>839</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113013' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113029" target="_blank">
@@ -723,7 +714,7 @@
     <em>1人已参与</em> <span>价值：79.8元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>669</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113029' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113033" target="_blank">
@@ -734,7 +725,7 @@
     <em>1人已参与</em> <span>价值：39.8元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113033' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113035" target="_blank">
@@ -745,7 +736,7 @@
     <em>1人已参与</em> <span>价值：9.8元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113035' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113119" target="_blank">
@@ -756,7 +747,7 @@
     <em>0人已参与</em> <span>价值：13.5元</span>  兑换名额：<b>3</b>
   </p>
   <h4><span><em>625</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113119' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113149" target="_blank">
@@ -767,7 +758,7 @@
     <em>0人已参与</em> <span>价值：40.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>629</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113149' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113203" target="_blank">
@@ -778,7 +769,7 @@
     <em>1人已参与</em> <span>价值：25.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113203' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113211" target="_blank">
@@ -789,7 +780,7 @@
     <em>0人已参与</em> <span>价值：105.2元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>699</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113211' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113235" target="_blank">
@@ -800,7 +791,7 @@
     <em>0人已参与</em> <span>价值：24.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>425</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113235' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113271" target="_blank">
@@ -811,7 +802,7 @@
     <em>1人已参与</em> <span>价值：25.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>485</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113271' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113311" target="_blank">
@@ -822,7 +813,7 @@
     <em>0人已参与</em> <span>价值：39.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>739</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113311' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113323" target="_blank">
@@ -833,7 +824,7 @@
     <em>1人已参与</em> <span>价值：28.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>520</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113323' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113349" target="_blank">
@@ -844,7 +835,7 @@
     <em>1人已参与</em> <span>价值：138.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>649</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113349' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113427" target="_blank">
@@ -855,7 +846,7 @@
     <em>1人已参与</em> <span>价值：50.0元</span>  兑换名额：<b>5</b>
   </p>
   <h4><span><em>520</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113427' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113465" target="_blank">
@@ -866,7 +857,7 @@
     <em>0人已参与</em> <span>价值：29.9元</span>  兑换名额：<b>6</b>
   </p>
   <h4><span><em>499</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113465' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113519" target="_blank">
@@ -877,7 +868,7 @@
     <em>0人已参与</em> <span>价值：30.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>539</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113519' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113529" target="_blank">
@@ -888,7 +879,7 @@
     <em>1人已参与</em> <span>价值：29.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>529</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113529' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113605" target="_blank">
@@ -899,7 +890,7 @@
     <em>0人已参与</em> <span>价值：26.9元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>499</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113605' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113633" target="_blank">
@@ -910,7 +901,7 @@
     <em>0人已参与</em> <span>价值：30.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>575</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113633' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113635" target="_blank">
@@ -921,7 +912,7 @@
     <em>0人已参与</em> <span>价值：76.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>599</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113635' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113677" target="_blank">
@@ -932,7 +923,7 @@
     <em>1人已参与</em> <span>价值：138.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>739</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113677' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113689" target="_blank">
@@ -943,7 +934,7 @@
     <em>1人已参与</em> <span>价值：45.0元</span>  兑换名额：<b>6</b>
   </p>
   <h4><span><em>799</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113689' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113741" target="_blank">
@@ -954,7 +945,7 @@
     <em>0人已参与</em> <span>价值：54.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>625</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113741' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113755" target="_blank">
@@ -965,7 +956,7 @@
     <em>0人已参与</em> <span>价值：17.5元</span>  兑换名额：<b>5</b>
   </p>
   <h4><span><em>485</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113755' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113801" target="_blank">
@@ -976,7 +967,7 @@
     <em>0人已参与</em> <span>价值：228.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>749</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113801' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113807" target="_blank">
@@ -987,7 +978,7 @@
     <em>1人已参与</em> <span>价值：70.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>699</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113807' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113855" target="_blank">
@@ -998,7 +989,7 @@
     <em>0人已参与</em> <span>价值：78.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>609</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113855' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_113981" target="_blank">
@@ -1009,7 +1000,7 @@
     <em>1人已参与</em> <span>价值：28.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>549</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_113981' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114023" target="_blank">
@@ -1020,7 +1011,7 @@
     <em>1人已参与</em> <span>价值：29.9元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>520</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114023' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114037" target="_blank">
@@ -1031,7 +1022,7 @@
     <em>0人已参与</em> <span>价值：128.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>725</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114037' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114043" target="_blank">
@@ -1042,7 +1033,7 @@
     <em>0人已参与</em> <span>价值：24.9元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>499</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114043' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114047" target="_blank">
@@ -1053,7 +1044,7 @@
     <em>0人已参与</em> <span>价值：52.0元</span>  兑换名额：<b>1</b>
   </p>
   <h4><span><em>725</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114047' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114073" target="_blank">
@@ -1064,7 +1055,7 @@
     <em>0人已参与</em> <span>价值：36.0元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>549</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114073' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114095" target="_blank">
@@ -1075,7 +1066,7 @@
     <em>0人已参与</em> <span>价值：62.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>685</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114095' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114097" target="_blank">
@@ -1086,7 +1077,7 @@
     <em>1人已参与</em> <span>价值：66.0元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>549</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114097' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114129" target="_blank">
@@ -1097,7 +1088,7 @@
     <em>3人已参与</em> <span>价值：5.3元</span>  兑换名额：<b>4</b>
   </p>
   <h4><span><em>405</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114129' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 <div class="deal zt2">
   <a href="/jifen/welfare/0yuanbaoyo_114141" target="_blank">
@@ -1108,7 +1099,7 @@
     <em>0人已参与</em> <span>价值：29.9元</span>  兑换名额：<b>2</b>
   </p>
   <h4><span><em>549</em>积分</span><a href='/jifen/welfare/0yuanbaoyo_114141' target='_blank'>我要兑换</a></h4>
-  
+
 </div>
 
       </div>
@@ -1116,7 +1107,7 @@
 </div>
   <div class= "page_div area page_center">
     <div class="list_page">
-    
+
         <span class="page current">
   1
 </span>
@@ -1135,16 +1126,13 @@
   <a href="/jifen/welfare/page/2?start=0" rel="next" style="width: 100px;">下一页</a>
 </span>
 
-
   </div>
 
 </div>
 
-
 <div id="contentD" class="area">
   <a href="/jifen/welfare/history" target="_blank">查看历史兑换活动&gt;&gt;</a>
 </div>
- 
 
     <div class="foot_bg">
   <div class="area about">
@@ -1251,10 +1239,8 @@
   </div>
 </div>
 
-
 <div class="area footer">京ICP备10051110号-5 京公网安备110105014520 Copyright&copy;2011-2014 版权所有 ZHE800.COM<img src="http://z0.tuanimg.com/v1/2012/images/web_trust.png" width="70" height="26" /></div>
-    
-  
+
 </div>
 </body>
 </html>

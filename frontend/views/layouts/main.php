@@ -14,10 +14,10 @@
         <script type="text/javascript" src="/assets/js/index1.0.min.js?v=wubaiqing"></script>
         <script type="text/javascript" src="http://www.40zhe.com/static/jtzdm_lazyload.js?v=wubaiqing3.0"></script>
         <script type="text/javascript">
-			$(function () {
-				$("img.goods-item-img").scrollLoading();
-			});
-		</script>
+            $(function () {
+                $("img.goods-item-img").scrollLoading();
+            });
+        </script>
     </head>
     <body>
         <?php echo $content;?>

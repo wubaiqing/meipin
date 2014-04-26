@@ -7,25 +7,24 @@
  */
 class Gold extends ActiveRecord implements IArrayable
 {
-	/**
-	 * 表名
-	 * @return string
-	 */
+    /**
+     * 表名
+     * @return string
+     */
     public function tableName()
     {
         return '{{gold}}';
     }
 
-	/**
-	 * 验证规则
-	 * @return array
-	 */
+    /**
+     * 验证规则
+     * @return array
+     */
     public function rules()
     {
         return array(
-			array('alipay, ip, status, created_at, updated_at', 'safe')
+            array('alipay, ip, status, created_at, updated_at', 'safe')
         );
     }
-
 
 }

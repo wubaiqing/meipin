@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Banner管理
  * @author wubaiqing<wubaiqing@vip.qq.com>
@@ -7,32 +7,30 @@
  */
 class Banner extends ActiveRecord implements IArrayable
 {
-	/**
-	 * 表名
-	 * @return string
-	 */
+    /**
+     * 表名
+     * @return string
+     */
     public function tableName()
     {
         return '{{banner}}';
     }
-	
 
-	public static function getAll()
-	{
-		$cacheKey = 'get-banner-all';	
-		$result = Yii::app()->cache->get($cacheKey);
-		if (!empty($result)) {
-			return $result;
-		}
+    public static function getAll()
+    {
+        $cacheKey = 'get-banner-all';
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        }
 
-		$result = Banner::model()->findAll(array(
-			'index' => 'id'
-		));
+        $result = Banner::model()->findAll(array(
+            'index' => 'id'
+        ));
 
-		Yii::app()->cache->set($cacheKey, $result, 3600);
-		return $result;
-	}
-	
+        Yii::app()->cache->set($cacheKey, $result, 3600);
+
+        return $result;
+    }
 
 }
-

@@ -37,7 +37,7 @@
                         <?php endif;?>
                     </h4>
                     <span class="mgicon"></span>
-                    <?php 
+                    <?php
                     $now = date('Y-m-d', time());
                     $today = date('Y-m-d', $item->created_at);
                     if ($now == $today) {

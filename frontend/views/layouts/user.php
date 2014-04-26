@@ -8,7 +8,7 @@
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
         <link rel="stylesheet" type="text/css"  href="/assets/main.css?v=201404131000" />
-		<link rel="stylesheet" type="text/css"  href="/assets/user.css?v=201404131000" />
+        <link rel="stylesheet" type="text/css"  href="/assets/user.css?v=201404131000" />
     </head>
     <body>
         <div id="header">

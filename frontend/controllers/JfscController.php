@@ -21,7 +21,7 @@ class JfscController extends Controller
      */
     public function actionIndex($cat = 0, $page = 1, $hot = 0)
     {
-		
+
         $this->render('index', array());
     }
 

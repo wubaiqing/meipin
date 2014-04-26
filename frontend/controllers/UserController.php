@@ -10,23 +10,23 @@ class UserController extends Controller
     /**
      * @var string $layout 继承视图
      */
-	public $layout = '//layouts/user';
+    public $layout = '//layouts/user';
 
     /**
      * 验证码
      */
     public function actions()
-    { 
-        return array( 
+    {
+        return array(
             'captcha'=>array(
                 'class'=>'CCaptchaAction',
-                'backColor'=>0xFFFFFF, 
+                'backColor'=>0xFFFFFF,
                 'maxLength'=>'4',
                 'minLength'=>'4',
                 'height'=>'40',
                 'width'=>'120',
-            ), 
-        ); 
+            ),
+        );
     }
 
     /**
@@ -34,108 +34,106 @@ class UserController extends Controller
      */
     public function actionLogin()
     {
-		$model = new LoginForm();
+        $model = new LoginForm();
         if (!Yii::app()->user->isGuest) {
-			$this->redirect(array(
-				'site/index'
-			));
+            $this->redirect(array(
+                'site/index'
+            ));
         }
 
-		if (isset($_POST['LoginForm'])) {
+        if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->login()) {
                 $this->render('loginSuccess', array(
-					'status' => 'yes',
-					'message' => '登陆成功'
-				));
+                    'status' => 'yes',
+                    'message' => '登陆成功'
+                ));
                 Yii::app()->end();
             }
         }
-		$this->render('login', array(
-			'model' => $model
-		));
+        $this->render('login', array(
+            'model' => $model
+        ));
     }
 
     /**
-	 * Logs out the current user and redirect to homepage.
-	 */
-	public function actionLogout()
-	{
-		Yii::app()->user->logout();
-		$this->render('loginSuccess', array(
-			'status' => 'yes',
-			'message' => '成功退出',
-			'url' => $this->createAbsoluteUrl('site/index')
-		));
-	}
+     * Logs out the current user and redirect to homepage.
+     */
+    public function actionLogout()
+    {
+        Yii::app()->user->logout();
+        $this->render('loginSuccess', array(
+            'status' => 'yes',
+            'message' => '成功退出',
+            'url' => $this->createAbsoluteUrl('site/index')
+        ));
+    }
 
-	/**
-	 * 用户注册
-	 */
-	public function actionRegister()
-	{
-		$model = new User('register');
-		if (isset($_POST['User'])) {
-			$model->attributes = $_POST['User'];
-			if ($model->save()) {
-				$model = new LoginForm();
-				$model->attributes = $_POST['User'];
-				$model->login();
+    /**
+     * 用户注册
+     */
+    public function actionRegister()
+    {
+        $model = new User('register');
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            if ($model->save()) {
+                $model = new LoginForm();
+                $model->attributes = $_POST['User'];
+                $model->login();
                 $this->render('loginSuccess', array(
-					'status' => 'yes',
-					'message' => '注册成功',
-					'url' => $this->createAbsoluteUrl('site/index')
-				));
+                    'status' => 'yes',
+                    'message' => '注册成功',
+                    'url' => $this->createAbsoluteUrl('site/index')
+                ));
                 Yii::app()->end();
-			}
-		}
-		$this->render('register', array(
-			'model' => $model
-		));
-	}
+            }
+        }
+        $this->render('register', array(
+            'model' => $model
+        ));
+    }
 
-	/**
-	 * 密码管理
-	 */
-	public function actionPasswordManager()
-	{
-		$userId = Yii::app()->user->id;
-		$userId = '1';
-		
-		$model = User::model()->findByPk($userId);
-		$model->scenario = 'passwordManager';
-		if (isset($_POST)) {
-			$post = $_POST['User'];
-			$model->attributes = $post;
-			if ($model->save()) {
-			} else {
-				var_dump($model->getErrors());
-			}
-		}
-	}
+    /**
+     * 密码管理
+     */
+    public function actionPasswordManager()
+    {
+        $userId = Yii::app()->user->id;
+        $userId = '1';
 
-	/**
-	 * 用户签到
-	 */
-	public function actionUserSign()
-	{
-		$userId = Yii::app()->user->id;
-		$userId = '1';
-		User::userSign($userId);
-	}
+        $model = User::model()->findByPk($userId);
+        $model->scenario = 'passwordManager';
+        if (isset($_POST)) {
+            $post = $_POST['User'];
+            $model->attributes = $post;
+            if ($model->save()) {
+            } else {
+                var_dump($model->getErrors());
+            }
+        }
+    }
 
-	/**
-	 * 积分管理
-	 */
-	public function actionScoreManage()
-	{
+    /**
+     * 用户签到
+     */
+    public function actionUserSign()
+    {
+        $userId = Yii::app()->user->id;
+        $userId = '1';
+        User::userSign($userId);
+    }
 
-	}
+    /**
+     * 积分管理
+     */
+    public function actionScoreManage()
+    {
 
+    }
 
-	public function actionGetGold()
-	{
-		
-	}
+    public function actionGetGold()
+    {
+
+    }
 }
-
