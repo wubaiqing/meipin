@@ -50,8 +50,8 @@ class User extends ActiveRecord implements IArrayable
         } elseif ($this->password != $this->confirmPassword) {
             $this->addError('password', '两次密码不一致');
         } elseif (empty($this->getErrors())) {
-            $this->password = md5($this->password);
             $this->salt = self::randSalt(6);
+            $this->password = $this->hashPassword($this->password);
         }
     }
 
@@ -98,6 +98,24 @@ class User extends ActiveRecord implements IArrayable
 			$string.=substr($chars, $position, 1);
 		}
 		return $string;
+	}
+
+    /**
+	 * 验证用户密码
+	 * @params string $password 密码
+	 * @return boolean
+	 */
+	public function validatePassword($password) {
+		return $this->hashPassword($password) === $this->password;
+	}
+
+	/**
+	 * Generates the password hash.
+	 * @param string password
+	 * @return string hash
+	 */
+	public function hashPassword($password) {
+        return md5(md5($password).$this->salt);
 	}
 }
 

@@ -29,19 +29,35 @@ class UserController extends Controller
         ); 
     }
 
+    /**
+     * 用户登陆
+     */
     public function actionLogin()
     {
-		$model = new Users('register');
-		var_dump($model);
-		$code = Yii::app()->controller->createAction('captcha');
-		var_dump($code);
-		exit;
 		$model = new LoginForm();
-		$model->attributes = $_POST;
-		var_dump($model->save());
-        var_dump($_POST);
-        exit;
+        if (Yii::app()->user->id) {
+			$this->redirect('site/index');
+        }
+
+		if (isset($_POST['LoginForm'])) {
+            $model->attributes = $_POST['LoginForm'];
+            if ($model->login()) {
+                $this->redirect('site/index');
+            }
+        }
+		$this->render('login', array(
+			'model' => $model
+		));
     }
+
+    /**
+	 * Logs out the current user and redirect to homepage.
+	 */
+	public function actionLogout()
+	{
+		Yii::app()->user->logout();
+        $this->redirect('site/index');
+	}
 
 	/**
 	 * 用户注册
