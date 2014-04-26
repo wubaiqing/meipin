@@ -72,7 +72,6 @@ class LoginForm extends CFormModel
 		}
 		if ($this->_identity->errorCode === UserIdentity::ERROR_NONE)
 		{
-			//$duration=3600*24*30; // 30 days
 			$duration = 0;
 			Yii::app()->user->login($this->_identity, $duration);
 			// 设置跳转页面的cookie

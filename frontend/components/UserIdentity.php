@@ -57,8 +57,9 @@ class UserIdentity extends CUserIdentity
 			if ( $affect !== 1 ) {
 				throw new CHttpException( '403' , '登录失败' );
 			}
+			$this->errorCode=self::ERROR_NONE; 
 		}
-		return $this->errorCode == self::ERROR_NONE;
+		return !$this->errorCode;
 	}
 
 	public function getId()
