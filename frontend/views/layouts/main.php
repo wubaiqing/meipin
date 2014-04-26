@@ -7,12 +7,12 @@
         <meta name="description" content="">
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
-        <link rel="stylesheet" type="text/css"  href="/assets/main.css?v=201404131000" />
-        <script type="text/javascript" src="/assets/js/78df5a3f36d83192e43966bc05d643b2.js"></script>
-        <script type="text/javascript" src="/assets/js/pp18610_v2.min.js"></script>
-        <script type="text/javascript" src="/assets/js/tuanpub3.0.min.js"></script>
-        <script type="text/javascript" src="/assets/js/index1.0.min.js"></script>
-        <script type="text/javascript" src="http://www.40zhe.com/static/jtzdm_lazyload.js?v=wubaiqing2.0"></script>
+        <link rel="stylesheet" type="text/css"  href="/assets/main.css?v=wubaiqing" />
+        <script type="text/javascript" src="/assets/js/78df5a3f36d83192e43966bc05d643b2.js?v=wubaiqing"></script>
+        <script type="text/javascript" src="/assets/js/pp18610_v2.min.js?v=wubaiqing"></script>
+        <script type="text/javascript" src="/assets/js/tuanpub3.0.min.js?v=wubaiqing"></script>
+        <script type="text/javascript" src="/assets/js/index1.0.min.js?v=wubaiqing"></script>
+        <script type="text/javascript" src="http://www.40zhe.com/static/jtzdm_lazyload.js?v=wubaiqing3.0"></script>
         <script type="text/javascript">
 			$(function () {
 				$("img.goods-item-img").scrollLoading();
