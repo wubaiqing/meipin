@@ -1,15 +1,17 @@
 <div class="nav">
     <ul class="wp">
-        <li class="on">
+        <li class="<?php echo ($cat < 1000) ? 'on' : '';?>">
             <a href="/">
                 首页
             </a>
         </li>
-        <li>
-            <a href="javascript:;">
+        <li class="<?php echo ($cat == 1000) ? 'on' : '';?>">
+            <a href="<?php echo $this->createUrl('site/index', array('cat' => 1000));?>">
                 九块九包邮
             </a>
-            <a href="javascript:;">
+        </li>
+        <li class="<?php echo ($cat == 1001) ? 'on' : '';?>">
+            <a href="<?php echo $this->createUrl('site/index', array('cat' => 1001));?>">
                 聚美品
             </a>
         </li>

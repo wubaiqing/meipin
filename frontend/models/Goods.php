@@ -65,14 +65,17 @@ class Goods extends ActiveRecord implements IArrayable
         } else {
             $criteria->order = 't.id DESC';
         }
+
         $criteria->compare('t.start_time', '<='. $now);
         $criteria->compare('t.end_time', '>='. $now);
         $criteria->compare('t.status', '=1');
 
-        if ($cat != 0 && $cat != 999) {
-            $criteria->compare('t.cat_id', '='. $cat);
-        } elseif ($cat == 999) {
+        if ($cat == 1000) {
             $criteria->compare('t.price', '< 10');
+        } elseif ($cat == 1001) {
+            $criteria->compare('t.price', '>= 10');
+        } else {
+            $criteria->compare('t.cat_id', '='. $cat);
         }
 
         $this->dbCriteria->mergeWith($criteria);
