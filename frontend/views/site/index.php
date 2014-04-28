@@ -8,7 +8,8 @@
 <?php
 
     $cat = Yii::app()->request->getQuery('cat');
-    if ($cat < 1) {
+    $page = Yii::app()->request->getQuery('page');
+    if ($cat < 1 && $page < 2) {
         $this->renderPartial('banner');
     }
 ?>

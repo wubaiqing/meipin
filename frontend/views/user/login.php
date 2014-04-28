@@ -24,7 +24,7 @@
                 </p>
                 <p><em>&nbsp;</em><input type="submit" value="登 录" class="submit"></p>
             <?php $this->endWidget(); ?>
-            <p class="reg"><em></em>还没有金折账号？ <a href="<?php echo $this->createUrl('user/register');?>" class="zhuce">立即注册&gt;&gt;</a></p>
+            <p class="reg"><em></em>还没有美品网账号？ <a href="<?php echo $this->createUrl('user/register');?>" class="zhuce">立即注册&gt;&gt;</a></p>
         </div>
         <span class="clr"></span>
     </div>
