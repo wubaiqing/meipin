@@ -1,8 +1,8 @@
 <div id="header">
     <?php $this->renderPartial('prompt'); ?>
-    <?php $this->renderPartial('login'); ?>
-    <?php $this->renderPartial('head'); ?>
-    <?php $this->renderPartial('nav'); ?>
+    <?php $this->renderPartial('//site/login', array('cat' => 0)); ?>
+    <?php $this->renderPartial('//site/head', array('cat' => 0)); ?>
+    <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
 </div>
 
 <?php
