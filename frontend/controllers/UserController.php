@@ -57,7 +57,7 @@ class UserController extends Controller
     }
 
     /**
-     * Logs out the current user and redirect to homepage.
+     * 用户退出登录
      */
     public function actionLogout()
     {

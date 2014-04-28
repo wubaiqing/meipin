@@ -91,55 +91,6 @@ class Goods extends ActiveRecord implements IArrayable
     }
 
     /**
-     * 手机端Criteria
-     * @return object criteria
-     */
-    public static function getMobileCriteria()
-    {
-        $now = time();
-        $criteria = new CDbCriteria;
-        $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
-        $criteria->order = 'day DESC, t.list_order DESC';
-        $criteria->limit = 300;
-        $criteria->compare('t.start_time', '<='. $now);
-        $criteria->compare('t.end_time', '>='. $now);
-        $criteria->compare('t.status', '=1');
-        $criteria->compare('t.goods_type', '=0');
-
-        return $criteria;
-    }
-
-    /**
-     * 打印HTMLAPI
-     * @param object $goods 商品
-     */
-    public static function printHtmlApi($goods)
-    {
-        $getCat = Cat::getAllCat();
-        foreach ($goods as $key => $item) {
-            echo '
-<p>
-<id>'.$item->id.'</id>
-<title>'.$item->title.'</title>
-<price>'.$item->price.'</price>
-<origin_price>'.$item->origin_price.'</origin_price>
-<CategoryId>'.$item->cat_id.'</CategoryId>
-<CategoryName>'.$getCat[$item->cat_id]['name'].'</CategoryName>
-<CreateTime>'.date('Y-m-d H:i:s', $item->created_at).'</CreateTime>
-<iid>'.$item->tb_id.'</iid>
-<Tbk>'.$item->url.'</Tbk>
-<ListOrder>'.$item->list_order.'</ListOrder>
-<StartTime>'.date('Y-m-d H:i:s',$item->start_time).'</StartTime>
-<EndTime>'.date('Y-m-d H:i:s', $item->end_time).'</EndTime>
-<Commissionthan></Commissionthan>
-<Recommend>1</Recommend>
-<Discount></Discount>
-</p>';
-        }
-
-    }
-
-    /**
      * 获取商品
      * @param  integer $goodsId
      * @return object
@@ -151,10 +102,8 @@ class Goods extends ActiveRecord implements IArrayable
         if (!empty($result)) {
             return $result;
         }
-
         $goods = Goods::model()->findByPk($goodsId);
         Yii::app()->cache->set($cacheKey, $goods);
-
         return $goods;
     }
 

@@ -13,6 +13,7 @@ return array(
             'rules' => array(
                 'index.html' => 'site/index',
                 'out/<id:.+?>.html' => 'site/out',
+                'site/search' => 'site/search',
             ),
         ),
     ),

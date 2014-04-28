@@ -18,14 +18,42 @@ class SiteController extends Controller
     public function actionIndex($page = 1, $hot = 0, $cat = 0)
     {
         $goods = Goods::getGoodsList($cat, $hot, $page);
-        $count = count(Goods::getGoodsList(0, 0, 0)['data']);
-        $cat = Yii::app()->request->getQuery('cat');
         $this->render('index', array(
-            'cat' => $cat,
-            'count' => $count,
             'goods' => $goods['data'],
             'pager' => $goods['pager'],
         ));
+    }
+
+    /**
+     * 商品搜索
+     */
+    public function actionSearch($title)
+    {
+        $cacheKey = 'index-search-'.md5($title);
+        $goods = Yii::app()->cache->get($cacheKey);
+        if (empty($result)) {
+            $title = trim($title);
+            $criteria = new CDbCriteria();
+            $criteria->addSearchCondition('title', $title);
+
+            $count = Goods::model()->count($criteria);
+            $pages = new CPagination($count);
+            $pages->pageSize=15;
+            $pages->applyLimit($criteria);
+
+            $goods = Goods::model()->findAll($criteria);
+
+            Yii::app()->cache->set($cacheKey, $goods, 3600);
+        }
+
+        if ($goods) {
+            $this->render('search', array(
+                'goods' => $goods,
+                'pager' => new CPagination($count)
+            ));
+        } else {
+            $this->render('searchError');
+        }
     }
 
     /**
