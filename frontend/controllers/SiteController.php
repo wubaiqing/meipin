@@ -35,7 +35,6 @@ class SiteController extends Controller
             $title = trim($title);
             $criteria = new CDbCriteria();
             $criteria->addSearchCondition('title', $title);
-
             $count = Goods::model()->count($criteria);
             $pages = new CPagination($count);
             $pages->pageSize=15;
@@ -52,7 +51,6 @@ class SiteController extends Controller
         } else {
             $this->render('searchError', array(
                 'title' => $title
-                
             ));
         }
     }
