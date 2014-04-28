@@ -24,15 +24,4 @@
     <div class="bottom">
         <a href="#" id="goTop"><i class="icon-top"></i>TOP</a>
     </div>
-    <script>
-        $(function () {
-            $(window).scroll(function () {
-                if ($(window).scrollTop()>=250) {
-                    $(".side_nav").addClass("affix");
-                } else {
-                    $(".side_nav").removeClass("affix");
-                }
-            });
-        });
-    </script>
 </div>
