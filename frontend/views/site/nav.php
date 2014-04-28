@@ -4,6 +4,8 @@
             <a href="/">
                 首页
             </a>
+        </li>
+        <li>
             <a href="javascript:;">
                 九块九包邮
             </a>
