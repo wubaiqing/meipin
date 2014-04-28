@@ -12,9 +12,9 @@
     </head>
     <body>
         <div id="header">
-            <?php $this->renderPartial('//site/login'); ?>
-            <?php $this->renderPartial('//site/head'); ?>
-            <?php $this->renderPartial('//site/nav'); ?>
+            <?php $this->renderPartial('//site/login', array('cat' => 0)); ?>
+            <?php $this->renderPartial('//site/head', array('cat' => 0)); ?>
+            <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
         </div>
         <?php echo $content;?>
         <div id="footer" class="footer">
