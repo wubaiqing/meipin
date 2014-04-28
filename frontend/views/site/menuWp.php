@@ -4,7 +4,7 @@
         
         <div class="new_bg r">
             <ul>
-                <li class="on"><a href="/">最热<em></em></a></li>
+                <li class="<?php $hot = Yii::app()->request->getQuery('hot'); echo ($hot == 0) ? 'on' : ''; ?>"><a href="/">最热<em></em></a></li>
                 <li class="<?php $hot = Yii::app()->request->getQuery('hot'); echo ($hot == 1) ? 'on' : ''; ?>"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 0, 'hot' => 1));?>">最新<em></em></a></li>
             </ul>
         </div>
