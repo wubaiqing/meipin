@@ -40,9 +40,7 @@ class SiteController extends Controller
             $pages = new CPagination($count);
             $pages->pageSize=15;
             $pages->applyLimit($criteria);
-
             $goods = Goods::model()->findAll($criteria);
-
             Yii::app()->cache->set($cacheKey, $goods, 3600);
         }
 
@@ -52,7 +50,10 @@ class SiteController extends Controller
                 'pager' => new CPagination($count)
             ));
         } else {
-            $this->render('searchError');
+            $this->render('searchError', array(
+                'title' => $title
+                
+            ));
         }
     }
 
