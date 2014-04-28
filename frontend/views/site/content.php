@@ -6,17 +6,17 @@
             <div class="deal figure1 zt1">
                 <div class="">
                     <p>
-                        <a href="<?php echo $this->createUrl('site/out', array('id' =>));?>" target="_blank">
+                        <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
                             <img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://www.40zhe.com/static/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="290">
                         </a>
                     </p>
                     <h2>
                         <strong>
-                            <a href="<?php echo $item->url;?>" target="_blank">
+                            <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
                                 【<?php echo Store::getStoreByPk($item->relation_website);?>】
                             </a>
                         </strong>
-                        <a href="<?php echo $item->url;?>" target="_blank">
+                        <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
                             <?php echo $item->title;?>
                         </a>
                     </h2>
@@ -33,7 +33,7 @@
                         <?php if ($item->start_time > time()) :?>
                         <font><?php echo date('G', $item->start_time);?>点开始</font>
                         <?php else:?>
-                        <a  href="<?php echo $this->createUrl('site/details', array('goodsId' => $item->id));?>" target="_blank" ></a>
+                        <a  href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a>
                         <?php endif;?>
                     </h4>
                     <span class="mgicon"></span>

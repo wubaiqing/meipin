@@ -33,10 +33,11 @@ class SiteController extends Controller
      */
     public function actionOut($id)
     {
+        $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
         if ($goods) {
-            return $goods->id;
+            header("Location:{$goods->url}");
+            Yii::app()->end();
         }
     }
-
 }
