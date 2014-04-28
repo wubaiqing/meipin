@@ -23,10 +23,10 @@ class Goods extends ActiveRecord implements IArrayable
      * @param  integer $cat  当前分类
      * @return array   商品条件
      */
-    public static function getGoodsList($cat, $hot)
+    public static function getGoodsList($cat, $hot, $page)
     {
         // 缓存名称
-        $cacheKey = 'get-goods-list-cachekey-'.$cat.'-'.$hot;
+        $cacheKey = 'get-goods-list-cachekey-'.$cat.'-'.$hot.'-'.$page;
 
         // 商品列表
         $goodsList = Yii::app()->cache->get($cacheKey);

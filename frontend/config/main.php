@@ -9,12 +9,10 @@ return array(
     'components' => array(
         'urlManager' => array(
             'urlFormat' => 'path',
-            'urlSuffix' => '.html',
             'showScriptName' => false,
             'rules' => array(
-                '<controller:\w+>/<action:\w+>/<page:\d+>' => 'page',
-                '<controller:\w+>/<action:\w+>/<tab:\d+>' => 'site/index/tab',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => 'site/go/id/',
+                'index.html' => 'site/index',
+                'out/<id:.+?>.html' => 'site/out',
             ),
         ),
     ),

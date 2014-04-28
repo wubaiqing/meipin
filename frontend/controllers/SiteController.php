@@ -17,8 +17,8 @@ class SiteController extends Controller
      */
     public function actionIndex($page = 1, $hot = 0, $cat = 0)
     {
-        $goods = Goods::getGoodsList($cat, $hot);
-        $count = count(Goods::getGoodsList(0, 0)['data']);
+        $goods = Goods::getGoodsList($cat, $hot, $page);
+        $count = count(Goods::getGoodsList(0, 0, 0)['data']);
         $cat = Yii::app()->request->getQuery('cat');
         $this->render('index', array(
             'cat' => $cat,
