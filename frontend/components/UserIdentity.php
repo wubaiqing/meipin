@@ -1,6 +1,6 @@
 <?php
 /**
- * 美品网身份识别
+ * 用户身份识别
  * @author wubaiqing <wubaiqing@vip.qq.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0

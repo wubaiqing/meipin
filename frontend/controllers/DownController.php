@@ -1,6 +1,6 @@
 <?php
 /**
- * 美品网下载页面
+ * 下载控制器
  * @author wubaiqing<wubaiqing@vip.qq.com>
  * @copyright Copyright (c) 2014 美品
  * @since 1.0
@@ -22,6 +22,7 @@ class DownController extends Controller
         ";
         Header("Content-type: application/octet-stream");
         header("Content-Disposition: attachment; filename=美品网.url;");
-        die($Shortcut);
+        echo($Shortcut);
+        Yii::app()->end();
     }
 }

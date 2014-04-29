@@ -1,6 +1,6 @@
 <?php
 /**
- * 美品网用户登录
+ * 用户登录
  * @author wubaiqing <wubaiqing@vip.qq.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
