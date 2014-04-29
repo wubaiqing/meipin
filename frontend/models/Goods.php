@@ -74,7 +74,7 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('t.price', '< 10');
         } elseif ($cat == 1001) {
             $criteria->compare('t.price', '>= 10');
-        } else {
+        } elseif ($cat > 0) {
             $criteria->compare('t.cat_id', '='. $cat);
         }
 
