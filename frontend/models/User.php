@@ -33,10 +33,12 @@ class User extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
-            ['id, username, password, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'],
+            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'],
             ['username', 'checkUsername', 'on' => 'register'],
-            ['password', 'checkPassword', 'on' => 'register'],
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
+            ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'register'],
+            ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
+            ['password', 'checkPassword', 'on' => 'register']
         ];
     }
 

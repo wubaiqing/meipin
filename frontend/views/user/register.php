@@ -39,6 +39,12 @@
                         </div>
                     </li>
                     <li>
+                        <div class="input_left">
+                            <label for="email">邮箱：</label>
+                            <?php echo $form->textField($model, 'email', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+                        </div>
+                    </li>
+                    <li>
                         <div class="ipt_check">
                             <label for="captcha">验证码：</label>
                             <?php echo $form->textField($model, 'verifyCode', array('class'=>'check input_text bg text code ', 'onblur' => 'this.className="input_off_c";this.onmouseout=function () {this.className="input_out_c"};', 'onfocus' => 'this.className="input_on_c";this.onmouseout=""', 'maxlength' => 4)); ?>
