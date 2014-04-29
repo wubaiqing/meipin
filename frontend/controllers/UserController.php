@@ -83,7 +83,11 @@ class UserController extends Controller
      */
     public function renderIndex($status, $message)
     {
-        $this->render('loginSuccess', ['status' => $status, 'message' => $message, 'url' => $this->createAbsoluteUrl('site/index')]);
+        $this->render('loginSuccess', [
+            'status' => $status, 
+            'message' => $message, 
+            'url' => $this->createAbsoluteUrl('site/index')
+        ]);
         Yii::app()->end();
     }
 }
