@@ -3,7 +3,9 @@
         <div class="pic_l l">
             <img src="/assets/images/user_login.jpg">
         </div>
-        <?php
+        <div class="zc_x fr" id="logincontent">
+            <h3></h3>
+            <?php
             $form = $this->beginWidget('CActiveForm', [
                 'id' => 'login-form',
                 'enableClientValidation' => false,
@@ -12,11 +14,7 @@
                 ]
             ]);
             ?>
-        <div class="zc_x fr" id="logincontent">
-            <h3></h3>
-            <div>
-                <?php echo $form->errorSummary($model, ''); ?>
-            </div>
+            <?php echo $form->errorSummary($model, ''); ?>
             <p>
                 <em>用户名：</em>
                 <?php echo $form->textField($model, 'username', array('class' => 'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
@@ -29,7 +27,8 @@
                 <?php $this->widget('CCaptcha', array('showRefreshButton' => false, 'clickableImage' => true, 'imageOptions' => array('alt' => '点击换图', 'title' => '点击换图', 'style' => 'cursor:pointer'))); ?>
             </p>
             <p>
-                <em>&nbsp;</em><input type="submit" value="登 录" class="submit">
+                <em>&nbsp;</em>
+                <input type="submit" value="登 录" class="submit">
             </p>
             <p class="reg">
                 还没有美品网账号？ 
