@@ -13,7 +13,7 @@ class Cat extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{category}}';
+        return '{{meipin_category}}';
     }
 
     /**

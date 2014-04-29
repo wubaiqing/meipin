@@ -13,7 +13,7 @@ class Banner extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{banner}}';
+        return '{{meipin_banner}}';
     }
 
     public static function getAll()

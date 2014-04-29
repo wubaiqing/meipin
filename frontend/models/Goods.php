@@ -13,7 +13,7 @@ class Goods extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{goods}}';
+        return '{{meipin_goods}}';
     }
 
     /**

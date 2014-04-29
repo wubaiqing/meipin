@@ -13,7 +13,7 @@ class Links extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{links}}';
+        return '{{meipin_links}}';
     }
 
     /**

@@ -13,7 +13,7 @@ class UserLoginLog extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{user_login_log}}';
+        return '{{meipin_user_login_log}}';
     }
 
     /**

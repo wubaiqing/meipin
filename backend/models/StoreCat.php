@@ -13,7 +13,7 @@ class StoreCat extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{store_category}}';
+        return '{{meipin_store_category}}';
     }
 
     /**

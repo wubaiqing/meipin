@@ -13,7 +13,7 @@ class BlackList extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{blacklist}}';
+        return '{{meipin_blacklist}}';
     }
 
     /**

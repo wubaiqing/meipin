@@ -13,7 +13,7 @@ class Gold extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{gold}}';
+        return '{{meipin_gold}}';
     }
 
     /**

@@ -13,7 +13,7 @@ class Store extends ActiveRecord implements IArrayable
      */
     public function tableName()
     {
-        return '{{store}}';
+        return '{{meipin_store}}';
     }
 
     /**
