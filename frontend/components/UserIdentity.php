@@ -8,7 +8,7 @@
 class UserIdentity extends CUserIdentity
 {
     /**
-     * 
+     *
      * @var interger 会员ID
      */
     private $id;
@@ -33,11 +33,12 @@ class UserIdentity extends CUserIdentity
 
         if ($user == false) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
+
             return !$this->errorCode;
         } elseif (!$user->validatePassword($this->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else {
-            
+
             // 设置用户ID、用户名称
             $this->id = $user->id;
             $this->name = $user->username;

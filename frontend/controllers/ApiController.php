@@ -18,7 +18,7 @@ class ApiController extends Controller
         if (!empty($result)) {
             $this->returnData(1, $result);
         }
-        
+
         $criteria = Goods::getMobileCriteria();
         $goods = Goods::model()->findAll($criteria);
         foreach ($goods as $item) {
@@ -37,5 +37,5 @@ class ApiController extends Controller
         Yii::app()->cache->set($cacheKey, $data, 1800);
         $this->returnData(1, $data);
     }
-    
+
 }

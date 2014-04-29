@@ -31,7 +31,7 @@
                 <input type="submit" value="登 录" class="submit">
             </p>
             <p class="reg">
-                还没有美品网账号？ 
+                还没有美品网账号？
                 <a href="<?php echo $this->createUrl('user/register'); ?>" class="zhuce">立即注册&gt;&gt;</a>
             </p>
             <?php $this->endWidget(); ?>

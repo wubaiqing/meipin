@@ -16,10 +16,10 @@ class Links extends ActiveRecord implements IArrayable
         return '{{meipin_links}}';
     }
 
-	/**
-	 * 获取友情链接
-	 * @return response
-	 */
+    /**
+     * 获取友情链接
+     * @return response
+     */
     public static function getLink()
     {
         $cacheKey = 'meipin-index-links';
@@ -27,13 +27,14 @@ class Links extends ActiveRecord implements IArrayable
         if (!empty($result)) {
             return $result;
         }
-		
+
         $links = Links::model()->findAll([
             'condition' => 'source =:source',
             'params' => array(':source' => 2),
             'order' => 'id Desc'
         ]);
         Yii::app()->cache->set($cacheKey, $links, Yii::app()->params['linkCacheTime']);
+
         return $links;
     }
 

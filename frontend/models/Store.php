@@ -37,7 +37,7 @@ class Store extends ActiveRecord implements IArrayable
         foreach ($storeAll as $val) {
             $array[$val->id] = $val->name;
         }
-        
+
         if (!isset($array[$id])) {
             $name = '淘宝网';
         } else {

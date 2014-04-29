@@ -15,7 +15,7 @@ class Des
 
     /**
      * 加密字符串
-     * @param mixed $encrypt
+     * @param  mixed  $encrypt
      * @return string
      */
     public static function encrypt($encrypt)
@@ -23,12 +23,13 @@ class Des
         $encrypt = self::pkcs5_pad($encrypt);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
         $passcrypt = @mcrypt_encrypt(MCRYPT_DES, self::$key, $encrypt, MCRYPT_MODE_ECB, $iv);
+
         return bin2hex($passcrypt);
     }
 
     /**
      * 解密字符串
-     * @param string $decrypt 加密字符串
+     * @param  string $decrypt 加密字符串
      * @return string
      */
     public static function decrypt($decrypt)
@@ -36,12 +37,13 @@ class Des
         $decoded = pack("H*", $decrypt);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
         $decrypted = @mcrypt_decrypt(MCRYPT_DES, self::$key, $decoded, MCRYPT_MODE_ECB, $iv);
+
         return self::pkcs5_unpad($decrypted);
     }
 
     /**
      * 解除填充
-     * @param string $text 字符串
+     * @param  string $text 字符串
      * @return string
      */
     public static function pkcs5_unpad($text)
@@ -53,12 +55,13 @@ class Des
         if (strspn($text, chr($pad), strlen($text) - $pad) != $pad) {
             return $text;
         }
+
         return substr($text, 0, -1 * $pad);
     }
 
     /**
      * 填充字符
-     * @param string $text 字符串
+     * @param  string $text 字符串
      * @return string
      */
     public static function pkcs5_pad($text)
@@ -66,6 +69,7 @@ class Des
         $len = strlen($text);
         $mod = $len % 8;
         $pad = 8 - $mod;
+
         return $text . str_repeat(chr($pad), $pad);
     }
 

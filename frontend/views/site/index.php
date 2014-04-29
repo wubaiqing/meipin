@@ -25,8 +25,6 @@
 <?php $this->renderPartial('side'); ?>
 <?php $this->renderPartial('right'); ?>
 
-
-
 <div id="footer" class="footer">
     <?php $this->renderPartial('footer'); ?>
 </div>

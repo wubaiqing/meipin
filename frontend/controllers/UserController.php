@@ -11,7 +11,7 @@ class UserController extends Controller
      * @var string $layout
      */
     public $layout = '//layouts/user';
-    
+
     /**
      * 验证码
      */
@@ -38,7 +38,7 @@ class UserController extends Controller
             $this->redirect(['site/index']);
             Yii::app()->end();
         }
-        
+
         $model = new LoginForm();
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
@@ -47,7 +47,7 @@ class UserController extends Controller
                 Yii::app()->end();
             }
         }
-        
+
         $this->render('login', ['model' => $model]);
     }
 
@@ -77,15 +77,15 @@ class UserController extends Controller
         }
         $this->render('register', ['model' => $model]);
     }
-    
+
     /**
      * 跳转首页
      */
     public function renderIndex($status, $message)
     {
         $this->render('loginSuccess', [
-            'status' => $status, 
-            'message' => $message, 
+            'status' => $status,
+            'message' => $message,
             'url' => $this->createAbsoluteUrl('site/index')
         ]);
         Yii::app()->end();

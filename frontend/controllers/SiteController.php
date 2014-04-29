@@ -67,6 +67,5 @@ class SiteController extends Controller
             Yii::app()->end();
         }
     }
-    
-    
+
 }

@@ -21,4 +21,3 @@
 <div id="footer" class="footer">
     <?php $this->renderPartial('footer'); ?>
 </div>
-

@@ -21,6 +21,6 @@ return [
             'pageVar' => 'page',
             'pageSize' => 120,
         ],
-	'linkCacheTime' => 86400
+    'linkCacheTime' => 86400
     ],
 ];

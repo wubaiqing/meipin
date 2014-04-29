@@ -80,6 +80,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->compare('t.status', '=1');
 
         $this->dbCriteria->mergeWith($criteria);
+
         return $this;
     }
 
@@ -97,6 +98,7 @@ class Goods extends ActiveRecord implements IArrayable
         }
         $goods = Goods::model()->findByPk($goodsId);
         Yii::app()->cache->set($cacheKey, $goods);
+
         return $goods;
     }
 
@@ -115,6 +117,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->compare('t.end_time', '>=' . $now);
         $criteria->compare('t.status', '=1');
         $criteria->compare('t.goods_type', '=0');
+
         return $criteria;
     }
 
