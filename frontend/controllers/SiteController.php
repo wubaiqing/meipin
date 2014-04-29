@@ -62,7 +62,7 @@ class SiteController extends Controller
     {
         $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
-        if ($goods) {
+        if (!empty($goods)) {
             header("Location:{$goods->url}");
             Yii::app()->end();
         }

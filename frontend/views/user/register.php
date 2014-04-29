@@ -20,24 +20,26 @@
 
             <div class="fill">
                 <ul>
-
                     <li>
                         <div class="input_left">
                             <label for="username">用户名：</label>
                             <?php echo $form->textField($model, 'username', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                         </div>
                     </li>
-                    <li><div class="input_left">
+                    <li>
+                        <div class="input_left">
                             <label for="password">密码：</label>
                             <?php echo $form->passwordField($model, 'password', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                         </div>
                     </li>
-                    <li><div class="input_left">
+                    <li>
+                        <div class="input_left">
                             <label for="repassword">确认密码：</label>
                             <?php echo $form->passwordField($model, 'confirmPassword', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
                         </div>
                     </li>
-                    <li><div class="ipt_check">
+                    <li>
+                        <div class="ipt_check">
                             <label for="captcha">验证码：</label>
                             <?php echo $form->textField($model, 'verifyCode', array('class'=>'check input_text bg text code ', 'onblur' => 'this.className="input_off_c";this.onmouseout=function () {this.className="input_out_c"};', 'onfocus' => 'this.className="input_on_c";this.onmouseout=""', 'maxlength' => 4)); ?>
                             <?php $this->widget('CCaptcha',array('showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer', 'onclick' => 'captch(this)'))); ?>
