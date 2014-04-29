@@ -41,8 +41,8 @@
     <div class="footer_yq_div">
         <h3 class="footer_yq_h3 fl"><a href="javascript:;" target="_blank">友情链接</a></h3>
         <?php
-        $links = Links::getLink();
-        foreach ($links as $link) :
+            $links = Links::getLink();
+            foreach ($links as $link) :
         ?>
         <a target="_blank" class="youq_a" href="<?php echo $link->url;?>" title="<?php echo $link->image_url;?>"><?php echo $link->image_url;?></a>
         <?php endforeach; ?>
