@@ -1,27 +1,28 @@
 <?php
-
 /**
- * UserIdentity represents the data needed to identity a user.
- * It contains the authentication method that checks if the provided
- * data can identity the user.
+ * 美品网身份识别
+ * @author wubaiqing <wubaiqing@vip.qq.com>
+ * @copyright Copyright (c) 2014 美品网
+ * @since 1.0
  */
 class UserIdentity extends CUserIdentity
 {
     /**
-     * 管理员ID
-     * @var type
+     * 
+     * @var interger 会员ID
      */
     private $id;
 
     /**
-     * 管理员名称
-     * @var string
+     * @var string 会员名称
      */
     private $name;
 
     /**
-     * Authenticates a user.
-     * @return boolean whether authentication succeeds.
+     * 美品网身份识别
+     * @author wubaiqing <wubaiqing@vip.qq.com>
+     * @copyright Copyright (c) 2014 美品网
+     * @since 1.0
      */
     public function authenticate()
     {
@@ -63,11 +64,19 @@ class UserIdentity extends CUserIdentity
         return !$this->errorCode;
     }
 
+    /**
+     * 获取用户ID
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * 获取用户名称
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
