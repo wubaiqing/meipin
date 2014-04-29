@@ -33,8 +33,8 @@ class Store extends ActiveRecord implements IArrayable
         }
 
         $array = array();
-        $storeAll = self::getAll();
-        foreach ($storeAll as $key => $val) {
+        $storeAll = self::model()->findAll();
+        foreach ($storeAll as $val) {
             $array[$val->id] = $val->name;
         }
         if (!isset($array[$id])) {
