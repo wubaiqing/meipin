@@ -11,7 +11,7 @@ class UserController extends Controller
      * @var string $layout 继承视图
      */
     public $layout = '//layouts/user';
-
+    
     /**
      * 验证码
      */
@@ -129,11 +129,6 @@ class UserController extends Controller
      * 积分管理
      */
     public function actionScoreManage()
-    {
-
-    }
-
-    public function actionGetGold()
     {
 
     }
