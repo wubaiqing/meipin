@@ -34,7 +34,6 @@ class Controller extends CController
         array(
             'label' => '前台管理',
             'items' => array(
-                array('url' => 'banner/admin', 'label' => 'Banner'),
                 array('url' => 'site/clearCache', 'label' => '清空缓存'),
                 array('url' => 'site/logout', 'label' => '退出登录'),
             )
