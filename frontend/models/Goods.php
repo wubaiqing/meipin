@@ -26,7 +26,7 @@ class Goods extends ActiveRecord implements IArrayable
     public static function getGoodsList($cat, $hot, $page)
     {
         // 缓存名称
-        $cacheKey = 'get-goods-list-cachekey-'.$cat.'-'.$hot.'-'.$page;
+        $cacheKey = 'get-goods-list-cachekey-' . $cat . '-' . $hot . '-' . $page;
 
         // 商品列表
         $goodsList = Yii::app()->cache->get($cacheKey);
@@ -44,7 +44,7 @@ class Goods extends ActiveRecord implements IArrayable
         Yii::app()->cache->set($cacheKey, [
             'pager' => $goodsList['pager'],
             'data' => $goodsList['data']
-        ], 1800);
+            ], 1800);
 
         return $goodsList;
     }
@@ -72,11 +72,11 @@ class Goods extends ActiveRecord implements IArrayable
         } elseif ($cat == 1001) {
             $criteria->compare('t.price', '>= 10');
         } elseif ($cat > 0) {
-            $criteria->compare('t.cat_id', '='. $cat);
+            $criteria->compare('t.cat_id', '=' . $cat);
         }
 
-        $criteria->compare('t.start_time', '<='. $now);
-        $criteria->compare('t.end_time', '>='. $now);
+        $criteria->compare('t.start_time', '<=' . $now);
+        $criteria->compare('t.end_time', '>=' . $now);
         $criteria->compare('t.status', '=1');
 
         $this->dbCriteria->mergeWith($criteria);
@@ -90,7 +90,7 @@ class Goods extends ActiveRecord implements IArrayable
      */
     public static function getGoods($goodsId)
     {
-        $cacheKey = 'meipin-get-goods-'.$goodsId;
+        $cacheKey = 'meipin-get-goods-' . $goodsId;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
@@ -99,4 +99,23 @@ class Goods extends ActiveRecord implements IArrayable
         Yii::app()->cache->set($cacheKey, $goods);
         return $goods;
     }
+
+    /**
+     * 手机端Criteria
+     * @return object criteria
+     */
+    public static function getMobileCriteria()
+    {
+        $now = time();
+        $criteria = new CDbCriteria;
+        $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
+        $criteria->order = 'day DESC, t.list_order DESC';
+        $criteria->limit = 300;
+        $criteria->compare('t.start_time', '<=' . $now);
+        $criteria->compare('t.end_time', '>=' . $now);
+        $criteria->compare('t.status', '=1');
+        $criteria->compare('t.goods_type', '=0');
+        return $criteria;
+    }
+
 }

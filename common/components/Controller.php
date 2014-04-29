@@ -51,12 +51,12 @@ class Controller extends CController
     /**
      * 返回接口数据
      * @param integer $status 接口状态
-     * @param string  $code   错误代码
+     * @param string  $data   错误代码
      */
-    public function returnData($status, $code)
+    public function returnData($status, $data)
     {
         header('Content-Type:application/json;');
-        echo CJSON::encode(array('status' => $status, 'code' => $code));
+        echo CJSON::encode(array('status' => $status, 'data' => $data));
         Yii::app()->end();
     }
 }
