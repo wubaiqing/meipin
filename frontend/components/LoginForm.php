@@ -27,8 +27,6 @@ class LoginForm extends CFormModel
      */
     private $_identity;
 
-    
-
     /**
      * 验证规则
      * @return array
@@ -37,7 +35,6 @@ class LoginForm extends CFormModel
     {
         return [
             ['username, password,verifyCode', 'required'],
-            array('verifyCode','required','message'=>'验证码不能为空'),
         ];
     }
 
@@ -47,28 +44,26 @@ class LoginForm extends CFormModel
      */
     public function login()
     {
+        $code = Yii::app()->controller->createAction('captcha')->verifyCode;
+        if (empty($this->verifyCode)) {
+            $this->addError('verifyCode', '验证码不允许为空');
+        } elseif ($this->verifyCode != $code) {
+            $this->addError('verifyCode', '验证码不正确');
+        }
+        
         if ($this->_identity === null) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             $this->_identity->authenticate();
         }
         
-        if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {
-            $duration = 0;
-            Yii::app()->user->login($this->_identity, $duration);
+        if ($this->_identity->errorCode == UserIdentity::ERROR_USERNAME_INVALID || $this->_identity->errorCode == UserIdentity::ERROR_PASSWORD_INVALID) {
+            $this->addError('username', '用户名或密码不正确');
+        } elseif ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {
+            Yii::app()->user->login($this->_identity);
             // 设置跳转页面的cookie
             $this->setReferer();
             return true;
         } else {
-            $code = Yii::app()->controller->createAction('captcha')->verifyCode;
-            if (empty($this->verifyCode)) {
-                $this->addError('verifyCode', '验证码不允许为空');
-            } elseif ($this->verifyCode != $code) {
-                $this->addError('verifyCode', '验证码不正确');
-            } else {
-                if ($this->_identity->errorCode == UserIdentity::ERROR_USERNAME_INVALID || $this->_identity->errorCode == UserIdentity::ERROR_PASSWORD_INVALID) {
-                    $this->addError('username', '用户名或密码不正确');
-                }
-            }
             return false;
         }
     }
