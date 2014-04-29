@@ -13,25 +13,13 @@ class SearchController extends Controller
     public $layout = '//layouts/main';
 
     /**
-     * 今天值得买首页
+     * 美品网搜索
      */
     public function actionIndex($title)
     {
-        $cacheKey = 'index-search-'.md5($title);
-        $goods = Yii::app()->cache->get($cacheKey);
-        if (empty($result)) {
-            $title = trim($title);
-            $criteria = new CDbCriteria();
-            $criteria->addSearchCondition('title', $title);
-            $count = Goods::model()->count($criteria);
-            $pages = new CPagination($count);
-            $pages->pageSize=15;
-            $pages->applyLimit($criteria);
-            $goods = Goods::model()->findAll($criteria);
-            Yii::app()->cache->set($cacheKey, $goods, 3600);
-        }
-        if ($goods) {
-            $this->render('search', ['goods' => $goods,'pager' => new CPagination($count)]);
+        $search = Goods::model()->search($title);
+        if (!empty($search)) {
+            $this->render('search', ['goods' => $search['data'],'pager' => $search['pager']]);
         } else {
             $this->render('searchError', ['title' => $title]);
         }

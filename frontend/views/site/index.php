@@ -17,7 +17,7 @@
 
 <div id="content" class="wp">
     <?php $this->renderPartial('menu', array('cat' => $cat)); ?>
-    <?php $this->renderPartial('menuWp'); ?>
+    <?php $this->renderPartial('menuWp', array('pager' => $pager)); ?>
     <?php $this->renderPartial('content', array('goods' => $goods)); ?>
     <?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 </div>

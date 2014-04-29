@@ -44,7 +44,7 @@ class Goods extends ActiveRecord implements IArrayable
         Yii::app()->cache->set($cacheKey, [
             'pager' => $goodsList['pager'],
             'data' => $goodsList['data']
-            ], 1800);
+        ], 1800);
 
         return $goodsList;
     }
@@ -117,8 +117,41 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->compare('t.end_time', '>=' . $now);
         $criteria->compare('t.status', '=1');
         $criteria->compare('t.goods_type', '=0');
-
         return $criteria;
+    }
+
+    /**
+     * 商品搜索
+     * @params string $title
+     */
+    public function search($title)
+    {
+        if (empty($title)) {
+            return false;
+        }
+        
+        $cacheKey = 'meipin-search-title-'.md5(trim($title));
+        $response = Yii::app()->cache->get($cacheKey);
+        if (!empty($response)) {
+            return $response;
+        }
+        
+        $data = ['data' => null, 'pager' => null];
+
+        // 清空标题字符
+        $title = trim($title);
+
+        // 搜索条件
+        $criteria = new CDbCriteria();
+        $criteria->addSearchCondition('title', $title);
+        $this->dbCriteria->mergeWith($criteria);
+        $pagination = $this->paginate();
+
+        $data['data'] = $pagination->data;
+        $data['pager'] = $pagination->getPagination();
+        
+        Yii::app()->cache->set($cacheKey, $data, 3600);
+        return $data;
     }
 
 }

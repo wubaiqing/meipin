@@ -7,7 +7,7 @@
 
 <div id="content" class="wp">
     <?php $this->renderPartial('//site/menu', array('cat' => 0)); ?>
-    <?php $this->renderPartial('//site/menuWp'); ?>
+    <?php $this->renderPartial('//site/menuWp', array('pager' => $pager)); ?>
     <?php $this->renderPartial('//site/content', array('goods' => $goods)); ?>
     <?php $this->renderPartial('//site/page', array('pager' => $pager)); ?>
 </div>
