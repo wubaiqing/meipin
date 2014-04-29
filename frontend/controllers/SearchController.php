@@ -15,19 +15,7 @@ class SearchController extends Controller
     /**
      * 今天值得买首页
      */
-    public function actionIndex($page = 1, $hot = 0, $cat = 0)
-    {
-        $goods = Goods::getGoodsList($cat, $hot, $page);
-        $this->render('index', array(
-            'goods' => $goods['data'],
-            'pager' => $goods['pager'],
-        ));
-    }
-
-    /**
-     * 商品搜索
-     */
-    public function actionSearch($title)
+    public function actionIndex($title)
     {
         $cacheKey = 'index-search-'.md5($title);
         $goods = Yii::app()->cache->get($cacheKey);
@@ -42,31 +30,11 @@ class SearchController extends Controller
             $goods = Goods::model()->findAll($criteria);
             Yii::app()->cache->set($cacheKey, $goods, 3600);
         }
-
         if ($goods) {
-            $this->render('search', array(
-                'goods' => $goods,
-                'pager' => new CPagination($count)
-            ));
+            $this->render('search', ['goods' => $goods,'pager' => new CPagination($count)]);
         } else {
-            $this->render('searchError', array(
-                'title' => $title
-            ));
+            $this->render('searchError', ['title' => $title]);
         }
     }
-
-    /**
-     * 今天值得买首页
-     */
-    public function actionOut($id)
-    {
-        $goodsId = Des::decrypt($id);
-        $goods = Goods::getGoods($goodsId);
-        if (!empty($goods)) {
-            header("Location:{$goods->url}");
-            Yii::app()->end();
-        }
-    }
-
 }
 

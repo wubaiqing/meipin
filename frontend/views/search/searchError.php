@@ -1,7 +1,7 @@
 <div id="header">
-    <?php $this->renderPartial('prompt'); ?>
-    <?php $this->renderPartial('//site/login', array('cat' => 0)); ?>
-    <?php $this->renderPartial('//site/head', array('cat' => 0)); ?>
+    <?php $this->renderPartial('//site/prompt'); ?>
+    <?php $this->renderPartial('//site/login'); ?>
+    <?php $this->renderPartial('//site/head'); ?>
     <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
 </div>
 <div id="content" class="wp">
@@ -15,7 +15,7 @@
           </div>
      </div>
 </div>
-<?php $this->renderPartial('side'); ?>
+<?php $this->renderPartial('//site/side'); ?>
 <div id="footer" class="footer">
-    <?php $this->renderPartial('footer'); ?>
+    <?php $this->renderPartial('//site/footer'); ?>
 </div>
