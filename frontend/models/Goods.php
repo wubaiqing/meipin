@@ -1,7 +1,7 @@
 <?php
 /**
  * 美品网商品管理
- * @author wubaiqing<wubaiqing@vip.qq.com>
+ * @author wubaiqing <wubaiqing@vip.qq.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
@@ -35,16 +35,16 @@ class Goods extends ActiveRecord implements IArrayable
         }
 
         // 商品列表数据
-        $goodsList = array();
+        $goodsList = [];
         $goodsPaginate = Goods::model()->dataList($cat, $hot)->paginate();
         $goodsList['pager'] = $goodsPaginate->getPagination();
         $goodsList['data'] = $goodsPaginate->data;
 
         // 设置缓存
-        Yii::app()->cache->set($cacheKey, array(
+        Yii::app()->cache->set($cacheKey, [
             'pager' => $goodsList['pager'],
             'data' => $goodsList['data']
-        ) , 1800);
+        ], 1800);
 
         return $goodsList;
     }

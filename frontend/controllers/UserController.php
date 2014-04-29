@@ -39,6 +39,7 @@ class UserController extends Controller
             $this->redirect(array(
                 'site/index'
             ));
+            Yii::app()->end();
         }
 
         if (isset($_POST['LoginForm'])) {

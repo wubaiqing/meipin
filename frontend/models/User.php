@@ -32,12 +32,12 @@ class User extends ActiveRecord implements IArrayable
      */
     public function rules()
     {
-        return array(
-            array('id, username, password, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'),
-            array('username', 'checkUsername', 'on' => 'register'),
-            array('password', 'checkPassword', 'on' => 'register'),
-            array('verifyCode', 'checkVerifyCode', 'on' => 'register'),
-        );
+        return [
+            ['id, username, password, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'],
+            ['username', 'checkUsername', 'on' => 'register'],
+            ['password', 'checkPassword', 'on' => 'register'],
+            ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
+        ];
     }
 
     /**
@@ -65,7 +65,7 @@ class User extends ActiveRecord implements IArrayable
         } elseif (strlen($this->username) > 50) {
             $this->addError('username', '用户名不能大于50个字符');
         } else {
-            $user = self::model()->findByAttributes(array('username' => $this->username));
+            $user = self::model()->findByAttributes(['username' => $this->username]);
             if (!empty($user)) {
                 $this->addError('username', '用户名已被注册');
             }

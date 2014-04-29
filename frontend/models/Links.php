@@ -1,9 +1,9 @@
 <?php
 /**
- * 书签管理
- * @author wubaiqing<wubaiqing@vip.qq.com>
- * @copyright Copyright (c) 2013 今天值得买
- * @since 1.5
+ * 美品网商品管理
+ * @author wubaiqing <wubaiqing@vip.qq.com>
+ * @copyright Copyright (c) 2014 美品网
+ * @since 1.0
  */
 class Links extends ActiveRecord implements IArrayable
 {
@@ -16,45 +16,24 @@ class Links extends ActiveRecord implements IArrayable
         return '{{meipin_links}}';
     }
 
-    /**
-     * 验证规则
-     * @return array
-     */
-    public function rules()
-    {
-        return array(
-            array('image_url, url', 'required'),
-            array('id, image_url, url, created_at, updated_at', 'safe'),
-        );
-    }
-
-    /**
-     * 字段属性名称
-     * @return array
-     */
-    public function attributeLabels()
-    {
-        return array(
-            'id' => 'ID',
-            'image_url' => '图片地址',
-            'url' => '链接地址',
-        );
-    }
-
+	/**
+	 * 获取友情链接
+	 * @return response
+	 */
     public static function getLink()
     {
-        $cacheKey = 'index-links';
+        $cacheKey = 'meipin-index-links';
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
         }
-        $links = Links::model()->findAll(array(
+		
+        $links = Links::model()->findAll([
             'condition' => 'source =:source',
             'params' => array(':source' => 2),
             'order' => 'id Desc'
-        ));
-        Yii::app()->cache->set($cacheKey, $links, 86400);
-
+        ]);
+        Yii::app()->cache->set($cacheKey, $links, Yii::app()->params['linkCacheTime']);
         return $links;
     }
 

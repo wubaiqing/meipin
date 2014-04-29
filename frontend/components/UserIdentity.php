@@ -30,8 +30,9 @@ class UserIdentity extends CUserIdentity
             'username' => $this->username
         ));
 
-        if ($user === false) {
+        if ($user == false) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
+            return !$this->errorCode;
         } elseif (!$user->validatePassword($this->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else {

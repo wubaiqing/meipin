@@ -1,26 +1,26 @@
 <?php
-
-return array(
+return [
     'basePath' => realpath(__DIR__ . '/../'),
-    'behaviors' => array(),
-    'controllerMap' => array(),
-    'modules' => array(),
+    'behaviors' => [],
+    'controllerMap' => [],
+    'modules' => [],
     'name' => '美品网_折800网、九块邮、会员购等9.9包邮精选',
-    'components' => array(
-        'urlManager' => array(
+    'components' => [
+        'urlManager' => [
             'urlFormat' => 'path',
             'showScriptName' => false,
-            'rules' => array(
+            'rules' => [
                 'index.html' => 'site/index',
                 'out/<id:.+?>.html' => 'site/out',
                 'site/search' => 'site/search',
-            ),
-        ),
-    ),
-    'params' => array(
-        'pagination' => array(
+            ],
+        ],
+    ],
+    'params' => [
+        'pagination' => [
             'pageVar' => 'page',
             'pageSize' => 120,
-        ),
-    ),
-);
+        ],
+		'linkCacheTime' => 86400
+    ],
+];
