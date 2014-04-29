@@ -35,28 +35,20 @@ class UserController extends Controller
     public function actionLogin()
     {
         if (!Yii::app()->user->isGuest) {
-            $this->redirect([
-                'site/index'
-            ]);
+            $this->redirect(['site/index']);
             Yii::app()->end();
         }
-
+        
         $model = new LoginForm();
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->login()) {
-                $this->render('loginSuccess', [
-                    'status' => 'yes',
-                    'message' => '登陆成功',
-                    'url' => $this->createAbsoluteUrl('site/index')
-                ]);
+                $this->renderIndex('yes', '登录成功');
                 Yii::app()->end();
             }
         }
         
-        $this->render('login', array(
-            'model' => $model
-        ));
+        $this->render('login', ['model' => $model]);
     }
 
     /**
@@ -65,11 +57,7 @@ class UserController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-        $this->render('loginSuccess', [
-            'status' => 'yes',
-            'message' => '成功退出',
-            'url' => $this->createAbsoluteUrl('site/index')
-        ]);
+        $this->renderIndex('yes', '安全退出');
     }
 
     /**
@@ -84,32 +72,18 @@ class UserController extends Controller
                 $model = new LoginForm();
                 $model->attributes = $_POST['User'];
                 $model->login();
-                $this->render('loginSuccess', [
-                    'status' => 'yes',
-                    'message' => '注册成功',
-                    'url' => $this->createAbsoluteUrl('site/index')
-                ]);
-                Yii::app()->end();
+                $this->renderIndex('yes', '注册成功');
             }
         }
-        $this->render('register', array(
-            'model' => $model
-        ));
+        $this->render('register', ['model' => $model]);
     }
-
+    
     /**
-     * 用户签到
+     * 跳转首页
      */
-    public function actionUserSign()
+    public function renderIndex($status, $message)
     {
-        $userId = Yii::app()->user->id;
-    }
-
-    /**
-     * 积分管理
-     */
-    public function actionScoreManage()
-    {
-
+        $this->render('loginSuccess', ['status' => $status, 'message' => $message, 'url' => $this->createAbsoluteUrl('site/index')]);
+        Yii::app()->end();
     }
 }
