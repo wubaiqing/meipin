@@ -37,22 +37,24 @@ class UserIdentity extends CUserIdentity
         } elseif (!$user->validatePassword($this->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else {
+            
+            // 设置用户ID、用户名称
             $this->id = $user->id;
             $this->name = $user->username;
 
             // 设置最后一次登录时间
-            $currentTime = time();
+            $time = time();
 
             // 设置用户属性
-            Yii::app()->user->setState( 'singleLoginTime' , $currentTime );
-            Yii::app()->user->setState( 'id' , $user->id );
-            Yii::app()->user->setState( 'name' , $user->username );
+            Yii::app()->user->setState('singleLoginTime', $time);
+            Yii::app()->user->setState('id', $user->id);
+            Yii::app()->user->setState('name', $user->username);
 
             // 更新用户最后登陆时间
-            $affect = User::model()->updateByPk($user->id, array(
-                'last_login' => $currentTime,
+            $affect = User::model()->updateByPk($user->id, [
+                'last_login' => $time,
                 'last_ip' => Yii::app()->request->userHostAddress
-            ));
+            ]);
 
             // 两个用户同一时间数据库报错
             if ($affect !== 1) {
