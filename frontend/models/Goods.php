@@ -1,9 +1,9 @@
 <?php
 /**
- * 商品管理
+ * 美品网商品管理
  * @author wubaiqing<wubaiqing@vip.qq.com>
- * @copyright Copyright (c) 2013 今天值得买
- * @since 1.5
+ * @copyright Copyright (c) 2014 美品网
+ * @since 1.0
  */
 class Goods extends ActiveRecord implements IArrayable
 {
@@ -57,6 +57,7 @@ class Goods extends ActiveRecord implements IArrayable
     public function dataList($cat, $hot)
     {
         $now = strtotime('+1 day 00:00:00') - 1;
+
         $criteria = new CDbCriteria;
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
@@ -66,10 +67,6 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->order = 't.id DESC';
         }
 
-        $criteria->compare('t.start_time', '<='. $now);
-        $criteria->compare('t.end_time', '>='. $now);
-        $criteria->compare('t.status', '=1');
-
         if ($cat == 1000) {
             $criteria->compare('t.price', '< 10');
         } elseif ($cat == 1001) {
@@ -78,19 +75,12 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('t.cat_id', '='. $cat);
         }
 
+        $criteria->compare('t.start_time', '<='. $now);
+        $criteria->compare('t.end_time', '>='. $now);
+        $criteria->compare('t.status', '=1');
+
         $this->dbCriteria->mergeWith($criteria);
-
         return $this;
-    }
-
-    /**
-     * 淘宝客跳转URL缓存KEY
-     * @param  integer $taobaoId
-     * @return string
-     */
-    public static function getTaobaoUrlCacheKey($taobaoId)
-    {
-        return 'get-taobao-url-cachekey-' . $taobaoId;
     }
 
     /**
@@ -109,23 +99,4 @@ class Goods extends ActiveRecord implements IArrayable
         Yii::app()->cache->set($cacheKey, $goods);
         return $goods;
     }
-
-    public static function getGoodsCateId($catId)
-    {
-        $cacheKey = 'get-goods-cate-id-' . $catId;
-        $result = Yii::app()->cache->get($cacheKey);
-        if (!empty($result)) {
-            return $result;
-        }
-
-        $criteria = new CDbCriteria();
-        $criteria->order = 'rand()';
-        $criteria->compare('cat_id', $catId);
-        $criteria->limit = 6;
-        $result = Goods::model()->findAll($criteria);
-        Yii::app()->cache->set($cacheKey, $result, 3600);
-
-        return $result;
-    }
-
 }
