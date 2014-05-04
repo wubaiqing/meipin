@@ -1105,7 +1105,11 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 #tmallSearch #search{
     position:absolute;
     top:0px;
-    right:30px;
+    right:3px;
+    background-color: transparent;
+    opacity:0;
+    -moz-opacity:0;
+    filter:alpha(opacity=0);
 }
 
 .side_nav{position:absolute;top:245px;width:128px;left:50%;text-align:left;margin-left:-635px;z-index:999;}
