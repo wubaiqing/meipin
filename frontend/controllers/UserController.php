@@ -30,6 +30,22 @@ class UserController extends Controller
     }
 
     /**
+     * 用户个人中心
+     */
+    public function actionIndex()
+    {
+        // 用户ID
+        $userId = Yii::app()->user->id;
+
+        // 获取用户积分记录
+        $user = User::getUser($userId);
+
+        $this->render('index', [
+            'user' => $user
+        ]);
+    }
+
+    /**
      * 用户登陆
      */
     public function actionLogin()

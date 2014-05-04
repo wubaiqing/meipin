@@ -123,4 +123,22 @@ class User extends ActiveRecord implements IArrayable
     {
         return md5(md5($password).$this->salt);
     }
+
+    /**
+     * 获取用户信息
+     * @param integer $userId 用户ID
+     */
+    public function getUser($userId)
+    {
+        $cacheKey = 'meipin-get-user-'.$userId;
+        $result = Yii::app()->cache->get($cacheKey);
+        if ($result) {
+            return $result;
+        }
+
+        $user = self::model()->findByPk($userId);
+        Yii::app()->cache->set($cacheKey, $user, 3600);
+        return $user;
+    }
+
 }
