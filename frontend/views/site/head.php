@@ -1,5 +1,5 @@
 <div class="logo_info wp" style="position:relative">
-    <div class="ccc" id="ccc" style="right:260px;">
+    <div class="ccc" id="ccc">
         <div id="tmallSearch">
                 <form action="<?php echo $this->createUrl('search/index');?>" name="searchTop" method="get" >
                 <div class="mallSearch-input clearfix">
