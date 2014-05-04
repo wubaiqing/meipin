@@ -1096,7 +1096,7 @@ transform:rotateY(0deg)}
 .hot_tuangou ul li.zxad img{height: 135px;}
 
 #tmallSearch {width:398px;}
-#tmallSearch button,#tmallSearch button:hover{}
+#tmallSearch button,#tmallSearch button:hover{background:url(images/search_new.png) no-repeat}
 #tmallSearch .search_new {background:url(images/new_search_bg.png) 0 0 no-repeat;border:none;width:357px;float:left;height:18px;padding:8px 8px 8px 30px;color:#666}
 #tmallSearch .mallSearch-input{background:#fff;border-radius:2px;height:34px;position:relative;margin-left:0}
 #tmallSearch button{float:right;width:70px;border:0;font-size:12px;font-weight:bold;cursor:pointer;color:#fff;background-position:0 0;line-height:30 px\9;padding-bottom:3px;padding-bottom:0 \9;height:34px;overflow:hidden;text-indent:-9999px}
