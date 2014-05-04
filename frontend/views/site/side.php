@@ -1,6 +1,6 @@
 <div class="side_nav">
     <div class="logo">
-        <a href="www.meipin.com"><img src="http://www.meipin.com/assets/images/side_logo.jpg" alt="金折会旗下"></a>
+        <a href="www.meipin.com"><img src="http://www.meipin.com/assets/images/side_logo.jpg"></a>
     </div>
     <div class="content">
         <div class="hd">
