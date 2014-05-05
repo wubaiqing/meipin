@@ -20,47 +20,49 @@
                         ]
                     ]);
                 ?>
-                    <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
-                        <tbody>
-                            <tr align="center">
-                                <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
-                                    <span class="user-error">确认新密码和密码输入不一致</span>
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td bgcolor="#F9FAFC" width="100" align="right">
-                                    原密码：
-                                </td>
-                                <td height="32" align="left">
-                                    <?php echo $form->passwordField($model, 'oldPassword', array('class' => 'text')); ?>
-                                    <em>*您帐户原来的登录密码</em>
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td bgcolor="#F9FAFC" width="100" align="right">
-                                    新密码：
-                                </td>
-                                <td height="32" align="left">
-                                    <?php echo $form->passwordField($model, 'password', array('class' => 'text')); ?>
-                                    <em>*设置新的登录密码</em>
-                                </td>
-                            </tr>
-                            <tr align="center" class="color">
-                                <td bgcolor="#F9FAFC" align="right">
-                                    重复新密码：
-                                </td>
-                                <td height="32" align="left">
-                                    <?php echo $form->passwordField($model, 'confirmPassword', array('class' => 'text')); ?>
-                                    <em>*再次输入您新的登录密码</em>
-                                </td>
-                            </tr>
-                            <tr align="center" class="color">
-                                <td height="32" colspan="2">
-                                    <input type="submit" class="submit" value="提交">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
+                    <tbody>
+                        <tr align="center">
+                        <?php if ($model->getErrors()) : ?>
+                            <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
+                                <span class="user-error">确认新密码和密码输入不一致</span>
+                            </td>
+                        <?php endif; ?>
+                        </tr>
+                        <tr align="center">
+                            <td bgcolor="#F9FAFC" width="100" align="right">
+                                原密码：
+                            </td>
+                            <td height="32" align="left">
+                                <?php echo $form->passwordField($model, 'oldPassword', array('class' => 'text')); ?>
+                                <em>*您帐户原来的登录密码</em>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td bgcolor="#F9FAFC" width="100" align="right">
+                                新密码：
+                            </td>
+                            <td height="32" align="left">
+                                <?php echo $form->passwordField($model, 'password', array('class' => 'text')); ?>
+                                <em>*设置新的登录密码</em>
+                            </td>
+                        </tr>
+                        <tr align="center" class="color">
+                            <td bgcolor="#F9FAFC" align="right">
+                                重复新密码：
+                            </td>
+                            <td height="32" align="left">
+                                <?php echo $form->passwordField($model, 'confirmPassword', array('class' => 'text')); ?>
+                                <em>*再次输入您新的登录密码</em>
+                            </td>
+                        </tr>
+                        <tr align="center" class="color">
+                            <td height="32" colspan="2">
+                                <input type="submit" class="submit" value="提交">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <?php $this->endWidget(); ?>
                 <p class="b_tit">请详细填写密码。</p>
             </div>
