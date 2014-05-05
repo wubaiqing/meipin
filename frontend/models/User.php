@@ -47,11 +47,12 @@ class User extends ActiveRecord implements IArrayable
      */
     public function checkPassword()
     {
+        $error = $this->getErrors();
         if (empty($this->password) || empty($this->confirmPassword)) {
             $this->addError('password', '密码不能为空');
         } elseif ($this->password != $this->confirmPassword) {
             $this->addError('password', '两次密码不一致');
-        } elseif (empty($this->getErrors())) {
+        } elseif (empty($error)) {
             $this->salt = self::randSalt(6);
             $this->password = $this->hashPassword($this->password);
         }
