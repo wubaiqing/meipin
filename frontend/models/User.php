@@ -20,6 +20,11 @@ class User extends ActiveRecord implements IArrayable
     /**
      * @var string 原密码
      */
+    public $oldModel;
+
+    /**
+     * @var string 原密码
+     */
     public $oldPassword;
 
     /**
@@ -38,13 +43,24 @@ class User extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
-            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'],
             ['username', 'checkUsername', 'on' => 'register'],
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
             ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'register'],
             ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
+            ['oldPassword', 'checkOldPassword', 'on' => 'password'],
             ['password', 'checkPassword', 'on' => 'register, password'],
+            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'],
         ];
+    }
+
+    /**
+     * 校验原始密码
+     */
+    public function checkOldPassword()
+    {
+        if ($this->oldModel->password != $this->hashPassword($this->oldPassword, $this->oldModel->salt)) {
+            $this->addError('oldPassword', '原始密码不正确');
+        }
     }
 
     /**
@@ -59,7 +75,7 @@ class User extends ActiveRecord implements IArrayable
             $this->addError('password', '两次密码不一致');
         } elseif (empty($error)) {
             $this->salt = self::randSalt(6);
-            $this->password = $this->hashPassword($this->password);
+            $this->password = $this->hashPassword($this->password, $this->salt);
         }
     }
 
@@ -111,23 +127,13 @@ class User extends ActiveRecord implements IArrayable
     }
 
     /**
-     * 验证用户密码
-     * @params string $password 密码
-     * @return boolean
-     */
-    public function validatePassword($password)
-    {
-        return $this->hashPassword($password) === $this->password;
-    }
-
-    /**
      * Generates the password hash.
      * @param string password
      * @return string hash
      */
-    public function hashPassword($password)
+    public function hashPassword($password, $salt)
     {
-        return md5(md5($password).$this->salt);
+        return md5(md5($password).$salt);
     }
 
     /**
@@ -145,6 +151,16 @@ class User extends ActiveRecord implements IArrayable
         $user = self::model()->findByPk($userId);
         Yii::app()->cache->set($cacheKey, $user, 3600);
         return $user;
+    }
+
+    /**
+     * 清空密码
+     */
+    public static function clearPassword(& $model)
+    {
+        $model->password = '';
+        $model->oldPassword = '';
+        $model->confirmPassword = '';
     }
 
 }

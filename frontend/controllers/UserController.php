@@ -72,11 +72,18 @@ class UserController extends Controller
      */
     public function actionPassword()
     {
-        $model = new User('password');
+        // 用户ID
+        $userId = Yii::app()->user->id;
+        $model = User::model()->findByPk($userId);
+        $oldModel = clone $model;
         if (isset($_POST['User'])) {
+            $model->scenario = 'password';
+            $model->oldModel = $oldModel;
             $model->attributes = $_POST['User'];
             if ($model->save()) {
-                $this->renderIndex('yes', '密码修改成功');
+                // $this->renderIndex('yes', '密码修改成功');
+            } else {
+                User::clearPassword($model);
             }
         }
         $this->render('password', ['model' => $model]);

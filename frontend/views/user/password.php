@@ -23,10 +23,12 @@
                 <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
                     <tbody>
                         <tr align="center">
-                        <?php if ($model->getErrors()) : ?>
-                            <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
-                                <span class="user-error">确认新密码和密码输入不一致</span>
-                            </td>
+                            <?php if ($model->getErrors()) : ;?>
+                            <?php foreach ($model->getErrors() as $error) :?>
+                                <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
+                                    <span class="user-error"><?php echo $error[0];?></span>
+                                </td>
+                            <?php endforeach; ?>
                         <?php endif; ?>
                         </tr>
                         <tr align="center">
