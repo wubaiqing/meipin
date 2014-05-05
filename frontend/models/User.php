@@ -18,6 +18,11 @@ class User extends ActiveRecord implements IArrayable
     public $confirmPassword;
 
     /**
+     * @var string 原密码
+     */
+    public $oldPassword;
+
+    /**
      * 表名
      * @return string
      */
@@ -38,7 +43,7 @@ class User extends ActiveRecord implements IArrayable
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
             ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'register'],
             ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
-            ['password', 'checkPassword', 'on' => 'register']
+            ['password', 'checkPassword', 'on' => 'register, password'],
         ];
     }
 

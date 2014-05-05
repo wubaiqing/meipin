@@ -68,6 +68,21 @@ class UserController extends Controller
     }
 
     /**
+     * 修改用户密码
+     */
+    public function actionPassword()
+    {
+        $model = new User('password');
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            if ($model->save()) {
+                $this->renderIndex('yes', '密码修改成功');
+            }
+        }
+        $this->render('password', ['model' => $model]);
+    }
+
+    /**
      * 用户退出登录
      */
     public function actionLogout()

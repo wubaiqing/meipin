@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 美品网加密解密
  * @author wubaiqing <wubaiqing@vip.qq.com>
