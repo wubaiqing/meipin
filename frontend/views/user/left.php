@@ -7,7 +7,7 @@
         </ul>
         <h4><span class="c">个人信息</span></h4>
         <ul>
-            <li><a href="/user/info">基本信息</a></li>
+            <li><a href="<?php echo $this->createUrl('user/info');?>">基本信息</a></li>
             <li><a href="<?php echo $this->createUrl('user/address');?>">收货地址</a></li>
             <li><a href="<?php echo $this->createUrl('user/password');?>">修改密码</a></li>
         </ul>

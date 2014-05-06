@@ -9,6 +9,7 @@
             <span class="t_r"></span>
             <div class="info">
                 <h6>
+                    <a href="<?php echo $this->createUrl('user/info');?>">用户信息</a>|
                     <a href="<?php echo $this->createUrl('user/address');?>">收货地址修改</a>|
                     <a href="<?php echo $this->createUrl('user/password');?>" class="current">修改密码</a>
                 </h6>

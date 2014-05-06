@@ -131,12 +131,23 @@ class UserController extends Controller
             $model->oldModel = $oldModel;
             $model->attributes = $_POST['User'];
             if ($model->save()) {
-                $this->renderIndex('yes', '密码修改成功');
                 Yii::app()->user->logout();
+                $this->renderIndex('yes', '密码修改成功');
             }
         }
         User::clearPassword($model);
         $this->render('password', ['model' => $model]);
+    }
+
+    /**
+     * 修改用户密码
+     */
+    public function actionInfo()
+    {
+        // 用户ID
+        $userId = Yii::app()->user->id;
+        $model = User::model()->findByPk($userId);
+        $this->render('info', ['model' => $model]);
     }
 
     /**
