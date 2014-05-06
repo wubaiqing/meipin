@@ -1,22 +1,41 @@
-<div class="user_l l">
-    <h3>用户中心</h3>
-    <div class="bor">
-        <h4><span class="a">我的礼品</span></h4>
-        <ul>
-            <li><a href="/user/order.html">我的订单</a></li>
-            <li><a href="/user/trace.html">我的浏览记录</a></li>
-            <li><a href="/user/score.html">我的积分</a></li>
-            <li><a href="/user/gift.html">我的礼品</a></li>
-            <li><a href="/user/friend.html">我邀请的朋友</a></li>
-        </ul>
-        <h4><span class="c">个人信息</span></h4>
-        <ul>
-            <li><a href="/user/info.html">基本信息</a></li>
-            <li><a href="/user/oauth.html">关联账号</a></li>
-            <li><a href="/user/address.html">收货地址</a></li>
-            <li><a href="/user/password.html">修改密码</a></li>
-        </ul>
-        <div class="hr"></div>
+<div id="content" class="wp">
+    <div class="user_login">
+        <div class="pic_l l">
+            <img src="/assets/images/user_login.jpg">
+        </div>
+        <div class="zc_x fr" id="logincontent">
+            <h3></h3>
+            <?php
+            $form = $this->beginWidget('CActiveForm', [
+                'id' => 'login-form',
+                'enableClientValidation' => false,
+                'clientOptions' => [
+                    'validateOnSubmit' => true,
+                ]
+            ]);
+            ?>
+            <?php echo $form->errorSummary($model, ''); ?>
+            <p>
+                <em>用户名：</em>
+                <?php echo $form->textField($model, 'username', array('class' => 'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+            <p>
+                <em>密   码：</em>
+                <?php echo $form->passwordField($model, 'password', array('class' => 'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+            <p id="pvaliCode">
+                <em>验证码：</em>
+                <?php echo $form->textField($model, 'verifyCode', array('class' => 'check input_text bg text code ', 'onblur' => 'this.className="input_off_c";this.onmouseout=function () {this.className="input_out_c"};', 'onfocus' => 'this.className="input_on_c";this.onmouseout=""', 'maxlength' => 4)); ?>
+                <?php $this->widget('CCaptcha', array('showRefreshButton' => false, 'clickableImage' => true, 'imageOptions' => array('alt' => '点击换图', 'title' => '点击换图', 'style' => 'cursor:pointer'))); ?>
+            </p>
+            <p>
+                <em>&nbsp;</em>
+                <input type="submit" value="登 录" class="submit">
+            </p>
+            <p class="reg">
+                还没有美品网账号？
+                <a href="<?php echo $this->createUrl('user/register'); ?>" class="zhuce">立即注册&gt;&gt;</a>
+            </p>
+            <?php $this->endWidget(); ?>
+        </div>
+        <span class="clr"></span>
     </div>
-
 </div>

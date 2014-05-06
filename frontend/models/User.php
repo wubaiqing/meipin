@@ -127,6 +127,16 @@ class User extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 验证用户密码
+     * @params string $password 密码
+     * @return boolean
+     */
+    public function validatePassword($password)
+    {
+        return $this->hashPassword($password, $this->salt) === $this->password;
+    }
+
+    /**
      * Generates the password hash.
      * @param string password
      * @return string hash
