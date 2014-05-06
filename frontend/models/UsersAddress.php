@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2014 美品
  * @since 1.0
  */
-class UserAddress extends ActiveRecord implements IArrayable
+class UsersAddress extends ActiveRecord implements IArrayable
 {
     /**
      * 表名
@@ -14,6 +14,17 @@ class UserAddress extends ActiveRecord implements IArrayable
     public function tableName()
     {
         return '{{meipin_users_address}}';
+    }
+
+    /**
+     * 验证规则
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            ['id, name, mobile, address, postcode, created_at, updated_at', 'safe'],
+        ];
     }
 
 
