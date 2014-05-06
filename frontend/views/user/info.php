@@ -3,14 +3,14 @@
     <div class="user_r r">
         <div class="box admin hei">
             <h3>
-                <span>修改信息</span>
+                <span>用户信息</span>
             </h3>
             <span class="t_l"></span>
             <span class="t_r"></span>
             <div class="info">
                 <h6>
                     <a href="<?php echo $this->createUrl('user/info');?>" class="current">用户信息</a>|
-                    <a href="<?php echo $this->createUrl('user/address');?>">收货地址修改</a>|
+                    <a href="<?php echo $this->createUrl('user/address');?>">收货地址</a>|
                     <a href="<?php echo $this->createUrl('user/password');?>">修改密码</a>
                 </h6>
                 <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">

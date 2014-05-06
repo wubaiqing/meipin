@@ -183,7 +183,7 @@ class UserController extends Controller
     public function actionAddress()
     {
         $userId = Yii::app()->user->id;
-        $model = User::getUser($userId);
+        $model = UsersAddress::getModel($userId);
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
             if ($model->save()) {

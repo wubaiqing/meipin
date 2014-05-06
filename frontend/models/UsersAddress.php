@@ -26,6 +26,38 @@ class UsersAddress extends ActiveRecord implements IArrayable
             ['id, name, mobile, address, postcode, created_at, updated_at', 'safe'],
         ];
     }
+    
+    /**
+     * 根据用户ID得到用户收获地址信息
+     * @param integer $userId 用户ID
+     * @return mixed
+     */
+    public static function getByUserId($userId)
+    {
+        $cacheKey = 'meipin-get-by-user-id-'.$userId;
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        }
 
+        $address = self::model()->findByAttributes(array(
+            'user_id' => $userId
+        ));
+        Yii::app()->cache->set($cacheKey, $address, 3600);
+        return $address;
+    }
 
+    /**
+     * 获取用户地址
+     * @param integer $userId 用户ID
+     * @return object 
+     */
+    public static function getModel($userId)
+    {
+        $address = self::getByUserId($userId);
+        if (!empty($address)) {
+            return $address;
+        }
+        return new UsersAddress();
+    }
 }
