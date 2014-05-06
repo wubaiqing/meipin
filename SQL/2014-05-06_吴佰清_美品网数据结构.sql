@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.17)
 # Database: meipin
-# Generation Time: 2014-05-06 08:26:38 +0000
+# Generation Time: 2014-05-06 09:16:37 +0000
 # ************************************************************
 
 
@@ -7546,8 +7546,11 @@ DROP TABLE IF EXISTS `meipin_users_address`;
 
 CREATE TABLE `meipin_users_address` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL COMMENT '用户ID',
   `name` varchar(50) DEFAULT NULL COMMENT '姓名',
   `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
+  `city_id` int(11) DEFAULT NULL,
+  `county_id` int(11) DEFAULT NULL,
   `address` int(11) DEFAULT NULL COMMENT '地址',
   `postcode` int(11) DEFAULT NULL COMMENT '邮编',
   `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
