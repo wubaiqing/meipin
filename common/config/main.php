@@ -1,18 +1,18 @@
 <?php
 
-return array(
+return [
 
     'name' => '美品网',
 
-    'aliases' => array(
+    'aliases' => [
         'common' => __DIR__ . '/../../common',
         'vendor' => __DIR__ . '/../../common/vendors',
         'console' => __DIR__ . '/../../console',
         'backend' => __DIR__ . '/../../backend',
         'frontend' => __DIR__ . '/../../frontend',
-    ),
+    ],
 
-    'import' => array(
+    'import' => [
         'common.helpers.*',
         'common.components.*',
         'common.extensions.*',
@@ -20,18 +20,18 @@ return array(
         'application.helpers.*',
         'application.components.*',
         'application.controllers.*',
-    ),
+    ],
 
-    'preload' => array('log'),
+    'preload' => ['log'],
 
-    'components' => array(
+    'components' => [
         // 禁止调用内置的jquery文件
-		'clientScript' => array(
-			'packages' => array(
-			),
-		),
+		'clientScript' => [
+			'packages' => [
+			],
+		],
 
-        'db' => array(
+        'db' => [
             'connectionString' => 'mysql:host=localhost;dbname=meipin',
             'username' => 'root',
             'password' => '',
@@ -40,27 +40,26 @@ return array(
             'emulatePrepare' => true,
             'enableProfiling' => true,
             'enableParamLogging' => true,
-        ),
+        ],
 
-        'user' => array(
+        'user' => [
             'class' => 'WebUser',
             'allowAutoLogin' => true,
-        ),
+        ],
 
-        'format' => array(
+        'format' => [
             'timeFormat' => 'H:i:s',
             'dateFormat' => 'Y-m-d',
             'datetimeFormat' => 'Y-m-d H:i:s',
-        ),
+        ],
 
-		'cache'=>array(
+		'cache'=>[
             'class'=>'CFileCache',
-        ),
+        ],
+    ],
 
-        
-    ),
-
-    'params' => array(
+    'params' => [
 		'staticDomain' => 'http://static.meipin.com/',
-    ),
-);
+    ],
+
+];

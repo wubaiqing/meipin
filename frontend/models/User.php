@@ -164,6 +164,16 @@ class User extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 删除用户缓存
+     * @param integer $userId 用户ID
+     */
+    public static function deleteCache($userId)
+    {
+        $cacheKey = 'meipin-get-user-'.$userId;
+        Yii::app()->cache->delete($cacheKey);
+    }
+
+    /**
      * 清空密码
      */
     public static function clearPassword(& $model)

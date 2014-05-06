@@ -39,7 +39,6 @@ class UserController extends Controller
 
         // 获取用户积分记录
         $user = User::getUser($userId);
-
         $this->render('index', [
             'user' => $user
         ]);
@@ -124,13 +123,14 @@ class UserController extends Controller
     {
         // 用户ID
         $userId = Yii::app()->user->id;
-        $model = User::model()->findByPk($userId);
+        $model = User::getUser($userId);
         $oldModel = clone $model;
         if (isset($_POST['User'])) {
             $model->scenario = 'password';
             $model->oldModel = $oldModel;
             $model->attributes = $_POST['User'];
             if ($model->save()) {
+                User::deleteCache($userId);
                 Yii::app()->user->logout();
                 $this->renderIndex('yes', '密码修改成功');
             }
@@ -146,7 +146,7 @@ class UserController extends Controller
     {
         // 用户ID
         $userId = Yii::app()->user->id;
-        $model = User::model()->findByPk($userId);
+        $model = User::getUser($userId);
         $this->render('info', ['model' => $model]);
     }
 
