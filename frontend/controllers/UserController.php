@@ -187,10 +187,7 @@ class UserController extends Controller
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
             if ($model->save()) {
-                $model = new LoginForm();
-                $model->attributes = $_POST['User'];
-                $model->login();
-                $this->renderIndex('yes', '注册成功');
+                $this->renderIndex('yes', '用户地址修改成功');
             }
         }
         $this->render('address', ['model' => $model]);

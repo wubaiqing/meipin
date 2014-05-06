@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.17)
 # Database: meipin
-# Generation Time: 2014-05-06 08:23:19 +0000
+# Generation Time: 2014-05-06 08:26:38 +0000
 # ************************************************************
 
 
@@ -18,6 +18,79 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table meipin_bookmark
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `meipin_bookmark`;
+
+CREATE TABLE `meipin_bookmark` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '网站名称名称',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '网站地址',
+  `created_at` int(11) NOT NULL COMMENT '创建时间',
+  `updated_at` int(11) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网址收藏夹（主要提供给编辑采集商品）';
+
+LOCK TABLES `meipin_bookmark` WRITE;
+/*!40000 ALTER TABLE `meipin_bookmark` DISABLE KEYS */;
+
+INSERT INTO `meipin_bookmark` (`id`, `name`, `url`, `created_at`, `updated_at`)
+VALUES
+	(30,'今天值得买','http://www.jtzdm.com',1383280530,1383280530),
+	(32,'天猫','http://www.tmall.com',1383280592,1383280592),
+	(34,'折800文体','http://www.zhe800.com/ju_tag/taoqita',1383280963,1383280963),
+	(35,'欢乐淘','http://www.chuchujie.com/huanletao/',1383281071,1383281071),
+	(36,'值得买','http://www.waitao.cn/',1383281134,1383281134),
+	(37,'淘牛品','http://tealife.uz.taobao.com',1383281152,1383281152),
+	(38,'vip特惠','http://mytehui.uz.taobao.com',1383281222,1383281222),
+	(39,'vip专享','http://jiejie.uz.taobao.com',1383281237,1383281237),
+	(40,'特价猫','http://ju.tejiamao.com',1383281463,1383281463),
+	(41,'淘宝值得买','http://cu.taobao.com/item_list.htm',1383281483,1383281483),
+	(42,'阿里妈妈','http://www.alimama.com',1383281499,1383281499),
+	(45,'超优汇','http://you.taobao.com',1383494979,1383494979),
+	(46,'聚划算','http://ju.taobao.com',1383495001,1383495001),
+	(48,'会员购','http://huiyuangou.uz.taobao.com',1383665344,1383665344),
+	(49,'蛮便宜','http://www.manpianyi.com',1383706922,1383706922);
+
+/*!40000 ALTER TABLE `meipin_bookmark` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table meipin_category
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `meipin_category`;
+
+CREATE TABLE `meipin_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '分类名称',
+  `parent_id` int(11) NOT NULL COMMENT '父级ID',
+  `created_at` int(11) NOT NULL COMMENT '创建时间',
+  `updated_at` int(11) NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品分类';
+
+LOCK TABLES `meipin_category` WRITE;
+/*!40000 ALTER TABLE `meipin_category` DISABLE KEYS */;
+
+INSERT INTO `meipin_category` (`id`, `name`, `parent_id`, `created_at`, `updated_at`)
+VALUES
+	(1,'女装',0,1378188867,1378188867),
+	(4,'男装',0,1378189569,1378189569),
+	(5,'居家',0,1378192734,1378192734),
+	(6,'母婴',0,1378194472,1378194472),
+	(7,'鞋包',0,1378194479,1378194479),
+	(8,'配饰',0,1378194502,1378194502),
+	(9,'美食',0,1378194543,1378194543),
+	(10,'数码家电',0,1378194554,1378194554),
+	(11,'化妆品',0,1378194563,1378194563),
+	(12,'文体',0,1378194572,1382927785);
+
+/*!40000 ALTER TABLE `meipin_category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table meipin_city
@@ -7253,79 +7326,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table meipin_bookmark
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `meipin_bookmark`;
-
-CREATE TABLE `meipin_bookmark` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '网站名称名称',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '网站地址',
-  `created_at` int(11) NOT NULL COMMENT '创建时间',
-  `updated_at` int(11) NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网址收藏夹（主要提供给编辑采集商品）';
-
-LOCK TABLES `meipin_bookmark` WRITE;
-/*!40000 ALTER TABLE `meipin_bookmark` DISABLE KEYS */;
-
-INSERT INTO `meipin_bookmark` (`id`, `name`, `url`, `created_at`, `updated_at`)
-VALUES
-	(30,'今天值得买','http://www.jtzdm.com',1383280530,1383280530),
-	(32,'天猫','http://www.tmall.com',1383280592,1383280592),
-	(34,'折800文体','http://www.zhe800.com/ju_tag/taoqita',1383280963,1383280963),
-	(35,'欢乐淘','http://www.chuchujie.com/huanletao/',1383281071,1383281071),
-	(36,'值得买','http://www.waitao.cn/',1383281134,1383281134),
-	(37,'淘牛品','http://tealife.uz.taobao.com',1383281152,1383281152),
-	(38,'vip特惠','http://mytehui.uz.taobao.com',1383281222,1383281222),
-	(39,'vip专享','http://jiejie.uz.taobao.com',1383281237,1383281237),
-	(40,'特价猫','http://ju.tejiamao.com',1383281463,1383281463),
-	(41,'淘宝值得买','http://cu.taobao.com/item_list.htm',1383281483,1383281483),
-	(42,'阿里妈妈','http://www.alimama.com',1383281499,1383281499),
-	(45,'超优汇','http://you.taobao.com',1383494979,1383494979),
-	(46,'聚划算','http://ju.taobao.com',1383495001,1383495001),
-	(48,'会员购','http://huiyuangou.uz.taobao.com',1383665344,1383665344),
-	(49,'蛮便宜','http://www.manpianyi.com',1383706922,1383706922);
-
-/*!40000 ALTER TABLE `meipin_bookmark` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table meipin_category
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `meipin_category`;
-
-CREATE TABLE `meipin_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '分类名称',
-  `parent_id` int(11) NOT NULL COMMENT '父级ID',
-  `created_at` int(11) NOT NULL COMMENT '创建时间',
-  `updated_at` int(11) NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品分类';
-
-LOCK TABLES `meipin_category` WRITE;
-/*!40000 ALTER TABLE `meipin_category` DISABLE KEYS */;
-
-INSERT INTO `meipin_category` (`id`, `name`, `parent_id`, `created_at`, `updated_at`)
-VALUES
-	(1,'女装',0,1378188867,1378188867),
-	(4,'男装',0,1378189569,1378189569),
-	(5,'居家',0,1378192734,1378192734),
-	(6,'母婴',0,1378194472,1378194472),
-	(7,'鞋包',0,1378194479,1378194479),
-	(8,'配饰',0,1378194502,1378194502),
-	(9,'美食',0,1378194543,1378194543),
-	(10,'数码家电',0,1378194554,1378194554),
-	(11,'化妆品',0,1378194563,1378194563),
-	(12,'文体',0,1378194572,1382927785);
-
-/*!40000 ALTER TABLE `meipin_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
 # Dump of table meipin_goods
 # ------------------------------------------------------------
 
@@ -7494,24 +7494,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table meipin_user_address
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `meipin_user_address`;
-
-CREATE TABLE `meipin_user_address` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL COMMENT '姓名',
-  `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
-  `address` int(11) DEFAULT NULL COMMENT '地址',
-  `postcode` int(11) DEFAULT NULL COMMENT '邮编',
-  `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
-  `update_at` int(11) DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户地址';
-
-
-
 # Dump of table meipin_user_login_log
 # ------------------------------------------------------------
 
@@ -7555,6 +7537,24 @@ VALUES
 
 /*!40000 ALTER TABLE `meipin_users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+# Dump of table meipin_users_address
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `meipin_users_address`;
+
+CREATE TABLE `meipin_users_address` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL COMMENT '姓名',
+  `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
+  `address` int(11) DEFAULT NULL COMMENT '地址',
+  `postcode` int(11) DEFAULT NULL COMMENT '邮编',
+  `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
+  `update_at` int(11) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户地址';
+
 
 
 
