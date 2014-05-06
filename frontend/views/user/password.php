@@ -1,4 +1,5 @@
 <div id="content" class="wp">
+    <?php $this->renderPartial('left'); ?>
     <div class="user_r r">
         <div class="box admin hei">
             <h3>
