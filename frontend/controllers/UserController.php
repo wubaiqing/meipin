@@ -184,13 +184,18 @@ class UserController extends Controller
     {
         $userId = Yii::app()->user->id;
         $model = UsersAddress::getModel($userId);
+
+        $province = City::getByParentId(0);
         if (isset($_POST['UserAddress'])) {
             $model->attributes = $_POST['UserAddress'];
             if ($model->save()) {
                 $this->renderIndex('yes', '用户地址修改成功');
             }
         }
-        $this->render('address', ['model' => $model]);
+        $this->render('address', [
+            'model' => $model,
+            'province' => $province
+        ]);
     }
 
     /**
