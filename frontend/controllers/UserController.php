@@ -176,6 +176,25 @@ class UserController extends Controller
         }
         $this->render('register', ['model' => $model]);
     }
+    
+    /**
+     * 用户注册
+     */
+    public function actionAddress()
+    {
+        $userId = Yii::app()->user->id;
+        $model = User::getUser($userId);
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            if ($model->save()) {
+                $model = new LoginForm();
+                $model->attributes = $_POST['User'];
+                $model->login();
+                $this->renderIndex('yes', '注册成功');
+            }
+        }
+        $this->render('address', ['model' => $model]);
+    }
 
     /**
      * 跳转首页
