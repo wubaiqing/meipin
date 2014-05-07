@@ -145,4 +145,10 @@ class Exchange extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        public function beforeValidate() {
+            $this->start_time = strtotime($this->start_time);
+            $this->end_time = strtotime($this->end_time);
+        }
 }

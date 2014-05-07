@@ -12,6 +12,7 @@ $form=$this->beginWidget('CActiveForm', array(
 CHtml::$errorSummaryCss = 'text-warning';
 
 ?>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/My97DatePicker/WdatePicker.js"></script>
     <?php echo $form->errorSummary($exchangeModel); ?>
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'name', array('class' => 'control-label')); ?>
@@ -46,13 +47,21 @@ CHtml::$errorSummaryCss = 'text-warning';
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'start_time', array('class' => 'control-label')); ?>
         <div class="controls">
-        <?php echo $form->textField($exchangeModel,'start_time');?>
+        <?php echo $form->textField($exchangeModel,'start_time',array(
+                'onfocus' => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss', startDate:'%y-%M-%d 00:00:00', onpicking:function (dp) { $('#Exchange_start_time').val(dp.cal.getNewDateStr()); dp.hide();}})",
+                "class" => "Wdate",
+                'value'=>$exchangeModel->start_time != 0 ? date('Y-m-d H:i:s' , $exchangeModel->start_time) : $exchangeModel->start_time,
+        ));?>
         </div>
 </div>
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'end_time', array('class' => 'control-label')); ?>
         <div class="controls">
-        <?php echo $form->textField($exchangeModel,'end_time');?>
+        <?php echo $form->textField($exchangeModel,'end_time',array(
+                'onfocus' => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss', startDate:'%y-%M-%d 00:00:00', onpicking:function (dp) { $('#Exchange_end_time').val(dp.cal.getNewDateStr()); dp.hide();}})",
+                "class" => "Wdate",
+                'value'=>$exchangeModel->end_time != 0 ? date('Y-m-d H:i:s' , $exchangeModel->end_time) : $exchangeModel->end_time,
+        ));?>
         </div>
 </div>
 <div class="control-group">
