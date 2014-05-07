@@ -43,7 +43,7 @@ class City extends ActiveRecord implements IArrayable
         }
 
         Yii::app()->cache->set($cacheKey, $array, 3600);
-        return $parent;
+        return $array;
     }
 
     /**
@@ -51,11 +51,11 @@ class City extends ActiveRecord implements IArrayable
      * @param object $city 城市对象
      * @return string 每一个城市模板
      */
-    public static function getItem($city)
+    public static function getItem($cities)
     {
-        $string = "";
-        foreach ($city as $item) {
-            $string .= "<option value='{$item->id}'>{$item->city_name}</option>";
+        $string = "<option>请选择</option>";
+        foreach ($cities as $id => $name) {
+            $string .= "<option value='{$id}'>{$name}</option>";
         }
         return $string;
     }

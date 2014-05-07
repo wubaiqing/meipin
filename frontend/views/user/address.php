@@ -48,12 +48,7 @@
                                     收货地址：
                                 </td>
                                 <td height="32" align="left">
-                                    <select id="userProvince" name="UserAddress[province]">
-                                        <option>请选择</option>
-                                        <?php foreach ($province as $item) : ?>
-                                        <option value="<?php echo $item->id?>"><?php echo $item->city_name;?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <?php echo $form->dropDownList($model, 'province', $province, array('id' => 'userProvince', 'empty' => '请选择'));?>
                                     &nbsp;&nbsp;
                                     <select id="userCity" name="city">
                                         <option value="">请选择</option>
