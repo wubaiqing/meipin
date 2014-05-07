@@ -17,14 +17,14 @@ class Score extends ActiveRecord implements IArrayable
     }
 
     /**
-     * 获取商城名称
+     * 获取名称
      * @param  integer $id 商城ID
      * @return string  商城名称
      */
-    public static function getStoreByPk($id)
+    public static function getScoreByUserId($user_id,$type='index',$page=1)
     {
         // 缓存名称
-        $cacheKey = 'meipin-score-'.$id;
+        $cacheKey = 'meipin-score-'.$user_id.'-'.$type.'-'.$page;
 
         // 得到缓存数据
         $name = Yii::app()->cache->get($cacheKey);
@@ -33,19 +33,10 @@ class Score extends ActiveRecord implements IArrayable
         }
 
         $array = [];
-        $storeAll = self::model()->findAll();
-        foreach ($storeAll as $val) {
-            $array[$val->id] = $val->name;
-        }
+        $scoreAll = self::model()->findAll();
 
-        if (!isset($array[$id])) {
-            $name = '淘宝网';
-        } else {
-            $name = $array[$id];
-        }
+        Yii::app()->cache->set($cacheKey, $scoreAll, 86400);
 
-        Yii::app()->cache->set($cacheKey, $name, 86400);
-
-        return $name;
+        return $scoreAll;
     }
 }

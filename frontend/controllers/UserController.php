@@ -46,55 +46,6 @@ class UserController extends Controller
 
 
     /**
-     * 积分管理-积分明细列表
-     */
-    public function actionScore()
-    {
-        // 用户ID
-        $userId = Yii::app()->user->id;
-
-        // 获取用户积分记录
-        $user = User::getUser($userId);
-
-        $this->render('score', [
-            'score' => $user
-        ]);
-    }
-
-
-    /**
-     * 积分管理-积分增加列表
-     */
-    public function actionScore_add()
-    {
-        // 用户ID
-        $userId = Yii::app()->user->id;
-
-        // 获取用户积分记录
-        $user = User::getUser($userId);
-
-        $this->render('score_add', [
-            'score' => $user
-        ]);
-    }
-
-    /**
-     * 积分管理-积分消耗列表
-     */
-    public function actionScore_con()
-    {
-        // 用户ID
-        $userId = Yii::app()->user->id;
-
-        // 获取用户积分记录
-        $user = User::getUser($userId);
-
-        $this->render('score_con', [
-            'score' => $user
-        ]);
-    }
-
-    /**
      * 用户登陆
      */
     public function actionLogin()
