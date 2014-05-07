@@ -30,13 +30,19 @@ class City extends ActiveRecord implements IArrayable
             return $result;
         }
 
-        $parent = self::model()->findAllByAttributes([
+        $data = self::model()->findAllByAttributes([
             'parent_id' => $parentId,
             'is_show' => 1
         ], [
             'order' => 'id asc'
         ]);
-        Yii::app()->cache->set($cacheKey, $parent, 3600);
+
+        $array = [];
+        foreach ($data as $item) {
+            $array[$item->id] = $item->city_name;
+        }
+
+        Yii::app()->cache->set($cacheKey, $array, 3600);
         return $parent;
     }
 
