@@ -49,6 +49,7 @@
                                 </td>
                                 <td height="32" align="left">
                                     <select id="userProvince" name="UserAddress[province]">
+                                        <option>请选择</option>
                                         <?php foreach ($province as $item) : ?>
                                         <option value="<?php echo $item->id?>"><?php echo $item->city_name;?></option>
                                         <?php endforeach; ?>
