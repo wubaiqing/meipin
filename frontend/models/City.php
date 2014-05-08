@@ -78,6 +78,7 @@ class City extends ActiveRecord implements IArrayable
      */
     public static function getProvinceId($cityId)
     {
+        $citys = [];
         $cacheKey = 'meipin-get-province-id-'.$cityId;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
@@ -87,6 +88,9 @@ class City extends ActiveRecord implements IArrayable
         $city = self::model()->findByAttributes([
             'id' => $cityId
         ]);
+        if (empty($city)) {
+            return $citys;
+        }
 
         $cityId = $city->parent_id;
         Yii::app()->cache->set($cacheKey, $cityId, 3600);
