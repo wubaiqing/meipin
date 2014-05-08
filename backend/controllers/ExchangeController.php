@@ -7,7 +7,8 @@
  */
 class ExchangeController extends Controller {
 
-    public function loadModel($id) {
+    public function loadModel($id)
+    {
         $id = intval($id);
         $exchaneModel = Exchange::model()->findByPk($id);
         if (!$exchaneModel) {
@@ -20,7 +21,8 @@ class ExchangeController extends Controller {
      * 添加积分兑换
      * @author zhangchao
      */
-    public function actionAdd() {
+    public function actionAdd()
+    {
         $exchangeModel = new Exchange();
         if (isset($_POST['Exchange'])) {
             $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
@@ -37,7 +39,8 @@ class ExchangeController extends Controller {
     /**
      * 编辑积分兑换
      */
-    public function actionUpdate() {
+    public function actionUpdate()
+    {
         $id = Yii::app()->request->getQuery('id');
         $exchangeModel = $this->loadModel($id);
         if (isset($_POST['Exchange'])) {
@@ -55,7 +58,8 @@ class ExchangeController extends Controller {
     /**
      * 积分兑换列表
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+   {
         $exchangeModel = new Exchange();
         $exchangeModel->unsetAttributes();
         $this->render('admin', array(
