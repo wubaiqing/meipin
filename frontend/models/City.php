@@ -17,6 +17,17 @@ class City extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 验证规则
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            ['id, user_id, name, mobile, city_id, address, postcode, created_at, updated_at', 'safe'],
+        ];
+    }
+
+    /**
      * 以父级ID获取数据
      * @param integer $parentId 
      * @return object
@@ -60,5 +71,42 @@ class City extends ActiveRecord implements IArrayable
         return $string;
     }
 
+    /**
+     * 获取省份ID
+     * @param integer $cityId 城市ID
+     * @return integer
+     */
+    public static function getProvinceId($cityId)
+    {
+        $citys = 0;
+        $cacheKey = 'meipin-get-province-id-'.$cityId;
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        }
+
+        $city = self::model()->findByAttributes([
+            'id' => $cityId
+        ]);
+        if (empty($city)) {
+            return $citys;
+        }
+
+        $cityId = $city->parent_id;
+        Yii::app()->cache->set($cacheKey, $cityId, 3600);
+        return $cityId;
+    }
+
+    /**
+     * 获取当前城市列表
+     */
+    public static function getCityList($province)
+    {
+        $city = [];
+        if ($province == 0) {
+            return $city;
+        }
+        return self::getByParentId($province);
+    }
 }
 

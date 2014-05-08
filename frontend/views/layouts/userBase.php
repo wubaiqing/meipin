@@ -18,15 +18,10 @@
             <?php $this->renderPartial('//site/head'); ?>
             <?php $this->renderPartial('//site/nav', ['cat' => 0]); ?>
         </div>
-        <div id="content" class="wp">
-            <?php $this->renderPartial('//user/left'); ?>
-            <div class="user_r r">
-                <?php echo $content;?>
-            </div>
-            <span class="clear"></span>
-        </div>
+        <?php echo $content;?>
         <div id="footer" class="footer">
             <?php $this->renderPartial('//site/footer'); ?>
         </div>
     </body>
 </html>
+

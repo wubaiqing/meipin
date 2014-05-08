@@ -103,6 +103,7 @@ class UserController extends Controller
             $this->redirect(['site/index']);
             Yii::app()->end();
         }
+        $this->layout = '//layouts/userBase';
 
         $model = new LoginForm();
         if (isset($_POST['LoginForm'])) {
@@ -185,16 +186,25 @@ class UserController extends Controller
         $userId = Yii::app()->user->id;
         $model = UsersAddress::getModel($userId);
 
+        // 省份，城市
+        $city = [];
         $province = City::getByParentId(0);
+        $model->province = City::getProvinceId($model->city_id);
+        if ($model->province > 0) {
+            $city = City::getCityList($model->province);
+        }
+
         if (isset($_POST['UsersAddress'])) {
             UsersAddress::setAttr($userId, $_POST['UsersAddress'],$model);
             if ($model->save()) {
                 $this->renderIndex('yes', '用户地址修改成功');
             }
         }
+
         $this->render('address', [
             'model' => $model,
-            'province' => $province
+            'province' => $province,
+            'city' => $city
         ]);
     }
 
@@ -203,6 +213,7 @@ class UserController extends Controller
      */
     public function renderIndex($status, $message)
     {
+        $this->layout = '//layouts/userBase';
         $this->render('loginSuccess', [
             'status' => $status,
             'message' => $message,
