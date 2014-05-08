@@ -30,14 +30,20 @@ class City extends ActiveRecord implements IArrayable
             return $result;
         }
 
-        $parent = self::model()->findAllByAttributes([
+        $data = self::model()->findAllByAttributes([
             'parent_id' => $parentId,
             'is_show' => 1
         ], [
             'order' => 'id asc'
         ]);
-        Yii::app()->cache->set($cacheKey, $parent, 3600);
-        return $parent;
+
+        $array = [];
+        foreach ($data as $item) {
+            $array[$item->id] = $item->city_name;
+        }
+
+        Yii::app()->cache->set($cacheKey, $array, 3600);
+        return $array;
     }
 
     /**
@@ -45,11 +51,11 @@ class City extends ActiveRecord implements IArrayable
      * @param object $city 城市对象
      * @return string 每一个城市模板
      */
-    public static function getItem($city)
+    public static function getItem($cities)
     {
-        $string = "";
-        foreach ($city as $item) {
-            $string .= "<option value='{$item->id}'>{$item->city_name}</option>";
+        $string = "<option>请选择</option>";
+        foreach ($cities as $id => $name) {
+            $string .= "<option value='{$id}'>{$name}</option>";
         }
         return $string;
     }
