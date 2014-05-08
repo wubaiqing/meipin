@@ -209,6 +209,7 @@ class UserController extends Controller
      */
     public function renderIndex($status, $message)
     {
+        $this->layout = '//layouts/information';
         $this->render('loginSuccess', [
             'status' => $status,
             'message' => $message,
