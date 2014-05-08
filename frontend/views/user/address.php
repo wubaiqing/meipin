@@ -8,7 +8,7 @@
         <h6>
             <?php echo $this->renderPartial('info_nav', ['current' => 'address']);?>
         </h6>
-        <input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl(['userAddress/getProvince'])?>" />
+        <input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince')?>" />
         <?php
         $form = $this->beginWidget('CActiveForm', [
         'id' => 'login-form',
