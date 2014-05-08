@@ -194,7 +194,8 @@ class UserController extends Controller
         }
         $this->render('address', [
             'model' => $model,
-            'province' => $province
+            'province' => $province,
+            'city' => []
         ]);
     }
 

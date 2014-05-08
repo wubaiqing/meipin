@@ -10,15 +10,6 @@
 			</ul>
 			<span class="clr"></span>
 		</div>
-		<div class="KanNiMei">
-			 <span><strong>我目前等级：</strong><em><a href="/help/grade.html" class="level v0" target="_blank"></a></em>累计消费金额：0.00元 （只有返积分的订单金额才会计算进来！）</span>
-			 <a href="/help/grade.html" target="_blank">会员等级及特权&gt;&gt;</a>
-			 <div class="yy_">
-				<div style="position:relative;">
-					<span style="width:0px" title="123"></span>
-				</div>
-			</div>
-		</div>
 	</div>
 	<span class="clear"></span>
 </div>

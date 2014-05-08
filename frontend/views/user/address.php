@@ -50,9 +50,7 @@
                                 <td height="32" align="left">
                                     <?php echo $form->dropDownList($model, 'province', $province, array('id' => 'userProvince', 'empty' => '请选择'));?>
                                     &nbsp;&nbsp;
-                                    <select id="userCity" name="city">
-                                        <option value="">请选择</option>
-                                    </select>
+                                    <?php echo $form->dropDownList($model, 'city_id', $city, array('id' => 'userCity', 'empty' => '请选择'));?>
                                     &nbsp;&nbsp;
                                     <?php echo $form->textField($model, 'address', array('class' => 'text')); ?>
                                     <em>*请确认快递能否寄到</em>
