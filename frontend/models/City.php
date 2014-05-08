@@ -78,7 +78,7 @@ class City extends ActiveRecord implements IArrayable
      */
     public static function getProvinceId($cityId)
     {
-        $citys = [];
+        $citys = 0;
         $cacheKey = 'meipin-get-province-id-'.$cityId;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
