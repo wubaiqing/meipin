@@ -77,10 +77,21 @@ class City extends ActiveRecord implements IArrayable
             'id' => $cityId
         ]);
 
-        $cityId = $city->city_id;
+        $cityId = $city->parent_id;
         Yii::app()->cache->set($cacheKey, $cityId, 3600);
-        return $cityId
+        return $cityId;
     }
 
+    /**
+     * 获取当前城市列表
+     */
+    public static function getCityList($province)
+    {
+        $city = [];
+        if ($province == 0) {
+            return $city;
+        }
+        return self::getByParentId($province);
+    }
 }
 

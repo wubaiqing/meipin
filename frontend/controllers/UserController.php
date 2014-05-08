@@ -185,17 +185,10 @@ class UserController extends Controller
         $userId = Yii::app()->user->id;
         $model = UsersAddress::getModel($userId);
 
-        // 省
+        // 省份，城市
         $province = City::getByParentId(0);
         $model->province = City::getProvinceId($model->city_id);
-
-        var_dump($model->province);
-        exit;
-
-        // 城市
-
-
-        $city = [];
+        $city = City::getCityList($model->province);
 
         if (isset($_POST['UsersAddress'])) {
             UsersAddress::setAttr($userId, $_POST['UsersAddress'],$model);
@@ -203,6 +196,7 @@ class UserController extends Controller
                 $this->renderIndex('yes', '用户地址修改成功');
             }
         }
+
         $this->render('address', [
             'model' => $model,
             'province' => $province,
