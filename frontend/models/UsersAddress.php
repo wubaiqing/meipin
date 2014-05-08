@@ -24,7 +24,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
-            ['postcode' => 'checkPostCode'],
+            ['postcode' ,'checkPostCode'],
             ['id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
     }
