@@ -32,9 +32,9 @@ return [
 		],
 
         'db' => [
-            'connectionString' => 'mysql:host=localhost;dbname=meipin',
+            'connectionString' => 'mysql:host=10.9.21.200;dbname=meipin',
             'username' => 'root',
-            'password' => '',
+            'password' => '123456',
             'charset' => 'utf8',
             'tablePrefix' => '',
             'emulatePrepare' => true,

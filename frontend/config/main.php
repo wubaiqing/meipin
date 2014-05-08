@@ -1,6 +1,8 @@
 <?php
+
 return [
     'basePath' => realpath(__DIR__ . '/../'),
+    'timeZone' => 'Asia/Shanghai',
     'behaviors' => [],
     'controllerMap' => [],
     'modules' => [],
@@ -13,6 +15,8 @@ return [
                 'index.html' => 'site/index',
                 'out/<id:.+?>.html' => 'site/out',
                 'site/search' => 'site/search',
+                'score/ec/<id:.+?>.html' => 'score/exchangeIndex',
+                'score/ajax/<action:\w+>' => 'score/<action>',
             ],
         ],
     ],
@@ -25,5 +29,12 @@ return [
             'pageSize' => 120,
         ],
         'linkCacheTime' => 86400,
+        //系統全局配置 
+        'config' => array(
+            //是否采用DEBUG模式
+            'enableDebug' => false,
+            //是否使用系统缓存
+            'enableCache' => false,
+        ),
     ],
 ];
