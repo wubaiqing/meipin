@@ -185,7 +185,18 @@ class UserController extends Controller
         $userId = Yii::app()->user->id;
         $model = UsersAddress::getModel($userId);
 
+        // 省
         $province = City::getByParentId(0);
+        $model->province = City::getProvinceId($model->city_id);
+
+        var_dump($model->province);
+        exit;
+
+        // 城市
+
+
+        $city = [];
+
         if (isset($_POST['UsersAddress'])) {
             UsersAddress::setAttr($userId, $_POST['UsersAddress'],$model);
             if ($model->save()) {
@@ -195,7 +206,7 @@ class UserController extends Controller
         $this->render('address', [
             'model' => $model,
             'province' => $province,
-            'city' => []
+            'city' => $city
         ]);
     }
 

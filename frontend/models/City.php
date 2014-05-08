@@ -60,5 +60,27 @@ class City extends ActiveRecord implements IArrayable
         return $string;
     }
 
+    /**
+     * 获取省份ID
+     * @param integer $cityId 城市ID
+     * @return integer
+     */
+    public static function getProvinceId($cityId)
+    {
+        $cacheKey = 'meipin-get-province-id-'.$cityId;
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        }
+
+        $city = self::model()->findByAttributes([
+            'id' => $cityId
+        ]);
+
+        $cityId = $city->city_id;
+        Yii::app()->cache->set($cacheKey, $cityId, 3600);
+        return $cityId
+    }
+
 }
 
