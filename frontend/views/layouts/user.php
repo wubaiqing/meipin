@@ -14,16 +14,19 @@
     </head>
     <body>
         <div id="header">
-            <?php $this->renderPartial('//site/login', array('cat' => 0)); ?>
-            <?php $this->renderPartial('//site/head', array('cat' => 0)); ?>
-            <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
+            <?php $this->renderPartial('//site/login'); ?>
+            <?php $this->renderPartial('//site/head'); ?>
+            <?php $this->renderPartial('//site/nav', ['cat' => 0]); ?>
         </div>
-        <?php echo $content;?>
+        <div id="content" class="wp">
+            <?php $this->renderPartial('//user/left'); ?>
+            <div class="user_r r">
+                <?php echo $content;?>
+            </div>
+            <span class="clear"></span>
+        </div>
         <div id="footer" class="footer">
             <?php $this->renderPartial('//site/footer'); ?>
-        </div>
-        <div style="display:none;">
-            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000359564'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000359564%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>
     </body>
 </html>
