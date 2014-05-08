@@ -26,11 +26,11 @@
                     <tbody>
                         <tr align="center">
                             <?php if ($model->getErrors()) : ;?>
+                            <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
                             <?php foreach ($model->getErrors() as $error) :?>
-                                <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
                                     <span class="user-error"><?php echo $error[0];?></span>
-                                </td>
                             <?php endforeach; ?>
+                            </td>
                         <?php endif; ?>
                         </tr>
                         <tr align="center">

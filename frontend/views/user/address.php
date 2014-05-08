@@ -14,23 +14,32 @@
                     <a href="<?php echo $this->createUrl('user/password');?>">修改密码</a>
                 </h6>
                 <input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince')?>" />
-                <?php
-                    $form = $this->beginWidget('CActiveForm', [
-                        'id' => 'login-form',
-                        'enableClientValidation' => false,
-                        'clientOptions' => [
-                            'validateOnSubmit' => true,
-                        ]
-                    ]);
-                ?>
+                    <?php
+                        $form = $this->beginWidget('CActiveForm', [
+                            'id' => 'login-form',
+                            'enableClientValidation' => false,
+                            'clientOptions' => [
+                                'validateOnSubmit' => true,
+                            ]
+                        ]);
+                    ?>
                     <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
                         <tbody>
+                            <tr align="center">
+                                <?php if ($model->getErrors()) : ;?>
+                                <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
+                                <?php foreach ($model->getErrors() as $error) :?>
+                                    <span class="user-error"><?php echo $error[0];?></span>
+                                <?php endforeach; ?>
+                                </td>
+                            <?php endif; ?>
+                            </tr>
                             <tr align="center">
                                 <td bgcolor="#F9FAFC" align="right">
                                     收货人姓名：
                                 </td>
                                 <td height="32" align="left">
-                                    <?php echo $form->textField($model, 'name', array('class' => 'text')); ?>
+                                    <?php echo $form->textField($model, 'name', array('class' => 'text', 'maxLength' => '8')); ?>
                                     <em>*您的收货姓名</em>
                                 </td>
                             </tr>
@@ -39,7 +48,7 @@
                                     联系电话：
                                 </td>
                                 <td height="32" align="left">
-                                    <?php echo $form->textField($model, 'mobile', array('class' => 'text')); ?>
+                                    <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
                                     <em>*收货时快递联系电话，很重要。</em>
                                 </td>
                             </tr>
@@ -52,7 +61,7 @@
                                     &nbsp;&nbsp;
                                     <?php echo $form->dropDownList($model, 'city_id', $city, array('id' => 'userCity', 'empty' => '请选择'));?>
                                     &nbsp;&nbsp;
-                                    <?php echo $form->textField($model, 'address', array('class' => 'text')); ?>
+                                    <?php echo $form->textField($model, 'address', array('class' => 'text', 'maxLength' => '100')); ?>
                                     <em>*请确认快递能否寄到</em>
                                 </td>
                             </tr>
@@ -61,7 +70,7 @@
                                     邮编：
                                 </td>
                                 <td height="32" align="left">
-                                    <?php echo $form->textField($model, 'postcode', array('class' => 'text')); ?>
+                                    <?php echo $form->textField($model, 'postcode', array('class' => 'text', 'maxLength' => '10')); ?>
                                 </td>
                             </tr>
                             <tr align="center" class="color">

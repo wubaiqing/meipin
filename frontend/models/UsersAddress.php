@@ -24,8 +24,19 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
+            ['postcode' => 'checkPostCode'],
             ['id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
+    }
+
+    /**
+     * 邮编验证
+     */
+    public function checkPostCode()
+    {
+        if (!is_numeric($this->postcode)) {
+            $this->addError('postcode', '邮编格式错误');
+        }
     }
     
     /**

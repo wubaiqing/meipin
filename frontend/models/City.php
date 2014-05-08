@@ -17,6 +17,17 @@ class City extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 验证规则
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            ['id, user_id, name, mobile, city_id, address, postcode, created_at, updated_at', 'safe'],
+        ];
+    }
+
+    /**
      * 以父级ID获取数据
      * @param integer $parentId 
      * @return object
