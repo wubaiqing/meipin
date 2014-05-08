@@ -64,12 +64,12 @@ CHtml::$errorSummaryCss = 'text-warning';
         ));?>
         </div>
 </div>
-<div class="control-group">
-        <?php echo $form->labelEx($exchangeModel,'need_level', array('class' => 'control-label')); ?>
+<!--<div class="control-group">
+        <?php // echo $form->labelEx($exchangeModel,'need_level', array('class' => 'control-label')); ?>
         <div class="controls">
-        <?php echo $form->textField($exchangeModel,'need_level');?>
+        <?php // echo $form->textField($exchangeModel,'need_level');?>
         </div>
-</div>
+</div>-->
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'taobao_id', array('class' => 'control-label')); ?>
         <div class="controls">
@@ -115,10 +115,48 @@ CHtml::$errorSummaryCss = 'text-warning';
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'img_url', array('class' => 'control-label')); ?>
         <div class="controls">
-        <?php echo $form->fileField($exchangeModel,'img_url');?>
+        <?php echo $form->textField($exchangeModel,'img_url');?>
+            <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/css/jquery.fileupload-ui.css" media="all" />
+            <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+            <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+            <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+            <img src="about:blank" width="200" style="position: absolute; z-index: 9999; margin-left: 4px;" id="picture-preview" class="hide" />
+            <span class="help-inline">
+                <span class="btn fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>上传</span>
+                    <input class="upload-placeholder" type="file" name="file" />
+                </span>
+            </span>
         </div>
 </div>
 <div class="form-actions">
         <?php echo CHtml::submitButton($exchangeModel->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
     </div>
 <?php $this->endWidget(); ?>
+
+<script>
+    //上传图片
+$('.upload-placeholder').fileupload({
+	url: 'index.php?r=site/upload',
+	dataType: 'json',
+	done: function(e, data) {
+		if(data.result.success) {
+			$('#Exchange_img_url').val(data.result.path);
+		} else {
+			alert(data.result.message);
+		}
+	}
+});
+
+//鼠标滑过显示图片
+$('#Exchange_img_url').hover(function(){
+	var src = $(this).val();
+	if (src != '') {
+		$('#picture-preview').position($(this).position());
+		$('#picture-preview').attr('src', src).removeClass('hide');
+	}
+}, function(){
+	$('#picture-preview').addClass('hide');
+});
+</script>

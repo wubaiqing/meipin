@@ -41,8 +41,9 @@ class Exchange extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, url_name, detail_url, taobaoke_url, support_name, support_url, description, img_url', 'required'),
+            array('name, detail_url, taobaoke_url, support_name, support_url, description, img_url', 'required'),
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
+            array('price', 'numerical', 'integerOnly' => false),
             array('name, url_name, support_name', 'length', 'max' => 50),
             array('num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
             array('price', 'length', 'max' => 10),
@@ -112,7 +113,6 @@ class Exchange extends CActiveRecord {
 
         $criteria->compare('id', $this->id, true);
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('url_name', $this->url_name, true);
         $criteria->compare('num', $this->num, true);
         $criteria->compare('price', $this->price, true);
         $criteria->compare('integral', $this->integral, true);
@@ -128,7 +128,7 @@ class Exchange extends CActiveRecord {
         $criteria->compare('description', $this->description, true);
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
-
+        $criteria->order = 't.id desc';
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
@@ -150,6 +150,19 @@ class Exchange extends CActiveRecord {
     {
         $this->start_time = strtotime($this->start_time);
         $this->end_time = strtotime($this->end_time);
+        return true;
+    }
+    
+    public function beforeSave()
+    {
+        //保存之前记录一下时间、人员信息
+        if($this->isNewRecord){
+            $this->create_time = time();
+            $this->creater_id = Yii::app()->user->id;
+        }
+        $this->update_id = Yii::app()->user->id;
+        $this->update_time = time();
+        return true;
     }
 
 }
