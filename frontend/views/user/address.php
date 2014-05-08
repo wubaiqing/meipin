@@ -9,9 +9,7 @@
             <span class="t_r"></span>
             <div class="info">
                 <h6>
-                    <a href="<?php echo $this->createUrl('user/info');?>">用户信息</a>|
-                    <a href="<?php echo $this->createUrl('user/address');?>" class="current">收货地址</a>|
-                    <a href="<?php echo $this->createUrl('user/password');?>">修改密码</a>
+                    <?php echo $this->renderPartial('info_nav', ['current' => 'address']);?>
                 </h6>
                 <input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince')?>" />
                     <?php

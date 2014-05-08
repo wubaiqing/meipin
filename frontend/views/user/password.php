@@ -9,16 +9,14 @@
             <span class="t_r"></span>
             <div class="info">
                 <h6>
-                    <a href="<?php echo $this->createUrl('user/info');?>">用户信息</a>|
-                    <a href="<?php echo $this->createUrl('user/address');?>">收货地址修改</a>|
-                    <a href="<?php echo $this->createUrl('user/password');?>" class="current">修改密码</a>
+                    <?php echo $this->renderPartial('info_nav', ['current' => 'password']);?>
                 </h6>
                 <?php
                     $form = $this->beginWidget('CActiveForm', [
                         'id' => 'login-form',
                         'enableClientValidation' => false,
                         'clientOptions' => [
-                            'validateOnSubmit' => true,
+                            'validateOnSubmit' => true
                         ]
                     ]);
                 ?>
