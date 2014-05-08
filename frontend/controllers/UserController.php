@@ -103,6 +103,7 @@ class UserController extends Controller
             $this->redirect(['site/index']);
             Yii::app()->end();
         }
+        $this->layout = '//layouts/userBase';
 
         $model = new LoginForm();
         if (isset($_POST['LoginForm'])) {
@@ -212,7 +213,7 @@ class UserController extends Controller
      */
     public function renderIndex($status, $message)
     {
-        $this->layout = '//layouts/information';
+        $this->layout = '//layouts/userBase';
         $this->render('loginSuccess', [
             'status' => $status,
             'message' => $message,
