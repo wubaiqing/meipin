@@ -49,6 +49,7 @@ class Exchange extends CActiveRecord {
             array('price', 'length', 'max' => 10),
             array('detail_url, taobaoke_url, support_url, taobaoke_shop_url', 'length', 'max' => 200),
             array('img_url', 'length', 'max' => 100),
+            array('id','safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, name, url_name, num, price, integral, start_time, end_time, need_level, taobao_id, detail_url, taobaoke_url, support_name, support_url, taobaoke_shop_url, description, img_url, is_delete', 'safe', 'on' => 'search'),

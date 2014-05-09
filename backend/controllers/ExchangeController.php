@@ -62,6 +62,9 @@ class ExchangeController extends Controller {
    {
         $exchangeModel = new Exchange();
         $exchangeModel->unsetAttributes();
+        if(isset($_GET[CHtml::modelName($exchangeModel)])){
+            $exchangeModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
+        }
         $this->render('admin', array(
             'exchangeModel' => $exchangeModel,
         ));
