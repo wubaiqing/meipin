@@ -3,6 +3,12 @@ return array(
     'name' => '美品网',
     'basePath' => realpath(__DIR__ . '/../'),
     'preload'=>array('log'),
+//    'modules'=>array(
+//        'gii'=>array(
+//            'class'=>'system.gii.GiiModule',
+//            'password'=>'111111'
+//        ),
+//    ),
     'components'=>array(
         'log'=>array(
             'class'=>'CLogRouter',

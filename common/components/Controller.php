@@ -20,6 +20,7 @@ class Controller extends CController
                 array('url' => 'goods/admin', 'label' => '商品管理'),
                 array('url' => 'category/create', 'label' => '创建分类'),
                 array('url' => 'category/admin', 'label' => '分类管理'),
+                array('url' => 'exchange/admin','label' => '积分兑换管理'),
             )
         ),
         array(
