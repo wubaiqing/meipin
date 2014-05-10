@@ -6,8 +6,8 @@
         </tr>
         <?php foreach ($logList['data'] as $log): ?>
             <tr align="center">
-                <td><?php echo $log->username ?></td>
-                <td><?php echo $log->created_at ?></td>
+                <td><?php echo CommonHelper::filterUsername($log->username); ?></td>
+                <td><?php echo date("Y-m-d H:i:s",$log->created_at) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

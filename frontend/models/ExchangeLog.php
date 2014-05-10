@@ -74,7 +74,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         // 兑换记录列表
         $logList = [];
         $goodsPaginate = self::model()->dataList($goodsId)->paginate();
-        $goodsPaginate->getPagination()->setPageSize(2);
+        $goodsPaginate->getPagination()->setPageSize(20);
         $goodsList['pager'] = $goodsPaginate->getPagination();
         $goodsList['data'] = $goodsPaginate->data;
         // 设置缓存

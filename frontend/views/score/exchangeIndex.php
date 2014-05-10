@@ -4,19 +4,8 @@
     <?php $this->renderPartial('//site/head'); ?>
     <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
 </div>
-<link rel="stylesheet" type="text/css" href="http://www.vip800.com/data/static/e23697d66d5f0990a6ed6607344d7b37.css">
-<div id="content" class="wp">
+<div id="contentA" class="wp">
     <style type="text/css">
-        #contentA {
-            background: #fff url(images/bg-y.png) repeat-y;
-            padding-bottom: 50px;
-        }
-        #contentA .left .pt {
-            width: 290px;
-            padding: 20px;
-            border-bottom: 1px solid #e6e6e6;
-            position: relative;
-        }
     </style>
     <div class="left" style="float:left">
         <div class="pt">

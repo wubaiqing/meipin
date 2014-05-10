@@ -33,8 +33,8 @@ class CommonHelper
     {
         return array('status' => $status, 'data' => $data, 'msg' => $msg);
     }
-    
-        /**
+
+    /**
      * 生成缓存KEY，通过前缀和参数
      * @param string $prefix 前缀
      * @param array $args
@@ -44,5 +44,9 @@ class CommonHelper
         return $prefix . md5(serialize($args));
     }
 
+    public static function filterUsername($str)
+    {
+        return substr($str, 0,3)."******";
+    }
 
 }

@@ -47,6 +47,7 @@ class ScoreService extends AbstractService
         }
         $result->exchange = $exchange;
         //获取兑换热门商品
+        // @TODO
         $result->hotExchangeGoods = Exchange::model()->findAll('id>3');
 
         $logList = ExchangeLog::getLogList($goodsId, $page);
