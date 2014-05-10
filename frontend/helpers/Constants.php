@@ -7,6 +7,16 @@
  */
 class Constants
 {
+    /**
+     * 1/秒
+     * @var integer 
+     */
+    const T_SECOND = 1;
+    /**
+     * 5/秒
+     * @var integer 
+     */
+    const T_SECOND_FIVE = 5;
 
     /**
      * 一分钟时间/秒

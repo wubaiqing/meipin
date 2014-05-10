@@ -15,6 +15,12 @@ class DataResult implements \IteratorAggregate, \ArrayAccess
     public $status = true;
 
     /**
+     * 数据返回状态码
+     * @var string 
+     */
+    public $code = 0;
+
+    /**
      * 数据返回结果
      * @var fixed 
      */
@@ -24,7 +30,12 @@ class DataResult implements \IteratorAggregate, \ArrayAccess
      * 数据返回描述
      * @var string 
      */
-    public $msg;
+    public $message = "";
+    /**
+     * 数据返回错误提示
+     * @var string 
+     */
+    public $errorMsg = "";
 
     /**
      * 强制将对象转换为数组

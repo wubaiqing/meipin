@@ -33,5 +33,16 @@ class CommonHelper
     {
         return array('status' => $status, 'data' => $data, 'msg' => $msg);
     }
+    
+        /**
+     * 生成缓存KEY，通过前缀和参数
+     * @param string $prefix 前缀
+     * @param array $args
+     */
+    public static function generateCacheKey($prefix, $args = array())
+    {
+        return $prefix . md5(serialize($args));
+    }
+
 
 }

@@ -30,24 +30,18 @@ class ScoreController extends Controller
     /**
      * 积分兑换首页
      */
-    public function actionExchangeIndex($id)
+    public function actionExchangeIndex($id, $page = 1)
     {
-        $data = $this->scoreService->showExchangeIndex($id);
+        $id = Des::decrypt($id);
+        $data = $this->scoreService->showExchangeIndex($id,$page);
         if ($data->status == false) {
             // @TODO
             $moreUrl = Yii::app()->createUrl("");
             $remark = "您可以查看<a href=$moreUrl>更多</a>地商品";
-            $this->render('/common/notFound', array('title' => $data->msg, 'remark' => $remark));
+            $this->render('/common/notFound', array('title' => $data->message, 'remark' => $remark));
         } else {
-            $this->render('exchangeIndex', array('data' => $data));
+            $this->render('exchangeIndex', array('data' => $data,'params'=>array('goodsId'=>$id)));
         }
-    }
-
-    public function actionAjaxEcLogList($goodsId = null)
-    {
-        $result = CommonHelper::getAjaxFormat([]);
-
-        return json_encode($result);
     }
 
     /**
@@ -55,22 +49,12 @@ class ScoreController extends Controller
      * @param integer $goodsId 兑换商品ID
      * @return json 积分兑换返回信息
      */
-    public function actionDoExchange($goodsId = null)
+    public function actionDoExchange($id = null)
     {
-        
-    }
-
-    /**
-     * 兑换记录
-     * @param integer $goodsId 兑换商品ID
-     * @param integer $page 当前分页碼
-     * @return json 积分兑换返回信息
-     */
-    public function actionAjaxEcRecords($goodsId = null, $page = 1)
-    {
-
-        $logList = ExchangeLog::getLogList($goodsId, $page);
-        $this->render('exchangeLogList', array('logList' => $logList));
+        $userId = 18;
+//        $userId = Yii::app()->user->id;
+        $data = $this->scoreService->doExchange($id, $userId);
+        echo json_encode($data);
     }
 
 }

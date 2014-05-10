@@ -9,6 +9,7 @@
  * @property string $name
  * @property string $url_name
  * @property string $num
+ * @property string $left_num
  * @property string $price
  * @property string $integral
  * @property string $start_time
@@ -24,12 +25,14 @@
  * @property string $img_url
  * @property integer $is_delete
  */
-class Exchange extends CActiveRecord {
+class Exchange extends ActiveRecord
+{
 
     /**
      * @return string the associated database table name
      */
-    public function tableName() {
+    public function tableName()
+    {
         return 'meipin_exchange';
     }
 
@@ -45,11 +48,11 @@ class Exchange extends CActiveRecord {
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false),
             array('name, url_name, support_name', 'length', 'max' => 50),
-            array('num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
+            array('num,left_num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
             array('price', 'length', 'max' => 10),
             array('detail_url, taobaoke_url, support_url, taobaoke_shop_url', 'length', 'max' => 200),
             array('img_url', 'length', 'max' => 100),
-            array('id','safe'),
+            array('id', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, name, url_name, num, price, integral, start_time, end_time, need_level, taobao_id, detail_url, taobaoke_url, support_name, support_url, taobaoke_shop_url, description, img_url, is_delete', 'safe', 'on' => 'search'),
@@ -146,24 +149,44 @@ class Exchange extends CActiveRecord {
         return parent::model($className);
     }
 
-    
     public function beforeValidate()
     {
         $this->start_time = strtotime($this->start_time);
         $this->end_time = strtotime($this->end_time);
         return true;
     }
-    
+
     public function beforeSave()
     {
         //保存之前记录一下时间、人员信息
-        if($this->isNewRecord){
+        if ($this->isNewRecord) {
             $this->create_time = time();
             $this->creater_id = Yii::app()->user->id;
         }
         $this->update_id = Yii::app()->user->id;
         $this->update_time = time();
         return true;
+    }
+
+    public function findByPk($pk, $condition = '', $params = array())
+    {
+        $cacheKey = CommonHelper::generateCacheKey("meipin-exchange-", func_get_args());
+        if ($this->enableCache) {
+            $data = Yii::app()->cache->get($cacheKey);
+            if (!empty($data)) {
+                return $data;
+            }
+        }
+        $data = parent::findByPk($pk, $condition, $params);
+        if ($this->enableCache) {
+            if (empty($data)) {
+                Yii::app()->cache->set($cacheKey, $data, Constants::T_SECOND_FIVE);
+            }
+            else{
+                Yii::app()->cache->set($cacheKey, $data, Constants::T_MONUTE);
+            }
+        }
+        return $data;
     }
 
 }

@@ -25,12 +25,14 @@
         <div class="blockA">
             <h2>热门兑换活动...</h2>
             <ul>
-                <?php foreach ($data->hotExchangeGoods as $goods)?>
+                <?php foreach ($data->hotExchangeGoods as $goods)
+                    
+                    ?>
                 <li>
-                    <a target="_blank" href="<?php echo  $goods->url_name;?>">
-                        <img src="<?php echo  $goods->img_url?>">
+                    <a target="_blank" href="<?php echo $goods->url_name; ?>">
+                        <img src="<?php echo $goods->img_url ?>">
                     </a>
-                    <h3><a title="<?php echo $goods->name;?>" target="_blank" href="<?php echo  $goods->url_name;?>"><?php echo $goods->name;?></a></h3>
+                    <h3><a title="<?php echo $goods->name; ?>" target="_blank" href="<?php echo $goods->url_name; ?>"><?php echo $goods->name; ?></a></h3>
                 </li>
             </ul>
         </div>
@@ -39,61 +41,53 @@
     <div class="right dhdeal" style="float:right">
         <div class="box2 zt2">
             <h2>
-                <span><?php echo $data->exchange->name;?> </span>
+                <span><?php echo $data->exchange->name; ?> </span>
             </h2>
-            <h3>兑奖所需积分：<em><?php echo $data->exchange->integral;?></em>
+            <h3>兑奖所需积分：<em><?php echo $data->exchange->integral; ?></em>
                 积分&nbsp;&nbsp;|&nbsp;&nbsp;
-                价值: ￥<?php echo $data->exchange->price;?>&nbsp;&nbsp;|&nbsp;&nbsp;
-                兑奖名额<strong><?php echo $data->exchange->num;?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+                价值: ￥<?php echo $data->exchange->price; ?>&nbsp;&nbsp;|&nbsp;&nbsp;
+                兑奖名额<strong><?php echo $data->exchange->num; ?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
                 需等级：<a href="/help/grade.html" target="_blank" class="level v1"></a>
             </h3>
             <h4>
                 <input type="button" value="" class="btn" id="J_welfare">
                 <span></span>
-                <em>(当前库存<?php echo $data->exchange->left_num;?>件)</em></h4>
+                <em>(当前库存<a  id='exchange_left_num'><?php echo $data->exchange->left_num; ?></a>件)</em></h4>
             <p></p>
             <script language="javascript">
                 $("#J_welfare").click(function() {
                     $.ajax({
-                        url: "/jfsc/8.html",
+                        url: "<?php echo Yii::app()->createUrl("score/DoExchange", array('id' => $params['goodsId'])); ?>",
                         type: "POST",
                         cache: false,
                         dataType: "json",
-                        success: function($data) {
-                            if ($data.status == "0") {
-                                alert($data.msg);
-                                return false;
-                            } else if ($data.status == "2") {
-                                alert($data.msg);
-                                window.location = "/user/address.html";
-                            } else if ($data.status == "3") {
-                                commonopen();
-                            } else {
-                                alert("恭喜您成功兑换 4.8超高评分正品不锈钢真空保温杯 男士女士水杯子礼品杯儿童水杯 ");
-                                window.location = "/user/welfare.html";
+                        success: function(data) {
+                            if (data.status == false) {
+                                alert(data.message);
+                            } else if (data.status == true) {
+                                alert(data.message);
+                                window.location.href = "";
+                            }
+                            if (data.location != undefined && $.trim(data.location) != "") {
+                                window.location.href = data.location;
                             }
                         },
-                        error: function() {
-                            alert('error');
+                        error: function(d) {
+                            alert(d);
                         },
                     });
                 });
             </script>
         </div>
-
-        <div class="J_TabBarWrap clear l">
-            <ul class="tb-tabbar">
-                <li class="selected">
-                    <a href="javascript:void(0)">兑奖规则</a>
-                </li>
-                <li class="" id="recordtab">
-                    <a href="javascript:void(0)">兑换记录(<em>0</em>)</a>
-                </li>
-            </ul>
-        </div>
+        <?php
+        $page = Yii::app()->request->getQuery("page");
+        ?>
         <div class="Commodity">
-            <div class="tit"><h3 class="current" onclick="setTab('qh', 1, 2)" id="qh1">兑奖规则</h3><h3 onclick="setTab('qh', 2, 2)" id="qh2">兑换记录(<em>0</em>)</h3></div>
-            <div class="con_x" id="con_qh_1">
+            <div class="tit">
+                <h3 <?php echo empty($page) ? "class='current'" : ""; ?> onclick="setTab('qh', 1, 2)" id="qh1">兑奖规则</h3>
+                <h3 <?php echo!empty($page) && $page > 0 ? "class='current'" : ""; ?> onclick="setTab('qh', 2, 2)" id="qh2">兑换记录(<em><?php echo $data->logList['pager']->getItemCount(); ?></em>)</h3>
+            </div>
+            <div <?php echo empty($page) ? "" : "style='display:none'"; ?> class="con_x" id="con_qh_1">
                 <div class="blockCJ">
                     <strong>兑换礼品规则</strong>
                     1、活动开始后，所有注册会员均可点击“我要兑换”按钮进行礼品兑换       <br>
@@ -109,15 +103,10 @@
                     5、金折网有权在活动未开始前对活动信息进行更改，活动信息以兑换活动开始后的为准。
                 </div>
             </div>
-            <div style="display:none" class="con_x" id="con_qh_2">
-                <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user" style="width:100%">
-                    <tbody>
-                        <tr align="center">
-                            <th>用户名</th>
-                            <th>兑换时间</th>
-                        </tr>
-                    </tbody>
-                </table>
+            <div <?php echo!empty($page) && $page > 0 ? "" : "class='current'"; ?> class="con_x" id="con_qh_2">
+                <?php
+                $this->renderPartial('exchangeLogList', array('logList' => $data->logList));
+                ?>
             </div>
         </div>
     </div>
