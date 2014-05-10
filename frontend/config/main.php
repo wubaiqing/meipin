@@ -37,7 +37,7 @@ return [
             //是否采用DEBUG模式
             'enableDebug' => false,
             //是否使用系统缓存
-            'enableCache' => false,
+            'enableCache' => true,
         ),
     ],
 ];
