@@ -105,7 +105,7 @@
                     5、金折网有权在活动未开始前对活动信息进行更改，活动信息以兑换活动开始后的为准。
                 </div>
             </div>
-            <div <?php echo!empty($page) && $page > 0 ? "" : "class='current'"; ?> class="con_x" id="con_qh_2">
+            <div <?php echo!empty($page) && $page > 0 ? "" : "style='display:none'"; ?> class="con_x" id="con_qh_2">
                 <?php
                 $this->renderPartial('exchangeLogList', array('logList' => $data->logList));
                 ?>
