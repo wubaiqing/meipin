@@ -168,25 +168,25 @@ class Exchange extends ActiveRecord
         return true;
     }
 
-    public function findByPk($pk, $condition = '', $params = array())
-    {
-        $cacheKey = CommonHelper::generateCacheKey("meipin-exchange-", func_get_args());
-        if ($this->enableCache) {
-            $data = Yii::app()->cache->get($cacheKey);
-            if (!empty($data)) {
-                return $data;
-            }
-        }
-        $data = parent::findByPk($pk, $condition, $params);
-        if ($this->enableCache) {
-            if (empty($data)) {
-                Yii::app()->cache->set($cacheKey, $data, Constants::T_SECOND_FIVE);
-            }
-            else{
-                Yii::app()->cache->set($cacheKey, $data, Constants::T_MONUTE);
-            }
-        }
-        return $data;
-    }
+//    public function findByPk($pk, $condition = '', $params = array())
+//    {
+//        $cacheKey = CommonHelper::generateCacheKey("meipin-exchange-", func_get_args());
+//        if ($this->enableCache) {
+//            $data = Yii::app()->cache->get($cacheKey);
+//            if (!empty($data)) {
+//                return $data;
+//            }
+//        }
+//        $data = parent::findByPk($pk, $condition, $params);
+//        if ($this->enableCache) {
+//            if (empty($data)) {
+//                Yii::app()->cache->set($cacheKey, $data, Constants::T_SECOND_FIVE);
+//            }
+//            else{
+//                Yii::app()->cache->set($cacheKey, $data, Constants::T_MONUTE);
+//            }
+//        }
+//        return $data;
+//    }
 
 }

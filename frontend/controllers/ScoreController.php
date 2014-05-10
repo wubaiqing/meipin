@@ -51,8 +51,7 @@ class ScoreController extends Controller
      */
     public function actionDoExchange($id = null)
     {
-        $userId = 18;
-//        $userId = Yii::app()->user->id;
+        $userId = Yii::app()->user->id;
         $data = $this->scoreService->doExchange($id, $userId);
         echo json_encode($data);
     }
