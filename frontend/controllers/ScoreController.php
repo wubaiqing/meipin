@@ -15,12 +15,32 @@ class ScoreController extends Controller
     public $layout = '//layouts/main';
 
     /**
+     * 积分业务处理类
+     * @var ScoreService 
+     */
+    public $scoreService;
+
+    public function init()
+    {
+        parent::init();
+
+        $this->scoreService = new ScoreService();
+    }
+
+    /**
      * 积分兑换首页
      */
-    public function actionExchangeIndex()
+    public function actionExchangeIndex($id)
     {
-
-        $this->render('exchangeIndex');
+        $data = $this->scoreService->showExchangeIndex($id);
+        if ($data->status == false) {
+            // @TODO
+            $moreUrl = Yii::app()->createUrl("");
+            $remark = "您可以查看<a href=$moreUrl>更多</a>地商品";
+            $this->render('/common/notFound', array('title' => $data->msg, 'remark' => $remark));
+        } else {
+            $this->render('exchangeIndex', array('data' => $data));
+        }
     }
 
     public function actionAjaxEcLogList($goodsId = null)
@@ -48,8 +68,9 @@ class ScoreController extends Controller
      */
     public function actionAjaxEcRecords($goodsId = null, $page = 1)
     {
+
         $logList = ExchangeLog::getLogList($goodsId, $page);
-        $this->render('exchangeLogList',array('logList'=>$logList));
+        $this->render('exchangeLogList', array('logList' => $logList));
     }
 
 }

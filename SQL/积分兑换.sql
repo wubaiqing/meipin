@@ -25,6 +25,7 @@ CREATE TABLE `meipin_exchange` (
   `name` varchar(50) NOT NULL COMMENT '名称',
   `url_name` varchar(50) NOT NULL COMMENT 'url名称',
   `num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '数量',
+  `left_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '剩余库存数量',
   `price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '价格',
   `integral` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '积分',
   `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',

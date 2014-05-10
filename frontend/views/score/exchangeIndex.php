@@ -25,36 +25,32 @@
         <div class="blockA">
             <h2>热门兑换活动...</h2>
             <ul>
+                <?php foreach ($data->hotExchangeGoods as $goods)?>
                 <li>
-                    <a target="_blank" href="/jfsc/25.html">
-                        <img src="http://www.vip800.com/data/upload/score_item/1310/30/5270a794c0bdf_s.png">
+                    <a target="_blank" href="<?php echo  $goods->url_name;?>">
+                        <img src="<?php echo  $goods->img_url?>">
                     </a>
-                    <h3><a title="全国全网手机话费充值卡20元" target="_blank" href="/jfsc/25.html">全国全网手机话费充值卡20元</a></h3>
+                    <h3><a title="<?php echo $goods->name;?>" target="_blank" href="<?php echo  $goods->url_name;?>"><?php echo $goods->name;?></a></h3>
                 </li>
-                <li>
-                    <a target="_blank" href="/jfsc/24.html">
-                        <img src="http://www.vip800.com/data/upload/score_item/1310/30/5270a776a6844_s.png">
-                    </a>
-                    <h3><a title="全国全网手机话费充值卡30元" target="_blank" href="/jfsc/24.html">全国全网手机话费充值卡30元</a></h3>
-                </li>		</ul>
+            </ul>
         </div>
     </div>
 
     <div class="right dhdeal" style="float:right">
         <div class="box2 zt2">
             <h2>
-                <span>4.8超高评分正品不锈钢真空保温杯 男士女士水杯子礼品杯儿童水杯 </span>
+                <span><?php echo $data->exchange->name;?> </span>
             </h2>
-            <h3>兑奖所需积分：<em>100</em>
+            <h3>兑奖所需积分：<em><?php echo $data->exchange->integral;?></em>
                 积分&nbsp;&nbsp;|&nbsp;&nbsp;
-                价值: 70.00&nbsp;&nbsp;|&nbsp;&nbsp;
-                兑奖名额<strong>10</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+                价值: ￥<?php echo $data->exchange->price;?>&nbsp;&nbsp;|&nbsp;&nbsp;
+                兑奖名额<strong><?php echo $data->exchange->num;?></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
                 需等级：<a href="/help/grade.html" target="_blank" class="level v1"></a>
             </h3>
             <h4>
                 <input type="button" value="" class="btn" id="J_welfare">
                 <span></span>
-                <em>(当前库存10件)</em></h4>
+                <em>(当前库存<?php echo $data->exchange->left_num;?>件)</em></h4>
             <p></p>
             <script language="javascript">
                 $("#J_welfare").click(function() {
