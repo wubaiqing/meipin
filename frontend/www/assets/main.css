@@ -1290,6 +1290,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .box2 h5 em.two{width:60px;background-position: -76px -88px;}
 .box2 h4{height:30px;overflow: hidden;padding:0 20px;margin-top:20px;}
 .box2 h4 .btn,.box2 h4 span,.box2 h4 em{width:118px;height:30px;background: url(images/bg5.png) no-repeat -8px -269px;;vertical-align: top;line-height: 30px;margin-right:10px;border:none;}
+.box2 h4 .btn_ed{width:118px;height:30px;background: url(images/bg5.png) no-repeat -140px -269px;;vertical-align: top;line-height: 30px;margin-right:10px;border:none;}
 .zt1 h4 .btn{display:none}
 .zt1 h4 span {width:130px;height:30px;background: url(images/bg5.png) no-repeat -136px -269px;;vertical-align: top;line-height: 30px;margin-right:10px;border:none;display:block}
 .zt2 h4 span  {display:none}

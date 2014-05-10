@@ -18,12 +18,12 @@ class ScoreService extends AbstractService
         $cacheKey = "service-" . __FUNCTION__ . "-" . $goodsId;
 
         //读取缓存
-        if ($this->enableCache) {
-            $result = Yii::app()->cache->get($cacheKey);
-            if (!empty($result)) {
-                return $result;
-            }
-        }
+//        if ($this->enableCache) {
+//            $result = Yii::app()->cache->get($cacheKey);
+//            if (!empty($result)) {
+//                return $result;
+//            }
+//        }
 
         $result = new DataResult();
         //获取兑换积分商品
@@ -54,9 +54,9 @@ class ScoreService extends AbstractService
         $result->logList = $logList;
         $result->status = true;
 
-        if ($this->enableCache) {
-            Yii::app()->cache->set($cacheKey, $result, Constants::T_HOUR);
-        }
+//        if ($this->enableCache) {
+//            Yii::app()->cache->set($cacheKey, $result, Constants::T_HOUR);
+//        }
         return $result;
     }
 

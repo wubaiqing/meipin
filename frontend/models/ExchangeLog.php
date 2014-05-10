@@ -82,7 +82,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             Yii::app()->cache->set($cacheKey, [
                 'pager' => $goodsList['pager'],
                 'data' => $goodsList['data']
-                    ], 1800);
+                    ], Constants::T_SECOND_FIVE);
         }
         return $goodsList;
     }

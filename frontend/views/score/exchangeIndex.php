@@ -39,12 +39,25 @@
                 需等级：<a href="/help/grade.html" target="_blank" class="level v1"></a>
             </h3>
             <h4>
-                <input type="button" value="" class="btn" id="J_welfare">
+                <?php
+                    $btnClass = "btn";
+                    $nowTime = time();
+                    if($data->exchange->start_time > $nowTime){
+                        $btnClass = "btn_nst";
+                    }elseif($data->exchange->end_time<=$nowTime){
+                        $btnClass = "btn_ed";
+                    }
+                ?>
+                <input type="button" value="" class="<?php echo $btnClass;?>" id="J_welfare">
                 <span></span>
                 <em>(当前库存<a  id='exchange_left_num'><?php echo $data->exchange->left_num; ?></a>件)</em></h4>
             <p></p>
             <script language="javascript">
                 $("#J_welfare").click(function() {
+                    if($(this).hasClass("btn_ed")){
+                        return false;
+                    }
+
                     $.ajax({
                         url: "<?php echo Yii::app()->createUrl("score/DoExchange", array('id' => $params['goodsId'])); ?>",
                         type: "POST",
