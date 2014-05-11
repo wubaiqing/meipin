@@ -21,7 +21,7 @@
                     <a target="_blank" href="<?php echo $goods->url_name; ?>">
                         <img src="<?php echo $goods->img_url ?>">
                     </a>
-                    <h3><a title="<?php echo $goods->name; ?>" target="_blank" href="<?php echo $goods->url_name; ?>"><?php echo $goods->name; ?></a></h3>
+                    <h3><a title="<?php echo $goods->name; ?>" target="_blank" href="<?php echo Yii::app()->createUrl("exchange/exchangeIndex",array("id"=>Des::encrypt($goods->id))); ?>"><?php echo $goods->name; ?></a></h3>
                 </li>
             </ul>
         </div>

@@ -61,7 +61,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     public static function getLogList($goodsId,$page)
     {
         // 缓存名称
-        $cacheKey = 'get-exchangelog-list-cachekey-' . $page;
+        $cacheKey = 'get-exchangelog-list-cachekey-' .$goodsId."-". $page;
 
         // 读取缓存兑换记录列表
         if (CommonHelper::getEnableCache()) {
