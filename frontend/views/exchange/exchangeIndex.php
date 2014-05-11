@@ -9,7 +9,7 @@
     </style>
     <div class="left" style="float:left">
         <div class="pt">
-            <img src="http://www.vip800.com//data/upload/score_item/1309/13/5232d89a93dcb_b.jpg">
+            <img src="<?php echo $data->exchange->img_url;?>">
         </div>
         <div class="blockA">
             <h2>热门兑换活动...</h2>
@@ -59,7 +59,7 @@
                     }
 
                     $.ajax({
-                        url: "<?php echo Yii::app()->createUrl("score/DoExchange", array('id' => $params['goodsId'])); ?>",
+                        url: "<?php echo Yii::app()->createUrl("exchange/DoExchange", array('id' => $params['goodsId'])); ?>",
                         type: "POST",
                         cache: false,
                         dataType: "json",
