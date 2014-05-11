@@ -48,7 +48,7 @@ class ScoreService extends AbstractService
         $result->exchange = $exchange;
         //获取兑换热门商品
         // @TODO
-        $result->hotExchangeGoods = Exchange::model()->findAll('id>3');
+        $result->hotExchangeGoods = Exchange::model()->findAll(array('condition'=>"id !=".$exchange->id,'order'=>'sale_num desc','limit'=>10));
 
         $logList = ExchangeLog::getLogList($goodsId, $page);
         $result->logList = $logList;
@@ -90,7 +90,7 @@ class ScoreService extends AbstractService
             $result->message = "对不起，活动还未开始";
             return $result;
         }
-        if ($goods->end_time <= $nowTime || $goods->left_num <= 0) {
+        if ($goods->end_time <= $nowTime || $goods->sale_num <= 0) {
             $result->status = false;
             $result->message = "对不起，活动已经结束";
             return $result;
@@ -111,7 +111,7 @@ class ScoreService extends AbstractService
             //更新用戶积分
             User::model()->updateByPk($userId, array('score' => new CDbExpression('score-'.$goods->integral)));
             //更新兑换商品数量
-            Exchange::model()->updateByPk($goodsId, array('left_num'=> new CDbExpression('left_num-1')));
+            Exchange::model()->updateByPk($goodsId, array('sale_num'=> new CDbExpression('sale_num+1')));
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->user_id=$userId;
@@ -128,7 +128,7 @@ class ScoreService extends AbstractService
             $result->message = "系统忙，请稍后再试";
             $result->errorMsg = $ex->getMessage();
         }
-        $result->leftNum = $goods->left_num -1;
+        $result->sale_num = $goods->sale_num -1;
         return $result;
     }
 

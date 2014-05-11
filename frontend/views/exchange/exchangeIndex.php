@@ -14,7 +14,7 @@
         <div class="blockA">
             <h2>热门兑换活动...</h2>
             <ul>
-                <?php foreach ($data->hotExchangeGoods as $goods)
+                <?php foreach ($data->hotExchangeGoods as $goods):
                     
                     ?>
                 <li>
@@ -23,6 +23,7 @@
                     </a>
                     <h3><a title="<?php echo $goods->name; ?>" target="_blank" href="<?php echo Yii::app()->createUrl("exchange/exchangeIndex",array("id"=>Des::encrypt($goods->id))); ?>"><?php echo $goods->name; ?></a></h3>
                 </li>
+                <?php endforeach;?>
             </ul>
         </div>
     </div>
@@ -50,7 +51,7 @@
                 ?>
                 <input type="button" value="" class="<?php echo $btnClass;?>" id="J_welfare">
                 <span></span>
-                <em>(当前库存<a  id='exchange_left_num'><?php echo $data->exchange->left_num; ?></a>件)</em></h4>
+                <em>(当前库存<a  id='exchange_sale_num'><?php echo ($data->exchange->num -$data->exchange->sale_num); ?></a>件)</em></h4>
             <p></p>
             <script language="javascript">
                 $("#J_welfare").click(function() {
