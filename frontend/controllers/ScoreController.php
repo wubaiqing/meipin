@@ -1,45 +1,45 @@
 <?php
+
 /**
- * ç”¨æˆ·ç®¡ç†
- * @author wubaiqing <wubaiqing@vip.qq.com>
- * @copyright Copyright (c) 2014 ç¾å“ç½‘
+ * »ı·Ö²Ù×÷¿ØÖÆÆ÷
+ * @author liukui<liujickson@gmail.com>
+ * @copyright Copyright (c) 2014 ÃÀÆ·
  * @since 1.0
  */
 class ScoreController extends Controller
 {
-    /**
-     * @var string $layout
-     */
-    public $layout = '//layouts/user';
 
     /**
-     * éªŒè¯ç 
+     * @var string $layout ¼Ì³ĞÊÓÍ¼
      */
-    public function actions()
+    public $layout = '//layouts/main';
+
+    /**
+     * »ı·ÖÒµÎñ´¦ÀíÀà
+     * @var ScoreService 
+     */
+    public $scoreService;
+
+    public function init()
     {
-        return [
-            'captcha' => [
-                'class' => 'CCaptchaAction',
-                'backColor' => 0xFFFFFF,
-                'maxLength' => 4,
-                'minLength' => 4,
-                'height' => 40,
-                'width' => 120,
-            ]
-        ];
+        parent::init();
+
+        $this->scoreService = new ScoreService();
     }
 
     /**
-     * ç§¯åˆ†ç®¡ç†-ç§¯åˆ†æ˜ç»†åˆ—è¡¨
+     * »ı·Ö¶Ò»»Ê×Ò³
+    /**
+     * »ı·Ö¹ÜÀí-»ı·ÖÃ÷Ï¸ÁĞ±í
      */
     public function actionIndex()
     {
-        // ç”¨æˆ·ID
+        // ÓÃ»§ID
         $userId = Yii::app()->user->id;
 
-        // è·å–ç”¨æˆ·è®°å½•
+        // »ñÈ¡ÓÃ»§¼ÇÂ¼
         $user = User::getUser($userId);
-        // è·å–ç”¨æˆ·ç§¯åˆ†è®°å½•
+        // »ñÈ¡ÓÃ»§»ı·Ö¼ÇÂ¼
         $score = Score::getScoreByUserId($userId);
         //var_dump($score);
         $this->render('index', [
@@ -50,34 +50,17 @@ class ScoreController extends Controller
 
 
     /**
-     * ç§¯åˆ†ç®¡ç†-ç§¯åˆ†å¢åŠ åˆ—è¡¨
+     * »ı·Ö¹ÜÀí-»ı·ÖÔö¼ÓÁĞ±í
      */
     public function actionAjax()
     {
-        // ç”¨æˆ·ID
+        // ÓÃ»§ID
         $userId = Yii::app()->user->id;
         $type = $_POST['type'];
-        // è·å–ç”¨æˆ·è®°å½•
+        // »ñÈ¡ÓÃ»§¼ÇÂ¼
         $user = User::getUser($userId);
-        // è·å–ç”¨æˆ·ç§¯åˆ†è®°å½•
+        // »ñÈ¡ÓÃ»§»ı·Ö¼ÇÂ¼
         $score = Score::getScoreByUserId($userId,$type);
         //var_dump(json_encode($score));
         return json_encode($score);
     }
-
-
-
-
-    /**
-     * è·³è½¬é¦–é¡µ
-     */
-    public function renderIndex($status, $message)
-    {
-        $this->render('loginSuccess', [
-            'status' => $status,
-            'message' => $message,
-            'url' => $this->createAbsoluteUrl('site/index')
-        ]);
-        Yii::app()->end();
-    }
-}

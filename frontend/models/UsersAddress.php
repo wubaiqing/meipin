@@ -7,6 +7,7 @@
  */
 class UsersAddress extends ActiveRecord implements IArrayable
 {
+    public $province;
     /**
      * 表名
      * @return string
@@ -23,8 +24,19 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
+            ['postcode' ,'checkPostCode'],
             ['id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
+    }
+
+    /**
+     * 邮编验证
+     */
+    public function checkPostCode()
+    {
+        if (!is_numeric($this->postcode)) {
+            $this->addError('postcode', '邮编格式错误');
+        }
     }
     
     /**
@@ -48,6 +60,15 @@ class UsersAddress extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 清空缓存key
+     */
+    public static function deleteCacheByUserId($userId)
+    {
+        $cacheKey = 'meipin-get-by-user-id-'.$userId;
+        Yii::app()->cache->delete($cacheKey);
+    }
+
+    /**
      * 获取用户地址
      * @param integer $userId 用户ID
      * @return object 
@@ -59,5 +80,16 @@ class UsersAddress extends ActiveRecord implements IArrayable
             return $address;
         }
         return new UsersAddress();
+    }
+
+    /**
+     * 设置用户修改地址属性
+     * @param array $attr 地址属性
+     */
+    public static function setAttr($userId, $attr,& $model)
+    {
+        $model->user_id = $userId;
+        $model->attributes = $attr;
+        UsersAddress::deleteCacheByUserId($userId);
     }
 }
