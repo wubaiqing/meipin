@@ -1,21 +1,21 @@
 <?php
 
 /**
- * »ý·Ö²Ù×÷¿ØÖÆÆ÷
+ * ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author liukui<liujickson@gmail.com>
- * @copyright Copyright (c) 2014 ÃÀÆ·
+ * @copyright Copyright (c) 2014 ï¿½ï¿½Æ·
  * @since 1.0
  */
 class ScoreController extends Controller
 {
 
     /**
-     * @var string $layout ¼Ì³ÐÊÓÍ¼
+     * @var string $layout ï¿½Ì³ï¿½ï¿½ï¿½Í¼
      */
     public $layout = '//layouts/main';
 
     /**
-     * »ý·ÖÒµÎñ´¦ÀíÀà
+     * ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * @var ScoreService 
      */
     public $scoreService;
@@ -28,18 +28,18 @@ class ScoreController extends Controller
     }
 
     /**
-     * »ý·Ö¶Ò»»Ê×Ò³
+     * ï¿½ï¿½Ö¶Ò»ï¿½ï¿½ï¿½Ò³
     /**
-     * »ý·Ö¹ÜÀí-»ý·ÖÃ÷Ï¸ÁÐ±í
+     * ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½Ð±ï¿½
      */
     public function actionIndex()
     {
-        // ÓÃ»§ID
+        // ï¿½Ã»ï¿½ID
         $userId = Yii::app()->user->id;
-
-        // »ñÈ¡ÓÃ»§¼ÇÂ¼
+        $layout = '//layouts/user';
+        // ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Â¼
         $user = User::getUser($userId);
-        // »ñÈ¡ÓÃ»§»ý·Ö¼ÇÂ¼
+        // ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ö¼ï¿½Â¼
         $score = Score::getScoreByUserId($userId);
         //var_dump($score);
         $this->render('index', [
@@ -50,16 +50,16 @@ class ScoreController extends Controller
 
 
     /**
-     * »ý·Ö¹ÜÀí-»ý·ÖÔö¼ÓÁÐ±í
+     * ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
      */
     public function actionAjax()
     {
-        // ÓÃ»§ID
+        // ï¿½Ã»ï¿½ID
         $userId = Yii::app()->user->id;
         $type = $_POST['type'];
-        // »ñÈ¡ÓÃ»§¼ÇÂ¼
+        // ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Â¼
         $user = User::getUser($userId);
-        // »ñÈ¡ÓÃ»§»ý·Ö¼ÇÂ¼
+        // ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ö¼ï¿½Â¼
         $score = Score::getScoreByUserId($userId,$type);
         //var_dump(json_encode($score));
         return json_encode($score);
