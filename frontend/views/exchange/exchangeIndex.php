@@ -59,9 +59,9 @@
                     if ($(this).hasClass("btn_ed")) {
                         return false;
                     }
-
+                    return fasle;
                     $.ajax({
-                        url: "<?php echo Yii::app()->createUrl("exchange/DoExchange", array('id' => $params['goodsId'])); ?>",
+                        url: "<?php echo Yii::app()->createUrl("exchange/DoExchange", array('id' => Des::encrypt($params['goodsId']))); ?>",
                         type: "POST",
                         cache: false,
                         dataType: "json",

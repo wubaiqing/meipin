@@ -7,11 +7,13 @@
  */
 class Constants
 {
+
     /**
      * 1/秒
      * @var integer 
      */
     const T_SECOND = 1;
+
     /**
      * 5/秒
      * @var integer 
@@ -65,5 +67,41 @@ class Constants
      * @var integer 
      */
     const T_DAY = 86400;
+
+    /**
+     * 状态码【未登录】
+     * @var integer 
+     */
+    const S_NOT_LOGIN = 10001;
+
+    /**
+     * 状态码【收货地址未填写】
+     * @var integer 
+     */
+    const S_NOT_ADDRESS = 10002;
+
+    /**
+     * 状态码【商品不存在】
+     * @var integer 
+     */
+    const S_GOODS_NOT_EXIST = 10003;
+
+    /**
+     * 状态码【活动还未开始】
+     * @var integer 
+     */
+    const S_ACT_NO_START = 10004;
+
+    /**
+     * 状态码【活动已经结束】
+     * @var integer 
+     */
+    const S_ACT_ENDED = 10005;
+
+    /**
+     * 状态码【积分不足】
+     * @var integer 
+     */
+    const S_SCORE_NOT_ENOUGH = 10006;
 
 }

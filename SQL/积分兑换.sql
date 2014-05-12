@@ -37,6 +37,7 @@ CREATE TABLE `meipin_exchange` (
   `img_url` varchar(100) NOT NULL COMMENT '图片',
   `is_delete` tinyint(1) unsigned DEFAULT '0' COMMENT '是否删除0否 1是',
   `sale_num` int(11) NOT NULL DEFAULT '0' COMMENT '销量',
+  `user_count` int(11) NOT NULL DEFAULT '0' COMMENT '参与用户数',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `creater_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建人',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最后更新时间',

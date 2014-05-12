@@ -32,16 +32,19 @@ class ExchangeController extends Controller
      */
     public function actionExchangeIndex($id, $page = 1)
     {
+//        $userCount = ExchangeLog::model()->count(array('condition'=>'goods_id=:goods_id','params'=>array(":goods_id"=>3),'group'=>'user_id'));
+//        var_dump($userCount);die;
         $id = Des::decrypt($id);
-        $data = $this->scoreService->showExchangeIndex($id,$page);
+        $data = $this->scoreService->showExchangeIndex($id, $page);
         if ($data->status == false) {
             // @TODO
             $moreUrl = Yii::app()->createUrl("");
-            $remark = "您可以查看<a href='".$moreUrl."'  style='color:blue;'>更多</a>商品";
+            $remark = "您可以查看<a href='" . $moreUrl . "'  style='color:blue;'>更多</a>商品";
             $this->render('/common/notFound', array('title' => $data->message, 'remark' => $remark));
         } else {
-            $this->render('exchangeIndex', array('data' => $data,'params'=>array('goodsId'=>$id)));
+            $this->render('index', array('data' => $data, 'params' => array('goodsId' => $id)));
         }
+        
     }
 
     /**
@@ -52,6 +55,7 @@ class ExchangeController extends Controller
     public function actionDoExchange($id = null)
     {
         $userId = Yii::app()->user->id;
+        $id = Des::decrypt($id);
         $data = $this->scoreService->doExchange($id, $userId);
         echo json_encode($data);
     }

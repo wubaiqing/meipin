@@ -13,7 +13,7 @@ class ScoreService extends AbstractService
      * @param integer $goodsId 需要兑换的商品ID
      * @return type Description
      */
-    public function showExchangeIndex($goodsId,$page)
+    public function showExchangeIndex($goodsId, $page)
     {
         $cacheKey = "service-" . __FUNCTION__ . "-" . $goodsId;
 
@@ -36,7 +36,7 @@ class ScoreService extends AbstractService
         }
         $result->exchange = $exchange;
         //获取兑换热门商品
-        $result->hotExchangeGoods = Exchange::model()->findAll(array('condition'=>"id !=".$exchange->id,'order'=>'sale_num desc','limit'=>10));
+        $result->hotExchangeGoods = Exchange::model()->findAll(array('condition' => "id !=" . $exchange->id, 'order' => 'sale_num desc', 'limit' => 10));
 
         $logList = ExchangeLog::getLogList($goodsId, $page);
         $result->logList = $logList;
@@ -57,10 +57,11 @@ class ScoreService extends AbstractService
     public function doExchange($goodsId, $userId)
     {
         $result = new DataResult();
-        $result->location="";
+        $result->location = "";
         if (empty($userId)) {
             $result->status = false;
             $result->message = "对不起，请先登录";
+            $result->code = Constants::S_NOT_LOGIN;
             $result->location = Yii::app()->createAbsoluteUrl("user/login");
             return $result;
         }
@@ -68,6 +69,7 @@ class ScoreService extends AbstractService
         $goods = Exchange::model()->findByPk($goodsId);
         if (empty($goods)) {
             $result->status = false;
+            $result->code = Constants::S_GOODS_NOT_EXIST;
             $result->message = "对不起，您所兑换的商品不存在";
             return $result;
         }
@@ -75,11 +77,13 @@ class ScoreService extends AbstractService
         //校验商品
         if ($goods->start_time > $nowTime) {
             $result->status = false;
+            $result->code = Constants::S_ACT_NO_START;
             $result->message = "对不起，活动还未开始";
             return $result;
         }
         if ($goods->end_time <= $nowTime) {
             $result->status = false;
+            $result->code = Constants::S_ACT_ENDED;
             $result->message = "对不起，活动已经结束";
             return $result;
         }
@@ -88,8 +92,9 @@ class ScoreService extends AbstractService
 //            
 //        }
         $user = User::model()->findByPk($userId);
-        if($user->score < $goods->integral){
+        if ($user->score < $goods->integral) {
             $result->status = false;
+            $result->code = Constants::S_SCORE_NOT_ENOUGH;
             $result->message = "对不起，您的积分不足以兑换此商品";
             return $result;
         }
@@ -97,17 +102,20 @@ class ScoreService extends AbstractService
         $transaction = Yii::app()->db->beginTransaction();
         try {
             //更新用戶积分
-            User::model()->updateByPk($userId, array('score' => new CDbExpression('score-'.$goods->integral)));
-            //更新兑换商品数量
-            Exchange::model()->updateByPk($goodsId, array('sale_num'=> new CDbExpression('sale_num+1')));
+            User::model()->updateByPk($userId, array('score' => new CDbExpression('score-' . $goods->integral)));
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
-            $exchangeLog->user_id=$userId;
+            $exchangeLog->user_id = $userId;
             $exchangeLog->username = $user->username;
             $exchangeLog->created_at = $nowTime;
             $exchangeLog->goods_id = $goodsId;
             $exchangeLog->insert();
             $result->message = "兑换成功";
+
+            $userCount = ExchangeLog::model()->count(array('condition'=>'goods_id=:goods_id','params'=>array(":goods_id"=>$goodsId),'group'=>'user_id'));
+            //更新兑换商品数量
+            Exchange::model()->updateByPk($goodsId, array('sale_num' => new CDbExpression('sale_num+1'),'user_count'=>$userCount));
+            
             $transaction->commit();
             $result->status = true;
         } catch (\Exception $ex) {
@@ -116,7 +124,7 @@ class ScoreService extends AbstractService
             $result->message = "系统忙，请稍后再试";
             $result->errorMsg = $ex->getMessage();
         }
-        $result->sale_num = $goods->sale_num -1;
+        $result->sale_num = $goods->sale_num - 1;
         return $result;
     }
 

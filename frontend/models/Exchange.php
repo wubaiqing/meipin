@@ -9,6 +9,7 @@
  * @property string $name
  * @property string $num
  * @property string $sale_num
+ * @property string $user_count
  * @property string $price
  * @property string $integral
  * @property string $start_time
@@ -47,7 +48,7 @@ class Exchange extends ActiveRecord
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false),
             array('name, support_name', 'length', 'max' => 50),
-            array('num,sale_num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
+            array('num,sale_num,user_count, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
             array('price', 'length', 'max' => 10),
             array('detail_url, taobaoke_url, support_url, taobaoke_shop_url', 'length', 'max' => 200),
             array('img_url', 'length', 'max' => 100),
