@@ -20,18 +20,18 @@ class Exchange extends CActiveRecord
      */
     public function rules()
     {
-        return array(
-            array('name, taobaoke_url, support_url, img_url', 'required'),
-            array('need_level, is_delete', 'numerical', 'integerOnly' => true),
-            array('price', 'numerical', 'integerOnly' => false),
-            array('name, support_name', 'length', 'max' => 50),
-            array('num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
-            array('price', 'length', 'max' => 10),
-            array('taobaoke_url, support_url', 'length', 'max' => 200),
-            array('img_url', 'length', 'max' => 100),
-            array('id','safe'),
-            array('id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete', 'safe', 'on' => 'search'),
-        );
+        return [
+            ['name, taobaoke_url, support_url, img_url', 'required'],
+            ['need_level, is_delete', 'numerical', 'integerOnly' => true],
+            ['price', 'numerical', 'integerOnly' => false],
+            ['name, support_name', 'length', 'max' => 50],
+            ['num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11],
+            ['price', 'length', 'max' => 10],
+            ['taobaoke_url, support_url', 'length', 'max' => 200],
+            ['img_url', 'length', 'max' => 100],
+            ['id','safe'],
+            ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete', 'safe', 'on' => 'search'],
+        ];
     }
 
     /**
@@ -40,7 +40,7 @@ class Exchange extends CActiveRecord
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'ID',
             'name' => '名称',
             'num' => '数量',
@@ -56,7 +56,7 @@ class Exchange extends CActiveRecord
             'description' => '描述',
             'img_url' => '图片',
             'is_delete' => '是否删除0否 1是',
-        );
+        ];
     }
 
     /**
@@ -82,9 +82,9 @@ class Exchange extends CActiveRecord
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
-        return new CActiveDataProvider($this, array(
+        return new CActiveDataProvider($this, [
             'criteria' => $criteria,
-        ));
+        ]);
     }
 
     /**
