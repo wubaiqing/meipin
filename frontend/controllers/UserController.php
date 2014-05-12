@@ -30,6 +30,20 @@ class UserController extends Controller
     }
 
     /**
+     * 访问权限
+     */
+    public function accessRules()
+    {
+        return array_merge([
+            [
+                'allow',
+                'actions' => array('modifyOrder', 'getYiqifa', 'checkTbId', 'count', 'getUWebsiteData', 'getUHTML', 'getGoods', 'getGoodsP', 'getu', 'changeStatus'),
+                'users' => array('@'),
+            ],
+        ],parent::accessRules());
+    }
+
+    /**
      * 用户个人中心
      */
     public function actionIndex()
