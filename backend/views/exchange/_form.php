@@ -89,12 +89,6 @@ CHtml::$errorSummaryCss = 'text-warning';
         </div>
 </div>
 <div class="control-group">
-        <?php echo $form->labelEx($exchangeModel,'description', array('class' => 'control-label')); ?>
-        <div class="controls">
-        <?php echo $form->textArea($exchangeModel,'description');?>
-        </div>
-</div>
-<div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'img_url', array('class' => 'control-label')); ?>
         <div class="controls">
         <?php echo $form->textField($exchangeModel,'img_url');?>
@@ -110,6 +104,12 @@ CHtml::$errorSummaryCss = 'text-warning';
                     <input class="upload-placeholder" type="file" name="file" />
                 </span>
             </span>
+        </div>
+</div>
+<div class="control-group">
+        <?php echo $form->labelEx($exchangeModel,'description', array('class' => 'control-label')); ?>
+        <div class="controls">
+        <?php echo $form->textArea($exchangeModel,'description');?>
         </div>
 </div>
 <div class="form-actions">
