@@ -161,10 +161,10 @@ class Exchange extends ActiveRecord
         //保存之前记录一下时间、人员信息
         if ($this->isNewRecord) {
             $this->create_time = time();
-            $this->creater_id = Yii::app()->user->id;
+//            $this->creater_id = Yii::app()->user->id;
         }
         $this->update_id = Yii::app()->user->id;
-        $this->update_time = time();
+//        $this->update_time = time();
         return true;
     }
 
