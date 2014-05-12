@@ -25,7 +25,11 @@
         ),
         'columns' => array(
             'id',
-            'name',
+            'name'=>array(
+                'type'=>'raw',
+                'name'=>'name',
+                'value'=>'"<a href=".$data->taobaoke_url."  target=\"_blank\">".$data->name."</a>"',
+            ),
             'price',
             'num',
             'integral',
@@ -49,8 +53,12 @@
                     'update' => array(
                         'label' => '修改',
                         'url' => 'Yii::app()->createUrl("exchange/update", array("id" => $data->id))',
-//                        'imageUrl' => false
-                    )
+                        'imageUrl' => false
+                    ),
+                    'delete'=>array(
+                        'label'=>'删除',
+                        'imageUrl' => false,
+                    ),
                 )
             ),
         ),
