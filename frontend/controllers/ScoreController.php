@@ -64,4 +64,3 @@ class ScoreController extends Controller
         //var_dump(json_encode($score));
         return json_encode($score);
     }
-}
