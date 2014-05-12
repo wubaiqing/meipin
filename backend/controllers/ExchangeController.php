@@ -1,12 +1,11 @@
 <?php
-
 /**
  * 积分兑换
- * 
+ *
  * @author zhangchao
  */
-class ExchangeController extends Controller {
-
+class ExchangeController extends Controller
+{
     public function loadModel($id)
     {
         $id = intval($id);
@@ -14,6 +13,7 @@ class ExchangeController extends Controller {
         if (!$exchaneModel) {
             throw new CHttpException('400', '查询记录失败');
         }
+
         return $exchaneModel;
     }
 
@@ -62,7 +62,7 @@ class ExchangeController extends Controller {
    {
         $exchangeModel = new Exchange();
         $exchangeModel->unsetAttributes();
-        if(isset($_GET[CHtml::modelName($exchangeModel)])){
+        if (isset($_GET[CHtml::modelName($exchangeModel)])) {
             $exchangeModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
         }
         $this->render('admin', array(

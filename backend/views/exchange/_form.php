@@ -138,25 +138,25 @@ CHtml::$errorSummaryCss = 'text-warning';
 <script>
     //上传图片
 $('.upload-placeholder').fileupload({
-	url: 'index.php?r=site/upload',
-	dataType: 'json',
-	done: function(e, data) {
-		if(data.result.success) {
-			$('#Exchange_img_url').val(data.result.path);
-		} else {
-			alert(data.result.message);
-		}
-	}
+    url: 'index.php?r=site/upload',
+    dataType: 'json',
+    done: function (e, data) {
+        if (data.result.success) {
+            $('#Exchange_img_url').val(data.result.path);
+        } else {
+            alert(data.result.message);
+        }
+    }
 });
 
 //鼠标滑过显示图片
-$('#Exchange_img_url').hover(function(){
-	var src = $(this).val();
-	if (src != '') {
-		$('#picture-preview').position($(this).position());
-		$('#picture-preview').attr('src', src).removeClass('hide');
-	}
-}, function(){
-	$('#picture-preview').addClass('hide');
+$('#Exchange_img_url').hover(function () {
+    var src = $(this).val();
+    if (src != '') {
+        $('#picture-preview').position($(this).position());
+        $('#picture-preview').attr('src', src).removeClass('hide');
+    }
+}, function () {
+    $('#picture-preview').addClass('hide');
 });
 </script>

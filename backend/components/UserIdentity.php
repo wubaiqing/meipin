@@ -25,6 +25,7 @@ class UserIdentity extends CUserIdentity
             $this->errorCode = self::ERROR_NONE;
         }
         UserLoginLog::setLoginTime($this->username);
+
         return !$this->errorCode;
     }
 }
