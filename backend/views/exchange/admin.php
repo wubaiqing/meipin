@@ -47,7 +47,7 @@
             ),
             array(
                 'class' => 'CButtonColumn',
-                'template' => '{update}|{delete}',
+		'template' => '{update} {delete}',
                 'header' => '操作',
                 'buttons' => array(
                     'update' => array(
