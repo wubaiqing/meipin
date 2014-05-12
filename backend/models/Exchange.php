@@ -74,7 +74,7 @@ class Exchange extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id' => 'id',
+            'id' => 'ID',
             'name' => '名称',
             'url_name' => 'url名称',
             'num' => '数量',
