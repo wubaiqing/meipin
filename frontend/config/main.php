@@ -7,9 +7,9 @@ return [
     'controllerMap' => [],
     'modules' => [],
     'name' => '美品网_折800网、九块邮、会员购等9.9包邮精选',
-    'import' => array(
-		'application.services.*',
-	),
+    'import' => [
+        'application.services.*',
+    ],
     'components' => [
         'urlManager' => [
             'urlFormat' => 'path',
@@ -22,6 +22,9 @@ return [
                 'exchange/<action:\w+>' => 'exchange/<action>',
             ],
         ],
+        'user' => [
+            'loginUrl' => ['user/login']
+        ]
     ],
     'params' => [
         'title' => '【美品网】美品网独家优惠,美品网团购,天天特价9.9包邮秒杀在美品网!',

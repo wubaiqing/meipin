@@ -37,9 +37,14 @@ class UserController extends Controller
         return array_merge([
             [
                 'allow',
-                'actions' => array('modifyOrder', 'getYiqifa', 'checkTbId', 'count', 'getUWebsiteData', 'getUHTML', 'getGoods', 'getGoodsP', 'getu', 'changeStatus'),
-                'users' => array('@'),
+		'actions' => ['login', 'register'],
+		'users' => ['*'],
             ],
+	    [
+		'deny',
+		'actions' => ['index', 'password', 'logout', 'info', 'address'],
+		'users' => ['?'],
+	    ]
         ],parent::accessRules());
     }
 
@@ -106,7 +111,7 @@ class UserController extends Controller
     }
 
     /**
-     * 修改用户密码
+     * 用户信息
      */
     public function actionInfo()
     {
