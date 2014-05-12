@@ -30,7 +30,7 @@ class ExchangeController extends Controller
     /**
      * 积分兑换首页
      */
-    public function actionExchangeIndex($id, $page = 1)
+    public function actionIndex($id, $page = 1)
     {
 //        $userCount = ExchangeLog::model()->count(array('condition'=>'goods_id=:goods_id','params'=>array(":goods_id"=>3),'group'=>'user_id'));
 //        var_dump($userCount);die;
