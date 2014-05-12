@@ -1,9 +1,8 @@
 <div class="box">
     <h3 class="box-header">商品管理</h3>
 
-    <?php $this->renderPartial('_search', array('exchangeModel' => $exchangeModel)); ?>
+    <?php $this->renderPartial('_search', ['exchangeModel' => $exchangeModel]); ?>
 
-    <?php // $this->renderPartial('_search', array('model' => $model)); ?>
     <?php $this->widget('zii.widgets.grid.CGridView', array(
         'id'=>'exchange-grid',
         'dataProvider'=>$exchangeModel->search(),
@@ -47,7 +46,7 @@
             ),
             array(
                 'class' => 'CButtonColumn',
-		'template' => '{update} {delete}',
+                'template' => '{update} {delete}',
                 'header' => '操作',
                 'buttons' => array(
                     'update' => array(
