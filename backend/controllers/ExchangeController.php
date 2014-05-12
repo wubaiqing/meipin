@@ -24,7 +24,8 @@ class ExchangeController extends Controller
     public function actionAdd()
     {
         $exchangeModel = new Exchange();
-        $exchangeModel->unsetAttributes();
+        //去掉这几个字段的默认值
+        $exchangeModel->unsetAttributes(['num','price','integral','start_time','end_time']);
         if (isset($_POST['Exchange'])) {
             $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
             if ($exchangeModel->save()) {

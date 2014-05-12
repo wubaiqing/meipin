@@ -17,7 +17,7 @@ CHtml::$errorSummaryCss = 'text-warning';
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'name', array('class' => 'control-label')); ?>
         <div class="controls">
-        <?php echo $form->textField($exchangeModel,'name');?>
+        <?php echo $form->textArea($exchangeModel,'name');?>
         </div>
 </div>
 <div class="control-group">
@@ -70,12 +70,12 @@ CHtml::$errorSummaryCss = 'text-warning';
         <?php echo $form->urlField($exchangeModel,'taobaoke_url');?>
         </div>
 </div>
-<div class="control-group">
-        <?php echo $form->labelEx($exchangeModel,'taobaoke_shop_url', array('class' => 'control-label')); ?>
+<!--<div class="control-group">
+        <?php // echo $form->labelEx($exchangeModel,'taobaoke_shop_url', array('class' => 'control-label')); ?>
         <div class="controls">
-        <?php echo $form->urlField($exchangeModel,'taobaoke_shop_url');?>
+        <?php // echo $form->urlField($exchangeModel,'taobaoke_shop_url');?>
         </div>
-</div>
+</div>-->
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'support_name', array('class' => 'control-label')); ?>
         <div class="controls">
