@@ -117,4 +117,12 @@ class Exchange extends CActiveRecord
         return true;
     }
 
+    /**
+     * @return model
+     */
+    public static function model($className = __CLASS__)
+    {
+	return parent::model($className);
+    }
+
 }
