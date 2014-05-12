@@ -7,9 +7,9 @@ return [
     'controllerMap' => [],
     'modules' => [],
     'name' => '美品网_折800网、九块邮、会员购等9.9包邮精选',
-    'import' => array(
+    'import' => [
         'application.services.*',
-    ),
+    ],
     'components' => [
         'urlManager' => [
             'urlFormat' => 'path',
