@@ -28,7 +28,7 @@
             'name'=>array(
                 'type'=>'raw',
                 'name'=>'name',
-                'value'=>'"<a href=".$data->taobaoke_url."  target=\"_blank\">".$data->name."</a>"',
+                'value'=>'"<a href=\"$data->taobaoke_url\"  target=\"_blank\">".$data->name."</a>"',
             ),
             'price',
             'num',
