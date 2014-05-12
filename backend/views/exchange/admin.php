@@ -1,8 +1,8 @@
 <div class="box">
     <h3 class="box-header">商品管理</h3>
-    
+
     <?php $this->renderPartial('_search', array('exchangeModel' => $exchangeModel)); ?>
-    
+
     <span><?php echo CHtml::link('添加积分活动',$this->createUrl('exchange/add'),  array('class'=>'btn-primary btn'));?></span>
     <?php // $this->renderPartial('_search', array('model' => $model)); ?>
     <?php $this->widget('zii.widgets.grid.CGridView', array(
