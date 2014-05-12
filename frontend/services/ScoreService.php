@@ -90,7 +90,7 @@ class ScoreService extends AbstractService
             $result->message = "对不起，活动还未开始";
             return $result;
         }
-        if ($goods->end_time <= $nowTime || $goods->sale_num <= 0) {
+        if ($goods->end_time <= $nowTime) {
             $result->status = false;
             $result->message = "对不起，活动已经结束";
             return $result;
