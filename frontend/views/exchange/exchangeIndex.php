@@ -9,21 +9,22 @@
     </style>
     <div class="left" style="float:left">
         <div class="pt">
-            <img src="<?php echo $data->exchange->img_url;?>">
+            <img src="<?php echo $data->exchange->img_url; ?>">
         </div>
         <div class="blockA">
             <h2>热门兑换活动...</h2>
             <ul>
-                <?php foreach ($data->hotExchangeGoods as $goods):
-                    
+                <?php
+                foreach ($data->hotExchangeGoods as $goods):
+                    $goodsUrl = Yii::app()->createUrl("exchange/exchangeIndex", array("id" => Des::encrypt($goods->id)));
                     ?>
-                <li>
-                    <a target="_blank" href="<?php echo $goods->url_name; ?>">
-                        <img src="<?php echo $goods->img_url ?>">
-                    </a>
-                    <h3><a title="<?php echo $goods->name; ?>" target="_blank" href="<?php echo Yii::app()->createUrl("exchange/exchangeIndex",array("id"=>Des::encrypt($goods->id))); ?>"><?php echo $goods->name; ?></a></h3>
-                </li>
-                <?php endforeach;?>
+                    <li>
+                        <a target="_blank" href="<?php echo $goodsUrl; ?>">
+                            <img src="<?php echo $goods->img_url ?>">
+                        </a>
+                        <h3><a title="<?php echo $goods->name; ?>" target="_blank" href="<?php echo $goodsUrl; ?>"><?php echo $goods->name; ?></a></h3>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
@@ -41,21 +42,21 @@
             </h3>
             <h4>
                 <?php
-                    $btnClass = "btn";
-                    $nowTime = time();
-                    if($data->exchange->start_time > $nowTime){
-                        $btnClass = "btn_nst";
-                    }elseif($data->exchange->end_time<=$nowTime){
-                        $btnClass = "btn_ed";
-                    }
+                $btnClass = "btn";
+                $nowTime = time();
+                if ($data->exchange->start_time > $nowTime) {
+                    $btnClass = "btn_nst";
+                } elseif ($data->exchange->end_time <= $nowTime) {
+                    $btnClass = "btn_ed";
+                }
                 ?>
-                <input type="button" value="" class="<?php echo $btnClass;?>" id="J_welfare">
+                <input type="button" value="" class="<?php echo $btnClass; ?>" id="J_welfare">
                 <span></span>
-                <em>(当前库存<a  id='exchange_sale_num'><?php echo ($data->exchange->num -$data->exchange->sale_num); ?></a>件)</em></h4>
+                <em>(当前库存<a  id='exchange_sale_num'><?php echo ($data->exchange->num - $data->exchange->sale_num); ?></a>件)</em></h4>
             <p></p>
             <script language="javascript">
                 $("#J_welfare").click(function() {
-                    if($(this).hasClass("btn_ed")){
+                    if ($(this).hasClass("btn_ed")) {
                         return false;
                     }
 
@@ -101,7 +102,7 @@
                     <strong>注意事项</strong>
                     1、金折内部员工禁止参加积分兑换中的任何兑换活动      <br>
                     2、数量有限，请先登录账号再进行兑换，这样才能快人一步      <br>
-                    3、请准确填写<a target="_blank" href="/user/address.html">收货地址</a>和电话,如因填写的地址或电话有误导致的快递丢失,积分不退    <br>
+                    3、请准确填写<a target="_blank" href="<?php echo Yii::app()->createUrl('user/address');?>">收货地址</a>和电话,如因填写的地址或电话有误导致的快递丢失,积分不退    <br>
                     4、积分兑换中的礼品，一经换出不予退换<br>
                     5、金折网有权在活动未开始前对活动信息进行更改，活动信息以兑换活动开始后的为准。
                 </div>

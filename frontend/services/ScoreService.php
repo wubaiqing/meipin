@@ -34,20 +34,8 @@ class ScoreService extends AbstractService
             $result->message = "商品已下线或不存在";
             return $result;
         }
-        $nowTime = time();
-        if ($exchange->start_time > $nowTime) {
-            $result->status = false;
-            $result->message = "活动还未开始";
-            return $result;
-        }
-        if ($exchange->end_time <= $nowTime) {
-            $result->status = false;
-            $result->message = "活动已经结束";
-            return $result;
-        }
         $result->exchange = $exchange;
         //获取兑换热门商品
-        // @TODO
         $result->hotExchangeGoods = Exchange::model()->findAll(array('condition'=>"id !=".$exchange->id,'order'=>'sale_num desc','limit'=>10));
 
         $logList = ExchangeLog::getLogList($goodsId, $page);

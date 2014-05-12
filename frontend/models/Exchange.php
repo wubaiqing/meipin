@@ -7,7 +7,6 @@
  * The followings are the available columns in table 'meipin_exchange':
  * @property string $id
  * @property string $name
- * @property string $url_name
  * @property string $num
  * @property string $sale_num
  * @property string $price
@@ -47,7 +46,7 @@ class Exchange extends ActiveRecord
             array('name, detail_url, support_name, support_url, description, img_url', 'required'),
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false),
-            array('name, url_name, support_name', 'length', 'max' => 50),
+            array('name, support_name', 'length', 'max' => 50),
             array('num,sale_num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11),
             array('price', 'length', 'max' => 10),
             array('detail_url, taobaoke_url, support_url, taobaoke_shop_url', 'length', 'max' => 200),

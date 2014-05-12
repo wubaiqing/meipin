@@ -37,7 +37,7 @@ class ExchangeController extends Controller
         if ($data->status == false) {
             // @TODO
             $moreUrl = Yii::app()->createUrl("");
-            $remark = "您可以查看<a href=$moreUrl>更多</a>地商品";
+            $remark = "您可以查看<a href='".$moreUrl."'  style='color:blue;'>更多</a>商品";
             $this->render('/common/notFound', array('title' => $data->message, 'remark' => $remark));
         } else {
             $this->render('exchangeIndex', array('data' => $data,'params'=>array('goodsId'=>$id)));
