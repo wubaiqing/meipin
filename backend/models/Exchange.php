@@ -21,7 +21,7 @@ class Exchange extends CActiveRecord
     public function rules()
     {
         return array(
-            array('name, taobaoke_url, support_url, description, img_url', 'required'),
+	    array('name, taobaoke_url, support_url, img_url', 'required'),
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false),
             array('name, url_name, support_name', 'length', 'max' => 50),
