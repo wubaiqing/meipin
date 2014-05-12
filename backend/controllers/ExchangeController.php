@@ -50,7 +50,7 @@ class ExchangeController extends Controller
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
-        $this->render('_form', array(
+	$this->render('update', array(
             'exchangeModel' => $exchangeModel,
         ));
     }
