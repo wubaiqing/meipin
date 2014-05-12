@@ -32,9 +32,9 @@ class ExchangeController extends Controller
                 die;
             }
         }
-        $this->render('create', array(
+        $this->render('create', [
             'exchangeModel' => $exchangeModel,
-        ));
+        ]);
     }
 
     /**
@@ -50,9 +50,9 @@ class ExchangeController extends Controller
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
-	$this->render('update', array(
+        $this->render('update', [
             'exchangeModel' => $exchangeModel,
-        ));
+        ]);
     }
 
     /**
@@ -65,29 +65,29 @@ class ExchangeController extends Controller
         if (isset($_GET[CHtml::modelName($exchangeModel)])) {
             $exchangeModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
         }
-        $this->render('admin', array(
+        $this->render('admin', [
             'exchangeModel' => $exchangeModel,
-        ));
+        ]);
     }
-    
-    
+
+
     /**
      * 删除积分兑换
      * @param type $id
      * @throws CHttpException
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $eid = intval($id);
         if($eid == 0){
             throw new CHttpException(400,'访问失败');
         }
         $exchangeModel = $this->loadModel($eid);
-        if($exchangeModel->updateByPk($eid, array('is_delete'=>1)) > 0){
+        if($exchangeModel->updateByPk($eid, ['is_delete'=>1]) > 0){
             $this->redirect($this->createUrl('exchange/Admin'));
         }else{
             throw new CHttpException(400,'编辑失败');
         }
-        
     }
 
 }
