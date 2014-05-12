@@ -28,8 +28,7 @@ class ExchangeController extends Controller
         if (isset($_POST['Exchange'])) {
             $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
             if ($exchangeModel->save()) {
-                echo 'success';
-                die;
+                $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
         $this->render('create', [
