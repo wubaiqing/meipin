@@ -30,7 +30,7 @@ class ExchangeController extends Controller
     /**
      * 积分兑换首页
      */
-    public function actionIndex($id, $page = 1)
+    public function actionIndex($id=0, $page = 1)
     {
 //        $userCount = ExchangeLog::model()->count(array('condition'=>'goods_id=:goods_id','params'=>array(":goods_id"=>3),'group'=>'user_id'));
 //        var_dump($userCount);die;
@@ -44,7 +44,19 @@ class ExchangeController extends Controller
         } else {
             $this->render('index', array('data' => $data, 'params' => array('goodsId' => $id)));
         }
-        
+    }
+
+    public function actionOrder()
+    {
+        $id = Yii::app()->request->getPost("id", 0);
+        if (empty($id)) {
+            $location = "点击跳转到<a href='/' style='color:blue;'>主页</a>";
+            $this->render('/common/notFound', array('title' => "非法操作", 'remark' => $location));
+            Yii::app()->end();
+        }
+        //加載数据
+        $data = array();
+        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id)));
     }
 
     /**

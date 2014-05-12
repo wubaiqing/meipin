@@ -47,7 +47,7 @@
     </div>
 
     <div class="right dhdeal">
-        <form action="/jifen/welfare/confirm_order" method="post">
+        <form action="<?php echo Yii::app()->createUrl("exchange/order")?>" method="post">
             <?php
                 $start = "zt3";
                 if($data->exchange->start_time > time()){
@@ -69,6 +69,7 @@
                 </h3>
                 <!--<h5><b>剩余时间</b><i>2</i>天<em class="one">13</em> 小时 <em class="two">33</em> 分钟 <em>31</em> 秒</h5>-->
                 <h4>
+                    <?php echo CHtml::hiddenField("id",$params['goodsId']);?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data->exchange->user_count ?>人已兑换</a>
                     <em>(当前库存<b><?php

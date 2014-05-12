@@ -334,3 +334,69 @@ h2 span{float:left;font-weight: bold;}
 .loading{height: 32px;margin: 20px 0;}
 .loading em{display: inline-block;width: 32px;height: 32px;background: url(http://z0.tuanimg.com/v1/profile/img/loading.gif) no-repeat;}
 .uslist .pgmsg{line-height: 40px;}
+
+
+/**exchange***/
+.exchange .paycls p {
+    border: 1px solid #f5f4f4;
+    margin: 0 40px;
+    padding: 10px 15px;
+    line-height: 24px;
+    background-color: #fbfbfb;
+}
+.exchange{background:#fff;margin-top:20px;width:980px;}
+.exchange .address,.exchange .paycls,.exchange .confcls{text-align: left;border-bottom: 1px dotted #d4d4d4;padding-bottom: 20px;}
+.exchange .address h2,.exchange .paycls h2,.exchange .confcls h2{line-height: 40px;height: 40px;text-align: left;color:#333;font:800 20px/40px "微软雅黑";padding: 5px;}
+.exchange .address h2 span,.exchange .paycls h2 span,.exchange .confcls h2 span{width:14px;height:14px;background:url(http://z0.tuanimg.com/v1/2012/images/images/pro_bg.png) no-repeat -93px -14px;margin: 13px;}
+.exchange .address ul{padding:0 20px;font-size:14px;}
+.exchange .address li{padding:5px 0;width:100%;float: left;line-height: 26px;}
+.exchange .address li *{float:left;}
+.exchange .address li .wid1{width:321px;}
+.exchange .address li .wid2{width:80px;}
+.exchange .address li label{width:100px;display: inline-block;text-align:right;padding-right:5px;vertical-align: top;}
+.exchange .address li label em{color:#c41304;font-size: 12px;padding-right:3px;float:none;}
+.exchange .address li em.colf0{font-size: 12px;color: #ff0000;}
+.exchange .address li input{border:1px solid #ccc;height:22px;line-height: 22px;width:100px; text-indent: 5px;}
+.exchange .address li i{font-style: normal;padding:0 5px;}
+.exchange .address li select{border:1px solid #ccc;height:26px;line-height: 20px;width:101px;padding:3px;margin-right:10px;}
+.exchange .address li input.btn{background: url("http://z0.tuanimg.com/v1/2012/images/pro_bg.png")  0 0;width:80px;height:30px;border:none;}
+.exchange .address span.error{font-size: 12px;color: #ff0000;}
+.exchange .address span.error i{width:15px;height:15px;background:url(http://z0.tuanimg.com/v1/2012/images/pro_bg.png) no-repeat -135px -10px;display:inline-block;padding:0;margin:5px;vertical-align: text-bottom;}
+.exchange .address .toptxt{width:800px;text-align:left;border:1px solid #f5f4f4;background:#fbfbfb;line-height: 30px;font-size:14px;padding: 5px 20px;margin-left:40px;}
+.exchange .address .toptxt a{color:#09c;text-decoration: underline;}.bPrediztxt .toptxt a:hover{color:#cc0000;}
+.exchange .address .toptxt p{margin-left: 0;border: none;}
+.exchange .address ul.ulbor{width:800px;border:1px solid #f0f0f0;border-top:none;padding: 5px 20px;padding-bottom:20px;display:inline;margin-left:40px;float:left}
+.exchange .paycls p{padding:0 40px;line-height: 24px;}
+.exchange .paycls p em{color:#cc0000;font-size:22px;display:block;line-height: 30px;}
+.exchange .confcls{border:none;}
+.exchange .confcls .jadinfo{height:48px;text-align: right;}
+.exchange .confcls .jadinfo span{float:left;line-height: 48px;}
+.exchange .confcls .jadinfo span input {border: 1px solid #CCCCCC;height: 22px;line-height: 22px;text-indent: 5px;width: 350px;}
+.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: url(http://z0.tuanimg.com/v1/2012/images/pro_bg.png) no-repeat -160px 0;border:none;cursor:pointer;}
+.exchange .confcls .gift,.exchange .confcls .jadinfo{padding:0 40px;}
+.exchange .confcls .gift div{border-bottom:1px dotted #d4d4d4;padding-bottom:15px;margin-bottom:15px;}
+.exchange .confcls .gift p{background: #edf9ff;font:800 14px/30px "";height:30px;}
+.exchange .confcls .gift p span{float:left;width:50%;text-indent: 10px;}
+.exchange .confcls .gift div dl{float:left;width:50%;}
+.exchange .confcls .gift .ginfo dt,.exchange .confcls .gift .ginfo dd{float:left;width:120px;}
+.exchange .confcls .gift .ginfo dd{width:300px;}
+.exchange .confcls .gift .ginfo dt img{width:100px;height:70px;margin:20px 0 0 10px;}
+.exchange .confcls .gift .ginfo dd span{display:block;margin-top:5px;line-height: 20px;}
+.exchange .confcls .gift .ginfo dd span.maxh40{font-size: 14px;font-weight: 800;margin-top:20px;}
+.exchange .confcls .gift .ginfo dd span.maxh40 a{color:#09c;}
+.exchange .confcls .gift .jifn dt{font:24px/30px "Arial";color:#cc0000;padding-top:10px;}
+.exchange .confcls .gift .jifn dd{padding:5px 10px;border:1px solid #ffedc9;background:#fffbeb;line-height: 20px;}
+.exchangeok{padding:0 40px;}
+.exchangeok .exoktop{font-size:14px;padding-bottom:30px;border-bottom:1px dotted #d4d4d4;line-height: 20px;}
+.exchangeok .exoktop p{font:800 32px/50px "微软雅黑";color:#390;padding:20px 0;}
+.exchangeok .exoktop a{color:#09c;}
+.exchangeok .exokbom{padding-bottom:30px;line-height: 20px;}
+.exchangeok .exokbom p{font:800 18px/40px "微软雅黑";color:#666;padding:20px 0 10px 0;}
+.exchangeok .exokbom textarea {height:45px;background: url("http://s0.tuan800.net/2012/tao800/images/pro_icon_1.png") no-repeat scroll -1px -85px transparent;border: 1px solid #CCCCCC;color: #999999;line-height: 20px;padding: 5px;resize: none;width: 500px;}
+.exchangeok .exokbom .exofx{padding-top:10px;}
+.exchangeok .exokbom .exofx a{background: url("http://z0.tuanimg.com/v1/2012/images/pro_bg.png") repeat scroll 0 0 transparent;display: inline-block;height: 56px;width: 56px;}
+.exchangeok .exokbom .exofx a.sina{background-position: 0 -48px;}.exchangeok .exokbom .exofx a.sina:hover{background-position: 0 -103px;}
+.exchangeok .exokbom .exofx a.qqwb{background-position: -60px -48px;}.exchangeok .exokbom .exofx a.qqwb:hover{background-position: -60px -103px;}
+.exchangeok .exokbom .exofx a.renren{background-position: -120px -48px;}.exchangeok .exokbom .exofx a.renren:hover{background-position: -120px -104px;}
+.exchangeok .exokbom .exofx a.kaixin{background-position: -180px -48px;}.exchangeok .exokbom .exofx a.kaixin:hover{background-position: -180px -104px;}
+.exchangeok .exokbom .exofx a.douban{background-position: -240px -48px;}.exchangeok .exokbom .exofx a.douban:hover{background-position: -240px -103px;}
