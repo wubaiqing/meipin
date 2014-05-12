@@ -42,7 +42,7 @@ class Exchange extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, detail_url, taobaoke_url, support_name, support_url, description, img_url', 'required'),
+            array('name, taobaoke_url, support_name, support_url, description, img_url', 'required'),
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false),
             array('name, url_name, support_name', 'length', 'max' => 50),
@@ -161,9 +161,9 @@ class Exchange extends CActiveRecord
         //保存之前记录一下时间、人员信息
         if ($this->isNewRecord) {
             $this->create_time = time();
-            $this->creater_id = Yii::app()->user->id;
+//            $this->creater_id = Yii::app()->user->id;
         }
-        $this->update_id = Yii::app()->user->id;
+//        $this->update_id = Yii::app()->user->id;
         $this->update_time = time();
 
         return true;

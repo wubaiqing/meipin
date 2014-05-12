@@ -23,33 +23,32 @@ SET FOREIGN_KEY_CHECKS = 0;
 CREATE TABLE `meipin_exchange` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `name` varchar(50) NOT NULL COMMENT '名称',
-  `url_name` varchar(50) NOT NULL COMMENT 'url名称',
+  `url_name` varchar(50) CHARACTER SET latin1 NOT NULL DEFAULT '' COMMENT 'url名称',
   `num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '数量',
-  `sale_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '销量',
   `price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '价格',
   `integral` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '积分',
   `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
   `end_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
   `need_level` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '等级要求',
   `taobao_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '淘宝id',
-  `detail_url` varchar(200) NOT NULL COMMENT '详情页面url',
-  `taobaoke_url` varchar(200) NOT NULL COMMENT '淘宝客url',
-  `support_name` varchar(50) NOT NULL COMMENT '赞助卖家昵称',
-  `support_url` varchar(200) NOT NULL COMMENT '卖家店址',
-  `taobaoke_shop_url` varchar(200) NOT NULL DEFAULT '' COMMENT '淘宝客店址',
-  `description` text NOT NULL COMMENT '描述',
+  `detail_url` varchar(200) CHARACTER SET latin1 NOT NULL DEFAULT '' COMMENT '详情页面url',
+  `taobaoke_url` varchar(200) CHARACTER SET latin1 NOT NULL COMMENT '淘宝客url',
+  `support_name` varchar(50) CHARACTER SET latin1 NOT NULL COMMENT '赞助卖家昵称',
+  `support_url` varchar(200) CHARACTER SET latin1 NOT NULL COMMENT '卖家店址',
+  `taobaoke_shop_url` varchar(200) CHARACTER SET latin1 NOT NULL DEFAULT '' COMMENT '淘宝客店址',
+  `description` text CHARACTER SET latin1 NOT NULL COMMENT '描述',
   `img_url` varchar(100) CHARACTER SET latin1 NOT NULL COMMENT '图片',
   `is_delete` tinyint(1) unsigned DEFAULT '0' COMMENT '是否删除0否 1是',
+  `sale_num` int(11) NOT NULL DEFAULT '0' COMMENT '销量',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `creater_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建人',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `update_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新人',
+  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最后更新时间',
+  `update_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最后编辑人',
   PRIMARY KEY (`id`),
   KEY `start_time` (`start_time`) USING BTREE,
   KEY `end_time` (`end_time`) USING BTREE,
   KEY `need_level` (`need_level`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='积分活动表';
-
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='积分活动表'
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ----------------------------

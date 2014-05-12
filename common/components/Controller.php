@@ -33,6 +33,13 @@ class Controller extends CController
             )
         ),
         array(
+            'label' => '积分管理',
+            'items' => array(
+                array('url' => 'exchange/add', 'label' => '添加积分兑换'),
+                array('url' => 'exchange/admin', 'label' => '积分兑换管理'),
+            )
+        ),
+        array(
             'label' => '前台管理',
             'items' => array(
                 array('url' => 'site/clearCache', 'label' => '清空缓存'),

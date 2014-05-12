@@ -3,6 +3,7 @@ return array(
     'name' => '美品网',
     'basePath' => realpath(__DIR__ . '/../'),
     'preload'=>array('log'),
+    'language'=>'zh_cn',
 //    'modules'=>array(
 //        'gii'=>array(
 //            'class'=>'system.gii.GiiModule',

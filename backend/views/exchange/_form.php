@@ -21,12 +21,6 @@ CHtml::$errorSummaryCss = 'text-warning';
         </div>
 </div>
 <div class="control-group">
-        <?php echo $form->labelEx($exchangeModel,'url_name', array('class' => 'control-label')); ?>
-        <div class="controls">
-        <?php echo $form->textField($exchangeModel,'url_name');?>
-        </div>
-</div>
-<div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'num', array('class' => 'control-label')); ?>
         <div class="controls">
         <?php echo $form->textField($exchangeModel,'num');?>
@@ -70,18 +64,6 @@ CHtml::$errorSummaryCss = 'text-warning';
         <?php // echo $form->textField($exchangeModel,'need_level');?>
         </div>
 </div>-->
-<div class="control-group">
-        <?php echo $form->labelEx($exchangeModel,'taobao_id', array('class' => 'control-label')); ?>
-        <div class="controls">
-        <?php echo $form->textField($exchangeModel,'taobao_id');?>
-        </div>
-</div>
-<div class="control-group">
-        <?php echo $form->labelEx($exchangeModel,'detail_url', array('class' => 'control-label')); ?>
-        <div class="controls">
-        <?php echo $form->urlField($exchangeModel,'detail_url');?>
-        </div>
-</div>
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'taobaoke_url', array('class' => 'control-label')); ?>
         <div class="controls">

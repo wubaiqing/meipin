@@ -3,7 +3,6 @@
 
     <?php $this->renderPartial('_search', array('exchangeModel' => $exchangeModel)); ?>
 
-    <span><?php echo CHtml::link('添加积分活动',$this->createUrl('exchange/add'),  array('class'=>'btn-primary btn'));?></span>
     <?php // $this->renderPartial('_search', array('model' => $model)); ?>
     <?php $this->widget('zii.widgets.grid.CGridView', array(
         'id'=>'exchange-grid',
@@ -44,13 +43,13 @@
             ),
             array(
                 'class' => 'CButtonColumn',
-                'template' => '{update}',
+                'template' => '{update}|{delete}',
                 'header' => '操作',
                 'buttons' => array(
                     'update' => array(
                         'label' => '修改',
                         'url' => 'Yii::app()->createUrl("exchange/update", array("id" => $data->id))',
-                        'imageUrl' => false
+//                        'imageUrl' => false
                     )
                 )
             ),
