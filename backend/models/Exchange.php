@@ -1,33 +1,13 @@
 <?php
-
 /**
  * 积分兑换的model
  * @author zhangchao
- *
- * The followings are the available columns in table 'meipin_exchange':
- * @property string $id
- * @property string $name
- * @property string $url_name
- * @property string $num
- * @property string $price
- * @property string $integral
- * @property string $start_time
- * @property string $end_time
- * @property integer $need_level
- * @property string $taobao_id
- * @property string $detail_url
- * @property string $taobaoke_url
- * @property string $support_name
- * @property string $support_url
- * @property string $taobaoke_shop_url
- * @property string $description
- * @property string $img_url
- * @property integer $is_delete
  */
 class Exchange extends CActiveRecord
 {
     /**
-     * @return string the associated database table name
+     * 表名
+     * @return string
      */
     public function tableName()
     {
@@ -35,12 +15,11 @@ class Exchange extends CActiveRecord
     }
 
     /**
-     * @return array validation rules for model attributes.
+     * 验证规则
+     * @return array
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('name, taobaoke_url, support_url, description, img_url', 'required'),
             array('need_level, is_delete', 'numerical', 'integerOnly' => true),
@@ -51,25 +30,13 @@ class Exchange extends CActiveRecord
             array('detail_url, taobaoke_url, support_url, taobaoke_shop_url', 'length', 'max' => 200),
             array('img_url', 'length', 'max' => 100),
             array('id','safe'),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
             array('id, name, url_name, num, price, integral, start_time, end_time, need_level, taobao_id, detail_url, taobaoke_url, support_name, support_url, taobaoke_shop_url, description, img_url, is_delete', 'safe', 'on' => 'search'),
         );
     }
 
     /**
-     * @return array relational rules.
-     */
-    public function relations()
-    {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array(
-        );
-    }
-
-    /**
-     * @return array customized attribute labels (name=>label)
+     * 字段属性名称
+     * @return array
      */
     public function attributeLabels()
     {
@@ -96,23 +63,12 @@ class Exchange extends CActiveRecord
     }
 
     /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     *                             based on the search/filter conditions.
+     * 列表搜索
+     * @return ActiveDataProvider
      */
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria = new CDbCriteria;
-
         $criteria->compare('id', $this->id, true);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('num', $this->num, true);
@@ -131,41 +87,33 @@ class Exchange extends CActiveRecord
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
-
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
     }
 
     /**
-     * Returns the static model of the specified AR class.
-     * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * @param  string   $className active record class name.
-     * @return Exchange the static model class
+     * 验证前
+     * @return ActiveDataProvider
      */
-    public static function model($className = __CLASS__)
-    {
-        return parent::model($className);
-    }
-
     public function beforeValidate()
     {
         $this->start_time = strtotime($this->start_time);
         $this->end_time = strtotime($this->end_time);
-
         return true;
     }
 
+    /**
+     * 保存前前
+     * @return ActiveDataProvider
+     */
     public function beforeSave()
     {
         //保存之前记录一下时间、人员信息
         if ($this->isNewRecord) {
             $this->create_time = time();
-//            $this->creater_id = Yii::app()->user->id;
         }
-//        $this->update_id = Yii::app()->user->id;
         $this->update_time = time();
-
         return true;
     }
 
