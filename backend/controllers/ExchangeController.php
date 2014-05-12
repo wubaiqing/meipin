@@ -59,7 +59,7 @@ class ExchangeController extends Controller
      * 积分兑换列表
      */
     public function actionAdmin()
-   {
+    {
         $exchangeModel = new Exchange();
         $exchangeModel->unsetAttributes();
         if (isset($_GET[CHtml::modelName($exchangeModel)])) {
