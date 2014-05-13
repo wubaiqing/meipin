@@ -28,10 +28,10 @@
                 <div class="banner has-dots">
                     <ul>
                         <li style="display: block;">
-                            <a target="_blank" href="javascript:;" title="维品800商城轮播广告1"><img width="650" height="210" src="/assets/images/51e80be32a406.jpg" alt="测试111"></a>
+                            <a target="_blank" href="javascript:;" title="test1"><img width="650" height="210" src="/assets/images/test1.jpg" alt="测试111"></a>
                         </li>
                         <li style="display: block;">
-                            <a target="_blank" href="javascript:;" title="维品800商城轮播广告2"><img width="650" height="210" src="http://www.29kuai.com/data/upload/ad/1307/18/51e80bf18ca9d.jpg" alt="测试222"></a>
+                            <a target="_blank" href="javascript:;" title="test2"><img width="650" height="210" src="/assets/images/test2.jpg" alt="测试222"></a>
                         </li>
                     </ul>
                 </div>
@@ -87,26 +87,9 @@
     </div>
         <!-- 积分兑换商品开始 -->
 </div>
-<script type="text/javascript">
-//    $(function(){
-//    $backToTopFun = function() {
-//    var $backToTopEle = $('#go_top');
-//    var st = $(document).scrollTop(), winh = $(window).height();
-//    (st > 0)? $backToTopEle.css('display','block'): $backToTopEle.css('display','none');
-//    if (!window.XMLHttpRequest) {
-//        $backToTopEle.css("top", st + winh - 40);
-//    };
-//};
-//$(window).bind("scroll", $backToTopFun);	$backToTopFun();
-//$('#go_topa').click(function(){
-//    $('html,body').animate({'scrollTop':0},200);
-//    return false;
-//});});
-</script>
+
 <script type="text/javascript">
     $(function(){
-        var sw = 0;
-        alert(11);
         $('.banner').unslider({
             speed:500,
             delay:3000,
@@ -115,33 +98,5 @@
             fluid:false
         });
     });
-//    $(".J_ad_focus .num a").mouseover(function(){
-//        sw = $(".num a").index(this);
-//        myShow(sw);
-//    });
-//    function myShow(i){
-//        $(".J_ad_focus .num a").eq(i).addClass("cur").siblings("a").removeClass("cur");
-//        $(".J_ad_focus ul li").eq(i).stop(true,true).fadeIn(600).siblings("li").fadeOut(600);
-//    }
-    //滑入停止动画，滑出开始动画
-    
-//    $(".demo").hover(function(){
-//        if(myTime){
-//            clearInterval(myTime);
-//        }
-//    },function(){
-//        myTime = setInterval(function(){
-//            myShow(sw)
-//            sw++;
-//            if(sw==3){sw=0;}
-//        } , 3000);
-//    });
-//    //自动开始
-//    var myTime = setInterval(function(){
-//        myShow(sw)
-//        sw++;
-//        if(sw==3){sw=0;}
-//    } , 3000);
-//    });
-//    
+
 </script>
