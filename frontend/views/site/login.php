@@ -9,7 +9,7 @@
                 </a>
                 <a href="javascript:void(0);" class="level v0"></a>
                 <span class="nav_split">|</span>
-                <a href="<?php echo $this->createUrl('user/index');?>">个人中心</a>
+                <a href="<?php echo $this->createUrl('score/index');?>">个人中心</a>
                 <span class="nav_split">|</span>
                 <a title="退出" class="lnk_logout" href="<?php echo $this->createUrl('user/logout');?>">退出</a>
                 <span class="nav_split">|</span>

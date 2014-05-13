@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class UserController extends Controller
 {
+
     /**
      * @var string $layout
      */
@@ -30,6 +32,25 @@ class UserController extends Controller
     }
 
     /**
+     * 访问权限
+     */
+    public function accessRules()
+    {
+        return array_merge([
+            [
+                'allow',
+                'actions' => ['login', 'register'],
+                'users' => ['*'],
+            ],
+            [
+                'deny',
+                'actions' => ['index', 'password', 'logout', 'info', 'address'],
+                'users' => ['?'],
+            ]
+                ], parent::accessRules());
+    }
+
+    /**
      * 用户个人中心
      */
     public function actionIndex()
@@ -44,7 +65,6 @@ class UserController extends Controller
         ]);
     }
 
-
     /**
      * 用户登陆
      */
@@ -54,6 +74,7 @@ class UserController extends Controller
             $this->redirect(['site/index']);
             Yii::app()->end();
         }
+        $this->layout = '//layouts/userBase';
 
         $model = new LoginForm();
         if (isset($_POST['LoginForm'])) {
@@ -91,7 +112,7 @@ class UserController extends Controller
     }
 
     /**
-     * 修改用户密码
+     * 用户信息
      */
     public function actionInfo()
     {
@@ -127,7 +148,7 @@ class UserController extends Controller
         }
         $this->render('register', ['model' => $model]);
     }
-    
+
     /**
      * 用户注册
      */
@@ -136,16 +157,25 @@ class UserController extends Controller
         $userId = Yii::app()->user->id;
         $model = UsersAddress::getModel($userId);
 
+        // 省份，城市
+        $city = [];
         $province = City::getByParentId(0);
-        if (isset($_POST['UserAddress'])) {
-            $model->attributes = $_POST['UserAddress'];
+        $model->province = City::getProvinceId($model->city_id);
+        if ($model->province > 0) {
+            $city = City::getCityList($model->province);
+        }
+
+        if (isset($_POST['UsersAddress'])) {
+            UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
             if ($model->save()) {
                 $this->renderIndex('yes', '用户地址修改成功');
             }
         }
+
         $this->render('address', [
             'model' => $model,
-            'province' => $province
+            'province' => $province,
+            'city' => $city
         ]);
     }
 
@@ -154,6 +184,7 @@ class UserController extends Controller
      */
     public function renderIndex($status, $message)
     {
+        $this->layout = '//layouts/userBase';
         $this->render('loginSuccess', [
             'status' => $status,
             'message' => $message,
@@ -161,4 +192,32 @@ class UserController extends Controller
         ]);
         Yii::app()->end();
     }
+
+    public function actionDayRegistion()
+    {
+        $userId = Yii::app()->user->id;
+        $num = Yii::app()->params['dayRegistionNum'];
+        $scoreServide = new ScoreService();
+        $result = new DataResult();
+        if (empty($userId)) {
+            $result->status = false;
+            $result->code = Constants::S_NOT_LOGIN;
+            $result->message = "请先登录";
+            $result->location = Yii::app()->createUrl('user/login');
+            echo json_encode($result);
+            Yii::app()->end();
+        }
+        //验证
+        $scoreLog = ScoreLog::model()->find(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId],'order'=>'created_at desc'));
+        if(!empty($scoreLog) && date("Y-m-d",$scoreLog->created_at) == date("Y-m-d",time())){
+            $result->status = false;
+            $result->code = Constants::S_OPT_REPEAT;
+            $result->message = "您已经签过到了";
+            echo json_encode($result);
+            Yii::app()->end();
+        }
+        $result = $scoreServide->updateScore($userId, $num, ScoreLog::S_OPTTYPE_PLUS,"每日签到");
+        echo json_encode($result);
+    }
+
 }

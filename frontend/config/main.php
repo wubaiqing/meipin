@@ -1,10 +1,15 @@
 <?php
+
 return [
     'basePath' => realpath(__DIR__ . '/../'),
+    'timeZone' => 'Asia/Shanghai',
     'behaviors' => [],
     'controllerMap' => [],
     'modules' => [],
     'name' => '美品网_折800网、九块邮、会员购等9.9包邮精选',
+    'import' => [
+        'application.services.*',
+    ],
     'components' => [
         'urlManager' => [
             'urlFormat' => 'path',
@@ -13,8 +18,14 @@ return [
                 'index.html' => 'site/index',
                 'out/<id:.+?>.html' => 'site/out',
                 'site/search' => 'site/search',
+                'score/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
+                'score/<action:\w+>' => 'exchange/<action>',
+                'score/index' => 'exchange/index',
             ],
         ],
+        'user' => [
+            'loginUrl' => ['user/login']
+        ]
     ],
     'params' => [
         'title' => '【美品网】美品网独家优惠,美品网团购,天天特价9.9包邮秒杀在美品网!',
@@ -25,6 +36,15 @@ return [
             'pageSize' => 120,
         ],
         'linkCacheTime' => 86400,
+        //系統全局配置 
+        'config' => array(
+            //是否采用DEBUG模式
+            'enableDebug' => false,
+            //是否使用系统缓存
+            'enableCache' => true,
+        ),
+        //每日签到积分增加
+        'dayRegistionNum'=>10,
     ],
 
                    

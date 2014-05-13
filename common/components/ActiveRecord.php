@@ -28,6 +28,19 @@ class ActiveRecord extends CActiveRecord implements IArrayable
     protected $hidden = array();
 
     /**
+     * development debug switch
+     * @see main.php
+     * @var boolean 
+     */
+    public $enableDebug = false;
+    /**
+     * development cache switch
+     * @see main.php
+     * @var boolean 
+     */
+    public $enableCache = true;
+    
+    /**
      * extra attributes
      *
      * @see ActiveRecord::toArray
@@ -42,6 +55,9 @@ class ActiveRecord extends CActiveRecord implements IArrayable
     public function init()
     {
         $this->onBeforeSave = array($this, 'timestampBehavior');
+        
+        $this->enableCache = CommonHelper::getEnableCache();
+        $this->enableDebug = CommonHelper::getEnableDebug();
     }
 
     public function timestampBehavior()
