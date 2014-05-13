@@ -2,7 +2,7 @@
 /**
  * 积分管理
  * @author liukui<liujickson@gmail.com>
- * @copyright Copyright (c) 2014 ��Ʒ
+ * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
 class ScoreController extends Controller
