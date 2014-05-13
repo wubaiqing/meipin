@@ -87,6 +87,10 @@
     </div>
         <!-- 积分兑换商品开始 -->
 </div>
+<?php $this->renderPartial('//site/side'); ?>
+<div id="footer" class="footer">
+    <?php $this->renderPartial('//site/footer'); ?>
+</div>
 
 <script type="text/javascript">
     $(function(){
