@@ -52,11 +52,18 @@ class ScoreService extends AbstractService
      * 执行积分商品兑换
      * @param integer $goodsId 商品ID
      * @param integer $userId 用户ID
+     * @param array $post 提交的信息
      * @return array 执行兑换结果
      */
-    public function doExchange($goodsId, $userId)
+    public function doExchange($userId,$order)
     {
-        $result = new DataResult();
+         $result = new DataResult();
+//         if(!isset())
+        //保存更新用户地址
+        $model = UsersAddress::getModel($userId);
+        $model->province = City::getProvinceId($model->city_id);
+        UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
+        $model->save();
         $result->location = "";
         if (empty($userId)) {
             $result->status = false;
@@ -65,6 +72,7 @@ class ScoreService extends AbstractService
             $result->location = Yii::app()->createAbsoluteUrl("user/login");
             return $result;
         }
+        
         //查询兑换商品数据
         $goods = Exchange::model()->findByPk($goodsId);
         if (empty($goods)) {
@@ -146,7 +154,6 @@ class ScoreService extends AbstractService
     public function getOrderdetail($goodsId, $userId)
     {
         $result = new DataResult();
-
         //获取用户邮寄地址
         $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
         //查询城市

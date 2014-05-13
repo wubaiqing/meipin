@@ -6,12 +6,16 @@
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  * The followings are the available columns in table 'meipin_exchange':
- * @property string $id
- * @property string $user_id
+ * @property integer $id
+ * @property integer $user_id
  * @property string $username
- * @property string $created_at
- * @property string $updated_at
- * @property string $goods_id
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $goods_id
+ * @property string $remark
+ * @property integer $city_id
+ * @property string $address
+ * 
  */
 class ExchangeLog extends ActiveRecord implements IArrayable
 {
@@ -33,10 +37,10 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id, user_id, username, created_at,updated_at, goods_id', 'required'),
-            array('id, user_id,created_at,updated_at,goods_id', 'numerical', 'integerOnly' => true),
+            array('id, user_id, username, created_at,updated_at, goods_id,city_id,address', 'required'),
+            array('id, user_id,created_at,updated_at,goods_id,city_id', 'numerical', 'integerOnly' => true),
             array('username', 'max' => 50),
-            array('id', 'safe'),
+            array('id,remark', 'safe'),
         );
     }
     /**

@@ -57,7 +57,16 @@ CREATE TABLE `meipin_exchange_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '用户ID',
   `username` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
-  `create_time` int(11) NOT NULL COMMENT '兑换时间',
+  `created_at` int(11) NOT NULL COMMENT '兑换时间',
   `goods_id` int(11) NOT NULL COMMENT '兑换商品ID',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户积分商品兑换记录';
+  `updated_at` int(11) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT '' COMMENT '备注',
+  `city_id` int(11) NOT NULL COMMENT '兑换城市ID',
+  `address` varchar(100) DEFAULT '' COMMENT '兑换地址',
+  PRIMARY KEY (`id`),
+  KEY `city_id` (`city_id`),
+  KEY `user_id` (`user_id`),
+  KEY `goods_id` (`goods_id`),
+  KEY `created_at` (`created_at`),
+  KEY `updated_at` (`updated_at`)
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 COMMENT='用户积分商品兑换记录';

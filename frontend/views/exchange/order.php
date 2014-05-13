@@ -91,6 +91,7 @@
                     <dl class="ginfo">
                         <dt>
                         <?php
+                        echo CHtml::hiddenField("Order['goods_id']", Des::encrypt($data->exchange->id));
                         $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data->exchange->id)));
                         ?>
                         <a href="<?php echo $goodsUrl; ?>" target="_blank">
@@ -102,14 +103,14 @@
                             <input id="id" name="Exchange[id]" type="hidden" value="<?php echo Des::decrypt($data->exchange->id); ?>">
                         </dd>
                     </dl>
-                    <dl class="jifn" info="d,129424,1400115600000,1398753000000,2">
+                    <dl class="jifn">
                         <dt><em><?php echo $data->exchange->integral; ?></em><span></span></dt>
                         <dd>提示：兑换礼品后您将减少<?php echo $data->exchange->integral; ?>积分，一旦兑换成功，积分将不退还！请确定喜欢此礼品再兑换</dd>
                     </dl>
                 </div>
             </div>
             <div class="jadinfo" data-must_memo="0" data-memo="">
-                <span>备注信息：<input id="memo" name="memo" type="text"></span>
+                <span>备注信息：<input id="memo" name="Order['remark']" type="text"></span>
                 <input class="welfare_btn" type="submit" value="">
             </div>
         </form>  

@@ -47,7 +47,7 @@
     </div>
 
     <div class="right dhdeal">
-        <form action="<?php echo Yii::app()->createUrl("exchange/order")?>" method="post">
+        <form action="<?php echo Yii::app()->createUrl("exchange/order")?>" method="GET">
             <?php
                 $start = "zt3";
                 if($data->exchange->start_time > time()){
@@ -56,9 +56,7 @@
                      $start = "zt2";
                 }
             ?>
-            <div class="deal <?php echo $start?>" info="d,129424,1400115600000,1398753000000,2" id="deal129424">
-                <input name="id" type="hidden" value="129424">
-                <input name="url_name" type="hidden" value="0yuanbaoyo_129424">
+            <div class="deal <?php echo $start?>">
                 <h2>
                     <span><?php echo $data->exchange->name; ?></span>
                 </h2>
@@ -69,7 +67,7 @@
                 </h3>
                 <!--<h5><b>剩余时间</b><i>2</i>天<em class="one">13</em> 小时 <em class="two">33</em> 分钟 <em>31</em> 秒</h5>-->
                 <h4>
-                    <?php echo CHtml::hiddenField("id",$params['goodsId']);?>
+                    <?php echo CHtml::hiddenField("id",Des::encrypt($params['goodsId']));?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data->exchange->user_count ?>人已兑换</a>
                     <em>(当前库存<b><?php

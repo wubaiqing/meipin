@@ -30,7 +30,7 @@ class ExchangeController extends Controller
     /**
      * 积分兑换首页
      */
-    public function actionExchangeIndex($id=0, $page = 1)
+    public function actionExchangeIndex($id = 0, $page = 1)
     {
         $id = Des::decrypt($id);
         $data = $this->scoreService->showExchangeIndex($id, $page);
@@ -46,8 +46,9 @@ class ExchangeController extends Controller
 
     public function actionOrder()
     {
-        $id = Yii::app()->request->getPost("id", 0);
-         $userId = Yii::app()->user->id;
+        $id = Yii::app()->request->getQuery("id", 0);
+        $id = Des::decrypt($id);
+        $userId = Yii::app()->user->id;
         if (empty($id)) {
             $location = "点击跳转到<a href='/' style='color:blue;'>主页</a>";
             $this->render('/common/notFound', array('title' => "非法操作", 'remark' => $location));
@@ -58,20 +59,19 @@ class ExchangeController extends Controller
         $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id)));
     }
 
-    
     /**
      * 执行兑换操作
      * @param integer $goodsId 兑换商品ID
      * @return json 积分兑换返回信息
      */
-    public function actionDoExchange($id = null)
+    public function actionDoExchange()
     {
         $userId = Yii::app()->user->id;
-        $id = Des::decrypt($id);
-        $data = $this->scoreService->doExchange($id, $userId);
+        $order = Yii::app()->request->getPost("Order", null);
+        $data = $this->scoreService->doExchange($userId, $order);
         echo json_encode($data);
     }
-    
+
     /**
      * 积分兑换首页
      */
@@ -80,8 +80,9 @@ class ExchangeController extends Controller
 //        $exchangeModel = new Exchange();
         $data = [];
         $data = $this->scoreService->showExchangeGoodsList();
-        var_dump($data);die;
-        $this->render('index',['data'=>$data]);
+        var_dump($data);
+        die;
+        $this->render('index', ['data' => $data]);
     }
 
 }
