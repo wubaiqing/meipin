@@ -127,5 +127,17 @@ class ScoreService extends AbstractService
         $result->sale_num = $goods->sale_num - 1;
         return $result;
     }
+    
+    
+    
+    public function showExchangeGoodsList($goodsNum = 40)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->limit = 40;
+        $criteria->offset = 0;
+        $criteria->order = ' id desc ';
+        $criteria->compare('is_delete', 0);
+        return Exchange::model()->findAll($criteria);
+    }
 
 }

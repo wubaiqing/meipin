@@ -75,10 +75,13 @@ class ExchangeController extends Controller
     /**
      * 积分兑换首页
      */
-//    public function actionIndex()
-//    {
+    public function actionIndex()
+    {
 //        $exchangeModel = new Exchange();
-//        $this->render('index',['exchange'=>$exchangeModel]);
-//    }
+        $data = [];
+        $data = $this->scoreService->showExchangeGoodsList();
+        var_dump($data);die;
+        $this->render('index',['data'=>$data]);
+    }
 
 }
