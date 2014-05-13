@@ -1,7 +1,7 @@
 <?php
 /**
- * 积分管理
- * @author liukui<liujickson@gmail.com>
+ * 用户管理
+ * @author wubaiqing <wubaiqing@vip.qq.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
@@ -10,54 +10,84 @@ class ScoreController extends Controller
     /**
      * @var string $layout
      */
-    public $layout = '//layouts/main';
+    public $layout = '//layouts/user';
 
     /**
-     * @var ScoreService 积分服务
+     * 验证码
      */
-    public $scoreService;
-
-    /**
-     * 初始化积分ScoreServer
-     */
-    public function init()
+    public function actions()
     {
-        parent::init();
-        $this->scoreService = new ScoreService();
+        return [
+            'captcha' => [
+                'class' => 'CCaptchaAction',
+                'backColor' => 0xFFFFFF,
+                'maxLength' => 4,
+                'minLength' => 4,
+                'height' => 40,
+                'width' => 120,
+            ]
+        ];
     }
 
     /**
-     * 积分首页
+     * 积分管理-积分明细列表
      */
     public function actionIndex()
     {
         // 用户ID
         $userId = Yii::app()->user->id;
-        // 使用模板
-        $layout = '//layouts/user';
-        // 获取用户信息
+
+        // 获取用户记录
         $user = User::getUser($userId);
-        // 获取用户积分
+        $array = [];
+        // 获取用户积分记录
         $score = Score::getScoreByUserId($userId);
+        
+        //var_dump($score);exit;
         $this->render('index', [
             'user' => $user,
             'score' => $score
         ]);
     }
 
+
     /**
-     * 积分列表ajax切换
+     * 积分管理-积分增加列表
      */
     public function actionAjax()
     {
         // 用户ID
         $userId = Yii::app()->user->id;
-        // 切换类型
         $type = $_POST['type'];
-        // 获取用户信息
+        // 获取用户记录
         $user = User::getUser($userId);
-        // 当前用户积分信息
-        $score = Score::getScoreByUserId($userId,$type);
+        // 获取用户积分记录
+        $score_arr = Score::getScoreByUserId($userId,$type);
+        foreach($score_arr as $score)
+        {
+        	$array['id'] = $score['id'];
+        	$array['score'] = $score['score'];
+        	$array['user_id'] = $score['user_id'];
+        	$array['reason'] = $score['reason'];
+        	$array['create_time'] = $score['create_time'];
+        }
+        //var_dump(json_encode($score));
         return json_encode($score);
+    }
+
+
+
+
+    /**
+     * 跳转首页
+     */
+    public function renderIndex($status, $message)
+    {
+        $this->render('loginSuccess', [
+            'status' => $status,
+            'message' => $message,
+            'url' => $this->createAbsoluteUrl('site/index')
+        ]);
+        Yii::app()->end();
     }
 }

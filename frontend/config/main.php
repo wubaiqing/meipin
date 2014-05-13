@@ -46,4 +46,6 @@ return [
         //每日签到积分增加
         'dayRegistionNum'=>10,
     ],
+
+                   
 ];
