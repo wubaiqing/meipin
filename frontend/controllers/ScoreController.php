@@ -39,9 +39,11 @@ class ScoreController extends Controller
 
         // 获取用户记录
         $user = User::getUser($userId);
+        $array = [];
         // 获取用户积分记录
         $score = Score::getScoreByUserId($userId);
-        //var_dump($score);
+        
+        //var_dump($score);exit;
         $this->render('index', [
             'user' => $user,
             'score' => $score
@@ -60,7 +62,15 @@ class ScoreController extends Controller
         // 获取用户记录
         $user = User::getUser($userId);
         // 获取用户积分记录
-        $score = Score::getScoreByUserId($userId,$type);
+        $score_arr = Score::getScoreByUserId($userId,$type);
+        foreach($score_arr as $score)
+        {
+        	$array['id'] = $score['id'];
+        	$array['score'] = $score['score'];
+        	$array['user_id'] = $score['user_id'];
+        	$array['reason'] = $score['reason'];
+        	$array['create_time'] = $score['create_time'];
+        }
         //var_dump(json_encode($score));
         return json_encode($score);
     }

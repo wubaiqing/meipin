@@ -3,7 +3,7 @@
     <div class="bor">
         <h4><span class="a">我的礼品</span></h4>
         <ul>
-            <li><a href="/user/score">我的积分</a></li>
+            <li><a href="/score">我的积分</a></li>
         </ul>
         <h4><span class="c">个人信息</span></h4>
         <ul>

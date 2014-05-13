@@ -29,14 +29,34 @@ class Score extends ActiveRecord implements IArrayable
         // 得到缓存数据
         $name = Yii::app()->cache->get($cacheKey);
         if (!empty($name)) {
-            return $name;
+            //return $name;
         }
 
-        $array = [];
-        $scoreAll = self::model()->findAll();
+        
+        //$scoreAll = self::model()->findAll();
+        $criteria = new CDbCriteria;
+        $criteria->select = '*';
+        $criteria->order = 'id DESC';
+        $criteria->limit = 300;
+        $criteria->compare('user_id', '=' . $user_id);
+        if($type=='add')
+        {
+        	$criteria->compare('score', '>=0');
+        }
+        elseif($type=='reduce')
+        {
+        	$criteria->compare('score', '<0');
+        }
+		//var_dump($criteria);exit;
+		$scores = Score::model()->findAll($criteria);
+		//var_dump($scores);exit;
+		$pagination = $this->paginate();
 
-        Yii::app()->cache->set($cacheKey, $scoreAll, 86400);
+        $data['data'] = $pagination->data;
+        $data['pager'] = $pagination->getPagination();
+        
+        Yii::app()->cache->set($cacheKey, $this, 86400);
 
-        return $scoreAll;
+        return $data;
     }
 }
