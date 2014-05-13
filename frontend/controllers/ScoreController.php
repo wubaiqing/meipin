@@ -32,22 +32,31 @@ class ScoreController extends Controller
     /**
      * 积分管理-积分明细列表
      */
-    public function actionIndex()
+    public function actionIndex($page = 1,$type='index')
     {
         // 用户ID
         $userId = Yii::app()->user->id;
 
         // 获取用户记录
         $user = User::getUser($userId);
+        $page = Yii::app()->request->getParam('page');
+        $page = $page ? $page :1;
+        $type = Yii::app()->request->getParam('type');
+        $type = $type?$type:'index';
+        //var_dump($type);exit;
+
         $array = [];
         // 获取用户积分记录
-        $score = Score::getScoreByUserId($userId);
+        $score = Score::getScoreByUserId($userId,$type,$page);
         
         //var_dump($score);exit;
         $this->render('index', [
             'user' => $user,
-            'score' => $score
+            'type' => $type,
+            'score' => $score['data'],
+            'pager' => $score['pager'],
         ]);
+        
     }
 
 

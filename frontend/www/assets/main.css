@@ -1216,7 +1216,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 /* */
 .goods-page{text-align:center;width:520px;height:50px;margin:20px auto 0px auto;}
 .goods-page li{float:left;padding:5px 10px 5px 10px;background-color:white;margin-left:5px;}
-.goods-page li a{font-size:20px;}
+.goods-page li a{font-size:12px;}
 .goods-page li a:hover{color:#BB3500;}
 .select a {
     color: #BB3500;

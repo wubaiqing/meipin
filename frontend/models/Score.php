@@ -32,12 +32,32 @@ class Score extends ActiveRecord implements IArrayable
             //return $name;
         }
 
-        
-        //$scoreAll = self::model()->findAll();
+		$scoreList = [];
+        $scorePaginate = Score::model()->dataList($user_id, $type)->paginate(null,$page);
+        $scoreList['pager'] = $scorePaginate->getPagination();
+        $scoreList['data'] = $scorePaginate->data;
+
+        // 设置缓存
+        Yii::app()->cache->set($cacheKey, [
+            'pager' => $scoreList['pager'],
+            'data' => $scoreList['data']
+        ], 1800);
+		//var_dump($scoreList);exit;
+        return $scoreList;
+    }
+    
+
+    /**
+     * 数据SQL条件
+     * @param  integer $cat 分类ID
+     * @return object  yii dbcriteria
+     */
+    public function dataList($user_id, $type)
+    {
         $criteria = new CDbCriteria;
         $criteria->select = '*';
         $criteria->order = 'id DESC';
-        $criteria->limit = 300;
+        $criteria->limit = 30;
         $criteria->compare('user_id', '=' . $user_id);
         if($type=='add')
         {
@@ -47,16 +67,25 @@ class Score extends ActiveRecord implements IArrayable
         {
         	$criteria->compare('score', '<0');
         }
-		//var_dump($criteria);exit;
-		$scores = Score::model()->findAll($criteria);
-		//var_dump($scores);exit;
-		$pagination = $this->paginate();
 
-        $data['data'] = $pagination->data;
-        $data['pager'] = $pagination->getPagination();
-        
-        Yii::app()->cache->set($cacheKey, $this, 86400);
+        $this->dbCriteria->mergeWith($criteria);
 
-        return $data;
-    }
+        return $this;
+    } 
+    
+    /**
+     * 
+     * */
+     public function getScoreTitle($type_id)
+     {
+     	$type_list = [
+     					1=>'签到增加',
+     					2=>'连续签到2天增加',
+     					3=>'连续签到3天增加',
+     					4=>'连续签到3天以上增加',
+     					5=>'商品兑换',
+     					6=>'积分兑换',
+     				];
+     	return $type_list[$type_id];
+     }   
 }
