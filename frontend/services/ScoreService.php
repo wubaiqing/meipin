@@ -9,7 +9,7 @@ class ScoreService extends AbstractService
 {
 
     /**
-     * 显示积分兑换首页
+     * 显示积分兑换详情页面
      * @param integer $goodsId 需要兑换的商品ID
      * @return type Description
      */
