@@ -71,5 +71,14 @@ class ExchangeController extends Controller
         $data = $this->scoreService->doExchange($id, $userId);
         echo json_encode($data);
     }
+    
+    /**
+     * 积分兑换首页
+     */
+//    public function actionIndex()
+//    {
+//        $exchangeModel = new Exchange();
+//        $this->render('index',['exchange'=>$exchangeModel]);
+//    }
 
 }
