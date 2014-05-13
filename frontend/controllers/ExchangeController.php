@@ -97,12 +97,9 @@ class ExchangeController extends Controller
      */
     public function actionIndex()
     {
-//        $exchangeModel = new Exchange();
         $data = [];
         $data = $this->scoreService->showExchangeGoodsList();
-        var_dump($data);
-        die;
-        $this->render('index', ['data' => $data]);
+        $this->render('index',['data'=>$data]);
     }
 
 }
