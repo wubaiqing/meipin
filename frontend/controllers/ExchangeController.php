@@ -56,7 +56,11 @@ class ExchangeController extends Controller
         }
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
-        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id)));
+        //设置兑换token
+        $cacheKey = ScoreService::getExchangeCacheKey($userId, $id);
+        $token = ScoreService::getToken();
+        Yii::app()->cache->set($cacheKey, $token, Constants::T_HALF_HOUR);
+        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id,'token'=>$token)));
     }
 
     /**
@@ -67,9 +71,25 @@ class ExchangeController extends Controller
     public function actionDoExchange()
     {
         $userId = Yii::app()->user->id;
-        $order = Yii::app()->request->getPost("Order", null);
+        $order = Yii::app()->request->getPost("Exchange", null);
         $data = $this->scoreService->doExchange($userId, $order);
-        echo json_encode($data);
+        if ($data->status) {
+            $this->render('/common/exSuccess', ['title' => $data->message, 'remark' => $data->remark]);
+        } else {
+            $this->render('/common/exFailure', ['title' => $data->message, 'remark' => $data->remark]);
+        }
+    }
+
+    public function actionMsg($sid = "", $f = "")
+    {
+        $index = "<a href='" . (empty($f) ? Yii::app()->createUrl("site/index") : $f) . "'>点击跳转</a>";
+        if (empty($sid)) {
+            $this->render("/common/notFound", ['title' => '您要的页面不存在', 'remark' => $index]);
+        } elseif ($sid == 'success') {
+            $this->render("/common/exSuccess", ['title' => '操作成功', 'remark' => $index]);
+        } elseif ($sid == 'failure') {
+            $this->render("/common/exFailure", ['title' => '操作失败', 'remark' => $index]);
+        }
     }
 
     /**

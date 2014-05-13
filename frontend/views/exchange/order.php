@@ -84,14 +84,16 @@
     </div>
     <div class="confcls">
         <h2><span></span>确认订单信息</h2>
-        <form accept-charset="UTF-8" action="<?php echo Yii::app()->createUrl("exchange/doExchange"); ?>" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="SHVx8KPwqtNhU3cDANmmmpahohXHTv/vPXXoA9iLS/o="></div>
+        <form accept-charset="UTF-8" action="<?php echo Yii::app()->createUrl("exchange/doExchange"); ?>" method="post">
             <div class="gift">
                 <p><span>礼品详情</span><span>花费积分</span></p>
                 <div class="">
                     <dl class="ginfo">
                         <dt>
                         <?php
-                        echo CHtml::hiddenField("Order['goods_id']", Des::encrypt($data->exchange->id));
+                        echo CHtml::hiddenField("Exchange[token]", $params['token']);
+                        echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data->exchange->id));
+                        echo CHtml::hiddenField("Exchange[city_id]", $data->userAddress->city->id);
                         $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data->exchange->id)));
                         ?>
                         <a href="<?php echo $goodsUrl; ?>" target="_blank">
@@ -100,7 +102,6 @@
                         </dt>
                         <dd>
                             <span class="maxh40"><a target="_blank" href="<?php echo $goodsUrl; ?>"><?php echo $data->exchange->name; ?></a></span>
-                            <input id="id" name="Exchange[id]" type="hidden" value="<?php echo Des::decrypt($data->exchange->id); ?>">
                         </dd>
                     </dl>
                     <dl class="jifn">
@@ -110,7 +111,7 @@
                 </div>
             </div>
             <div class="jadinfo" data-must_memo="0" data-memo="">
-                <span>备注信息：<input id="memo" name="Order['remark']" type="text"></span>
+                <span>备注信息：<input id="memo" name="Exchange[remark]" type="text"></span>
                 <input class="welfare_btn" type="submit" value="">
             </div>
         </form>  

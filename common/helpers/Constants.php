@@ -103,5 +103,10 @@ class Constants
      * @var integer 
      */
     const S_SCORE_NOT_ENOUGH = 10006;
+    /**
+     * 状态码【庫存不足】
+     * @var integer 
+     */
+    const S_STORE_NOT_ENOUGH = 10007;
 
 }

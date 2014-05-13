@@ -32,6 +32,11 @@ class DataResult implements \IteratorAggregate, \ArrayAccess
      */
     public $message = "";
     /**
+     * 数据返回描述
+     * @var string 
+     */
+    public $remark = "";
+    /**
      * 数据返回错误提示
      * @var string 
      */
