@@ -32,8 +32,6 @@ class ExchangeController extends Controller
      */
     public function actionExchangeIndex($id=0, $page = 1)
     {
-//        $userCount = ExchangeLog::model()->count(array('condition'=>'goods_id=:goods_id','params'=>array(":goods_id"=>3),'group'=>'user_id'));
-//        var_dump($userCount);die;
         $id = Des::decrypt($id);
         $data = $this->scoreService->showExchangeIndex($id, $page);
         if ($data->status == false) {

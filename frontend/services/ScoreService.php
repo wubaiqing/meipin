@@ -128,4 +128,14 @@ class ScoreService extends AbstractService
         return $result;
     }
 
+    /**
+     * 获取确认下单信息
+     * @param integer $goodsId 兑换商品ID
+     * @return DataResult 
+     */
+    public function confirmOrder($goodsId){
+        
+        //获取用户邮寄地址
+        
+    }
 }
