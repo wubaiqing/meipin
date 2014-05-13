@@ -112,10 +112,10 @@ class ScoreService extends AbstractService
             $exchangeLog->insert();
             $result->message = "兑换成功";
 
-            $userCount = ExchangeLog::model()->count(array('condition'=>'goods_id=:goods_id','params'=>array(":goods_id"=>$goodsId),'group'=>'user_id'));
+            $userCount = ExchangeLog::model()->count(array('condition' => 'goods_id=:goods_id', 'params' => array(":goods_id" => $goodsId), 'group' => 'user_id'));
             //更新兑换商品数量
-            Exchange::model()->updateByPk($goodsId, array('sale_num' => new CDbExpression('sale_num+1'),'user_count'=>$userCount));
-            
+            Exchange::model()->updateByPk($goodsId, array('sale_num' => new CDbExpression('sale_num+1'), 'user_count' => $userCount));
+
             $transaction->commit();
             $result->status = true;
         } catch (\Exception $ex) {
@@ -127,9 +127,7 @@ class ScoreService extends AbstractService
         $result->sale_num = $goods->sale_num - 1;
         return $result;
     }
-    
-    
-    
+
     public function showExchangeGoodsList($goodsNum = 40)
     {
         $criteria = new CDbCriteria();
@@ -145,9 +143,25 @@ class ScoreService extends AbstractService
      * @param integer $goodsId 兑换商品ID
      * @return DataResult 
      */
-    public function confirmOrder($goodsId){
-        
+    public function getOrderdetail($goodsId, $userId)
+    {
+        $result = new DataResult();
+
         //获取用户邮寄地址
-        
+        $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
+        //查询城市
+        if (!empty($userAddress)) {
+            $provinceId = City::getProvinceId($userAddress->city_id);
+            $city = City::model()->findByPk($userAddress->city_id);
+            $province = City::model()->findByPk($provinceId);
+            $userAddress->city = $city;
+            $userAddress->province = $province;
+        }
+        $result->userAddress = $userAddress;
+        //查询兑换商品数据
+        $goods = Exchange::model()->findByPk($goodsId);
+        $result->exchange = $goods;
+        return $result;
     }
+
 }

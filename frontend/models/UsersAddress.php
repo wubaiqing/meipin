@@ -8,6 +8,7 @@
 class UsersAddress extends ActiveRecord implements IArrayable
 {
     public $province;
+    public $city;
     /**
      * 表名
      * @return string

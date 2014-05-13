@@ -25,15 +25,9 @@ h2 span{float:left;font-weight: bold;}
 .pt p{clear:none}
 /* 浮动属性 */
 .left,.center,.l,.right,.r{display:inline;float:left;}
-.right,.r{float:right;}
-#contentA{width:980px;}/*页面属性 */
 .hid{display: none;}
-
-
-
-
-
-#contentA{background:#fff url(../images/bg-y.png) repeat-y;padding-bottom:50px;}
+.right,.r{float:right;}
+#contentA{width:980px;height: auto;}/*页面属性 */
 #contentA .left{width:330px;}
 #contentA .left .pt{width:290px;padding:20px;border-bottom: 1px solid #e6e6e6;position: relative;}
 #contentA .left .pt img{width:290px;height:190px;margin-bottom:10px;}
@@ -281,21 +275,6 @@ h2 span{float:left;font-weight: bold;}
 .tb-sticky-tabbar .tab-r-a{display:block;cursor: pointer;}
 #imgbox{line-height: 20px;padding-top: 10px;float: left;width:680px;overflow: hidden;}
 
-/*淘宝评论*/
-.tbplun{line-height:24px;text-align:right;padding-top: 20px;width: 610px;display: none;}
-.tbplun p{line-height: 30px;background:#f5f5f5;text-align:center;}
-.tbplun li{border-bottom:1px dotted #ccc;padding:10px;color:#999;text-align:left;}
-.tbplun li em{color:#cc0000;font:800 14px/24px "";}
-.tbplun li p{text-align:left;line-height: 20px;background:none;margin:10px 0;font-size:14px;color:#666;}
-.tbplun .ckgd{margin-top:5px;color:#09c;}.tbplun .ckgd:hover{color:#cc0000;}
-
-/*晒单分页*/
-.list_page{float:none;border: none;font: 12px/22px "";clear:left;padding-top: 20px;}
-.list_page span,.list_page a{ padding:0 10px; height:22px; display:inline-block;margin-left: 5px;}
-.list_page span{color:#fff; background:#c31403;border:1px solid #c31403;}
-.list_page span.dd{background: none;color:#666;border: none;}
-.list_page a,.list_page a:hover,.list_page span.selected{border:1px solid #999;color:#666;background:#fff;text-decoration: none;}
-.list_page span.selected{color:#999;border:1px solid #ccc;}
 
 #dialog_empty_deal_plimg,#dialog_empty_deal_plimg .diginfo{padding:0;margin:0;background: #fff;border:none;}
 #dialog_empty_deal_plimg .diginfo{padding:20px;width: 680px;overflow: hidden;}

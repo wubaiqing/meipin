@@ -47,16 +47,18 @@ class ExchangeController extends Controller
     public function actionOrder()
     {
         $id = Yii::app()->request->getPost("id", 0);
+         $userId = Yii::app()->user->id;
         if (empty($id)) {
             $location = "点击跳转到<a href='/' style='color:blue;'>主页</a>";
             $this->render('/common/notFound', array('title' => "非法操作", 'remark' => $location));
             Yii::app()->end();
         }
         //加載数据
-        $data = array();
+        $data = $this->scoreService->getOrderdetail($id, $userId);
         $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id)));
     }
 
+    
     /**
      * 执行兑换操作
      * @param integer $goodsId 兑换商品ID
