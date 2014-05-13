@@ -8,7 +8,9 @@
     .banner { position: relative; overflow: auto; }
     .banner li { list-style: none; }
     .banner ul li { float: left; }
-    .banner .dots {position:absolute;left:0;right:0;bottom:20px;display:inline; }
+    .banner .dots {position:absolute;bottom:10px;right:10px;}
+    .banner .dots li {display:inline-block;width:10px;height:10px;margin:0 4px;text-indent:-999em;border:2px solid #fff;border-radius:6px;cursor:pointer;opacity:4}
+    .banner .dots li.active{background:#fff;opacity:1}
 </style>
 <script src="/assets/js/unslider.min.js"></script>
 <div id="content" class="wp">
