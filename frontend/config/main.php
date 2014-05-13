@@ -18,7 +18,7 @@ return [
                 'index.html' => 'site/index',
                 'out/<id:.+?>.html' => 'site/out',
                 'site/search' => 'site/search',
-                'exchange/<id:.+?>.html' => 'exchange/index',
+                'exchange/<id:.+?>.html' => 'exchange/exchangeIndex',
                 'exchange/<action:\w+>' => 'exchange/<action>',
             ],
         ],
