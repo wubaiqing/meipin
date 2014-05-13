@@ -50,9 +50,13 @@ class ScoreController extends Controller
      */
     public function actionAjax()
     {
+        // 用户ID
         $userId = Yii::app()->user->id;
+        // 切换类型
         $type = $_POST['type'];
+        // 获取用户信息
         $user = User::getUser($userId);
+        // 当前用户积分信息
         $score = Score::getScoreByUserId($userId,$type);
         return json_encode($score);
     }
