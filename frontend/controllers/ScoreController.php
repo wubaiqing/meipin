@@ -1,66 +1,63 @@
 <?php
-
 /**
- * ��ֲ���������
+ * 积分管理
  * @author liukui<liujickson@gmail.com>
- * @copyright Copyright (c) 2014 ��Ʒ
+ * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
 class ScoreController extends Controller
 {
-
     /**
-     * @var string $layout �̳���ͼ
+     * @var string $layout
      */
     public $layout = '//layouts/main';
 
     /**
-     * ���ҵ������
-     * @var ScoreService 
+     * @var ScoreService 积分服务
      */
     public $scoreService;
 
+    /**
+     * 初始化积分ScoreServer
+     */
     public function init()
     {
         parent::init();
-
         $this->scoreService = new ScoreService();
     }
 
     /**
-     * ��ֶһ���ҳ
-    /**
-     * ��ֹ���-�����ϸ�б�
+     * 积分首页
      */
     public function actionIndex()
     {
-        // �û�ID
+        // 用户ID
         $userId = Yii::app()->user->id;
+        // 使用模板
         $layout = '//layouts/user';
-        // ��ȡ�û���¼
+        // 获取用户信息
         $user = User::getUser($userId);
-        // ��ȡ�û���ּ�¼
+        // 获取用户积分
         $score = Score::getScoreByUserId($userId);
-        //var_dump($score);
         $this->render('index', [
             'user' => $user,
             'score' => $score
         ]);
     }
 
-
     /**
-     * ��ֹ���-��������б�
+     * 积分列表ajax切换
      */
     public function actionAjax()
     {
-        // �û�ID
+        // 用户ID
         $userId = Yii::app()->user->id;
+        // 切换类型
         $type = $_POST['type'];
-        // ��ȡ�û���¼
+        // 获取用户信息
         $user = User::getUser($userId);
-        // ��ȡ�û���ּ�¼
+        // 当前用户积分信息
         $score = Score::getScoreByUserId($userId,$type);
-        //var_dump(json_encode($score));
         return json_encode($score);
     }
+}

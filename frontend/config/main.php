@@ -20,6 +20,7 @@ return [
                 'site/search' => 'site/search',
                 'exchange/<id:.+?>.html' => 'exchange/exchangeIndex',
                 'exchange/<action:\w+>' => 'exchange/<action>',
+                'score/index' => 'exchange/index',
             ],
         ],
         'user' => [
