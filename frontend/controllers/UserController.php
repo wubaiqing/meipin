@@ -179,6 +179,45 @@ class UserController extends Controller
         ]);
     }
 
+    public function actionAjaxUserAddressSave()
+    {
+        $result = new DataResult();
+        $userId = Yii::app()->user->id;
+        if (empty($userId)) {
+            $result->status = false;
+            $result->message = "请先登录";
+            $result->location = Yii::app()->createUrl("user/login");
+            $result->code = Constants::S_NOT_LOGIN;
+            echo json_encode($result);
+            Yii::app()->end();
+        }
+        $model = UsersAddress::getModel($userId);
+        // 省份，城市
+        $city = [];
+        $province = City::getByParentId(0);
+        $model->province = City::getProvinceId($model->city_id);
+        if ($model->province > 0) {
+            $city = City::getCityList($model->province);
+        }
+
+        if (isset($_POST['UsersAddress'])) {
+            UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
+            if ($model->save()) {
+                $result->message = "保存成功";
+//                $result->address = $province[$_POST['UsersAddress']['province']]."-".$city[$_POST['UsersAddress']['city_id']]."-".$model->address;
+                $result->address_id = Des::encrypt($model->id);
+                echo json_encode($result);
+                Yii::app()->end();
+            }
+        }
+
+        $result->status = false;
+        $result->message = "保存失败";
+        $result->code = Constants::S_OPT_ERR;
+        echo json_encode($result);
+        Yii::app()->end();
+    }
+
     /**
      * 跳转首页
      */
@@ -208,15 +247,15 @@ class UserController extends Controller
             Yii::app()->end();
         }
         //验证
-        $scoreLog = ScoreLog::model()->find(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId],'order'=>'created_at desc'));
-        if(!empty($scoreLog) && date("Y-m-d",$scoreLog->created_at) == date("Y-m-d",time())){
+        $scoreLog = ScoreLog::model()->find(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId], 'order' => 'created_at desc'));
+        if (!empty($scoreLog) && date("Y-m-d", $scoreLog->created_at) == date("Y-m-d", time())) {
             $result->status = false;
             $result->code = Constants::S_OPT_REPEAT;
             $result->message = "您已经签过到了";
             echo json_encode($result);
             Yii::app()->end();
         }
-        $result = $scoreServide->updateScore($userId, $num, ScoreLog::S_OPTTYPE_PLUS,"每日签到");
+        $result = $scoreServide->updateScore($userId, $num, ScoreLog::S_OPTTYPE_PLUS, "每日签到");
         echo json_encode($result);
     }
 

@@ -62,9 +62,9 @@ class ScoreService extends AbstractService
     /**
      * 生成token
      */
-    public static function getToken()
+    public static function getToken($prefix = '')
     {
-        return md5(microtime() . "-" . session_id());
+        return md5($prefix . "-" . microtime() . "-" . session_id());
     }
 
     /**
@@ -78,6 +78,7 @@ class ScoreService extends AbstractService
     {
         $order = self::formatPostValue($order);
         $result = new DataResult();
+        $result->remark = '您可以！<a href="' . Yii::app()->createUrl("exchange/index") . '">查看更多</a>兑换商品';
         $result->location = "";
         if (empty($userId)) {
             $result->status = false;
@@ -130,29 +131,39 @@ class ScoreService extends AbstractService
         if ($goods->start_time > $nowTime) {
             $result->status = false;
             $result->code = Constants::S_ACT_NO_START;
-            $result->message = "对不起，活动还未开始";
+            $result->message = "真遗憾！活动还未开始";
             return $result;
         }
         if ($goods->end_time <= $nowTime) {
             $result->status = false;
             $result->code = Constants::S_ACT_ENDED;
-            $result->message = "对不起，活动已经结束";
+            $result->message = "真遗憾！活动已经结束";
             return $result;
         }
         $user = User::model()->findByPk($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
             $result->status = false;
             $result->code = Constants::S_STORE_NOT_ENOUGH;
-            $result->message = "对不起，没有更多库存了";
-            $result->remark = '您可以！<a href="' . Yii::app()->createUrl("site/index") . '">查看更多</a>兑换商品';
+            $result->message = "真遗憾！没有更多库存了";
+            $result->remark = '您可以！<a href="' . Yii::app()->createUrl("exchange/index") . '">查看更多</a>兑换商品';
             return $result;
         }
+        //配送地址
+        $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
+        if (empty($userAddress)) {
+            $result->status = false;
+            $result->code = Constants::S_STORE_NOT_ENOUGH;
+            $result->message = "配送地址不存在，请补充";
+            $result->remark = '填写<a href="' . Yii::app()->createUrl("user/address") . '">配送地址</a>';
+            return $result;
+        }
+
         //判断库存
         if ($user->score < $goods->integral) {
             $result->status = false;
             $result->code = Constants::S_SCORE_NOT_ENOUGH;
-            $result->message = "对不起，您的积分不足以兑换此商品";
-            $result->remark = '您当前的积分不足，每天签到可以获取更多积分哦！<a href="' . Yii::app()->createUrl("site/index") . '">返回主页</a>';
+            $result->message = "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品";
+            $result->remark = '您当前的积分不足，每天签到可以获取更多积分哦！我要<a class="blue" href="' . Yii::app()->createUrl("exchange/index") . '">签到</a>';
             return $result;
         }
 
@@ -161,8 +172,6 @@ class ScoreService extends AbstractService
         try {
             //更新用戶积分
             User::model()->updateByPk($userId, array('score' => new CDbExpression('score-' . $goods->integral)));
-            //配送地址
-            $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->user_id = $userId;
@@ -219,16 +228,25 @@ class ScoreService extends AbstractService
     public function getOrderdetail($goodsId, $userId)
     {
         $result = new DataResult();
-        //获取用户邮寄地址
-        $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
-        //查询城市
-        if (!empty($userAddress)) {
-            $provinceId = City::getProvinceId($userAddress->city_id);
-            $city = City::model()->findByPk($userAddress->city_id);
-            $province = City::model()->findByPk($provinceId);
-            $userAddress->city = $city;
-            $userAddress->province = $province;
+        if (!preg_match("/^\d+$/", $goodsId)) {
+            $remark = "<a href='" . Yii::app()->createUrl("exchange/index") . "' style='color:blue;'>点击跳转</a>到主页";
+            $result->status = false;
+            $result->message = "商品信息不存在";
+            $result->remark = $remark;
+            return $result;
         }
+
+        //获取用户邮寄地址
+        $userAddress = UsersAddress::getModel($userId);
+        // 省份，城市
+        $city = [];
+        $province = City::getByParentId(0);
+        $userAddress->province = City::getProvinceId($userAddress->city_id);
+        if ($userAddress->province > 0) {
+            $city = City::getCityList($userAddress->province);
+        }
+        $result->province = $province;
+        $result->city = $city;
         $result->userAddress = $userAddress;
         //查询兑换商品数据
         $goods = Exchange::model()->findByPk($goodsId);

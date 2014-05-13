@@ -8,9 +8,11 @@
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
         <link rel="stylesheet" type="text/css"  href="/assets/main.css?v=wubaiqing-1.0.1" />
-        <!--<link rel="stylesheet" type="text/css"  href="/assets/css/exchange.css?v=wubaiqing-1.0.2" />-->
+        <link rel="stylesheet" type="text/css"  href="/assets/css/exchange.css?v=wubaiqing-1.0.2" />
         <script type="text/javascript" src="/assets/js/78df5a3f36d83192e43966bc05d643b2.js?v=1.0.1"></script>
         <script type="text/javascript" src="/assets/js/tuanpub3.0.min.js?v=1.0.1"></script>
+        <script type="text/javascript" src="/assets/js/user.js?v=1.0.2"></script>
+
     </head>
     <body>
         <?php echo $content;?>

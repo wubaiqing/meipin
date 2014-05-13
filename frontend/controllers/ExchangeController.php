@@ -49,18 +49,19 @@ class ExchangeController extends Controller
         $id = Yii::app()->request->getQuery("id", 0);
         $id = Des::decrypt($id);
         $userId = Yii::app()->user->id;
-        if (empty($id)) {
-            $location = "点击跳转到<a href='/' style='color:blue;'>主页</a>";
-            $this->render('/common/notFound', array('title' => "非法操作", 'remark' => $location));
-            Yii::app()->end();
-        }
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
+
+        if (!$data->status) {
+            $this->render('/common/notFound', array('title' => $data->message, 'remark' => $data->remark));
+            Yii::app()->end();
+        }
+
         //设置兑换token
         $cacheKey = ScoreService::getExchangeCacheKey($userId, $id);
         $token = ScoreService::getToken();
         Yii::app()->cache->set($cacheKey, $token, Constants::T_HALF_HOUR);
-        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id,'token'=>$token)));
+        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id, 'token' => $token)));
     }
 
     /**
@@ -99,7 +100,7 @@ class ExchangeController extends Controller
     {
         $data = [];
         $data = $this->scoreService->showExchangeGoodsList();
-        $this->render('index',['data'=>$data]);
+        $this->render('index', ['data' => $data]);
     }
 
 }
