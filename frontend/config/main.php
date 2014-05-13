@@ -43,5 +43,7 @@ return [
             //是否使用系统缓存
             'enableCache' => true,
         ),
+        //每日签到积分增加
+        'dayRegistionNum'=>10,
     ],
 ];

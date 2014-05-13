@@ -41,6 +41,11 @@ class DataResult implements \IteratorAggregate, \ArrayAccess
      * @var string 
      */
     public $errorMsg = "";
+    /**
+     * 调转地址
+     * @var string 
+     */
+    public $location = "";
 
     /**
      * 强制将对象转换为数组

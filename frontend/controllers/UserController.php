@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class UserController extends Controller
 {
+
     /**
      * @var string $layout
      */
@@ -37,15 +39,15 @@ class UserController extends Controller
         return array_merge([
             [
                 'allow',
-		'actions' => ['login', 'register'],
-		'users' => ['*'],
+                'actions' => ['login', 'register'],
+                'users' => ['*'],
             ],
-	    [
-		'deny',
-		'actions' => ['index', 'password', 'logout', 'info', 'address'],
-		'users' => ['?'],
-	    ]
-        ],parent::accessRules());
+            [
+                'deny',
+                'actions' => ['index', 'password', 'logout', 'info', 'address'],
+                'users' => ['?'],
+            ]
+                ], parent::accessRules());
     }
 
     /**
@@ -62,7 +64,6 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
-
 
     /**
      * 用户登陆
@@ -147,7 +148,7 @@ class UserController extends Controller
         }
         $this->render('register', ['model' => $model]);
     }
-    
+
     /**
      * 用户注册
      */
@@ -165,7 +166,7 @@ class UserController extends Controller
         }
 
         if (isset($_POST['UsersAddress'])) {
-            UsersAddress::setAttr($userId, $_POST['UsersAddress'],$model);
+            UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
             if ($model->save()) {
                 $this->renderIndex('yes', '用户地址修改成功');
             }
@@ -191,4 +192,32 @@ class UserController extends Controller
         ]);
         Yii::app()->end();
     }
+
+    public function actionDayRegistion()
+    {
+        $userId = Yii::app()->user->id;
+        $num = Yii::app()->params['dayRegistionNum'];
+        $scoreServide = new ScoreService();
+        $result = new DataResult();
+        if (empty($userId)) {
+            $result->status = false;
+            $result->code = Constants::S_NOT_LOGIN;
+            $result->message = "请先登录";
+            $result->location = Yii::app()->createUrl('user/login');
+            echo json_encode($result);
+            Yii::app()->end();
+        }
+        //验证
+        $scoreLog = ScoreLog::model()->find(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId],'order'=>'created_at desc'));
+        if(!empty($scoreLog) && date("Y-m-d",$scoreLog->created_at) == date("Y-m-d",time())){
+            $result->status = false;
+            $result->code = Constants::S_OPT_REPEAT;
+            $result->message = "您已经签过到了";
+            echo json_encode($result);
+            Yii::app()->end();
+        }
+        $result = $scoreServide->updateScore($userId, $num, ScoreLog::S_OPTTYPE_PLUS,"每日签到");
+        echo json_encode($result);
+    }
+
 }

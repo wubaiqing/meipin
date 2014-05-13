@@ -103,10 +103,34 @@ class Constants
      * @var integer 
      */
     const S_SCORE_NOT_ENOUGH = 10006;
+
     /**
      * 状态码【庫存不足】
      * @var integer 
      */
     const S_STORE_NOT_ENOUGH = 10007;
+
+    /**
+     * 状态码【正整数】
+     * @var integer 
+     */
+    const S_NUMBER_POSITIVE = 10008;
+
+    /**
+     * 状态码【数据库更新错误】
+     * @var integer 
+     */
+    const S_DB_UPDATE_ERR = 10008;
+
+    /**
+     * 状态码【操作错误】
+     * @var integer 
+     */
+    const S_OPT_ERR = 10009;
+    /**
+     * 状态码【重复操作】
+     * @var integer 
+     */
+    const S_OPT_REPEAT = 10009;
 
 }

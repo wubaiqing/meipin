@@ -236,4 +236,55 @@ class ScoreService extends AbstractService
         return $result;
     }
 
+    /**
+     * 积分增加
+     * @param integer $userId 用户ID
+     * @param integer $num 积分数目
+     * @param integer $optType 操作方式；1：增加；2：减少
+     * @param string $remark 备注
+     * @return DataResult 
+     */
+    public function updateScore($userId, $num, $optType, $remark = '')
+    {
+        $result = new DataResult();
+        if (!preg_match("/^\d+$/", $num)) {
+            $result->status = false;
+            $result->code = Constants::S_NUMBER_POSITIVE;
+            $result->message = "积分必须是正整数";
+            return $result;
+        }
+        if (!in_array($optType, array(1, 2))) {
+            $result->status = false;
+            $result->code = Constants::S_OPT_ERR;
+            $result->message = "积分操作类型错误";
+            return $result;
+        }
+
+        $transaction = Yii::app()->db->beginTransaction();
+        try {
+            $user = User::model()->findByPk($userId);
+            $user->score = ($user->score + $num);
+            $user->update(array('score'));
+
+            //
+            $now = time();
+            $scoreLog = new ScoreLog();
+            $scoreLog->user_id = $userId;
+            $scoreLog->opt_type = ScoreLog::S_OPTTYPE_PLUS;
+            $scoreLog->created_at = $now;
+            $scoreLog->remark = $remark;
+            $scoreLog->num = $num;
+            $scoreLog->insert();
+            $result->status = true;
+            $result->message = "操作成功";
+            $transaction->commit();
+            return $result;
+        } catch (Exception $exc) {
+            $transaction->rollback();
+            $result->status = false;
+            $result->code = Constants::S_DB_UPDATE_ERR;
+            return $result;
+        }
+    }
+
 }
