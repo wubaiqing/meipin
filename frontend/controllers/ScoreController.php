@@ -17,6 +17,9 @@ class ScoreController extends Controller
      */
     public $scoreService;
 
+    /**
+     * 初始化积分ScoreServer
+     */
     public function init()
     {
         parent::init();
@@ -28,9 +31,13 @@ class ScoreController extends Controller
      */
     public function actionIndex()
     {
+        // 用户ID
         $userId = Yii::app()->user->id;
+        // 使用模板
         $layout = '//layouts/user';
+        // 获取用户信息
         $user = User::getUser($userId);
+        // 获取用户积分
         $score = Score::getScoreByUserId($userId);
         $this->render('index', [
             'user' => $user,
