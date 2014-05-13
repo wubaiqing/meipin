@@ -42,7 +42,7 @@ class ExchangeController extends Controller
             $remark = "您可以查看<a href='" . $moreUrl . "'  style='color:blue;'>更多</a>商品";
             $this->render('/common/notFound', array('title' => $data->message, 'remark' => $remark));
         } else {
-            $this->render('index', array('data' => $data, 'params' => array('goodsId' => $id)));
+            $this->render('exchangeIndex', array('data' => $data, 'params' => array('goodsId' => $id)));
         }
     }
 
