@@ -322,23 +322,4 @@ class ScoreService extends AbstractService
             return $result;
         }
     }
-
-    public function getDayRegistion($userId)
-    {
-        //验证
-        $scoreLog = ScoreLog::model()->findAll(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId], 'group' => 'create_date desc', 'limit' => 3));
-        $logDateList = array();
-        foreach ($scoreLog as $log) {
-            
-        }
-        foreach ($scoreLog as $log) {
-            if (!empty($log) && date("Y-m-d", $log->created_at) == date("Y-m-d", time())) {
-                $result->status = false;
-                $result->code = Constants::S_OPT_REPEAT;
-                $result->message = "您已经签过到了";
-                return $result;
-            }
-        }
-    }
-
 }
