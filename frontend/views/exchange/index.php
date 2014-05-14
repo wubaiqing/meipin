@@ -140,23 +140,31 @@
 
 <script type="text/javascript">
     $(function () {
-        $(document).on('click', '#qiandao', function () {
+
+        $('#qiandao').live('click',function(){
             var signApi = '/user/DayRegistion';
-            $.getJSON(signApi).done(function (result) {
-                alert(result.message);
-                if (result.status == false) {
-                    if(result.status != ''){
-                        window.location.href = '/user/login'
-                    }
-                    return true;
-                } else {
-                    return true;
-                }
-            }).fail(function () {
-                alert('签到失败，请刷新页面重试');
-                return false;
+            $.getJSON(signApi).done(function(){
+                alert(111222);
             })
         });
+
+//        $(document).on('click', '#qiandao', function () {
+//            var signApi = '/user/DayRegistion';
+//            $.getJSON(signApi).done(function (result) {
+//                alert(result.message);
+//                if (result.status == false) {
+//                    if(result.location != ''){
+//                        window.location.href = '/user/login'
+//                    }
+//                    return false;
+//                } else {
+//                    return true;
+//                }
+//            }).fail(function () {
+//                alert('签到失败，请刷新页面重试');
+//                return false;
+//            })
+//        });
 
 
         $('.banner').unslider({
