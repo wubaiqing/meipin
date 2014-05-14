@@ -74,7 +74,7 @@ class Score extends ActiveRecord implements IArrayable
 
     /**
      * 
-     * */
+     */
     public static function getScoreTitle($type_id)
     {
         $type_list = [
