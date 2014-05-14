@@ -103,7 +103,8 @@ class ExchangeController extends Controller
     {
         $data = [];
         $data = $this->scoreService->showExchangeGoodsList();
-        $this->render('index', ['data' => $data]);
+
+        $this->render('index', ['data' => $data['goods'],'pager'=>$data['pages']]);
     }
 
 }
