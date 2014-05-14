@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css"  href="/assets/css/score/score.css?v=201405071000" />
-<script type="text/javascript" src="/assets/js/score/jquery-1.4.2.min.js?v=201405071000"></script>
+<!--<script type="text/javascript" src="/assets/js/score/jquery-1.4.2.min.js?v=201405071000"></script>-->
         <div class="box admin hei">
             <h3><span>我的积分</span></h3><span class="t_l"></span><span class="t_r"></span>
             <div class="info" id="score">
