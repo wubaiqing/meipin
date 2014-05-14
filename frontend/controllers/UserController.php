@@ -245,7 +245,7 @@ class UserController extends Controller
             echo json_encode($result);
             Yii::app()->end();
         }
-        $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
+        $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到",'签到成功');
         echo json_encode($result);
     }
 

@@ -262,7 +262,7 @@ class ScoreService extends AbstractService
      * @param string $remark 备注
      * @return DataResult 
      */
-    public function updateScore($userId, $optType, $remark = '')
+    public function updateScore($userId, $optType, $remark = '',$success='操作成功')
     {
         $scoreList = Yii::app()->params['dayRegistionNum'];
         $result = new DataResult();
@@ -311,7 +311,7 @@ class ScoreService extends AbstractService
             $scoreLog->num = $num;
             $scoreLog->insert();
             $result->status = true;
-            $result->message = "操作成功";
+            $result->message = $success;
             $transaction->commit();
             return $result;
         } catch (Exception $exc) {
