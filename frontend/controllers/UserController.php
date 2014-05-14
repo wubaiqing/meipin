@@ -221,13 +221,14 @@ class UserController extends Controller
     /**
      * 跳转首页
      */
-    public function renderIndex($status, $message)
+    public function renderIndex($status, $message, $url)
     {
+	$url = $url ?: $this->createAbsoluteUrl('site/index');
         $this->layout = '//layouts/userBase';
         $this->render('loginSuccess', [
             'status' => $status,
             'message' => $message,
-            'url' => $this->createAbsoluteUrl('site/index')
+	    'url' => $url
         ]);
         Yii::app()->end();
     }
