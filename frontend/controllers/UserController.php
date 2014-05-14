@@ -47,7 +47,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-                ], parent::accessRules());
+        ], parent::accessRules());
     }
 
     /**
@@ -68,19 +68,19 @@ class UserController extends Controller
     /**
      * 用户登陆
      */
-    public function actionLogin()
+    public function actionLogin($referer = '')
     {
         if (!Yii::app()->user->isGuest) {
             $this->redirect(['site/index']);
             Yii::app()->end();
         }
-        $this->layout = '//layouts/userBase';
 
+        $this->layout = '//layouts/userBase';
         $model = new LoginForm();
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->login()) {
-                $this->renderIndex('yes', '登录成功');
+                $this->renderIndex('yes', '登录成功', $referer);
                 Yii::app()->end();
             }
         }
@@ -221,9 +221,11 @@ class UserController extends Controller
     /**
      * 跳转首页
      */
-    public function renderIndex($status, $message, $url)
+    public function renderIndex($status, $message, $url = '')
     {
-        $url = $url ?: $this->createAbsoluteUrl('site/index');
+        if (empty($url)) {
+            $url = $this->createAbsoluteUrl('user/login');
+        }
         $this->layout = '//layouts/userBase';
         $this->render('loginSuccess', [
             'status' => $status,
