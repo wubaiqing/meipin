@@ -59,9 +59,12 @@ class ExchangeController extends Controller
 
         //设置兑换token
         $cacheKey = ScoreService::getExchangeCacheKey($userId, $id);
-        $token = ScoreService::getToken();
-        Yii::app()->cache->set($cacheKey, $token, Constants::T_HALF_HOUR);
-        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id, 'token' => $token)));
+        $dataToken = Yii::app()->cache->get($cacheKey);
+        if (empty($dataToken)) {
+            $dataToken = ScoreService::getToken();
+            Yii::app()->cache->set($cacheKey, $dataToken, Constants::T_HALF_HOUR);
+        }
+        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id, 'token' => $dataToken)));
     }
 
     /**

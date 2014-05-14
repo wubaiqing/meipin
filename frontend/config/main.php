@@ -18,9 +18,9 @@ return [
                 'index.html' => 'site/index',
                 'out/<id:.+?>.html' => 'site/out',
                 'site/search' => 'site/search',
-                'score/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
-                'score/<action:\w+>' => 'exchange/<action>',
-                'score/index' => 'exchange/index',
+                'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
+                'exchange/<action:\w+>' => 'exchange/<action>',
+                'exchange/index' => 'exchange/index',
             ],
         ],
         'user' => [
