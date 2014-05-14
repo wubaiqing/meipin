@@ -285,21 +285,20 @@ class ScoreService extends AbstractService
         $transaction = Yii::app()->db->beginTransaction();
         $now = time();
         try {
-            $num = 0;
+            $num = 1;
             if (isset($scoreList[$user->dr_count])) {
                 $num = $scoreList[$user->dr_count];
             } else if ($user->dr_count >= 3) {
                 $num = 3;
             }
-            //计算签到次数
-            $user->score = ($user->score + $num);
-            $user->dr_count = $user->dr_count + 1;
-            $user->last_dr_time = $now;
-//        var_dump(date("Y-m-d", $user->last_dr_time)."-".strtotime(date("Y-m-d", $user->last_dr_time)) ."-". strtotime('-1 day 00:00:00'));die;
             //如果断签则恢复
             if (strtotime(date("Y-m-d", $user->last_dr_time)) < (strtotime('+0 day 00:00:00') - 1)) {
-                $user->dr_count = 1;
+                $user->dr_count = 0;
+                $num = 1;
             }
+            $user->last_dr_time = $now;
+            $user->score = ($user->score + $num);
+            $user->dr_count = $user->dr_count + 1;
 
             $user->update(array('score', 'dr_count', 'last_dr_time'));
             //
