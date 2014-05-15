@@ -12,7 +12,7 @@ class ExchangeController extends Controller
     /**
      * @var string $layout 继承视图
      */
-    public $layout = '//layouts/main';
+    public $layout = '//layouts/exchange';
 
     /**
      * 积分业务处理类

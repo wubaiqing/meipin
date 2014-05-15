@@ -148,7 +148,10 @@
             $.get(signApi,{},function (result) {
                 alert(result.data.message);
                 if (result.status == false) {
-                    window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index');?>';
+                    //未登录
+                    if(!result.data.isLogin){
+                        window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index');?>';
+                    }
                     return false;
                 } else {
                     return true;
