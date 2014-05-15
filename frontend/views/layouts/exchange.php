@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css"  href="/assets/css/exchange.css?v=wubaiqing-1.0.2" />
         <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="/assets/js/unslider.min.js?v=1.0.1"></script>
-
+        <script type="text/javascript" src="/assets/js/jtzdm_lazyload.js?v=1.0.1"></script>
     </head>
     <body>
         <div id="header">
