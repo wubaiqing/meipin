@@ -4,54 +4,54 @@ class Controller extends CController
 {
     public $layout = '//layouts/column2';
 
-    public $menu = array(
-        array(
+    public $menu = [
+	[
             'label' => '添加商品',
-            'items' => array(
-                array('url' => 'goods/create&goodsType=0', 'label' => '添加淘宝'),
-                array('url' => 'goods/create&goodsType=1', 'label' => '添加B2C'),
-                array('url' => 'goods/create&goodsType=2', 'label' => '添加活动'),
-            )
-        ),
-        array(
+	    'items' => [
+		['url' => 'goods/create&goodsType=0', 'label' => '添加淘宝'],
+		['url' => 'goods/create&goodsType=1', 'label' => '添加B2C'],
+		['url' => 'goods/create&goodsType=2', 'label' => '添加活动'],
+	    ]
+	],
+	[
             'label' => '商品管理',
-            'items' => array(
-                array('url' => 'bookmark/admin', 'label' => '收藏夹'),
-                array('url' => 'goods/admin', 'label' => '商品管理'),
-                array('url' => 'category/create', 'label' => '创建分类'),
-                array('url' => 'category/admin', 'label' => '分类管理'),
-            )
-        ),
-        array(
+	    'items' => [
+		['url' => 'bookmark/admin', 'label' => '收藏夹'],
+		['url' => 'goods/admin', 'label' => '商品管理'],
+		['url' => 'category/create', 'label' => '创建分类'],
+		['url' => 'category/admin', 'label' => '分类管理'],
+	    ]
+	],
+	[
             'label' => '商城管理',
-            'items' => array(
-                array('url' => 'store/create', 'label' => '添加商城'),
-                array('url' => 'store/admin', 'label' => '商城管理'),
-                array('url' => 'storecategory/create', 'label' => '创建分类'),
-                array('url' => 'storecategory/admin', 'label' => '分类管理'),
-            )
-        ),
-        array(
+	    'items' => [
+		['url' => 'store/create', 'label' => '添加商城'],
+		['url' => 'store/admin', 'label' => '商城管理'],
+		['url' => 'storecategory/create', 'label' => '创建分类'],
+		['url' => 'storecategory/admin', 'label' => '分类管理'],
+	    ]
+	],
+	[
             'label' => '积分商品管理',
-            'items' => array(
-                array('url' => 'exchange/add', 'label' => '添加商品'),
-                array('url' => 'exchange/admin', 'label' => '商品管理'),
-            )
-        ),
-        array(
+	    'items' => [
+		['url' => 'exchange/add', 'label' => '添加商品'],
+		['url' => 'exchange/admin', 'label' => '商品管理'],
+	    ]
+	],
+	[
             'label' => '前台管理',
-            'items' => array(
-                array('url' => 'site/clearCache', 'label' => '清空缓存'),
-                array('url' => 'site/logout', 'label' => '退出登录'),
-            )
-        )
-    );
+	    'items' => [
+		['url' => 'site/clearCache', 'label' => '清空缓存'],
+		['url' => 'site/logout', 'label' => '退出登录'],
+	    ]
+	]
+    ];
 
-    public $breadcrumbs = array();
+    public $breadcrumbs = [];
 
     public function filters()
     {
-        return array('accessControl');
+	return ['accessControl'];
     }
 
     /**
@@ -62,7 +62,7 @@ class Controller extends CController
     public function returnData($status, $data)
     {
         header('Content-Type:application/json;');
-        echo CJSON::encode(array('status' => $status, 'data' => $data));
+	echo CJSON::encode(['status' => $status, 'data' => $data]);
         Yii::app()->end();
     }
 }
