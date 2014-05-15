@@ -54,8 +54,7 @@ class ActiveRecord extends CActiveRecord implements IArrayable
 
     public function init()
     {
-        $this->onBeforeSave = array($this, 'timestampBehavior');
-        
+        $this->onBeforeSave = [$this, 'timestampBehavior'];
         $this->enableCache = CommonHelper::getEnableCache();
         $this->enableDebug = CommonHelper::getEnableDebug();
     }

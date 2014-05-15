@@ -2,7 +2,7 @@
 if (isset($pager) && !empty($pager)) {
     $this->widget(
         'CLinkPager',
-        array(
+        [
             'pages' => $pager,
             'header' => false,
             'cssFile' => '',
@@ -13,9 +13,9 @@ if (isset($pager) && !empty($pager)) {
             'firstPageLabel' => '首页',
             'nextPageLabel' => '下一页',
             'prevPageLabel' => '上一页',
-            'htmlOptions' => array(
+            'htmlOptions' => [
                 'class' => 'goods-page',
-            )
-        )
+            ]
+        ]
     );
 }
