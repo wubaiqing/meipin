@@ -10,7 +10,7 @@
             <p class="txt-img"><?php echo $title; ?>~</p>
             <?php if (!empty($remark)): ?>
                 <p class="txt">
-                    <?php echo $remark; ?>~
+                    <a href="">点击</a><?php echo $remark; ?>
                 </p>
             <?php endif; ?>
         </div>

@@ -101,4 +101,54 @@ class DataResult implements IteratorAggregate, ArrayAccess
         unset($this->$offset);
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public function getRemark()
+    {
+        return $this->remark;
+    }
+
+    public function getErrorMsg()
+    {
+        return $this->errorMsg;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    public function setRemark($remark)
+    {
+        $this->remark = $remark;
+    }
+
+    public function setErrorMsg($errorMsg)
+    {
+        $this->errorMsg = $errorMsg;
+    }
+
 }

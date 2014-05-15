@@ -46,7 +46,18 @@ class CommonHelper
 
     public static function filterUsername($str)
     {
-        return substr($str, 0,3)."******";
+        return substr($str, 0, 3) . "******";
+    }
+
+    /**
+     * 创建可点击链接
+     * @param string $url 链接
+     * @param string $url 链接
+     * @return string 
+     */
+    public static function createLink($url, $toPage)
+    {
+        return "<a href='" . $url . "' style='color:#ff7a70;'>点击</a>" . $toPage;
     }
 
 }

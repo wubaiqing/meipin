@@ -35,11 +35,12 @@ class ExchangeController extends Controller
         $id = Des::decrypt($id);
         $data = $this->scoreService->showExchangeIndex($id, $page);
         if ($data->status == false) {
-            $moreUrl = Yii::app()->createUrl("exchange/index");
-            $remark = "您可以查看<a href='" . $moreUrl . "'  style='color:blue;'>更多</a>商品";
-            $this->render('/common/notFound', array('title' => $data->message, 'remark' => $remark));
+            $this->render('/common/notFound', array('title' => $data->message, 'remark' => $data->remark));
         } else {
-            $this->render('exchangeIndex', array('data' => $data, 'params' => array('goodsId' => $id)));
+            $this->render('exchangeIndex', [
+                'data' => $data,
+                'params' => ['goodsId' => $id,
+            ]]);
         }
     }
 
@@ -48,11 +49,11 @@ class ExchangeController extends Controller
         $id = Yii::app()->request->getQuery("id", 0);
         $userId = Yii::app()->user->id;
         if (empty($userId)) {
-            $url = Yii::app()->createAbsoluteUrl("user/login") . "?referer=" . Yii::app()->createAbsoluteUrl("exchange/order", array("id" => $id));
+            $url = Yii::app()->createAbsoluteUrl("user/login") . "?referer=" . Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id]);
             $this->redirect($url);
             Yii::app()->end();
         }
-        
+
         $id = Des::decrypt($id);
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
@@ -61,14 +62,7 @@ class ExchangeController extends Controller
             Yii::app()->end();
         }
 
-        //设置兑换token
-        $cacheKey = ScoreService::getExchangeCacheKey($userId, $id);
-        $dataToken = Yii::app()->cache->get($cacheKey);
-        if (empty($dataToken)) {
-            $dataToken = ScoreService::getToken();
-            Yii::app()->cache->set($cacheKey, $dataToken, Constants::T_HALF_HOUR);
-        }
-        $this->render('order', array('data' => $data, 'params' => array('goodsId' => $id, 'token' => $dataToken)));
+        $this->render('order', ['data' => $data, 'params' => array('goodsId' => $id, 'token' => $data->tokenData)]);
     }
 
     /**

@@ -21,16 +21,18 @@ class ScoreService extends AbstractService
         //校验
         if (empty($exchange)) {
             $result->message = "商品已下线或不存在";
+            $result->remark = "<a href='" . Yii::app()->createUrl("exchange/index") . "' style='color:blue;'>点击跳转</a>到主页";
             return $result;
         }
+        //兑换商品对象
         $result->exchange = $exchange;
         //获取兑换热门商品
         $result->hotExchangeGoods = Exchange::model()->findAll(array('condition' => "id !=" . $exchange->id, 'order' => 'sale_num desc', 'limit' => 10));
-
+        //获取兑换记录集合
         $logList = ExchangeLog::getLogList($goodsId, $page);
         $result->logList = $logList;
+        //设置返回状态
         $result->status = true;
-
         return $result;
     }
 
@@ -46,7 +48,8 @@ class ScoreService extends AbstractService
     }
 
     /**
-     * 生成token
+     * 生成token用于防止页面重复提交
+     * @param string $prefix 前缀
      */
     public static function getToken($prefix = '')
     {
@@ -57,37 +60,37 @@ class ScoreService extends AbstractService
      * 执行积分商品兑换
      * @param integer $goodsId 商品ID
      * @param integer $userId 用户ID
-     * @param array $post 提交的信息
      * @return array 执行兑换结果
      */
     public function doExchange($userId, $order)
     {
-        $order = self::formatPostValue($order);
         $result = new DataResult();
-        $result->remark = '您可以！<a href="' . Yii::app()->createUrl("exchange/index") . '">查看更多</a>兑换商品';
-        $result->location = "";
-        if (empty($userId)) {
-            $result->message = "对不起，请先登录";
-            $result->remark = '<a href="' . Yii::app()->createUrl("site/index") . '">返回主页</a>';
-            return $result;
-        }
+        $nowTime = time();
+        //默认跳转
+        $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/index"), '查看更多兑换商品'));
+        $order = self::formatPostValue($order);
         //是否提交
         if (empty($order)) {
             $result->message = "您访问的页面不存在！";
             return $result;
         }
         $goodsId = $order['goods_id'];
+        if (empty($userId)) {
+            $result->message = "对不起，请先登录";
+            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("user/login"), '查看更多兑换商品'));
+            return $result;
+        }
         //验证提交
         $cacheKey = self::getExchangeCacheKey($userId, $goodsId);
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
-            $result->message = "本次操作已经失效,或已经兑换过了！";
-            $result->remark = '<a href="' . Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId))) . '">点击返回</a>';
+            $result->message = "本次操作已经失效";
+            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)]), '重新兑换'));
             return $result;
         }
+        //
         if ($order['token'] != $token) {
             $result->message = "请不要重复提交！";
-            $result->remark = '<a href="' . Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId))) . '">点击返回</a>';
             return $result;
         }
 
@@ -97,7 +100,6 @@ class ScoreService extends AbstractService
             $result->message = "对不起，您所兑换的商品不存在";
             return $result;
         }
-        $nowTime = time();
         //校验商品
         if ($goods->start_time > $nowTime) {
             $result->message = "真遗憾！活动还未开始";
@@ -110,21 +112,20 @@ class ScoreService extends AbstractService
         $user = User::model()->findByPk($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
             $result->message = "真遗憾！没有更多库存了";
-            $result->remark = '您可以！<a href="' . Yii::app()->createUrl("exchange/index") . '">查看更多</a>兑换商品';
             return $result;
         }
         //配送地址
         $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
         if (empty($userAddress)) {
             $result->message = "配送地址不存在，请补充";
-            $result->remark = '填写<a href="' . Yii::app()->createUrl("user/address") . '">配送地址</a>';
+            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("user/address"), '补充配送地址'));
             return $result;
         }
 
         //判断库存
         if ($user->score < $goods->integral) {
             $result->message = "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品";
-            $result->remark = '您当前的积分不足，每天签到可以获取更多积分哦！我要<a class="blue" href="' . Yii::app()->createUrl("exchange/index") . '">签到</a>';
+            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/index"), '签到，领取更多积分'));
             return $result;
         }
 
@@ -154,7 +155,7 @@ class ScoreService extends AbstractService
         } catch (\Exception $ex) {
             $transaction->rollback();
             $result->message = "系统忙，请稍后再试";
-            throw new CException($ex);
+            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId))), '重新兑换'));
         }
         return $result;
     }
@@ -219,6 +220,14 @@ class ScoreService extends AbstractService
         //查询兑换商品数据
         $result->exchange = Exchange::model()->findByPk($goodsId);
 
+        //设置兑换token用于防止重复提交
+        $tokenKey = ScoreService::getExchangeCacheKey($userId, $goodsId);
+        $dataToken = Yii::app()->cache->get($tokenKey);
+        if (empty($dataToken)) {
+            $dataToken = ScoreService::getToken();
+            Yii::app()->cache->set($cacheKey, $dataToken, Constants::T_HALF_HOUR);
+        }
+        $result->tokenData = $dataToken;
         $result->status = true;
         return $result;
     }
@@ -269,7 +278,7 @@ class ScoreService extends AbstractService
             $scoreLog->insert();
 
             $result->status = true;
-            $result->message="签到成功";
+            $result->message = "签到成功";
             $transaction->commit();
             return $result;
         } catch (Exception $exc) {
