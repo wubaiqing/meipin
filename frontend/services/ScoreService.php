@@ -116,7 +116,7 @@ class ScoreService
                         'message' => "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
                         'url' => Yii::app()->createUrl("user/address")]);
         }
-        $bool = self::saveDoExchange($userId, $cacheKey, $goods);
+        $bool = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
         if (!$bool) {
             return CommonHelper::getDataResult(false, [
                         'message' => "系统忙，请返回重试",
@@ -129,16 +129,25 @@ class ScoreService
         ]);
     }
 
-    public static function saveDoExchange($userId, $cacheKey, $goods)
+    /**
+     * 保存兑换数据
+     * @param object $order 
+     * @param string $cacheKey 缓存KEy
+     * @param Exchange $goods 商品对象
+     * @param User $user 用户对象
+     * @param integer $nowTime 
+     * @return boolean 
+     */
+    public static function saveDoExchange($order, $userAddress, $cacheKey, Exchange $goods, User $user, $nowTime)
     {
         //执行兑换
         $transaction = Yii::app()->db->beginTransaction();
         try {
             //更新用戶积分
-            User::model()->updateByPk($userId, ['score' => new CDbExpression('score-' . $goods->integral)]);
+            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $goods->integral)]);
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
-            $exchangeLog->attributes = ['user_id' => $userId, 'username' => $user->username, 'created_at' => $nowTime,
+            $exchangeLog->attributes = ['user_id' => $user->id, 'username' => $user->username, 'created_at' => $nowTime,
                 'goods_id' => $goods->id, 'remark' => $order['remark'], 'city_id' => $userAddress->city_id,
                 'address' => $userAddress->address];
             $exchangeLog->insert();
@@ -148,7 +157,7 @@ class ScoreService
 
             $userCount = ExchangeLog::model()->count(['condition' => 'goods_id=:goods_id', 'params' => [":goods_id" => $goods->id], 'group' => 'user_id']);
             //更新兑换商品数量
-            Exchange::model()->updateByPk($goodsId, ['sale_num' => new CDbExpression('sale_num+1'), 'user_count' => $userCount]);
+            Exchange::model()->updateByPk($goods->id, ['sale_num' => new CDbExpression('sale_num+1'), 'user_count' => $userCount]);
 
             $transaction->commit();
         } catch (\Exception $ex) {
@@ -158,6 +167,9 @@ class ScoreService
         return true;
     }
 
+    /**
+     * 格式化数据
+     */
     public static function formatPostValue($post)
     {
         if (isset($post['goods_id']) && !is_numeric($post)) {

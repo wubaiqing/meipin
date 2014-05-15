@@ -55,7 +55,7 @@ class ExchangeController extends Controller
     public function actionOrder()
     {
         $id = Yii::app()->request->getQuery("id", 0);
-        if ($this->isLogin) {
+        if (!$this->isLogin) {
             $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id])]);
             $this->redirect($url);
             Yii::app()->end();
