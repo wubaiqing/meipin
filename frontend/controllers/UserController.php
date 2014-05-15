@@ -47,7 +47,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-        ], parent::accessRules());
+                ], parent::accessRules());
     }
 
     /**
@@ -180,7 +180,7 @@ class UserController extends Controller
     {
         $userId = Yii::app()->user->id;
         if (empty($userId)) {
-            $this->returnData(false, ['message' => '请先登录','isLogin'=>  empty($userId)?false:true]);
+            $this->returnData(false, ['message' => '请先登录', 'isLogin' => empty($userId) ? false : true]);
         }
         $model = UsersAddress::getModel($userId);
         // 省份，城市
@@ -193,11 +193,11 @@ class UserController extends Controller
         if (isset($_POST['UsersAddress'])) {
             UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
             if ($model->save()) {
-                $this->returnData(true, ['message' => '保存成功', 'address_id' => Des::encrypt($model->id)]);
+                $this->returnData(true, ['message' => '保存成功', 'isLogin' => empty($userId) ? false : true, 'address_id' => Des::encrypt($model->id)]);
             }
         }
 
-        $this->returnData(false, ['message' => '系统繁忙，请稍后再试','isLogin'=>  empty($userId)?false:true]);
+        $this->returnData(false, ['message' => '系统繁忙，请稍后再试', 'isLogin' => empty($userId) ? false : true]);
     }
 
     /**
@@ -226,10 +226,10 @@ class UserController extends Controller
         $scoreServide = new ScoreService();
         $result = new DataResult();
         if (empty($userId)) {
-            $this->returnData(false,['message'=>"请先登录"]);
+            $this->returnData(false, ['message' => "请先登录"]);
         }
         $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
-        $this->returnData($result->status,['message'=>$result->message]);
+        $this->returnData($result->status, ['message' => $result->message]);
     }
 
 }
