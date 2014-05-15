@@ -136,6 +136,7 @@ class UserController extends Controller
      */
     public function actionRegister()
     {
+        $this->layout = '//layouts/userBase';
         $model = new User('register');
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
