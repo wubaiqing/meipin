@@ -6,7 +6,7 @@ $(function() {
             if (result.status == false) {
                 //未登录
                 if (!result.data.isLogin) {
-                    window.location.href = '/user/login?referer=/exchange/index';
+                    window.location.href = $('#unlogin_url').val();
                 }
                 return false;
             } else {
