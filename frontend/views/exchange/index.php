@@ -32,11 +32,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="pointslog-body"><p>欢迎来到值得买积分商城，登陆后可查看您的个 人积分信息。</p></div>
+                    <div class="pointslog-body"><p>欢迎来到美品积分商城，登陆后可查看您的个 人积分信息。</p></div>
                     <div class="pointslog-foot">
                         <dl class="clearfix">
                             <dt class="fl"><a class="J_qiandao qiandao" id="" href="javascript:void(0);">签到得积分</a></dt>
-                            <dd class="fl"><a href="/help/index.html">获得更多积分？</a><a href="/user/score.html">积分明细</a>
+                            <dd class="fl"><a href="/user/index.html">个人中心</a><a href="/user/score.html">积分明细</a>
                             </dd>
                         </dl>
                     </div>

@@ -1,3 +1,4 @@
+
 <div class="nav">
     <ul class="wp">
         <li class="<?php echo ($cat < 1000) ? 'on' : '';?>">
@@ -15,7 +16,7 @@
                 聚美品
             </a>
         </li>
-        <li class="">
+        <li class="<?php echo (Yii::app()->controller->id == 'exchange') ? 'on' : ''; ?>">
             <a href="<?php echo $this->createUrl('exchange/index');?>">
                 积分兑换
             </a>
