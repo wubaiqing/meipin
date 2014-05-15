@@ -41,7 +41,6 @@
         opacity: 1
     }
 </style>
-<script src="/assets/js/unslider.min.js"></script>
 <div id="content" class="wp">
     <div class="w1040 clearfix">
         <!--积分广告和积分 登录开始-->
@@ -112,7 +111,7 @@
                                     title="<?php echo $goods['name']; ?>"></a>
                             <dl class="convertgood-desc">
                                 <dd>
-                                    <h3><?php echo $goods['name']; ?></h3>
+                                    <h3><a href="<?php echo $url;?>" target="_blank"><?php echo $goods['name']; ?></a>></h3>
 
                                     <p>剩余：<b class="green"><?php echo $goods['num']; ?></b> 份</p>
 
@@ -143,39 +142,19 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#qiandao").live('click', function () {
+//        $("#qiandao").live('click', function () {
+        $(document).on('click','#qiandao',function(){
             var signApi = '/user/DayRegistion';
             $.get(signApi,{},function (result) {
-                alert(result.message);
+                alert(result.data.message);
                 if (result.status == false) {
-                    if(result.location != ''){
-                        window.location.href = '/user/login'
-                    }
+                    window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index');?>';
                     return false;
                 } else {
                     return true;
                 }
             },'json');
         });
-
-//        $(document).on('click', '#qiandao', function () {
-//            var signApi = '/user/DayRegistion';
-//            $.getJSON(signApi).done(function (result) {
-//                alert(result.message);
-//                if (result.status == false) {
-//                    if(result.location != ''){
-//                        window.location.href = '/user/login'
-//                    }
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            }).fail(function () {
-//                alert('签到失败，请刷新页面重试');
-//                return false;
-//            })
-//        });
-
 
         $('.banner').unslider({
             speed: 500,
