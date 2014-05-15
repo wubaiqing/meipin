@@ -75,10 +75,10 @@
         ?>
         <div class="J_TabBarWrap clear l">
             <ul class="tb-tabbar">
-                <li id="exchangerule" class='tips <?php echo empty($page) ? "selected" : ""; ?>'>
+                <li id="exchangerule" class=' <?php echo empty($page) ? "selected" : ""; ?>'>
                     <a href="javascript:void(0)" hidefocus="true">兑奖规则</a>
                 </li>
-                <li id="recordstab" class='tips <?php echo!empty($page) && $page > 0 ? "selected" : ""; ?>'>
+                <li id="recordstab" class='<?php echo!empty($page) && $page > 0 ? "selected" : ""; ?>'>
                     <a href="javascript:void(0)" hidefocus="true">兑换记录(<em><?php echo $data->logList['pager']->getItemCount(); ?></em>)</a>
                 </li>
             </ul>
@@ -116,7 +116,7 @@
 <script type="text/javascript">
     $(function() {
         try {
-            $(".tb-tabbar").live("click", function() {
+            $(".tb-tabbar").find("li").click(function() {
                 $(".tb-tabbar").find("li").removeClass("selected");
                 $(this).addClass("selected");
                 $(".displayIF").addClass('hid');
