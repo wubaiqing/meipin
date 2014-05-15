@@ -46,6 +46,7 @@ return [
         ),
         //每日签到积分增加
         'dayRegistionNum'=>[0=>1,1=>2,2=>3],
+        'scorePageSize' => 5,
     ],
 
                    

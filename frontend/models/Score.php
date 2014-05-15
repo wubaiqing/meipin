@@ -33,7 +33,7 @@ class Score extends ActiveRecord implements IArrayable
         }
 
         $scoreList = [];
-        $scorePaginate = Score::model()->dataList($user_id, $type)->paginate(null,$page);
+        $scorePaginate = Score::model()->dataList($user_id, $type)->paginate(Yii::app()->params['scorePageSize']);
         $scoreList['pager'] = $scorePaginate->getPagination();
         $scoreList['data'] = $scorePaginate->data;
 
@@ -57,7 +57,6 @@ class Score extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria;
         $criteria->select = '*';
         $criteria->order = 'id DESC';
-        $criteria->limit = 30;
         $criteria->compare('user_id', '=' . $user_id);
         if($type=='add')
         {
