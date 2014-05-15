@@ -13,7 +13,7 @@ input{background:none}
 
 /*header*/
 #header {background:#fff}
-.topnav {background: #F7F7F7;border-bottom: 1px solid #D8DFE5;height: 30px;}
+.topnav {height: 30px;}
 .topnav ul{height:30px;line-height:30px;}
 .topnav ul li {float:left;padding-right:10px;}
 .topnav ul li.a a {background: url(images/icon1.png) no-repeat left center; cursor: pointer; display:block;padding-left:18px;color:#666666;height:30px;width:50px;}
