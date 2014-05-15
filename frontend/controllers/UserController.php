@@ -180,7 +180,7 @@ class UserController extends Controller
     {
         $userId = Yii::app()->user->id;
         if (empty($userId)) {
-            $this->returnData(false, ['message' => '请先登录']);
+            $this->returnData(false, ['message' => '请先登录','isLogin'=>  empty($userId)?false:true]);
         }
         $model = UsersAddress::getModel($userId);
         // 省份，城市
