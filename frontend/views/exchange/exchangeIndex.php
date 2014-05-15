@@ -1,10 +1,3 @@
-<div id="header">
-    <?php $this->renderPartial('//site/prompt'); ?>
-    <?php $this->renderPartial('//site/login'); ?>
-    <?php $this->renderPartial('//site/head'); ?>
-    <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
-</div>
-
 <div id="contentA" class="area">
     <div class="left">
         <div class="pt">
@@ -34,29 +27,29 @@
         </div>
 
 
-<!--        <div class="blockB">
-            <h2>谁兑换了礼品？</h2>
-            <ul class="clear">
-                <li>
-                    <a href="http://www.tuan800.com/user/给生活松绑" target="_blank">
-                        <img alt="给生活松绑" src="http://p12.tuanimg.com/user/avatar/0391/0509/small/9a2ece48-9bb4-4d74-96a0-b2e3a27ea9b6.jpg" title="给生活松绑">
-                    </a>
-                </li>
-            </ul>
-        </div>-->
+        <!--        <div class="blockB">
+                    <h2>谁兑换了礼品？</h2>
+                    <ul class="clear">
+                        <li>
+                            <a href="http://www.tuan800.com/user/给生活松绑" target="_blank">
+                                <img alt="给生活松绑" src="http://p12.tuanimg.com/user/avatar/0391/0509/small/9a2ece48-9bb4-4d74-96a0-b2e3a27ea9b6.jpg" title="给生活松绑">
+                            </a>
+                        </li>
+                    </ul>
+                </div>-->
     </div>
 
     <div class="right dhdeal">
-        <form action="<?php echo Yii::app()->createUrl("exchange/order")?>" method="GET">
+        <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="GET">
             <?php
-                $start = "zt3";
-                if($data->exchange->start_time > time()){
-                    $start = "zt1";
-                }else if($data->exchange->start_time < time() && $data->exchange->end_time > time()){
-                     $start = "zt2";
-                }
+            $start = "zt3";
+            if ($data->exchange->start_time > time()) {
+                $start = "zt1";
+            } else if ($data->exchange->start_time < time() && $data->exchange->end_time > time()) {
+                $start = "zt2";
+            }
             ?>
-            <div class="deal <?php echo $start?>">
+            <div class="deal <?php echo $start ?>">
                 <h2>
                     <span><?php echo $data->exchange->name; ?></span>
                 </h2>
@@ -67,7 +60,7 @@
                 </h3>
                 <!--<h5><b>剩余时间</b><i>2</i>天<em class="one">13</em> 小时 <em class="two">33</em> 分钟 <em>31</em> 秒</h5>-->
                 <h4>
-                    <?php echo CHtml::hiddenField("id",Des::encrypt($params['goodsId']));?>
+                    <?php echo CHtml::hiddenField("id", Des::encrypt($params['goodsId'])); ?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data->exchange->user_count ?>人已兑换</a>
                     <em>(当前库存<b><?php
@@ -77,23 +70,15 @@
                 </h4>
             </div>
         </form>
-        <script type="text/javascript">
-            $(".tb-tabbar").find("li").live("click", function() {
-                $(".tb-tabbar").find("li").removeClass("selected");
-                $(this).addClass("selected");
-                $(".displayIF").addClass('hid');
-                $("." + $(this).attr("id")).removeClass("hid");
-            });
-        </script>
         <?php
         $page = Yii::app()->request->getQuery("page");
         ?>
         <div class="J_TabBarWrap clear l">
             <ul class="tb-tabbar">
-                <li id="exchangerule" <?php echo empty($page) ? "class='selected'" : ""; ?>>
+                <li id="exchangerule" class='tips <?php echo empty($page) ? "selected" : ""; ?>'>
                     <a href="javascript:void(0)" hidefocus="true">兑奖规则</a>
                 </li>
-                <li id="recordstab" <?php echo!empty($page) && $page > 0 ? "class='selected'" : ""; ?>>
+                <li id="recordstab" class='tips <?php echo!empty($page) && $page > 0 ? "selected" : ""; ?>'>
                     <a href="javascript:void(0)" hidefocus="true">兑换记录(<em><?php echo $data->logList['pager']->getItemCount(); ?></em>)</a>
                 </li>
             </ul>
@@ -128,8 +113,17 @@
 
 </div>
 
-
-<?php $this->renderPartial('//site/side'); ?>
-<div id="footer" class="footer">
-    <?php $this->renderPartial('//site/footer'); ?>
-</div>
+<script type="text/javascript">
+    $(function() {
+        try {
+            $(".tb-tabbar").live("click", function() {
+                $(".tb-tabbar").find("li").removeClass("selected");
+                $(this).addClass("selected");
+                $(".displayIF").addClass('hid');
+                $("." + $(this).attr("id")).removeClass("hid");
+            });
+        } catch (e) {
+            alert(e);
+        }
+    });
+</script>

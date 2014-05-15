@@ -1,10 +1,3 @@
-<div id="header">
-    <?php $this->renderPartial('//site/prompt'); ?>
-    <?php $this->renderPartial('//site/login'); ?>
-    <?php $this->renderPartial('//site/head'); ?>
-    <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
-</div>
-
 <div id="confirm_exchange" class="exchange area">
     <div id="address" class="address ">
         <h2><span></span>收货人信息</h2>
@@ -165,8 +158,3 @@
         return false;
     }
 </script>
-
-<?php $this->renderPartial('//site/side'); ?>
-<div id="footer" class="footer">
-    <?php $this->renderPartial('//site/footer'); ?>
-</div>
