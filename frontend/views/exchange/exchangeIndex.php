@@ -1,14 +1,14 @@
 <div id="contentA" class="area">
     <div class="left">
         <div class="pt">
-            <img src="<?php echo $data->exchange->img_url; ?>">
+            <img src="<?php echo $data['exchange']->img_url; ?>">
             <span class="bsr"></span>
         </div>
         <div class="blockA">
             <h2>热门兑换活动</h2>
             <ul>
                 <?php
-                foreach ($data->hotExchangeGoods as $goods):
+                foreach ($data['hotExchangeGoods'] as $goods):
                     $goodsUrl = Yii::app()->createUrl("exchange/exchangeIndex", array("id" => Des::encrypt($goods->id)));
                     ?>
                     <li>
@@ -25,46 +25,34 @@
                 <?php endforeach; ?>
             </ul>
         </div>
-
-
-        <!--        <div class="blockB">
-                    <h2>谁兑换了礼品？</h2>
-                    <ul class="clear">
-                        <li>
-                            <a href="http://www.tuan800.com/user/给生活松绑" target="_blank">
-                                <img alt="给生活松绑" src="http://p12.tuanimg.com/user/avatar/0391/0509/small/9a2ece48-9bb4-4d74-96a0-b2e3a27ea9b6.jpg" title="给生活松绑">
-                            </a>
-                        </li>
-                    </ul>
-                </div>-->
     </div>
 
     <div class="right dhdeal">
         <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="GET">
             <?php
             $start = "zt3";
-            if ($data->exchange->start_time > time()) {
+            if ($data['exchange']->start_time > time()) {
                 $start = "zt1";
-            } else if ($data->exchange->start_time < time() && $data->exchange->end_time > time()) {
+            } else if ($data['exchange']->start_time < time() && $data['exchange']->end_time > time()) {
                 $start = "zt2";
             }
             ?>
             <div class="deal <?php echo $start ?>">
                 <h2>
-                    <span><?php echo $data->exchange->name; ?></span>
+                    <span><?php echo $data['exchange']->name; ?></span>
                 </h2>
                 <h3>
-                    <span>所需积分</span><em><?php echo $data->exchange->integral; ?></em>积分<br>
-                    <span>价值</span><strong><i>￥</i><?php echo $data->exchange->price; ?></strong><br>
-                    <span>兑奖名额</span><b><?php echo $data->exchange->num; ?></b>
+                    <span>所需积分</span><em><?php echo $data['exchange']->integral; ?></em>积分<br>
+                    <span>价值</span><strong><i>￥</i><?php echo $data['exchange']->price; ?></strong><br>
+                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b>
                 </h3>
                 <!--<h5><b>剩余时间</b><i>2</i>天<em class="one">13</em> 小时 <em class="two">33</em> 分钟 <em>31</em> 秒</h5>-->
                 <h4>
-                    <?php echo CHtml::hiddenField("id", Des::encrypt($params['goodsId'])); ?>
+                    <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
                     <input class="btn" type="submit" value=""><span></span>
-                    <a class="hasbd" href="javascript:void(0);"><?php echo $data->exchange->user_count ?>人已兑换</a>
+                    <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已兑换</a>
                     <em>(当前库存<b><?php
-                            $leftNum = $data->exchange->num - $data->exchange->sale_num;
+                            $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
                             echo $leftNum > 0 ? $leftNum : 0;
                             ?></b>件)</em>
                 </h4>
@@ -79,7 +67,7 @@
                     <a href="javascript:void(0)" hidefocus="true">兑奖规则</a>
                 </li>
                 <li id="recordstab" class='<?php echo!empty($page) && $page > 0 ? "selected" : ""; ?>'>
-                    <a href="javascript:void(0)" hidefocus="true">兑换记录(<em><?php echo $data->logList['pager']->getItemCount(); ?></em>)</a>
+                    <a href="javascript:void(0)" hidefocus="true">兑换记录(<em><?php echo $data['logList']['pager']->getItemCount(); ?></em>)</a>
                 </li>
             </ul>
         </div>
@@ -105,7 +93,7 @@
             <div class="topinfo"></div>
             <div class="uslist">
                 <?php
-                $this->renderPartial('exchangeLogList', array('logList' => $data->logList));
+                $this->renderPartial('exchangeLogList', array('logList' => $data['logList']));
                 ?>
             </div> 
         </div>

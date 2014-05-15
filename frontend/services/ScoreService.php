@@ -15,25 +15,23 @@ class ScoreService
      */
     public function showExchangeIndex($goodsId, $page)
     {
-        $result = new DataResult();
         //获取兑换积分商品
         $exchange = Exchange::model()->findByPk($goodsId);
         //校验
         if (empty($exchange)) {
-            $result->message = "商品已下线或不存在";
-            $result->remark = "<a href='" . Yii::app()->createUrl("exchange/index") . "' style='color:blue;'>点击跳转</a>到主页";
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "商品已下线或不存在"]);
         }
-        //兑换商品对象
-        $result->exchange = $exchange;
         //获取兑换热门商品
-        $result->hotExchangeGoods = Exchange::model()->findAll(array('condition' => "id !=" . $exchange->id, 'order' => 'sale_num desc', 'limit' => 10));
+        $hotExchangeGoods = Exchange::model()->findAll(array('condition' => "id !=" . $exchange->id, 'order' => 'sale_num desc', 'limit' => 10));
         //获取兑换记录集合
         $logList = ExchangeLog::getLogList($goodsId, $page);
-        $result->logList = $logList;
-        //设置返回状态
-        $result->setStatus(true);
-        return $result;
+
+        return CommonHelper::getDataResult(true, [
+                    'message' => "",
+                    'logList' => $logList,
+                    'hotExchangeGoods' => $hotExchangeGoods,
+                    'exchange' => $exchange,
+        ]);
     }
 
     /**
@@ -64,69 +62,59 @@ class ScoreService
      */
     public function doExchange($userId, $order)
     {
-        $result = new DataResult();
         $nowTime = time();
         //默认跳转
-        $result->setUrl(Yii::app()->createUrl("exchange/index"));
+        $url = Yii::app()->createUrl("exchange/index");
         $order = self::formatPostValue($order);
         //是否提交
         if (empty($order)) {
-            $result->setMessage("您访问的页面不存在");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "您访问的页面不存在", 'url' => $url]);
         }
         $goodsId = $order['goods_id'];
         if (empty($userId)) {
-            $result->setMessage("对不起，请先登录");
-            $result->setUrl(Yii::app()->createUrl("user/login"));
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "对不起，请先登录", 'url' => Yii::app()->createUrl("user/login")]);
         }
         //验证提交
         $cacheKey = self::getExchangeCacheKey($userId, $goodsId);
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
-            $result->setMessage("本次操作已经失效,正在跳转商品兑换页");
-            $result->setUrl(Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)]));
-            return $result;
+            return CommonHelper::getDataResult(false, [
+                        'message' => "本次操作已经失效,正在跳转商品兑换页",
+                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+            ]);
         }
         //
         if ($order['token'] != $token) {
-            $result->setMessage("请不要重复提交！");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看更多商品", 'url' => $url]);
         }
 
         //查询兑换商品数据
         $goods = Exchange::model()->findByPk($goodsId);
         if (empty($goods)) {
-            $result->setMessage("对不起，您所兑换的商品不存在，您可以查看其他兑换商品");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "对不起，您所兑换的商品不存在，您可以查看其他兑换商品", 'url' => $url]);
         }
         //校验商品
         if ($goods->start_time > $nowTime) {
-            $result->setMessage("真遗憾！活动还未开始，您可以查看其他兑换商品");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他兑换商品", 'url' => $url]);
         }
         if ($goods->end_time <= $nowTime) {
-            $result->setMessage("真遗憾！活动已经结束，您可以查看更多兑换商品");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看更多兑换商品", 'url' => $url]);
         }
         $user = User::model()->findByPk($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
-            $result->setMessage("真遗憾！没有更多库存了，您可以查看更多兑换商品");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品", 'url' => $url]);
         }
         //配送地址
         $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
         if (empty($userAddress)) {
-            $result->setMessage("配送地址不存在，请将配送地址信息补充完整");
-            $result->setUrl(Yii::app()->createUrl("user/address"));
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "配送地址不存在，请将配送地址信息补充完整", 'url' => Yii::app()->createUrl("user/address")]);
         }
 
         //判断库存
         if ($user->score < $goods->integral) {
-            $result->message = "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分";
-            $result->setUrl(Yii::app()->createUrl("exchange/index"));
-            return $result;
+            return CommonHelper::getDataResult(false, [
+                        'message' => "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
+                        'url' => Yii::app()->createUrl("user/address")]);
         }
 
         //执行兑换
@@ -149,14 +137,15 @@ class ScoreService
             Exchange::model()->updateByPk($goodsId, array('sale_num' => new CDbExpression('sale_num+1'), 'user_count' => $userCount));
 
             $transaction->commit();
-            $result->status = true;
-            $result->setMessage("兑换成功");
         } catch (\Exception $ex) {
             $transaction->rollback();
-            $result->setMessage("系统忙，请返回重试");
-            $result->setUrl(Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId))));
+            return CommonHelper::getDataResult(false, [
+                        'message' => "系统忙，请返回重试",
+                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId)))]);
         }
-        return $result;
+        return CommonHelper::getDataResult(true, [
+                    'message' => "商品兑换成功",
+                    'url' => $url]);
     }
 
     public static function formatPostValue($post)

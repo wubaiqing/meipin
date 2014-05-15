@@ -32,20 +32,21 @@ class ExchangeController extends Controller
      */
     public function actionExchangeIndex($id = 0, $page = 1)
     {
-        $id = Des::decrypt($id);
-        $data = $this->scoreService->showExchangeIndex($id, $page);
-        if ($data->status == false) {
+        $goodsId = Des::decrypt($id);
+        $dataResult = $this->scoreService->showExchangeIndex($goodsId, $page);
+        if (!$dataResult['status']) {
             $this->render('/common/success', [
                 'status' => 'yes',
-                'title' => $data->message,
-                'url' => $data->url,
+                'title' => $dataResult['data']['message'],
+                'url' => Yii::app()->createUrl("exchange/index"),
             ]);
-        } else {
-            $this->render('exchangeIndex', [
-                'data' => $data,
-                'params' => ['goodsId' => $id,
-            ]]);
+            Yii::app()->end();
         }
+
+        $this->render('exchangeIndex', [
+            'data' => $dataResult['data'],
+            'params' => ['goodsId' => $id,]
+        ]);
     }
 
     /**
@@ -82,18 +83,18 @@ class ExchangeController extends Controller
     {
         $userId = Yii::app()->user->id;
         $order = Yii::app()->request->getPost("Exchange", null);
-        $data = $this->scoreService->doExchange($userId, $order);
-        if ($data->status) {
+        $dataResult = $this->scoreService->doExchange($userId, $order);
+        if ($dataResult['status']) {
             $this->render('/common/success', [
                 'status' => 'yes',
-                'title' => $data->message,
-                'url' => $data->url,
+                'title' => $dataResult['data']['message'],
+                'url' => $dataResult['data']['url'],
             ]);
         } else {
             $this->render('/common/success', [
                 'status' => 'no',
-                'title' => $data->message,
-                'url' => $data->url,
+                'title' => $dataResult['data']['message'],
+                'url' => $dataResult['data']['url'],
             ]);
         }
     }
