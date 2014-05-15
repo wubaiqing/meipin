@@ -20,6 +20,9 @@
                 <a href="<?php echo $this->createUrl('user/login');?>" target="_self">[登录]</a>或<a href="<?php echo $this->createUrl('user/register');?>">[免费注册]</a>
             </li>
             <?php }?>
+            <li class="qd">
+                <a href="javascript:;" class='qiandao'><span>签到</span></a>
+            </li>
         </ul>
         <ul>
             <li class="a"><a href="javascript:void(0)" onclick="javascript:addToFavorite();">收藏美品网</a></li>

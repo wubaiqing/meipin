@@ -1,9 +1,3 @@
-<div id="header">
-    <?php $this->renderPartial('//site/prompt'); ?>
-    <?php $this->renderPartial('//site/login'); ?>
-    <?php $this->renderPartial('//site/head'); ?>
-    <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
-</div>
 <style>
     .banner {
         position: relative;
@@ -85,7 +79,7 @@
                     <div class="pointslog-body"><p>欢迎来到值得买积分商城，登陆后可查看您的个 人积分信息。</p></div>
                     <div class="pointslog-foot">
                         <dl class="clearfix">
-                            <dt class="fl"><a class="J_qiandao" id="qiandao" href="javascript:void(0);">签到得积分</a></dt>
+                            <dt class="fl"><a class="J_qiandao qiandao" id="" href="javascript:void(0);">签到得积分</a></dt>
                             <dd class="fl"><a href="/help/index.html">获得更多积分？</a><a href="/user/score.html">积分明细</a>
                             </dd>
                         </dl>
@@ -132,33 +126,8 @@
     <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
     <!-- 分页结束 -->
 </div>
-
-
-
-<?php $this->renderPartial('//site/side'); ?>
-<div id="footer" class="footer">
-    <?php $this->renderPartial('//site/footer'); ?>
-</div>
-
 <script type="text/javascript">
     $(function () {
-//        $("#qiandao").live('click', function () {
-        $(document).on('click','#qiandao',function(){
-            var signApi = '/user/DayRegistion';
-            $.get(signApi,{},function (result) {
-                alert(result.data.message);
-                if (result.status == false) {
-                    //未登录
-                    if(!result.data.isLogin){
-                        window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index');?>';
-                    }
-                    return false;
-                } else {
-                    return true;
-                }
-            },'json');
-        });
-
         $('.banner').unslider({
             speed: 500,
             delay: 3000,

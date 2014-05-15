@@ -23,28 +23,49 @@
         <dl class="dl3">
             <dt>手机客户端</dt>
             <dd class="sub"><img src="/assets/images/wxcode.png" alt="">
-            <div class="info">
-                <p>
-                    关注美品网，秒杀早知道
-                </p>
-                <p>
-                    如何关注？
-                </p>
-                <p>
-                    1) 查找微信号“<em>meipin</em>”<br>
-                    2) 用微信扫描左侧二维码
-                </p>
-            </div>
+                <div class="info">
+                    <p>
+                        关注美品网，秒杀早知道
+                    </p>
+                    <p>
+                        如何关注？
+                    </p>
+                    <p>
+                        1) 查找微信号“<em>meipin</em>”<br>
+                        2) 用微信扫描左侧二维码
+                    </p>
+                </div>
             </dd>
         </dl>
     </div>
     <div class="footer_yq_div">
         <h3 class="footer_yq_h3 fl"><a href="javascript:;" target="_blank">友情链接</a></h3>
         <?php
-            $links = Links::getLink();
-            foreach ($links as $link) :
-        ?>
-        <a target="_blank" class="youq_a" href="<?php echo $link->url;?>" title="<?php echo $link->image_url;?>"><?php echo $link->image_url;?></a>
+        $links = Links::getLink();
+        foreach ($links as $link) :
+            ?>
+            <a target="_blank" class="youq_a" href="<?php echo $link->url; ?>" title="<?php echo $link->image_url; ?>"><?php echo $link->image_url; ?></a>
         <?php endforeach; ?>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {
+        $(document).on('click', '.qiandao', function() {
+            var signApi = '/user/DayRegistion';
+            $.get(signApi, {}, function(result) {
+                alert(result.data.message);
+                if (result.status == false) {
+                    //未登录
+                    if (!result.data.isLogin) {
+                        window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index'); ?>';
+                    }
+                    return false;
+                } else {
+                    return true;
+                }
+            }, 'json');
+        });
+
+
+    });
+</script>
