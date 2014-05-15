@@ -10,8 +10,8 @@ class ScoreService
 
     /**
      * 显示积分兑换详情页面
-     * @param integer $goodsId 需要兑换的商品ID
-     * @return type Description
+     * @param  integer $goodsId 需要兑换的商品ID
+     * @return type    Description
      */
     public function showExchangeIndex($goodsId, $page)
     {
@@ -36,9 +36,9 @@ class ScoreService
 
     /**
      * 设置当前兑换key
-     * @param integer $user_id 
-     * @param integer $goods_id
-     * @return string  
+     * @param  integer $user_id
+     * @param  integer $goods_id
+     * @return string
      */
     public static function getExchangeCacheKey($userId, $goodsId)
     {
@@ -56,9 +56,9 @@ class ScoreService
 
     /**
      * 执行积分商品兑换
-     * @param integer $goodsId 商品ID
-     * @param integer $userId 用户ID
-     * @return array 执行兑换结果
+     * @param  integer $goodsId 商品ID
+     * @param  integer $userId  用户ID
+     * @return array   执行兑换结果
      */
     public function doExchange($userId, $order)
     {
@@ -175,13 +175,14 @@ class ScoreService
         if (isset($post['goods_id']) && !is_numeric($post)) {
             $post['goods_id'] = Des::decrypt($post['goods_id']);
         }
+
         return $post;
     }
 
     /**
      * 积分兑换首页商品列表
      * @return array
-     * @author zhangchao
+     *               @author zhangchao
      */
     public function showExchangeGoodsList()
     {
@@ -201,14 +202,15 @@ class ScoreService
         $data['goods'] = Exchange::model()->findAll($criteria);
         //分页类
         $data['pages'] = $pages;
+
         return $data;
     }
 
     /**
      * 获取确认下单信息
-     * @param integer $goodsId 兑换商品ID
-     * @param integer $userId 用户ID
-     * @return array 
+     * @param  integer $goodsId 兑换商品ID
+     * @param  integer $userId  用户ID
+     * @return array
      */
     public static function getOrderdetail($goodsId, $userId)
     {
@@ -234,6 +236,7 @@ class ScoreService
             $dataToken = ScoreService::getToken();
             Yii::app()->cache->set($tokenKey, $dataToken, Constants::T_HALF_HOUR);
         }
+
         return CommonHelper::getDataResult(true, [
                     'province' => $province,
                     'city' => $city,
@@ -246,10 +249,10 @@ class ScoreService
 
     /**
      * 积分增加
-     * @param integer $userId 用户ID
-     * @param integer $optType 操作方式；1：增加；2：减少
-     * @param string $remark 备注
-     * @return array 
+     * @param  integer $userId  用户ID
+     * @param  integer $optType 操作方式；1：增加；2：减少
+     * @param  string  $remark  备注
+     * @return array
      */
     public static function updateScore($userId, $optType, $remark = '')
     {
@@ -269,7 +272,7 @@ class ScoreService
             $num = 1;
             if (isset($scoreList[$user->dr_count])) {
                 $num = $scoreList[$user->dr_count];
-            } else if ($user->dr_count >= 3) {
+            } elseif ($user->dr_count >= 3) {
                 $num = 3;
             }
             //如果断签则恢复
@@ -291,19 +294,22 @@ class ScoreService
             $scoreLog->insert();
 
             $transaction->commit();
+
             return $result;
         } catch (Exception $exc) {
             $transaction->rollback();
+
             return CommonHelper::getDataResult(false, ['message' => "系统正在偷懒，请稍后再试"]);
         }
+
         return CommonHelper::getDataResult(true, ['message' => "签到成功"]);
     }
 
     /**
      * 保存用户地址数据
-     * @param integer $userId 用户ID
-     * @param array $userAddress POST过来的数据
-     * @return array 
+     * @param  integer $userId      用户ID
+     * @param  array   $userAddress POST过来的数据
+     * @return array
      */
     public static function saveUserAddress($userId, $userAddress)
     {
@@ -322,6 +328,7 @@ class ScoreService
                 return CommonHelper::getDataResult(true, ['message' => '地址更新成功']);
             }
         }
+
         return CommonHelper::getDataResult(false, ['message' => '地址更新失败']);
     }
 

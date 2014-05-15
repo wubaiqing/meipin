@@ -33,7 +33,7 @@
             $start = "zt3";
             if ($data['exchange']->start_time > time()) {
                 $start = "zt1";
-            } else if ($data['exchange']->start_time < time() && $data['exchange']->end_time > time()) {
+            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time()) {
                 $start = "zt2";
             }
             ?>
@@ -95,16 +95,16 @@
                 <?php
                 $this->renderPartial('exchangeLogList', array('logList' => $data['logList']));
                 ?>
-            </div> 
+            </div>
         </div>
     </div>
 
 </div>
 
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         try {
-            $(".tb-tabbar").find("li").click(function() {
+            $(".tb-tabbar").find("li").click(function () {
                 $(".tb-tabbar").find("li").removeClass("selected");
                 $(this).addClass("selected");
                 $(".displayIF").addClass('hid');

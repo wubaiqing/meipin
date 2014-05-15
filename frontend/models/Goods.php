@@ -117,6 +117,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->compare('t.end_time', '>=' . $now);
         $criteria->compare('t.status', '=1');
         $criteria->compare('t.goods_type', '=0');
+
         return $criteria;
     }
 
@@ -129,13 +130,13 @@ class Goods extends ActiveRecord implements IArrayable
         if (empty($title)) {
             return false;
         }
-        
+
         $cacheKey = 'meipin-search-title-'.md5(trim($title));
         $response = Yii::app()->cache->get($cacheKey);
         if (!empty($response)) {
             return $response;
         }
-        
+
         $data = ['data' => null, 'pager' => null];
 
         // 清空标题字符
@@ -149,8 +150,9 @@ class Goods extends ActiveRecord implements IArrayable
 
         $data['data'] = $pagination->data;
         $data['pager'] = $pagination->getPagination();
-        
+
         Yii::app()->cache->set($cacheKey, $data, 3600);
+
         return $data;
     }
 

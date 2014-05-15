@@ -13,14 +13,14 @@
  * @property integer $updated_at
  * @property integer $num
  * @property string $remark
- * 
+ *
  */
 class ScoreLog extends ActiveRecord implements IArrayable
 {
 
     /**
      * 每日签到
-     * @var integer 
+     * @var integer
      */
     const S_OPTTYPE_DAY_REGISTION = 1;
 

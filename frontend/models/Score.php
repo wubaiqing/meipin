@@ -46,7 +46,6 @@ class Score extends ActiveRecord implements IArrayable
         return $scoreList;
     }
 
-
     /**
      * 数据SQL条件
      * @param  integer $cat 分类ID
@@ -58,21 +57,18 @@ class Score extends ActiveRecord implements IArrayable
         $criteria->select = '*';
         $criteria->order = 'id DESC';
         $criteria->compare('user_id', '=' . $user_id);
-        if($type=='add')
-        {
+        if ($type=='add') {
             $criteria->compare('score', '>=0');
-        }
-        elseif($type=='reduce')
-        {
+        } elseif ($type=='reduce') {
             $criteria->compare('score', '<0');
         }
         $this->dbCriteria->mergeWith($criteria);
 
         return $this;
-    } 
+    }
 
     /**
-     * 
+     *
      */
     public static function getScoreTitle($type_id)
     {
@@ -84,6 +80,7 @@ class Score extends ActiveRecord implements IArrayable
             5=>'商品兑换',
             6=>'积分兑换',
         ];
+
         return $type_list[$type_id];
-    }   
+    }
 }

@@ -3,9 +3,6 @@
     $page = Yii::app()->request->getQuery('page');
 ?>
 
-
-
-
 <div id="header">
     <?php $this->renderPartial('login'); ?>
     <?php $this->renderPartial('head'); ?>

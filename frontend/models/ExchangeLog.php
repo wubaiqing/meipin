@@ -15,7 +15,7 @@
  * @property string $remark
  * @property integer $city_id
  * @property string $address
- * 
+ *
  */
 class ExchangeLog extends ActiveRecord implements IArrayable
 {
@@ -59,8 +59,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 获取记录
-     * @param  integer  $goodsId 兑换商品ID
-     * @param  integer  $page 当前页数
+     * @param integer $goodsId 兑换商品ID
+     * @param integer $page    当前页数
      */
     public static function getLogList($goodsId, $page)
     {
@@ -88,6 +88,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'data' => $goodsList['data']
                     ], Constants::T_SECOND_FIVE);
         }
+
         return $goodsList;
     }
 
@@ -102,7 +103,6 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria;
 
         $criteria->order = 'created_at DESC';
-
 
         $criteria->compare('t.goods_id', $goodsId);
 

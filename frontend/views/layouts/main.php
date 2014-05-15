@@ -14,6 +14,6 @@
         <script type="text/javascript" src="/assets/js/sign_day.js?v=1.0.1"></script>
     </head>
     <body>
-	<?php echo $content;?>
+    <?php echo $content;?>
     </body>
 </html>

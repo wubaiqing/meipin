@@ -18,7 +18,7 @@
                             <th>操作描述</th>
                             <th width="80">积分</th>
                         </tr>
-                        <?php foreach($score as $info){?>
+                        <?php foreach ($score as $info) {?>
                         <tr align="center">
                             <td bgcolor="#F9FAFC"><?php echo $info->create_time ;?></td>
                             <td>签到奖励<?php echo $info->reason;?></td>
@@ -38,5 +38,5 @@
             </div>
         </div>
     </div>
-	<span class="clear"></span>
+    <span class="clear"></span>
 </div>

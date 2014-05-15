@@ -77,7 +77,6 @@
             </ul>
         </div>
     </div>
-    <input type="hidden" name="jump_url" id="jump_url" value="<?php echo $this->createAbsoluteUrl('user/login',['referer'=>$this->createAbsoluteUrl('exchange/index')]);?>"/>
     <!-- 积分兑换商品开始 -->
     <!-- 分页开始 -->
     <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>

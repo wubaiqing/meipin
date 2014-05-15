@@ -22,11 +22,12 @@
             <?php }?>
             <li class="qd">
                 <a href="javascript:;" class='qiandao'><span>签到</span></a>
+                <input type="hidden" name="unlogin_url" id="unlogin_url" value="<?php echo $this->createAbsoluteUrl('user/login',['referer'=>$this->createAbsoluteUrl('exchange/index')]);?>"/>
             </li>
         </ul>
         <ul>
-	    <li class="a">
-	    </li>
+        <li class="a">
+        </li>
         </ul>
     </div>
 </div>
