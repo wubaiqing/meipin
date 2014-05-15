@@ -107,11 +107,11 @@
                     <li>
                         <div class="convertgood">
                             <a href="<?php echo $url; ?>" target="_blank" class="convertgood-pic"><img
-                                    src="<?php echo $goods['img_url']; ?>" alt="<?php echo $goods['name']; ?> "
-                                    title="<?php echo $goods['name']; ?>"></a>
+                                    src="http://www.meipin.com/assets/images/lazyloading.jpg" data-url="<?php echo $goods['img_url']; ?>" alt="<?php echo $goods['name']; ?> "
+                                    title="<?php echo $goods['name']; ?>" class="exchange-img-list"></a>
                             <dl class="convertgood-desc">
                                 <dd>
-                                    <h3><a href="<?php echo $url;?>" target="_blank"><?php echo $goods['name']; ?></a>></h3>
+                                    <h3><a href="<?php echo $url;?>" target="_blank"><?php echo $goods['name']; ?></a></h3>
 
                                     <p>剩余：<b class="green"><?php echo $goods['num']; ?></b> 份</p>
 
@@ -127,6 +127,7 @@
             </ul>
         </div>
     </div>
+    <input type="hidden" name="jump_url" id="jump_url" value="<?php echo $this->createAbsoluteUrl('user/login',['referer'=>$this->createAbsoluteUrl('exchange/index')]);?>"/>
     <!-- 积分兑换商品开始 -->
     <!-- 分页开始 -->
     <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
@@ -142,6 +143,9 @@
 
 <script type="text/javascript">
     $(function () {
+
+        $("img.exchange-img-list").scrollLoading();
+
 //        $("#qiandao").live('click', function () {
         $(document).on('click','#qiandao',function(){
             var signApi = '/user/DayRegistion';
@@ -150,7 +154,8 @@
                 if (result.status == false) {
                     //未登录
                     if(!result.data.isLogin){
-                        window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index');?>';
+                        var jumpurl = $("#jump_url").val() ? $("#jump_url").val() : '/index';
+                        window.location.href = jumpurl;
                     }
                     return false;
                 } else {

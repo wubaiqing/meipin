@@ -34,7 +34,7 @@ CREATE TABLE `meipin_exchange` (
   `support_name` varchar(50) DEFAULT '' COMMENT '赞助卖家昵称',
   `support_url` varchar(200) NOT NULL COMMENT '卖家店址',
   `description` text COMMENT '描述',
-  `img_url` varchar(100) NOT NULL COMMENT '图片',
+  `img_url` varchar(200) NOT NULL COMMENT '图片',
   `is_delete` tinyint(1) unsigned DEFAULT '0' COMMENT '是否删除0否 1是',
   `sale_num` int(11) NOT NULL DEFAULT '0' COMMENT '销量',
   `user_count` int(11) NOT NULL DEFAULT '0' COMMENT '参与用户数',
