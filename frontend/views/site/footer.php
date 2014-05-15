@@ -48,25 +48,3 @@
         <?php endforeach; ?>
     </div>
 </div>
-<script type="text/javascript">
-    $(function() {
-        $(document).on('click', '.qiandao', function() {
-            var signApi = '/user/DayRegistion';
-            $.get(signApi, {}, function(result) {
-                if (result.status == false) {
-                    //未登录
-                    if (!result.data.isLogin) {
-                        window.location.href = '/user/login?referer=<?php echo $this->createAbsoluteUrl('exchange/index'); ?>';
-                    }
-                    return false;
-                } else {
-                    //成功提示
-                    alert(result.data.message);
-                    return true;
-                }
-            }, 'json');
-        });
-
-
-    });
-</script>
