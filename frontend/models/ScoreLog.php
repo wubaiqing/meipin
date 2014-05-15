@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 美品网商品管理
+ * 美品网商品签到日志
  * @author liukui <liujickson@gmail.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
@@ -24,7 +24,6 @@ class ScoreLog extends ActiveRecord implements IArrayable
      */
     const S_OPTTYPE_DAY_REGISTION = 1;
 
-
     /**
      * 表名
      * @return string
@@ -35,27 +34,30 @@ class ScoreLog extends ActiveRecord implements IArrayable
     }
 
     /**
-     * @return array validation rules for model attributes.
+     * @return array 验证规则
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
-        return array(
-            array('id, opt_type, created_at,num', 'required'),
-            array('id, opt_type,created_at,updated_at,num', 'numerical', 'integerOnly' => true),
-            array('id,remark,updated_at', 'safe'),
-        );
+        return [
+            ['id, opt_type, created_at,num', 'required'],
+            ['id, opt_type,created_at,updated_at,num', 'numerical', 'integerOnly' => true],
+            ['id,remark,updated_at', 'safe'],
+        ];
     }
 
     /**
-     * @return array customized attribute labels (name=>label)
+     * @return array 别名(name=>label)
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'ID',
-        );
+            'opt_type' => '操作类型',
+            'created_at' => '创建时间',
+            'num' => '积分消耗数量',
+            'updated_at' => '更新时间',
+            'remark' => '备注'
+        ];
     }
 
 }

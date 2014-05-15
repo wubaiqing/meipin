@@ -22,7 +22,7 @@ class ScoreService
             return CommonHelper::getDataResult(false, ['message' => "商品已下线或不存在"]);
         }
         //获取兑换热门商品
-        $hotExchangeGoods = Exchange::model()->findAll(array('condition' => "id !=" . $exchange->id, 'order' => 'sale_num desc', 'limit' => 10));
+        $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $exchange->id, 'order' => 'sale_num desc', 'limit' => 10]);
         //获取兑换记录集合
         $logList = ExchangeLog::getLogList($goodsId, $page);
 
@@ -105,7 +105,7 @@ class ScoreService
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品", 'url' => $url]);
         }
         //配送地址
-        $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
+        $userAddress = UsersAddress::model()->find('user_id=:user_id', [':user_id' => $userId]);
         if (empty($userAddress)) {
             return CommonHelper::getDataResult(false, ['message' => "配送地址不存在，请将配送地址信息补充完整", 'url' => Yii::app()->createUrl("user/address")]);
         }
@@ -116,36 +116,46 @@ class ScoreService
                         'message' => "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
                         'url' => Yii::app()->createUrl("user/address")]);
         }
+        $bool = self::saveDoExchange($userId, $cacheKey, $goods);
+        if (!$bool) {
+            return CommonHelper::getDataResult(false, [
+                        'message' => "系统忙，请返回重试",
+                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)])
+            ]);
+        }
+        return CommonHelper::getDataResult(true, [
+                    'message' => "商品兑换成功",
+                    'url' => $url
+        ]);
+    }
 
+    public static function saveDoExchange($userId, $cacheKey, $goods)
+    {
         //执行兑换
         $transaction = Yii::app()->db->beginTransaction();
         try {
             //更新用戶积分
-            User::model()->updateByPk($userId, array('score' => new CDbExpression('score-' . $goods->integral)));
+            User::model()->updateByPk($userId, ['score' => new CDbExpression('score-' . $goods->integral)]);
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = ['user_id' => $userId, 'username' => $user->username, 'created_at' => $nowTime,
-                'goods_id' => $goodsId, 'remark' => $order['remark'], 'city_id' => $userAddress->city_id,
+                'goods_id' => $goods->id, 'remark' => $order['remark'], 'city_id' => $userAddress->city_id,
                 'address' => $userAddress->address];
             $exchangeLog->insert();
 
             //删除token
             Yii::app()->cache->delete($cacheKey);
 
-            $userCount = ExchangeLog::model()->count(array('condition' => 'goods_id=:goods_id', 'params' => array(":goods_id" => $goodsId), 'group' => 'user_id'));
+            $userCount = ExchangeLog::model()->count(['condition' => 'goods_id=:goods_id', 'params' => [":goods_id" => $goods->id], 'group' => 'user_id']);
             //更新兑换商品数量
-            Exchange::model()->updateByPk($goodsId, array('sale_num' => new CDbExpression('sale_num+1'), 'user_count' => $userCount));
+            Exchange::model()->updateByPk($goodsId, ['sale_num' => new CDbExpression('sale_num+1'), 'user_count' => $userCount]);
 
             $transaction->commit();
         } catch (\Exception $ex) {
             $transaction->rollback();
-            return CommonHelper::getDataResult(false, [
-                        'message' => "系统忙，请返回重试",
-                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId)))]);
+            return false;
         }
-        return CommonHelper::getDataResult(true, [
-                    'message' => "商品兑换成功",
-                    'url' => $url]);
+        return true;
     }
 
     public static function formatPostValue($post)
@@ -255,13 +265,17 @@ class ScoreService
                 $user->dr_count = 0;
                 $num = 1;
             }
-            $user->attributes = ['last_dr_time' => $now, 'score' => ($user->score + $num), 'dr_count' => ($user->dr_count + 1)];
-            $user->update(array('score', 'dr_count', 'last_dr_time'));
+            $user->attributes = [
+                'last_dr_time' => $now, 'score' => ($user->score + $num), 'dr_count' => ($user->dr_count + 1)
+            ];
+            $user->update(['score', 'dr_count', 'last_dr_time']);
 
             //保存兑换记录
             $scoreLog = new ScoreLog();
-            $scoreLog->attributes = ['user_id' => $userId, 'opt_type' => $optType, 'created_at' => $now,
-                'remark' => $remark, 'num' => $num];
+            $scoreLog->attributes = [
+                'user_id' => $userId, 'opt_type' => $optType, 'created_at' => $now,
+                'remark' => $remark, 'num' => $num
+            ];
             $scoreLog->insert();
 
             $transaction->commit();

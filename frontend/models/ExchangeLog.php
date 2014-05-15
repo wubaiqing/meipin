@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 美品网商品管理
+ * 美品网商品兑换记录
  * @author liukui <liujickson@gmail.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
@@ -30,32 +30,31 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     }
 
     /**
-     * @return array validation rules for model attributes.
+     * @return array 验证规则.
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
-        return array(
-            array('user_id,username,created_at,goods_id,city_id,address', 'required'),
-            array('id, user_id,created_at,updated_at,goods_id,city_id', 'numerical', 'integerOnly' => true),
-            array('id,username,address,updated_at', 'safe'),
-        );
+        return [
+            ['user_id,username,created_at,goods_id,city_id,address', 'required'],
+            ['id, user_id,created_at,updated_at,goods_id,city_id', 'numerical', 'integerOnly' => true],
+            ['id,username,address,updated_at', 'safe'],
+        ];
     }
 
     /**
-     * @return array customized attribute labels (name=>label)
+     * @return array 字段别名 (name=>label)
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'ID',
             'user_id' => '用户ID',
             'username' => '用户名',
             'created_at' => '兑换时间',
             'updated_at' => '更新时间',
-            'goods_id' => '兑换商品ID',
-        );
+            'city_id' => '城市ID',
+            'address' => '配送地址',
+        ];
     }
 
     /**

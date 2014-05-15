@@ -58,13 +58,4 @@ class CommonHelper
         return ['status' => $status, 'data' => $data];
     }
 
-    /**
-     * 创建登录回调地址
-     * @param string $url 登录后返回地址
-     */
-    public static function createLoginBackUrl($url)
-    {
-        return Yii::app()->createAbsoluteUrl("user/login") . "?referer=" .$url;
-    }
-
 }
