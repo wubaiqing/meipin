@@ -104,8 +104,8 @@ class ExchangeController extends Controller
     public function actionIndex()
     {
         $data = [];
+        //积分兑换首页商品列表
         $data = $this->scoreService->showExchangeGoodsList();
-
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
 

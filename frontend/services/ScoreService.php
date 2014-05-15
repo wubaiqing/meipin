@@ -174,18 +174,21 @@ class ScoreService extends AbstractService
      */
     public function showExchangeGoodsList()
     {
+        //组装查询条件
         $criteria = new CDbCriteria();
-        $criteria->limit = Yii::app()->params['pagination']['exchangePageSize'];
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
         //分页类开始
         $pages = new CPagination();
         //计算总数
         $pages->itemCount = Exchange::model()->count($criteria);
+        //每页显示数量，配置文件中可配
         $pages->pageSize = Yii::app()->params['pagination']['exchangePageSize'];
         $pages->applyLimit($criteria);
         $data = [];
+        //根据条件查询积分兑换商品
         $data['goods'] = Exchange::model()->findAll($criteria);
+        //分页类
         $data['pages'] = $pages;
         return $data;
     }

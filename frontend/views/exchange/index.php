@@ -1,52 +1,8 @@
-<style>
-    .banner {
-        position: relative;
-        overflow: auto;
-    }
-
-    .banner li {
-        list-style: none;
-    }
-
-    .banner ul li {
-        float: left;
-    }
-
-    .banner .dots {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-    }
-
-    .banner .dots li {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin: 0 4px;
-        text-indent: -999em;
-        border: 2px solid #fff;
-        border-radius: 6px;
-        cursor: pointer;
-        opacity: 4
-    }
-
-    .banner .dots li.active {
-        background: #fff;
-        opacity: 1
-    }
-</style>
 <div id="content" class="wp">
     <div class="w1040 clearfix">
         <!--积分广告和积分 登录开始-->
         <div class="pointsad-pointslog clearfix">
             <div class="pointsad fl">
-                <!--                <style type="text/css">.ad_focus_22{ width:650px; height:210px; position:relative; overflow:hidden;margin:0px auto;}-->
-                <!--                    .ad_focus_22 ul{ position:relative; z-index:5;}-->
-                <!--                    .ad_focus_22 ul li{ position:absolute; display:none;}-->
-                <!--                    .ad_focus_22 .num{ position:absolute;right:10px; bottom:10px; z-index:10;}-->
-                <!--                    .ad_focus_22 .num a{ width:15px; height:15px; line-height:15px; display:inline-block; text-align:center; margin:0 3px; cursor:pointer; text-decoration:none; background:#FFF;}-->
-                <!--                    .ad_focus_22 .num a.cur{ background:#ff6700;color:#fff;}-->
-                <!--                </style>-->
                 <div class="banner has-dots">
                     <ul>
                         <li style="display: block;">
@@ -129,8 +85,9 @@
 </div>
 <script type="text/javascript">
     $(function () {
+        //懒加载
         $("img.exchange-img-list").scrollLoading();
-        /***签到已经迁到页面底部了***/
+        //滚动图
         $('.banner').unslider({
             speed: 500,
             delay: 3000,
