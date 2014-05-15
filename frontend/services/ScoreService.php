@@ -225,7 +225,7 @@ class ScoreService extends AbstractService
         $dataToken = Yii::app()->cache->get($tokenKey);
         if (empty($dataToken)) {
             $dataToken = ScoreService::getToken();
-            Yii::app()->cache->set($cacheKey, $dataToken, Constants::T_HALF_HOUR);
+            Yii::app()->cache->set($tokenKey, $dataToken, Constants::T_HALF_HOUR);
         }
         $result->tokenData = $dataToken;
         $result->status = true;
