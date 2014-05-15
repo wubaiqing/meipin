@@ -158,12 +158,9 @@ class UserController extends Controller
         $model = UsersAddress::getModel($userId);
 
         // 省份，城市
-        $city = [];
         $province = City::getByParentId(0);
         $model->province = City::getProvinceId($model->city_id);
-        if ($model->province > 0) {
-            $city = City::getCityList($model->province);
-        }
+        $city = City::getCityList($model->province);
 
         if (isset($_POST['UsersAddress'])) {
             UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
