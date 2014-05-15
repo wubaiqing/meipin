@@ -27,14 +27,6 @@ class CommonHelper
     }
 
     /**
-     * 标准格式的
-     */
-    public static function getAjaxFormat($data, $status = false, $msg = '')
-    {
-        return array('status' => $status, 'data' => $data, 'msg' => $msg);
-    }
-
-    /**
      * 生成缓存KEY，通过前缀和参数
      * @param string $prefix 前缀
      * @param array $args
@@ -44,20 +36,35 @@ class CommonHelper
         return $prefix . md5(serialize($args));
     }
 
-    public static function filterUsername($str)
+    /**
+     * 将字符串从第三位开始替换为*号
+     * @param string $str 需要替换的字符串
+     * @param integer $end 字符串結束位置
+     * @return string 
+     */
+    public static function filterUsername($str, $end = 3)
     {
-        return substr($str, 0, 3) . "******";
+        return substr($str, 0, $end) . "******";
     }
 
     /**
-     * 创建可点击链接
-     * @param string $url 链接
-     * @param string $url 链接
-     * @return string 
+     * 电影
+     * @param boolean $status 状态值
+     * @param fixed $data 返回数据对象
+     * @return array 
      */
-    public static function createLink($url, $toPage)
+    public static function getDataResult($status, $data)
     {
-        return "<a href='" . $url . "' style='color:#ff7a70;'>点击</a>" . $toPage;
+        return ['status' => $status, 'data' => $data];
+    }
+
+    /**
+     * 创建登录回调地址
+     * @param string $url 登录后返回地址
+     */
+    public static function createLoginBackUrl($url)
+    {
+        return Yii::app()->createAbsoluteUrl("user/login") . "?referer=" .$url;
     }
 
 }

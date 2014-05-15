@@ -48,29 +48,29 @@ class ExchangeController extends Controller
         }
     }
 
+    /**
+     * 商品兑换订单详情页
+     */
     public function actionOrder()
     {
         $id = Yii::app()->request->getQuery("id", 0);
-        $userId = Yii::app()->user->id;
-        if (empty($userId)) {
-            $url = Yii::app()->createAbsoluteUrl("user/login") . "?referer=" . Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id]);
-            $this->redirect($url);
+        if (!$this->isLogin) {
+            $this->redirect(CommonHelper::createLoginBackUrl(Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id])));
             Yii::app()->end();
         }
-
         $id = Des::decrypt($id);
         //加載数据
-        $data = $this->scoreService->getOrderdetail($id, $userId);
-        if (!$data->status) {
+        $dataResult = $this->scoreService->getOrderdetail($id, $this->userId);
+        if (!$dataResult['status']) {
             $this->render('/common/success', [
                 'status' => 'yes',
-                'title' => $data->message,
-                'url' => $data->url,
+                'title' => $dataResult['data']['message'],
+                'url' => Yii::app()->createUrl('exchange/index'),
             ]);
             Yii::app()->end();
         }
-
-        $this->render('order', ['data' => $data, 'params' => array('goodsId' => $id, 'token' => $data->tokenData)]);
+        //渲染页面
+        $this->render('order', ['data' => $dataResult['data'], 'params' => array('goodsId' => $id, 'token' => $dataResult['data']['token'])]);
     }
 
     /**

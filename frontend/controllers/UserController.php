@@ -177,28 +177,22 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 保存用户送货地址
+     */
     public function actionAjaxUserAddressSave()
     {
-        $userId = Yii::app()->user->id;
-        if (empty($userId)) {
-            $this->returnData(false, ['message' => '请先登录', 'isLogin' => empty($userId) ? false : true]);
+        //校验是否登录
+        if (!$this->isLogin) {
+            $this->returnData(false, ['message' => '请先登录', 'isLogin' => $this->isLogin]);
         }
-        $model = UsersAddress::getModel($userId);
-        // 省份，城市
-        $city = [];
-        $province = City::getByParentId(0);
-        $model->province = City::getProvinceId($model->city_id);
-        if ($model->province > 0) {
-            $city = City::getCityList($model->province);
-        }
-        if (isset($_POST['UsersAddress'])) {
-            UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
-            if ($model->save()) {
-                $this->returnData(true, ['message' => '保存成功', 'isLogin' => empty($userId) ? false : true, 'address_id' => Des::encrypt($model->id)]);
-            }
-        }
+        //获取请求参数
+        $userAddress = Yii::app()->request->getPost("UsersAddress");
 
-        $this->returnData(false, ['message' => '系统繁忙，请稍后再试', 'isLogin' => empty($userId) ? false : true]);
+        //保存数据
+        $dataResult = ScoreService::saveUserAddress($this->userId, $userAddress);
+        //返回json数据
+        $this->returnData($dataResult['status'], ['message' => $dataResult['data']['message'], 'isLogin' => $this->isLogin]);
     }
 
     /**
@@ -223,14 +217,11 @@ class UserController extends Controller
      */
     public function actionDayRegistion()
     {
-        $userId = Yii::app()->user->id;
-        $scoreServide = new ScoreService();
-        $result = new DataResult();
-        if (empty($userId)) {
-            $this->returnData(false, ['message' => "请先登录"]);
+        if (empty($this->isLogin)) {
+            $this->returnData(false, ['message' => "请先登录", 'isLogin' => $this->isLogin]);
         }
-        $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
-        $this->returnData($result->status, ['message' => $result->message]);
+        $dataResult = ScoreService::updateScore($this->userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
+        $this->returnData($dataResult['status'], ['message' => $dataResult['data']['message'], 'isLogin' => $this->isLogin]);
     }
 
 }

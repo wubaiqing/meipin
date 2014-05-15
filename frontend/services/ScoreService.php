@@ -5,7 +5,7 @@
  *
  * @author liukui<liujickson@gmail.com>
  */
-class ScoreService extends AbstractService
+class ScoreService
 {
 
     /**
@@ -194,15 +194,12 @@ class ScoreService extends AbstractService
      * 获取确认下单信息
      * @param integer $goodsId 兑换商品ID
      * @param integer $userId 用户ID
-     * @return DataResult 
+     * @return array 
      */
-    public function getOrderdetail($goodsId, $userId)
+    public static function getOrderdetail($goodsId, $userId)
     {
-        $result = new DataResult();
-        $result->setUrl(Yii::app()->createUrl("exchange/index"));
         if (!preg_match("/^\d+$/", $goodsId)) {
-            $result->setMessage("兑换商品不存在,您可以查看更多兑换商品");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "兑换商品不存在,您可以查看更多兑换商品"]);
         }
         //获取用户邮寄地址
         $userAddress = UsersAddress::getModel($userId);
@@ -213,11 +210,8 @@ class ScoreService extends AbstractService
         if ($userAddress->province > 0) {
             $city = City::getCityList($userAddress->province);
         }
-        $result->province = $province;
-        $result->city = $city;
-        $result->userAddress = $userAddress;
         //查询兑换商品数据
-        $result->exchange = Exchange::model()->findByPk($goodsId);
+        $exchange = Exchange::model()->findByPk($goodsId);
 
         //设置兑换token用于防止重复提交
         $tokenKey = ScoreService::getExchangeCacheKey($userId, $goodsId);
@@ -226,9 +220,14 @@ class ScoreService extends AbstractService
             $dataToken = ScoreService::getToken();
             Yii::app()->cache->set($tokenKey, $dataToken, Constants::T_HALF_HOUR);
         }
-        $result->tokenData = $dataToken;
-        $result->setStatus(true);
-        return $result;
+        return CommonHelper::getDataResult(true, [
+                    'province' => $province,
+                    'city' => $city,
+                    'userAddress' => $userAddress,
+                    'exchange' => $exchange,
+                    'token' => $dataToken,
+                    'message' => ""
+        ]);
     }
 
     /**
@@ -236,21 +235,18 @@ class ScoreService extends AbstractService
      * @param integer $userId 用户ID
      * @param integer $optType 操作方式；1：增加；2：减少
      * @param string $remark 备注
-     * @return DataResult 
+     * @return array 
      */
-    public function updateScore($userId, $optType, $remark = '')
+    public static function updateScore($userId, $optType, $remark = '')
     {
-        $result = new DataResult();
         $scoreList = Yii::app()->params['dayRegistionNum'];
-        if (!preg_match("/^\d+$/", $optType)) {
-            $result->setMessage("系统偷懒了，请稍后再试");
-            return $result;
-        }
         //验证
+        if (!preg_match("/^\d+$/", $optType)) {
+            return CommonHelper::getDataResult(false, ['message' => "系统偷懒了，请稍后再试"]);
+        }
         $user = User::model()->findByPk($userId);
         if ($user->last_dr_time > 0 && date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time())) {
-            $result->setMessage("您已经签过了");
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "您已经签过了"]);
         }
 
         $transaction = Yii::app()->db->beginTransaction();
@@ -276,15 +272,39 @@ class ScoreService extends AbstractService
                 'remark' => $remark, 'num' => $num];
             $scoreLog->insert();
 
-            $result->setStatus(true);
-            $result->setMessage("签到成功");
             $transaction->commit();
             return $result;
         } catch (Exception $exc) {
             $transaction->rollback();
-            $result->setMessage('系统正在偷懒，请稍后再试');
-            return $result;
+            return CommonHelper::getDataResult(false, ['message' => "系统正在偷懒，请稍后再试"]);
         }
+        return CommonHelper::getDataResult(true, ['message' => "签到成功"]);
+    }
+
+    /**
+     * 保存用户地址数据
+     * @param integer $userId 用户ID
+     * @param array $userAddress POST过来的数据
+     * @return array 
+     */
+    public static function saveUserAddress($userId, $userAddress)
+    {
+
+        $model = UsersAddress::getModel($userId);
+        // 省份，城市
+        $city = [];
+        $province = City::getByParentId(0);
+        $model->province = City::getProvinceId($model->city_id);
+        if ($model->province > 0) {
+            $city = City::getCityList($model->province);
+        }
+        if (!empty($userAddress)) {
+            UsersAddress::setAttr($userId, $userAddress, $model);
+            if ($model->save()) {
+                return CommonHelper::getDataResult(true, ['message' => '地址更新成功']);
+            }
+        }
+        return CommonHelper::getDataResult(false, ['message' => '地址更新失败']);
     }
 
 }

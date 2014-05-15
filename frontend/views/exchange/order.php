@@ -1,12 +1,15 @@
 <div id="confirm_exchange" class="exchange area">
     <div id="address" class="address ">
+        <?php 
+
+        ?>
         <h2><span></span>收货人信息</h2>
-        <div class="toptxt" id="address_show_area" style="<?php echo $data->userAddress->id > 0 ? 'display: block;' : 'display:none;' ?>">
+        <div class="toptxt" id="address_show_area" style="<?php echo $data['userAddress']->id > 0 ? 'display: block;' : 'display:none;' ?>">
             <p>
 
                 <?php
-                if (isset($data->userAddress) && !empty($data->userAddress->id)):
-                    echo $data->province[$data->userAddress->province] . "-" . $data->city[$data->userAddress->city_id] . "-" . $data->userAddress->address;
+                if (isset($data['userAddress']->id) && !empty($data['userAddress']->id)):
+                    echo $data['province'][$data['userAddress']->province] . "-" . $data['city'][$data['userAddress']->city_id] . "-" . $data['userAddress']->address;
                 endif;
                 ?>
             </p>
@@ -25,30 +28,30 @@
             ]
         ]);
         ?>
-        <ul class=" modify_form" style="<?php echo $data->userAddress->id > 0 ? 'display: none;' : 'display:block;' ?>">
+        <ul class=" modify_form" style="<?php echo $data['userAddress']->id > 0 ? 'display: none;' : 'display:block;' ?>">
             <div style="margin:0;padding:0;display:inline">
                 <input name="address_token" type="hidden" value="">
             </div>
             <li>
                 <label><em>*</em>真实姓名：</label>
-                <?php echo $form->textField($data->userAddress, 'name', array('class' => 'text', 'maxLength' => '8')); ?>
+                <?php echo $form->textField($data['userAddress'], 'name', array('class' => 'text', 'maxLength' => '8')); ?>
             </li>
             <li>
                 <label><em>*</em>收货地址：</label>
-                <?php echo $form->dropDownList($data->userAddress, 'province', $data->province, array('id' => 'userProvince', 'empty' => '请选择')); ?>
+                <?php echo $form->dropDownList($data['userAddress'], 'province', $data['province'], array('id' => 'userProvince', 'empty' => '请选择')); ?>
                 &nbsp;&nbsp;
-                <?php echo $form->dropDownList($data->userAddress, 'city_id', $data->city, array('id' => 'userCity', 'empty' => '请选择')); ?>
+                <?php echo $form->dropDownList($data['userAddress'], 'city_id', $data['city'], array('id' => 'userCity', 'empty' => '请选择')); ?>
                 &nbsp;&nbsp;
-                <?php echo $form->textField($data->userAddress, 'address', array('class' => 'text', 'maxLength' => '100')); ?>
+                <?php echo $form->textField($data['userAddress'], 'address', array('class' => 'text', 'maxLength' => '100')); ?>
 
             </li>
             <li>
                 <label><em>*</em>手机号码：</label>
-                <?php echo $form->textField($data->userAddress, 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
+                <?php echo $form->textField($data['userAddress'], 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
             </li>
             <li>
                 <label>邮政编码：</label>
-                <?php echo $form->textField($data->userAddress, 'postcode', array('class' => 'text', 'maxLength' => '10')); ?>
+                <?php echo $form->textField($data['userAddress'], 'postcode', array('class' => 'text', 'maxLength' => '10')); ?>
             </li>
             <li class="tj">
                 <label>&nbsp;</label>
@@ -77,27 +80,27 @@
                         <dt>
                         <?php
                         echo CHtml::hiddenField("Exchange[token]", $params['token']);
-                        echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data->exchange->id));
-                        echo CHtml::hiddenField("Exchange[city_id]", $data->userAddress->city_id);
-                        $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data->exchange->id)));
+                        echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data['exchange']->id));
+                        echo CHtml::hiddenField("Exchange[city_id]", $data['userAddress']->city_id);
+                        $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data['exchange']->id)));
                         ?>
                         <a href="<?php echo $goodsUrl; ?>" target="_blank">
-                            <img src="<?php echo $data->exchange->img_url; ?>">
+                            <img src="<?php echo $data['exchange']->img_url; ?>">
                         </a>
                         </dt>
                         <dd>
-                            <span class="maxh40"><a target="_blank" href="<?php echo $goodsUrl; ?>"><?php echo $data->exchange->name; ?></a></span>
+                            <span class="maxh40"><a target="_blank" href="<?php echo $goodsUrl; ?>"><?php echo $data['exchange']->name; ?></a></span>
                         </dd>
                     </dl>
                     <dl class="jifn">
-                        <dt><em><?php echo $data->exchange->integral; ?></em><span></span></dt>
-                        <dd>提示：兑换礼品后您将减少<?php echo $data->exchange->integral; ?>积分，一旦兑换成功，积分将不退还！请确定喜欢此礼品再兑换</dd>
+                        <dt><em><?php echo $data['exchange']->integral; ?></em><span></span></dt>
+                        <dd>提示：兑换礼品后您将减少<?php echo $data['exchange']->integral; ?>积分，一旦兑换成功，积分将不退还！请确定喜欢此礼品再兑换</dd>
                     </dl>
                 </div>
             </div>
             <div class="jadinfo" data-must_memo="0" data-memo="">
                 <span>备注信息：<input id="memo" name="Exchange[remark]" type="text"></span>
-                <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data->userAddress->id)?>" value="">
+                <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id)?>" value="">
             </div>
         </form>  
     </div>
