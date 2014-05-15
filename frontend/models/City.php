@@ -29,7 +29,7 @@ class City extends ActiveRecord implements IArrayable
 
     /**
      * 以父级ID获取数据
-     * @param integer $parentId 
+     * @param  integer $parentId
      * @return object
      */
     public static function getByParentId($parentId)
@@ -54,12 +54,13 @@ class City extends ActiveRecord implements IArrayable
         }
 
         Yii::app()->cache->set($cacheKey, $array, 3600);
+
         return $array;
     }
 
     /**
      * 获取城市每一行数据模板
-     * @param object $city 城市对象
+     * @param  object $city 城市对象
      * @return string 每一个城市模板
      */
     public static function getItem($cities)
@@ -68,12 +69,13 @@ class City extends ActiveRecord implements IArrayable
         foreach ($cities as $id => $name) {
             $string .= "<option value='{$id}'>{$name}</option>";
         }
+
         return $string;
     }
 
     /**
      * 获取省份ID
-     * @param integer $cityId 城市ID
+     * @param  integer $cityId 城市ID
      * @return integer
      */
     public static function getProvinceId($cityId)
@@ -94,6 +96,7 @@ class City extends ActiveRecord implements IArrayable
 
         $cityId = $city->parent_id;
         Yii::app()->cache->set($cacheKey, $cityId, 3600);
+
         return $cityId;
     }
 
@@ -106,7 +109,7 @@ class City extends ActiveRecord implements IArrayable
         if ($province == 0) {
             return $city;
         }
+
         return self::getByParentId($province);
     }
 }
-

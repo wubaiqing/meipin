@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
-class UseraddressController extends Controller
+class UserAddressController extends Controller
 {
     public function actionGetProvince($provinceId)
     {

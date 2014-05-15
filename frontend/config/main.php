@@ -37,7 +37,7 @@ return [
             'exchangePageSize' => 4,
         ],
         'linkCacheTime' => 86400,
-        //系統全局配置 
+        //系統全局配置
         'config' => array(
             //是否采用DEBUG模式
             'enableDebug' => false,
@@ -49,5 +49,4 @@ return [
         'scorePageSize' => 5,
     ],
 
-                   
 ];

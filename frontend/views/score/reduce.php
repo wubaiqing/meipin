@@ -24,5 +24,5 @@
             </div>
         </div>
     </div>
-	<span class="clear"></span>
+    <span class="clear"></span>
 </div>

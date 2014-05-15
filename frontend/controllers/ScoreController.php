@@ -45,7 +45,7 @@ class ScoreController extends Controller
 
         // 获取用户积分记录
         $score = Score::getScoreByUserId($userId,$type,$page);
-        
+
         //var_dump($score);exit;
         $this->render('index', [
             'user' => $user,
@@ -53,9 +53,8 @@ class ScoreController extends Controller
             'score' => $score['data'],
             'pager' => $score['pager'],
         ]);
-        
-    }
 
+    }
 
     /**
      * 积分管理-积分增加列表
@@ -69,20 +68,16 @@ class ScoreController extends Controller
         $user = User::getUser($userId);
         // 获取用户积分记录
         $score_arr = Score::getScoreByUserId($userId,$type);
-        foreach($score_arr as $score)
-        {
-        	$array['id'] = $score['id'];
-        	$array['score'] = $score['score'];
-        	$array['user_id'] = $score['user_id'];
-        	$array['reason'] = $score['reason'];
-        	$array['create_time'] = $score['create_time'];
+        foreach ($score_arr as $score) {
+            $array['id'] = $score['id'];
+            $array['score'] = $score['score'];
+            $array['user_id'] = $score['user_id'];
+            $array['reason'] = $score['reason'];
+            $array['create_time'] = $score['create_time'];
         }
         //var_dump(json_encode($score));
         return json_encode($score);
     }
-
-
-
 
     /**
      * 跳转首页

@@ -1,6 +1,6 @@
 <div id="confirm_exchange" class="exchange area">
     <div id="address" class="address ">
-        <?php 
+        <?php
 
         ?>
         <h2><span></span>收货人信息</h2>
@@ -102,7 +102,7 @@
                 <span>备注信息：<input id="memo" name="Exchange[remark]" type="text"></span>
                 <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id)?>" value="">
             </div>
-        </form>  
+        </form>
     </div>
     <br/>
     <br/>
@@ -116,33 +116,37 @@
     echo Chtml::hiddenField("loginUrl",Yii::app()->createAbsoluteUrl("user/login"));
 ?>
 <script type="text/javascript">
-    $(".modify_address").click(function() {
+    $(".modify_address").click(function () {
         $(".modify_form").show();
     })
-    $("#address_save_btn").click(function() {
+    $("#address_save_btn").click(function () {
         $(".error").remove();
         if ($.trim($("#UsersAddress_name").val()) == "") {
             $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
+
             return false;
         }
         if ($.trim($("#userProvince").val()) == ""||$.trim($("#userProvince").val()) == "请选择") {
             $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>")
+
             return false;
         }
         if ($.trim($("#userCity").val()) == ""||$.trim($("#userCity").val()) == "请选择") {
             $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>")
+
             return false;
         }
         if ($.trim($("#UsersAddress_address").val()) == "") {
             $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
+
             return false;
         }
         var url = $("#address-form").attr("action");
         var params = $("#address-form").serialize();
-        $.post(url, params, function(d) {
+        $.post(url, params, function (d) {
             if (!d.status && !d.data.isLogin) {
                 location.href = $("#loginUrl").val();
-            } else if (d.status) {
+            } elseif (d.status) {
                 $("#address_show_area").show();
                 $(".welfare_btn").attr("address_id",d.data.address_id);
                 var address = $("#userProvince").find("option:selected").text()+"-"+$("#userCity").find("option:selected").text()+"-"+$("#UsersAddress_address").val();
@@ -154,10 +158,12 @@
     });
     User.Address.changeProvince();
 
-    function validOrderConfirm() {
-        if($(".welfare_btn").attr("address_id")!= ""){
+    public function validOrderConfirm()
+    {
+        if ($(".welfare_btn").attr("address_id")!= "") {
             return true;
         }
+
         return false;
     }
 </script>

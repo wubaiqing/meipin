@@ -9,12 +9,12 @@ abstract class AbstractService extends CComponent
 
     /**
      * 是否启用缓存
-     * @var boolean 
+     * @var boolean
      */
     public $enableCache = true;
     /**
      * 是否启用调试模式
-     * @var boolean 
+     * @var boolean
      */
     public $enableDebug = false;
 

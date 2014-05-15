@@ -107,7 +107,7 @@ class Exchange extends ActiveRecord
      * - Pass data provider to CGridView, CListView or any similar widget.
      *
      * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
+     *                             based on the search/filter conditions.
      */
     public function search()
     {
@@ -133,6 +133,7 @@ class Exchange extends ActiveRecord
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
+
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
@@ -141,7 +142,7 @@ class Exchange extends ActiveRecord
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * @param string $className active record class name.
+     * @param  string   $className active record class name.
      * @return Exchange the static model class
      */
     public static function model($className = __CLASS__)
@@ -153,6 +154,7 @@ class Exchange extends ActiveRecord
     {
         $this->start_time = strtotime($this->start_time);
         $this->end_time = strtotime($this->end_time);
+
         return true;
     }
 
@@ -165,6 +167,7 @@ class Exchange extends ActiveRecord
         }
         $this->update_id = Yii::app()->user->id;
         $this->update_time = time();
+
         return true;
     }
 

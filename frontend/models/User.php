@@ -160,6 +160,7 @@ class User extends ActiveRecord implements IArrayable
 
         $user = self::model()->findByPk($userId);
         Yii::app()->cache->set($cacheKey, $user, 3600);
+
         return $user;
     }
 

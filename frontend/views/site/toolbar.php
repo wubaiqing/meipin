@@ -5,17 +5,14 @@ em,i{ font-style:normal}
 body{background:url(/v1/ju/core/img/icon1.png) fixed repeat;min-width: 980px;}
 a,a *{cursor: pointer;}
 
-
 /* 浮动属性 */
 .left,.center,.l,.right,.r{display:inline;float:left;}
 .right,.r{float:right;}
 .pp,.pt,.list12 ul,.list14 ul,.area{width:100%;margin:0 auto;}
 .area{width:980px;}/*页面属性 */
 
-
 /*icon*/
 .icon-arrow{display:inline-block;*display:inline;*zoom:1;height:0;line-height: 0;width:0;vertical-align:middle;border-width:3px;border-style:solid;margin-left:3px;border-color:#CCC #FFF #FFF #FFF;_overflow:hidden;}
-
 
 /*头*/
 #toolbar{width:100%; background:#FFF;color:#333;line-height:23px;position:relative; z-index:998;font-family:\5B8B\4F53;padding-top:5px;}
@@ -229,7 +226,6 @@ span.diacol p{line-height: 30px;}
 .head_nav .r_con .zhe_intro {padding-left: 0px}
 .head_nav .r_con a.on{display: inline-block;*display: inline;*zoom:1;height: 35px;}
 
-
 .head_nav .r_con .tooltip{right: 0;top: -65px}
 .head_nav .r_con .tooltip a{padding: 0;color:#09c;border: none;position: static;}
 .head_nav .r_con .tooltip .tooltip-arrow{left: auto;right: 30px}
@@ -303,9 +299,6 @@ span.diacol p{line-height: 30px;}
 .sign_board .ft h3{font-weight: bold;}
 .sign_board .ft em{color: #e20000;font-family: arial;}
 .sign_board .ft b{font:bold 14px/22px Arial;}
-
-
-
 
 .head_nav .r_con a .icon-mini{top:4px;right:5px;top: 1px\9;right:2px\9;}
 .head_nav .r_con a.on .icon-mini{top: 5px;right: 6px;top: 1px\9;right:1px\9;}
@@ -459,7 +452,6 @@ span.diacol p{line-height: 30px;}
 #dialog_empty_deal.dialog-wrapper-ad{width:auto;height:auto;border: 5px solid #B2B2B2;background:#fff;font-size: 14px;line-height: 26px;position:absolute;z-index:99999}
 #dialog_empty_deal.dialog-wrapper-ad span.close,#signal_diglog.dialog-wrapper a:hover span.close{background: url("/v1/2012/images/tao_20125.22bg2.png") no-repeat scroll 0 0 transparent;display: block;height: 32px;position: absolute;right: -15px;top: -15px;width: 32px;z-index: 4;_background:url(/v1/2012/images/tac_ie6_clo.png);_width:28px;_height:28px;}
 #dialog_empty_deal .diginfo{padding:10px 20px;}
-
 
 /*导航-帮助中心入口*/
 .topf{float: right;width:110px;position: absolute;right:155px;top:0;}
@@ -618,7 +610,6 @@ span.diacol p{line-height: 30px;}
 .jzdcls{position: relative;}
 .jzdcls b{display: block;width: 11px;height: 11px;position: absolute;right: -4px;top: 1px;background: url("/v1/ju/core/img/icon_head.png") no-repeat  0 0;overflow: hidden;}
 
-
 /*37217 消息系统*/
 .toolbar .msg-num{background:url(/v1/ju/core/img/msgs.png) no-repeat -18px 0;color:#fff;width:20px;height:13px;display:inline-block;padding-left:2px;text-align:center;*zoom:1;}
 .toolbar .msg-tips{position:absolute;top:25px;left:639px;background-color:#fffca9;border:1px solid #ece0ba;padding:5px 30px 5px 12px;max-width:225px;color:#333;border-radius:3px;text-align:left;}
@@ -630,31 +621,29 @@ span.diacol p{line-height: 30px;}
 
 <div id="toolbar">
     <div class="toolbar area">
-	<div id="login" class="right">
-	    <em id="tblogin">
-		<a href="http://www.zhe800.com/login?return_to=http%3A%2F%2Fwww.zhe800.com%2F">登录</a>
-		<a href="http://www.zhe800.com/signup?return_to=http%3A%2F%2Fwww.zhe800.com%2F">会员注册</a>
+    <div id="login" class="right">
+        <em id="tblogin">
+        <a href="http://www.zhe800.com/login?return_to=http%3A%2F%2Fwww.zhe800.com%2F">登录</a>
+        <a href="http://www.zhe800.com/signup?return_to=http%3A%2F%2Fwww.zhe800.com%2F">会员注册</a>
 
+        <span>您好，</span>
+        <a href="http://www.zhe800.com/profile/recheck" class="user" target="_blank">hugedalin</a>
 
-
-		<span>您好，</span>
-		<a href="http://www.zhe800.com/profile/recheck" class="user" target="_blank">hugedalin</a>
-
-		<div class="dropdown myzhe">
-		    <a href="http://www.zhe800.com/jifen/profile/score_histories/all" target="_blank">我的折800<i class="icon-arrow arrow-down"></i></a>
-		    <ul class="dropdown-menu">
-			<li><a href="http://passport.tuan800.com/account/safe" target="_blank" class="trigger">账号信息</a></li>
-			<li><a href="http://www.zhe800.com/profile/my_invitation/mode" target="_blank" class="trigger">邀请好友</a></li>
-			<li><a href="http://www.zhe800.com/profile/my_favorites/all" target="_blank" class="trigger">我的收藏</a></li>
-			<li><a href="http://www.zhe800.com/jifen/profile/score_histories/all" target="_blank" class="trigger">我的积分</a></li>
-			<li><a class="exit" href="javascript:PassportCardList[0].doLogout();">退出</a></li>
-		    </ul>
-		</div>
-	    </em>
-	    <div class="hidden"></div>
-	    <script type="text/javascript">
-		tuanpub.getModule("toolbar_pp").init();
-	    </script>
-	</div>
+        <div class="dropdown myzhe">
+            <a href="http://www.zhe800.com/jifen/profile/score_histories/all" target="_blank">我的折800<i class="icon-arrow arrow-down"></i></a>
+            <ul class="dropdown-menu">
+            <li><a href="http://passport.tuan800.com/account/safe" target="_blank" class="trigger">账号信息</a></li>
+            <li><a href="http://www.zhe800.com/profile/my_invitation/mode" target="_blank" class="trigger">邀请好友</a></li>
+            <li><a href="http://www.zhe800.com/profile/my_favorites/all" target="_blank" class="trigger">我的收藏</a></li>
+            <li><a href="http://www.zhe800.com/jifen/profile/score_histories/all" target="_blank" class="trigger">我的积分</a></li>
+            <li><a class="exit" href="javascript:PassportCardList[0].doLogout();">退出</a></li>
+            </ul>
+        </div>
+        </em>
+        <div class="hidden"></div>
+        <script type="text/javascript">
+        tuanpub.getModule("toolbar_pp").init();
+        </script>
+    </div>
     </div>
 </div>

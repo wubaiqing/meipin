@@ -16,7 +16,7 @@ class ExchangeController extends Controller
 
     /**
      * 积分业务处理类
-     * @var ScoreService 
+     * @var ScoreService
      */
     public $scoreService;
 
@@ -76,8 +76,8 @@ class ExchangeController extends Controller
 
     /**
      * 执行兑换操作
-     * @param integer $goodsId 兑换商品ID
-     * @return json 积分兑换返回信息
+     * @param  integer $goodsId 兑换商品ID
+     * @return json    积分兑换返回信息
      */
     public function actionDoExchange()
     {

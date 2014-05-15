@@ -55,20 +55,21 @@
                 <em>(当前库存<a  id='exchange_sale_num'><?php echo ($data->exchange->num - $data->exchange->sale_num); ?></a>件)</em></h4>
             <p></p>
             <script language="javascript">
-                $("#J_welfare").click(function() {
+                $("#J_welfare").click(function () {
                     if ($(this).hasClass("btn_ed")) {
                         return false;
                     }
+
                     return fasle;
                     $.ajax({
                         url: "<?php echo Yii::app()->createUrl("exchange/DoExchange", array('id' => Des::encrypt($params['goodsId']))); ?>",
                         type: "POST",
                         cache: false,
                         dataType: "json",
-                        success: function(data) {
+                        success: function (data) {
                             if (data.status == false) {
                                 alert(data.message);
-                            } else if (data.status == true) {
+                            } elseif (data.status == true) {
                                 alert(data.message);
                                 window.location.href = "";
                             }
@@ -76,7 +77,7 @@
                                 window.location.href = data.location;
                             }
                         },
-                        error: function(d) {
+                        error: function (d) {
                             alert(d);
                         },
                     });

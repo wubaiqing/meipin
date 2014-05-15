@@ -39,10 +39,10 @@ class UsersAddress extends ActiveRecord implements IArrayable
             $this->addError('postcode', '邮编格式错误');
         }
     }
-    
+
     /**
      * 根据用户ID得到用户收获地址信息
-     * @param integer $userId 用户ID
+     * @param  integer $userId 用户ID
      * @return mixed
      */
     public static function getByUserId($userId)
@@ -57,6 +57,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
             'user_id' => $userId
         ));
         Yii::app()->cache->set($cacheKey, $address, 3600);
+
         return $address;
     }
 
@@ -71,8 +72,8 @@ class UsersAddress extends ActiveRecord implements IArrayable
 
     /**
      * 获取用户地址
-     * @param integer $userId 用户ID
-     * @return object 
+     * @param  integer $userId 用户ID
+     * @return object
      */
     public static function getModel($userId)
     {
@@ -80,6 +81,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
         if (!empty($address)) {
             return $address;
         }
+
         return new UsersAddress();
     }
 
