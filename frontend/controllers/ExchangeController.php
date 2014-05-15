@@ -35,7 +35,11 @@ class ExchangeController extends Controller
         $id = Des::decrypt($id);
         $data = $this->scoreService->showExchangeIndex($id, $page);
         if ($data->status == false) {
-            $this->render('/common/notFound', array('title' => $data->message, 'remark' => $data->remark));
+            $this->render('/common/success', [
+                'status' => 'yes',
+                'title' => $data->message,
+                'url' => $data->url,
+            ]);
         } else {
             $this->render('exchangeIndex', [
                 'data' => $data,
@@ -58,7 +62,11 @@ class ExchangeController extends Controller
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
         if (!$data->status) {
-            $this->render('/common/notFound', array('title' => $data->message, 'remark' => $data->remark));
+            $this->render('/common/success', [
+                'status' => 'yes',
+                'title' => $data->message,
+                'url' => $data->url,
+            ]);
             Yii::app()->end();
         }
 
@@ -76,9 +84,17 @@ class ExchangeController extends Controller
         $order = Yii::app()->request->getPost("Exchange", null);
         $data = $this->scoreService->doExchange($userId, $order);
         if ($data->status) {
-            $this->render('/common/exSuccess', ['title' => $data->message, 'remark' => $data->remark]);
+            $this->render('/common/success', [
+                'status' => 'yes',
+                'title' => $data->message,
+                'url' => $data->url,
+            ]);
         } else {
-            $this->render('/common/exFailure', ['title' => $data->message, 'remark' => $data->remark]);
+            $this->render('/common/success', [
+                'status' => 'no',
+                'title' => $data->message,
+                'url' => $data->url,
+            ]);
         }
     }
 

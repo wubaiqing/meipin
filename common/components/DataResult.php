@@ -39,6 +39,12 @@ class DataResult implements IteratorAggregate, ArrayAccess
     public $errorMsg = "";
 
     /**
+     * 回调URL
+     * @var string
+     */
+    public $url = "";
+
+    /**
      * 强制将对象转换为数组
      * @return type
      */
@@ -150,5 +156,15 @@ class DataResult implements IteratorAggregate, ArrayAccess
     {
         $this->errorMsg = $errorMsg;
     }
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
 
 }

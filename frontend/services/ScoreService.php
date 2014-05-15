@@ -32,7 +32,7 @@ class ScoreService extends AbstractService
         $logList = ExchangeLog::getLogList($goodsId, $page);
         $result->logList = $logList;
         //设置返回状态
-        $result->status = true;
+        $result->setStatus(true);
         return $result;
     }
 
@@ -67,65 +67,65 @@ class ScoreService extends AbstractService
         $result = new DataResult();
         $nowTime = time();
         //默认跳转
-        $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/index"), '查看更多兑换商品'));
+        $result->setUrl(Yii::app()->createUrl("exchange/index"));
         $order = self::formatPostValue($order);
         //是否提交
         if (empty($order)) {
-            $result->message = "您访问的页面不存在！";
+            $result->setMessage("您访问的页面不存在");
             return $result;
         }
         $goodsId = $order['goods_id'];
         if (empty($userId)) {
-            $result->message = "对不起，请先登录";
-            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("user/login"), '查看更多兑换商品'));
+            $result->setMessage("对不起，请先登录");
+            $result->setUrl(Yii::app()->createUrl("user/login"));
             return $result;
         }
         //验证提交
         $cacheKey = self::getExchangeCacheKey($userId, $goodsId);
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
-            $result->message = "本次操作已经失效";
-            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)]), '重新兑换'));
+            $result->setMessage("本次操作已经失效,正在跳转商品兑换页");
+            $result->setUrl(Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)]));
             return $result;
         }
         //
         if ($order['token'] != $token) {
-            $result->message = "请不要重复提交！";
+            $result->setMessage("请不要重复提交！");
             return $result;
         }
 
         //查询兑换商品数据
         $goods = Exchange::model()->findByPk($goodsId);
         if (empty($goods)) {
-            $result->message = "对不起，您所兑换的商品不存在";
+            $result->setMessage("对不起，您所兑换的商品不存在，您可以查看其他兑换商品");
             return $result;
         }
         //校验商品
         if ($goods->start_time > $nowTime) {
-            $result->message = "真遗憾！活动还未开始";
+            $result->setMessage("真遗憾！活动还未开始，您可以查看其他兑换商品");
             return $result;
         }
         if ($goods->end_time <= $nowTime) {
-            $result->message = "真遗憾！活动已经结束";
+            $result->setMessage("真遗憾！活动已经结束，您可以查看更多兑换商品");
             return $result;
         }
         $user = User::model()->findByPk($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
-            $result->message = "真遗憾！没有更多库存了";
+            $result->setMessage("真遗憾！没有更多库存了，您可以查看更多兑换商品");
             return $result;
         }
         //配送地址
         $userAddress = UsersAddress::model()->find('user_id=:user_id', array(':user_id' => $userId));
         if (empty($userAddress)) {
-            $result->message = "配送地址不存在，请补充";
-            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("user/address"), '补充配送地址'));
+            $result->setMessage("配送地址不存在，请将配送地址信息补充完整");
+            $result->setUrl(Yii::app()->createUrl("user/address"));
             return $result;
         }
 
         //判断库存
         if ($user->score < $goods->integral) {
-            $result->message = "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品";
-            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/index"), '签到，领取更多积分'));
+            $result->message = "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分";
+            $result->setUrl(Yii::app()->createUrl("exchange/index"));
             return $result;
         }
 
@@ -141,8 +141,6 @@ class ScoreService extends AbstractService
                 'address' => $userAddress->address];
             $exchangeLog->insert();
 
-            $result->message = "兑换成功";
-            $result->remark = '<a href="' . Yii::app()->createUrl("exchange/index") . '">查看更多</a>';
             //删除token
             Yii::app()->cache->delete($cacheKey);
 
@@ -152,10 +150,11 @@ class ScoreService extends AbstractService
 
             $transaction->commit();
             $result->status = true;
+            $result->setMessage("兑换成功");
         } catch (\Exception $ex) {
             $transaction->rollback();
-            $result->message = "系统忙，请稍后再试";
-            $result->setRemark(CommonHelper::createLink(Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId))), '重新兑换'));
+            $result->setMessage("系统忙，请返回重试");
+            $result->setUrl(Yii::app()->createUrl("exchange/exchangeIndex", array('id' => Des::encrypt($goodsId))));
         }
         return $result;
     }
@@ -200,9 +199,9 @@ class ScoreService extends AbstractService
     public function getOrderdetail($goodsId, $userId)
     {
         $result = new DataResult();
+        $result->setUrl(Yii::app()->createUrl("exchange/index"));
         if (!preg_match("/^\d+$/", $goodsId)) {
-            $result->message = "商品信息不存在";
-            $result->remark = "<a href='" . Yii::app()->createUrl("exchange/index") . "' style='color:blue;'>点击跳转</a>到主页";
+            $result->setMessage("兑换商品不存在,您可以查看更多兑换商品");
             return $result;
         }
         //获取用户邮寄地址
@@ -228,7 +227,7 @@ class ScoreService extends AbstractService
             Yii::app()->cache->set($tokenKey, $dataToken, Constants::T_HALF_HOUR);
         }
         $result->tokenData = $dataToken;
-        $result->status = true;
+        $result->setStatus(true);
         return $result;
     }
 
@@ -244,13 +243,13 @@ class ScoreService extends AbstractService
         $result = new DataResult();
         $scoreList = Yii::app()->params['dayRegistionNum'];
         if (!preg_match("/^\d+$/", $optType)) {
-            $result->message = "操作类型错误";
+            $result->setMessage("系统偷懒了，请稍后再试");
             return $result;
         }
         //验证
         $user = User::model()->findByPk($userId);
         if ($user->last_dr_time > 0 && date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time())) {
-            $result->message = "您已经签过了";
+            $result->setMessage("您已经签过了");
             return $result;
         }
 
@@ -277,13 +276,13 @@ class ScoreService extends AbstractService
                 'remark' => $remark, 'num' => $num];
             $scoreLog->insert();
 
-            $result->status = true;
-            $result->message = "签到成功";
+            $result->setStatus(true);
+            $result->setMessage("签到成功");
             $transaction->commit();
             return $result;
         } catch (Exception $exc) {
             $transaction->rollback();
-            $result->message = '系统忙，请稍后再试';
+            $result->setMessage('系统正在偷懒，请稍后再试');
             return $result;
         }
     }
