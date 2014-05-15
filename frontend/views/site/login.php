@@ -25,7 +25,8 @@
             </li>
         </ul>
         <ul>
-            <li class="a"><a href="javascript:void(0)" onclick="javascript:addToFavorite();">收藏美品网</a></li>
+	    <li class="a">
+	    </li>
         </ul>
     </div>
 </div>

@@ -53,7 +53,6 @@
         $(document).on('click', '.qiandao', function() {
             var signApi = '/user/DayRegistion';
             $.get(signApi, {}, function(result) {
-                alert(result.data.message);
                 if (result.status == false) {
                     //未登录
                     if (!result.data.isLogin) {
@@ -61,6 +60,8 @@
                     }
                     return false;
                 } else {
+                    //成功提示
+                    alert(result.data.message);
                     return true;
                 }
             }, 'json');

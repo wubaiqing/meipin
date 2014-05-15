@@ -2,8 +2,11 @@
     $cat = Yii::app()->request->getQuery('cat');
     $page = Yii::app()->request->getQuery('page');
 ?>
+
+
+
+
 <div id="header">
-    <?php $this->renderPartial('prompt'); ?>
     <?php $this->renderPartial('login'); ?>
     <?php $this->renderPartial('head'); ?>
     <?php $this->renderPartial('nav', array('cat' => $cat)); ?>
