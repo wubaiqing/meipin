@@ -40,12 +40,9 @@ class ScoreController extends Controller
         // 获取用户记录
         $user = User::getUser($userId);
         $page = Yii::app()->request->getParam('page');
-        $page = $page ? $page :1;
         $type = Yii::app()->request->getParam('type');
         $type = $type?$type:'index';
-        //var_dump($type);exit;
 
-        $array = [];
         // 获取用户积分记录
         $score = Score::getScoreByUserId($userId,$type,$page);
         
