@@ -71,13 +71,13 @@ CREATE TABLE `meipin_exchange_log` (
   KEY `updated_at` (`updated_at`)
 ) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 COMMENT='用户积分商品兑换记录';
 
-CREATE TABLE `meipin_score_log` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
-  `opt_type` int(11) NOT NULL DEFAULT '0' COMMENT '1:增加；2；减少',
-  `created_at` int(11) NOT NULL DEFAULT '0',
-  `updated_at` int(11) DEFAULT '0',
-  `remark` varchar(100) NOT NULL DEFAULT '' COMMENT '备注',
-  `num` int(11) NOT NULL DEFAULT '0' COMMENT '积分数目',
+CREATE TABLE `meipin_score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `score` int(11) NOT NULL DEFAULT '0' COMMENT '积分增减',
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `reason` int(4) NOT NULL COMMENT '积分操作理由(1:签到增加;2:商品兑换;)',
+  `remark` varchar(100) DEFAULT '' COMMENT '备注',
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='积分变更日志';
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='积分明细表';
