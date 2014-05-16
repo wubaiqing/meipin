@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 积分操作控制器
  * @author liukui<liujickson@gmail.com>
@@ -8,7 +7,6 @@
  */
 class ExchangeController extends Controller
 {
-
     /**
      * @var string $layout 继承视图
      */
@@ -23,7 +21,6 @@ class ExchangeController extends Controller
     public function init()
     {
         parent::init();
-
         $this->scoreService = new ScoreService();
     }
 
