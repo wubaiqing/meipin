@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 积分业务处理类
  *
@@ -7,7 +6,6 @@
  */
 class ScoreService
 {
-
     /**
      * 显示积分兑换详情页面
      * @param  integer $goodsId 需要兑换的商品ID
@@ -27,10 +25,10 @@ class ScoreService
         $logList = ExchangeLog::getLogList($goodsId, $page);
 
         return CommonHelper::getDataResult(true, [
-                    'message' => "",
-                    'logList' => $logList,
-                    'hotExchangeGoods' => $hotExchangeGoods,
-                    'exchange' => $exchange,
+            'message' => "",
+            'logList' => $logList,
+            'hotExchangeGoods' => $hotExchangeGoods,
+            'exchange' => $exchange,
         ]);
     }
 
@@ -79,8 +77,8 @@ class ScoreService
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "本次操作已经失效,正在跳转商品兑换页",
-                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+                'message' => "本次操作已经失效,正在跳转商品兑换页",
+                'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
             ]);
         }
         //
@@ -113,19 +111,20 @@ class ScoreService
         //判断库存
         if ($user->score < $goods->integral) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
-                        'url' => Yii::app()->createUrl("user/address")]);
+                'message' => "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
+                'url' => Yii::app()->createUrl("user/address")
+            ]);
         }
         $bool = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
         if (!$bool) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "系统忙，请返回重试",
-                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)])
+                'message' => "系统忙，请返回重试",
+                'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)])
             ]);
         }
         return CommonHelper::getDataResult(true, [
-                    'message' => "商品兑换成功",
-                    'url' => $url
+            'message' => "商品兑换成功",
+            'url' => $url
         ]);
     }
 
@@ -238,12 +237,12 @@ class ScoreService
         }
 
         return CommonHelper::getDataResult(true, [
-                    'province' => $province,
-                    'city' => $city,
-                    'userAddress' => $userAddress,
-                    'exchange' => $exchange,
-                    'token' => $dataToken,
-                    'message' => ""
+            'province' => $province,
+            'city' => $city,
+            'userAddress' => $userAddress,
+            'exchange' => $exchange,
+            'token' => $dataToken,
+            'message' => ""
         ]);
     }
 
@@ -281,7 +280,9 @@ class ScoreService
                 $num = 1;
             }
             $user->attributes = [
-                'last_dr_time' => $now, 'score' => ($user->score + $num), 'dr_count' => ($user->dr_count + 1)
+                'last_dr_time' => $now, 
+                'score' => ($user->score + $num), 
+                'dr_count' => ($user->dr_count + 1)
             ];
             $user->update(['score', 'dr_count', 'last_dr_time']);
 
@@ -292,13 +293,11 @@ class ScoreService
                 'remark' => $remark, 'num' => $num
             ];
             $scoreLog->insert();
-
             $transaction->commit();
 
             return $result;
         } catch (Exception $exc) {
             $transaction->rollback();
-
             return CommonHelper::getDataResult(false, ['message' => "系统正在偷懒，请稍后再试"]);
         }
 
