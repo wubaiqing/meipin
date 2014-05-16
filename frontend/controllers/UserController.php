@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -8,7 +7,6 @@
  */
 class UserController extends Controller
 {
-
     /**
      * @var string $layout
      */
@@ -47,7 +45,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-                ], parent::accessRules());
+        ], parent::accessRules());
     }
 
     /**
@@ -141,7 +139,6 @@ class UserController extends Controller
     {
         $this->layout = '//layouts/userBase';
         $model = new User('register');
-
 
         $post = Yii::app()->request->getPost('User');
         if (!empty($post)) {
