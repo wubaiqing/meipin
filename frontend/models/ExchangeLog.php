@@ -5,7 +5,6 @@
  * @author liukui <liujickson@gmail.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
- * The followings are the available columns in table 'meipin_exchange':
  * @property integer $id
  * @property integer $user_id
  * @property string $username
@@ -35,9 +34,13 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
-            ['user_id,username,created_at,goods_id,city_id,address', 'required'],
-            ['id, user_id,created_at,updated_at,goods_id,city_id', 'numerical', 'integerOnly' => true],
-            ['id,username,address,updated_at', 'safe'],
+            ['user_id,username,created_at,goods_id,city_id,address',
+                'required'],
+            ['id, user_id,created_at,updated_at,goods_id,city_id',
+                'numerical',
+                'integerOnly' => true],
+            ['id,username,address,updated_at',
+                'safe'],
         ];
     }
 
@@ -60,12 +63,21 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     /**
      * 获取记录
      * @param integer $goodsId 兑换商品ID
+     */
+    public static function getLogListKey($goodsId)
+    {
+        return 'get-exchangelog-list-cachekey-' . $goodsId;
+    }
+
+    /**
+     * 获取记录
+     * @param integer $goodsId 兑换商品ID
      * @param integer $page    当前页数
      */
-    public static function getLogList($goodsId, $page)
+    public static function getLogList($goodsId)
     {
         // 缓存名称
-        $cacheKey = 'get-exchangelog-list-cachekey-' . $goodsId . "-" . $page;
+        $cacheKey = self::getLogListKey($goodsId);
 
         // 读取缓存兑换记录列表
         if (CommonHelper::getEnableCache()) {
@@ -83,7 +95,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $goodsList['data'] = $goodsPaginate->data;
         // 设置缓存
         if (CommonHelper::getEnableCache()) {
-            Yii::app()->cache->set($cacheKey, [
+            Yii::app()->cache->set($cacheKey,
+                    [
                 'pager' => $goodsList['pager'],
                 'data' => $goodsList['data']
                     ], Constants::T_SECOND_FIVE);

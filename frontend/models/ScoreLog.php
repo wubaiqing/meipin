@@ -5,7 +5,6 @@
  * @author liukui <liujickson@gmail.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
- * The followings are the available columns in table 'meipin_exchange':
  * @property integer $id
  * @property integer $user_id
  * @property integer $opt_type
