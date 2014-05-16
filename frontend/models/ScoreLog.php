@@ -19,14 +19,12 @@ class ScoreLog extends ActiveRecord implements IArrayable
 {
 
     /**
-     * 每日签到
-     * @var integer
+     * @var integer 每日签到
      */
     const S_OPTTYPE_DAY_REGISTION = 1;
 
     /**
-     * 表名
-     * @return string
+     * @return string 表名
      */
     public function tableName()
     {
@@ -46,7 +44,7 @@ class ScoreLog extends ActiveRecord implements IArrayable
     }
 
     /**
-     * @return array 别名(name=>label)
+     * @return array 属性别名(name=>label)
      */
     public function attributeLabels()
     {
