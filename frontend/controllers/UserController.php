@@ -164,8 +164,10 @@ class UserController extends Controller
         $city = City::getCityList($model->province);
 
         if (isset($_POST['UsersAddress'])) {
-            UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
+            $post = UsersAddress::setAttr($userId, $_POST['UsersAddress']);
+            $model->attributes = $post;
             if ($model->save()) {
+                UsersAddress::deleteCacheByUserId($userId);
                 $this->renderIndex('yes', '用户地址修改成功');
             }
         }

@@ -89,10 +89,9 @@ class UsersAddress extends ActiveRecord implements IArrayable
      * 设置用户修改地址属性
      * @param array $attr 地址属性
      */
-    public static function setAttr($userId, $attr,& $model)
+    public static function setAttr($userId, $attr)
     {
-        $model->user_id = $userId;
-        $model->attributes = $attr;
-        UsersAddress::deleteCacheByUserId($userId);
+        $attr['user_id'] = $userId;
+        return $attr;
     }
 }
