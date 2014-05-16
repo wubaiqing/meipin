@@ -3,27 +3,6 @@
 /**
  * 积分兑换的model
  * @author zhangchao
- *
- * The followings are the available columns in table 'meipin_exchange':
- * @property string $id
- * @property string $name
- * @property string $num
- * @property string $sale_num
- * @property string $user_count
- * @property string $price
- * @property string $integral
- * @property string $start_time
- * @property string $end_time
- * @property integer $need_level
- * @property string $taobao_id
- * @property string $detail_url
- * @property string $taobaoke_url
- * @property string $support_name
- * @property string $support_url
- * @property string $taobaoke_shop_url
- * @property string $description
- * @property string $img_url
- * @property integer $is_delete
  */
 class Exchange extends ActiveRecord
 {

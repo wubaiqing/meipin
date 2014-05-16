@@ -1,21 +1,9 @@
 <?php
-
 /**
  * 美品网商品兑换记录
  * @author liukui <liujickson@gmail.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
- * The followings are the available columns in table 'meipin_exchange':
- * @property integer $id
- * @property integer $user_id
- * @property string $username
- * @property integer $created_at
- * @property integer $updated_at
- * @property integer $goods_id
- * @property string $remark
- * @property integer $city_id
- * @property string $address
- *
  */
 class ExchangeLog extends ActiveRecord implements IArrayable
 {

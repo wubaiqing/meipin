@@ -8,8 +8,7 @@
 class City extends ActiveRecord implements IArrayable
 {
     /**
-     * 表名
-     * @return string
+     * @return string 表名
      */
     public function tableName()
     {
@@ -17,8 +16,7 @@ class City extends ActiveRecord implements IArrayable
     }
 
     /**
-     * 验证规则
-     * @return array
+     * @return array 验证规则
      */
     public function rules()
     {
@@ -52,7 +50,6 @@ class City extends ActiveRecord implements IArrayable
         foreach ($data as $item) {
             $array[$item->id] = $item->city_name;
         }
-
         Yii::app()->cache->set($cacheKey, $array, 3600);
 
         return $array;
@@ -69,7 +66,6 @@ class City extends ActiveRecord implements IArrayable
         foreach ($cities as $id => $name) {
             $string .= "<option value='{$id}'>{$name}</option>";
         }
-
         return $string;
     }
 
