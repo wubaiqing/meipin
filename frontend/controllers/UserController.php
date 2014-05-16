@@ -47,7 +47,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-                ], parent::accessRules());
+        ], parent::accessRules());
     }
 
     /**
