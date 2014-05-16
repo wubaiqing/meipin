@@ -167,7 +167,15 @@ class ScoreService
             //更新兑换商品数量
             Exchange::model()->updateByPk($goods->id, ['sale_num' => new CDbExpression('sale_num+1'),
                 'user_count' => $userCount]);
-
+            //兑换扣积分记录
+            $score = new Score();
+            $score->attributes = [
+                'score' => $goods->integral,
+                'user_id' => $user->id,
+                'reason' => 2,
+                'remark' => "积分兑换:" . $goods->name
+            ];
+            $score->insert();
             //删除放重复提交token
             Yii::app()->cache->delete($cacheKey);
             //清除记录缓存
@@ -176,6 +184,7 @@ class ScoreService
             $transaction->commit();
         } catch (\Exception $ex) {
             $transaction->rollback();
+            throw new Exception($ex);
             return false;
         }
         return true;
@@ -233,13 +242,6 @@ class ScoreService
         }
         //获取用户邮寄地址
         $userAddress = UsersAddress::getModel($userId);
-        // 省份，城市
-//        $city = [];
-//        $province = City::getByParentId(0);
-//        $userAddress->province = City::getProvinceId($userAddress->city_id);
-//        if ($userAddress->province > 0) {
-//            $city = City::getCityList($userAddress->province);
-//        }
         // 省份，城市
         $province = City::getByParentId(0);
         $userAddress->province = City::getProvinceId($userAddress->city_id);
@@ -308,16 +310,17 @@ class ScoreService
                 'dr_count',
                 'last_dr_time']);
 
-            //保存兑换记录
-            $scoreLog = new ScoreLog();
-            $scoreLog->attributes = [
+            //保存积分日志
+            
+            $score = new Score();
+            $score->attributes = [
+                'score' => $num,
                 'user_id' => $userId,
-                'opt_type' => $optType,
-                'created_at' => $now,
-                'remark' => $remark,
-                'num' => $num
+                'reason' => 1,
+                'remark' => "每日签到"
             ];
-            $scoreLog->insert();
+            $score->insert();
+            
             $transaction->commit();
         } catch (Exception $exc) {
             $transaction->rollback();

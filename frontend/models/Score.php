@@ -15,6 +15,16 @@ class Score extends ActiveRecord implements IArrayable
     {
         return '{{meipin_score}}';
     }
+    /**
+     * @return array 验证规则
+     */
+    public function rules()
+    {
+        return [
+            ['id, score,user_id,reason,created_at,updated_at', 'numerical', 'integerOnly' => true],
+            ['id,score,user_id,reason,remark,created_at,updated_at', 'safe'],
+        ];
+    }
 
     /**
      * 获取名称

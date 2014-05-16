@@ -46,7 +46,6 @@ class ScoreController extends Controller
         // 获取用户积分记录
         $score = Score::getScoreByUserId($userId,$type,$page);
 
-        //var_dump($score);exit;
         $this->render('index', [
             'user' => $user,
             'type' => $type,
