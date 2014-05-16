@@ -170,7 +170,7 @@ class ScoreService
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [
-                'score' => $goods->integral,
+                'score' => $goods->integral*-1,
                 'user_id' => $user->id,
                 'reason' => 2,
                 'remark' => "积分兑换:" . $goods->name
