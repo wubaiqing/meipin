@@ -14,6 +14,8 @@
  * @property string $remark
  * @property integer $city_id
  * @property string $address
+ * @property string $postcode
+ * @property string $mobile
  *
  */
 class ExchangeLog extends ActiveRecord implements IArrayable
@@ -34,13 +36,19 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
-            ['user_id,username,created_at,goods_id,city_id,address',
-                'required'],
-            ['id, user_id,created_at,updated_at,goods_id,city_id',
+            [
+                'user_id,username,created_at,goods_id,city_id,address,postcode,mobile',
+                'required'
+            ],
+            [
+                'id, user_id,created_at,updated_at,goods_id,city_id',
                 'numerical',
-                'integerOnly' => true],
-            ['id,username,address,updated_at',
-                'safe'],
+                'integerOnly' => true
+            ],
+            [
+                'id,username,address,updated_at',
+                'safe'
+            ],
         ];
     }
 
@@ -97,8 +105,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $goodsList['data'] = $goodsPaginate->data;
         // 设置缓存
         if ($page <= $maxCachePageCount) {
-            Yii::app()->cache->set($cacheKey,
-                    [
+            Yii::app()->cache->set($cacheKey, [
                 'pager' => $goodsList['pager'],
                 'data' => $goodsList['data']
                     ], Constants::T_HOUR);

@@ -152,21 +152,29 @@ class ScoreService
             User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $goods->integral)]);
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
-            $exchangeLog->attributes = ['user_id' => $user->id,
+            $exchangeLog->attributes = [
+                'user_id' => $user->id,
                 'username' => $user->username,
                 'created_at' => $nowTime,
                 'goods_id' => $goods->id,
                 'remark' => $order['remark'],
                 'city_id' => $userAddress->city_id,
-                'address' => $userAddress->address];
+                'address' => $userAddress->address,
+                'postcode' => $userAddress->postcode,
+                'mobile' => $userAddress->mobile,
+            ];
             $exchangeLog->insert();
 
-            $userCount = ExchangeLog::model()->count(['condition' => 'goods_id=:goods_id',
+            $userCount = ExchangeLog::model()->count([
+                'condition' => 'goods_id=:goods_id',
                 'params' => [":goods_id" => $goods->id],
-                'group' => 'user_id']);
+                'group' => 'user_id'
+            ]);
             //更新兑换商品数量
-            Exchange::model()->updateByPk($goods->id, ['sale_num' => new CDbExpression('sale_num+1'),
-                'user_count' => $userCount]);
+            Exchange::model()->updateByPk($goods->id, [
+                'sale_num' => new CDbExpression('sale_num+1'),
+                'user_count' => $userCount
+            ]);
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [
