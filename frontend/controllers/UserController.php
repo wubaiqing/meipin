@@ -226,7 +226,7 @@ class UserController extends Controller
         if (empty($this->isLogin)) {
             $this->returnData(false, ['message' => "请先登录", 'isLogin' => $this->isLogin]);
         }
-        $dataResult = ScoreService::updateScore($this->userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
+        $dataResult = ScoreService::updateScore($this->userId, "每日签到");
         $dataResult['data']['isLogin'] = $this->isLogin;
         $this->returnData($dataResult['status'], $dataResult['data']);
     }

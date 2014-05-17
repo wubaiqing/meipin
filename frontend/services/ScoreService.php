@@ -271,17 +271,12 @@ class ScoreService
     /**
      * 积分增加
      * @param  integer $userId  用户ID
-     * @param  integer $optType 操作方式；1：增加；2：减少
      * @param  string  $remark  备注
      * @return array
      */
-    public static function updateScore($userId, $optType, $remark = '')
+    public static function updateScore($userId, $remark = '')
     {
         $scoreList = Yii::app()->params['dayRegistionNum'];
-        //验证
-        if (!preg_match("/^\d+$/", $optType)) {
-            return CommonHelper::getDataResult(false, ['message' => "系统偷懒了，请稍后再试"]);
-        }
         $user = User::model()->findByPk($userId);
         if ($user->last_dr_time > 0 && date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time())) {
             return CommonHelper::getDataResult(false, ['message' => "您已经签过了"]);
