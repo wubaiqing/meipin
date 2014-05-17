@@ -2,6 +2,7 @@
 return array(
     'name' => '美品网',
     'basePath' => realpath(__DIR__ . '/../'),
+    'timeZone' => 'Asia/Shanghai',
     'preload'=>array('log'),
     'language'=>'zh_cn',
 //    'modules'=>array(

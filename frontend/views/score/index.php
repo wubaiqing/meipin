@@ -4,7 +4,7 @@
     <h3><span>我的积分</span></h3><span class="t_l"></span><span class="t_r"></span>
     <div class="info" id="score">
         <p class="tit" style="margin-bottom:10px;">
-            我的可用积分：<strong><?php echo $this->user->score ?></strong></p>
+            我的可用积分：<strong><?php echo $user->score ?></strong></p>
         <h6><a href="/help/index" target="_blank" class="r">积分规则说明</a>
             <a href="/score" class="tabs_score <?php if ($type == '' || $type == 'index') { ?>current<?php } ?>">积分明细</a>|
             <a href="/score/index/type/add" class="tabs_score <?php if ($type == 'add') { ?>current<?php } ?>">积分增加</a>|

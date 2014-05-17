@@ -17,11 +17,6 @@ class Controller extends CController
      */
     public $userId = 0;
 
-    /**
-     * 用户对象实体
-     * @var User 
-     */
-    public $user;
     public $menu = [
         [
             'label' => '添加商品',
@@ -88,14 +83,6 @@ class Controller extends CController
         parent::init();
         $this->userId = Yii::app()->user->id;
         $this->isLogin = empty($this->userId) ? false : true;
-        //用户信
-        $user = Yii::app()->cache->get($this->userId);
-        if (!empty($user)) {
-            $this->user = $user;
-        } else {
-            $this->user = User::model()->findByPk($this->userId);
-            Yii::app()->cache->set($this->userId, $this->user, Constants::T_MONUTE);
-        }
     }
 
 }
