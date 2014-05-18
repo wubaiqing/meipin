@@ -93,6 +93,12 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo CHtml::button("编辑", array('class' => 'btn btn-primary save')); ?>
         </td>
     </tr>
+    <tr>
+        <td class="v_table_label">邮编：</td>
+        <td>
+            <?php echo $form->textField($model, 'postcode', array('disabled' => 'disabled')); ?>
+        </td>
+    </tr>
 </table>
 <!--<div class="form-actions">
 <?php echo CHtml::submitButton($model->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
