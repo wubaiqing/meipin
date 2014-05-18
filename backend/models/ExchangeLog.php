@@ -28,6 +28,11 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     static $status = [0 => '未发货', 1 => '已发货'];
 
     /**
+     * 省份ID
+     * @var integer
+     */
+    public $province;
+    /**
      * 表名
      * @return string
      */

@@ -23,12 +23,14 @@ CHtml::$errorSummaryCss = 'text-warning';
     .v_table_label{
         text-align: right;
         vertical-align: top;
-        width: 1px;
+        width: 100px;
         color: #666;
         word-wrap: break-word;
-        padding: 5px;
+        padding: 15px;
     }
     .v_table_line{border-bottom: 1px solid #e5e5e5;width: 100%;text-align: center;font-weight: bold;font-size: 16px;}
+    .userCity,.userProvice{width:100px;}
+    /*.exchange_detail{display: none;}*/
 </style>
 <table border="0" class="v_table_con">
     <tr>
@@ -54,6 +56,12 @@ CHtml::$errorSummaryCss = 'text-warning';
             </td>
         </tr>
     <?php endif; ?>
+    <?php
+    $province = City::getByParentId(0);
+    $provinceId = City::getProvinceId($model->city_id);
+    $model->province = $provinceId;
+    $city = City::getCityList($provinceId);
+    ?>
     <tr class='v_table_line'>
         <td colspan="2">兑换详情</td>
     </tr>
@@ -63,42 +71,57 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo date("Y-m-d H:i:s", $model->created_at); ?>
         </td>
     </tr>
-    <tr>
+    <tr class="exchange_detail">
         <td class="v_table_label">收货人姓名：</td>
         <td>
             <?php echo $form->textField($model, 'name', array('disabled' => 'disabled')); ?>
         </td>
     </tr>
-    <tr>
+    <tr class="exchange_detail">
         <td class="v_table_label">联系电话：</td>
         <td>
             <?php echo $form->textField($model, 'mobile', array('disabled' => 'disabled')); ?>
         </td>
     </tr>
-    <tr>
+    <tr class="exchange_detail">
+        <td class="v_table_label">邮编：</td>
+        <td>
+            <?php echo $form->textField($model, 'postcode', array('disabled' => 'disabled')); ?>
+        </td>
+    </tr>
+    <tr class="exchange_detail">
+        <td class="v_table_label">备注信息：</td>
+        <td>
+            <?php echo $form->textField($model, 'remark', array('disabled' => 'disabled')); ?>
+        </td>
+    </tr>
+    <tr class="exchange_detail">
         <td class="v_table_label">收货地址：</td>
         <td>
-            <?php echo $form->textArea($model, 'address', array('disabled' => 'disabled')); ?>
+            <?php echo $form->dropDownList($model, 'province', $province, array('class' => 'userProvice', 'id' => 'userProvince', 'empty' => '请选择')); ?>
+            &nbsp;&nbsp;
+            <?php echo $form->dropDownList($model, 'city_id', $city, array('class' => 'userCity', 'id' => 'userCity', 'empty' => '请选择')); ?>
+            &nbsp;&nbsp;
+            <?php echo $form->textArea($model, 'address', array('disabled' => 'disabled', 'maxLength' => '100')); ?>
         </td>
     </tr>
-    <tr>
-        <td class="v_table_label">邮编：</td>
-        <td>
-            <?php echo $form->textField($model, 'postcode', array('disabled' => 'disabled')); ?>
-        </td>
-    </tr>
-    <tr>
+    <tr class="exchange_detail">
         <td class="v_table_label">&nbsp;</td>
         <td>
-            <?php echo CHtml::button("编辑", array('class' => 'btn btn-primary save')); ?>
+            <?php echo CHtml::button("保存", array('class' => 'btn btn-primary save')); ?>
         </td>
+    </tr>
+    <tr class='v_table_line'>
+        <td colspan="2">操作状态</td>
     </tr>
     <tr>
-        <td class="v_table_label">邮编：</td>
+        <td class="v_table_label">发货状态：</td>
         <td>
-            <?php echo $form->textField($model, 'postcode', array('disabled' => 'disabled')); ?>
+            <?php echo $form->dropDownList($model, 'status', ExchangeLog::$status, array()); ?>
+            <?php echo CHtml::button("修改", array('class' => 'btn btn-primary save')); ?>
         </td>
     </tr>
+
 </table>
 <!--<div class="form-actions">
 <?php echo CHtml::submitButton($model->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
