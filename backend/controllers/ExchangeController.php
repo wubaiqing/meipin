@@ -129,13 +129,14 @@ class ExchangeController extends Controller
         $post = Yii::app()->request->getPost("ExchangeLog", []);
         if ($formType == 'address') {
             $bool = ExchangeLog::upateAddress($id, $post);
+            if ($bool) {
+                $this->returnData(true, ['message' => '操作成功']);
+            } else {
+                $this->returnData(false, ['message' => '操作失败']);
+            }
         } else {
-            $bool = ExchangeLog::model()->updateByPk($id, $post);
-        }
-        if ($bool) {
+            ExchangeLog::model()->updateByPk($id, $post);
             $this->returnData(true, ['message' => '操作成功']);
-        } else {
-            $this->returnData(false, ['message' => '操作失败']);
         }
     }
 
