@@ -117,8 +117,8 @@ class ScoreService
         //判断库存
         if ($user->score < $goods->integral) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "真遗憾！您只有" . $goods->integral . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
-                        'url' => Yii::app()->createUrl("user/address")
+                        'message' => "真遗憾！您只有" . $user->score . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
+                        'url' => Yii::app()->createUrl("exchange/index")
             ]);
         }
         $bool = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
