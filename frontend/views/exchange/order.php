@@ -144,9 +144,9 @@
         var url = $("#address-form").attr("action");
         var params = $("#address-form").serialize();
         $.post(url, params, function (d) {
-            if (!d.status && !d.data.isLogin) {
+            if (!d.data.isLogin) {
                 location.href = $("#loginUrl").val();
-            } elseif (d.status) {
+            } else if (d.status) {
                 $("#address_show_area").show();
                 $(".welfare_btn").attr("address_id",d.data.address_id);
                 var address = $("#userProvince").find("option:selected").text()+"-"+$("#userCity").find("option:selected").text()+"-"+$("#UsersAddress_address").val();
@@ -154,16 +154,15 @@
                 $(".modify_form").hide();
             }
 
-        }, 'json');
+        });
     });
     User.Address.changeProvince();
 
-    public function validOrderConfirm()
+    function validOrderConfirm()
     {
         if ($(".welfare_btn").attr("address_id")!= "") {
             return true;
         }
-
         return false;
     }
 </script>

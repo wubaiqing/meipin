@@ -1,10 +1,12 @@
 <?php
+
 /**
  * 积分兑换的model
  * @author zhangchao
  */
 class Exchange extends CActiveRecord
 {
+
     /**
      * 表名
      * @return string
@@ -21,16 +23,34 @@ class Exchange extends CActiveRecord
     public function rules()
     {
         return [
-            ['name, taobaoke_url, support_url, img_url', 'required'],
-            ['need_level, is_delete', 'numerical', 'integerOnly' => true],
-            ['price', 'numerical', 'integerOnly' => false],
-            ['name, support_name', 'length', 'max' => 50],
-            ['num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11],
-            ['price', 'length', 'max' => 10],
-            ['taobaoke_url, support_url', 'length', 'max' => 200],
-            ['img_url', 'length', 'max' => 100],
-            ['id','safe'],
-            ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete', 'safe', 'on' => 'search'],
+            ['name, taobaoke_url, support_url, img_url',
+                'required'],
+            ['need_level, is_delete',
+                'numerical',
+                'integerOnly' => true],
+            ['price',
+                'numerical',
+                'integerOnly' => false],
+            ['name, support_name',
+                'length',
+                'max' => 50],
+            ['num, integral, start_time, end_time, taobao_id',
+                'length',
+                'max' => 11],
+            ['price',
+                'length',
+                'max' => 10],
+            ['taobaoke_url, support_url',
+                'length',
+                'max' => 200],
+            ['img_url',
+                'length',
+                'max' => 100],
+            ['id',
+                'safe'],
+            ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete',
+                'safe',
+                'on' => 'search'],
         ];
     }
 
@@ -82,7 +102,8 @@ class Exchange extends CActiveRecord
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
-        return new CActiveDataProvider($this, [
+        return new CActiveDataProvider($this,
+                [
             'criteria' => $criteria,
         ]);
     }
@@ -119,7 +140,7 @@ class Exchange extends CActiveRecord
      */
     public static function model($className = __CLASS__)
     {
-	return parent::model($className);
+        return parent::model($className);
     }
 
 }

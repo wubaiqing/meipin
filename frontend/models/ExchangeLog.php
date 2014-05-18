@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 美品网商品兑换记录
  * @author liukui <liujickson@gmail.com>
@@ -44,7 +45,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     }
 
     /**
-     * @return array 字段别名 (name=>label)
+     * @return array 字段别名 (字段名=>备注)
      */
     public function attributeLabels()
     {
@@ -62,52 +63,67 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     /**
      * 获取记录
      * @param integer $goodsId 兑换商品ID
+     * @param integer $page    当前页数
      */
-    public static function getLogListKey($goodsId)
+    public static function getLogListKey($goodsId, $page)
     {
-        return 'get-exchangelog-list-cachekey-' . $goodsId;
+        return 'get-exchangelog-list-cachekey-' . $goodsId . "-" . $page;
     }
 
     /**
      * 获取记录
      * @param integer $goodsId 兑换商品ID
      * @param integer $page    当前页数
+     * @return array 
      */
-    public static function getLogList($goodsId)
+    public static function getLogList($goodsId, $page)
     {
+        $pageSize = Yii::app()->params['exchangeLogPageSize'];
+        $maxCachePageCount = Yii::app()->params['pageCahceMaxCount'];
         // 缓存名称
-        $cacheKey = self::getLogListKey($goodsId);
+        $cacheKey = self::getLogListKey($goodsId, $page);
 
         // 读取缓存兑换记录列表
-        if (CommonHelper::getEnableCache()) {
-            $logList = Yii::app()->cache->get($cacheKey);
-            if (!empty($logList)) {
-                return $logList;
-            }
+        $logList = Yii::app()->cache->get($cacheKey);
+        if (!empty($logList)) {
+            return $logList;
         }
 
         // 兑换记录列表
         $logList = [];
         $goodsPaginate = self::model()->dataList($goodsId)->paginate();
-        $goodsPaginate->getPagination()->setPageSize(20);
+        $goodsPaginate->getPagination()->setPageSize($pageSize);
         $goodsList['pager'] = $goodsPaginate->getPagination();
         $goodsList['data'] = $goodsPaginate->data;
         // 设置缓存
-        if (CommonHelper::getEnableCache()) {
+        if ($page <= $maxCachePageCount) {
             Yii::app()->cache->set($cacheKey,
                     [
                 'pager' => $goodsList['pager'],
                 'data' => $goodsList['data']
-                    ], Constants::T_SECOND_FIVE);
+                    ], Constants::T_HOUR);
         }
 
         return $goodsList;
     }
 
     /**
+     * 清除列表缓存
+     * @param integer $goodsId 兑换商品ID
+     */
+    public static function deleteExchangeLogListCache($goodsId)
+    {
+        $maxCachePageCount = Yii::app()->params['pageCahceMaxCount'];
+        for ($i = 1; $i <= $maxCachePageCount; $i++) {
+            $cacheKey = self::getLogListKey($goodsId, $i);
+            Yii::app()->cache->delete($cacheKey);
+        }
+    }
+
+    /**
      * 数据SQL条件
      * @param  integer $cat 分类ID
-     * @return object  yii dbcriteria
+     * @return  CDbCriteria
      */
     public function dataList($goodsId)
     {

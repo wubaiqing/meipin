@@ -15,6 +15,11 @@ class Controller extends CController
      * @var boolean $userId
      */
     public $userId = 0;
+    /**
+     * 用户对象实体
+     * @var User 
+     */
+    public $user ;
     
     public $menu = [
         [
@@ -82,6 +87,8 @@ class Controller extends CController
         parent::init();
         $this->userId = Yii::app()->user->id;
         $this->isLogin = empty($this->userId) ? false : true;
+        //用户信
+        $this->user = User::model()->findByPk($this->userId);
     }
 
 }

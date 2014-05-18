@@ -2,6 +2,7 @@
 
 class ActiveRecord extends CActiveRecord implements IArrayable
 {
+
     /**
      * Created at attribute name
      */
@@ -28,18 +29,25 @@ class ActiveRecord extends CActiveRecord implements IArrayable
     protected $hidden = array();
 
     /**
-     * development debug switch
+     * 调试模式开关
      * @see main.php
      * @var boolean 
      */
     public $enableDebug = false;
+
     /**
-     * development cache switch
+     * 缓存开关
      * @see main.php
      * @var boolean 
      */
     public $enableCache = true;
-    
+    /**
+     * 页面最大缓存数
+     * @see main.php
+     * @var integer 
+     */
+    public $pageCahceMaxCount = 5;
+
     /**
      * extra attributes
      *
@@ -49,25 +57,28 @@ class ActiveRecord extends CActiveRecord implements IArrayable
 
     public static function model($className = null)
     {
-        return parent::model($className ?: get_called_class());
+        return parent::model($className ? : get_called_class());
     }
 
     public function init()
     {
-        $this->onBeforeSave = [$this, 'timestampBehavior'];
+        $this->onBeforeSave = [$this,
+            'timestampBehavior'];
         $this->enableCache = CommonHelper::getEnableCache();
         $this->enableDebug = CommonHelper::getEnableDebug();
+        $this->pageCahceMaxCount = Yii::app()->params['pageCahceMaxCount'];
     }
 
     public function timestampBehavior()
     {
-		if ($this->timestamp) {
-			$this->{self::UPDATED_AT} = time();
-			if ($this->isNewRecord) {
-				$this->{self::CREATED_AT} = $this->{self::UPDATED_AT};
-			}
-		}
+        if ($this->timestamp) {
+            $this->{self::UPDATED_AT} = time();
+            if ($this->isNewRecord) {
+                $this->{self::CREATED_AT} = $this->{self::UPDATED_AT};
+            }
+        }
     }
+
     /**
      * Find model exist else throw exception
      *
@@ -97,7 +108,8 @@ class ActiveRecord extends CActiveRecord implements IArrayable
     public function existOrFail($id)
     {
         $column = $this->getTableSchema()->primaryKey;
-        if (!$this->exists("$column = ?", array($id))) {
+        if (!$this->exists("$column = ?", array(
+                    $id))) {
             throw new NotFoundException;
         }
 
@@ -113,13 +125,15 @@ class ActiveRecord extends CActiveRecord implements IArrayable
      */
     public function paginate($limit = null)
     {
-        return new ActiveDataProvider($this, array(
+        return new ActiveDataProvider($this,
+                array(
             'criteria' => array(
-                'select' => array_diff(array_keys($this->getMetaData()->columns), $this->hidden),
+                'select' => array_diff(array_keys($this->getMetaData()->columns),
+                        $this->hidden),
             ),
             'pagination' => array(
                 'pageVar' => Yii::app()->params['pagination']['pageVar'],
-                'pageSize' => $limit ?: Yii::app()->params['pagination']['pageSize'],
+                'pageSize' => $limit ? : Yii::app()->params['pagination']['pageSize'],
             ),
         ));
     }
@@ -172,4 +186,5 @@ class ActiveRecord extends CActiveRecord implements IArrayable
         $attributes = is_array($attributes) ? $attributes : func_get_args();
         $this->hidden = $attributes;
     }
+
 }

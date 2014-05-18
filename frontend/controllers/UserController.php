@@ -47,7 +47,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-        ], parent::accessRules());
+                ], parent::accessRules());
     }
 
     /**
@@ -223,7 +223,8 @@ class UserController extends Controller
             $this->returnData(false, ['message' => "请先登录", 'isLogin' => $this->isLogin]);
         }
         $dataResult = ScoreService::updateScore($this->userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
-        $this->returnData($dataResult['status'], ['message' => $dataResult['data']['message'], 'isLogin' => $this->isLogin]);
+        $dataResult['data']['isLogin'] = $this->isLogin;
+        $this->returnData($dataResult['status'], $dataResult['data']);
     }
 
 }

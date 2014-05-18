@@ -43,7 +43,7 @@ class ScoreLog extends ActiveRecord implements IArrayable
     }
 
     /**
-     * @return array 属性别名(name=>label)
+     * @return array 属性别名(字段名=>备注)
      */
     public function attributeLabels()
     {

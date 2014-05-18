@@ -45,8 +45,13 @@ return [
             'enableCache' => true,
         ),
         //每日签到积分增加
-        'dayRegistionNum'=>[0=>1,1=>2,2=>3],
+        'dayRegistionNum' => [0 => 1,
+            1 => 2,
+            2 => 3],
         'scorePageSize' => 5,
+        //兑换记录列表大小
+        'exchangeLogPageSize' => 20,
+        //分页最大缓存页面数
+        'pageCahceMaxCount' => 5,
     ],
-
 ];

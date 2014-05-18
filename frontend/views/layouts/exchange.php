@@ -14,6 +14,7 @@
         <script type="text/javascript" src="/assets/js/unslider.min.js?v=1.0.1"></script>
         <script type="text/javascript" src="/assets/js/jtzdm_lazyload.js?v=1.0.1"></script>
         <script type="text/javascript" src="/assets/js/sign_day.js?v=1.0.1"></script>
+        <script type="text/javascript" src="/assets/js/user.js?v=1.0.2"></script>
     </head>
     <body>
         <div id="header">
