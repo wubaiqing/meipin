@@ -293,7 +293,7 @@ class ScoreService
             }
             //如果断签则恢复
             if (strtotime(date("Y-m-d", $user->last_dr_time)) < (strtotime('-1 day 00:00:00'))) {
-                $user->dr_count = 0;
+                $user->dr_count = 1;
                 $num = 1;
             }
             $user->attributes = [

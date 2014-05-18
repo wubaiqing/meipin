@@ -43,7 +43,7 @@
                                     if ($this->user->dr_count == 0) {
                                         echo "1";
                                     } else {
-                                        echo ($this->user->dr_count) > 3 ? 3 : ($scoreList[$this->user->dr_count] + 1);
+                                        echo ($this->user->dr_count) > 3 ? 3 : ($scoreList[$this->user->dr_count]+1);
                                     }
                                     ?></strong>积分 </em>
 <?php endif; ?>
