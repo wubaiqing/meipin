@@ -8,10 +8,10 @@ $form = $this->beginWidget('CActiveForm', array(
     'htmlOptions' => array(
         'class' => 'form-horizontal',
     ),
+    'action' => Yii::app()->createUrl("exchange/ajaxShipUpdate", array('id' => $model->id)),
         ));
 CHtml::$errorSummaryCss = 'text-warning';
 ?>
-<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/My97DatePicker/WdatePicker.js"></script>
 <?php echo $form->errorSummary($model); ?>
 <style type="text/css">
     .v_table_con {
@@ -23,14 +23,13 @@ CHtml::$errorSummaryCss = 'text-warning';
     .v_table_label{
         text-align: right;
         vertical-align: top;
-        width: 100px;
+        width: 0px;
         color: #666;
         word-wrap: break-word;
         padding: 15px;
     }
     .v_table_line{border-bottom: 1px solid #e5e5e5;width: 100%;text-align: center;font-weight: bold;font-size: 16px;}
     .userCity,.userProvice{width:100px;}
-    /*.exchange_detail{display: none;}*/
 </style>
 <table border="0" class="v_table_con">
     <tr>
@@ -45,7 +44,9 @@ CHtml::$errorSummaryCss = 'text-warning';
     <tr>
         <td class="v_table_label">商品标题：</td>
         <td>
-            <?php echo $model->exchange->name; ?>
+            <?php
+            echo $model->exchange->name;
+            ?>
         </td>
     </tr>
     <?php if (!empty($model->exchange->taobaoke_url)): ?>
@@ -98,58 +99,87 @@ CHtml::$errorSummaryCss = 'text-warning';
     <tr class="exchange_detail">
         <td class="v_table_label">收货地址：</td>
         <td>
-            <?php echo $form->dropDownList($model, 'province', $province, array('class' => 'userProvice', 'id' => 'userProvince', 'empty' => '请选择')); ?>
+            <?php echo $form->dropDownList($model, 'province', $province, array('class' => 'userProvice', 'id' => 'userProvince', 'empty' => '请选择', 'disabled' => 'disabled')); ?>
             &nbsp;&nbsp;
-            <?php echo $form->dropDownList($model, 'city_id', $city, array('class' => 'userCity', 'id' => 'userCity', 'empty' => '请选择')); ?>
-            &nbsp;&nbsp;
+            <?php echo $form->dropDownList($model, 'city_id', $city, array('class' => 'userCity', 'id' => 'userCity', 'empty' => '请选择', 'disabled' => 'disabled')); ?>
+            <br/><br/>
             <?php echo $form->textArea($model, 'address', array('disabled' => 'disabled', 'maxLength' => '100')); ?>
         </td>
     </tr>
-    <tr class="exchange_detail">
+    <tr class="">
         <td class="v_table_label">&nbsp;</td>
         <td>
-            <?php echo CHtml::button("保存", array('class' => 'btn btn-primary save')); ?>
+            <?php echo CHtml::button("编辑", array('class' => 'btn btn-primary save', 'id' => 'edit')); ?>
         </td>
     </tr>
+    <?php echo $form->hiddenField($model, 'id'); ?>
+    <?php echo CHtml::hiddenField("formType", 'address'); ?>
+    <?php
+    $this->endWidget();
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'status-form',
+        'method' => 'post',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array(
+            'class' => 'form-horizontal',
+        ),
+        'action' => Yii::app()->createUrl("exchange/ajaxShipUpdate", array('id' => $model->id)),
+    ));
+    ?>
     <tr class='v_table_line'>
         <td colspan="2">操作状态</td>
     </tr>
     <tr>
         <td class="v_table_label">发货状态：</td>
         <td>
+            <?php echo CHtml::hiddenField("formType", 'status'); ?>
+            <?php echo $form->hiddenField($model, 'id'); ?>
             <?php echo $form->dropDownList($model, 'status', ExchangeLog::$status, array()); ?>
-            <?php echo CHtml::button("修改", array('class' => 'btn btn-primary save')); ?>
+            <?php echo CHtml::button("修改", array('class' => 'btn btn-primary save', 'id' => 'status_edit')); ?>
         </td>
     </tr>
-
 </table>
-<!--<div class="form-actions">
-<?php echo CHtml::submitButton($model->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
-</div>-->
-<?php $this->endWidget(); ?>
+<?php
+$this->endWidget();
+?>
 
 <script>
-    //上传图片
-    $('.upload-placeholder').fileupload({
-        url: 'index.php?r=site/upload',
-        dataType: 'json',
-        done: function(e, data) {
-            if (data.result.success) {
-                $('#Exchange_img_url').val(data.result.path);
-            } else {
-                alert(data.result.message);
+    $(function() {
+        $("#edit").click(function() {
+            var input = this;
+            if ($(this).val() == "编辑") {
+                $(".exchange_detail").find("input,select,textarea").attr("disabled", false);
+                $(this).val("保存")
             }
-        }
-    });
+            else if ($(this).val() == "保存") {
+                var url = $("#score-form").attr("action");
+                var params = $("#score-form").serialize();
 
-//鼠标滑过显示图片
-    $('#Exchange_img_url').hover(function() {
-        var src = $(this).val();
-        if (src != '') {
-            $('#picture-preview').position($(this).position());
-            $('#picture-preview').attr('src', src).removeClass('hide');
-        }
-    }, function() {
-        $('#picture-preview').addClass('hide');
+                $("#score").remove();
+                $(input).after("<span id='score' style='color:red;'>请稍等...</span>");
+
+                $.post(url, params, function(d) {
+                    $(".exchange_detail").find("input,select,textarea").attr("disabled", true);
+                    $(input).val("编辑")
+                    $("#score").remove();
+                    $(input).after("<span id='score' style='color:red;'>" + d.data.message + "</span>");
+                });
+            }
+        });
+
+        $("#status_edit").click(function() {
+            var input = this;
+            var url = $("#status-form").attr("action");
+            var params = $("#status-form").serialize();
+
+            $("#status").remove();
+            $(input).after("<span id='status' style='color:red;'>请稍等...</span>");
+
+            $.post(url, params, function(d) {
+                $("#status").remove();
+                $(input).after("<span id='status' style='color:red;'>" + d.data.message + "</span>");
+            });
+        });
+
     });
 </script>

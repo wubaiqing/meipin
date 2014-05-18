@@ -109,11 +109,34 @@ class ExchangeController extends Controller
     {
         //
         $criteria = new CDbCriteria();
-        $criteria->with = array('exchange','address');
+        $criteria->compare('t.id', $id, true);
+        $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
         $this->render('shipUpdate', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * 兑换发货信息修改
+     */
+    public function actionAjaxShipUpdate($id)
+    {
+        $formType = Yii::app()->request->getPost("formType", null);
+        if (!in_array($formType, ['status', 'address'])) {
+            $this->returnData(false, ['message' => '参数错误']);
+        }
+        $post = Yii::app()->request->getPost("ExchangeLog", []);
+        if ($formType == 'address') {
+            $bool = ExchangeLog::upateAddress($id, $post);
+        } else {
+            $bool = ExchangeLog::model()->updateByPk($id, $post);
+        }
+        if ($bool) {
+            $this->returnData(true, ['message' => '操作成功']);
+        } else {
+            $this->returnData(false, ['message' => '操作失败']);
+        }
     }
 
 }

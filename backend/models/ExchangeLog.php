@@ -32,6 +32,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @var integer
      */
     public $province;
+
     /**
      * 表名
      * @return string
@@ -86,8 +87,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     public function relations()
     {
         return array(
-            'users' => array(self::HAS_ONE, 'Users', array('id' => 'user_id'), 'together' => true),
-            'exchange' => array(self::HAS_ONE, 'Exchange', array('id' => 'goods_id'), 'together' => true),
+            'users' => array(self::HAS_ONE, 'Users', ['id' => 'user_id'], 'together' => true),
+            'exchange' => array(self::HAS_ONE, 'Exchange', ['id' => 'goods_id'], 'together' => true),
             'address' => array(self::HAS_ONE, 'UsersAddress', 'user_id', 'together' => true),
         );
     }
@@ -114,6 +115,24 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,
         ]);
+    }
+
+    /**
+     * 更新用户兑换地址
+     * @param integer $id 数据主键ID
+     * @param array $post 页面post数据
+     * @return boolean 
+     */
+    public static function upateAddress($id, $post)
+    {
+        try {
+            $model = self::model()->findByPk($id);
+            $model->attributes = $post;
+            $model->update(['name', 'mobile', 'postcode', 'remark', 'city_id', 'address']);
+            return true;
+        } catch (\Exception $ex) {
+            return false;
+        }
     }
 
 }

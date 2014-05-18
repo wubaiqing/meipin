@@ -49,6 +49,7 @@ class Controller extends CController
             'items' => [
                 ['url' => 'exchange/add', 'label' => '添加商品'],
                 ['url' => 'exchange/admin', 'label' => '商品管理'],
+                ['url' => 'exchange/shipAdmin', 'label' => '积分兑换管理'],
             ]
         ],
         [
