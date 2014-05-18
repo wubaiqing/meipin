@@ -1,17 +1,18 @@
 <div class="box">
-    <h3 class="box-header">商品管理</h3>
+    <h3 class="box-header">积分商品兑换管理</h3>
 
-    <?php $this->renderPartial('_search', ['exchangeModel' => $exchangeModel]); ?>
+    <?php // $this->renderPartial('_search', ['exchangeModel' => $data]); ?>
 
-    <?php $this->widget('zii.widgets.grid.CGridView', array(
-        'id'=>'exchange-grid',
-        'dataProvider'=>$exchangeModel->search(),
+    <?php
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'id' => 'exchange-grid',
+        'dataProvider' => $model->search(),
         'enableSorting' => false,
         'itemsCssClass' => 'table table-striped table-bordered',
-        'pagerCssClass' =>'pagination pagination-small',
-        'template'=>'{items}{pager}',
+        'pagerCssClass' => 'pagination pagination-small',
+        'template' => '{items}{pager}',
         'cssFile' => false,
-        'filter' => $exchangeModel,
+        'filter' => $model,
         'filterPosition' => false,
         'pager' => array(
             'class' => 'CLinkPager',
@@ -23,40 +24,39 @@
             'prevPageLabel' => '上一页',
         ),
         'columns' => array(
-            'id',
-            'name'=>array(
-                'type'=>'raw',
-                'name'=>'name',
-                'value'=>'"<a href=\"$data->taobaoke_url\"  target=\"_blank\">".$data->name."</a>"',
+            'goods_id' => array(
+                'type' => 'raw',
+                'name' => '商品名称',
+                'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
             ),
-            'price',
-            'num',
-            'integral',
-            'start_time' => array(
-                'name' => 'start_time',
-                'id' => 'start_time',
-                'value' => 'date("Y-m-d", $data->start_time)',
-                'htmlOptions' => array('width' => '80'),
+            'user_id' => [
+                'type' => 'raw',
+                'name' => '兑换用户',
+                'value' => '"<a href=\"\"  target=\"_blank\">".!empty($data->users)?$data->users->username:""."</a>"',
+                'htmlOptions' => array('width' => '150')
+            ],
+            'created_at' => array(
+                'name' => 'created_at',
+                'id' => 'created_at',
+                'value' => 'date("Y-m-d H:i:s", $data->created_at)',
+                'htmlOptions' => array('width' => '180')
             ),
-            'end_time' => array(
-                'name' => 'end_time',
-                'id' => 'end_time',
-                'value' => 'date("Y-m-d", $data->end_time)',
+            'status' => [
+                'type' => 'raw',
+                'name' => '状态',
+                'value' => '"<a href=\"\"  target=\"_blank\">".ExchangeLog::getStatus($data->status)."</a>"',
                 'htmlOptions' => array('width' => '80')
-            ),
+            ],
             array(
                 'class' => 'CButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => '{update}',
                 'header' => '操作',
+                'htmlOptions' => array('width' => '100'),
                 'buttons' => array(
                     'update' => array(
-                        'label' => '修改',
-                        'url' => 'Yii::app()->createUrl("exchange/update", array("id" => $data->id))',
+                        'label' => '编辑',
+                        'url' => 'Yii::app()->createUrl("exchange/shipView", array("id" => $data->id))',
                         'imageUrl' => false
-                    ),
-                    'delete'=>array(
-                        'label'=>'删除',
-                        'imageUrl' => false,
                     ),
                 )
             ),

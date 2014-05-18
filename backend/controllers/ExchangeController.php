@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 积分兑换
  *
@@ -6,6 +7,7 @@
  */
 class ExchangeController extends Controller
 {
+
     public function loadModel($id)
     {
         $id = intval($id);
@@ -25,7 +27,7 @@ class ExchangeController extends Controller
     {
         $exchangeModel = new Exchange();
         //去掉这几个字段的默认值
-        $exchangeModel->unsetAttributes(['num','price','integral','start_time','end_time']);
+        $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
         if (isset($_POST['Exchange'])) {
             $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
             if ($exchangeModel->save()) {
@@ -70,7 +72,6 @@ class ExchangeController extends Controller
         ]);
     }
 
-
     /**
      * 删除积分兑换
      * @param type $id
@@ -79,15 +80,40 @@ class ExchangeController extends Controller
     public function actionDelete($id)
     {
         $eid = intval($id);
-        if($eid == 0){
-            throw new CHttpException(400,'访问失败');
+        if ($eid == 0) {
+            throw new CHttpException(400, '访问失败');
         }
         $exchangeModel = $this->loadModel($eid);
-        if($exchangeModel->updateByPk($eid, ['is_delete'=>1]) > 0){
+        if ($exchangeModel->updateByPk($eid, ['is_delete' => 1]) > 0) {
             $this->redirect($this->createUrl('exchange/Admin'));
-        }else{
-            throw new CHttpException(400,'编辑失败');
+        } else {
+            throw new CHttpException(400, '编辑失败');
         }
+    }
+
+    /**
+     * 兑换商品列表
+     */
+    public function actionShipAdmin()
+    {
+        $model = new ExchangeLog();
+        $this->render('shipAdmin', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * 用户兑换记录查看编辑
+     */
+    public function actionShipView($id = 1)
+    {
+        //
+        $criteria = new CDbCriteria();
+        $criteria->with = array('exchange','address');
+        $model = ExchangeLog::model()->find($criteria);
+        $this->render('shipUpdate', [
+            'model' => $model,
+        ]);
     }
 
 }

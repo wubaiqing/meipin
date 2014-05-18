@@ -154,7 +154,7 @@ class ScoreService
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = [
                 'user_id' => $user->id,
-                'username' => $user->username,
+                'name' => $userAddress->name,
                 'created_at' => $nowTime,
                 'goods_id' => $goods->id,
                 'remark' => $order['remark'],

@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2014 美品
  * @since 1.0
  */
-class User extends ActiveRecord implements IArrayable
+class Users extends ActiveRecord implements IArrayable
 {
     /**
      * @var string 验证码
