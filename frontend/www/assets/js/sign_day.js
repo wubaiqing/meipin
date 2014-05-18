@@ -11,7 +11,10 @@ $(function() {
                 return false;
             } else {
                 //成功提示
-                alert(result.data.message);
+                $("#dr_count").html(result.data.dr_count);
+                $("#nowScore").html(result.data.score);
+                $("#nextCount").html(result.data.nextScore);
+                $(".qd").addClass("qd_ok");
                 return true;
             }
         }, 'json');
