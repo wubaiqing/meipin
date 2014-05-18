@@ -36,7 +36,7 @@
                     <div class="pointslog-foot">
                         <dl class="clearfix">
                             <dt class="fl"><a class="J_qiandao qiandao" id="" href="javascript:void(0);">签到得积分</a></dt>
-                            <dd class="fl"><a href="/user/index.html">个人中心</a><a href="/user/score.html">积分明细</a>
+                            <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index')?>">个人中心</a><a href="<?php echo Yii::app()->createUrl('score/index')?>">积分明细</a>
                             </dd>
                         </dl>
                     </div>
