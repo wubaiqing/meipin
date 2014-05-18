@@ -135,4 +135,17 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         }
     }
 
+    /**
+     * 更新发货状态
+     * @param integer $id 数据主键ID
+     * @param array $post 页面post数据
+     * @return boolean 
+     */
+    public static function updateStatus($id, $post = [])
+    {
+        $post['updated_at'] = time();
+        ExchangeLog::model()->updateByPk($id, $post);
+        return true;
+    }
+
 }

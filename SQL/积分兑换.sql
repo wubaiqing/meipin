@@ -56,28 +56,37 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE `meipin_exchange_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '用户ID',
-  `username` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
   `created_at` int(11) NOT NULL COMMENT '兑换时间',
   `goods_id` int(11) NOT NULL COMMENT '兑换商品ID',
   `updated_at` int(11) DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注',
   `city_id` int(11) NOT NULL COMMENT '兑换城市ID',
-  `address` varchar(100) DEFAULT '' COMMENT '兑换地址',
+  `address` varchar(100) NOT NULL DEFAULT '' COMMENT '兑换地址',
+  `postcode` varchar(10) NOT NULL DEFAULT '' COMMENT '邮编',
+  `mobile` varchar(15) NOT NULL DEFAULT '' COMMENT '手机',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '发货状态：0:未发货；1：已发货；',
+  `username` varchar(50) DEFAULT NULL COMMENT '登录名',
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`),
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`goods_id`),
   KEY `created_at` (`created_at`),
-  KEY `updated_at` (`updated_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 COMMENT='用户积分商品兑换记录';
-
+  KEY `updated_at` (`updated_at`),
+  KEY `mobile` (`mobile`)
+) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=utf8 COMMENT='用户积分商品兑换记录';
 CREATE TABLE `meipin_score` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `score` int(11) NOT NULL DEFAULT '0' COMMENT '积分增减',
   `user_id` int(11) NOT NULL COMMENT '用户id',
   `reason` int(4) NOT NULL COMMENT '积分操作理由(1:签到增加;2:商品兑换;)',
   `remark` varchar(100) DEFAULT '' COMMENT '备注',
-  `created_at` int(11) DEFAULT NULL,
-  `updated_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='积分明细表';
+  `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
+  `updated_at` int(11) DEFAULT NULL COMMENT '更新时间',
+  `goods_id` int(11) DEFAULT '0' COMMENT '商品ID',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `created_at` (`created_at`),
+  KEY `updated_at` (`updated_at`),
+  KEY `goods_id` (`goods_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COMMENT='积分明细表';
