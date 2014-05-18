@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -8,7 +7,6 @@
  */
 class UserController extends Controller
 {
-
     /**
      * @var string $layout
      */
@@ -47,7 +45,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-                ], parent::accessRules());
+        ], parent::accessRules());
     }
 
     /**
@@ -77,8 +75,9 @@ class UserController extends Controller
 
         $this->layout = '//layouts/userBase';
         $model = new LoginForm();
-        if (isset($_POST['LoginForm'])) {
-            $model->attributes = $_POST['LoginForm'];
+	    $post = Yii::app()->request->getPost('LoginForm');
+	    if (!empty($post)) {
+	        $model->attributes = $post;
             if ($model->login()) {
                 $this->renderIndex('yes', '登录成功', $referer);
                 Yii::app()->end();
@@ -97,10 +96,12 @@ class UserController extends Controller
         $userId = Yii::app()->user->id;
         $model = User::getUser($userId);
         $oldModel = clone $model;
-        if (isset($_POST['User'])) {
+
+        $post = Yii::app()->request->getPost('User');
+        if (!empty($post)) {
             $model->scenario = 'password';
             $model->oldModel = $oldModel;
-            $model->attributes = $_POST['User'];
+            $model->attributes = $post;
             if ($model->save()) {
                 User::deleteCache($userId);
                 Yii::app()->user->logout();
@@ -138,8 +139,10 @@ class UserController extends Controller
     {
         $this->layout = '//layouts/userBase';
         $model = new User('register');
-        if (isset($_POST['User'])) {
-            $model->attributes = $_POST['User'];
+
+        $post = Yii::app()->request->getPost('User');
+        if (!empty($post)) {
+            $model->attributes = $post;
             if ($model->save()) {
                 $model = new LoginForm();
                 $model->attributes = $_POST['User'];
@@ -163,7 +166,8 @@ class UserController extends Controller
         $model->province = City::getProvinceId($model->city_id);
         $city = City::getCityList($model->province);
 
-        if (isset($_POST['UsersAddress'])) {
+        $userAddress = Yii::app()->request->getPost('UsersAddress');
+        if (!empty($userAddress)) {
             $post = UsersAddress::setAttr($userId, $_POST['UsersAddress']);
             $model->attributes = $post;
             if ($model->save()) {
