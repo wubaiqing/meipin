@@ -48,7 +48,10 @@ $(function() {
                 oldStatus == 1 && oldStatus != status && !confirm("当前状态为【已发货】，您确认要修改为【未发货】？")) {
             $(this).after("<span id='status' style='color:red;'>发货状态没有改变</span>");
             $("#ExchangeLog_status").attr("value",oldStatus);
-            return ;
+            return false;
+        }
+        else if(oldStatus == 0 && oldStatus != status && !confirm("当前状态为【未发货】，您确认要修改为【已发货】？")){
+            return false;
         }
         $(this).after("<span id='status' style='color:red;'>请稍等...</span>");
         exchange.orderStatusChange(url, status);
@@ -58,6 +61,8 @@ $(function() {
         var url = $(this).attr("url");
         var status = $(this).attr("status");
         if (status == 1 && !confirm("当前状态为【已发货】，您确认要修改为【未发货】？")) {
+            return false;
+        }else if(status == 0 && !confirm("当前状态为【未发货】，您确认要修改为【已发货】？")){
             return false;
         }
         exchange.orderStatusChange(url, status == 0 ? 1 : 0);
