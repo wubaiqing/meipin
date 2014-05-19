@@ -112,8 +112,16 @@ class ExchangeController extends Controller
         $criteria->compare('t.id', $id, true);
         $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
+
+        //获取城市、身份
+        $province = City::getByParentId(0);
+        $provinceId = City::getProvinceId($model->city_id);
+        $model->province = $provinceId;
+        $city = City::getCityList($provinceId);
         $this->render('shipUpdate', [
             'model' => $model,
+            'province' => $province,
+            'city' => $city,
         ]);
     }
 

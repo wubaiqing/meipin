@@ -330,7 +330,9 @@ class ScoreService
 
             //清除积分缓存列表
             Score::deleteScoreListCache($user->id);
-
+            //清除用戶緩存
+            Yii::app()->cache->delete(User::getUserCacheKey($userId));
+            
             $score->insert();
 
             $transaction->commit();

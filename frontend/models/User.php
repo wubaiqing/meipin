@@ -150,9 +150,17 @@ class User extends ActiveRecord implements IArrayable
      * 获取用户信息
      * @param integer $userId 用户ID
      */
+    public static function getUserCacheKey($userId){
+        return 'meipin-get-user-'.$userId;
+    }
+
+    /**
+     * 获取用户信息
+     * @param integer $userId 用户ID
+     */
     public static function getUser($userId)
     {
-        $cacheKey = 'meipin-get-user-'.$userId;
+        $cacheKey = self::getUserCacheKey($userId);
         $result = Yii::app()->cache->get($cacheKey);
         if ($result) {
             return $result;

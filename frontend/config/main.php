@@ -36,6 +36,8 @@ return [
             'pageSize' => 120,
             'exchangePageSize' => 4,
         ],
+        //前台配置标识
+        'platform' => 'frontend',
         'linkCacheTime' => 86400,
         //系統全局配置
         'config' => array(

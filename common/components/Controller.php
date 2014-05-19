@@ -17,6 +17,11 @@ class Controller extends CController
      */
     public $userId = 0;
 
+    /**
+     * 用戶实体
+     * @var boolean $userId
+     */
+    public $user;
     public $menu = [
         [
             'label' => '添加商品',
@@ -84,6 +89,10 @@ class Controller extends CController
         parent::init();
         $this->userId = Yii::app()->user->id;
         $this->isLogin = empty($this->userId) ? false : true;
+        $platform = Yii::app()->params['platform'];
+        if (!empty($platform) && $platform == 'frontend') {
+            $this->user = User::getUser($this->userId);
+        }
     }
 
 }
