@@ -4,7 +4,7 @@
     <?php // $this->renderPartial('_search', ['exchangeModel' => $data]); ?>
 
     <?php
-    $this->widget('zii.widgets.grid.CGridView', array(
+    $this->widget('zii.widgets.grid.CGridView', [
         'id' => 'exchange-grid',
         'dataProvider' => $model->search(),
         'enableSorting' => false,
@@ -47,20 +47,20 @@
                 'value' => '"<a href=\"\"  target=\"_blank\">".ExchangeLog::getStatus($data->status)."</a>"',
                 'htmlOptions' => array('width' => '80')
             ],
-            array(
+            [
                 'class' => 'CButtonColumn',
                 'template' => '{update}',
                 'header' => '操作',
-                'htmlOptions' => array('width' => '100'),
-                'buttons' => array(
-                    'update' => array(
+                'htmlOptions' => ['width' => '100'],
+                'buttons' => [
+                    'update' => [
                         'label' => '编辑',
                         'url' => 'Yii::app()->createUrl("exchange/shipView", array("id" => $data->id))',
                         'imageUrl' => false
-                    ),
-                )
-            ),
-        ),
-    ));
+                    ],
+                
+            ],
+        ],
+    ]);
     ?>
 </div>

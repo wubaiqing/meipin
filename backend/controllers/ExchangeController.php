@@ -107,7 +107,6 @@ class ExchangeController extends Controller
      */
     public function actionShipView($id = 1)
     {
-        //
         $criteria = new CDbCriteria();
         $criteria->compare('t.id', $id, true);
         $criteria->with = array('exchange', 'address');
