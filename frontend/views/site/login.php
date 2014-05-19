@@ -27,7 +27,7 @@
                           onmouseover="document.getElementById('con_qd').style.display = 'block'" onmouseout="document.getElementById('con_qd').style.display = 'none'" 
                       <?php endif; ?>
                       class='qiandao'>&nbsp;
-                    <div id="con_qd" style="">
+                    <div id="con_qd">
                         <?php if (!empty($this->user)): ?>
                             <em>连签：<strong class="big" id="dr_count"><?php echo $this->user->dr_count ?></strong> 天，积分<strong id="nowScore">
                                     +<?php

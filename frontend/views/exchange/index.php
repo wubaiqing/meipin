@@ -31,7 +31,7 @@
                         <dl class="clearfix">
                             <dt class="fl">
 
-                                <a class="J_qiandao qiandao unsign" id="" href="javascript:void(0);">签到得积分</a>
+                                <a class="J_qiandao qiandao  <?php echo!empty($this->user) && (date("Y-m-d", $this->user->last_dr_time) == date("Y-m-d", time())) ? 'signed' : 'unsign'; ?>" id="" href="javascript:void(0);">签到得积分</a>
                             </dt>
                             <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index')?>">个人中心</a><a href="<?php echo Yii::app()->createUrl('score/index')?>">积分明细</a>
                             </dd>
