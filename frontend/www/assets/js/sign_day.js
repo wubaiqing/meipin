@@ -1,7 +1,11 @@
 /*积分签到*/
 $(function() {
     $('.qiandao').click(function(){
+        var input = this;
         var signApi = '/user/DayRegistion';
+        if($(input).hasClass("signed")){
+            return false;
+        }
         $.get(signApi, {}, function(result) {
             if (result.status == false) {
                 //未登录
