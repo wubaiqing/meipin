@@ -377,5 +377,4 @@ class ScoreService
         return CommonHelper::getDataResult(false, ['message' => '操作失败']);
     }
 
-
 }
