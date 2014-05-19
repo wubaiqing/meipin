@@ -4,11 +4,13 @@ var exchange = {};
  * @param {type} status 当前操作对象
  * */
 exchange.orderStatusChange = function(url, status) {
-    $.post(url, {'ExchangeLog[status]': status, 'formType': 'status'}, function(d) {
-        if (d.status) {
-            window.location.href = location.href;
-        }
-    });
+    if (status == 1 && confirm("当前状态为【已发货】，您确认要修改为【未发货】？")) {
+        $.post(url, {'ExchangeLog[status]': status, 'formType': 'status'}, function(d) {
+            if (d.status) {
+                window.location.href = location.href;
+            }
+        });
+    }
 
 }
 $(function() {
