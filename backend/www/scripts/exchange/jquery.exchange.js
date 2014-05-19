@@ -3,10 +3,8 @@ var exchange = {};
  * 更新发货状态
  * @param {type} status 当前操作对象
  * */
-exchange.orderStatusChange = function(status) {
-    var url = $("#status-form").attr("action");
-    var params = $("#status-form").serialize();
-    $.post(url, params, function(d) {
+exchange.orderStatusChange = function(url, status) {
+    $.post(url, {'ExchangeLog[status]': status, 'formType': 'status'}, function(d) {
         if (d.status) {
             window.location.href = location.href;
         }
@@ -38,15 +36,15 @@ $(function() {
     });
     //详情页面配送状态修改
     $("#status_edit").click(function() {
-        var input = this;
         var url = $("#status-form").attr("action");
-        var params = $("#status-form").serialize();
-        $(input).after("<span id='status' style='color:red;'>请稍等...</span>");
-        exchange.orderStatusChange();
+        $(this).after("<span id='status' style='color:red;'>请稍等...</span>");
+        exchange.orderStatusChange(url, $("#ExchangeLog_status").val());
     });
     //列表页面，配送状态修改
     $(".exchange_list_status").click(function() {
-alert(3);
+        var url = $(this).attr("url");
+        var status = $(this).attr("status");
+        exchange.orderStatusChange(url, status == 0 ? 1 : 0);
     });
 
 });

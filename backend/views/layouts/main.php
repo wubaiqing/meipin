@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/styles/style.css" rel="stylesheet">
         <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/scripts/exchange/jquery.exchange.js"></script>
     </head>
     <body>
         <?php echo $content; ?>

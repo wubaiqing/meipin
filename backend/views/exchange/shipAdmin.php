@@ -44,7 +44,9 @@
             'status' => [
                 'type' => 'raw',
                 'name' => '状态',
-                'value' => '"<a url=\"".Yii::app()->createUrl(\'exchange/ajaxShipUpdate\',[\'id\'=>$data->id])."\" class=\"exchange_list_status\"  href=\"javascript:void(0);\">".ExchangeLog::getStatus($data->status)."</a>"',
+                'value' => '"<a url=\"".Yii::app()->createUrl(\'exchange/ajaxShipUpdate\',[\'id\'=>$data->id])."\" '
+                . ' class=\"exchange_list_status\" status=\'".$data->status."\''
+                . ' href=\"javascript:void(0);\">".ExchangeLog::getStatus($data->status)."</a>"',
                 'htmlOptions' => array('width' => '80')
             ],
             array(
