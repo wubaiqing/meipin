@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户管理
  * @author wubaiqing<wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class User extends ActiveRecord implements IArrayable
 {
+
     /**
      * @var string 验证码
      */
@@ -143,15 +145,16 @@ class User extends ActiveRecord implements IArrayable
      */
     public function hashPassword($password, $salt)
     {
-        return md5(md5($password).$salt);
+        return md5(md5($password) . $salt);
     }
 
     /**
      * 获取用户信息
      * @param integer $userId 用户ID
      */
-    public static function getUserCacheKey($userId){
-        return 'meipin-get-user-'.$userId;
+    public static function getUserCacheKey($userId)
+    {
+        return 'meipin-get-user-' . $userId;
     }
 
     /**
@@ -178,7 +181,7 @@ class User extends ActiveRecord implements IArrayable
      */
     public static function deleteCache($userId)
     {
-        $cacheKey = 'meipin-get-user-'.$userId;
+        $cacheKey = 'meipin-get-user-' . $userId;
         Yii::app()->cache->delete($cacheKey);
     }
 
@@ -190,6 +193,16 @@ class User extends ActiveRecord implements IArrayable
         $model->password = '';
         $model->oldPassword = '';
         $model->confirmPassword = '';
+    }
+
+    /**
+     * 用户是否已经签到
+     * @return boolean 
+     */
+    public static function isSignDay()
+    {
+        $user = User::getUser(Yii::app()->user->id);
+        return !empty($user) && (date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time()));
     }
 
 }

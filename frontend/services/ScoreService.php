@@ -333,7 +333,7 @@ class ScoreService
             Score::deleteScoreListCache($user->id);
             //清除用戶緩存
             Yii::app()->cache->delete(User::getUserCacheKey($userId));
-            
+
             $score->insert();
 
             $transaction->commit();
@@ -376,5 +376,6 @@ class ScoreService
 
         return CommonHelper::getDataResult(false, ['message' => '操作失败']);
     }
+
 
 }

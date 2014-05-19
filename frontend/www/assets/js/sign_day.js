@@ -13,7 +13,7 @@ $(function() {
                     window.location.href = $('#unlogin_url').val();
                 }else{
                     alert(result.data.message);
-                    $('.qiandao').removeClass('unsign').addClass('signed');
+                    $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
                 }
                 return false;
             } else {

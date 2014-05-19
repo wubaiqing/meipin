@@ -1,3 +1,6 @@
+<?php
+$isSignDay = User::isSignDay();
+?>
 <div id="content" class="wp">
     <div class="w1040 clearfix">
         <!--积分广告和积分 登录开始-->
@@ -24,16 +27,16 @@
                 <div class="pointslog">
                     <div class="pointslog-head clearfix">
                         <div class="pointslog-head-left fl"><a href="/user/register">免费注册</a></div>
-                        
+
                     </div>
                     <div class="pointslog-body"><p>欢迎来到美品积分商城，登陆后可查看您的个 人积分信息。</p></div>
                     <div class="pointslog-foot">
                         <dl class="clearfix">
                             <dt class="fl">
 
-                                <a class="J_qiandao qiandao  <?php echo!empty($this->user) && (date("Y-m-d", $this->user->last_dr_time) == date("Y-m-d", time())) ? 'signed' : 'unsign'; ?>" id="" href="javascript:void(0);">签到得积分</a>
+                            <a class="J_qiandao <?php echo!$isSignDay ? 'qiandao unsign' : 'signed'; ?>  " id="" href="javascript:void(0);">签到得积分</a>
                             </dt>
-                            <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index')?>">个人中心</a><a href="<?php echo Yii::app()->createUrl('score/index')?>">积分明细</a>
+                            <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index') ?>">个人中心</a><a href="<?php echo Yii::app()->createUrl('score/index') ?>">积分明细</a>
                             </dd>
                         </dl>
                     </div>
@@ -49,7 +52,7 @@
             <ul class="clearfix">
                 <?php foreach ($data as $goods): ?>
                     <?php
-                        $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
+                    $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
                     ?>
                     <li>
                         <div class="convertgood">
@@ -58,7 +61,7 @@
                                     title="<?php echo $goods['name']; ?>" class="exchange-img-list"></a>
                             <dl class="convertgood-desc">
                                 <dd>
-                                    <h3><a href="<?php echo $url;?>" target="_blank"><?php echo $goods['name']; ?></a></h3>
+                                    <h3><a href="<?php echo $url; ?>" target="_blank"><?php echo $goods['name']; ?></a></h3>
 
                                     <p>剩余：<b class="green"><?php echo $goods['num']; ?></b> 份</p>
 
@@ -80,7 +83,7 @@
     <!-- 分页结束 -->
 </div>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         //懒加载
         $("img.exchange-img-list").scrollLoading();
         //滚动图

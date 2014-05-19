@@ -20,13 +20,15 @@
                     <a href="<?php echo $this->createUrl('user/login'); ?>" target="_self">[登录]</a>或<a href="<?php echo $this->createUrl('user/register'); ?>">[免费注册]</a>
                 </li>
             <?php } ?>
-
-            <li class="qd <?php echo!empty($this->user) && (date("Y-m-d", $this->user->last_dr_time) == date("Y-m-d", time())) ? 'qd_ok' : ''; ?>">
+            <?php
+            $isSignDay = User::isSignDay();
+            ?>
+            <li class="qd <?php echo $isSignDay ? 'qd_ok' : ''; ?>">
                 <span href="javascript:;" 
                 <?php if (!empty($this->user)): ?>
                           onmouseover="document.getElementById('con_qd').style.display = 'block'" onmouseout="document.getElementById('con_qd').style.display = 'none'" 
                       <?php endif; ?>
-                      class='qiandao'>&nbsp;
+                          class='<?php echo!$isSignDay ? 'qiandao' : ''; ?>'>&nbsp;
                     <div id="con_qd">
                         <?php if (!empty($this->user)): ?>
                             <em>连签：<strong class="big" id="dr_count"><?php echo $this->user->dr_count ?></strong> 天，积分<strong id="nowScore">
