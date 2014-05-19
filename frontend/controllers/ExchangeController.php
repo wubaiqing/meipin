@@ -103,8 +103,10 @@ class ExchangeController extends Controller
     public function actionIndex()
     {
         $data = [];
+        $page = Yii::app()->request->getQuery('page');
+        $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
-        $data = $this->scoreService->showExchangeGoodsList();
+        $data = $this->scoreService->showExchangeGoodsList($page);
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
 

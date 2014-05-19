@@ -1235,7 +1235,8 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .page{text-align:center;padding:10px;}
 .page a{color:#666;margin-right:2px;text-decoration:none;padding:4px 8px;background:#fff}
 .page span.current{background-color:#FFEEE5;border:1px solid #FF5500;color:#FF5500;font-weight:700;margin-right:2px;padding:4px 8px;margin-left:4px}
-.page a:hover,.page a:active{border:1px solid #FF5500;color:#FF5500}
+/*取消红框框的样式*/
+/*.page a:hover,.page a:active{border:1px solid #FF5500;color:#FF5500}*/
 
 /*积分兑换首页滚动图*/
 .banner {position: relative;overflow: auto;}
@@ -1246,3 +1247,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
     border-radius: 6px;cursor: pointer;opacity: 4}
 .banner .dots li.active {background: #fff;opacity: 1}
 /*积分兑换首页滚动图end*/
+
+
+/*分页选中的样式*/
+.selected a{ color: #BB3500}

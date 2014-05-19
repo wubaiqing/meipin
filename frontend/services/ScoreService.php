@@ -217,7 +217,7 @@ class ScoreService
      * @return array
      * @author zhangchao
      */
-    public function showExchangeGoodsList()
+    public function showExchangeGoodsList($currentPage = 0)
     {
         //组装查询条件
         $criteria = new CDbCriteria();
@@ -225,7 +225,7 @@ class ScoreService
         $criteria->compare('is_delete', 0);
         //分页类开始
         $pages = new CPagination();
-        $pages->currentPage = 0;
+        $pages->currentPage = $currentPage;
         //计算总数
         $pages->itemCount = Exchange::model()->count($criteria);
         //每页显示数量，配置文件中可配
