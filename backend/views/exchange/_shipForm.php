@@ -18,23 +18,11 @@ CHtml::$errorSummaryCss = 'text-warning';
         <td colspan="2"  class='v_table_line'>商品信息</td>
     </tr>
     <tr>
-        <td class="v_table_label">淘宝ID：</td>
-        <td>
-            <?php echo!empty($model->exchange->taobao_id) ? $model->exchange->taobao_id : ""; ?>
-        </td>
-    </tr>
-    <tr>
         <td class="v_table_label">商品标题：</td>
         <td>
             <?php
             echo $model->exchange->name;
             ?>
-        </td>
-    </tr>
-    <tr>
-        <td class="v_table_label">淘宝链接：</td>
-        <td>
-            <a href="<?php echo $model->exchange->taobaoke_url; ?>" target="_blank"><?php echo $model->exchange->taobaoke_url; ?></a>
         </td>
     </tr>
     <tr class='v_table_line'>
