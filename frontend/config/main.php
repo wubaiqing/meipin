@@ -44,7 +44,7 @@ return [
             'enableCache' => true,
         ),
         //每日签到积分增加
-        'dayRegistionNum'=>10,
+        'dayRegistionNum'=>[0=>1,1=>2,2=>3],
     ],
 
                    

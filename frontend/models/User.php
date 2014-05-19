@@ -49,7 +49,7 @@ class User extends ActiveRecord implements IArrayable
             ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
             ['password', 'checkPassword', 'on' => 'register, password'],
-            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode', 'safe'],
+            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode,dr_count,last_dr_time', 'safe'],
         ];
     }
 

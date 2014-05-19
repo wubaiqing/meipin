@@ -235,7 +235,6 @@ class UserController extends Controller
     public function actionDayRegistion()
     {
         $userId = Yii::app()->user->id;
-        $num = Yii::app()->params['dayRegistionNum'];
         $scoreServide = new ScoreService();
         $result = new DataResult();
         if (empty($userId)) {
@@ -246,16 +245,7 @@ class UserController extends Controller
             echo json_encode($result);
             Yii::app()->end();
         }
-        //验证
-        $scoreLog = ScoreLog::model()->find(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId], 'order' => 'created_at desc'));
-        if (!empty($scoreLog) && date("Y-m-d", $scoreLog->created_at) == date("Y-m-d", time())) {
-            $result->status = false;
-            $result->code = Constants::S_OPT_REPEAT;
-            $result->message = "您已经签过到了";
-            echo json_encode($result);
-            Yii::app()->end();
-        }
-        $result = $scoreServide->updateScore($userId, $num, ScoreLog::S_OPTTYPE_PLUS, "每日签到");
+        $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
         echo json_encode($result);
     }
 

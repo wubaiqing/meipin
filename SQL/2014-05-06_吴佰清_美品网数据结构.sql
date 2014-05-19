@@ -7525,6 +7525,9 @@ CREATE TABLE `meipin_users` (
   `last_ip` varchar(50) DEFAULT NULL COMMENT '最后登陆IP',
   `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
   `updated_at` int(11) DEFAULT NULL COMMENT '修改时间',
+  `score` int(11) DEFAULT '0' COMMENT '积分',
+  `dr_count` int(11) DEFAULT '0' COMMENT '签到次数',
+  `last_dr_time` int(11) DEFAULT '0' COMMENT '最后签到时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='前台用户';
 

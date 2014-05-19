@@ -262,33 +262,50 @@ class ScoreService extends AbstractService
      * @param string $remark 备注
      * @return DataResult 
      */
-    public function updateScore($userId, $num, $optType, $remark = '')
+    public function updateScore($userId, $optType, $remark = '')
     {
+        $scoreList = Yii::app()->params['dayRegistionNum'];
         $result = new DataResult();
-        if (!preg_match("/^\d+$/", $num)) {
-            $result->status = false;
-            $result->code = Constants::S_NUMBER_POSITIVE;
-            $result->message = "积分必须是正整数";
-            return $result;
-        }
-        if (!in_array($optType, array(1, 2))) {
+
+        if (!preg_match("/^\d+$/", $optType)) {
             $result->status = false;
             $result->code = Constants::S_OPT_ERR;
-            $result->message = "积分操作类型错误";
+            $result->message = "操作类型错误";
+            return $result;
+        }
+        //验证
+        $user = User::model()->findByPk($userId);
+        if ($user->last_dr_time > 0 && date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time())) {
+            $result->status = false;
+            $result->code = Constants::S_OPT_REPEAT;
+            $result->message = "您已经签过了";
             return $result;
         }
 
         $transaction = Yii::app()->db->beginTransaction();
+        $now = time();
         try {
-            $user = User::model()->findByPk($userId);
+            $num = 0;
+            if (isset($scoreList[$user->dr_count])) {
+                $num = $scoreList[$user->dr_count];
+            } else if ($user->dr_count >= 3) {
+                $num = 3;
+            }
+            //计算签到次数
             $user->score = ($user->score + $num);
-            $user->update(array('score'));
+            $user->dr_count = $user->dr_count + 1;
+            $user->last_dr_time = $now;
+//        var_dump(date("Y-m-d", $user->last_dr_time)."-".strtotime(date("Y-m-d", $user->last_dr_time)) ."-". strtotime('-1 day 00:00:00'));die;
+            //如果断签则恢复
+            if (strtotime(date("Y-m-d", $user->last_dr_time)) < (strtotime('+0 day 00:00:00') - 1)) {
+                $user->dr_count = 1;
+            }
 
+            $user->update(array('score', 'dr_count', 'last_dr_time'));
             //
-            $now = time();
             $scoreLog = new ScoreLog();
             $scoreLog->user_id = $userId;
-            $scoreLog->opt_type = ScoreLog::S_OPTTYPE_PLUS;
+            $scoreLog->opt_type = $optType;
             $scoreLog->created_at = $now;
             $scoreLog->remark = $remark;
             $scoreLog->num = $num;
@@ -301,7 +318,27 @@ class ScoreService extends AbstractService
             $transaction->rollback();
             $result->status = false;
             $result->code = Constants::S_DB_UPDATE_ERR;
+            $result->errorMsg = $exc->getTraceAsString();
+            throw new Exception($exc);
             return $result;
+        }
+    }
+
+    public function getDayRegistion($userId)
+    {
+        //验证
+        $scoreLog = ScoreLog::model()->findAll(array('condition' => 'user_id=:user_id', 'params' => [':user_id' => $userId], 'group' => 'create_date desc', 'limit' => 3));
+        $logDateList = array();
+        foreach ($scoreLog as $log) {
+            
+        }
+        foreach ($scoreLog as $log) {
+            if (!empty($log) && date("Y-m-d", $log->created_at) == date("Y-m-d", time())) {
+                $result->status = false;
+                $result->code = Constants::S_OPT_REPEAT;
+                $result->message = "您已经签过到了";
+                return $result;
+            }
         }
     }
 

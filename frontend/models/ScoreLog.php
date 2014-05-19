@@ -19,16 +19,11 @@ class ScoreLog extends ActiveRecord implements IArrayable
 {
 
     /**
-     * 加
+     * 每日签到
      * @var integer 
      */
-    const S_OPTTYPE_PLUS = 1;
+    const S_OPTTYPE_DAY_REGISTION = 1;
 
-    /**
-     * 減
-     * @var integer 
-     */
-    const S_OPTTYPE_MINUS = 2;
 
     /**
      * 表名
