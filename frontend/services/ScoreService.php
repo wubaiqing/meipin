@@ -357,6 +357,7 @@ class ScoreService
             $post = UsersAddress::setAttr($userId, $userAddress);
             $model->attributes = $post;
             if ($model->save()) {
+                UsersAddress::deleteCacheByUserId($userId);
                 return CommonHelper::getDataResult(true, ['message' => '地址更新成功']);
             }
         }
