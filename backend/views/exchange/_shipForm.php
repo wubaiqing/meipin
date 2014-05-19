@@ -96,7 +96,7 @@ CHtml::$errorSummaryCss = 'text-warning';
         <td>
             <?php echo CHtml::hiddenField("formType", 'status'); ?>
             <?php echo $form->hiddenField($model, 'id'); ?>
-            <?php echo $form->dropDownList($model, 'status', ExchangeLog::$status, array()); ?>
+            <?php echo $form->dropDownList($model, 'status', ExchangeLog::$status, array('status'=>$model->status)); ?>
             <?php echo CHtml::button("修改", array('class' => 'btn btn-primary save', 'id' => 'status_edit')); ?>
         </td>
     </tr>
