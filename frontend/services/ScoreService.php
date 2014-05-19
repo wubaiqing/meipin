@@ -170,7 +170,7 @@ class ScoreService
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [
-                'score' => $goods->integral*-1,
+                'score' => $goods->integral * -1,
                 'user_id' => $user->id,
                 'reason' => 2,
                 'remark' => "积分兑换:" . $goods->name
@@ -286,7 +286,7 @@ class ScoreService
         $now = time();
         try {
             $num = 1;
-            $user->dr_count = $user->dr_count+1;
+            $user->dr_count = $user->dr_count + 1;
             if (isset($scoreList[$user->dr_count])) {
                 $num = $scoreList[$user->dr_count];
             } elseif ($user->dr_count >= 3) {
@@ -302,13 +302,14 @@ class ScoreService
                 'score' => ($user->score + $num),
                 'dr_count' => $user->dr_count
             ];
-//            var_dump($user->dr_count);
-            $user->update(['score',
+            $user->update([
+                'score',
                 'dr_count',
-                'last_dr_time']);
+                'last_dr_time'
+            ]);
 
             //保存积分日志
-            
+
             $score = new Score();
             $score->attributes = [
                 'score' => $num,
@@ -317,7 +318,7 @@ class ScoreService
                 'remark' => "每日签到"
             ];
             $score->insert();
-            
+
             $transaction->commit();
         } catch (Exception $exc) {
             $transaction->rollback();
