@@ -66,7 +66,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return [
             [
-                'user_id,name,username,created_at,goods_id,city_id,address,postcode,mobile,remark',
+                'user_id,name,username,created_at,goods_id,city_id,address,postcode,mobile',
                 'required'
             ],
             [
@@ -75,7 +75,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'integerOnly' => true
             ],
             [
-                'id,name,username,address,updated_at',
+                'id,name,username,address,updated_at,remark',
                 'safe'
             ],
         ];
