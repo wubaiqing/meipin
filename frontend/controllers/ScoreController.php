@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class ScoreController extends Controller
 {
+
     /**
      * @var string $layout
      */
@@ -32,7 +34,7 @@ class ScoreController extends Controller
     /**
      * 积分管理-积分明细列表
      */
-    public function actionIndex($page = 1,$type='index')
+    public function actionIndex($page = 1, $type = 'index')
     {
         // 用户ID
         $userId = Yii::app()->user->id;
@@ -41,10 +43,10 @@ class ScoreController extends Controller
         $user = User::getUser($userId);
         $page = Yii::app()->request->getParam('page');
         $type = Yii::app()->request->getParam('type');
-        $type = $type?$type:'index';
+        $type = key_exists($type, Score::$page_type) ? $type : 'index';
 
         // 获取用户积分记录
-        $score = Score::getScoreByUserId($userId,$type,$page);
+        $score = Score::getScoreByUserId($userId, $type, $page);
 
         $this->render('index', [
             'user' => $user,
@@ -52,7 +54,6 @@ class ScoreController extends Controller
             'score' => $score['data'],
             'pager' => $score['pager'],
         ]);
-
     }
 
     /**
@@ -66,7 +67,7 @@ class ScoreController extends Controller
         // 获取用户记录
         $user = User::getUser($userId);
         // 获取用户积分记录
-        $score_arr = Score::getScoreByUserId($userId,$type);
+        $score_arr = Score::getScoreByUserId($userId, $type);
         foreach ($score_arr as $score) {
             $array['id'] = $score['id'];
             $array['score'] = $score['score'];
@@ -90,4 +91,5 @@ class ScoreController extends Controller
         ]);
         Yii::app()->end();
     }
+
 }

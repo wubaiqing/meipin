@@ -180,7 +180,8 @@ class ScoreService
             Yii::app()->cache->delete($cacheKey);
             //清除记录缓存
             ExchangeLog::deleteExchangeLogListCache($goods->id);
-
+            //清除积分缓存列表
+            Score::deleteScoreListCache($user->id);
             $transaction->commit();
         } catch (\Exception $ex) {
             $transaction->rollback();
@@ -317,6 +318,10 @@ class ScoreService
                 'reason' => 1,
                 'remark' => "每日签到"
             ];
+
+            //清除积分缓存列表
+            Score::deleteScoreListCache($user->id);
+
             $score->insert();
 
             $transaction->commit();
