@@ -26,12 +26,29 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @var array
      */
     static $status = [0 => '未发货', 1 => '已发货'];
+    /**
+     * 搜索状态显示
+     * @var array
+     */
+    static $statusSearch = [''=>'请选择',0 => '未发货', 1 => '已发货'];
 
     /**
      * 省份ID
      * @var integer
      */
     public $province;
+
+    /**
+     * 兑换商品实体
+     * @var Exchange 
+     */
+    public $exchangeModel;
+    
+    public function init()
+    {
+        parent::init();
+        $this->exchangeModel = new Exchange();
+    }
 
     /**
      * 表名
@@ -111,6 +128,10 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->order = 't.created_at desc';
+        if (!empty($this->exchangeModel->name)) {
+            $criteria->compare('exchange.name', $this->exchangeModel->name, true);
+        }
+        $criteria->compare('t.status', $this->status);
         $criteria->with = array('users', 'exchange');
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,

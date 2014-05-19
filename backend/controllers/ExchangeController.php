@@ -96,7 +96,22 @@ class ExchangeController extends Controller
      */
     public function actionShipAdmin()
     {
+        $exchange = Yii::app()->request->getQuery("Exchange");
+        $exchangeLog = Yii::app()->request->getQuery("ExchangeLog");
+
         $model = new ExchangeLog();
+        //查询赋值
+        if (!empty($exchange)) {
+            $model->exchangeModel->attributes = $exchange;
+        }
+        if (!empty($exchangeLog)) {
+            $model->attributes = $exchangeLog;
+        } 
+        //设置默认值
+        if(empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
+            $model->status = "";
+        }
+        //渲染模板
         $this->render('shipAdmin', [
             'model' => $model,
         ]);
@@ -117,6 +132,8 @@ class ExchangeController extends Controller
         $provinceId = City::getProvinceId($model->city_id);
         $model->province = $provinceId;
         $city = City::getCityList($provinceId);
+        
+        //渲染模板
         $this->render('shipUpdate', [
             'model' => $model,
             'province' => $province,

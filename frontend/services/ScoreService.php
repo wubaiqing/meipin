@@ -369,11 +369,11 @@ class ScoreService
             $model->attributes = $post;
             if ($model->save()) {
                 UsersAddress::deleteCacheByUserId($userId);
-                return CommonHelper::getDataResult(true, ['message' => '地址更新成功']);
+                return CommonHelper::getDataResult(true, ['message' => '操作成功']);
             }
         }
 
-        return CommonHelper::getDataResult(false, ['message' => '地址更新失败']);
+        return CommonHelper::getDataResult(false, ['message' => '操作失败']);
     }
 
 }
