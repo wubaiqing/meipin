@@ -8,7 +8,7 @@ if (isset($pager) && !empty($pager)) {
             'cssFile' => '',
             'maxButtonCount' => '5',
             'hiddenPageCssClass' => '',
-//            'selectedPageCssClass' => 'select',
+            'selectedPageCssClass' => 'select',
             'lastPageLabel' => '尾页',
             'firstPageLabel' => '首页',
             'nextPageLabel' => '下一页',
