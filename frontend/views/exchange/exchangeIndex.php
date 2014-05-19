@@ -1,4 +1,4 @@
-<div id="contentA" class="area">
+<div id="contentA" class="contentA">
     <div class="left">
         <div class="pt">
             <img src="<?php echo $data['exchange']->img_url; ?>">

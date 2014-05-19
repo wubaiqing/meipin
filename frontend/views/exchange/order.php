@@ -1,4 +1,4 @@
-<div id="confirm_exchange" class="exchange area">
+<div id="confirm_exchange" class="exchange contentA">
     <div id="address" class="address ">
         <?php
 
