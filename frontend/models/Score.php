@@ -63,7 +63,7 @@ class Score extends ActiveRecord implements IArrayable
             Yii::app()->cache->set($cacheKey, [
                 'pager' => $scoreList['pager'],
                 'data' => $scoreList['data']
-                    ], Constants::T_HOUR);
+                    ], Constants::T_SECOND_TEN);
         }
         return $scoreList;
     }
