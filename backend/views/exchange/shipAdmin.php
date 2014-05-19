@@ -26,12 +26,12 @@
         'columns' => array(
             'goods_id' => array(
                 'type' => 'raw',
-                'name' => '商品名称',
+                'header' => '商品名称',
                 'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
             ),
             'user_id' => [
                 'type' => 'raw',
-                'name' => '兑换用户',
+                'header' => '兑换用户',
                 'value' => '"<a href=\"\"  target=\"_blank\">".!empty($data->users)?$data->users->username:""."</a>"',
                 'htmlOptions' => array('width' => '150')
             ],
