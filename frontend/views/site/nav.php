@@ -15,6 +15,11 @@
                 聚美品
             </a>
         </li>
+        <li class="">
+            <a href="<?php echo $this->createUrl('exchange/index');?>">
+                积分兑换
+            </a>
+        </li>
         <li class="nav_r">
             <a href="javascript:;">
                 商家报名
