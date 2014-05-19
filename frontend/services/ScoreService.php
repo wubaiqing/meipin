@@ -354,7 +354,8 @@ class ScoreService
         $city = City::getCityList($model->province);
 
         if (!empty($userAddress)) {
-            UsersAddress::setAttr($userId, $userAddress, $model);
+            $post = UsersAddress::setAttr($userId, $userAddress);
+            $model->attributes = $post;
             if ($model->save()) {
                 return CommonHelper::getDataResult(true, ['message' => '地址更新成功']);
             }

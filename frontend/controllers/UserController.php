@@ -194,7 +194,6 @@ class UserController extends Controller
         }
         //获取请求参数
         $userAddress = Yii::app()->request->getPost("UsersAddress");
-
         //保存数据
         $dataResult = ScoreService::saveUserAddress($this->userId, $userAddress);
         //返回json数据
