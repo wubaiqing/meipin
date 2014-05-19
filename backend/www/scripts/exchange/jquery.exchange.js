@@ -48,7 +48,7 @@ $(function() {
                 oldStatus == 1 && oldStatus != status && !confirm("当前状态为【已发货】，您确认要修改为【未发货】？")) {
             $(this).after("<span id='status' style='color:red;'>发货状态没有改变</span>");
             $("#ExchangeLog_status").attr("value",oldStatus);
-            return false;
+            return ;
         }
         $(this).after("<span id='status' style='color:red;'>请稍等...</span>");
         exchange.orderStatusChange(url, status);
