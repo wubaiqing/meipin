@@ -286,6 +286,7 @@ class ScoreService
         $now = time();
         try {
             $num = 1;
+            $user->dr_count = $user->dr_count+1;
             if (isset($scoreList[$user->dr_count])) {
                 $num = $scoreList[$user->dr_count];
             } elseif ($user->dr_count >= 3) {
@@ -299,8 +300,9 @@ class ScoreService
             $user->attributes = [
                 'last_dr_time' => $now,
                 'score' => ($user->score + $num),
-                'dr_count' => ($user->dr_count + 1)
+                'dr_count' => $user->dr_count
             ];
+//            var_dump($user->dr_count);
             $user->update(['score',
                 'dr_count',
                 'last_dr_time']);
