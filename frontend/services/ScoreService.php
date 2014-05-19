@@ -215,7 +215,7 @@ class ScoreService
     /**
      * 积分兑换首页商品列表
      * @return array
-     *               @author zhangchao
+     * @author zhangchao
      */
     public function showExchangeGoodsList()
     {
@@ -225,6 +225,7 @@ class ScoreService
         $criteria->compare('is_delete', 0);
         //分页类开始
         $pages = new CPagination();
+        $pages->currentPage = 0;
         //计算总数
         $pages->itemCount = Exchange::model()->count($criteria);
         //每页显示数量，配置文件中可配

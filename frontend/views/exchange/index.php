@@ -24,18 +24,15 @@
                 <div class="pointslog">
                     <div class="pointslog-head clearfix">
                         <div class="pointslog-head-left fl"><a href="/user/register">免费注册</a></div>
-                        <div class="pointslog-head-right fr">
-                            <ul class="clearfix">
-                                <li><a href="/oauth/qq.html" title="QQ登录"></a></li>
-                                <li><a href="/oauth/taobao.html" title="淘宝登录"></a></li>
-                                <li><a href="/oauth/sina.html" title="新浪登录"></a></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="pointslog-body"><p>欢迎来到美品积分商城，登陆后可查看您的个 人积分信息。</p></div>
                     <div class="pointslog-foot">
                         <dl class="clearfix">
-                            <dt class="fl"><a class="J_qiandao qiandao" id="" href="javascript:void(0);">签到得积分</a></dt>
+                            <dt class="fl">
+
+                                <a class="J_qiandao qiandao unsign" id="" href="javascript:void(0);">签到得积分</a>
+                            </dt>
                             <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index')?>">个人中心</a><a href="<?php echo Yii::app()->createUrl('score/index')?>">积分明细</a>
                             </dd>
                         </dl>
