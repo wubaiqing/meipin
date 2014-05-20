@@ -22,12 +22,11 @@
 	</a>
 	<a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 12));?>">文体
 	</a>
-	<i>|</i>
-	<a class="hot " href="http://www.zhe800.com/brand"><em>品牌团</em><i class="new"></i></a>
     </span>
     <span class="r">
-      排序：<a href="http://www.zhe800.com/?sort=newest">最新</a>
-      <a href="http://www.zhe800.com/" class="on">最热</a>
+      排序：
+        <a href="/" class="class="<?php echo ($hot == 0 || $hot == null) ? 'on' : ''; ?>"">最热</a>
+        <a class="class="<?php echo ($hot == 1) ? 'on' : ''; ?>"" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 0, 'hot' => 1));?>">最新</a>
     </span>
     </div>
 </div>

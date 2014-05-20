@@ -246,7 +246,7 @@ input{background:none}
 #content {margin-top:8px;}
 .menu { position:absolute;margin-top:-13px;width:986px;}
 .menu_p {position:fixed;top:0px;margin-top:0;z-index:10;box-shadow:0 5px 9px #f3f3f3; filter:alpha(Opacity=88);-moz-opacity:0.88;opacity: 0.88;height:74px}
-.menu_wp {width:986px;height:110px;position:relative;top:65px;padding-top:12px;}
+.menu_wp {width:986px;height:50px;position:relative;padding-top:12px;}
 .menu li {float:left;background:url(images/con_bg.png) 0 -658px no-repeat;border-top:5px solid #8C847E;cursor:pointer;}
 .menu li a em {display:block;width:24px;height:24px;background-image:url(images/menu1.png);margin:10px auto 8px;}
 .menu li.on em {background-image:url(images/menu2.png);}
