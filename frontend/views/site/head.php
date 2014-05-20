@@ -1,18 +1,18 @@
-<div class="logo_info wp" style="position:relative">
-    <div class="ccc" id="ccc">
-        <div id="tmallSearch">
-                <form action="<?php echo $this->createUrl('search/index');?>" name="searchTop" method="get" >
-                <div class="mallSearch-input clearfix">
-                    <input type="text" name="title" id="title" class="search_new" onfocus="if(this.value==this.defaultValue)this.value=''"
-                    onblur="if(this.value.length&lt;1)this.value=this.defaultValue;" value="输入商品名称...">
-                    <button type="submit" id="search"></button>
-                </div>
+<div id="t-header">
+    <div id="t-area">
+	<h1 class="l">
+	    <a href="http://www.meipin.com/"><img src="http://www.meipin.com/assets/images/logo.jpg" width="243" height="47"></a>
+	</h1>
+	<div class="search">
+	    <form target="_self" action="<?php echo $this->createUrl('search/index');?>">
+		<input type="text" name="title" class="txt">
+		<input type="submit" value="" class="smt">
             </form>
         </div>
+	<div class="links">
+	    <i class="tmall"></i>
+	    <i class="lowest"></i>
+	    <i class="check"></i>
+	</div>
     </div>
-    <h1>
-        <a href="/" title="美品网，独家秒杀优惠">
-            美品网
-        </a>
-    </h1>
 </div>
