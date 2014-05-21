@@ -242,6 +242,16 @@ input{background:none}
     width: 980px;
 }
 
+.head_nav .r_con .signin i {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background: url(images/icon_head.png) no-repeat -40px -20px;
+    vertical-align: text-top;
+    margin-right: 4px;
+    _background-image: url(images/icon_head_ie6.png);
+}
+
 
 #content {margin-top:8px;}
 .menu { position:absolute;margin-top:-13px;width:986px;}
@@ -1320,9 +1330,9 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .affix .logo{_display:block;}
 
 .dealbox{width:1005px;margin-right:-25px;position:relative;z-index:99}
-.deal{width:314px;float:left;margin:0 19px 19px 0;height:422px;display:inline;z-index:100;text-align:left}
+.deal{width:314px;float:left;margin:0 19px 19px 0;height:328px;display:inline;z-index:100;text-align:left}
 .deal div{width:310px;padding:0;background:#fff;position:relative;_position:absolute;border:1px solid #e2e2e2;border-color:#fff #e2e2e2 #e2e2e2 #fff;padding:1px}
-.deal div p{padding:10px;background:#fff;width:290px;height:290px;overflow:hidden}
+.deal div p{padding:10px;background:#fff;width:290px;height:190px;overflow:hidden}
 .deal div h2{height:40px;padding:5px 10px;overflow:hidden;text-align:left;font:14px/20px "";background:#fff}
 .deal div h4{height:36px;padding:5px 10px 18px;overflow:hidden;text-align:right;background:#fff;line-height:36px}
 .deal div h4 span{float:left;color:#999;font-family:"tahoma";line-height:16px}
