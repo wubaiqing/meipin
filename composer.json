@@ -3,12 +3,6 @@
         "vendor-dir": "common/vendors",
         "preferred-install": "dist"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@10.9.210.155:liukui/phpmailer.git"
-        }
-    ],
     "require": {
         "yiisoft/yii": "dev-master",
          "phpmailer/phpmailer": "v5.2.7",
