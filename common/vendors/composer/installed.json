@@ -1,28 +1,128 @@
 [
     {
+        "name": "phpmailer/phpmailer",
+        "version": "v5.2.7",
+        "version_normalized": "5.2.7.0",
+        "source": {
+            "type": "git",
+            "url": "git@10.9.210.155:liukui/phpmailer.git",
+            "reference": "aab86eb07d52709a9b48f19a7fd843771b0c91c2"
+        },
+        "require": {
+            "php": ">=5.0.0"
+        },
+        "require-dev": {
+            "phpdocumentor/phpdocumentor": "*",
+            "phpunit/phpunit": "*"
+        },
+        "time": "2013-09-12 07:52:38",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "class.phpmailer.php",
+                "class.pop3.php",
+                "class.smtp.php"
+            ]
+        },
+        "license": [
+            "LGPL-2.1"
+        ],
+        "authors": [
+            {
+                "name": "Jim Jagielski",
+                "email": "jimjag@gmail.com"
+            },
+            {
+                "name": "Marcus Bointon",
+                "email": "phpmailer@synchromedia.co.uk"
+            },
+            {
+                "name": "Andy Prevost",
+                "email": "codeworxtech@users.sourceforge.net"
+            },
+            {
+                "name": "Brent R. Matzelle"
+            }
+        ],
+        "description": "PHPMailer is a full-featured email creation and transfer class for PHP"
+    },
+    {
+        "name": "rmccue/requests",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmccue/Requests.git",
+            "reference": "b398534f8e77bd6a51b7c0e79236bfd6152b8247"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmccue/Requests/zipball/b398534f8e77bd6a51b7c0e79236bfd6152b8247",
+            "reference": "b398534f8e77bd6a51b7c0e79236bfd6152b8247",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "require-dev": {
+            "requests/test-server": "dev-master",
+            "satooshi/php-coveralls": "dev-master"
+        },
+        "time": "2014-05-18 05:10:05",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Requests": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "ISC"
+        ],
+        "authors": [
+            {
+                "name": "Ryan McCue",
+                "homepage": "http://ryanmccue.info"
+            }
+        ],
+        "description": "A HTTP library written in PHP, for human beings.",
+        "homepage": "http://github.com/rmccue/Requests",
+        "keywords": [
+            "curl",
+            "fsockopen",
+            "http",
+            "idna",
+            "ipv6",
+            "iri",
+            "sockets"
+        ]
+    },
+    {
         "name": "yiisoft/yii",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii.git",
-            "reference": "d7f2470012fc378a33f062891f829ddcf6418c72"
+            "reference": "bc267cebc7b16e5801753f19c9d5765720a19ee9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii/zipball/d7f2470012fc378a33f062891f829ddcf6418c72",
-            "reference": "d7f2470012fc378a33f062891f829ddcf6418c72",
+            "url": "https://api.github.com/repos/yiisoft/yii/zipball/bc267cebc7b16e5801753f19c9d5765720a19ee9",
+            "reference": "bc267cebc7b16e5801753f19c9d5765720a19ee9",
             "shasum": ""
         },
         "require": {
             "php": ">=5.1.0"
         },
-        "time": "2014-04-22 22:01:30",
+        "time": "2014-05-20 16:13:30",
         "bin": [
             "framework/yiic"
         ],
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
             "BSD-3-Clause"
