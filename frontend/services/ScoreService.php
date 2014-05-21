@@ -340,7 +340,7 @@ class ScoreService
 
             $score->insert();
 
-//            $transaction->commit();
+            $transaction->commit();
             //设置签到COOKIE
             $expireTime = $now * 2 - strtotime(date("Y-m-d")) + 1;
             $cvalue = ['user_id' => $userId, 'date' => date("Y-m-d")];
