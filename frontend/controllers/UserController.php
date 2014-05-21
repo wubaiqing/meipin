@@ -144,11 +144,32 @@ class UserController extends Controller
         if (!empty($post)) {
             $model->attributes = $post;
             if ($model->save()) {
+                $mailer = new PHPMailer();
+                $mailer->isSMTP();
+                $mailer->Host = 'smtp.126.com';
+                $mailer->From = 'piaoxuedtian@126.com';
+                $mailer->FromName = '美品网';
+                $mailer->addAddress($model->email);
+                $mailer->isHTML(true);
+                $mailer->Subject = '这是我的测试邮件';
+                $mailer->Body = '这是测试邮件的body';
+                $mailer->AltBody = '这是altbody不知道干嘛用的';
+                $mailer->SMTPAuth = true;
+                $mailer->Username = 'piaoxuedtian@126.com';
+                $mailer->Password = 'meipin123';
+                if($mailer->send()){
+                    echo 'success';die;
+                }else{
+                    var_dump($mailer->ErrorInfo);
+                    echo 'faile';die;
+                }
+
                 $model = new LoginForm();
                 $model->attributes = $_POST['User'];
                 $model->login();
                 $this->renderIndex('yes', '注册成功');
             }
+            var_dump($model->getErrors());die;
         }
         $this->render('register', ['model' => $model]);
     }
@@ -229,5 +250,14 @@ class UserController extends Controller
         $dataResult['data']['isLogin'] = $this->isLogin;
         $this->returnData($dataResult['status'], $dataResult['data']);
     }
+
+    /**
+     * 用户激活邮箱
+     */
+    public function actionActivateMail(){
+        $email = Yii::app()->request->getQuery('email');
+        $uid = Yii::app()->request->getQuery('secret');
+    }
+
 
 }
