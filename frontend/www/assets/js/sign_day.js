@@ -13,11 +13,12 @@ $(function() {
                     window.location.href = $('#unlogin_url').val();
                 }else{
                     alert(result.data.message);
-                    $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
                 }
                 return false;
             } else {
                 alert(result.data.message);
+                $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
+                
                 //成功提示
                 $("#dr_count").html(result.data.dr_count);
                 $("#nowScore").html(result.data.score);

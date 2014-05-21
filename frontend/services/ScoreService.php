@@ -292,6 +292,10 @@ class ScoreService
         if ($user->last_dr_time > 0 && date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time())) {
             return CommonHelper::getDataResult(false, ['message' => "您已经签过了"]);
         }
+        //积分cookie验证签到
+        if (self::isAreadyDayReg($userId)) {
+            return CommonHelper::getDataResult(false, ['message' => "每台电脑每天只能签到一次"]);
+        }
 
         $transaction = Yii::app()->db->beginTransaction();
         $now = time();
@@ -336,7 +340,12 @@ class ScoreService
 
             $score->insert();
 
-            $transaction->commit();
+//            $transaction->commit();
+            //设置签到COOKIE
+            $expireTime = $now * 2 - strtotime(date("Y-m-d")) + 1;
+            $cvalue = ['user_id' => $userId, 'date' => date("Y-m-d")];
+            $tokenCookie = Des::encrypt(json_encode($cvalue));
+            setcookie("DR", $tokenCookie, $expireTime, "/");
         } catch (Exception $exc) {
             $transaction->rollback();
             return CommonHelper::getDataResult(false, ['message' => "系统正在偷懒，请稍后再试"]);
@@ -375,6 +384,23 @@ class ScoreService
         }
 
         return CommonHelper::getDataResult(false, ['message' => '操作失败']);
+    }
+
+    /**
+     * cookie判断是否当天是否已经签到
+     * @return boolean 
+     */
+    public static function isAreadyDayReg($userId)
+    {
+        //积分cookie
+        $cvalue = isset($_COOKIE['DR']) ? $_COOKIE['DR'] : null; //Cookie加密串
+        if (!empty($cvalue)) {
+            $cvalue = json_decode(Des::decrypt($cvalue),true);
+            if ($cvalue['user_id'] != $userId && $cvalue['date'] == date("Y-m-d")) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
