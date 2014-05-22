@@ -14,7 +14,7 @@
         <a class="<?php echo ($cat == 12) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 12));?>">文体</a>
     </span>
     <span class="r">
-      排序：<?php //var_dump($hot);?>
+      排序：
         <a href="/" class="<?php echo ($hot == 0) ? 'on' : ''; ?>">最热</a>
         <a class="<?php echo ($hot == 1) ? 'on' : ''; ?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 0, 'hot' => 1));?>">最新</a>
     </span>
