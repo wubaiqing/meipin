@@ -72,7 +72,6 @@
                     <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
                     <em>*收货时快递联系电话，很重要。</em><br/>
                     <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" id="sendBtn" value="发送短信验证码"/><br/>
-                    <label class="">短信验证码：</label><?php echo $form->textField($model, 'code', array('class' => 'code_text', 'maxLength' => '4')); ?><br/>
                 </td>
             </tr>
             <tr align="center" class="color">
@@ -113,7 +112,6 @@
             </td>
             <td height="32" align="left">
                 <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
-                <em>*收货时快递联系电话，很重要。</em><br/>
                 <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" id="sendBtn" value="发送短信验证码"/><br/>
                 <label class="">短信验证码：</label><?php echo $form->textField($model, 'code', array('class' => 'code_text', 'maxLength' => '4')); ?><br/>
             </td>

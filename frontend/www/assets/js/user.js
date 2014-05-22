@@ -89,8 +89,8 @@ function sAlert(str)
     msgObj.style.font = "12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
     msgObj.style.marginLeft = "-225px";
     msgObj.style.marginTop = -150 + document.documentElement.scrollTop + "px";
-    msgObj.style.width = msgw + "px";
-    msgObj.style.height = msgh + "px";
+//    msgObj.style.width = msgw + "px";
+//    msgObj.style.height = msgh + "px";
     msgObj.style.textAlign = "center";
     msgObj.style.lineHeight = "25px";
     msgObj.style.zIndex = "10001";
