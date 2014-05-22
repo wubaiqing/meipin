@@ -260,4 +260,11 @@ class UserController extends Controller
     }
 
 
+    /**
+     * 手机绑定验证码发送
+     */
+    public function actionSendMobileBindSmsCode(){
+        
+        $this->returnData(true, ['message' => '发送成功']);
+    }
 }

@@ -60,10 +60,16 @@ return [
 
     'params' => [
 		'staticDomain' => 'http://static.meipin.com/',
+                //短信配置
                 'sms' => [
-                    'url' => "http://dx.ipyy.net/sms.aspx",
+                    //短信发送接口地址
+                    'sendUrl' => "http://dx.ipyy.net/sms.aspx",
+                    //短信账户账号
                     'account' => 'xd000029',
+                    //短信账户密码
                     'password' => 'soho2309',
+                    //单用户单日最大发送量
+                    'sms_day_max' => 10,
                 ],
     ],
 

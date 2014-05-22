@@ -24,7 +24,7 @@ class Sms
             'content' => $content,
             'action' => 'send',
         ];
-        $request = Requests::post($config['url'], $header, $data);
+        $request = Requests::post($config['sendUrl'], $header, $data);
         if ($request->status_code) {
             $xml = simplexml_load_string($request->body);
             return ($xml->returnstatus == 'Success') ? true : false;

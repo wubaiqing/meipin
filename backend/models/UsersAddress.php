@@ -10,6 +10,11 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public $province;
     public $city;
     /**
+     * 短信验证码
+     * @var integer 
+     */
+    public $code ;
+    /**
      * 表名
      * @return string
      */
