@@ -60,6 +60,11 @@ return [
 
     'params' => [
 		'staticDomain' => 'http://static.meipin.com/',
+                'sms' => [
+                    'url' => "http://dx.ipyy.net/sms.aspx",
+                    'account' => 'xd000029',
+                    'password' => 'soho2309',
+                ],
     ],
 
 ];

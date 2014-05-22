@@ -29,6 +29,8 @@ class ExchangeController extends Controller
      */
     public function actionExchangeIndex($id = 0, $page = 1)
     {
+//        Sms::send(15011247763,  Sms::mobileValidateTpl(Sms::mobileRandCode()));
+//        die;
         $goodsId = Des::decrypt($id);
         $dataResult = $this->scoreService->showExchangeIndex($goodsId, $page);
         if (!$dataResult['status']) {
