@@ -13,7 +13,6 @@
 			<a href="<?php echo $this->createUrl('score/index'); ?>">个人中心</a>
 			<span class="nav_split">|</span>
 			<a title="退出" class="lnk_logout" href="<?php echo $this->createUrl('user/logout'); ?>">退出</a>
-			<span class="nav_split">|</span>
 		    </li>
 		<?php } else { ?>
 		    <li>
@@ -54,10 +53,6 @@
                 </span>
 		</li>
 
-	    </ul>
-	    <ul>
-		<li class="a">
-		</li>
 	    </ul>
 	</div>
 	<?php echo CHtml::hiddenField('unlogin_url', Yii::app()->createAbsoluteUrl("user/login")); ?>

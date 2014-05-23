@@ -19,8 +19,8 @@ input{background:none}
 .topnav ul li.b a {background: url(images/icon2.png) no-repeat left center; cursor: pointer; display:block;padding-left:18px;color:#666666;height:30px;float:left}
 .logininfo {color:#888888;}
 .logininfo li.qd {padding:0;_height:27px;_overflow:hidden}
-.logininfo li.qd span {position:relative;display:block;background:url(images/qd_1.gif) no-repeat;width:50px;text-indent:-99999px;margin-top:3px;padding:0;cursor: pointer;z-index:333}
-.logininfo li.qd_ok span {position:relative;display:block;background:url(images/qd_2.gif) no-repeat;width:50px;text-indent:-99999px;margin-top:3px;padding:0;cursor: pointer;z-index:333}
+.logininfo li.qd span {position:relative;display:block;background:url(images/qd_1.gif) no-repeat;width:0px;text-indent:-99999px;margin-top:3px;padding:0;cursor: pointer;z-index:333}
+.logininfo li.qd_ok span {position:relative;display:block;background:url(images/qd_2.gif) no-repeat;width:0px;text-indent:-99999px;margin-top:3px;padding:0;cursor: pointer;z-index:333}
 /*.logininfo li.qd_ok span{background:url(images/qd_2.gif) no-repeat}*/
 .logininfo li.qd div{display:none;border:1px solid #E6E6E6;color:#666666;padding:5px 6px 3px;position:absolute; right:0;background:#fff;width:180px;text-indent:0;top:122px;}
 .logininfo li.qd div strong {padding:0 3px;color:#F32A6B;font:bold 12px/12px "微软雅黑"}

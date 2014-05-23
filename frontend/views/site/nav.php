@@ -9,7 +9,7 @@
 	</div>
 	<div class="r_con">
 	    <div class="yg_wrap">
-	    <a class="signin <?php $isSignDay = User::isSignDay(); echo !$isSignDay ? 'qiandao' : ''; ?>" onmouseover="document.getElementById('con_qd').style.display = 'block'" onmouseout="document.getElementById('con_qd').style.display = 'none'"><i></i><i class="icon-mini"></i>签到领积分</a>
+	    <a href="javascript:;" class="signin <?php $isSignDay = User::isSignDay(); echo !$isSignDay ? 'qiandao' : ''; ?>" onmouseover="document.getElementById('con_qd').style.display = 'block'" onmouseout="document.getElementById('con_qd').style.display = 'none'"><i></i><i class="icon-mini"></i>签到领积分</a>
 	    </div>
 	</div>
     </div>
