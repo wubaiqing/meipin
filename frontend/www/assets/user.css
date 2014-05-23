@@ -47,7 +47,6 @@
 .link a {color: #5E5E5E;text-decoration: none;}
 .tao_n {background: url(/static/vip800/images/total_alert.gif) no-repeat 0 -66px;display: inline-block;height: 16px;width: 16px;vertical-align: -4px;margin-right: 5px;}
 .tao_t {background: url(/static/vip800/images/total_alert.gif) no-repeat -130px -66px;display: inline-block;height: 16px;width: 16px;vertical-align: -2px;margin-right: 5px;}
-.smt {background: url(/static/vip800/images/btn_total.gif) no-repeat;color: white;cursor: pointer;display: block;float: left;font-size: 14px;font-weight: bold;height: 30px;line-height: 28px;line-height: 32px 9;padding-bottom: 2px;margin-top: 0px;text-align: center;width: 104px;border: none medium;}
 
 
 .jiu_shi {height: auto;overflow: hidden;width: 1000px;padding-bottom: 20px;}
