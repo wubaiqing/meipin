@@ -102,9 +102,12 @@
         <div class="pointsgood-body pb30 tab-pane" id="welfare2" style="display:block;">
             <ul class="clearfix">
                 <?php foreach ($data as $goods): ?>
+                    <?php
+                        $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
+                    ?>
                     <li>
                         <div class="convertgood">
-                            <a href="/jfsc/8.html" target="_blank" class="convertgood-pic"><img
+                            <a href="<?php echo $url; ?>" target="_blank" class="convertgood-pic"><img
                                     src="<?php echo $goods['img_url']; ?>" alt="<?php echo $goods['name']; ?> "
                                     title="<?php echo $goods['name']; ?>"></a>
                             <dl class="convertgood-desc">
@@ -116,7 +119,7 @@
                                     <p>需积分：<b class="pink"><?php echo $goods['integral']; ?></b></p>
                                 </dd>
                                 <dt><a target="_blank"
-                                       href="<?php echo Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id']))); ?>"
+                                       href="<?php echo $url; ?>"
                                        _hover-ignore="1">我要换</a></dt>
                             </dl>
                         </div>
