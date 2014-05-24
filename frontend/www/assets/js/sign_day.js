@@ -23,8 +23,6 @@ $(function() {
                 $("#dr_count").html(result.data.dr_count);
                 $("#nowScore").html(result.data.score);
                 $("#nextCount").html(result.data.nextScore);
-                $(".qd").addClass("qd_ok");
-                $('.qiandao').removeClass('unsign').addClass('signed');
                 return true;
             }
         }, 'json');

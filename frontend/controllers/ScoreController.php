@@ -32,6 +32,20 @@ class ScoreController extends Controller
     }
 
     /**
+     * 访问权限
+     */
+    public function accessRules()
+    {
+	return array_merge([
+	    [
+		'deny',
+		'actions' => ['index', 'ajax'],
+		'users' => ['?'],
+	    ]
+	], parent::accessRules());
+    }
+
+    /**
      * 积分管理-积分明细列表
      */
     public function actionIndex($page = 1, $type = 'index')
