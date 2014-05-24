@@ -202,4 +202,19 @@ class Users extends ActiveRecord implements IArrayable
             ]);
     }
 
+    /**
+     * 字段属性名称
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => '用户名',
+            'mobile' => '手机号',
+            'score' => '总积分',
+            'created_at' => '创建时间',
+        ];
+    }
+
 }
