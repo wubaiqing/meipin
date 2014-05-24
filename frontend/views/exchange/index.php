@@ -153,6 +153,7 @@
                     return true;
                 }
             },'json');
+        });
 
 //        $(document).on('click', '#qiandao', function () {
 //            var signApi = '/user/DayRegistion';
