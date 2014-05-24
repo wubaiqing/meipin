@@ -121,6 +121,12 @@ class ScoreService
                         'url' => Yii::app()->createUrl("exchange/index")
             ]);
         }
+        if($user->mobile_bind == 0){
+            return CommonHelper::getDataResult(false, [
+                        'message' => "您必须先进行电话绑定后才能进行商品兑换",
+                        'url' => Yii::app()->createUrl("user/address")
+            ]);
+        }
         $bool = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
         if (!$bool) {
             return CommonHelper::getDataResult(false, [
