@@ -47,12 +47,13 @@ class ExchangeController extends Controller
     public function actionOrder()
     {
         $id = Yii::app()->request->getQuery("id", 0);
-        $id = Des::decrypt($id);
         $userId = Yii::app()->user->id;
-        if(empty($userId)){
-            $this->redirect(Yii::app()->createUrl("user/login"));
+        if (empty($userId)) {
+            $url = Yii::app()->createAbsoluteUrl("user/login") . "?referer=" . Yii::app()->createAbsoluteUrl("exchange/order", array("id" => $id));
+            $this->redirect($url);
             Yii::app()->end();
         }
+        $id = Des::decrypt($id);
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
 
@@ -108,7 +109,7 @@ class ExchangeController extends Controller
         $data = [];
         $data = $this->scoreService->showExchangeGoodsList();
 
-        $this->render('index', ['data' => $data['goods'],'pager'=>$data['pages']]);
+        $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
 
 }
