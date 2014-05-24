@@ -307,6 +307,7 @@ class UserController extends Controller
         //更新数据
         $user->update(['sms_day_count', 'last_sms_time']);
 
+        Sms::send($mobile, Sms::mobileValidateTpl($code));
         Yii::app()->cache->set($cacheKey, $code);
         $this->returnData(true, ['message' => '发送成功', 'code' => $code]);
     }
