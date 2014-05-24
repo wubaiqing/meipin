@@ -17,7 +17,7 @@ $(function() {
                 return false;
             } else {
                 alert(result.data.message);
-                $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
+                // $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
                 
                 //成功提示
                 $("#dr_count").html(result.data.dr_count);

@@ -55,7 +55,7 @@
                         <?php echo $form->textField($data['userAddress'], 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
                     <?php else: ?>
                         <?php echo $data['userAddress']->mobile ?></em>
-                    <em class="c_red">(电话已与系统绑定)</em><br/>
+                    <em class="c_red"></em><br/>
                 <?php endif; ?>
                 <?php if (!$mobileBind): ?>
                     <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>

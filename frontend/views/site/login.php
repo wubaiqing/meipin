@@ -29,6 +29,7 @@
 			onmouseover="document.getElementById('con_qd').style.display = 'block'" onmouseout="document.getElementById('con_qd').style.display = 'none'"
 		    <?php endif; ?>
 		      class='<?php echo!$isSignDay ? 'qiandao' : ''; ?>'>&nbsp;
+                    <?php if (!empty($this->user)): ?>
                     <div id="con_qd">
                         <?php if (!empty($this->user)): ?>
                             <em>连签：<strong class="big" id="dr_count"><?php echo $this->user->dr_count ?></strong> 天，积分<strong id="nowScore">
@@ -50,6 +51,7 @@
                                     ?></strong>积分 </em>
 			<?php endif; ?>
                     </div>
+                    <?php endif; ?>
                 </span>
 		</li>
 

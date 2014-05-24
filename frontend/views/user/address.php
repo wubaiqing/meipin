@@ -79,7 +79,7 @@
                         <em>*收货时快递联系电话，很重要。</em><br/>
                     <?php else: ?>
                         <?php echo $model->mobile ?>
-                        <em style="color:red;">(电话已与系统绑定)</em><br/>
+                        <em style="color:red;"></em><br/>
                     <?php endif; ?>
 
                     <?php if (!$mobileBind): ?>

@@ -36,7 +36,7 @@ $isSignDay = User::isSignDay();
 
                             <a class="J_qiandao <?php echo!$isSignDay ? 'qiandao unsign' : 'signed'; ?>  " id="" href="javascript:void(0);">签到得积分</a>
                             </dt>
-                            <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index') ?>">个人中心</a><a href="<?php echo Yii::app()->createUrl('score/index') ?>">积分明细</a>
+                            <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index') ?>">积分明细</a>
                             </dd>
                         </dl>
                     </div>
