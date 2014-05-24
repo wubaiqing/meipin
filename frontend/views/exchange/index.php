@@ -140,22 +140,19 @@
 
 <script type="text/javascript">
     $(function () {
-        $(document).on('click', '#qiandao', function () {
+        $("#qiandao").live('click', function () {
             var signApi = '/user/DayRegistion';
-            $.getJSON(signApi).done(function (result) {
+            $.get(signApi,{},function (result) {
                 alert(result.message);
                 if (result.status == false) {
-                    if(result.status != ''){
+                    if(result.location != ''){
                         window.location.href = '/user/login'
                     }
-                    return true;
+                    return false;
                 } else {
                     return true;
                 }
-            }).fail(function () {
-                alert('签到失败，请刷新页面重试');
-                return false;
-            })
+            },'json');
         });
 
 
