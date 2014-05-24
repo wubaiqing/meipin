@@ -35,7 +35,7 @@ User.Address = (function() {
                         alert(d.data.message);
                     }
                 }, 'json');
-                $(this).unbind('click');
+                $(input).unbind('click');
             });
         },
         //显示短信发送状态信息
