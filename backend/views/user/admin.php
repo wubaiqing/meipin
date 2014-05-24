@@ -35,7 +35,7 @@
                 'buttons' => array(
                     'update' => array(
                         'label' => '修改',
-                        'url' => 'Yii::app()->createUrl("exchange/update", array("id" => $data->id))',
+                        'url' => 'Yii::app()->createUrl("user/update", array("id" => $data->id))',
                         'imageUrl' => false
                     ),
                     'delete'=>array(

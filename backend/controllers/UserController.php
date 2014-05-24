@@ -21,4 +21,25 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
+
+
+    public function actionUpdate($id)
+    {
+        $user= Users::model()->findByPk($id);
+        $address = UsersAddress::getModel($id);
+        $province = City::getByParentId(0);
+        $address->province = City::getProvinceId($address->city_id);
+        $city = City::getCityList($address->province);
+
+        $post = Yii::app()->request->getQuery('Users');
+        if ($post !== null) {
+            echo '123';
+        }
+        $this->render('update', [
+            'user' => $user,
+            'address' => $address,
+            'province' => $province,
+            'city' => $city
+        ]);
+    }
 }
