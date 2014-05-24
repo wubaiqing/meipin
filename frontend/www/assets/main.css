@@ -530,6 +530,7 @@ textarea {border:1px solid #ccc;background:#fff;padding:3px;font-size:12px;}
 .table_user textarea{height:130px; width:450px;font-size:13px;}
 .table_user .submit {margin-left:275px;}
 .table_user .submit{border:none;background:url(images/con_bg.png) -717px -294px no-repeat;color:#fff;font-size:14px;float:left;margin-right:5px;font-weight:800;text-align:center;width:81px;height:33px;line-height:33px;cursor:pointer;text-indent:0}
+.valid_code .submit{border:none;background:url(images/con_bg.png) -717px -294px no-repeat;color:#fff;font-size:14px;margin-right:5px;font-weight:800;text-align:center;width:81px;height:33px;line-height:33px;cursor:pointer;text-indent:0}
 .table_user tr td em {margin:0 5px;color:#777}
 .table_user tr td input.input_on {font-weight:800;font-family:Arial,Helvetica,sans-serif}
 .table_user tr td img {padding:1px;border:1px solid #ccc}

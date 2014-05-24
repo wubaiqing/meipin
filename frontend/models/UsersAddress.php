@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户地址管理
  * @author wubaiqing<wubaiqing@vip.qq.com>
@@ -7,13 +8,16 @@
  */
 class UsersAddress extends ActiveRecord implements IArrayable
 {
+
     public $province;
     public $city;
+
     /**
      * 短信验证码
      * @var integer 
      */
-    public $code ;
+    public $code;
+
     /**
      * 表名
      * @return string
@@ -30,7 +34,8 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public function rules()
     {
         return [
-            ['postcode' ,'checkPostCode'],
+            ['postcode', 'checkPostCode'],
+            ['code', 'checkCode'],
             ['id,user_id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
     }
@@ -46,13 +51,25 @@ class UsersAddress extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 手机绑定验证码校验
+     */
+    public function checkCode()
+    {
+        $code = Yii::app()->cache->get(Sms::mobileValidateKey($this->user_id));
+        if (!is_numeric($this->code) || $this->code != $code) {
+            $this->code = null;
+            $this->addError('code', '验证码错误');
+        }
+    }
+
+    /**
      * 根据用户ID得到用户收获地址信息
      * @param  integer $userId 用户ID
      * @return mixed
      */
     public static function getByUserId($userId)
     {
-        $cacheKey = 'meipin-get-by-user-id-'.$userId;
+        $cacheKey = 'meipin-get-by-user-id-' . $userId;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
@@ -71,7 +88,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
      */
     public static function deleteCacheByUserId($userId)
     {
-        $cacheKey = 'meipin-get-by-user-id-'.$userId;
+        $cacheKey = 'meipin-get-by-user-id-' . $userId;
         Yii::app()->cache->delete($cacheKey);
     }
 
@@ -99,4 +116,5 @@ class UsersAddress extends ActiveRecord implements IArrayable
         $attr['user_id'] = $userId;
         return $attr;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class UserController extends Controller
 {
+
     /**
      * @var string $layout
      */
@@ -45,7 +47,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-        ], parent::accessRules());
+                ], parent::accessRules());
     }
 
     /**
@@ -75,9 +77,9 @@ class UserController extends Controller
 
         $this->layout = '//layouts/userBase';
         $model = new LoginForm();
-	    $post = Yii::app()->request->getPost('LoginForm');
-	    if (!empty($post)) {
-	        $model->attributes = $post;
+        $post = Yii::app()->request->getPost('LoginForm');
+        if (!empty($post)) {
+            $model->attributes = $post;
             if ($model->login()) {
                 $this->renderIndex('yes', '登录成功', $referer);
                 Yii::app()->end();
@@ -157,11 +159,13 @@ class UserController extends Controller
                 $mailer->SMTPAuth = true;
                 $mailer->Username = 'piaoxuedtian@126.com';
                 $mailer->Password = 'meipin123';
-                if($mailer->send()){
-                    echo 'success';die;
-                }else{
+                if ($mailer->send()) {
+                    echo 'success';
+                    die;
+                } else {
                     var_dump($mailer->ErrorInfo);
-                    echo 'faile';die;
+                    echo 'faile';
+                    die;
                 }
 
                 $model = new LoginForm();
@@ -169,7 +173,8 @@ class UserController extends Controller
                 $model->login();
                 $this->renderIndex('yes', '注册成功');
             }
-            var_dump($model->getErrors());die;
+            var_dump($model->getErrors());
+            die;
         }
         $this->render('register', ['model' => $model]);
     }
@@ -192,7 +197,9 @@ class UserController extends Controller
             $post = UsersAddress::setAttr($userId, $_POST['UsersAddress']);
             $model->attributes = $post;
             if ($model->save()) {
+                User::updateMobileBindSataus($userId, $model->mobile, 1);
                 UsersAddress::deleteCacheByUserId($userId);
+                User::deleteCache($userId);
                 $this->renderIndex('yes', '用户地址修改成功');
             }
         }
@@ -254,17 +261,32 @@ class UserController extends Controller
     /**
      * 用户激活邮箱
      */
-    public function actionActivateMail(){
+    public function actionActivateMail()
+    {
         $email = Yii::app()->request->getQuery('email');
         $uid = Yii::app()->request->getQuery('secret');
     }
 
-
     /**
      * 手机绑定验证码发送
      */
-    public function actionSendMobileBindSmsCode(){
-        
-        $this->returnData(true, ['message' => '发送成功']);
+    public function actionSendMobileBindSmsCode()
+    {
+
+        //
+        $cacheKey = Sms::mobileValidateKey($this->userId);
+        $code = Sms::mobileRandCode();
+        Yii::app()->cache->set($cacheKey, $code);
+        $this->returnData(true, ['message' => '发送成功','code'=>$code]);
     }
+
+    /**
+     * 手机绑定验证码绑定
+     */
+    public function actionMobileBind()
+    {
+
+        $this->returnData(true, ['message' => '验证成功']);
+    }
+
 }

@@ -51,7 +51,8 @@ class User extends ActiveRecord implements IArrayable
             ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
             ['password', 'checkPassword', 'on' => 'register, password'],
-            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode,score,dr_count,last_dr_time', 'safe'],
+            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode,score,dr_count,last_dr_time'
+                . ',mobile_bind,sms_day_count,last_sms_time,mobile', 'safe'],
         ];
     }
 
@@ -203,6 +204,21 @@ class User extends ActiveRecord implements IArrayable
     {
         $user = User::getUser(Yii::app()->user->id);
         return !empty($user) && (date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time()));
+    }
+    /**
+     * 更新手机绑定状态
+     * @param integer $userId 用户ID
+     * @param string $mobile 手机号码
+     * @param integer $status 绑定状态 0:未绑定；1：已绑定
+     * @return boolean 
+     */
+    public static function updateMobileBindSataus($userId, $mobile, $status)
+    {
+        if (!in_array($status, [0, 1])) {
+            return false;
+        }
+        self::model()->updateByPk($userId, ['mobile' => $mobile, 'mobile_bind' => $status]);
+        return true;
     }
 
 }

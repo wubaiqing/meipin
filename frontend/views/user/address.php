@@ -69,11 +69,28 @@
                     联系电话：
                 </td>
                 <td height="32" align="left">
-                    <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
+                    <?php
+                    $user = User::getUser($this->userId);
+                    $mobileBind = ($user->mobile_bind == 1) ? true : false;
+                    ?>
+                    <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15', 'disabled' => $mobileBind, 'style' => 'background:#fff;')); ?>
                     <em>*收货时快递联系电话，很重要。</em><br/>
-                    <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" id="sendBtn" value="发送短信验证码"/><br/>
+                    <?php if (!$mobileBind): ?>
+                        <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>
+                    <?php endif; ?>
                 </td>
             </tr>
+            <?php if (!$mobileBind): ?>
+                <tr align="center">
+                    <td bgcolor="#F9FAFC" align="right">
+                        短信验证码：
+                    </td>
+                    <td height="32" align="left">
+                        <?php echo $form->textField($model, 'code', array('class' => 'code_text', 'maxLength' => '4')); ?>
+                        *请勿泄露，以免给您带来不必要的损失。
+                    </td>
+                </tr>
+            <?php endif; ?>
             <tr align="center" class="color">
                 <td bgcolor="#F9FAFC" align="right">
                     收货地址：
@@ -104,19 +121,25 @@
         <p class="b_tit">请详细填写收货地址，因为收货地址信息而导致的退货，我们将不退还积分。</p>
     </div>
 </div>
-<div id="sendSmsCode" style="display:none;">
-    <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
-        <tr align="center">
-            <td bgcolor="#F9FAFC" align="right">
-                联系电话：
-            </td>
-            <td height="32" align="left">
-                <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
-                <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" id="sendBtn" value="发送短信验证码"/><br/>
-                <label class="">短信验证码：</label><?php echo $form->textField($model, 'code', array('class' => 'code_text', 'maxLength' => '4')); ?><br/>
-            </td>
-        </tr>
-    </table>
+<!--隐藏域-->
+<div id="sendSmsCode" style="display:none;" ajax-url="<?php echo Yii::app()->createUrl("user/mobileBind") ?>">
+    <div style="font-size:18px;font-weight:bold;margin:5px;">确认短信验证码</div><br/>
+    <ul>
+        <li>
+            手机号码：<label class="codeShowMobile"></label>
+            <?php echo $form->hiddenField($model, 'mobile', array('id' => 'codeHiddenMobile')); ?>
+            <br/>
+            <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" class="sendBtn" value="发送短信验证码"/><br/>
+        </li>
+        <li>
+            短信验证码：<?php echo $form->textField($model, 'code', array('class' => 'code_text', 'maxLength' => '4')); ?>
+        </li>
+        <li>
+            <br/>
+            <?php echo CHtml::button("确定", array('class' => 'codeOk submit')) ?> &nbsp;
+            <?php echo CHtml::button("取消", array('class' => 'codeCancle submit')) ?>
+        </li>
+    </ul>
 </div>
 <script type="text/javascript">
     User.Address.changeProvince();

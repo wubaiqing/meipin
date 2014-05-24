@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户管理
  * @author wubaiqing<wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class Users extends ActiveRecord implements IArrayable
 {
+
     /**
      * @var string 验证码
      */
@@ -143,7 +145,7 @@ class Users extends ActiveRecord implements IArrayable
      */
     public function hashPassword($password, $salt)
     {
-        return md5(md5($password).$salt);
+        return md5(md5($password) . $salt);
     }
 
     /**
@@ -152,7 +154,7 @@ class Users extends ActiveRecord implements IArrayable
      */
     public static function getUser($userId)
     {
-        $cacheKey = 'meipin-get-user-'.$userId;
+        $cacheKey = 'meipin-get-user-' . $userId;
         $result = Yii::app()->cache->get($cacheKey);
         if ($result) {
             return $result;
@@ -170,7 +172,7 @@ class Users extends ActiveRecord implements IArrayable
      */
     public static function deleteCache($userId)
     {
-        $cacheKey = 'meipin-get-user-'.$userId;
+        $cacheKey = 'meipin-get-user-' . $userId;
         Yii::app()->cache->delete($cacheKey);
     }
 
