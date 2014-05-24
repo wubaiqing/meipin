@@ -373,18 +373,24 @@ class ScoreService
         $province = City::getByParentId(0);
         $model->province = City::getProvinceId($model->city_id);
         $city = City::getCityList($model->province);
-
+        $user = User::getUser($userId);
         if (!empty($userAddress)) {
             $post = UsersAddress::setAttr($userId, $userAddress);
             $model->attributes = $post;
             if ($model->save()) {
+                //绑定用户手机信息
+                if (!empty($model->code) && $user->mobile_bind == 0) {
+                    User::updateMobileBind($userId, $model->mobile, 1);
+                }
+                //删除地址缓存
                 UsersAddress::deleteCacheByUserId($userId);
+                //删除用户缓存
                 User::deleteCache($userId);
-                return CommonHelper::getDataResult(true, ['message' => '操作成功']);
+                return CommonHelper::getDataResult(true, ['message' => '操作成功','errors'=>[]]);
             }
         }
 
-        return CommonHelper::getDataResult(false, ['message' => '操作失败']);
+        return CommonHelper::getDataResult(false, ['message' => '操作失败','errors'=>$model->getErrors()]);
     }
 
     /**
@@ -396,7 +402,7 @@ class ScoreService
         //积分cookie
         $cvalue = isset($_COOKIE['DR']) ? $_COOKIE['DR'] : null; //Cookie加密串
         if (!empty($cvalue)) {
-            $cvalue = json_decode(Des::decrypt($cvalue),true);
+            $cvalue = json_decode(Des::decrypt($cvalue), true);
             if ($cvalue['user_id'] != $userId && $cvalue['date'] == date("Y-m-d")) {
                 return true;
             }

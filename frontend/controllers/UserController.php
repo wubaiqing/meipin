@@ -198,7 +198,7 @@ class UserController extends Controller
             $model->attributes = $post;
             if ($model->save()) {
                 //绑定用户手机信息
-                if(!empty($model->code) && $user->mobile_bind == 0){
+                if (!empty($model->code) && $user->mobile_bind == 0) {
                     User::updateMobileBind($userId, $model->mobile, 1);
                 }
                 //删除地址缓存
@@ -230,7 +230,8 @@ class UserController extends Controller
         //保存数据
         $dataResult = ScoreService::saveUserAddress($this->userId, $userAddress);
         //返回json数据
-        $this->returnData($dataResult['status'], ['message' => $dataResult['data']['message'], 'isLogin' => $this->isLogin]);
+        $this->returnData($dataResult['status'], ['message' => $dataResult['data']['message'],
+            'errors' => $dataResult['data']['errors'], 'isLogin' => $this->isLogin]);
     }
 
     /**
@@ -282,7 +283,7 @@ class UserController extends Controller
         $cacheKey = Sms::mobileValidateKey($this->userId);
         $code = Sms::mobileRandCode();
         Yii::app()->cache->set($cacheKey, $code);
-        $this->returnData(true, ['message' => '发送成功','code'=>$code]);
+        $this->returnData(true, ['message' => '发送成功', 'code' => $code]);
     }
 
     /**
