@@ -7528,9 +7528,17 @@ CREATE TABLE `meipin_users` (
   `score` int(11) DEFAULT '0' COMMENT '积分',
   `dr_count` int(11) DEFAULT '0' COMMENT '签到次数',
   `last_dr_time` int(11) DEFAULT '0' COMMENT '最后签到时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='前台用户';
-
+  `is_valid` tinyint(1) NOT NULL DEFAULT '0' COMMENT '邮箱是否验证',
+  `mobile_bind` tinyint(1) DEFAULT '0' COMMENT '手机号码否绑定,0:未绑定；1：已绑定',
+  `sms_day_count` tinyint(4) DEFAULT '0' COMMENT '每日短信验证最大数',
+  `last_sms_time` int(11) DEFAULT '0' COMMENT '短信最后发送时间',
+  `mobile` varchar(15) DEFAULT '' COMMENT '认证的手机号码',
+  PRIMARY KEY (`id`),
+  KEY `mobile` (`mobile`),
+  KEY `created_at` (`created_at`),
+  KEY `username` (`username`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='前台用户';
 LOCK TABLES `meipin_users` WRITE;
 /*!40000 ALTER TABLE `meipin_users` DISABLE KEYS */;
 
@@ -7552,17 +7560,27 @@ CREATE TABLE `meipin_users_address` (
   `user_id` int(11) DEFAULT NULL COMMENT '用户ID',
   `name` varchar(50) DEFAULT NULL COMMENT '姓名',
   `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
-  `city_id` int(11) DEFAULT NULL,
-  `county_id` int(11) DEFAULT NULL,
-  `address` int(11) DEFAULT NULL COMMENT '地址',
-  `postcode` int(11) DEFAULT NULL COMMENT '邮编',
+  `city_id` int(11) DEFAULT NULL COMMENT '城市ID',
+  `address` varchar(100) DEFAULT NULL COMMENT '地址',
+  `postcode` varchar(10) DEFAULT NULL COMMENT '邮编',
   `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
-  `update_at` int(11) DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户地址';
+  `updated_at` int(11) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `mobile` (`mobile`),
+  KEY `city_id` (`city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='用户地址';
 
-
-
+CREATE TABLE `meipin_auth_code_log` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT '0' COMMENT '用户ID',
+  `created_at` int(11) DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(11) DEFAULT '0' COMMENT '更新时间',
+  `remark` varchar(4000) DEFAULT '' COMMENT '操作',
+  PRIMARY KEY (`id`),
+  KEY `created_at` (`created_at`),
+  KEY `user_id` (`user_id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户操作日志';
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -297,7 +297,6 @@ class UserController extends Controller
         if ($last_sms_time == $today && $user->sms_day_count >= $smsDayMax['sms_day_max']) {
             $this->returnData(false, ['message' => '今天短信发送数量超过最大限制，请明天再试']);
         }
-
         if ($last_sms_time == $today) {
             $user->sms_day_count = new CDbExpression('sms_day_count+1');
         } else {
@@ -307,9 +306,11 @@ class UserController extends Controller
         //更新数据
         $user->update(['sms_day_count', 'last_sms_time']);
 
-        Sms::send($mobile, Sms::mobileValidateTpl($code));
+        Sms::send($post['mobile'], Sms::mobileValidateTpl($code));
+        //日志
+        AuthCodeLog::log($this->userId, "手机绑定验证码【".$code."】");
         Yii::app()->cache->set($cacheKey, $code);
-        $this->returnData(true, ['message' => '发送成功', 'code' => $code]);
+        $this->returnData(true, ['message' => '发送成功']);
     }
 
     /**
