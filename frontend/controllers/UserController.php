@@ -278,10 +278,35 @@ class UserController extends Controller
      */
     public function actionSendMobileBindSmsCode()
     {
-
-        //
+        $now = time();
+        $post = Yii::app()->request->getPost("UsersAddress", null);
+        if (empty($post) || !isset($post['mobile']) || !preg_match("/^\d+$/", $post['mobile'])) {
+            $this->returnData(false, ['message' => '手机号码格式错误']);
+        }
+        //获取短信配置
+        $smsDayMax = Yii::app()->params['sms'];
+        //缓存KEY
         $cacheKey = Sms::mobileValidateKey($this->userId);
+        //获取验证码
         $code = Sms::mobileRandCode();
+
+        $user = User::model()->findByPk($this->userId);
+        $today = strtotime(date("Y-m-d"));
+        $last_sms_time = strtotime(date("Y-m-d", $user->last_sms_time));
+        //验证短信发送信息
+        if ($last_sms_time == $today && $user->sms_day_count >= $smsDayMax['sms_day_max']) {
+            $this->returnData(false, ['message' => '今天短信发送数量超过最大限制，请明天再试']);
+        }
+
+        if ($last_sms_time == $today) {
+            $user->sms_day_count = new CDbExpression('sms_day_count+1');
+        } else {
+            $user->sms_day_count = 1;
+        }
+        $user->last_sms_time = $now;
+        //更新数据
+        $user->update(['sms_day_count', 'last_sms_time']);
+
         Yii::app()->cache->set($cacheKey, $code);
         $this->returnData(true, ['message' => '发送成功', 'code' => $code]);
     }

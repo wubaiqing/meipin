@@ -69,7 +69,7 @@ return [
                     //短信账户密码
                     'password' => 'soho2309',
                     //单用户单日最大发送量
-                    'sms_day_max' => 10,
+                    'sms_day_max' => 5,
                 ],
     ],
 

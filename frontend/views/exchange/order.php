@@ -157,11 +157,10 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
         }
         if ($.trim($("#UsersAddress_address").val()) == "") {
             $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
-
             return false;
         }
         var mobile = $("#UsersAddress_mobile").val();
-
+        
         var url = $("#address-form").attr("action");
         var params = $("#address-form").serialize();
         $(".error").remove();

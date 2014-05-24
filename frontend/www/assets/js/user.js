@@ -22,43 +22,6 @@ User.Address = (function() {
         'sendMobileBindSmsCode': function() {
             var input = this;
             $(".sendBtn").click(function() {
-                //弹出层方式发送验证码
-
-//                //向弹出层赋值
-//                var mobile = $("#UsersAddress_mobile").val();
-//                $(".codeShowMobile").html(mobile);
-//                $(".codeHiddenMobile").val(mobile);
-//                //输出弹出层内容
-//                var str = "<form id='sms-form' class='valid_code'>"
-//                        + $("#sendSmsCode").html()
-//                        + "</form>";
-//                $.blockUI({
-//                    message: str,
-//                    css: {
-//                        border: 'none',
-//                        padding: '1px',
-//                        opacity: 1,
-//                        color: '#000',
-//                        height: '180px',
-//                        border: '1px solid #ccc',
-//                                'font-size': '16px'
-//                    }});
-//                //给内容按钮绑定事件
-//                $(".codeCancle").on('click', function() {
-//                    $.unblockUI();
-//                });
-//                $(".codeOk").on('click', function() {
-//                    var code = $("#sms-form").find("input[name='UsersAddress[code]']").val();
-//                    var url = $("#sendSmsCode").attr("ajax-url");
-//                    var params = $("#sms-form").serialize();
-//                    $.post(url, params, function(d) {
-//                        if (d.status) {
-//                            $.unblockUI();
-//                            $(".sendBtn").after("<span style='color:green;'>电话绑定成功</span>").remove();
-//                        }
-//                    }, 'json');
-//                })
-
                 //发送短信验证码
                 var url = $(this).attr("url");
                 var params = {
@@ -67,6 +30,9 @@ User.Address = (function() {
                 $.post(url, params, function(d) {
                     if (d.status) {
                         input.showTimes();
+                    }
+                    else{
+                        alert(d.data.message);
                     }
                 }, 'json');
                 $(this).unbind('click');
