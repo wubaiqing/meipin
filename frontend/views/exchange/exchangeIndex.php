@@ -12,7 +12,7 @@
             <span class="bsr"></span>
         </div>
         <div class="blockA">
-            <h2>热门兑换活动...</h2>
+            <h2>热门兑换活动</h2>
             <ul>
                 <?php
                 foreach ($data->hotExchangeGoods as $goods):
