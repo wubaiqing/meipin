@@ -292,10 +292,11 @@ class ScoreService extends AbstractService
                 $num = 3;
             }
             //如果断签则恢复
-            if (strtotime(date("Y-m-d", $user->last_dr_time)) < (strtotime('+0 day 00:00:00') - 1)) {
+            if (strtotime(date("Y-m-d", $user->last_dr_time)) < (strtotime('-1 day 00:00:00'))) {
                 $user->dr_count = 0;
                 $num = 1;
             }
+//            var_dump(date("Y-m-d", $user->last_dr_time)."-".date("Y-m-d",strtotime('-1 day 00:00:00')));die;
             $user->last_dr_time = $now;
             $user->score = ($user->score + $num);
             $user->dr_count = $user->dr_count + 1;
