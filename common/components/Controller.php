@@ -58,6 +58,12 @@ class Controller extends CController
             ]
         ],
         [
+            'label' => '用户管理',
+            'items' => [
+                ['url' => 'user/admin', 'label' => '管理用户'],
+            ]
+        ],
+        [
             'label' => '前台管理',
             'items' => [
                 ['url' => 'site/clearCache', 'label' => '清空缓存'],
