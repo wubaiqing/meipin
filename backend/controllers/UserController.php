@@ -12,9 +12,9 @@ class UserController extends Controller
      */
     public function actionAdmin()
     {
-        $model = new User();
+        $model = new Users();
         $model->unsetAttributes();
-        if (isset($_GET['User'])) {
+        if (isset($_GET['Users'])) {
             $model->attributes = Yii::app()->request->getQuery(CHtml::modelName($model));
         }
         $this->render('admin', [

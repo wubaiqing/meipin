@@ -186,4 +186,20 @@ class Users extends ActiveRecord implements IArrayable
         $model->confirmPassword = '';
     }
 
+    /**
+     * 列表搜索
+     * @return ActiveDataProvider
+     */
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('username', $this->username, true);
+        $criteria->order = 't.id desc';
+        return new CActiveDataProvider($this,
+            [
+                'criteria' => $criteria,
+            ]);
+    }
+
 }
