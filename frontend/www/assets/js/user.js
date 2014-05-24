@@ -27,21 +27,19 @@ User.Address = (function() {
                 var params = {
                     'UsersAddress[mobile]': $("#UsersAddress_mobile").val(),
                 };
+                input.showTimes();
                 $.post(url, params, function(d) {
-                    if (d.status) {
-                        input.showTimes();
-                    }
-                    else{
+                    if (!d.status) {
                         alert(d.data.message);
                     }
                 }, 'json');
-                $(input).unbind('click');
+                $(".sendBtn").unbind('click');
             });
         },
         //显示短信发送状态信息
         'showTimes': function() {
             var input = this;
-            var n = 5;
+            var n = 60;
             var url = $(this).attr("url");
             iID = setInterval(function() {
                 if (n <= 0) {
