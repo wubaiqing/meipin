@@ -34,6 +34,7 @@ return [
         'pagination' => [
             'pageVar' => 'page',
             'pageSize' => 120,
+            'exchangePageSize' => 4,
         ],
         'linkCacheTime' => 86400,
         //系統全局配置 

@@ -126,7 +126,13 @@
         </div>
     </div>
     <!-- 积分兑换商品开始 -->
+    <!-- 分页开始 -->
+    <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
+    <!-- 分页结束 -->
 </div>
+
+
+
 <?php $this->renderPartial('//site/side'); ?>
 <div id="footer" class="footer">
     <?php $this->renderPartial('//site/footer'); ?>
@@ -139,7 +145,9 @@
             $.getJSON(signApi).done(function (result) {
                 alert(result.message);
                 if (result.status == false) {
-                    window.location.href = '/user/login'
+                    if(result.status != ''){
+                        window.location.href = '/user/login'
+                    }
                     return true;
                 } else {
                     return true;

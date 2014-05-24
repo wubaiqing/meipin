@@ -210,14 +210,27 @@ class ScoreService extends AbstractService
         return $post;
     }
 
-    public function showExchangeGoodsList($goodsNum = 40)
+    /**
+     * 积分兑换首页商品列表
+     * @return array
+     * @author zhangchao
+     */
+    public function showExchangeGoodsList()
     {
         $criteria = new CDbCriteria();
-        $criteria->limit = 40;
-        $criteria->offset = 0;
+        $criteria->limit = Yii::app()->params['pagination']['exchangePageSize'];
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
-        return Exchange::model()->findAll($criteria);
+        //分页类开始
+        $pages = new CPagination();
+        //计算总数
+        $pages->itemCount = Exchange::model()->count($criteria);
+        $pages->pageSize = Yii::app()->params['pagination']['exchangePageSize'];
+        $pages->applyLimit($criteria);
+        $data = [];
+        $data['goods'] = Exchange::model()->findAll($criteria);
+        $data['pages'] = $pages;
+        return $data;
     }
 
     /**
