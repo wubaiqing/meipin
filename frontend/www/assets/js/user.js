@@ -2,6 +2,7 @@ var User = {};
 User.Config = {
     'version': 1.0
 };
+var iID;
 User.Address = (function() {
     return {
         'changeProvince': function() {
@@ -68,6 +69,7 @@ User.Address = (function() {
                         input.showTimes();
                     }
                 }, 'json');
+                $(this).unbind('click');
             });
         },
         //显示短信发送状态信息
@@ -75,7 +77,7 @@ User.Address = (function() {
             var input = this;
             var n = 5;
             var url = $(this).attr("url");
-            var iID = setInterval(function() {
+            iID = setInterval(function() {
                 if (n <= 0) {
                     $(".sendBtn").val("发送短信验证码");
                     input.sendMobileBindSmsCode();

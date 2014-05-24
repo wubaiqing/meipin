@@ -36,6 +36,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
         return [
             ['postcode', 'checkPostCode'],
             ['code', 'checkCode'],
+            ['city_id','checkCity'],
             ['id,user_id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
     }
@@ -56,9 +57,19 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public function checkCode()
     {
         $code = Yii::app()->cache->get(Sms::mobileValidateKey($this->user_id));
-        if (!is_numeric($this->code) || $this->code != $code) {
+        $user = User::getUser($this->user_id);
+        if ($user->mobile_bind == 0 && (!is_numeric($this->code) || $this->code != $code)) {
             $this->code = null;
             $this->addError('code', '验证码错误');
+        }
+    }
+    /**
+     * 城市校验
+     */
+    public function checkCity()
+    {
+        if ($this->city_id <1) {
+            $this->addError('city_id', '请选择省份和城市');
         }
     }
 

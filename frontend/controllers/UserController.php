@@ -191,14 +191,19 @@ class UserController extends Controller
         $province = City::getByParentId(0);
         $model->province = City::getProvinceId($model->city_id);
         $city = City::getCityList($model->province);
-
+        $user = User::getUser($userId);
         $userAddress = Yii::app()->request->getPost('UsersAddress');
         if (!empty($userAddress)) {
-            $post = UsersAddress::setAttr($userId, $_POST['UsersAddress']);
+            $post = UsersAddress::setAttr($userId, $userAddress);
             $model->attributes = $post;
             if ($model->save()) {
-                User::updateMobileBindSataus($userId, $model->mobile, 1);
+                //绑定用户手机信息
+                if(!empty($model->code) && $user->mobile_bind == 0){
+                    User::updateMobileBind($userId, $model->mobile, 1);
+                }
+                //删除地址缓存
                 UsersAddress::deleteCacheByUserId($userId);
+                //删除用户缓存
                 User::deleteCache($userId);
                 $this->renderIndex('yes', '用户地址修改成功');
             }

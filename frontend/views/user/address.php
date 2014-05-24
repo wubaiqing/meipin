@@ -73,8 +73,15 @@
                     $user = User::getUser($this->userId);
                     $mobileBind = ($user->mobile_bind == 1) ? true : false;
                     ?>
-                    <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15', 'disabled' => $mobileBind, 'style' => 'background:#fff;')); ?>
-                    <em>*收货时快递联系电话，很重要。</em><br/>
+
+                    <?php if (!$mobileBind): ?>
+                        <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15', 'disabled' => $mobileBind, 'style' => 'background:#fff;')); ?>
+                        <em>*收货时快递联系电话，很重要。</em><br/>
+                    <?php else: ?>
+                        <?php echo $model->mobile ?>
+                        <em style="color:red;">(电话已与系统绑定)</em><br/>
+                    <?php endif; ?>
+
                     <?php if (!$mobileBind): ?>
                         <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>
                     <?php endif; ?>

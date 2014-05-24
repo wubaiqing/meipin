@@ -212,7 +212,7 @@ class User extends ActiveRecord implements IArrayable
      * @param integer $status 绑定状态 0:未绑定；1：已绑定
      * @return boolean 
      */
-    public static function updateMobileBindSataus($userId, $mobile, $status)
+    public static function updateMobileBind($userId, $mobile, $status)
     {
         if (!in_array($status, [0, 1])) {
             return false;
