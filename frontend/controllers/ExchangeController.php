@@ -49,6 +49,10 @@ class ExchangeController extends Controller
         $id = Yii::app()->request->getQuery("id", 0);
         $id = Des::decrypt($id);
         $userId = Yii::app()->user->id;
+        if(empty($userId)){
+            $this->redirect(Yii::app()->createUrl("user/login"));
+            Yii::app()->end();
+        }
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
 
