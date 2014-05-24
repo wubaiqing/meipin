@@ -153,7 +153,24 @@
                     return true;
                 }
             },'json');
-        });
+
+//        $(document).on('click', '#qiandao', function () {
+//            var signApi = '/user/DayRegistion';
+//            $.getJSON(signApi).done(function (result) {
+//                alert(result.message);
+//                if (result.status == false) {
+//                    if(result.location != ''){
+//                        window.location.href = '/user/login'
+//                    }
+//                    return false;
+//                } else {
+//                    return true;
+//                }
+//            }).fail(function () {
+//                alert('签到失败，请刷新页面重试');
+//                return false;
+//            })
+//        });
 
 
         $('.banner').unslider({
