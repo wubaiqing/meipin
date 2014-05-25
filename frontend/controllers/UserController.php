@@ -141,40 +141,22 @@ class UserController extends Controller
     {
         $this->layout = '//layouts/userBase';
         $model = new User('register');
-
         $post = Yii::app()->request->getPost('User');
         if (!empty($post)) {
             $model->attributes = $post;
             if ($model->save()) {
-                $mailer = new PHPMailer();
-                $mailer->isSMTP();
-                $mailer->Host = 'smtp.126.com';
-                $mailer->From = 'piaoxuedtian@126.com';
-                $mailer->FromName = '美品网';
-                $mailer->addAddress($model->email);
-                $mailer->isHTML(true);
-                $mailer->Subject = '这是我的测试邮件';
-                $mailer->Body = '这是测试邮件的body';
-                $mailer->AltBody = '这是altbody不知道干嘛用的';
-                $mailer->SMTPAuth = true;
-                $mailer->Username = 'piaoxuedtian@126.com';
-                $mailer->Password = 'meipin123';
-                if ($mailer->send()) {
-                    echo 'success';
-                    die;
-                } else {
-                    var_dump($mailer->ErrorInfo);
-                    echo 'faile';
-                    die;
-                }
+                $body = $this->renderPartial('_mailBody',['userModel'=>$model],true);
+                $subject = '美品网邮箱注册激活邮件';
 
+                $mail = new MailService();
+                if(!$mail->sendMail($body,$subject,$model->email)){
+                        throw new CHttpException(400,'邮件发送失败，请联系客服人员');
+                }
                 $model = new LoginForm();
                 $model->attributes = $_POST['User'];
                 $model->login();
-                $this->renderIndex('yes', '注册成功');
+                $this->renderIndex('yes', '注册成功！激活邮件已经发出，请先激活邮箱。');
             }
-            var_dump($model->getErrors());
-            die;
         }
         $this->render('register', ['model' => $model]);
     }
@@ -270,7 +252,24 @@ class UserController extends Controller
     public function actionActivateMail()
     {
         $email = Yii::app()->request->getQuery('email');
-        $uid = Yii::app()->request->getQuery('secret');
+        $uid = Yii::app()->request->getQuery('usecret');
+        if(!$email || !$uid){
+            //此处需要改，增加一个友好的提示页面
+            throw new CHttpException(400,'非法请求');
+        }
+        $uid = Des::decrypt($uid);//解密ID
+        $userModel = User::model()->findByPk($uid,"email = '$email'" );
+        if($userModel === null){
+            //此处需要改，增加一个友好的提示页面
+            throw new CHttpException(400,'您激活的邮箱不存在');
+        }
+        if($userModel->is_valid == 1){
+            throw new CHttpException(400,'您的邮箱已经激活过了');
+        }
+        $userModel->is_valid = 1;//设置为已激活
+        if($userModel->save()){
+            $this->renderIndex('yes','激活成功');
+        }
     }
 
     /**
