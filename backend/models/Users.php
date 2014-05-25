@@ -196,6 +196,7 @@ class Users extends ActiveRecord implements IArrayable
         $criteria->compare('id', $this->id, true);
         $criteria->compare('username', $this->username, true);
         $criteria->order = 't.id desc';
+
         return new CActiveDataProvider($this,
             [
                 'criteria' => $criteria,

@@ -102,6 +102,7 @@ class Exchange extends CActiveRecord
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
+
         return new CActiveDataProvider($this,
                 [
             'criteria' => $criteria,
@@ -116,6 +117,7 @@ class Exchange extends CActiveRecord
     {
         $this->start_time = strtotime($this->start_time);
         $this->end_time = strtotime($this->end_time);
+
         return true;
     }
 
@@ -132,6 +134,7 @@ class Exchange extends CActiveRecord
         }
         $this->update_time = time();
         $this->update_id = User::$userName[Yii::app()->user->id];
+
         return true;
     }
 

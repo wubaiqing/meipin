@@ -43,6 +43,7 @@ class City extends ActiveRecord implements IArrayable
         foreach ($data as $item) {
             $array[$item->id] = $item->city_name;
         }
+
         return $array;
     }
 
@@ -57,6 +58,7 @@ class City extends ActiveRecord implements IArrayable
         foreach ($cities as $id => $name) {
             $string .= "<option value='{$id}'>{$name}</option>";
         }
+
         return $string;
     }
 
@@ -76,6 +78,7 @@ class City extends ActiveRecord implements IArrayable
         }
 
         $cityId = $city->parent_id;
+
         return $cityId;
     }
 
