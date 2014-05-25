@@ -151,6 +151,8 @@ class UserController extends Controller
         if (!empty($post)) {
             $model->attributes = $post;
             if ($model->save()) {
+                //刚注册的用户信息写入缓存
+                User::getUser($model->id);
                 $body = $this->renderPartial('_mailBody',['userModel'=>$model],true);
                 $subject = '美品网邮箱注册激活邮件';
 
@@ -261,16 +263,18 @@ class UserController extends Controller
             throw new CHttpException(400,'非法请求');
         }
         $uid = Des::decrypt($uid);//解密ID
-        $userModel = User::model()->findByPk($uid,"email = '$email'" );
+        //获取用户的缓存
+        $userModel = User::getUser($uid);
         if($userModel === null){
-            //此处需要改，增加一个友好的提示页面
-            throw new CHttpException(400,'您激活的邮箱不存在');
+            $this->renderIndex('yes','您激活的邮箱不存在');
         }
         if($userModel->is_valid == 1){
-            throw new CHttpException(400,'您的邮箱已经激活过了');
+            $this->renderIndex('yes','您的邮箱已经激活过了');
         }
         $userModel->is_valid = 1;//设置为已激活
         if($userModel->save()){
+            //激活完成删除用户缓存
+            User::deleteCache($userModel->id);
             $this->renderIndex('yes','激活成功');
         }
     }
