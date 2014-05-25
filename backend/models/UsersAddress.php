@@ -53,17 +53,9 @@ class UsersAddress extends ActiveRecord implements IArrayable
      */
     public static function getByUserId($userId)
     {
-        $cacheKey = 'meipin-get-by-user-id-'.$userId;
-        $result = Yii::app()->cache->get($cacheKey);
-        if (!empty($result)) {
-            return $result;
-        }
-
         $address = self::model()->findByAttributes(array(
             'user_id' => $userId
         ));
-        Yii::app()->cache->set($cacheKey, $address, 3600);
-
         return $address;
     }
 

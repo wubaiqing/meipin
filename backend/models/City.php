@@ -32,13 +32,6 @@ class City extends ActiveRecord implements IArrayable
      */
     public static function getByParentId($parentId)
     {
-        $cacheKey = 'meipin-city-get-by-parent-id-'.$parentId;
-        $result = Yii::app()->cache->get($cacheKey);
-        $result = false;
-        if (!empty($result)) {
-            return $result;
-        }
-
         $data = self::model()->findAllByAttributes([
             'parent_id' => $parentId,
             'is_show' => 1
@@ -50,8 +43,6 @@ class City extends ActiveRecord implements IArrayable
         foreach ($data as $item) {
             $array[$item->id] = $item->city_name;
         }
-        Yii::app()->cache->set($cacheKey, $array, 3600);
-
         return $array;
     }
 
@@ -77,12 +68,6 @@ class City extends ActiveRecord implements IArrayable
     public static function getProvinceId($cityId)
     {
         $citys = 0;
-        $cacheKey = 'meipin-get-province-id-'.$cityId;
-        $result = Yii::app()->cache->get($cacheKey);
-        if (!empty($result)) {
-            return $result;
-        }
-
         $city = self::model()->findByAttributes([
             'id' => $cityId
         ]);
@@ -91,8 +76,6 @@ class City extends ActiveRecord implements IArrayable
         }
 
         $cityId = $city->parent_id;
-        Yii::app()->cache->set($cacheKey, $cityId, 3600);
-
         return $cityId;
     }
 

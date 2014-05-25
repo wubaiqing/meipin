@@ -27,7 +27,6 @@
             'username',
             'mobile',
             'score',
-            'created_at',
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{update} {delete}',

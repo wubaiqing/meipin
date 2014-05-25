@@ -37,10 +37,14 @@ class UserController extends Controller
 
 	$post = Yii::app()->request->getPost('Users');
 	$postAddress = Yii::app()->request->getPost('UsersAddress');
-        if ($post !== null) {
-	    var_dump($post);
-	    var_dump($postAddress);
-	    exit;
+	if ($post !== null && $postAddress !== null) {
+	    $user->mobile = $post['mobile'];
+	    $user->update(['mobile']);
+
+	    $address->user_id = $id;
+	    $address->attributes = $postAddress;
+	    $address->save();
+	    $this->redirect(['admin']);
         }
         $this->render('update', [
             'user' => $user,
