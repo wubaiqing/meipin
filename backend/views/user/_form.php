@@ -13,6 +13,7 @@ $form = $this->beginWidget('CActiveForm', array(
 CHtml::$errorSummaryCss = 'text-warning';
 ?>
 <?php echo $form->errorSummary($user); ?>
+<input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince') ?>" />
 <table border="0" class="v_table_con">
     <tr>
         <td colspan="2"  class='v_table_line'>用户信息</td>
