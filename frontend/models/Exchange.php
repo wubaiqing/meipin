@@ -139,7 +139,8 @@ class Exchange extends ActiveRecord
         if (!empty($hotExchangeGoods)) {
             return $hotExchangeGoods;
         }
-        $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId,
+        $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId
+            . " and end_time >". time(),
             'order' => 'sale_num desc',
             'limit' => 10]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
