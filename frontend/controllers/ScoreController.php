@@ -36,13 +36,13 @@ class ScoreController extends Controller
      */
     public function accessRules()
     {
-	return array_merge([
-	    [
-		'deny',
-		'actions' => ['index', 'ajax'],
-		'users' => ['?'],
-	    ]
-	], parent::accessRules());
+    return array_merge([
+        [
+        'deny',
+        'actions' => ['index', 'ajax'],
+        'users' => ['?'],
+        ]
+    ], parent::accessRules());
     }
 
     /**

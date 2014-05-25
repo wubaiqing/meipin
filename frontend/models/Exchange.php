@@ -85,6 +85,7 @@ class Exchange extends ActiveRecord
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
+
         return new CActiveDataProvider($this,
                 [
             'criteria' => $criteria,
@@ -99,6 +100,7 @@ class Exchange extends ActiveRecord
     {
         $this->start_time = strtotime($this->start_time);
         $this->end_time = strtotime($this->end_time);
+
         return true;
     }
 
@@ -115,6 +117,7 @@ class Exchange extends ActiveRecord
         }
         $this->update_time = time();
         $this->update_id = User::$userName[Yii::app()->user->id];
+
         return true;
     }
 
@@ -128,9 +131,9 @@ class Exchange extends ActiveRecord
 
     /**
      * 获取热门兑换商品列表
-     * @param integer $goodsId 商品ID
-     * @param integer $pageSize 返回数据大小
-     * @return Exchange 
+     * @param  integer  $goodsId  商品ID
+     * @param  integer  $pageSize 返回数据大小
+     * @return Exchange
      */
     public static function getHotExchangeGoods($goodsId, $pageSize = 10)
     {
@@ -144,6 +147,7 @@ class Exchange extends ActiveRecord
             'order' => 'sale_num desc',
             'limit' => 10]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
+
         return $hotExchangeGoods;
     }
     /**

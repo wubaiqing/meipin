@@ -83,7 +83,7 @@ $isSignDay = User::isSignDay();
     <!-- 分页结束 -->
 </div>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         //懒加载
         $("img.exchange-img-list").scrollLoading();
         //滚动图

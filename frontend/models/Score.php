@@ -65,6 +65,7 @@ class Score extends ActiveRecord implements IArrayable
                 'data' => $scoreList['data']
                     ], Constants::T_SECOND_TEN);
         }
+
         return $scoreList;
     }
 
@@ -80,7 +81,7 @@ class Score extends ActiveRecord implements IArrayable
 
     /**
      * 获取积分列表缓存KEY列表
-     * @return array 
+     * @return array
      */
     public static function getScoreListKeys($userId)
     {
@@ -91,6 +92,7 @@ class Score extends ActiveRecord implements IArrayable
                 $result[] = self::getScoreKey($userId, $k, $i);
             }
         }
+
         return $result;
     }
 
