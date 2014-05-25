@@ -5,20 +5,14 @@
  *
  * @author liukui<liujickson@gmail.com>
  */
-class DataResult implements \IteratorAggregate, \ArrayAccess
+class DataResult implements IteratorAggregate, ArrayAccess
 {
 
     /**
      * 数据返回状态
      * @var boolean 
      */
-    public $status = true;
-
-    /**
-     * 数据返回状态码
-     * @var string 
-     */
-    public $code = 0;
+    public $status = false;
 
     /**
      * 数据返回结果
@@ -31,21 +25,18 @@ class DataResult implements \IteratorAggregate, \ArrayAccess
      * @var string 
      */
     public $message = "";
+
     /**
      * 数据返回描述
      * @var string 
      */
     public $remark = "";
+
     /**
      * 数据返回错误提示
      * @var string 
      */
     public $errorMsg = "";
-    /**
-     * 调转地址
-     * @var string 
-     */
-    public $location = "";
 
     /**
      * 强制将对象转换为数组
@@ -64,7 +55,7 @@ class DataResult implements \IteratorAggregate, \ArrayAccess
     public function getIterator()
     {
         $attributes = $this->getArray();
-        return new \ArrayIterator($attributes);
+        return new ArrayIterator($attributes);
     }
 
     /**

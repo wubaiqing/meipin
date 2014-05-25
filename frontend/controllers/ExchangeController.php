@@ -35,8 +35,7 @@ class ExchangeController extends Controller
         $id = Des::decrypt($id);
         $data = $this->scoreService->showExchangeIndex($id, $page);
         if ($data->status == false) {
-            // @TODO
-            $moreUrl = Yii::app()->createUrl("");
+            $moreUrl = Yii::app()->createUrl("exchange/index");
             $remark = "您可以查看<a href='" . $moreUrl . "'  style='color:blue;'>更多</a>商品";
             $this->render('/common/notFound', array('title' => $data->message, 'remark' => $remark));
         } else {
@@ -53,10 +52,10 @@ class ExchangeController extends Controller
             $this->redirect($url);
             Yii::app()->end();
         }
+        
         $id = Des::decrypt($id);
         //加載数据
         $data = $this->scoreService->getOrderdetail($id, $userId);
-
         if (!$data->status) {
             $this->render('/common/notFound', array('title' => $data->message, 'remark' => $data->remark));
             Yii::app()->end();
@@ -86,18 +85,6 @@ class ExchangeController extends Controller
             $this->render('/common/exSuccess', ['title' => $data->message, 'remark' => $data->remark]);
         } else {
             $this->render('/common/exFailure', ['title' => $data->message, 'remark' => $data->remark]);
-        }
-    }
-
-    public function actionMsg($sid = "", $f = "")
-    {
-        $index = "<a href='" . (empty($f) ? Yii::app()->createUrl("site/index") : $f) . "'>点击跳转</a>";
-        if (empty($sid)) {
-            $this->render("/common/notFound", ['title' => '您要的页面不存在', 'remark' => $index]);
-        } elseif ($sid == 'success') {
-            $this->render("/common/exSuccess", ['title' => '操作成功', 'remark' => $index]);
-        } elseif ($sid == 'failure') {
-            $this->render("/common/exFailure", ['title' => '操作失败', 'remark' => $index]);
         }
     }
 

@@ -37,12 +37,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id, user_id, username, created_at,updated_at, goods_id,city_id,address', 'required'),
+            array('user_id,username,created_at,goods_id,city_id,address', 'required'),
             array('id, user_id,created_at,updated_at,goods_id,city_id', 'numerical', 'integerOnly' => true),
-            array('username', 'max' => 50),
-            array('id,remark', 'safe'),
+            array('id,username,address,updated_at', 'safe'),
         );
     }
+
     /**
      * @return array customized attribute labels (name=>label)
      */
@@ -57,15 +57,16 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'goods_id' => '兑换商品ID',
         );
     }
+
     /**
      * 获取记录
      * @param  integer  $goodsId 兑换商品ID
      * @param  integer  $page 当前页数
      */
-    public static function getLogList($goodsId,$page)
+    public static function getLogList($goodsId, $page)
     {
         // 缓存名称
-        $cacheKey = 'get-exchangelog-list-cachekey-' .$goodsId."-". $page;
+        $cacheKey = 'get-exchangelog-list-cachekey-' . $goodsId . "-" . $page;
 
         // 读取缓存兑换记录列表
         if (CommonHelper::getEnableCache()) {
@@ -103,11 +104,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
         $criteria->order = 'created_at DESC';
 
-       
+
         $criteria->compare('t.goods_id', $goodsId);
 
         $this->dbCriteria->mergeWith($criteria);
 
         return $this;
     }
+
 }

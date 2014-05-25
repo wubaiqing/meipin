@@ -12,7 +12,7 @@
             <p>
 
                 <?php
-                if (!empty($data->userAddress->id)):
+                if (isset($data->userAddress) && !empty($data->userAddress->id)):
                     echo $data->province[$data->userAddress->province] . "-" . $data->city[$data->userAddress->city_id] . "-" . $data->userAddress->address;
                 endif;
                 ?>
@@ -116,6 +116,9 @@
     <br/>
 </div>
 <input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince') ?>" />
+<?php
+    echo Chtml::hiddenField("loginUrl",Yii::app()->createAbsoluteUrl("user/login"));
+?>
 <script type="text/javascript">
     $(".modify_address").click(function() {
         $(".modify_form").show();
@@ -141,15 +144,11 @@
         var url = $("#address-form").attr("action");
         var params = $("#address-form").serialize();
         $.post(url, params, function(d) {
-            if (!d.code == <?php echo Constants::S_NOT_LOGIN ?>) {
-                location.href = d.location;
-                return;
-            } else if (d.code > 0) {
-                alert(d.message);
-                return;
-            } else if (d.code == 0) {
+            if (!d.status && !d.data.isLogin) {
+                location.href = $("#loginUrl").val();
+            } else if (d.status) {
                 $("#address_show_area").show();
-                $(".welfare_btn").attr("address_id",d.address_id);
+                $(".welfare_btn").attr("address_id",d.data.address_id);
                 var address = $("#userProvince").find("option:selected").text()+"-"+$("#userCity").find("option:selected").text()+"-"+$("#UsersAddress_address").val();
                 $("#address_show_area").children("p").first().html(address);
                 $(".modify_form").hide();

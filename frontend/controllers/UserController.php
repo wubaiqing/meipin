@@ -181,15 +181,9 @@ class UserController extends Controller
 
     public function actionAjaxUserAddressSave()
     {
-        $result = new DataResult();
         $userId = Yii::app()->user->id;
         if (empty($userId)) {
-            $result->status = false;
-            $result->message = "请先登录";
-            $result->location = Yii::app()->createUrl("user/login");
-            $result->code = Constants::S_NOT_LOGIN;
-            echo json_encode($result);
-            Yii::app()->end();
+            $this->returnData(false, ['message' => '请先登录']);
         }
         $model = UsersAddress::getModel($userId);
         // 省份，城市
@@ -199,23 +193,14 @@ class UserController extends Controller
         if ($model->province > 0) {
             $city = City::getCityList($model->province);
         }
-
         if (isset($_POST['UsersAddress'])) {
             UsersAddress::setAttr($userId, $_POST['UsersAddress'], $model);
             if ($model->save()) {
-                $result->message = "保存成功";
-//                $result->address = $province[$_POST['UsersAddress']['province']]."-".$city[$_POST['UsersAddress']['city_id']]."-".$model->address;
-                $result->address_id = Des::encrypt($model->id);
-                echo json_encode($result);
-                Yii::app()->end();
+                $this->returnData(true, ['message' => '保存成功', 'address_id' => Des::encrypt($model->id)]);
             }
         }
 
-        $result->status = false;
-        $result->message = "保存失败";
-        $result->code = Constants::S_OPT_ERR;
-        echo json_encode($result);
-        Yii::app()->end();
+        $this->returnData(false, ['message' => '系统繁忙，请稍后再试','isLogin'=>  empty($userId)?false:true]);
     }
 
     /**
@@ -232,6 +217,9 @@ class UserController extends Controller
         Yii::app()->end();
     }
 
+    /**
+     * 用户签到
+     */
     public function actionDayRegistion()
     {
         $userId = Yii::app()->user->id;
@@ -245,8 +233,8 @@ class UserController extends Controller
             echo json_encode($result);
             Yii::app()->end();
         }
-        $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到",'签到成功');
-        echo json_encode($result);
+        $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
+        $this->returnData($result->status,['message'=>$result->message]);
     }
 
 }
