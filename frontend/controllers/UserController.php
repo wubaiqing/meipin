@@ -151,8 +151,6 @@ class UserController extends Controller
         if (!empty($post)) {
             $model->attributes = $post;
             if ($model->save()) {
-                //刚注册的用户信息写入缓存
-                User::getUser($model->id);
                 $body = $this->renderPartial('_mailBody',['userModel'=>$model],true);
                 $subject = '美品网邮箱注册激活邮件';
 
