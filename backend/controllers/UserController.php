@@ -23,6 +23,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * 修改用户信息
+     * @param integer $id 用户ID
+     */
     public function actionUpdate($id)
     {
         $user= Users::model()->findByPk($id);
@@ -31,9 +35,12 @@ class UserController extends Controller
         $address->province = City::getProvinceId($address->city_id);
         $city = City::getCityList($address->province);
 
-        $post = Yii::app()->request->getQuery('Users');
+	$post = Yii::app()->request->getPost('Users');
+	$postAddress = Yii::app()->request->getPost('UsersAddress');
         if ($post !== null) {
-            echo '123';
+	    var_dump($post);
+	    var_dump($postAddress);
+	    exit;
         }
         $this->render('update', [
             'user' => $user,
