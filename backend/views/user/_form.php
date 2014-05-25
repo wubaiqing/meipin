@@ -62,5 +62,8 @@ CHtml::$errorSummaryCss = 'text-warning';
 $this->endWidget();
 ?>
 
-<script>
+<script type="text/javascript" src="http://www.meipin.com/assets/js/user.js?v=1.0.2"></script>
+<script type="text/javascript">
+    User.Address.changeProvince();
+
 </script>
