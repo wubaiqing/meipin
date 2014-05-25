@@ -1044,7 +1044,7 @@ a.orange, .orange{color:#FC7401}
 .w280{width:280px;padding:15px 0 30px}
 .loglink{width:250px;margin:0 auto;padding:20px 0}
 .loglink-head,.pointslog-head{height:69px;background:url(images/loglink_headbg.gif) no-repeat}
-.loglink-head-left,.pointslog-head-left{width:140px}
+.loglink-head-left,.pointslog-head-left{width:250px}
 .loglink-head-left a,.pointslog-head-left a{display:block;height:69px;text-indent:-99em;overflow:hidden}
 .loglink-head-right,.pointslog-head-right{width:107px}
 .loglink-head-right ul,.pointslog-head-right ul{padding:36px 0 0 17px}

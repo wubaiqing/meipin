@@ -34,7 +34,7 @@ return [
         'pagination' => [
             'pageVar' => 'page',
             'pageSize' => 120,
-            'exchangePageSize' => 4,
+            'exchangePageSize' => 20,//积分兑换首页，每页显示数量
         ],
         //前台配置标识
         'platform' => 'frontend',

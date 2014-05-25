@@ -81,6 +81,12 @@ class UserController extends Controller
         if (!empty($post)) {
             $model->attributes = $post;
             if ($model->login()) {
+                //查出用户的信息
+                $userModel = User::model()->findByPk(Yii::app()->user->getState('id'));
+                //如果用户邮箱未激活，提示用户
+                if($userModel->is_valid == 0){
+                    $this->renderIndex('yes', '登录成功,但您的邮箱未激活，请先去激活邮箱',$referer);
+                }
                 $this->renderIndex('yes', '登录成功', $referer);
                 Yii::app()->end();
             }
@@ -152,9 +158,6 @@ class UserController extends Controller
                 if(!$mail->sendMail($body,$subject,$model->email)){
                         throw new CHttpException(400,'邮件发送失败，请联系客服人员');
                 }
-                $model = new LoginForm();
-                $model->attributes = $_POST['User'];
-                $model->login();
                 $this->renderIndex('yes', '注册成功！激活邮件已经发出，请先激活邮箱。');
             }
         }
