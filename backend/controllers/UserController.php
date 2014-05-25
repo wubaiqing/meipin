@@ -34,16 +34,16 @@ class UserController extends Controller
         $address->province = City::getProvinceId($address->city_id);
         $city = City::getCityList($address->province);
 
-    $post = Yii::app()->request->getPost('Users');
-    $postAddress = Yii::app()->request->getPost('UsersAddress');
-    if ($post !== null && $postAddress !== null) {
-        $user->mobile = $post['mobile'];
-        $user->update(['mobile']);
+        $post = Yii::app()->request->getPost('Users');
+        $postAddress = Yii::app()->request->getPost('UsersAddress');
+        if ($post !== null && $postAddress !== null) {
+            $user->mobile = $post['mobile'];
+            $user->update(['mobile']);
 
-        $address->user_id = $id;
-        $address->attributes = $postAddress;
-        $address->save();
-        $this->redirect(['admin']);
+            $address->user_id = $id;
+            $address->attributes = $postAddress;
+            $address->save();
+            $this->redirect(['admin']);
         }
         $this->render('update', [
             'user' => $user,
