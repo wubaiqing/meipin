@@ -5,10 +5,10 @@
  * Time: 上午10:36
  */
 
-class MailService {
-
-   protected  $_mailModel;
-   public  $erroeInfo;
+class MailService
+{
+   protected $_mailModel;
+   public $erroeInfo;
 
     public function __construct()
     {
@@ -29,19 +29,20 @@ class MailService {
      * @param $subject 邮件标题
      * @param $toEmail 接收人
      */
-    function sendMail($body,$subject,$toEmail)
+    public function sendMail($body,$subject,$toEmail)
     {
         $this->_mailModel->Body = $body;
         $this->_mailModel->Subject = $subject;
         $this->_mailModel->addAddress($toEmail);
-        if(!$this->_mailModel->send()){
+        if (!$this->_mailModel->send()) {
             //记录下发送失败的log
             Yii::log($this->_mailModel->ErrorInfo,CLogger::LEVEL_ERROR);
             $this->erroeInfo = $this->_mailModel->ErrorInfo;
+
             return false;
-        }else{
+        } else {
             return true;
         }
 
     }
-} 
+}

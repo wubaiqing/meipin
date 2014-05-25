@@ -74,7 +74,7 @@ class ExchangeController extends Controller
 
     /**
      * 删除积分兑换
-     * @param type $id
+     * @param  type           $id
      * @throws CHttpException
      */
     public function actionDelete($id)
@@ -106,9 +106,9 @@ class ExchangeController extends Controller
         }
         if (!empty($exchangeLog)) {
             $model->attributes = $exchangeLog;
-        } 
+        }
         //设置默认值
-        if(empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
+        if (empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
             $model->status = "";
         }
         //渲染模板
@@ -126,7 +126,7 @@ class ExchangeController extends Controller
         $criteria->compare('t.id', $id, true);
         $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
-        
+
         if(empty($model))
             throw new CHttpException(404, '您所浏览的页面不存在.');
         //获取城市、身份
@@ -134,7 +134,7 @@ class ExchangeController extends Controller
         $provinceId = City::getProvinceId($model->city_id);
         $model->province = $provinceId;
         $city = City::getCityList($provinceId);
-        
+
         //渲染模板
         $this->render('shipUpdate', [
             'model' => $model,

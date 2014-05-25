@@ -55,10 +55,10 @@ CHtml::$errorSummaryCss = 'text-warning';
         </td>
     </tr>
     <tr class="exchange_detail">
-	<td class="v_table_label"></td>
-	<td>
-	    <?php echo CHtml::submitButton($user->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
-	</td>
+    <td class="v_table_label"></td>
+    <td>
+        <?php echo CHtml::submitButton($user->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
+    </td>
     </tr>
 </table>
 <div>

@@ -198,19 +198,20 @@ class User extends ActiveRecord implements IArrayable
 
     /**
      * 用户是否已经签到
-     * @return boolean 
+     * @return boolean
      */
     public static function isSignDay()
     {
         $user = User::getUser(Yii::app()->user->id);
+
         return !empty($user) && (date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time()));
     }
     /**
      * 更新手机绑定状态
-     * @param integer $userId 用户ID
-     * @param string $mobile 手机号码
-     * @param integer $status 绑定状态 0:未绑定；1：已绑定
-     * @return boolean 
+     * @param  integer $userId 用户ID
+     * @param  string  $mobile 手机号码
+     * @param  integer $status 绑定状态 0:未绑定；1：已绑定
+     * @return boolean
      */
     public static function updateMobileBind($userId, $mobile, $status)
     {
@@ -218,6 +219,7 @@ class User extends ActiveRecord implements IArrayable
             return false;
         }
         self::model()->updateByPk($userId, ['mobile' => $mobile, 'mobile_bind' => $status]);
+
         return true;
     }
 

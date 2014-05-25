@@ -121,7 +121,7 @@ class ScoreService
                         'url' => Yii::app()->createUrl("exchange/index")
             ]);
         }
-        if($user->mobile_bind == 0){
+        if ($user->mobile_bind == 0) {
             return CommonHelper::getDataResult(false, [
                         'message' => "您必须先进行电话绑定后才能进行商品兑换",
                         'url' => Yii::app()->createUrl("user/address")
@@ -134,6 +134,7 @@ class ScoreService
                         'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)])
             ]);
         }
+
         return CommonHelper::getDataResult(true, [
                     'message' => "商品兑换成功",
                     'url' => $url
@@ -142,12 +143,12 @@ class ScoreService
 
     /**
      * 保存兑换数据
-     * @param object $order 
-     * @param string $cacheKey 缓存KEy
-     * @param Exchange $goods 商品对象
-     * @param User $user 用户对象
-     * @param integer $nowTime 
-     * @return boolean 
+     * @param  object   $order
+     * @param  string   $cacheKey 缓存KEy
+     * @param  Exchange $goods    商品对象
+     * @param  User     $user     用户对象
+     * @param  integer  $nowTime
+     * @return boolean
      */
     public static function saveDoExchange($order, $userAddress, $cacheKey, Exchange $goods, User $user, $nowTime)
     {
@@ -201,8 +202,10 @@ class ScoreService
         } catch (\Exception $ex) {
             $transaction->rollback();
             throw new Exception($ex);
+
             return false;
         }
+
         return true;
     }
 
@@ -221,7 +224,7 @@ class ScoreService
     /**
      * 积分兑换首页商品列表
      * @return array
-     * @author zhangchao
+     *               @author zhangchao
      */
     public function showExchangeGoodsList($currentPage = 0)
     {
@@ -287,8 +290,8 @@ class ScoreService
 
     /**
      * 积分增加
-     * @param  integer $userId  用户ID
-     * @param  string  $remark  备注
+     * @param  integer $userId 用户ID
+     * @param  string  $remark 备注
      * @return array
      */
     public static function updateScore($userId, $remark = '')
@@ -354,6 +357,7 @@ class ScoreService
             setcookie("DR", $tokenCookie, $expireTime, "/");
         } catch (Exception $exc) {
             $transaction->rollback();
+
             return CommonHelper::getDataResult(false, ['message' => "系统正在偷懒，请稍后再试"]);
         }
 
@@ -392,6 +396,7 @@ class ScoreService
                 UsersAddress::deleteCacheByUserId($userId);
                 //删除用户缓存
                 User::deleteCache($userId);
+
                 return CommonHelper::getDataResult(true, ['message' => '操作成功','errors'=>[]]);
             }
         }
@@ -401,7 +406,7 @@ class ScoreService
 
     /**
      * cookie判断是否当天是否已经签到
-     * @return boolean 
+     * @return boolean
      */
     public static function isAreadyDayReg($userId)
     {
@@ -413,6 +418,7 @@ class ScoreService
                 return true;
             }
         }
+
         return false;
     }
 

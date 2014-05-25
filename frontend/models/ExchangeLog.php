@@ -81,9 +81,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 获取记录
-     * @param integer $goodsId 兑换商品ID
-     * @param integer $page    当前页数
-     * @return array 
+     * @param  integer $goodsId 兑换商品ID
+     * @param  integer $page    当前页数
+     * @return array
      */
     public static function getLogList($goodsId, $page)
     {
@@ -130,8 +130,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 数据SQL条件
-     * @param  integer $cat 分类ID
-     * @return  CDbCriteria
+     * @param  integer     $cat 分类ID
+     * @return CDbCriteria
      */
     public function dataList($goodsId)
     {

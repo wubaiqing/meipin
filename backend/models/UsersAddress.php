@@ -11,7 +11,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public $city;
     /**
      * 短信验证码
-     * @var integer 
+     * @var integer
      */
     public $code ;
     /**
@@ -56,6 +56,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
         $address = self::model()->findByAttributes(array(
             'user_id' => $userId
         ));
+
         return $address;
     }
 
@@ -90,6 +91,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
     public static function setAttr($userId, $attr)
     {
         $attr['user_id'] = $userId;
+
         return $attr;
     }
 }

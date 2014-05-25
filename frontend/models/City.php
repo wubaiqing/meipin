@@ -66,6 +66,7 @@ class City extends ActiveRecord implements IArrayable
         foreach ($cities as $id => $name) {
             $string .= "<option value='{$id}'>{$name}</option>";
         }
+
         return $string;
     }
 

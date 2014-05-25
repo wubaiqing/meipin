@@ -40,10 +40,10 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 兑换商品实体
-     * @var Exchange 
+     * @var Exchange
      */
     public $exchangeModel;
-    
+
     public function init()
     {
         parent::init();
@@ -112,8 +112,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 获取发货状态
-     * @param integer $status 状态
-     * @return array 
+     * @param  integer $status 状态
+     * @return array
      */
     public static function getStatus($status)
     {
@@ -133,6 +133,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         }
         $criteria->compare('t.status', $this->status);
         $criteria->with = array('users', 'exchange');
+
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,
         ]);
@@ -140,9 +141,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 更新用户兑换地址
-     * @param integer $id 数据主键ID
-     * @param array $post 页面post数据
-     * @return boolean 
+     * @param  integer $id   数据主键ID
+     * @param  array   $post 页面post数据
+     * @return boolean
      */
     public static function upateAddress($id, $post)
     {
@@ -150,6 +151,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             $model = self::model()->findByPk($id);
             $model->attributes = $post;
             $model->update(['name', 'mobile', 'postcode', 'remark', 'city_id', 'address']);
+
             return true;
         } catch (\Exception $ex) {
             return false;
@@ -158,14 +160,15 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 更新发货状态
-     * @param integer $id 数据主键ID
-     * @param array $post 页面post数据
-     * @return boolean 
+     * @param  integer $id   数据主键ID
+     * @param  array   $post 页面post数据
+     * @return boolean
      */
     public static function updateStatus($id, $post = [])
     {
         $post['updated_at'] = time();
         ExchangeLog::model()->updateByPk($id, $post);
+
         return true;
     }
 

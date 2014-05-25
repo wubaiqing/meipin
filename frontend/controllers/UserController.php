@@ -84,7 +84,7 @@ class UserController extends Controller
                 //查出用户的信息
                 $userModel = User::model()->findByPk(Yii::app()->user->getState('id'));
                 //如果用户邮箱未激活，提示用户
-                if($userModel->is_valid == 0){
+                if ($userModel->is_valid == 0) {
                     $this->renderIndex('yes', '登录成功,但您的邮箱未激活，请先去激活邮箱',$referer);
                 }
                 $this->renderIndex('yes', '登录成功', $referer);
@@ -157,7 +157,7 @@ class UserController extends Controller
                 $subject = '美品网邮箱注册激活邮件';
 
                 $mail = new MailService();
-                if(!$mail->sendMail($body,$subject,$model->email)){
+                if (!$mail->sendMail($body,$subject,$model->email)) {
                         throw new CHttpException(400,'邮件发送失败，请联系客服人员');
                 }
                 $this->renderIndex('yes', '注册成功！激活邮件已经发出，请先激活邮箱。');
@@ -258,7 +258,7 @@ class UserController extends Controller
     {
         $email = Yii::app()->request->getQuery('email');
         $uid = Yii::app()->request->getQuery('usecret');
-        if(!$email || !$uid){
+        if (!$email || !$uid) {
             //此处需要改，增加一个友好的提示页面
             throw new CHttpException(400,'非法请求');
         }
