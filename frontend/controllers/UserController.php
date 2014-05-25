@@ -229,12 +229,7 @@ class UserController extends Controller
         $scoreServide = new ScoreService();
         $result = new DataResult();
         if (empty($userId)) {
-            $result->status = false;
-            $result->code = Constants::S_NOT_LOGIN;
-            $result->message = "请先登录";
-            $result->location = Yii::app()->createUrl('user/login');
-            echo json_encode($result);
-            Yii::app()->end();
+            $this->returnData(false,['message'=>"请先登录"]);
         }
         $result = $scoreServide->updateScore($userId, ScoreLog::S_OPTTYPE_DAY_REGISTION, "每日签到");
         $this->returnData($result->status,['message'=>$result->message]);
