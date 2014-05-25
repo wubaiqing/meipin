@@ -126,7 +126,9 @@ class ExchangeController extends Controller
         $criteria->compare('t.id', $id, true);
         $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
-
+        
+        if(empty($model))
+            throw new CHttpException(404, '您所浏览的页面不存在.');
         //获取城市、身份
         $province = City::getByParentId(0);
         $provinceId = City::getProvinceId($model->city_id);
