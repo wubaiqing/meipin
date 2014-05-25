@@ -101,7 +101,7 @@ class ScoreService
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看更多兑换商品",
                         'url' => $url]);
         }
-        $user = User::model()->findByPk($userId);
+        $user = User::getUser($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品",
                         'url' => $url]);
