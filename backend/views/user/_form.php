@@ -13,6 +13,7 @@ $form = $this->beginWidget('CActiveForm', array(
 CHtml::$errorSummaryCss = 'text-warning';
 ?>
 <?php echo $form->errorSummary($user); ?>
+<input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince') ?>" />
 <table border="0" class="v_table_con">
     <tr>
         <td colspan="2"  class='v_table_line'>用户信息</td>
@@ -62,5 +63,8 @@ CHtml::$errorSummaryCss = 'text-warning';
 $this->endWidget();
 ?>
 
-<script>
+<script type="text/javascript" src="http://www.meipin.com/assets/js/user.js?v=1.0.2"></script>
+<script type="text/javascript">
+    User.Address.changeProvince();
+
 </script>
