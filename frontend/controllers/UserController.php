@@ -156,7 +156,7 @@ class UserController extends Controller
 
                 $mail = new MailService();
                 if (!$mail->sendMail($body,$subject,$model->email)) {
-                        throw new CHttpException(400,'邮件发送失败，请联系客服人员');
+                        $this->renderIndex('no', '邮件发送失败，请联系客服人员。');
                 }
                 $this->renderIndex('yes', '注册成功！激活邮件已经发出，请先激活邮箱。');
             }
@@ -258,13 +258,13 @@ class UserController extends Controller
         $uid = Yii::app()->request->getQuery('usecret');
         if (!$email || !$uid) {
             //此处需要改，增加一个友好的提示页面
-            throw new CHttpException(400,'非法请求');
+            $this->renderIndex('no','非法请求，请刷新页面。');
         }
         $uid = Des::decrypt($uid);//解密ID
         //获取用户的缓存
         $userModel = User::getUser($uid);
         if($userModel === null){
-            $this->renderIndex('yes','您激活的邮箱不存在');
+            $this->renderIndex('no','您激活的邮箱不存在');
         }
         if($userModel->is_valid == 1){
             $this->renderIndex('yes','您的邮箱已经激活过了');
