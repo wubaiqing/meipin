@@ -85,7 +85,9 @@ class UserController extends Controller
                 $userModel = User::model()->findByPk(Yii::app()->user->getState('id'));
                 //如果用户邮箱未激活，提示用户
                 if ($userModel->is_valid == 0) {
-                    $this->renderIndex('yes', '登录成功,但您的邮箱未激活，请先去激活邮箱',$referer);
+                    //如果未验证就退出登录
+                    Yii::app()->user->logout();
+                    $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱',$referer);
                 }
                 $this->renderIndex('yes', '登录成功', $referer);
                 Yii::app()->end();
