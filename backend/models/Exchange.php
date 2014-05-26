@@ -103,8 +103,7 @@ class Exchange extends CActiveRecord
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
 
-        return new CActiveDataProvider($this,
-                [
+        return new CActiveDataProvider($this, [
             'criteria' => $criteria,
         ]);
     }

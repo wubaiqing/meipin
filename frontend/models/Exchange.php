@@ -86,8 +86,7 @@ class Exchange extends ActiveRecord
         $criteria->compare('is_delete', 0); //默认只查询未删除的
         $criteria->order = 't.id desc';
 
-        return new CActiveDataProvider($this,
-                [
+        return new CActiveDataProvider($this, [
             'criteria' => $criteria,
         ]);
     }
@@ -150,6 +149,7 @@ class Exchange extends ActiveRecord
 
         return $hotExchangeGoods;
     }
+
     /**
      * 设置当前兑换key
      * @param  integer $user_id
@@ -159,6 +159,25 @@ class Exchange extends ActiveRecord
     public static function getExchangeCacheKey($userId, $goodsId)
     {
         return "goods-exchange-$goodsId" . "-" . $userId;
+    }
+
+    /**
+     * 获取带缓存的兑换商品数据
+     * @param integer $goodsId 商品ID
+     * @return Exchange 
+     */
+    public static function findByGoodsId($goodsId)
+    {
+        $key = "exchange-findByGoodsId-" . $goodsId;
+        $data = Yii::app()->cache->get($key);
+        if (!empty($data)) {
+            return $data;
+        }
+        $data = self::model()->findByPk($goodsId);
+
+        Yii::app()->cache->set($key, $data, Constants::T_TWO_HOUR);
+        
+        return $data;
     }
 
 }

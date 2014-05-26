@@ -16,7 +16,7 @@ class ScoreService
     public function showExchangeIndex($goodsId, $page)
     {
         //获取兑换积分商品
-        $exchange = Exchange::model()->findByPk($goodsId);
+        $exchange = Exchange::findByGoodsId($goodsId);
         //校验
         if (empty($exchange)) {
             return CommonHelper::getDataResult(false, ['message' => "商品已下线或不存在"]);
@@ -268,7 +268,7 @@ class ScoreService
         $city = City::getCityList($userAddress->province);
 
         //查询兑换商品数据
-        $exchange = Exchange::model()->findByPk($goodsId);
+        $exchange = Exchange::findByGoodsId($goodsId);
 
         //设置兑换token用于防止重复提交
         $tokenKey = Exchange::getExchangeCacheKey($userId, $goodsId);
