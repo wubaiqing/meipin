@@ -13,7 +13,7 @@ class ScoreService
      * @param  integer $goodsId 需要兑换的商品ID
      * @return type    Description
      */
-    public function showExchangeIndex($goodsId, $page)
+    public function showExchangeDetial($goodsId, $page)
     {
         //获取兑换积分商品
         $exchange = Exchange::findByGoodsId($goodsId);
