@@ -2,7 +2,7 @@
     <div class="relief_bg">
         <div class="relief_l">
             <div class="relief_r">
-                <div class="tips_l"><img src="./金折购-vip800.com_files/no.png"></div>
+		<div class="tips_l"></div>
                 <div class="tips_r jihuo">
                     密码错误
                     <div class="tips_jh">
