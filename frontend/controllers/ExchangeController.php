@@ -30,7 +30,7 @@ class ExchangeController extends Controller
     public function actionExchangeIndex($id = 0, $page = 1)
     {
         $goodsId = Des::decrypt($id);
-        $dataResult = $this->scoreService->showExchangeIndex($goodsId, $page);
+        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page);
         if (!$dataResult['status']) {
             $this->render('/common/success', [
                 'status' => 'yes',
