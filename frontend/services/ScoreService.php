@@ -57,17 +57,11 @@ class ScoreService
         $order = self::formatPostValue($order);
         //是否提交
         if (empty($order)) {
-            return CommonHelper::getDataResult(false, [
-                        'message' => "您访问的页面不存在",
-                        'url' => $url
-            ]);
+            return CommonHelper::getDataResult(false, ['message' => "您访问的页面不存在", 'url' => $url]);
         }
         $goodsId = $order['goods_id'];
         if (empty($userId)) {
-            return CommonHelper::getDataResult(false, [
-                        'message' => "对不起，请先登录",
-                        'url' => Yii::app()->createUrl("user/login")
-            ]);
+            return CommonHelper::getDataResult(false, ['message' => "对不起，请先登录", 'url' => Yii::app()->createUrl("user/login")]);
         }
         //验证提交
         $cacheKey = Exchange::getExchangeCacheKey($userId, $goodsId);
@@ -80,34 +74,27 @@ class ScoreService
         }
         //
         if ($order['token'] != $token) {
-            return CommonHelper::getDataResult(false, [
-                        'message' => "请不要重复提交,点击查看更多商品",
-                        'url' => $url
-            ]);
+            return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看更多商品", 'url' => $url]);
         }
 
         //查询兑换商品数据
-        $goods = Exchange::model()->findByPk($goodsId);
+        $goods = Exchange::findByGoodsId($goodsId);
         if (empty($goods)) {
-            return CommonHelper::getDataResult(false, ['message' => "对不起，您所兑换的商品不存在，您可以查看其他兑换商品",
-                        'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "对不起，您所兑换的商品不存在，您可以查看其他兑换商品", 'url' => $url]);
         }
         //校验商品
         if ($goods->start_time > $nowTime) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他兑换商品",
-                        'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他兑换商品", 'url' => $url]);
         }
         if ($goods->end_time <= $nowTime) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看更多兑换商品",
-                        'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看更多兑换商品", 'url' => $url]);
         }
         $user = User::getUser($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品",
-                        'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品", 'url' => $url]);
         }
         //配送地址
-        $userAddress = UsersAddress::model()->find('user_id=:user_id', [':user_id' => $userId]);
+        $userAddress = UsersAddress::getByUserId($userId);
         if (empty($userAddress)) {
             return CommonHelper::getDataResult(false, [
                         'message' => "配送地址不存在，请将配送地址信息补充完整",
@@ -135,10 +122,7 @@ class ScoreService
             ]);
         }
 
-        return CommonHelper::getDataResult(true, [
-                    'message' => "商品兑换成功",
-                    'url' => $url
-        ]);
+        return CommonHelper::getDataResult(true, ['message' => "商品兑换成功", 'url' => $url]);
     }
 
     /**
@@ -326,21 +310,12 @@ class ScoreService
                 'score' => ($user->score + $num),
                 'dr_count' => $user->dr_count
             ];
-            $user->update([
-                'score',
-                'dr_count',
-                'last_dr_time'
-            ]);
+            $user->update(['score', 'dr_count', 'last_dr_time']);
 
             //保存积分日志
 
             $score = new Score();
-            $score->attributes = [
-                'score' => $num,
-                'user_id' => $userId,
-                'reason' => 1,
-                'remark' => "每日签到"
-            ];
+            $score->attributes = ['score' => $num, 'user_id' => $userId, 'reason' => 1, 'remark' => "每日签到"];
 
             //清除积分缓存列表
             Score::deleteScoreListCache($user->id);
@@ -397,11 +372,11 @@ class ScoreService
                 //删除用户缓存
                 User::deleteCache($userId);
 
-                return CommonHelper::getDataResult(true, ['message' => '操作成功','errors'=>[]]);
+                return CommonHelper::getDataResult(true, ['message' => '操作成功', 'errors' => []]);
             }
         }
 
-        return CommonHelper::getDataResult(false, ['message' => '操作失败','errors'=>$model->getErrors()]);
+        return CommonHelper::getDataResult(false, ['message' => '操作失败', 'errors' => $model->getErrors()]);
     }
 
     /**
