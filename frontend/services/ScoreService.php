@@ -210,7 +210,8 @@ class ScoreService
      */
     public function showExchangeGoodsList($currentPage = 0)
     {
-        //组装查询条件
+        //缓存的key
+        $cacheKey = 'exchange_list_'.$currentPage;
         $criteria = new CDbCriteria();
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
@@ -223,8 +224,16 @@ class ScoreService
         $pages->pageSize = Yii::app()->params['pagination']['exchangePageSize'];
         $pages->applyLimit($criteria);
         $data = [];
-        //根据条件查询积分兑换商品
-        $data['goods'] = Exchange::model()->findAll($criteria);
+        $exchangeList = Yii::app()->cache->get($cacheKey);
+        //如果能获取到缓存，就直接返回
+        if($exchangeList !== false || !empty($exchangeList)){
+            $data['goods'] = $exchangeList;
+        }else{
+            //根据条件查询积分兑换商品
+            $data['goods'] = Exchange::model()->findAll($criteria);
+            //写入缓存
+            Yii::app()->cache->set($cacheKey,$data['goods']);
+        }
         //分页类
         $data['pages'] = $pages;
 
