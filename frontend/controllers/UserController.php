@@ -152,10 +152,8 @@ class UserController extends Controller
             $model->attributes = $post;
             if ($model->save()) {
                 $body = $this->renderPartial('_mailBody',['userModel'=>$model],true);
-                $subject = '美品网邮箱注册激活邮件';
-
                 $mail = new MailService();
-                if (!$mail->sendMail($body,$subject,$model->email)) {
+		if (!$mail->sendMail($body, '美品网邮箱注册激活邮件', $model->email)) {
                         $this->renderIndex('no', '邮件发送失败，请联系客服人员。');
                 }
                 $this->renderIndex('yes', '注册成功！激活邮件已经发出，请先激活邮箱。');

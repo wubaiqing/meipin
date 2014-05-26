@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 积分业务处理类
  *
@@ -7,7 +6,6 @@
  */
 class ScoreService
 {
-
     /**
      * 显示积分兑换详情页面
      * @param  integer $goodsId 需要兑换的商品ID
