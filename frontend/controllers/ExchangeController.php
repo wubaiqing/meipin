@@ -106,7 +106,8 @@ class ExchangeController extends Controller
         $page = Yii::app()->request->getQuery('page');
         $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
-        $data = $this->scoreService->showExchangeGoodsList($page);
+        $exchangeModel = new Exchange();
+        $data = $exchangeModel->showExchangeGoodsList($page);
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
 
