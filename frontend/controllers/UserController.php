@@ -87,7 +87,7 @@ class UserController extends Controller
                 if ($userModel->is_valid == 0) {
                     //如果未验证就退出登录
                     Yii::app()->user->logout();
-                    $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱',$referer);
+                    $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
                 }
                 $this->renderIndex('yes', '登录成功', $referer);
                 Yii::app()->end();
@@ -153,10 +153,10 @@ class UserController extends Controller
         if (!empty($post)) {
             $model->attributes = $post;
             if ($model->save()) {
-                $body = $this->renderPartial('_mailBody',['userModel'=>$model],true);
+                $body = $this->renderPartial('_mailBody', ['userModel' => $model], true);
                 $mail = new MailService();
-		if (!$mail->sendMail($body, '美品网邮箱注册激活邮件', $model->email)) {
-                        $this->renderIndex('no', '邮件发送失败，请联系客服人员。');
+                if (!$mail->sendMail($body, '美品网邮箱注册激活邮件', $model->email)) {
+                    $this->renderIndex('no', '邮件发送失败，请联系客服人员。');
                 }
                 $this->renderIndex('yes', '注册成功！激活邮件已经发出，请先激活邮箱。');
             }
@@ -258,22 +258,22 @@ class UserController extends Controller
         $uid = Yii::app()->request->getQuery('usecret');
         if (!$email || !$uid) {
             //此处需要改，增加一个友好的提示页面
-            $this->renderIndex('no','非法请求，请刷新页面。');
+            $this->renderIndex('no', '非法请求，请刷新页面。');
         }
-        $uid = Des::decrypt($uid);//解密ID
+        $uid = Des::decrypt($uid); //解密ID
         //获取用户的缓存
         $userModel = User::getUser($uid);
-        if($userModel === null){
-            $this->renderIndex('no','您激活的邮箱不存在');
+        if ($userModel === null) {
+            $this->renderIndex('no', '您激活的邮箱不存在');
         }
-        if($userModel->is_valid == 1){
-            $this->renderIndex('yes','您的邮箱已经激活过了');
+        if ($userModel->is_valid == 1) {
+            $this->renderIndex('yes', '您的邮箱已经激活过了');
         }
-        $userModel->is_valid = 1;//设置为已激活
-        if($userModel->save()){
+        $userModel->is_valid = 1; //设置为已激活
+        if ($userModel->save()) {
             //激活完成删除用户缓存
             User::deleteCache($userModel->id);
-            $this->renderIndex('yes','激活成功');
+            $this->renderIndex('yes', '激活成功');
         }
     }
 
@@ -287,6 +287,10 @@ class UserController extends Controller
         if (empty($post) || !isset($post['mobile']) || !preg_match("/^\d+$/", $post['mobile'])) {
             $this->returnData(false, ['message' => '手机号码格式错误']);
         }
+        $mobileBind = User::getMobileBindStatus($post['mobile']);
+        if($mobileBind){
+            $this->returnData(false, ['message' => '手机号码已经被其他账号绑定']);
+        }
         //获取短信配置
         $smsDayMax = Yii::app()->params['sms'];
         //缓存KEY
@@ -294,7 +298,7 @@ class UserController extends Controller
         //获取验证码
         $code = Sms::mobileRandCode();
 
-        $user = User::model()->findByPk($this->userId);
+        $user = User::getUser($this->userId);
         $today = strtotime(date("Y-m-d"));
         $last_sms_time = strtotime(date("Y-m-d", $user->last_sms_time));
         //验证短信发送信息
@@ -312,7 +316,7 @@ class UserController extends Controller
 
         Sms::send($post['mobile'], Sms::mobileValidateTpl($code));
         //日志
-        AuthCodeLog::log($this->userId, "手机绑定验证码【".$code."】");
+        AuthCodeLog::log($this->userId, "手机绑定验证码【" . $code . "】");
         Yii::app()->cache->set($cacheKey, $code);
         $this->returnData(true, ['message' => '发送成功']);
     }

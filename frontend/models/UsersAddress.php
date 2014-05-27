@@ -37,6 +37,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
             ['postcode', 'checkPostCode'],
             ['code', 'checkCode'],
             ['city_id','checkCity'],
+            ['mobile','checkMobile'],
             ['id,user_id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
     }
@@ -63,6 +64,16 @@ class UsersAddress extends ActiveRecord implements IArrayable
             $this->addError('code', '验证码错误');
         }
     }
+    /**
+     * 校验手机号码
+     */
+    public function checkMobile(){
+//        $mobileBind = User::getMobileBindStatus($this->mobile);
+//        if($mobileBind){
+//            $this->addError("mobile", "手机号码已经被其他账号绑定");
+//        }
+    }
+
     /**
      * 城市校验
      */
