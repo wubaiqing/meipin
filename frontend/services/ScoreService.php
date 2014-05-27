@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 积分业务处理类
  *
@@ -6,6 +7,7 @@
  */
 class ScoreService
 {
+
     /**
      * 显示积分兑换详情页面
      * @param  integer $goodsId 需要兑换的商品ID
@@ -90,6 +92,12 @@ class ScoreService
         $user = User::getUser($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品", 'url' => $url]);
+        }
+        //验证手机是否绑定
+        if ($user->mobile_bind == 1) {
+            $url = Yii::app()->createAbsoluteUrl("exchange/order",['id'=>Des::encrypt($goodsId)]);
+            return CommonHelper::getDataResult(false, [
+                        'message' => "您的用户账号还没有户绑定手机，请绑定手机",'url' => $url,'redirect'=>true]);
         }
         //配送地址
         $userAddress = UsersAddress::getByUserId($userId);
@@ -202,7 +210,6 @@ class ScoreService
 
         return $post;
     }
-
 
     /**
      * 获取确认下单信息

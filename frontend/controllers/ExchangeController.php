@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 积分操作控制器
  * @author liukui<liujickson@gmail.com>
@@ -7,6 +8,7 @@
  */
 class ExchangeController extends Controller
 {
+
     /**
      * @var string $layout 继承视图
      */
@@ -89,6 +91,11 @@ class ExchangeController extends Controller
                 'url' => $dataResult['data']['url'],
             ]);
         } else {
+            if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
+                $this->render('/exchange/bind', [
+                ]);
+                Yii::app()->end();
+            }
             $this->render('/common/success', [
                 'status' => 'no',
                 'title' => $dataResult['data']['message'],
@@ -108,6 +115,14 @@ class ExchangeController extends Controller
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
         $data = $exchangeModel->showExchangeGoodsList($page);
+        $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
+    }
+
+    /**
+     * 手机号码绑定
+     */
+    public function actionBind()
+    {
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
 

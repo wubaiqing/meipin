@@ -57,12 +57,12 @@ class UsersAddress extends ActiveRecord implements IArrayable
      */
     public function checkCode()
     {
-        $code = Yii::app()->cache->get(Sms::mobileValidateKey($this->user_id));
-        $user = User::getUser($this->user_id);
-        if ($user->mobile_bind == 0 && (!is_numeric($this->code) || $this->code != $code)) {
-            $this->code = null;
-            $this->addError('code', '验证码错误');
-        }
+//        $code = Yii::app()->cache->get(Sms::mobileValidateKey($this->user_id));
+//        $user = User::getUser($this->user_id);
+//        if ($user->mobile_bind == 0 && (!is_numeric($this->code) || $this->code != $code)) {
+//            $this->code = null;
+//            $this->addError('code', '验证码错误');
+//        }
     }
     /**
      * 校验手机号码

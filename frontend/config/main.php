@@ -21,6 +21,7 @@ return [
                 'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
                 'exchange/<action:\w+>' => 'exchange/<action>',
                 'exchange/index' => 'exchange/index',
+                'user/login' => 'user/login'
             ],
         ],
         'user' => [

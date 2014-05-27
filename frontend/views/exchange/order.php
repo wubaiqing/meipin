@@ -46,28 +46,28 @@
             </li>
             <li>
                 <?php
-                $user = User::getUser($this->userId);
-                $mobileBind = ($user->mobile_bind == 1) ? true : false;
+//                $user = User::getUser($this->userId);
+//                $mobileBind = ($user->mobile_bind == 1) ? true : false;
                 ?>
                 <label><em>*</em>手机号码：</label>
                 <em id="li_mobile">
-                    <?php if (!$mobileBind): ?>
+                    <?php // if (!$mobileBind): ?>
                         <?php echo $form->textField($data['userAddress'], 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
-                    <?php else: ?>
-                        <?php echo $data['userAddress']->mobile ?></em>
-                    <em class="c_red"></em><br/>
-                <?php endif; ?>
-                <?php if (!$mobileBind): ?>
-                    <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>
-                <?php endif; ?>
+                    <?php // else: ?>
+                        <?php // echo $data['userAddress']->mobile ?></em>
+                    <!--<em class="c_red">(电话已与系统绑定)</em><br/>-->
+                <?php // endif; ?>
+                <?php // if (!$mobileBind): ?>
+                    <!--<input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>-->
+                <?php // endif; ?>
             </li>
-            <?php if (!$mobileBind): ?>
-                <li id="li_code">
+            <?php // if (!$mobileBind): ?>
+<!--                <li id="li_code">
                     <label><em>*</em>短信验证码：</label>
                     <?php echo $form->textField($data['userAddress'], 'code', array('class' => 'text', 'maxLength' => '4', 'style' => 'width:50px;')); ?>
                     *请勿泄露，以免给您带来不必要的损失。
-                </li>
-            <?php endif; ?>
+                </li>-->
+            <?php // endif; ?>
             <li>
                 <label>邮政编码：</label>
                 <?php echo $form->textField($data['userAddress'], 'postcode', array('class' => 'text', 'maxLength' => '10')); ?>

@@ -71,24 +71,24 @@
                 <td height="32" align="left">
                     <?php
                     $user = User::getUser($this->userId);
-                    $mobileBind = ($user->mobile_bind == 1) ? true : false;
+                    $mobileBind = ($user->mobile_bind == 1) ? false : false;
                     ?>
 
                     <?php if (!$mobileBind): ?>
                         <?php echo $form->textField($model, 'mobile', array('class' => 'text', 'maxLength' => '15', 'disabled' => $mobileBind, 'style' => 'background:#fff;')); ?>
                         <em>*收货时快递联系电话，很重要。</em><br/>
                     <?php else: ?>
-                        <?php echo $model->mobile ?>
-                        <em style="color:red;"></em><br/>
+                        <?php // echo $model->mobile ?>
+                        <!--<em style="color:red;">(电话已与系统绑定)</em><br/>-->
                     <?php endif; ?>
 
-                    <?php if (!$mobileBind): ?>
-                        <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>
-                    <?php endif; ?>
+                    <?php // if (!$mobileBind): ?>
+                        <!--<input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>-->
+                    <?php // endif; ?>
                 </td>
             </tr>
-            <?php if (!$mobileBind): ?>
-                <tr align="center">
+            <?php // if (!$mobileBind): ?>
+<!--                <tr align="center">
                     <td bgcolor="#F9FAFC" align="right">
                         短信验证码：
                     </td>
@@ -96,8 +96,8 @@
                         <?php echo $form->textField($model, 'code', array('class' => 'code_text', 'maxLength' => '4')); ?>
                         *请勿泄露，以免给您带来不必要的损失。
                     </td>
-                </tr>
-            <?php endif; ?>
+                </tr>-->
+            <?php // endif; ?>
             <tr align="center" class="color">
                 <td bgcolor="#F9FAFC" align="right">
                     收货地址：
