@@ -206,6 +206,7 @@ class User extends ActiveRecord implements IArrayable
 
         return !empty($user) && (date("Y-m-d", $user->last_dr_time) == date("Y-m-d", time()));
     }
+
     /**
      * 更新手机绑定状态
      * @param  integer $userId 用户ID
@@ -221,6 +222,21 @@ class User extends ActiveRecord implements IArrayable
         self::model()->updateByPk($userId, ['mobile' => $mobile, 'mobile_bind' => $status]);
 
         return true;
+    }
+
+    /**
+     * 查当前手机号是否已经绑定
+     * @param integer $mobile 手机号码
+     * @return boolean 
+     */
+    public static function getMobileBindStatus($mobile)
+    {
+        $user = self::model()->find('mobile=:mobile', ['mobile' => trim($mobile)]);
+
+        if (!empty($user) && $user->mobile_bind == 1) {
+            return true;
+        }
+        return false;
     }
 
 }
