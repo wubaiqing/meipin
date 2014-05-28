@@ -288,7 +288,7 @@ class UserController extends Controller
             $this->returnData(false, ['message' => '手机号码格式错误']);
         }
         $mobileBind = User::getMobileBindStatus($post['mobile']);
-        if($mobileBind){
+        if ($mobileBind) {
             $this->returnData(false, ['message' => '手机号码已经被其他账号绑定']);
         }
         //获取短信配置

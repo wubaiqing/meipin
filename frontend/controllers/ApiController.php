@@ -21,7 +21,7 @@ class ApiController extends Controller
 
         $criteria = Goods::getMobileCriteria($catId);
         $goods = Goods::model()->findAll($criteria);
-	    $data = [];
+        $data = [];
         foreach ($goods as $item) {
             $data[] = [
                 'tbId' => $item->tb_id,

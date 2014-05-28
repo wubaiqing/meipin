@@ -203,7 +203,6 @@ class ScoreService
         return $post;
     }
 
-
     /**
      * 获取确认下单信息
      * @param  integer $goodsId 兑换商品ID

@@ -226,8 +226,8 @@ class User extends ActiveRecord implements IArrayable
 
     /**
      * 查当前手机号是否已经绑定
-     * @param integer $mobile 手机号码
-     * @return boolean 
+     * @param  integer $mobile 手机号码
+     * @return boolean
      */
     public static function getMobileBindStatus($mobile)
     {
@@ -236,6 +236,7 @@ class User extends ActiveRecord implements IArrayable
         if (!empty($user) && $user->mobile_bind == 1) {
             return true;
         }
+
         return false;
     }
 

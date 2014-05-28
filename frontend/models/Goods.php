@@ -113,13 +113,14 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
         $criteria->order = 'day DESC, t.list_order DESC';
         $criteria->limit = 300;
-	    if ($catId > 0) {
-		    $criteria->compare('t.cat_id', '=' . $catId);
-	    }
+        if ($catId > 0) {
+            $criteria->compare('t.cat_id', '=' . $catId);
+        }
         $criteria->compare('t.start_time', '<=' . $now);
         $criteria->compare('t.end_time', '>=' . $now);
         $criteria->compare('t.status', '=1');
         $criteria->compare('t.goods_type', '=0');
+
         return $criteria;
     }
 

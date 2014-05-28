@@ -67,9 +67,10 @@ class UsersAddress extends ActiveRecord implements IArrayable
     /**
      * 校验手机号码
      */
-    public function checkMobile(){
+    public function checkMobile()
+    {
 //        $mobileBind = User::getMobileBindStatus($this->mobile);
-//        if($mobileBind){
+//        if ($mobileBind) {
 //            $this->addError("mobile", "手机号码已经被其他账号绑定");
 //        }
     }

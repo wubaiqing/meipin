@@ -38,6 +38,7 @@ class MailService
             //记录下发送失败的log
             Yii::log($this->_mailModel->ErrorInfo,CLogger::LEVEL_ERROR);
             $this->erroeInfo = $this->_mailModel->ErrorInfo;
+
             return false;
         } else {
             return true;
