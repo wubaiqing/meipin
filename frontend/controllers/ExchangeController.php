@@ -34,14 +34,10 @@ class ExchangeController extends Controller
         $goodsId = Des::decrypt($id);
         $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page);
         if (!$dataResult['status']) {
-            $this->render('/common/success', [
-                'status' => 'yes',
-                'title' => $dataResult['data']['message'],
-                'url' => Yii::app()->createUrl("exchange/index"),
-            ]);
-            Yii::app()->end();
+            $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
 
+        //渲染頁面
         $this->render('exchangeIndex', [
             'data' => $dataResult['data'],
             'params' => ['goodsId' => $id,]
@@ -67,12 +63,7 @@ class ExchangeController extends Controller
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
             }
-            $this->render('/common/success', [
-                'status' => 'yes',
-                'title' => $dataResult['data']['message'],
-                'url' => Yii::app()->createUrl('exchange/index'),
-            ]);
-            Yii::app()->end();
+            $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
         //渲染页面
         $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token']]]);
@@ -89,17 +80,9 @@ class ExchangeController extends Controller
         $order = Yii::app()->request->getPost("Exchange", null);
         $dataResult = $this->scoreService->doExchange($userId, $order);
         if ($dataResult['status']) {
-            $this->render('/common/success', [
-                'status' => 'yes',
-                'title' => $dataResult['data']['message'],
-                'url' => $dataResult['data']['url'],
-            ]);
+            $this->pageRedirect('yes', $dataResult['data']['message'], $dataResult['data']['url']);
         } else {
-            $this->render('/common/success', [
-                'status' => 'no',
-                'title' => $dataResult['data']['message'],
-                'url' => $dataResult['data']['url'],
-            ]);
+            $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url']);
         }
     }
 
@@ -114,6 +97,7 @@ class ExchangeController extends Controller
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
         $data = $exchangeModel->showExchangeGoodsList($page);
+        //渲染頁面
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
 
@@ -126,8 +110,12 @@ class ExchangeController extends Controller
         $post = Yii::app()->request->getPost("UsersAddress");
         $goodsId = Yii::app()->request->getPost("id");
 
+        if (empty($goodsId) || empty($post)) {
+            $this->pageRedirect();
+        }
         //绑定手机
         $user = User::getUser($this->userId);
+        //校验数据
         $valid = ScoreService::validMobileIsOk($this->userId, $post);
         if (!$valid['status']) {
             $this->returnData(false, ['message' => $valid['data']['message']]);
@@ -141,6 +129,22 @@ class ExchangeController extends Controller
             'message' => "手机绑定成功,页面正跳转至兑换页面，请稍等",
             'url' => Yii::app()->createAbsoluteUrl("exchange/order", ['id' => $goodsId])
         ]);
+    }
+
+    /**
+     * 页面跳转
+     * @param string $status 显示图片控制
+     * @param string $message 提示信息
+     * @param string $url 跳转地址
+     */
+    private function pageRedirect($status = 'no', $message = "您访问的页面不存在", $url = '/')
+    {
+        $this->render('/common/success', [
+            'status' => $status,
+            'title' => $message,
+            'url' => $url
+        ]);
+        Yii::app()->end();
     }
 
 }
