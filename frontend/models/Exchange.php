@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 积分兑换的model
  * @author zhangchao
@@ -163,8 +162,8 @@ class Exchange extends ActiveRecord
 
     /**
      * 获取带缓存的兑换商品数据
-     * @param integer $goodsId 商品ID
-     * @return Exchange 
+     * @param  integer  $goodsId 商品ID
+     * @return Exchange
      */
     public static function findByGoodsId($goodsId)
     {
@@ -176,7 +175,7 @@ class Exchange extends ActiveRecord
         $data = self::model()->findByPk($goodsId);
 
         Yii::app()->cache->set($key, $data, Constants::T_TWO_HOUR);
-        
+
         return $data;
     }
 
@@ -203,9 +202,9 @@ class Exchange extends ActiveRecord
         $data = [];
         $exchangeList = Yii::app()->cache->get($cacheKey);
         //如果能获取到缓存，就直接返回
-        if($exchangeList !== false || !empty($exchangeList)){
+        if ($exchangeList !== false || !empty($exchangeList)) {
             $data['goods'] = $exchangeList;
-        }else{
+        } else {
             //根据条件查询积分兑换商品
             $data['goods'] = Exchange::model()->findAll($criteria);
             //写入缓存

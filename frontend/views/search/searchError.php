@@ -10,7 +10,7 @@
           <p class="txt-img">纳尼？竟然木有“<?php echo $title;?>”宝贝~</p>
                <p class="txt">
                好吧，小编已经记录下这次的失败数据，并会尽快补充宝贝~<br>
-	       给小编点时间，先去浏览下 <a href="http://www.meipin.com">全部宝贝</a> 吧~
+           给小编点时间，先去浏览下 <a href="http://www.meipin.com">全部宝贝</a> 吧~
                </p>
           </div>
      </div>
