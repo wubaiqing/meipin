@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 积分兑换的model
  * @author zhangchao

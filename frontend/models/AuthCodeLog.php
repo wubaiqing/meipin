@@ -1,20 +1,12 @@
 <?php
-
 /**
  * 美品网商品兑换记录
  * @author liukui <liujickson@gmail.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
- * @property integer $id
- * @property integer $user_id
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $remark
- *
  */
 class AuthCodeLog extends ActiveRecord implements IArrayable
 {
-
     /**
      * 表名
      * @return string
@@ -63,5 +55,4 @@ class AuthCodeLog extends ActiveRecord implements IArrayable
         $log->remark = $remark;
         $log->save();
     }
-
 }
