@@ -10,6 +10,7 @@ class UserIdentity extends CUserIdentity
     private $users = array(
         'qidalin' => 'forget543',
         'wubaiqing' => 'wbq@123',
+        'test' => 'test',
     );
 
     /**
