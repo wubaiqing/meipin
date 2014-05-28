@@ -59,13 +59,12 @@ class ExchangeController extends Controller
             $this->redirect($url);
             Yii::app()->end();
         }
-        $id = Des::decrypt($id);
+        $goodsId = Des::decrypt($id);
         //加載数据
-        $dataResult = $this->scoreService->getOrderdetail($id, $this->userId);
+        $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
         if (!$dataResult['status']) {
             if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
-                $this->render('/exchange/bind', [
-                ]);
+                $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
             }
             $this->render('/common/success', [
@@ -76,7 +75,7 @@ class ExchangeController extends Controller
             Yii::app()->end();
         }
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => array('goodsId' => $id, 'token' => $dataResult['data']['token'])]);
+        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token']]]);
     }
 
     /**
@@ -123,7 +122,25 @@ class ExchangeController extends Controller
      */
     public function actionBind()
     {
-        $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
+        //获取参数
+        $post = Yii::app()->request->getPost("UsersAddress");
+        $goodsId = Yii::app()->request->getPost("id");
+
+        //绑定手机
+        $user = User::getUser($this->userId);
+        $valid = ScoreService::validMobileIsOk($this->userId, $post);
+        if (!$valid['status']) {
+            $this->returnData(false, ['message' => $valid['data']['message']]);
+        }
+        //绑定手机
+        if ($user->mobile_bind == 0) {
+            User::updateMobileBind($this->userId, $post['mobile'], 1);
+            User::deleteCache($this->userId);
+        }
+        $this->returnData(true, [
+            'message' => "手机绑定成功,页面正跳转至兑换页面，请稍等",
+            'url' => Yii::app()->createAbsoluteUrl("exchange/order", ['id' => $goodsId])
+        ]);
     }
 
 }

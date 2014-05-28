@@ -376,4 +376,35 @@ class ScoreService
         return false;
     }
 
+    /**
+     * 验证需要绑定的手机号码
+     * @param integer $userId 当前用户ID
+     * @param array $post 提交的参数
+     * @return array 
+     */
+    public static function validMobileIsOk($userId, $post)
+    {
+        if (!isset($post['mobile']) || empty($post['mobile']) || !preg_match("/^1[0-9]{10}$/", $post['mobile'])) {
+            return CommonHelper::getDataResult(false, [
+                        'message' => "手机号码正确",
+            ]);
+        }
+        $cacheKey = Sms::mobileValidateKey($userId);
+        $cacheData = Yii::app()->cache->get($cacheKey);
+
+        if (empty($cacheData) ||
+                $post['mobile'] != $cacheData['mobile'] ||
+                $cacheData['code'] != trim($post['code']) ||
+                !isset($post['code']) ||
+                empty($post['code'])) {
+
+            return CommonHelper::getDataResult(false, [
+                        'message' => "手机校验码错误",
+            ]);
+        }
+        return CommonHelper::getDataResult(true, [
+                    'message' => "校验通过",
+        ]);
+    }
+
 }

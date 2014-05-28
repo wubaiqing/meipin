@@ -288,7 +288,7 @@ class UserController extends Controller
             $this->returnData(false, ['message' => '手机号码格式错误']);
         }
         $mobileBind = User::getMobileBindStatus($post['mobile']);
-        if($mobileBind){
+        if ($mobileBind) {
             $this->returnData(false, ['message' => '手机号码已经被其他账号绑定']);
         }
         //获取短信配置
@@ -317,17 +317,8 @@ class UserController extends Controller
         Sms::send($post['mobile'], Sms::mobileValidateTpl($code));
         //日志
         AuthCodeLog::log($this->userId, "手机绑定验证码【" . $code . "】");
-        Yii::app()->cache->set($cacheKey, $code);
+        Yii::app()->cache->set($cacheKey, ['code' => $code, 'mobile' => trim($post['mobile'])],1800);
         $this->returnData(true, ['message' => '发送成功']);
-    }
-
-    /**
-     * 手机绑定验证码绑定
-     */
-    public function actionMobileBind()
-    {
-
-        $this->returnData(true, ['message' => '验证成功']);
     }
 
 }

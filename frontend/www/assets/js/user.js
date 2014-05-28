@@ -28,12 +28,24 @@ User.Address = (function() {
                     'UsersAddress[mobile]': $("#UsersAddress_mobile").val(),
                 };
                 input.showTimes();
+                $(".sendBtn").unbind('click');
                 $.post(url, params, function(d) {
                     if (!d.status) {
                         alert(d.data.message);
+                    } else {
                     }
                 }, 'json');
-                $(".sendBtn").unbind('click');
+            });
+            //手机绑定
+            $("#mobile_bind").click(function() {
+                var url = $("#form-mobile-bind").attr("action");
+                var params = $("#form-mobile-bind").serialize();
+                $.post(url, params, function(d) {
+                    $(".error").html(d.data.message);
+                    if ($.trim(d.data.url) != "") {
+                        location.href = d.data.url;
+                    }
+                }, 'json');
             });
         },
         //显示短信发送状态信息
