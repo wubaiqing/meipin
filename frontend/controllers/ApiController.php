@@ -11,7 +11,7 @@ class ApiController extends Controller
     /**
      * 手机客户端输出JSON
      */
-    public function actionIphone()
+    public function actionIphone($catId = 0)
     {
         $cacheKey = 'meipin-api-iphone';
         $result = Yii::app()->cache->get($cacheKey);
@@ -19,8 +19,9 @@ class ApiController extends Controller
             $this->returnData(1, $result);
         }
 
-        $criteria = Goods::getMobileCriteria();
+        $criteria = Goods::getMobileCriteria($catId);
         $goods = Goods::model()->findAll($criteria);
+	    $data = [];
         foreach ($goods as $item) {
             $data[] = [
                 'tbId' => $item->tb_id,
