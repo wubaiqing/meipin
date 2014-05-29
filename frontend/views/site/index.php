@@ -1,8 +1,3 @@
-<?php
-    $cat = Yii::app()->request->getQuery('cat');
-    $page = Yii::app()->request->getQuery('page');
-    $hot = Yii::app()->request->getQuery('hot', 0);
-?>
 
 <?php $this->renderPartial('login'); ?>
 <?php $this->renderPartial('head'); ?>

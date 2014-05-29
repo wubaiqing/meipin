@@ -19,6 +19,9 @@ class SiteController extends Controller
     {
         $goods = Goods::getGoodsList($cat, $hot, $page);
         $this->render('index', array(
+	        'cat' => $cat,
+	        'hot' => $hot,
+	        'page' => $page,
             'goods' => $goods['data'],
             'pager' => $goods['pager'],
         ));
