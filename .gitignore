@@ -1,2 +1,10 @@
-/nbproject/*
 .idea/*
+frontend/www/assets/*
+frontend/runtime/*
+Thumbs.db
+.buildpath
+.project
+.settings/
+.DS_Store
+nbproject/
+composer.lock
