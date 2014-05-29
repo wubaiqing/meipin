@@ -1,7 +1,8 @@
 ## 2014-5-28
 ### 优化
 1. 首页layouts/main.php，设置别名layouts/index.php
-2. 修改assets文件夹下提交多余js、css文件问题。
+2. 修复assets文件夹下提交多余js、css文件问题。
+3. 修复assets文件夹不存在，windows环境报错问题。
 
 ## 2014-4-29
 ### 优化
