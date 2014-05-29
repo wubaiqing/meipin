@@ -93,12 +93,6 @@ class ScoreService
         if (($goods->num - $goods->sale_num) <= 0) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品", 'url' => $url]);
         }
-        //验证手机是否绑定
-        if ($user->mobile_bind == 1) {
-            $url = Yii::app()->createAbsoluteUrl("exchange/order",['id'=>Des::encrypt($goodsId)]);
-            return CommonHelper::getDataResult(false, [
-                        'message' => "您的用户账号还没有户绑定手机，请绑定手机",'url' => $url,'redirect'=>true]);
-        }
         //配送地址
         $userAddress = UsersAddress::getByUserId($userId);
         if (empty($userAddress)) {
@@ -221,6 +215,13 @@ class ScoreService
     {
         if (!preg_match("/^\d+$/", $goodsId)) {
             return CommonHelper::getDataResult(false, ['message' => "兑换商品不存在,您可以查看更多兑换商品"]);
+        }
+        $user = User::getUser($userId);
+        //验证手机是否绑定
+        if ($user->mobile_bind == 0) {
+            $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
+            return CommonHelper::getDataResult(false, [
+                        'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => true]);
         }
         //获取用户邮寄地址
         $userAddress = UsersAddress::getModel($userId);

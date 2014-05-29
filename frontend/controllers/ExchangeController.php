@@ -63,6 +63,11 @@ class ExchangeController extends Controller
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($id, $this->userId);
         if (!$dataResult['status']) {
+            if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
+                $this->render('/exchange/bind', [
+                ]);
+                Yii::app()->end();
+            }
             $this->render('/common/success', [
                 'status' => 'yes',
                 'title' => $dataResult['data']['message'],
@@ -91,11 +96,6 @@ class ExchangeController extends Controller
                 'url' => $dataResult['data']['url'],
             ]);
         } else {
-            if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
-                $this->render('/exchange/bind', [
-                ]);
-                Yii::app()->end();
-            }
             $this->render('/common/success', [
                 'status' => 'no',
                 'title' => $dataResult['data']['message'],
