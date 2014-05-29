@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 用户管理
  * @author wubaiqing <wubaiqing@vip.qq.com>
@@ -47,7 +46,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-                ], parent::accessRules());
+		], parent::accessRules());
     }
 
     /**
@@ -170,13 +169,18 @@ class UserController extends Controller
     public function actionAddress()
     {
         $userId = Yii::app()->user->id;
+
+	    // 用户信息
+	    $user = User::getUser($userId);
+
+	    // 用户城市
         $model = UsersAddress::getModel($userId);
 
         // 省份，城市
         $province = City::getByParentId(0);
         $model->province = City::getProvinceId($model->city_id);
         $city = City::getCityList($model->province);
-        $user = User::getUser($userId);
+
         $userAddress = Yii::app()->request->getPost('UsersAddress');
         if (!empty($userAddress)) {
             $post = UsersAddress::setAttr($userId, $userAddress);
@@ -212,11 +216,18 @@ class UserController extends Controller
         }
         //获取请求参数
         $userAddress = Yii::app()->request->getPost("UsersAddress");
+
         //保存数据
         $dataResult = ScoreService::saveUserAddress($this->userId, $userAddress);
+
         //返回json数据
-        $this->returnData($dataResult['status'], ['message' => $dataResult['data']['message'],
-            'errors' => $dataResult['data']['errors'], 'isLogin' => $this->isLogin]);
+	$this->returnData(
+		$dataResult['status'], [
+				'message' => $dataResult['data']['message'],
+				'errors' => $dataResult['data']['errors'],
+				'isLogin' => $this->isLogin
+	    ]
+	);
     }
 
     /**
@@ -257,7 +268,6 @@ class UserController extends Controller
         $email = Yii::app()->request->getQuery('email');
         $uid = Yii::app()->request->getQuery('usecret');
         if (!$email || !$uid) {
-            //此处需要改，增加一个友好的提示页面
             $this->renderIndex('no', '非法请求，请刷新页面。');
         }
         $uid = Des::decrypt($uid); //解密ID
