@@ -10,7 +10,7 @@ class SearchController extends Controller
     /**
      * @var string $layout 继承视图
      */
-    public $layout = '//layouts/main';
+    public $layout = '//layouts/index';
 
     /**
      * 美品网搜索
