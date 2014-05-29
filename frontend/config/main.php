@@ -26,10 +26,7 @@ return [
             ],
             'user' => [
                 'loginUrl' => ['user/login']
-            ],
-            'assetManager'=>array(
-                'basePath'=> realpath(__DIR__ . '/../../images/assets'),
-            ),
+            ]
         ],
         'params' => [
             'title' => '【美品网】美品网独家优惠,美品网团购,天天特价9.9包邮秒杀在美品网!',
