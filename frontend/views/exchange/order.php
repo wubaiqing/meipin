@@ -45,29 +45,11 @@
 
             </li>
             <li>
-                <?php
-//                $user = User::getUser($this->userId);
-//                $mobileBind = ($user->mobile_bind == 1) ? true : false;
-                ?>
                 <label><em>*</em>手机号码：</label>
                 <em id="li_mobile">
-                    <?php // if (!$mobileBind): ?>
-                        <?php echo $form->textField($data['userAddress'], 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
-                    <?php // else: ?>
-                        <?php // echo $data['userAddress']->mobile ?></em>
-                    <!--<em class="c_red">(电话已与系统绑定)</em><br/>-->
-                <?php // endif; ?>
-                <?php // if (!$mobileBind): ?>
-                    <!--<input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/><br/>-->
-                <?php // endif; ?>
+                    <?php echo $form->textField($data['userAddress'], 'mobile', array('class' => 'text', 'maxLength' => '15')); ?>
+                </em>
             </li>
-            <?php // if (!$mobileBind): ?>
-<!--                <li id="li_code">
-                    <label><em>*</em>短信验证码：</label>
-                    <?php echo $form->textField($data['userAddress'], 'code', array('class' => 'text', 'maxLength' => '4', 'style' => 'width:50px;')); ?>
-                    *请勿泄露，以免给您带来不必要的损失。
-                </li>-->
-            <?php // endif; ?>
             <li>
                 <label>邮政编码：</label>
                 <?php echo $form->textField($data['userAddress'], 'postcode', array('class' => 'text', 'maxLength' => '10')); ?>
@@ -135,66 +117,65 @@
 echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"));
 ?>
 <script type="text/javascript">
-    $(".modify_address").click(function () {
-        $(".modify_form").show();
+            $(".modify_address").click(function () {
+    $(".modify_form").show();
     })
-    $("#address_save_btn").click(function () {
-        $(".error").remove();
-        if ($.trim($("#UsersAddress_name").val()) == "") {
-            $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
+            $("#address_save_btn").click(function () {
+    $(".error").remove();
+            if ($.trim($("#UsersAddress_name").val()) == "") {
+    $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
 
             return false;
-        }
-        if ($.trim($("#userProvince").val()) == "" || $.trim($("#userProvince").val()) == "请选择") {
-            $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>")
+    }
+    if ($.trim($("#userProvince").val()) == "" || $.trim($("#userProvince").val()) == "请选择") {
+    $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>")
 
             return false;
-        }
-        if ($.trim($("#userCity").val()) == "" || $.trim($("#userCity").val()) == "请选择") {
-            $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>")
+    }
+    if ($.trim($("#userCity").val()) == "" || $.trim($("#userCity").val()) == "请选择") {
+    $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>")
 
             return false;
-        }
-        if ($.trim($("#UsersAddress_address").val()) == "") {
-            $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
+    }
+    if ($.trim($("#UsersAddress_address").val()) == "") {
+    $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
 
             return false;
-        }
-        var mobile = $("#UsersAddress_mobile").val();
-
-        var url = $("#address-form").attr("action");
-        var params = $("#address-form").serialize();
-        $(".error").remove();
-        $.post(url, params, function (d) {
+    }
+    var mobile = $("#UsersAddress_mobile").val();
+            var url = $("#address-form").attr("action");
+            var params = $("#address-form").serialize();
             $(".error").remove();
-            if (!d.data.isLogin) {
-                location.href = $("#loginUrl").val();
+            $.post(url, params, function (d) {
+            $(".error").remove();
+                    if (!d.data.isLogin) {
+            location.href = $("#loginUrl").val();
             } elseif (d.status) {
-                //显示拼接地址
-                $("#address_show_area").show();
-                $(".welfare_btn").attr("address_id", d.data.address_id);
-                var address = $("#userProvince").find("option:selected").text() + "-" + $("#userCity").find("option:selected").text() + "-" + $("#UsersAddress_address").val();
-                $("#address_show_area").children("p").first().html(address);
-                $(".modify_form").hide();
-                $("#li_mobile").html(mobile + "<em class='c_red'>(电话已与系统绑定)</em>");
-                $("#li_code").remove();
+            //显示拼接地址
+            $("#address_show_area").show();
+                    $(".welfare_btn").attr("address_id", d.data.address_id);
+                    var address = $("#userProvince").find("option:selected").text() + "-" + $("#userCity").find("option:selected").text() + "-" + $("#UsersAddress_address").val();
+                    $("#address_show_area").children("p").first().html(address);
+                    $(".modify_form").hide();
+                    $("#li_mobile").html(mobile + "<em class='c_red'>(电话已与系统绑定)</em>");
+                    $("#li_code").remove();
             } else {
-                var errors = d.data.errors;
-                for (key in errors) {
-                    $("#UsersAddress_" + key).after("<span class='error' style='color:red;'>" + errors[key] + "</span>")
-                }
+            var errors = d.data.errors;
+                    for (key in errors) {
+            $("#UsersAddress_" + key).after("<span class='error' style='color:red;'>" + errors[key] + "</span>")
+            }
             }
 
-        });
+            });
     });
-    User.Address.changeProvince();
-    User.Address.sendMobileBindSmsCode();
-    public function validOrderConfirm()
-    {
-        if ($(".welfare_btn").attr("address_id") != "") {
+            User.Address.changeProvince();
+            User.Address.sendMobileBindSmsCode();
+            public function validOrderConfirm()
+            {
+            if ($(".welfare_btn").attr("address_id") != "") {
             return true;
-        }
+            }
 
-        return false;
-    }
+            return false;
+            }
 </script>

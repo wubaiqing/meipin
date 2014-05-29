@@ -182,6 +182,8 @@ class ScoreService
             ExchangeLog::deleteExchangeLogListCache($goods->id);
             //清除积分缓存列表
             Score::deleteScoreListCache($user->id);
+            //删除商品缓存
+            Exchange::deleteCache($goods->id);
             $transaction->commit();
         } catch (\Exception $ex) {
             $transaction->rollback();

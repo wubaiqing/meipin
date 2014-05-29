@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 积分兑换的model
  * @author zhangchao
@@ -161,13 +162,21 @@ class Exchange extends ActiveRecord
     }
 
     /**
+     * 获取商品缓存KEY
+     */
+    public static function getExchangeGoodsCacheKey($goodsId)
+    {
+        return "exchange-findByGoodsId-" . $goodsId;
+    }
+
+    /**
      * 获取带缓存的兑换商品数据
      * @param  integer  $goodsId 商品ID
      * @return Exchange
      */
     public static function findByGoodsId($goodsId)
     {
-        $key = "exchange-findByGoodsId-" . $goodsId;
+        $key = self::getExchangeGoodsCacheKey($goodsId);
         $data = Yii::app()->cache->get($key);
         if (!empty($data)) {
             return $data;
@@ -180,6 +189,14 @@ class Exchange extends ActiveRecord
     }
 
     /**
+     * 刪除商品緩存KEY
+     */
+    public static function deleteCache($goodsId)
+    {
+        Yii::app()->cache->delete(self::getExchangeGoodsCacheKey($goodsId));
+    }
+
+    /**
      * 积分兑换首页商品列表
      * @return array
      *               @author zhangchao
@@ -187,7 +204,7 @@ class Exchange extends ActiveRecord
     public function showExchangeGoodsList($currentPage = 0)
     {
         //缓存的key
-        $cacheKey = 'exchange_list_'.$currentPage;
+        $cacheKey = 'exchange_list_' . $currentPage;
         $criteria = new CDbCriteria();
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
@@ -208,7 +225,7 @@ class Exchange extends ActiveRecord
             //根据条件查询积分兑换商品
             $data['goods'] = Exchange::model()->findAll($criteria);
             //写入缓存
-            Yii::app()->cache->set($cacheKey,$data['goods']);
+            Yii::app()->cache->set($cacheKey, $data['goods']);
         }
         //分页类
         $data['pages'] = $pages;

@@ -46,7 +46,6 @@
                     <span>价值</span><strong><i>￥</i><?php echo $data['exchange']->price; ?></strong><br>
                     <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b>
                 </h3>
-                <!--<h5><b>剩余时间</b><i>2</i>天<em class="one">13</em> 小时 <em class="two">33</em> 分钟 <em>31</em> 秒</h5>-->
                 <h4>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
                     <input class="btn" type="submit" value=""><span></span>
