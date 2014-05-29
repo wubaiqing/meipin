@@ -11,7 +11,7 @@
                         <form id="form-mobile-bind" accept-charset="UTF-8" action="<?php echo Yii::app()->createUrl("exchange/bind"); ?>" method="post" onsubmit="return validOrderConfirm();">
                             <div class="reg_box ">
                                 <div class="item error" style="color:red;font-weight: bold;">
-                                    
+
                                 </div>
                                 <div class="item">
                                     <label><em>*</em>手机号：</label>
@@ -25,7 +25,7 @@
                                     <input type="text" name="UsersAddress[code]" id="" maxlength="4" style="width: 50px;" class="itext2" id="validCodeP">
                                 </div>
                                 <div class="item i_txt">
-                                    <?php 
+                                    <?php
                                     echo CHtml::hiddenField("id",$params['goodsId']);
                                     ?>
                                     <input type="button" class="submit " id="mobile_bind" value="免费绑定">

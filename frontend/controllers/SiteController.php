@@ -17,13 +17,13 @@ class SiteController extends Controller
      */
     public function actionIndex($page = 1, $hot = 0, $cat = 0)
     {
-	    // 收取商品
+        // 收取商品
         $goods = Goods::getGoodsList($cat, $hot, $page);
-	    // 渲染首页
+        // 渲染首页
         $this->render('index', array(
-	        'cat' => $cat, // 分类
-	        'hot' => $hot, // 热门
-	        'page' => $page, // 当前页
+            'cat' => $cat, // 分类
+            'hot' => $hot, // 热门
+            'page' => $page, // 当前页
             'goods' => $goods['data'], // 商品数据
             'pager' => $goods['pager'], // 商品翻页
         ));

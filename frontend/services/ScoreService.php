@@ -220,6 +220,7 @@ class ScoreService
         //验证手机是否绑定
         if ($user->mobile_bind == 0) {
             $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
+
             return CommonHelper::getDataResult(false, [
                         'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => true]);
         }
@@ -379,9 +380,9 @@ class ScoreService
 
     /**
      * 验证需要绑定的手机号码
-     * @param integer $userId 当前用户ID
-     * @param array $post 提交的参数
-     * @return array 
+     * @param  integer $userId 当前用户ID
+     * @param  array   $post   提交的参数
+     * @return array
      */
     public static function validMobileIsOk($userId, $post)
     {
@@ -398,11 +399,11 @@ class ScoreService
                 $cacheData['code'] != trim($post['code']) ||
                 !isset($post['code']) ||
                 empty($post['code'])) {
-
             return CommonHelper::getDataResult(false, [
                         'message' => "手机校验码错误",
             ]);
         }
+
         return CommonHelper::getDataResult(true, [
                     'message' => "校验通过",
         ]);

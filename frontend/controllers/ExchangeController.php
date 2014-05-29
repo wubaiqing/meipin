@@ -133,9 +133,9 @@ class ExchangeController extends Controller
 
     /**
      * 页面跳转
-     * @param string $status 显示图片控制
+     * @param string $status  显示图片控制
      * @param string $message 提示信息
-     * @param string $url 跳转地址
+     * @param string $url     跳转地址
      */
     private function pageRedirect($status = 'no', $message = "您访问的页面不存在", $url = '/')
     {
