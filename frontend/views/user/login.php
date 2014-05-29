@@ -1,7 +1,7 @@
 <div id="content" class="wp">
     <div class="user_login">
         <div class="pic_l l">
-            <img src="/assets/images/user_login.jpg">
+            <img src="/static/images/user_login.jpg">
         </div>
         <div class="zc_x fr" id="logincontent">
             <h3></h3>

@@ -2,7 +2,7 @@
     <div class="relief_bg">
         <div class="relief_l">
             <div class="relief_r">
-                <div class="tips_l"><img width="200" height="200" src="/assets/images/bg.png"></div>
+                <div class="tips_l"><img width="200" height="200" src="/static/images/bg.png"></div>
                 <div class="tips_r jihuo">
                     <div class="tit">
                         <strong style='width:100%;'>温馨提示！</strong>为保证您的账号安全，需先绑定手机才能继续参与积分活动。

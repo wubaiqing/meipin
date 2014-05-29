@@ -10,12 +10,12 @@ $isSignDay = User::isSignDay();
                     <ul>
                         <li style="display: block;">
                             <a target="_blank" href="javascript:;" title="test1"><img width="650" height="210"
-                                                                                      src="/assets/images/test1.jpg"
+                                                                                      src="/static/images/test1.jpg"
                                                                                       alt="测试111"></a>
                         </li>
                         <li style="display: block;">
                             <a target="_blank" href="javascript:;" title="test2"><img width="650" height="210"
-                                                                                      src="/assets/images/test2.jpg"
+                                                                                      src="/static/images/test2.jpg"
                                                                                       alt="测试222"></a>
                         </li>
                     </ul>
@@ -57,7 +57,7 @@ $isSignDay = User::isSignDay();
                     <li>
                         <div class="convertgood">
                             <a href="<?php echo $url; ?>" target="_blank" class="convertgood-pic"><img
-                                    src="http://www.meipin.com/assets/images/lazyloading.jpg" data-url="<?php echo $goods['img_url']; ?>" alt="<?php echo $goods['name']; ?> "
+                                    src="http://www.meipin.com/static/images/lazyloading.jpg" data-url="<?php echo $goods['img_url']; ?>" alt="<?php echo $goods['name']; ?> "
                                     title="<?php echo $goods['name']; ?>" class="exchange-img-list"></a>
                             <dl class="convertgood-desc">
                                 <dd>

@@ -22,7 +22,7 @@
         </dl>
         <dl class="dl3">
             <dt>手机客户端</dt>
-            <dd class="sub"><img src="/assets/images/wxcode.png" alt="">
+            <dd class="sub"><img src="/static/images/wxcode.png" alt="">
                 <div class="info">
                     <p>
                         关注美品网，秒杀早知道

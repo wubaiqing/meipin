@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css"  href="/assets/css/score/score.css?v=201405071000" />
-<script type="text/javascript" src="/assets/js/score/jquery-1.4.2.min.js?v=201405071000"></script>
-<script type="text/javascript" src="/assets/js/score/score.js?v=201405071000"></script>
+<link rel="stylesheet" type="text/css"  href="/static/css/score/score.css?v=201405071000" />
+<script type="text/javascript" src="/static/js/score/jquery-1.4.2.min.js?v=201405071000"></script>
+<script type="text/javascript" src="/static/js/score/score.js?v=201405071000"></script>
 <div id="content" class="wp">
     <?php $this->renderPartial('left'); ?>
     <div class="user_r r">
