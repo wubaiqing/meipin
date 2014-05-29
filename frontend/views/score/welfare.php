@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css"  href="/static/css/score/score.css?v=201405071000" />
 <div class="box admin hei">
-	<h3><span>我的积分</span></h3><span class="t_l"></span><span class="t_r"></span>
+	<h3><span>我的礼品</span></h3><span class="t_l"></span><span class="t_r"></span>
 	<div class="info" id="score">
 		<h6></h6>
 		<div id="index" class="">
