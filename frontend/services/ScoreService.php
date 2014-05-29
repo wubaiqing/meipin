@@ -317,6 +317,7 @@ class ScoreService
 
         return CommonHelper::getDataResult(true, [
                     'message' => "签到成功",
+                     'message2'=>"今日已签",
                     'dr_count' => $user->dr_count,
                     'nextScore' => ($num < 3) ? ($num + 1) : 3,
                     'score' => $num

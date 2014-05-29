@@ -18,7 +18,7 @@ $(function() {
             } else {
                 alert(result.data.message);
                 // $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
-                
+                $('#jryq').html(result.data.message2);
                 //成功提示
                 $("#dr_count").html(result.data.dr_count);
                 $("#nowScore").html(result.data.score);
@@ -26,5 +26,8 @@ $(function() {
                 return true;
             }
         }, 'json');
+    });
+    $('.cheng').click(function(){
+        alert("您已经签过了");
     });
 });
