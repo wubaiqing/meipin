@@ -10,7 +10,7 @@ class SiteController extends Controller
     /**
      * @var string $layout 继承视图
      */
-    public $layout = '//layouts/main';
+    public $layout = '//layouts/index';
 
     /**
      * 今天值得买首页
