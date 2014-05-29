@@ -294,7 +294,7 @@ class UserController extends Controller
     {
         $now = time();
         $post = Yii::app()->request->getPost("UsersAddress", null);
-        if (empty($post) || !isset($post['mobile']) || !preg_match("/^\d+$/", $post['mobile'])) {
+        if (empty($post) || !isset($post['mobile']) || !preg_match("/^1[0-9]{10}$/", $post['mobile'])) {
             $this->returnData(false, ['message' => '手机号码格式错误']);
         }
         $mobileBind = User::getMobileBindStatus($post['mobile']);
