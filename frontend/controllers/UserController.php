@@ -238,12 +238,7 @@ class UserController extends Controller
         if (empty($url)) {
             $url = $this->createAbsoluteUrl('user/login');
         }
-        $this->layout = '//layouts/userBase';
-        $this->render('loginSuccess', [
-            'status' => $status,
-            'message' => $message,
-            'url' => $url
-        ]);
+        $this->redirect(['site/index']);//登录成功直接跳入首页
         Yii::app()->end();
     }
 
