@@ -64,7 +64,7 @@ class GoodsController extends Controller
     public function actionAdmin()
     {
         $model = new Goods('search');
-        $model->unsetAttributes();
+       $v= $model->unsetAttributes();
         if(isset($_GET['Goods']))
             $model->attributes = $_GET['Goods'];
 
