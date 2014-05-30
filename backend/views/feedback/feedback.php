@@ -29,14 +29,9 @@
             'created_at',
             array(
                 'class' => 'CButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => '{delete}',
                 'header' => '操作',
                 'buttons' => array(
-                    'update' => array(
-                        'label' => '修改',
-                        'url' => 'Yii::app()->createUrl("feedback/update", array("id" => $data->id))',
-                        'imageUrl' => false
-                    ),
                     'delete'=>array(
                         'label'=>'删除',
                         'imageUrl' => false,
