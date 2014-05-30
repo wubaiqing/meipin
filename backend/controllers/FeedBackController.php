@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 用户管理
+ * 用户反馈
  *
- * @author wubaiqing
+ * @author guoll
  */
 class FeedBackController extends Controller
 {
@@ -22,9 +22,16 @@ class FeedBackController extends Controller
 
     public function actionDelete($id)
     {
-        if(FeedBack::model()->deleteByPk($id))
+        /*if(FeedBack::model()->deleteByPk($id))
         {
            $this->redirect(['admin']);
-        }  
+        }  */
+        $post=FeedBack::model()->findByPk($id);
+        $post->is_delete=1;
+        if($post->save())
+        {
+            $this->redirect(['admin']);
+        }
+        
     }
 }

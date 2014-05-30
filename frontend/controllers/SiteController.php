@@ -65,6 +65,43 @@ class SiteController extends Controller
     }
 
     /**
+    *  关于我们
+    */
+    public function actionAbout()
+    {
+        $this->layout = '//layouts/userBase';
+        
+        $this->render('about');
+    }
+
+    /**
+    *  联系我们
+    */
+    public function actionConnect()
+    {
+        $this->layout = '//layouts/userBase';  
+        $this->render('connect');
+    }
+
+   /**
+    *  商家报名
+    */
+    public function actionBsrg()
+    {
+        $this->layout = '//layouts/userBase';  
+        $this->render('bsrg');
+    }
+
+    /**
+    *  商家报名
+    */
+    public function actionMoreship()
+    {
+        $this->layout = '//layouts/userBase';  
+        $this->render('moreship');
+    }
+
+    /**
      * 跳转首页
      */
     public function renderIndex($status, $message, $url = '')
@@ -79,5 +116,23 @@ class SiteController extends Controller
             'url' => $url
         ]);
         Yii::app()->end();
+    }
+
+    /**
+    *  xiazai
+    */
+    public function actionXiazai()
+    {
+
+        $Shortcut = "[InternetShortcut]
+        URL=http://www.meipin.com
+        IDList=
+        IconFile=（）
+        IconIndex=1
+        [{000214A0-0000-0000-C000-000000000046}]
+        Prop3=19,2";
+        Header("Content-type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=美品网.url;");
+        echo $Shortcut;
     }
 }

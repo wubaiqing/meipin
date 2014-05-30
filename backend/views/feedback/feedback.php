@@ -25,8 +25,12 @@
         'columns' => array(
             'id',
             'qq',
+            'advise',
             'email',
-            'created_at',
+            array( 
+                'name'=>'created_at',
+                'type'=>'datetime',
+              ),
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{delete}',

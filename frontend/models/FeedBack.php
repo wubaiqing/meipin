@@ -27,7 +27,7 @@ class FeedBack extends ActiveRecord implements IArrayable
         return array(  
             array("qq","required","message"=>"QQ不能为空"),  
    
-            array("advise","required","message"=>"稍微写点建议吧"),  
+            array("advise","required","message"=>"不能为空哦"),  
                
             //验证邮箱  
             array("email","email","allowEmpty"=>true,"message"=>"邮箱格式不正确"),  
