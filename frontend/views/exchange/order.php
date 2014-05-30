@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="jadinfo" data-must_memo="0" data-memo="">
-                <span>备注信息：<input id="memo" name="Exchange[remark]" type="text"></span>
+                <span>备注信息：<input id="memo" name="Exchange[remark]" max="200" type="text"></span>
                 <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="">
             </div>
         </form>
