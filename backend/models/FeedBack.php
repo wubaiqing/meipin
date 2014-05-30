@@ -18,6 +18,17 @@ class FeedBack extends ActiveRecord implements IArrayable
         return '{{meipin_feedback}}';
     }
 
+	/**
+	 * 用户评论属性验证规则
+	 * @return array
+	 */
+	public function rules()
+	{
+		return [
+			['id, qq, email, advise, created_at, updated_at', 'safe']
+		];
+	}
+
     /**
      * 列表搜索
      * @return ActiveDataProvider
