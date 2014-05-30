@@ -33,8 +33,7 @@ $isSignDay = User::isSignDay();
                     <div class="pointslog-foot">
                         <dl class="clearfix">
                             <dt class="fl">
-
-                            <a class="J_qiandao <?php echo!$isSignDay ? 'qiandao unsign' : 'signed'; ?>  " id="" href="javascript:void(0);">签到得积分</a>
+                            <a class="J_qiandao <?php echo!$isSignDay ? 'qiandao unsign' : 'cheng signed'; ?>  " id="jryq2" href="javascript:void(0);"><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签'; ?></a>
                             </dt>
                             <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index') ?>">积分明细</a>
                             </dd>

@@ -18,7 +18,18 @@ $(function() {
             } else {
                 alert(result.data.message);
                 // $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
-                $('#jryq').html(result.data.message2);
+                if ( $("#jryq").length > 0 ) 
+                { 
+                  $("#jryq").html(result.data.message2); 
+                } 
+
+                if ( $("#jryq2").length > 0 ) 
+                { 
+                  //积分签到更改 样式和文字
+                  $("#jryq2").attr('class','J_qiandao cheng signed');
+                  $("#jryq2").html(result.data.message2); 
+                } 
+
                 //成功提示
                 $("#dr_count").html(result.data.dr_count);
                 $("#nowScore").html(result.data.score);
