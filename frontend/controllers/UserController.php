@@ -88,7 +88,7 @@ class UserController extends Controller
                     Yii::app()->user->logout();
                     $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
                 }
-                $this->renderIndex('yes', '登录成功', $referer);
+				$this->redirect(['site/index']);
                 Yii::app()->end();
             }
         }
@@ -138,7 +138,7 @@ class UserController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-        $this->renderIndex('yes', '安全退出');
+		$this->redirect(['site/index']);//退出提示去除
     }
 
     /**
