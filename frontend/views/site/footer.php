@@ -14,7 +14,7 @@
         </dl>
         <dl class="dl4">
             <dt>      关注美品      </dt>
-            <dd><a href="javascript:;" target="_blank">美<strong>品</strong>新浪微博</a></dd><dd><a href="javascript:;" target="_blank">美<strong>品</strong>腾讯微博</a></dd><dd><a href="javascript:;">下载快捷方式到桌面</a></dd><dd><a href="javascript:;" title="意见反馈" target="_blank">意见反馈</a></dd>
+            <dd><a href="javascript:;" target="_blank">美<strong>品</strong>新浪微博</a></dd><dd><a href="javascript:;" target="_blank">美<strong>品</strong>腾讯微博</a></dd><dd><a href="javascript:;">下载快捷方式到桌面</a></dd><dd><a href="/feedback" title="意见反馈" target="_blank">意见反馈</a></dd>
         </dl>
         <dl class="dl5">
             <dt>下次怎么来?</dt>
