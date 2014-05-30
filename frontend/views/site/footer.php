@@ -2,19 +2,19 @@
     <div class="mid">
         <dl class="dl1">
             <dt>        关于美品        </dt>
-            <dd><a href="javascript:;" target="_blank">美品</a></dd><dd><a href="javascript:;" target="_blank">9块9包邮</a></dd><dd><a href="javascript:;" target="_blank">所有商品</a></dd><dd><a href="javascript:;" target="_blank">商品API</a></dd>
+            <dd><a href="/site/about" target="_blank">关于我们</a></dd>
         </dl>
         <dl class="dl2">
             <dt>        帮助中心        </dt>
-            <dd><a href="javascript:;">积分攻略</a></dd><dd><a href="javascript:;">购物拿积分</a></dd><dd><a href="javascript:;">VIP品牌折扣价</a></dd><dd><a href="javascript:;">9块9包邮价</a></dd>
+            <dd><a href="/site/connect">联系我们</a></dd><dd><a href="/feedback">意见反馈</a></dd>
         </dl>
         <dl class="dl2">
             <dt>        商务合作        </dt>
-            <dd><a href="javascript:;">美品商家合作</a></dd><dd class="taowenwidls"><a  href="javascript:;">品牌折扣合作</a></dd><dd><a href="javascript:;" target="_blank">友情链接</a></dd>
+            <dd><a href="/site/bsrg">商家报名</a></dd><a href="/site/moreship" target="_blank">友情链接</a></dd>
         </dl>
         <dl class="dl4">
             <dt>      关注美品      </dt>
-            <dd><a href="javascript:;" target="_blank">美<strong>品</strong>新浪微博</a></dd><dd><a href="javascript:;" target="_blank">美<strong>品</strong>腾讯微博</a></dd><dd><a href="javascript:;">下载快捷方式到桌面</a></dd><dd><a href="/feedback" title="意见反馈" target="_blank">意见反馈</a></dd>
+            <dd><a href="/site/xiazai">下载快捷方式到桌面</a></dd>
         </dl>
         <dl class="dl5">
             <dt>下次怎么来?</dt>

@@ -36,10 +36,11 @@ class FeedBack extends ActiveRecord implements IArrayable
     public function search()
     {
         $criteria = new CDbCriteria;
+        $criteria->condition='is_delete = 0';
         $criteria->compare('id', $this->id,true);
         $criteria->compare('qq', $this->qq,true);
         $criteria->order = 'id desc';
-
+     
         return new CActiveDataProvider($this,
             [
                 'criteria' => $criteria,
