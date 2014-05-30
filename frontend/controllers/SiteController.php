@@ -41,4 +41,43 @@ class SiteController extends Controller
             Yii::app()->end();
         }
     }
+
+    /**
+    *  意見反饋
+    */
+    public function actionfeedback()
+    {
+        $this->layout = '//layouts/userBase';
+        $model = new FeedBack();
+        
+        $post = Yii::app()->request->getPost('FeedBack');
+        //var_dump($post);
+        if (!empty($post)) 
+        {
+            $model->attributes = $post;
+            //print_r($model->attributes);
+             if ($model->save())
+             {
+                   $this->renderIndex('yes', '感谢您的建议我们将及时回馈','/');
+             }
+        }
+        $this->render('feedback',['model'=>$model]);
+    }
+
+    /**
+     * 跳转首页
+     */
+    public function renderIndex($status, $message, $url = '')
+    {
+        if (empty($url)) {
+            $url = $this->createAbsoluteUrl('user/login');
+        }
+        $this->layout = '//layouts/userBase';
+        $this->render('/user/loginSuccess', [
+            'status' => $status,
+            'message' => $message,
+            'url' => $url
+        ]);
+        Yii::app()->end();
+    }
 }

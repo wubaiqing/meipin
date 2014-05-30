@@ -60,7 +60,8 @@ class Controller extends CController
         [
             'label' => '用户管理',
             'items' => [
-		['url' => 'user/admin', 'label' => '用户管理'],
+		          ['url' => 'user/admin', 'label' => '用户管理'],
+                  ['url' => 'feedback/admin', 'label' => '用户反馈'],
             ]
         ],
         [
