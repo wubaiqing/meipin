@@ -138,7 +138,7 @@ class UserController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-		$this->redirect(['site/index']);
+		$this->redirect(['site/index']);//退出提示去除
     }
 
     /**
