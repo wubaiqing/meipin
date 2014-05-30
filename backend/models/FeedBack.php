@@ -56,6 +56,7 @@ class FeedBack extends ActiveRecord implements IArrayable
             'id' => 'ID',
             'qq' => 'QQ',
             'email' => '邮箱',
+            'advise' =>'建议',
             'created_at' => '创建时间',
         ];
     }
