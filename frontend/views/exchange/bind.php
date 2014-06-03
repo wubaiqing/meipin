@@ -13,18 +13,18 @@
                                 <div class="item error" style="color:red;font-weight: bold;">
 
                                 </div>
-                                <div class="item">
+                                <div class="item send_code">
                                     <label><em>*</em>手机号：</label>
-                                    <input type="text" name="UsersAddress[mobile]" id="UsersAddress_mobile" class="itext1" id="mobil">
+                                    <input type="text" name="UsersAddress[mobile]" id="UsersAddress_mobile" maxlength="11" class="text" id="mobil">
                                     <span class="i_codeP">
-                                        <input class="sendBtn" url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/>
+                                        <input class="sendBtn " url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/>
                                     </span>
                                 </div>
                                 <div class="item i_code">
                                     <label><em>*</em>校验码：</label>
-                                    <input type="text" name="UsersAddress[code]" id="" maxlength="4" style="width: 50px;" class="itext2" id="validCodeP">
+                                    <input type="text" name="UsersAddress[code]" id="" maxlength="4" style="width: 50px;" class="text" id="validCodeP">
                                 </div>
-                                <div class="item i_txt">
+                                <div class="item i_txt valid_code">
                                     <?php
                                     echo CHtml::hiddenField("id",$params['goodsId']);
                                     ?>

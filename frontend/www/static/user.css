@@ -163,11 +163,11 @@
 .w_login .tips_err .war span{color:#ff6c01;font-weight:bold;margin-left:6px}
 .w_login .tips_err .content{margin-left:25px;margin-top:8px;_margin-top:6px;line-height:20px;font-size:12px}
 .w_login .tips_err pre{color:#666;white-space:pre-wrap;width:99%;word-wrap:break-word}
-.wrap_left .smt{background:url("/assets/images/loginreg_total.gif") no-repeat scroll 0 0 transparent;border:medium none;cursor:pointer;height:36px;width:122px;font-size:16px;color:#FFF;font-weight:bold;margin-left:58px;overflow:hidden}
+.wrap_left .smt{background:url("/static/images/loginreg_total.gif") no-repeat scroll 0 0 transparent;border:medium none;cursor:pointer;height:36px;width:122px;font-size:16px;color:#FFF;font-weight:bold;margin-left:58px;overflow:hidden}
 .wrap_right{float:left;padding-left:40px;padding-top:10px;width:220px}
 .wrap_right p{margin-bottom:20px;clear:both;overflow:hidden}
 .wrap_refer p{font-size:14px;margin-bottom:10px}
-.wrap_right p a,.wrap_refer a{display:block;float:left;width:85px;height:29px;font-size:14px;text-align:center;line-height:29px;color:#fff;margin-top:10px;font-weight:bold;background:url("/assets/images/loginreg_total.gif") no-repeat -136px 0}
+.wrap_right p a,.wrap_refer a{display:block;float:left;width:85px;height:29px;font-size:14px;text-align:center;line-height:29px;color:#fff;margin-top:10px;font-weight:bold;background:url("/static/images/loginreg_total.gif") no-repeat -136px 0}
 .wrap_right p a:hover{text-decoration:none;color:#fff}
 .wrap_right .union a{background:url("/assets/images/total_alert.gif") no-repeat scroll 0 -189px transparent;display:block;float:left;height:22px;margin:5px 15px 5px 0;width:80px}
 .wrap_right .union .qq{background-position:-95px -189px;margin-right:0}

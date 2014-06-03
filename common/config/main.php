@@ -32,7 +32,7 @@ return [
 		],
 
         'db' => [
-            'connectionString' => 'mysql:host=127.0.0.1;dbname=meipin',
+            'connectionString' => 'mysql:host=localhost;dbname=meipin',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

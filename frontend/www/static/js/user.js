@@ -25,14 +25,14 @@ User.Address = (function() {
                 //发送短信验证码
                 var url = $(this).attr("url");
                 var params = {
-                    'UsersAddress[mobile]': $("#UsersAddress_mobile").val(),
+                    'UsersAddress[mobile]': $("#UsersAddress_mobile").val()
                 };
-                input.showTimes();
                 $(".sendBtn").unbind('click');
                 $.post(url, params, function(d) {
                     if (!d.status) {
                         alert(d.data.message);
                     } else {
+                        input.showTimes();
                     }
                 }, 'json');
             });
