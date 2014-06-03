@@ -59,6 +59,8 @@ input{background:none}
 .nav ul li.nav_r a {color:#5E4E0B;font-weight:800;padding:5px 23px 0 10px;}
 .nav ul li.nav_r {position:absolute;right:0;top:-5px;background:url(images/nav_hover.gif) 0 -62px no-repeat;height:44px;padding-left:40px;}
 .nav ul li.nav_r a:hover {background:none}
+.nav li em {position:absolute;top:-13px;right:-5px;display:block;width:34px;height:28px;background:url(images/hot.png) 0 0 no-repeat;_background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://www.vip800.com/data/static/images/hot.png");}
+.nav li em.haoyou {position:absolute;top:8px;right:-26px;display:block;width:43px;height:13px;background:url(images/haoyou.png) 0 0 no-repeat;_background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://www.vip800.com/data/static/images/haoyou.png");}
 .box {padding:1px;border:1px solid #D4D4D4;background:#fff;position:relative;height:100%;}
 .box h3 {padding-left:18px;height:32px;line-height:29px;color:#757575;background:url(images/nav_hover.gif) 0 -142px repeat-x;}
 .box h3 em {display:inline-block;position:absolute;top:12px;left:10px;margin-right:4px;overflow:hidden;width:4px;height:7px;background:url(images/con_bg.png) -796px -126px no-repeat;}
@@ -1339,16 +1341,16 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .deal div h4 span em b{font-family:"Microsoft Yahei",Arial;font-weight:normal;font-size:22px}
 .deal div h4 span i{text-decoration:line-through;padding:0 5px}
 .deal div h4 span strong{display:block;padding-top:3px;padding-left:1px}
-.deal div h4 span strong b{float:left;width:15px;height:15px;display:inline;margin-left:3px;background:url(http://www.meipin.com/static/icon4.png) no-repeat 0 -2px}
+.deal div h4 span strong b{float:left;width:15px;height:15px;display:inline;margin-left:3px;background:url(http://www.40zhe.com/static/icon4.png) no-repeat 0 -2px}
 .deal div h4 span strong b.i2{background-position:0 -2px}
 .deal div h4 span strong b.i3{background-position:-38px -2px}
 .deal div h4 span strong b.i4{background-position:-19px -2px}
-.deal div h4 a{display:inline-block;width:67px;height:31px;background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 0;_background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 0;margin-top:5px}
-.deal div h4 a:hover{background-position:-68px 0}
+.deal div h4 a{display:inline-block;width:67px;height:31px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 0;_background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 0;margin-top:5px}
+.deal div h4  span a{display:inline;width:69px;height:69px;background:url(http://www.meipin.com/images/sell.png) no-repeat 0 0;margin-left:45px}
 .deal div h5{text-align:right;margin:10px 10px;line-height:20px;height:20px;overflow:hidden;color:#999}
 .deal div h5 span{float:left;text-align:left;width:135px;height:20px;overflow:hidden;word-break:break-all;word-wrap:break-word;font-family:"tahoma"}
 .deal div h5 em{display:inline-block;width:110px;height:20px;vertical-align:top;overflow:hidden}
-.deal div h5 em a{float:left;width:20px;height:20px;display:inline;margin-right:2px;background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 -32px;_background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 -32px;filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}
+.deal div h5 em a{float:left;width:20px;height:20px;display:inline;margin-right:2px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 -32px;_background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 -32px;filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}
 .deal div h5 em a.qqwb{background-position:-22px -32px}
 .deal div h5 em a.renren{background-position:-44px -32px}
 .deal div h5 em a.kaixin{background-position:-66px -32px}
@@ -1359,14 +1361,14 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .deal div h6 em{color:#999}
 .deal div h6 .jub{background:#f4f4f4;color:#e02f2f;display:block;width:36px;height:20px;position:absolute;right:0;top:45px;text-align:right}
 .deal div h5,.deal div h6{display:none}
-.deal .mgicon{display:none;width:115px;height:93px;background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat -1px -82px;_background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat -1px -82px;position:absolute;left:180px;top:210px}
+.deal .mgicon{display:none;width:115px;height:93px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat -1px -82px;_background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat -1px -82px;position:absolute;left:180px;top:210px}
 .deal .icon{display:none;width:145px;height:18px;position:absolute;left:17px;top:17px}
-.deal .icon em{float:left;width:30px;height:18px;display:inline;margin-right:3px;background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 -53px;_background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 -53px}
+.deal .icon em{float:left;width:30px;height:18px;display:inline;margin-right:3px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 -53px;_background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 -53px}
 .deal .icon em.i2{width:40px;background-position:-31px -53px}
 .deal .icon em.i3{width:29px;background-position:-72px -53px}
 .deal .icon em.i4{background-position:-102px -53px}
 .deal .mycol{display:none;height:18px;position:absolute;right:17px;top:17px;text-align:right;overflow:hidden}
-.deal .mycol a i,.deal .mycol a em{float:left;display:inline;height:18px;background:url(http://www.meipin.com/static/images/dbg_ie6.png) no-repeat 0 -189px;vertical-align:top;overflow:hidden;color:#fff;padding-left:17px;line-height:18px}
+.deal .mycol a i,.deal .mycol a em{float:left;display:inline;height:18px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 -189px;vertical-align:top;overflow:hidden;color:#fff;padding-left:17px;line-height:18px}
 .deal .mycol a em{background-position:100% -189px;padding:0 4px 0 0;font-family:Arial;width:0;overflow:hidden}
 .deal .mycol a:hover i{background-position:0 -208px}
 .deal .mycol a:hover em{background-position:100% -208px}
@@ -1378,7 +1380,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .deal .mgdiv span strong{display:block;font:22px/30px "微软雅黑"}
 .deal .mgdiv span i{display:block;padding:10px 0}
 .deal .mgdiv span a,.deal .mgdiv span a:hover{color:#ffa6a6;text-decoration:underline;margin-right:20px}
-.deal .newicon{background:url(http://www.meipin.com/static/images/deal_new_2.png) no-repeat 0 0;height:57px;left:11px;position:absolute;top:11px;width:57px}
+.deal .newicon{background:url(http://www.40zhe.com/static/deal_new_2.png) no-repeat 0 0;height:57px;left:11px;position:absolute;top:11px;width:57px}
 .deal .addborder{border:2px solid #ef6060;z-index:101;padding:0;background:#f4f4f4}
 .deal .addborder .icon{left:16px;top:16px}
 .deal .addborder .newicon{left:10px;top:10px}

@@ -173,5 +173,19 @@ class GoodsController extends Controller
             $status = 1;
         }
         Goods::model()->updateByPk($id, array('status' => $status));
+    } 
+	/**
+     * 修改商品是否销售完状态
+     */
+    public function actionChangesellStatus($id)
+    {
+        $goods = Goods::model()->findByPk($id);
+        $sell_status = 1;
+        if ($goods->sell_status == 1) {
+            $sell_status = 2;
+        } else {
+            $sell_status = 1;
+        }
+        Goods::model()->updateByPk($id, array('sell_status' => $sell_status));
     }
 }
