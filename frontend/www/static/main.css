@@ -1378,7 +1378,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .deal .mgdiv span strong{display:block;font:22px/30px "微软雅黑"}
 .deal .mgdiv span i{display:block;padding:10px 0}
 .deal .mgdiv span a,.deal .mgdiv span a:hover{color:#ffa6a6;text-decoration:underline;margin-right:20px}
-.deal .newicon{background:url(http://www.meipin.com/static/deal_new_2.png) no-repeat 0 0;height:57px;left:11px;position:absolute;top:11px;width:57px}
+.deal .newicon{background:url(http://www.meipin.com/static/images/deal_new_2.png) no-repeat 0 0;height:57px;left:11px;position:absolute;top:11px;width:57px}
 .deal .addborder{border:2px solid #ef6060;z-index:101;padding:0;background:#f4f4f4}
 .deal .addborder .icon{left:16px;top:16px}
 .deal .addborder .newicon{left:10px;top:10px}
