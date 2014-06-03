@@ -9,9 +9,11 @@ class YiiInitializer
 {
     public static function createApplication($folder, $type = 'web')
     {
+		// if (!file_exists(__DIR__ . '/config/mode.conf')) {
+		// 	throw new RuntimeException('mode.conf文件不存在');
+		// }
 
         $appPath = __DIR__ . '/../' . $folder;
-
         $config = CMap::mergeArray(
             require_once __DIR__ . '/config/main.php',
             require_once $appPath . '/config/main.php'
