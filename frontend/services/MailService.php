@@ -15,13 +15,13 @@ class MailService
         $this->_mailModel = new PHPMailer();
         $this->_mailModel->CharSet =  'UTF-8';
         $this->_mailModel->isSMTP();
-        $this->_mailModel->Host = 'smtp.126.com';
-        $this->_mailModel->From = 'piaoxuedtian@126.com';
+        $this->_mailModel->Host = 'smtp.163.com';
+        $this->_mailModel->From = 'meipin2309@163.com';
         $this->_mailModel->FromName = '美品网';
         $this->_mailModel->isHTML(true);
         $this->_mailModel->SMTPAuth = true;
-        $this->_mailModel->Username = 'piaoxuedtian@126.com';
-        $this->_mailModel->Password = 'meipin123';
+        $this->_mailModel->Username = 'meipin2309@163.com';
+        $this->_mailModel->Password = 'soho2309';
     }
 
     /**
