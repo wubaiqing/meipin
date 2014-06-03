@@ -13,11 +13,6 @@ $isSignDay = User::isSignDay();
                                                                                       src="/static/images/test1.jpg"
                                                                                       alt="测试111"></a>
                         </li>
-                        <li style="display: block;">
-                            <a target="_blank" href="javascript:;" title="test2"><img width="650" height="210"
-                                                                                      src="/static/images/test2.jpg"
-                                                                                      alt="测试222"></a>
-                        </li>
                     </ul>
                 </div>
             </div>
