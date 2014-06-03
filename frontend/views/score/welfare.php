@@ -14,7 +14,7 @@
 				<?php foreach ($welfare as $info) { ?>
 					<?php $exchange = Exchange::findByGoodsId($info->goods_id); ?>
 					<tr align="center">
-						<td bgcolor="#F9FAFC"><?php echo !empty($exchange) ? $exchange->name : '';?></td>
+						<td bgcolor="#F9FAFC"><a href='<?php echo $exchange->taobaoke_url;?>'><?php echo !empty($exchange) ? $exchange->name : '';?></a></td>
 						<td><?php echo $info->status == 1 ? '已发货' : '未发货'; ?></td>
 						<td>-<?php echo !empty($exchange) ? $exchange->integral : ''; ?></td>
 					</tr>

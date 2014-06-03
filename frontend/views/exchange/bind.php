@@ -4,8 +4,8 @@
             <div class="relief_r">
                 <div class="tips_l"><img width="200" height="200" src="/static/images/bg.png"></div>
                 <div class="tips_r jihuo">
-                    <div class="tit">
-                        <strong style='width:100%;'>温馨提示！</strong>为保证您的账号安全，需先绑定手机才能继续参与积分活动。
+                    <div class="tit" style='font-size:14px;'>
+                        <strong style='width:100%;font-size:14px;'>温馨提示！</strong>为保证您的账号安全，需先绑定手机才能继续参与积分活动。
                     </div>
                     <div class="tips_jh" style="text-align: left;">
                         <form id="form-mobile-bind" accept-charset="UTF-8" action="<?php echo Yii::app()->createUrl("exchange/bind"); ?>" method="post" onsubmit="return validOrderConfirm();">
