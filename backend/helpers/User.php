@@ -43,10 +43,9 @@ class User
 		   if(is_dir("$dirName/$item")){
 				 delFileUnderDir("$dirName/$item");
 		   }else{
-		   if(unlink("$dirName/$item")){echo"成功删除文件： $dirName/$item<br />\n";
-									}
-		     }
-		    }
+		   if(unlink("$dirName/$item")){echo"成功删除文件： $dirName/$item<br />\n";}
+				}		       
+			 }
 		   }
 		   closedir($handle);
 		 }
