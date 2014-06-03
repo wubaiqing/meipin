@@ -31,13 +31,24 @@ class User
     }
 
     /**
-     * 清空前后台缓存
+     * 清空前台缓存
      */
     public static function deleteCache()
     {
-        $frontend = Yii::getPathOfAlias('frontend');
-        exec('rm -rf '.$frontend. '/runtime/cache/*');
-        $backend = Yii::getPathOfAlias('backend');
-        exec('rm -rf '.$backend. '/runtime/cache/*');
+        $frontend = Yii::getPathOfAlias('frontend');//获取前台文件目录
+		$dirName=$frontend.'/runtime/cache';//获取清空文件目录
+		if($handle = opendir("$dirName")){
+		   while(false !== ($item = readdir($handle))){
+		   if($item != "." && $item != ".."){
+		   if(is_dir("$dirName/$item")){
+				 delFileUnderDir("$dirName/$item");
+		   }else{
+		   if(unlink("$dirName/$item")){echo"成功删除文件： $dirName/$item<br />\n";
+									}
+		     }
+		    }
+		   }
+		   closedir($handle);
+		 }
     }
 }
