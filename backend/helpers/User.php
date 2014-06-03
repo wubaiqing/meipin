@@ -14,8 +14,12 @@ class User
         'wubaiqing' => '1',
         'qidalin' => '2',
         'mayue' => '3',
-        'xiaotao' => '4',
+        'xiaotao' => '4', //刘雨
         'Guest' => '5',
+        'bohe1992' => '6', //张奇
+        'zozo929' => '7', //李鑫涵 
+        '小艾' => '8',
+        'duoduo' => '9', //侯宝多
     );
 
     /**
