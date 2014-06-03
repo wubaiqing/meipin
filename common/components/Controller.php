@@ -67,6 +67,8 @@ class Controller extends CController
         [
             'label' => '前台管理',
             'items' => [
+				['url' => 'links/create', 'label' => '添加友情链接'],
+                ['url' => 'links/admin', 'label' => '友情链接管理'],
                 ['url' => 'site/clearCache', 'label' => '清空缓存'],
                 ['url' => 'site/logout', 'label' => '退出登录'],
             ]

@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="jadinfo" data-must_memo="0" data-memo="">
-                <span>备注信息：<input id="memo" name="Exchange[remark]" type="text"></span>
+                <span>备注信息：<input id="memo" name="Exchange[remark]" max="200" type="text"></span>
                 <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="">
             </div>
         </form>
@@ -117,65 +117,65 @@
 echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"));
 ?>
 <script type="text/javascript">
-            $(".modify_address").click(function () {
-    $(".modify_form").show();
+    $(".modify_address").click(function() {
+        $(".modify_form").show();
     })
-            $("#address_save_btn").click(function () {
-    $(".error").remove();
-            if ($.trim($("#UsersAddress_name").val()) == "") {
-    $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
+    $("#address_save_btn").click(function() {
+        $(".error").remove();
+        if ($.trim($("#UsersAddress_name").val()) == "") {
+            $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
 
             return false;
-    }
-    if ($.trim($("#userProvince").val()) == "" || $.trim($("#userProvince").val()) == "请选择") {
-    $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>")
+        }
+        if ($.trim($("#userProvince").val()) == "" || $.trim($("#userProvince").val()) == "请选择") {
+            $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>")
 
             return false;
-    }
-    if ($.trim($("#userCity").val()) == "" || $.trim($("#userCity").val()) == "请选择") {
-    $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>")
+        }
+        if ($.trim($("#userCity").val()) == "" || $.trim($("#userCity").val()) == "请选择") {
+            $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>")
 
             return false;
-    }
-    if ($.trim($("#UsersAddress_address").val()) == "") {
-    $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
+        }
+        if ($.trim($("#UsersAddress_address").val()) == "") {
+            $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
 
             return false;
-    }
-    var mobile = $("#UsersAddress_mobile").val();
-            var url = $("#address-form").attr("action");
-            var params = $("#address-form").serialize();
+        }
+        var mobile = $("#UsersAddress_mobile").val();
+        var url = $("#address-form").attr("action");
+        var params = $("#address-form").serialize();
+        $(".error").remove();
+        $.post(url, params, function(d) {
             $(".error").remove();
-            $.post(url, params, function (d) {
-            $(".error").remove();
-                    if (!d.data.isLogin) {
-            location.href = $("#loginUrl").val();
-            } elseif (d.status) {
-            //显示拼接地址
-            $("#address_show_area").show();
-                    $(".welfare_btn").attr("address_id", d.data.address_id);
-                    var address = $("#userProvince").find("option:selected").text() + "-" + $("#userCity").find("option:selected").text() + "-" + $("#UsersAddress_address").val();
-                    $("#address_show_area").children("p").first().html(address);
-                    $(".modify_form").hide();
-                    $("#li_mobile").html(mobile + "<em class='c_red'>(电话已与系统绑定)</em>");
-                    $("#li_code").remove();
+            if (!d.data.isLogin) {
+                location.href = $("#loginUrl").val();
+            } else if (d.status) {
+                //显示拼接地址
+                $("#address_show_area").show();
+                $(".welfare_btn").attr("address_id", d.data.address_id);
+                var address = $("#userProvince").find("option:selected").text() + "-" + $("#userCity").find("option:selected").text() + "-" + $("#UsersAddress_address").val();
+                $("#address_show_area").children("p").first().html(address);
+                $(".modify_form").hide();
+                $("#li_mobile").html(mobile + "<em class='c_red'>(电话已与系统绑定)</em>");
+                $("#li_code").remove();
             } else {
-            var errors = d.data.errors;
-                    for (key in errors) {
-            $("#UsersAddress_" + key).after("<span class='error' style='color:red;'>" + errors[key] + "</span>")
-            }
+                var errors = d.data.errors;
+                for (key in errors) {
+                    $("#UsersAddress_" + key).after("<span class='error' style='color:red;'>" + errors[key] + "</span>")
+                }
             }
 
-            });
+        });
     });
-            User.Address.changeProvince();
-            User.Address.sendMobileBindSmsCode();
-            public function validOrderConfirm()
-            {
-            if ($(".welfare_btn").attr("address_id") != "") {
+    User.Address.changeProvince();
+    User.Address.sendMobileBindSmsCode();
+    function validOrderConfirm()
+    {
+        if ($(".welfare_btn").attr("address_id") != "") {
             return true;
-            }
+        }
 
-            return false;
-            }
+        return false;
+    }
 </script>
