@@ -52,7 +52,7 @@
                 'name' => 'status',
                 'value' => 'CHtml::link(Goods::$statusLabels[$data->status], "javascript:void(0);", array("data-id" => $data->id, "class" => "changeStatus"))',
             ),
-			array(
+            array(
                 'type' => 'raw',
                 'name' => '设置',
                 'value' => 'CHtml::link(Goods::$statussellLabels[$data->sell_status], "javascript:void(0);", array("data-id" => $data->id, "class" => "statussell"))',
@@ -110,9 +110,9 @@ $(document).ready(function () {
         $.get('index.php?r=goods/changeStatus', {id : $(this).attr('data-id')}, function (json) {
             location.reload();
         });
-    }); 
-	//设置商品是否销售完
-	$('.statussell').click(function () {
+    });
+    //设置商品是否销售完
+    $('.statussell').click(function () {
         $.get('index.php?r=goods/ChangesellStatus', {id : $(this).attr('data-id')}, function (json) {
             location.reload();
         });

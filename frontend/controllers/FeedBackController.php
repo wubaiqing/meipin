@@ -7,10 +7,9 @@
  */
 class FeddBackController extends Controller
 {
-	
+
      public function actionIndex()
      {
 
      }
 }
-?>

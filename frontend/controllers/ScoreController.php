@@ -70,17 +70,17 @@ class ScoreController extends Controller
         ]);
     }
 
-	/**
-	 * 积分礼品
-	 */
-	public function actionWelfare($page = 1)
-	{
-		$welfare = ExchangeLog::getWelfare(Yii::app()->user->id, $page);
-		$this->render('welfare',[
-			'welfare' => $welfare['data'],
-			'pager' => $welfare['pager'],
-		]);
-	}
+    /**
+     * 积分礼品
+     */
+    public function actionWelfare($page = 1)
+    {
+        $welfare = ExchangeLog::getWelfare(Yii::app()->user->id, $page);
+        $this->render('welfare',[
+            'welfare' => $welfare['data'],
+            'pager' => $welfare['pager'],
+        ]);
+    }
 
     /**
      * 积分管理-积分增加列表

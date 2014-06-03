@@ -117,10 +117,10 @@
 echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"));
 ?>
 <script type="text/javascript">
-    $(".modify_address").click(function() {
+    $(".modify_address").click(function () {
         $(".modify_form").show();
     })
-    $("#address_save_btn").click(function() {
+    $("#address_save_btn").click(function () {
         $(".error").remove();
         if ($.trim($("#UsersAddress_name").val()) == "") {
             $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
@@ -146,11 +146,11 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
         var url = $("#address-form").attr("action");
         var params = $("#address-form").serialize();
         $(".error").remove();
-        $.post(url, params, function(d) {
+        $.post(url, params, function (d) {
             $(".error").remove();
             if (!d.data.isLogin) {
                 location.href = $("#loginUrl").val();
-            } else if (d.status) {
+            } elseif (d.status) {
                 //显示拼接地址
                 $("#address_show_area").show();
                 $(".welfare_btn").attr("address_id", d.data.address_id);
@@ -170,7 +170,7 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
     });
     User.Address.changeProvince();
     User.Address.sendMobileBindSmsCode();
-    function validOrderConfirm()
+    public function validOrderConfirm()
     {
         if ($(".welfare_btn").attr("address_id") != "") {
             return true;

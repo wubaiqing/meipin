@@ -32,10 +32,10 @@
                         </span>
                         <?php if ($item->start_time > time()) :?>
                         <font><?php echo date('G', $item->start_time);?>点开始</font>
-                        <?php elseif($item->sell_status ==2) :?> 
-						<span><a  'href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a></span>
-						<?php else:?>
-						<a  href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a>
+                        <?php elseif($item->sell_status ==2) :?>
+                        <span><a  'href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a></span>
+                        <?php else:?>
+                        <a  href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a>
                         <?php endif;?>
                     </h4>
                     <span class="mgicon"></span>

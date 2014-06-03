@@ -173,8 +173,8 @@ class GoodsController extends Controller
             $status = 1;
         }
         Goods::model()->updateByPk($id, array('status' => $status));
-    } 
-	/**
+    }
+    /**
      * 修改商品是否销售完状态
      */
     public function actionChangesellStatus($id)
