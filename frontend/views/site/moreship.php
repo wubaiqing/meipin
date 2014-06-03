@@ -1,267 +1,39 @@
 <link rel="stylesheet" type="text/css"  href="/static/moreship.css?v=201404131000" />
 <style>
-.footer {top :330px;}
+.footer {}
 </style>
-<div id="wrap">
+<div id="wrap" style="height:630px">
 	<h3>友情链接</h3><br/>
 	<div id="main">
+        <?php
+        $links = Links::getLink();
+        $linknum = count($links);
+        ?>
     	<div id="lianjie">
         	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                <?php if($linknum <=7):?>
+                   <?php for ($i=0; $i <$linknum ; $i++){?>
+                     <li><a href="<?php echo $links[$i]->url;?>" target='_blank'><?php echo $links[$i]->image_url;?></a></li>
+                    <?php }?>
+                <?php endif;?>
                 <br>
             </ul>
         </div>
+        <?php if($linknum >7 && $linknum<=14):?>
         <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+            <ul>
+                <?php for ($i=7; $i <$linknum ; $i++){?>
+                     <li><a href="<?php echo $links[$i]->url;?>" target='_blank'><?php echo $links[$i]->image_url;?></a></li>
+                    <?php }?>
+                
                 <br>
             </ul>
         </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
+       <?php endif;?> 
+
     </div>
-    <div id="main">
-    	<div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-    </div>
-    <div id="main">
-    	<div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-        <div id="lianjie">
-        	<ul>
-            	<li><a href="http://www.zhe800.com">折800</a></li>
-                <li><a href="http://www.moonbasa.com/">梦芭莎</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <br>
-            </ul>
-        </div>
-    </div>
+
+
     <div id="shenqing">
     	<h3>友链申请</h3>
         <p>衷心感谢您对本站的关注和支持，本站欢迎与各优秀网站交换友情链接，以达到互为推广，共同提高网站竞争力的目的。</p>
