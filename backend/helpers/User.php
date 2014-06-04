@@ -43,7 +43,7 @@ class User
            if (is_dir("$dirName/$item")) {
                  delFileUnderDir("$dirName/$item");
            } else {
-           if (unlink("$dirName/$item")) {echo "";}
+           if (unlink("$dirName/$item")) {echo ""; }
                 }
              }
            }
