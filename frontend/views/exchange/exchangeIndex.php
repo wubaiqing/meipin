@@ -1,3 +1,6 @@
+<style type="text/css">
+
+</style>
 <div id="contentA" class="contentA">
     <div class="left">
         <div class="pt">
@@ -43,10 +46,16 @@
                 </h2>
                 <h3>
                     <span>所需积分</span><em><?php echo $data['exchange']->integral; ?></em>积分<br>
-                    <span>价值</span><strong><i>￥</i><?php echo $data['exchange']->price; ?></strong><br>
-                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b>
+                    <span>价值&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><i>&nbsp;&nbsp;&nbsp;￥</i><?php echo $data['exchange']->price; ?></strong><br>
+                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
+                    <span class='goodcolor'>
+                    <a stock="1" info="186560" href="javascript:void(0)">白色</a>
+                    <a stock="1" info="186560" href="javascript:void(0)">白色</a>
+                    <a stock="1" info="186560" href="javascript:void(0)">白色</a>
+                    </span>
                 </h3>
                 <h4>
+                    <?php echo CHtml::hiddenField("gdcolor", $params['goodsId']); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已兑换</a>

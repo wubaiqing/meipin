@@ -36,7 +36,22 @@ class ExchangeController extends Controller
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
-
+        
+        $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
+        if($gdcolorstr)
+        {
+            $gdcolorarr = explode(';', $gdcolorstr); 
+            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 ) 
+            $arr = array();
+            foreach ($gdcolorarr as $key => $value) 
+            {
+                $gdcolorstr2 = explode(':', $value);
+                $arr[$key]['gdcolornum'] = $gdcolorstr2[1];
+                $arr[$key]['gdcolorname'] = $gdcolorstr2[0];
+            }
+            $dataResult['data']['exchange']->goodscolor = $arr;
+        }
+        print_r($dataResult['data']['exchange']);
         //渲染頁面
         $this->render('exchangeIndex', [
             'data' => $dataResult['data'],
@@ -50,6 +65,7 @@ class ExchangeController extends Controller
     public function actionOrder()
     {
         $id = Yii::app()->request->getQuery("id", 0);
+        echo $goodscolor = Yii::app()->request->getQuery("gdcolor");
         if (!$this->isLogin) {
             $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id])]);
             $this->redirect($url);
@@ -66,7 +82,7 @@ class ExchangeController extends Controller
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token']]]);
+        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'],'goodscolor'=>$goodscolor]]);
     }
 
     /**
