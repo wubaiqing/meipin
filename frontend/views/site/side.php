@@ -1,6 +1,6 @@
 <div class="side_nav">
     <div class="logo">
-        <a href="www.meipin.com"><img src="http://www.meipin.com/static/images/side_logo.jpg"></a>
+        <a href="http://www.meipin.com"><img src="http://www.meipin.com/static/images/side_logo.jpg"></a>
     </div>
     <div class="content">
         <div class="hd">
