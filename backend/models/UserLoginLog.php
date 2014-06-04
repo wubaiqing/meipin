@@ -23,7 +23,7 @@ class UserLoginLog extends ActiveRecord implements IArrayable
     public function rules()
     {
         return array(
-            array('id, user_id, time, created_at, updated_at', 'safe'),
+            array('id, user_id, time, created_at, updated_at, opration', 'safe'),
         );
     }
 
@@ -38,6 +38,7 @@ class UserLoginLog extends ActiveRecord implements IArrayable
             'time' => '登陆时间',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
+            'opration' => '操作记录',
         );
     }
 
@@ -82,4 +83,22 @@ class UserLoginLog extends ActiveRecord implements IArrayable
             return date('H:i', $getLoginLog->time);
         }
     }
+
+    /*
+    *    插入操作记录
+    */
+    public static function addOperation($operation)
+    {
+        $userId = User::getUserName(Yii::app()->user->id);
+        if (!empty($operation)) 
+        {
+            $now = time();
+            $userLoginLog = new UserLoginLog(); 
+            $userLoginLog->user_id = $userId;
+            $userLoginLog->time = $now;
+            $userLoginLog->operation = $operation;
+            $userLoginLog->save();
+        }
+    }
+
 }

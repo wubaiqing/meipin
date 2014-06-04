@@ -20,6 +20,7 @@ class User
         'zozo929' => '7', //李鑫涵 
         '小艾' => '8',
         'duoduo' => '9', //侯宝多
+        'test'=>'10',
     );
 
     /**
@@ -30,6 +31,14 @@ class User
         return self::$userName[$name];
     }
 
+    /**
+     * @var string 用户名称
+     */
+    public static function getUserID($id)
+    {
+        $arr2 = array_flip(self::$userName);
+        return $arr2[$id];
+    }
     /**
      * 清空前后台缓存
      */

@@ -7,6 +7,17 @@
  */
 class UserController extends Controller
 {
+
+        //判断是否登陆，没有登陆就返回登陆 
+    public function beforeAction($action)
+    {
+       if(!Yii::app()->user->id)
+       {
+         $this->redirect(array('site/login'));
+       }  
+       return parent::beforeAction($action);
+    } 
+    
     /**
      * 用户管理列表
      */
