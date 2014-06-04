@@ -17,7 +17,7 @@ class User
         'xiaotao' => '4', //刘雨
         'Guest' => '5',
         'bohe1992' => '6', //张奇
-        'zozo929' => '7', //李鑫涵 
+        'zozo929' => '7', //李鑫涵
         '小艾' => '8',
         'duoduo' => '9', //侯宝多
     );
@@ -36,18 +36,18 @@ class User
     public static function deleteCache()
     {
         $frontend = Yii::getPathOfAlias('frontend');//获取前台文件目录
-		$dirName=$frontend.'/runtime/cache';//获取清空文件目录
-		if($handle = opendir("$dirName")){
-		   while(false !== ($item = readdir($handle))){
-		   if($item != "." && $item != ".."){
-		   if(is_dir("$dirName/$item")){
-				 delFileUnderDir("$dirName/$item");
-		   }else{
-		   if(unlink("$dirName/$item")){echo"成功删除文件： $dirName/$item<br />\n";}
-				}		       
-			 }
-		   }
-		   closedir($handle);
-		 }
+        $dirName=$frontend.'/runtime/cache';//获取清空文件目录
+        if ($handle = opendir("$dirName")) {
+           while (false !== ($item = readdir($handle))) {
+           if ($item != "." && $item != "..") {
+           if (is_dir("$dirName/$item")) {
+                 delFileUnderDir("$dirName/$item");
+           } else {
+           if (unlink("$dirName/$item")) {echo "";}
+                }
+             }
+           }
+           closedir($handle);
+         }
     }
 }
