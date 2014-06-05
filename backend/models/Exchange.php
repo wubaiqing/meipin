@@ -23,7 +23,7 @@ class Exchange extends CActiveRecord
     public function rules()
     {
         return [
-            ['name, taobaoke_url, support_url, img_url',
+            ['name, img_url',
                 'required'],
             ['need_level, is_delete',
                 'numerical',
