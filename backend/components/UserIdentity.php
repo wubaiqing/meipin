@@ -11,7 +11,7 @@ class UserIdentity extends CUserIdentity
         'qidalin' => 'forget543',
         'wubaiqing' => 'wbq@123',
         'bohe1992' => '1992123bh', //张奇
-        'zozo929' => '18601310545', //李鑫涵 
+        'zozo929' => '18601310545', //李鑫涵
         '小艾' => '123456',
         'xiaotao' => 'xiaotao88', //刘雨
         'duoduo' => 'meipinwang5', //侯宝多

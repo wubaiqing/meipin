@@ -90,10 +90,9 @@ class UserLoginLog extends ActiveRecord implements IArrayable
     public static function addOperation($operation)
     {
         $userId = User::getUserName(Yii::app()->user->id);
-        if (!empty($operation)) 
-        {
+        if (!empty($operation)) {
             $now = time();
-            $userLoginLog = new UserLoginLog(); 
+            $userLoginLog = new UserLoginLog();
             $userLoginLog->user_id = $userId;
             $userLoginLog->time = $now;
             $userLoginLog->operation = $operation;

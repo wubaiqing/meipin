@@ -36,16 +36,13 @@ class ExchangeController extends Controller
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
-        
+
         $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
-        if($gdcolorstr)
-        {
-            $gdcolorarr = explode(';', $gdcolorstr); 
-            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 ) 
-            foreach ($gdcolorarr as $key => $value) 
-            {
-                if($value)
-                {
+        if ($gdcolorstr) {
+            $gdcolorarr = explode(';', $gdcolorstr);
+            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 )
+            foreach ($gdcolorarr as $key => $value) {
+                if ($value) {
                     $gdcolorstr2 = explode(':', $value);
                     $arr[$key]['gdcolornum'] = $gdcolorstr2[1]?$gdcolorstr2[1]:0;
                     $arr[$key]['gdcolorname'] = $gdcolorstr2[0];
@@ -77,21 +74,16 @@ class ExchangeController extends Controller
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
         $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
-       if($gdcolorstr && $goodscolor)
-        {
-            $gdcolorarr = explode(';', $gdcolorstr); 
-            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 ) 
+       if ($gdcolorstr && $goodscolor) {
+            $gdcolorarr = explode(';', $gdcolorstr);
+            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 )
             $strstr = "";
-            foreach ($gdcolorarr as $key => $value) 
-            {
-                if($value)
-                {
-                    $gdcolorstr2 = explode(':', $value); 
-                    if($gdcolorstr2[0] == $goodscolor)
-                    {
+            foreach ($gdcolorarr as $key => $value) {
+                if ($value) {
+                    $gdcolorstr2 = explode(':', $value);
+                    if ($gdcolorstr2[0] == $goodscolor) {
                         $strstr .= $gdcolorstr2[0].":".($gdcolorstr2[1]-1).";";
-                    }else
-                    {
+                    } else {
                         $strstr .= $gdcolorstr2[0].":".$gdcolorstr2[1].";";
                     }
                 }

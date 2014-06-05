@@ -27,7 +27,7 @@
             'qq',
             'advise',
             'email',
-            array( 
+            array(
                 'name'=>'created_at',
                 'type'=>'datetime',
               ),

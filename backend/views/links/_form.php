@@ -1,4 +1,4 @@
-<?php 
+<?php
 // 去掉必填项kk
 CHtml::$afterRequiredLabel = '';
 $form=$this->beginWidget('CActiveForm', array(
@@ -7,7 +7,7 @@ $form=$this->beginWidget('CActiveForm', array(
     'htmlOptions' => array(
         'class' => 'form-horizontal',
     ),
-)); 
+));
 CHtml::$errorSummaryCss = 'text-warning';
 
 ?>
@@ -18,7 +18,7 @@ CHtml::$errorSummaryCss = 'text-warning';
         <label class="control-label required" for="Links_image_url">链接名称</label>
         <div class="controls">
             <?php echo $form->textField($model,'image_url'); ?>
-			<span class="text-error"></span>
+            <span class="text-error"></span>
         </div>
     </div>
 
@@ -26,13 +26,12 @@ CHtml::$errorSummaryCss = 'text-warning';
         <label class="control-label required" for="Links_image_url">链接地址</label>
         <div class="controls">
             <?php echo $form->textField($model,'url'); ?>
-			<span class="text-error"></span>
+            <span class="text-error"></span>
         </div>
     </div>
 
     <div class="form-actions">
         <?php echo CHtml::submitButton($model->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
     </div>
-
 
 <?php $this->endWidget(); ?>

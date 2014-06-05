@@ -50,7 +50,7 @@
 
                     <?php foreach ($data['exchange']->goodscolor as $key => $value):?>
 
-                    <a <?php if($value['gdcolornum']==0){echo "class='be' stock='0' ";}else{echo 'stock='.$value["gdcolornum"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname'];?></a>
+                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname'];?></a>
                     <?php endforeach;?>
 
                     </span>
@@ -123,11 +123,10 @@
         } catch (e) {
             alert(e);
         }
-     $('.goodcolor').find("a").click(function(){
-         
+     $('.goodcolor').find("a").click(function () {
+
          gdcolornum = $(this).attr("stock");
-         if(gdcolornum!=0)
-         {
+         if (gdcolornum!=0) {
             $(".goodcolor a").attr("style",'');
             gdcolor = $(this).html();
             $(this).attr("style","border: 2px solid red");

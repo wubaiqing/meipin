@@ -36,6 +36,7 @@ class User
      */
     public static function getUserID($id)
     {
+
         if($id)
         {
             $arr2 = array_flip(self::$userName);

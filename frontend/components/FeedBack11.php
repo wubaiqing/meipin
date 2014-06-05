@@ -7,7 +7,7 @@
  */
 class Feedback extends CFormModel
 {
- 
+
      public $qq;
      public $advise;
 

@@ -14,7 +14,7 @@ class Goods extends ActiveRecord implements IArrayable
         '1' => '正常',
         '2' => '隐藏',
     );
-	public static $statussellLabels = array(
+    public static $statussellLabels = array(
         '1' => '正常',
         '2' => '售完',
     );
