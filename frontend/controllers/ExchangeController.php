@@ -73,8 +73,9 @@ class ExchangeController extends Controller
         $goodsId = Des::decrypt($id);
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
-        $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
-       if ($gdcolorstr && $goodscolor) {
+        if ( $goodscolor && !empty($dataResult['data']['exchange'])) 
+        {
+            $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
             $gdcolorarr = explode(';', $gdcolorstr);
             //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 )
             $strstr = "";
