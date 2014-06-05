@@ -1335,7 +1335,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .deal div{width:310px;padding:0;background:#fff;position:relative;_position:absolute;border:1px solid #e2e2e2;border-color:#fff #e2e2e2 #e2e2e2 #fff;padding:1px}
 .deal div p{padding:10px;background:#fff;width:290px;height:190px;overflow:hidden}
 .deal div h2{height:40px;padding:5px 10px;overflow:hidden;text-align:left;font:14px/20px "";background:#fff}
-.deal div h4{height:36px;padding:5px 10px 18px;overflow:hidden;text-align:right;background:#fff;line-height:36px}
+.deal div h4{height:36px;padding:5px 10px 18px;overflow:hidden;text-align:right;background:#fff;line-height:36px;width: 290px}
 .deal div h4 span{float:left;color:#999;font-family:"tahoma";line-height:16px}
 .deal div h4 span em{color:#e02f2f;letter-spacing:-2;font:36px/36px tahoma,Arial}
 .deal div h4 span em b{font-family:"Microsoft Yahei",Arial;font-weight:normal;font-size:22px}
@@ -1345,11 +1345,9 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .deal div h4 span strong b.i2{background-position:0 -2px}
 .deal div h4 span strong b.i3{background-position:-38px -2px}
 .deal div h4 span strong b.i4{background-position:-19px -2px}
-.deal div h4 a{display:inline-block;width:67px;height:31px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 0;_background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 0;margin-top:5px}
-
-.deal div h4  span a{display:inline;width:69px;height:69px;background:url(http://www.meipin.com/static/images/sell.png) no-repeat 0 0;margin-left:45px}
-.deal div h4  span a{display:inline;width:68px;height:69px;background:url(images/sell.png) no-repeat 0 0;margin-left:107px;margin-top:-10px;}
-.deal div h4  span span a{display:inline;width:68px;height:69px;background:url(images/last.png) no-repeat 0 0;margin-left:121px;margin-top:-7px;}
+.deal div h4 a{display:inline-block;width:67px;height:31px;background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 0;_background:url(http://www.40zhe.com/static/dbg_ie6.png) no-repeat 0 0;margin-top:5px;}
+.deal div h4  span a{display:inline;width:69px;height:69px;background:url(images/sell.png) no-repeat 0 0;margin-left:216px;margin-top:-32px;}
+.deal div h4  span span a{display:inline;width:68px;height:69px;background:url(images/last.png) no-repeat 0 0;margin-left:216px;margin-top:-32px;}
 .deal div h5{text-align:right;margin:10px 10px;line-height:20px;height:20px;overflow:hidden;color:#999}
 .deal div h5 span{float:left;text-align:left;width:135px;height:20px;overflow:hidden;word-break:break-all;word-wrap:break-word;font-family:"tahoma"}
 .deal div h5 em{display:inline-block;width:110px;height:20px;vertical-align:top;overflow:hidden}

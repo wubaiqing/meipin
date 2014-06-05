@@ -30,7 +30,7 @@
                         <span>
                             <i>¥<?php echo $item->origin_price;?></i>
                         </span>
-                        <?php if ($item->start_time > time()) :?>
+                        <?php if ($item->start_time > time() && $item->sell_status !=2 ) :?>
 						<span><span><a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a></span></span>
                         <?php elseif($item->sell_status ==2) :?> 
 						<span><a  href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a></span>

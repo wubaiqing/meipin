@@ -88,6 +88,7 @@ class Goods extends ActiveRecord implements IArrayable
 		$start_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 00:00:00")));//获取前一天开始时间
 		$end_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 23:59:59")));//获取前一天结束时间
 		$criteria = new CDbCriteria();
+        $criteria->compare('sell_status', '=1');
 		if($cat ==1002){
 		$criteria->addBetweenCondition('start_time',$start_time,$end_time);
 		}
