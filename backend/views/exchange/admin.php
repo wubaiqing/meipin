@@ -29,8 +29,13 @@
                 'name'=>'name',
                 'value'=>'"<a href=\"$data->taobaoke_url\"  target=\"_blank\">".$data->name."</a>"',
             ),
+            'goodscolor',
             'price',
             'num',
+            'delenum'=>array(
+                    'name'=>'delenum',
+                    'value'=>'($data->num - $data->sale_num)',
+                ),
             'integral',
             'start_time' => array(
                 'name' => 'start_time',

@@ -29,6 +29,7 @@
                 'header' => '商品名称',
                 'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
             ),
+            'gdscolor',
             'user_id' => [
                 'type' => 'raw',
                 'header' => '兑换用户',
