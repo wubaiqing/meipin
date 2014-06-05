@@ -36,7 +36,24 @@ class ExchangeController extends Controller
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
-
+        
+        $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
+        if($gdcolorstr)
+        {
+            $gdcolorarr = explode(';', $gdcolorstr); 
+            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 ) 
+            foreach ($gdcolorarr as $key => $value) 
+            {
+                if($value)
+                {
+                    $gdcolorstr2 = explode(':', $value);
+                    $arr[$key]['gdcolornum'] = $gdcolorstr2[1]?$gdcolorstr2[1]:0;
+                    $arr[$key]['gdcolorname'] = $gdcolorstr2[0];
+                }
+            }
+            $dataResult['data']['exchange']->goodscolor = $arr;
+        }
+        //print_r($dataResult['data']['exchange']);
         //渲染頁面
         $this->render('exchangeIndex', [
             'data' => $dataResult['data'],
@@ -49,7 +66,8 @@ class ExchangeController extends Controller
      */
     public function actionOrder()
     {
-        $id = Yii::app()->request->getQuery("id", 0);
+        $id = Yii::app()->request->getParam("id", 0);
+        $goodscolor = Yii::app()->request->getParam("gdcolor",'');
         if (!$this->isLogin) {
             $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id])]);
             $this->redirect($url);
@@ -58,6 +76,28 @@ class ExchangeController extends Controller
         $goodsId = Des::decrypt($id);
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
+        $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
+       if($gdcolorstr && $goodscolor)
+        {
+            $gdcolorarr = explode(';', $gdcolorstr); 
+            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 ) 
+            $strstr = "";
+            foreach ($gdcolorarr as $key => $value) 
+            {
+                if($value)
+                {
+                    $gdcolorstr2 = explode(':', $value); 
+                    if($gdcolorstr2[0] == $goodscolor)
+                    {
+                        $strstr .= $gdcolorstr2[0].":".($gdcolorstr2[1]-1).";";
+                    }else
+                    {
+                        $strstr .= $gdcolorstr2[0].":".$gdcolorstr2[1].";";
+                    }
+                }
+            }
+            $dataResult['data']['exchange']->goodscolor = $strstr;
+        }
         if (!$dataResult['status']) {
             if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
@@ -66,7 +106,7 @@ class ExchangeController extends Controller
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token']]]);
+        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'],'gdscolor'=>$goodscolor]]);
     }
 
     /**

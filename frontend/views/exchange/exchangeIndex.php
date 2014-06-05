@@ -28,7 +28,7 @@
     </div>
 
     <div class="right dhdeal">
-        <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="GET">
+        <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="POST">
             <?php
             $start = "zt3";
             if ($data['exchange']->start_time > time()) {
@@ -43,10 +43,21 @@
                 </h2>
                 <h3>
                     <span>所需积分</span><em><?php echo $data['exchange']->integral; ?></em>积分<br>
-                    <span>价值</span><strong><i>￥</i><?php echo $data['exchange']->price; ?></strong><br>
-                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b>
+                    <span>价值&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><i>&nbsp;&nbsp;&nbsp;￥</i><?php echo $data['exchange']->price; ?></strong><br>
+                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
+                    <?php if($data['exchange']->goodscolor):?>
+                    <span class='goodcolor'>
+
+                    <?php foreach ($data['exchange']->goodscolor as $key => $value):?>
+
+                    <a <?php if($value['gdcolornum']==0){echo "class='be' stock='0' ";}else{echo 'stock='.$value["gdcolornum"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname'];?></a>
+                    <?php endforeach;?>
+
+                    </span>
+                <?php endif;?>
                 </h3>
                 <h4>
+                    <?php echo CHtml::hiddenField("gdcolor", '',array('id'=>'gdcolor')); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已兑换</a>
@@ -112,5 +123,17 @@
         } catch (e) {
             alert(e);
         }
+     $('.goodcolor').find("a").click(function(){
+         
+         gdcolornum = $(this).attr("stock");
+         if(gdcolornum!=0)
+         {
+            $(".goodcolor a").attr("style",'');
+            gdcolor = $(this).html();
+            $(this).attr("style","border: 2px solid red");
+            $("#gdcolor").val(gdcolor);
+         }
+     });
     });
+
 </script>

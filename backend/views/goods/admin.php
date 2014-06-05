@@ -64,6 +64,11 @@
                     'class' => 'settingOrder'
                 )
             ),
+            'user_id'=>array(
+                 'name'=>'user_id',
+                 'id' => 'user_id',
+                 'value' => 'User::getUserID($data->user_id)',
+                ),
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{update}',

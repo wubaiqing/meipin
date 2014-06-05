@@ -133,6 +133,7 @@ class Goods extends ActiveRecord implements IArrayable
             'relation_website' => '关联网站',
             'user_id' => '用户ID',
             'is_zhe800' => '商品来源',
+            'admin_id' => '创建人'
         );
     }
 

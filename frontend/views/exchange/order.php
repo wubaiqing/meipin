@@ -81,12 +81,14 @@
                         <dt>
                         <?php
                         echo CHtml::hiddenField("Exchange[token]", $params['token']);
+                        echo CHtml::hiddenField("Exchange[gdscolor]",$params['gdscolor'] );
+                        echo CHtml::hiddenField("Exchange[goodscolor]", $data['exchange']->goodscolor);
                         echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data['exchange']->id));
                         echo CHtml::hiddenField("Exchange[city_id]", $data['userAddress']->city_id);
                         $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data['exchange']->id)));
                         ?>
                         <a href="<?php echo $goodsUrl; ?>" target="_blank">
-                            <img src="<?php echo $data['exchange']->img_url; ?>">
+                            <img src="<?php echo $data['exchange']->img_url; ?>"><?php echo $params['gdscolor'];?>
                         </a>
                         </dt>
                         <dd>

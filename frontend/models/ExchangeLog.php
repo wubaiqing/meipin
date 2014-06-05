@@ -33,7 +33,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'integerOnly' => true
             ],
             [
-                'id,name,username,address,updated_at,remark',
+                'id,name,username,address,updated_at,remark,gdscolor',
                 'safe'
             ],
         ];

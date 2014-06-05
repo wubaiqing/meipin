@@ -15,11 +15,21 @@ class GoodsController extends Controller
     {
         return array_merge(array(
             array('allow',
-                'actions' => array('modifyOrder', 'getYiqifa', 'checkTbId', 'count', 'getUWebsiteData', 'getUHTML', 'getGoods', 'getGoodsP', 'getu', 'changeStatus'),
+                'actions' => array('test1','modifyOrder', 'getYiqifa', 'checkTbId', 'count', 'getUWebsiteData', 'getUHTML', 'getGoods', 'getGoodsP', 'getu', 'changeStatus'),
                 'users' => array('@'),
             ),
         ),parent::accessRules());
     }
+
+    //判断是否登陆，没有登陆就返回登陆 
+    public function beforeAction($action)
+    {
+       if(!Yii::app()->user->id)
+       {
+         $this->redirect(array('site/login'));
+       }  
+       return parent::beforeAction($action);
+    } 
 
     public function actionGetGoods($taobaoId)
     {
@@ -73,6 +83,18 @@ class GoodsController extends Controller
         ));
     }
 
+
+    public function actionTest1()
+    {
+        //$admin_id = 0;
+        echo Yii::app()->user->id;
+        echo '===';
+        echo $this->isLogin;
+        //$admin_id = User::getUserName(Yii::app()->user->id)?User::getUserName(Yii::app()->user->id):0;
+       // print_r($admin_id);
+
+    }
+
     /**
      * 添加商品
      * @param integer $goodsType 商品类型
@@ -98,7 +120,10 @@ class GoodsController extends Controller
 
             $model->user_id = User::getUserName(Yii::app()->user->id);
 
-            if ($model->save()) {
+            if ($model->save()) 
+            {
+                //插入操作记录
+                UserLoginLog::addOperation("添加({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
                 $this->redirect(array('admin'));
             }
@@ -132,7 +157,10 @@ class GoodsController extends Controller
                 $model->tb_id = 0;
             }
 
-            if ($model->save()) {
+            if ($model->save()) 
+            {
+                //插入操作记录
+                UserLoginLog::addOperation("修改({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
                 $this->redirect(array('admin'));
             }

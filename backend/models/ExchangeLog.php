@@ -95,6 +95,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'city_id' => '城市ID',
             'address' => '配送地址',
             'goods_id' => '商品ID',
+            'gdscolor'  =>'颜色'
         ];
     }
 
