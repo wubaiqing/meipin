@@ -114,12 +114,12 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo $form->dropDownList($model, 'status', array('1' => '显示', '2' => '隐藏' )); ?>
         </div>
     </div>
-     <?php $admin_id = User::getUserName(Yii::app()->user->id);?>
-
     <div class="control-group">
         <?php echo $form->labelEx($model,'admin_id', array('class' => 'control-label')); ?>
         <div class="controls">
-            <span style='width:100px;height:30px;line-height:30px;'><?php echo Yii::app()->user->id;?></span>
+            <span style='width:100px;height:30px;line-height:30px;'>
+            <?php echo User::getUserID($model->user_id);?>
+            </span>
         </div>
     </div>
 
