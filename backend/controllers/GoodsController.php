@@ -21,15 +21,15 @@ class GoodsController extends Controller
         ),parent::accessRules());
     }
 
-    //判断是否登陆，没有登陆就返回登陆 
+    //判断是否登陆，没有登陆就返回登陆
     public function beforeAction($action)
     {
-       if(!Yii::app()->user->id)
-       {
+       if (!Yii::app()->user->id) {
          $this->redirect(array('site/login'));
-       }  
+       }
+
        return parent::beforeAction($action);
-    } 
+    }
 
     public function actionGetGoods($taobaoId)
     {
@@ -83,7 +83,6 @@ class GoodsController extends Controller
         ));
     }
 
-
     public function actionTest1()
     {
         //$admin_id = 0;
@@ -120,8 +119,7 @@ class GoodsController extends Controller
 
             $model->user_id = User::getUserName(Yii::app()->user->id);
 
-            if ($model->save()) 
-            {
+            if ($model->save()) {
                 //插入操作记录
                 UserLoginLog::addOperation("添加({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
@@ -157,8 +155,7 @@ class GoodsController extends Controller
                 $model->tb_id = 0;
             }
 
-            if ($model->save()) 
-            {
+            if ($model->save()) {
                 //插入操作记录
                 UserLoginLog::addOperation("修改({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
@@ -201,8 +198,8 @@ class GoodsController extends Controller
             $status = 1;
         }
         Goods::model()->updateByPk($id, array('status' => $status));
-    } 
-	/**
+    }
+    /**
      * 修改商品是否销售完状态
      */
     public function actionChangesellStatus($id)

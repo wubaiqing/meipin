@@ -48,7 +48,7 @@ class Goods extends ActiveRecord implements IArrayable
 
         return $goodsList;
     }
-	 /**
+     /**
      * 商品列表
      * @param  string  $list 是否是列表
      * @param  intger  $page 当前页数
@@ -77,24 +77,26 @@ class Goods extends ActiveRecord implements IArrayable
         ], 1800);
 
         return $goodsList;
-    }  
-	/**
+    }
+    /**
      * 数据SQL条件
      * @param  integer $cat 分类ID
      * @return object  yii dbcriteria
-	 *商品预告前天查询获取数据
+     *商品预告前天查询获取数据
      */
-	public function datatomorrow($cat, $hot){
-		$start_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 00:00:00")));//获取前一天开始时间
-		$end_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 23:59:59")));//获取前一天结束时间
-		$criteria = new CDbCriteria();
-		if($cat ==1002){
-		$criteria->addBetweenCondition('start_time',$start_time,$end_time);
-		}
-		$this->dbCriteria->mergeWith($criteria);
-		return $this;
-		
-	}
+    public function datatomorrow($cat, $hot)
+    {
+        $start_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 00:00:00")));//获取前一天开始时间
+        $end_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 23:59:59")));//获取前一天结束时间
+        $criteria = new CDbCriteria();
+        if ($cat ==1002) {
+        $criteria->addBetweenCondition('start_time',$start_time,$end_time);
+        }
+        $this->dbCriteria->mergeWith($criteria);
+
+        return $this;
+
+    }
     /**
      * 数据SQL条件
      * @param  integer $cat 分类ID

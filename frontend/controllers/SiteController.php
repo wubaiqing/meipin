@@ -65,15 +65,13 @@ class SiteController extends Controller
     {
         $this->layout = '//layouts/userBase';
         $model = new FeedBack();
-        
+
         $post = Yii::app()->request->getPost('FeedBack');
         //var_dump($post);
-        if (!empty($post)) 
-        {
+        if (!empty($post)) {
             $model->attributes = $post;
             //print_r($model->attributes);
-             if ($model->save())
-             {
+             if ($model->save()) {
                    $this->renderIndex('yes', '感谢您的建议我们将及时回馈','/');
              }
         }
@@ -86,7 +84,7 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $this->layout = '//layouts/userBase';
-        
+
         $this->render('about');
     }
 
@@ -95,7 +93,7 @@ class SiteController extends Controller
     */
     public function actionConnect()
     {
-        $this->layout = '//layouts/userBase';  
+        $this->layout = '//layouts/userBase';
         $this->render('connect');
     }
 
@@ -104,7 +102,7 @@ class SiteController extends Controller
     */
     public function actionBsrg()
     {
-        $this->layout = '//layouts/userBase';  
+        $this->layout = '//layouts/userBase';
         $this->render('bsrg');
     }
 
@@ -113,7 +111,7 @@ class SiteController extends Controller
     */
     public function actionMoreship()
     {
-        $this->layout = '//layouts/userBase';  
+        $this->layout = '//layouts/userBase';
         $this->render('moreship');
     }
 

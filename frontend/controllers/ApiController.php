@@ -13,7 +13,7 @@ class ApiController extends Controller
      */
     public function actionIphone($catId = 0)
     {
-	$cacheKey = 'meipin-api-iphone-'.$catId;
+    $cacheKey = 'meipin-api-iphone-'.$catId;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             $this->returnData(1, $result);

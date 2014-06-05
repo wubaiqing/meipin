@@ -46,7 +46,7 @@ class UserController extends Controller
                 'actions' => ['index', 'password', 'logout', 'info', 'address'],
                 'users' => ['?'],
             ]
-		], parent::accessRules());
+        ], parent::accessRules());
     }
 
     /**
@@ -88,7 +88,7 @@ class UserController extends Controller
                     Yii::app()->user->logout();
                     $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
                 }
-				$this->redirect(['site/index']);
+                $this->redirect(['site/index']);
                 Yii::app()->end();
             }
         }
@@ -138,7 +138,7 @@ class UserController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-		$this->redirect(['site/index']);//退出提示去除
+        $this->redirect(['site/index']);//退出提示去除
     }
 
     /**
@@ -170,10 +170,10 @@ class UserController extends Controller
     {
         $userId = Yii::app()->user->id;
 
-	    // 用户信息
-	    $user = User::getUser($userId);
+        // 用户信息
+        $user = User::getUser($userId);
 
-	    // 用户城市
+        // 用户城市
         $model = UsersAddress::getModel($userId);
 
         // 省份，城市
@@ -221,13 +221,13 @@ class UserController extends Controller
         $dataResult = ScoreService::saveUserAddress($this->userId, $userAddress);
 
         //返回json数据
-	$this->returnData(
-		$dataResult['status'], [
-				'message' => $dataResult['data']['message'],
-				'errors' => $dataResult['data']['errors'],
-				'isLogin' => $this->isLogin
-	    ]
-	);
+    $this->returnData(
+        $dataResult['status'], [
+                'message' => $dataResult['data']['message'],
+                'errors' => $dataResult['data']['errors'],
+                'isLogin' => $this->isLogin
+        ]
+    );
     }
 
     /**

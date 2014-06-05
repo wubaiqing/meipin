@@ -116,15 +116,13 @@ CHtml::$errorSummaryCss = 'text-warning';
     </div>
      <?php $admin_id = User::getUserName(Yii::app()->user->id);?>
 
-    
     <div class="control-group">
         <?php echo $form->labelEx($model,'admin_id', array('class' => 'control-label')); ?>
         <div class="controls">
             <span style='width:100px;height:30px;line-height:30px;'><?php echo Yii::app()->user->id;?></span>
         </div>
     </div>
-  
-     
+
     <div class="form-actions">
         <?php echo CHtml::submitButton($model->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
     </div>

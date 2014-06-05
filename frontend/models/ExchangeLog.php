@@ -115,44 +115,45 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         }
     }
 
+    /**
+     * 积分兑换礼品
+     * @param  integer $userId 用户ID
+     * @param  integer $page   当前页数
+     * @return mixed
+     */
+    public static function getWelfare($userId, $page)
+    {
+        $cacheKey = 'meipin-get-welfare-' . $userId.'-'.$page;
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        }
 
-	/**
-	 * 积分兑换礼品
-	 * @param integer $userId 用户ID
-	 * @param integer $page 当前页数
-	 * @return mixed
-	 */
-	public static function getWelfare($userId, $page)
-	{
-		$cacheKey = 'meipin-get-welfare-' . $userId.'-'.$page;
-		$result = Yii::app()->cache->get($cacheKey);
-		if (!empty($result)) {
-			return $result;
-		}
+        $welfare = self::model()->welfareDataList($userId)->paginate(Yii::app()->params['exchangeLogPageSize']);
+        $welfareList = [];
+        $welfareList['pager'] = $welfare->getPagination();
+        $welfareList['data'] = $welfare->data;
 
-		$welfare = self::model()->welfareDataList($userId)->paginate(Yii::app()->params['exchangeLogPageSize']);
-		$welfareList = [];
-		$welfareList['pager'] = $welfare->getPagination();
-		$welfareList['data'] = $welfare->data;
+        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HOUR);
 
-		Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HOUR);
+        unset($welfare);
 
-		unset($welfare);
-		return $welfareList;
-	}
+        return $welfareList;
+    }
 
-	/**
-	 * 积分兑换礼品条件
-	 * @param  integer     $cat 分类ID
-	 * @return CDbCriteria
-	 */
-	public function welfareDataList($userId)
-	{
-		$criteria = new CDbCriteria;
-		$criteria->compare('user_id', $userId);
-		$this->dbCriteria->mergeWith($criteria);
-		return $this;
-	}
+    /**
+     * 积分兑换礼品条件
+     * @param  integer     $cat 分类ID
+     * @return CDbCriteria
+     */
+    public function welfareDataList($userId)
+    {
+        $criteria = new CDbCriteria;
+        $criteria->compare('user_id', $userId);
+        $this->dbCriteria->mergeWith($criteria);
+
+        return $this;
+    }
 
     /**
      * 数据SQL条件

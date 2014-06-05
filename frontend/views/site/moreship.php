@@ -3,16 +3,16 @@
 .footer {}
 </style>
 <div id="wrap" style="height:630px">
-	<h3>友情链接</h3><br/>
-	<div id="main">
+    <h3>友情链接</h3><br/>
+    <div id="main">
         <?php
         $links = Links::getLink();
         $linknum = count($links);
         ?>
-    	<div id="lianjie">
-        	<ul>
+        <div id="lianjie">
+            <ul>
                 <?php if($linknum <=7):?>
-                   <?php for ($i=0; $i <$linknum ; $i++){?>
+                   <?php for ($i=0; $i <$linknum ; $i++) {?>
                      <li><a href="<?php echo $links[$i]->url;?>" target='_blank'><?php echo $links[$i]->image_url;?></a></li>
                     <?php }?>
                 <?php endif;?>
@@ -22,20 +22,19 @@
         <?php if($linknum >7 && $linknum<=14):?>
         <div id="lianjie">
             <ul>
-                <?php for ($i=7; $i <$linknum ; $i++){?>
+                <?php for ($i=7; $i <$linknum ; $i++) {?>
                      <li><a href="<?php echo $links[$i]->url;?>" target='_blank'><?php echo $links[$i]->image_url;?></a></li>
                     <?php }?>
-                
+
                 <br>
             </ul>
         </div>
-       <?php endif;?> 
+       <?php endif;?>
 
     </div>
 
-
     <div id="shenqing">
-    	<h3>友链申请</h3>
+        <h3>友链申请</h3>
         <p>衷心感谢您对本站的关注和支持，本站欢迎与各优秀网站交换友情链接，以达到互为推广，共同提高网站竞争力的目的。</p>
         <p>友链申请步骤：(暂时只接受文字链接申请)</p>
         <p>1.请先在贵站做好美品网的文字链接：</p>
