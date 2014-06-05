@@ -31,7 +31,7 @@ class Exchange extends ActiveRecord
             ['price', 'length', 'max' => 10],
             ['taobaoke_url, support_url', 'length', 'max' => 200],
             ['img_url', 'length', 'max' => 100],
-            ['id', 'safe'],
+            ['id,goodscolor', 'safe'],
             ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete',
                 'safe', 'on' => 'search'],
         ];

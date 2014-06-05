@@ -150,6 +150,7 @@ class ScoreService
                 'created_at' => $nowTime,
                 'goods_id' => $goods->id,
                 'remark' => $order['remark'],
+                'gdscolor' =>$order['gdscolor'],
                 'city_id' => $userAddress->city_id,
                 'address' => $userAddress->address,
                 'postcode' => $userAddress->postcode,
@@ -165,7 +166,8 @@ class ScoreService
             //更新兑换商品数量
             Exchange::model()->updateByPk($goods->id, [
                 'sale_num' => new CDbExpression('sale_num+1'),
-                'user_count' => $userCount
+                'user_count' => $userCount,
+                'goodscolor' =>$order['goodscolor'],
             ]);
             //兑换扣积分记录
             $score = new Score();
