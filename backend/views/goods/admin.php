@@ -54,7 +54,7 @@
             ),
 			array(
                 'type' => 'raw',
-                'name' => '设置',
+                'name' => '卖光设置',
                 'value' => 'CHtml::link(Goods::$statussellLabels[$data->sell_status], "javascript:void(0);", array("data-id" => $data->id, "class" => "statussell"))',
             ),
             'list_order' => array(
