@@ -50,15 +50,23 @@ class User
     {
         $frontend = Yii::getPathOfAlias('frontend');//获取前台文件目录
         $dirName=$frontend.'/runtime/cache';//获取清空文件目录
-        if($handle = opendir("$dirName")){
-           while(false !== ($item = readdir($handle))){
-           if($item != "." && $item != ".."){
-           if(is_dir("$dirName/$item")){
-                 delFileUnderDir("$dirName/$item");
-           }else{
-           if(unlink("$dirName/$item")){echo"成功删除文件： $dirName/$item<br />\n";}
-                }              
-             }
+        if($handle = opendir("$dirName"))
+        {
+           while(false !== ($item = readdir($handle)))
+           {
+                if($item != "." && $item != "..")
+                {
+                   if(is_dir("$dirName/$item"))
+                   {
+                        delFileUnderDir("$dirName/$item");
+                   }else
+                   {
+                        if(!unlink("$dirName/$item"))
+                        {
+                             echo '删除失败';
+                        }
+                   }            
+                }
            }
            closedir($handle);
          }
