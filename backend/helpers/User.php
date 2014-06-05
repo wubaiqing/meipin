@@ -17,7 +17,7 @@ class User
         'xiaotao' => '4', //刘雨
         'Guest' => '5',
         'bohe1992' => '6', //张奇
-        'zozo929' => '7', //李鑫涵 
+        'zozo929' => '7', //李鑫涵
         '小艾' => '8',
         'duoduo' => '9', //侯宝多
         'test'=>'10',
@@ -36,8 +36,11 @@ class User
      */
     public static function getUserID($id)
     {
-        $arr2 = array_flip(self::$userName);
-        return $arr2[$id];
+        if($id)
+        {
+            $arr2 = array_flip(self::$userName);
+            return $arr2[$id];
+        }
     }
     /**
      * 清空前后台缓存

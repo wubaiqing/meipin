@@ -28,6 +28,22 @@ class SiteController extends Controller
             'pager' => $goods['pager'], // 商品翻页
         ));
     }
+    /**
+     * 商品预告
+     */
+    public function actionTomorrow($page = 1, $hot = 0, $cat = 0)
+    {
+        // 收取商品
+        $goods = Goods::tomorrow($cat, $hot, $page);
+        // 渲染首页
+        $this->render('tomorrow', array(
+            'cat' => $cat, // 分类
+            'hot' => $hot, // 热门
+            'page' => $page, // 当前页
+            'goods' => $goods['data'], // 商品数据
+            'pager' => $goods['pager'], // 商品翻页
+        ));
+    }
 
     /**
      * 今天值得买首页
