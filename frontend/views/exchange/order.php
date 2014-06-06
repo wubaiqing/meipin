@@ -125,22 +125,22 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
     $("#address_save_btn").click(function () {
         $(".error").remove();
         if ($.trim($("#UsersAddress_name").val()) == "") {
-            $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>")
+            $("#UsersAddress_name").after("<span class='error'>请填写收货人姓名</span>");
 
             return false;
         }
         if ($.trim($("#userProvince").val()) == "" || $.trim($("#userProvince").val()) == "请选择") {
-            $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>")
+            $("#UsersAddress_address").after("<span class='error'>请选择你收货的省份</span>");
 
             return false;
         }
         if ($.trim($("#userCity").val()) == "" || $.trim($("#userCity").val()) == "请选择") {
-            $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>")
+            $("#UsersAddress_address").after("<span class='error'>请选择你收货的城市</span>");
 
             return false;
         }
         if ($.trim($("#UsersAddress_address").val()) == "") {
-            $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>")
+            $("#UsersAddress_address").after("<span class='error'>请填写详细地址</span>");
 
             return false;
         }
@@ -152,7 +152,7 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
             $(".error").remove();
             if (!d.data.isLogin) {
                 location.href = $("#loginUrl").val();
-            } elseif (d.status) {
+            } else if (d.status) {
                 //显示拼接地址
                 $("#address_show_area").show();
                 $(".welfare_btn").attr("address_id", d.data.address_id);
@@ -172,7 +172,8 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
     });
     User.Address.changeProvince();
     User.Address.sendMobileBindSmsCode();
-    public function validOrderConfirm()
+
+    function validOrderConfirm()
     {
         if ($(".welfare_btn").attr("address_id") != "") {
             return true;

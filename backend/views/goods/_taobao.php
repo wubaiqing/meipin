@@ -118,7 +118,7 @@ CHtml::$errorSummaryCss = 'text-warning';
         <?php echo $form->labelEx($model,'admin_id', array('class' => 'control-label')); ?>
         <div class="controls">
             <span style='width:100px;height:30px;line-height:30px;'>
-            <?php echo User::getUserID($model->user_id);?>
+            <?php if(User::getUserID($model->user_id)){echo User::getUserID($model->user_id);}else{ echo Yii::app()->user->id;} ;?>
             </span>
         </div>
     </div>
