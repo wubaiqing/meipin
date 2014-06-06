@@ -15,10 +15,6 @@
     <?php $this->renderPartial('content', array('goods' => $goods)); ?>
     <?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 </div>
-
-<?php $this->renderPartial('side'); ?>
-<?php $this->renderPartial('right'); ?>
-
 <div id="footer" class="footer">
     <?php $this->renderPartial('footer'); ?>
 </div>
