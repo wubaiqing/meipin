@@ -152,7 +152,7 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
             $(".error").remove();
             if (!d.data.isLogin) {
                 location.href = $("#loginUrl").val();
-            } elseif (d.status) {
+            } else if (d.status) {
                 //显示拼接地址
                 $("#address_show_area").show();
                 $(".welfare_btn").attr("address_id", d.data.address_id);
@@ -172,7 +172,7 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
     });
     User.Address.changeProvince();
     User.Address.sendMobileBindSmsCode();
-    public function validOrderConfirm()
+     function validOrderConfirm()
     {
         if ($(".welfare_btn").attr("address_id") != "") {
             return true;
