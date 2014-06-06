@@ -1,1 +1,2 @@
-alter table 'meipin_goods' add 'sell_status' int(11) default '1'
+ALTER TABLE meipin_goods ADD INDEX index_name (sell_status);
+
