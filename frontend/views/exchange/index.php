@@ -2,44 +2,49 @@
 $isSignDay = User::isSignDay();
 ?>
 <div id="content" class="wp">
-    <div class="w1040 clearfix">
-        <!--积分广告和积分 登录开始-->
-        <div class="pointsad-pointslog clearfix">
-            <div class="pointsad fl">
-                <div class="banner has-dots">
-                    <ul>
-                        <li style="display: block;">
-                            <a target="_blank" href="javascript:;" title="test1"><img width="650" height="210"
-                                                                                      src="/static/images/test1.jpg"
-                                                                                      alt="测试111"></a>
-                        </li>
-                    </ul>
+    <?php if (!isset($goodsType) || $goodsType == 0): ?>
+        <div class="w1040 clearfix">
+            <!--积分广告和积分 登录开始-->
+            <div class="pointsad-pointslog clearfix">
+                <div class="pointsad fl">
+                    <div class="banner has-dots">
+                        <ul>
+                            <li style="display: block;">
+                                <a target="_blank" href="javascript:;" title="test1"><img width="650" height="210"
+                                                                                          src="/static/images/test1.jpg"
+                                                                                          alt="测试111"></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="points-border fl"></div>
-            <div class="w250 fr">
-                <!-- 积分登录开始 -->
-                <div class="pointslog">
-                    <div class="pointslog-head clearfix">
-                        <div class="pointslog-head-left fl"><a href="/user/register">免费注册</a></div>
+                <div class="points-border fl"></div>
+                <div class="w250 fr">
+                    <!-- 积分登录开始 -->
+                    <div class="pointslog">
+                        <div class="pointslog-head clearfix">
+                            <div class="pointslog-head-left fl"><a href="/user/register">免费注册</a></div>
 
+                        </div>
+                        <div class="pointslog-body"><p>欢迎来到美品积分商城，登陆后可查看您的个 人积分信息。</p></div>
+                        <div class="pointslog-foot">
+                            <dl class="clearfix">
+                                <dt class="fl">
+                                <a class="J_qiandao <?php echo!$isSignDay ? 'qiandao unsign' : 'cheng signed'; ?>  " id="jryq2" href="javascript:void(0);"><?php
+                                    $isSignDay = User::isSignDay();
+                                    echo!$isSignDay ? '签到领积分' : '今日已签';
+                                    ?></a>
+                                </dt>
+                                <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index') ?>">积分明细</a>
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
-                    <div class="pointslog-body"><p>欢迎来到美品积分商城，登陆后可查看您的个 人积分信息。</p></div>
-                    <div class="pointslog-foot">
-                        <dl class="clearfix">
-                            <dt class="fl">
-                            <a class="J_qiandao <?php echo!$isSignDay ? 'qiandao unsign' : 'cheng signed'; ?>  " id="jryq2" href="javascript:void(0);"><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签'; ?></a>
-                            </dt>
-                            <dd class="fl"><a href="<?php echo Yii::app()->createUrl('score/index') ?>">积分明细</a>
-                            </dd>
-                        </dl>
-                    </div>
+                    <!-- 积分登录结束 -->
                 </div>
-                <!-- 积分登录结束 -->
             </div>
+            <!--积分广告和积分 登录结束-->
         </div>
-        <!--积分广告和积分 登录结束-->
-    </div>
+<?php endif; ?>
     <!-- 积分兑换商品开始 -->
     <div class="pointsgood mt20">
         <div class="pointsgood-body pb30 tab-pane" id="welfare2" style="display:block;">
@@ -67,17 +72,17 @@ $isSignDay = User::isSignDay();
                             </dl>
                         </div>
                     </li>
-                <?php endforeach; ?>
+<?php endforeach; ?>
             </ul>
         </div>
     </div>
     <!-- 积分兑换商品开始 -->
     <!-- 分页开始 -->
-    <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
+<?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
     <!-- 分页结束 -->
 </div>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         //懒加载
         $("img.exchange-img-list").scrollLoading();
         //滚动图

@@ -129,7 +129,7 @@ class ExchangeController extends Controller
         $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page);
+        $data = $exchangeModel->showExchangeGoodsList($page,0);
         //渲染頁面
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
@@ -184,6 +184,13 @@ class ExchangeController extends Controller
      * 幸运抽奖
      */
     public function actionRaffle(){
-        
+        $data = [];
+        $page = Yii::app()->request->getQuery('page');
+        $page = $page === null ? 0 : $page;
+        //积分兑换首页商品列表
+        $exchangeModel = new Exchange();
+        $data = $exchangeModel->showExchangeGoodsList($page,1);
+        //渲染頁面
+        $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages'],'goodsType'=>1]);
     }
 }

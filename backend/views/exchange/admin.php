@@ -28,13 +28,13 @@
             'goods_type' => [
                 'name' => 'goods_type',
                 'value' => 'Exchange::$goodsType[$data->goods_type]',
-                'htmlOptions' => array('width' => '60'),
+                'htmlOptions' => ['width' => '60'],
             ],
-            'name' => array(
+            'name' => [
                 'type' => 'raw',
                 'name' => 'name',
                 'value' => '"<a href=\"$data->taobaoke_url\"  target=\"_blank\">".$data->name."</a>"',
-            ),
+            ],
             'goodscolor' => [
                 'name' => 'goodscolor',
                 'htmlOptions' => [
