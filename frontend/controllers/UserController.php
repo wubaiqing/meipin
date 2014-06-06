@@ -69,7 +69,8 @@ class UserController extends Controller
      */
     public function actionLogin($referer = '')
     {
-        if (!Yii::app()->user->isGuest) {
+        if (!Yii::app()->user->isGuest) 
+        {
             $this->redirect(['site/index']);
             Yii::app()->end();
         }
@@ -88,7 +89,13 @@ class UserController extends Controller
                     Yii::app()->user->logout();
                     $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
                 }
-                $this->redirect(['site/index']);
+                if ($referer) {
+                    $this->redirect($referer);
+                }else
+                {
+                    $this->redirect(['site/index']);
+                }
+                
                 Yii::app()->end();
             }
         }

@@ -66,7 +66,7 @@ class ExchangeController extends Controller
         $id = Yii::app()->request->getParam("id", 0);
         $goodscolor = Yii::app()->request->getParam("gdcolor",'');
         if (!$this->isLogin) {
-            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id])]);
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id,'gdcolor'=>$goodscolor])]);
             $this->redirect($url);
             Yii::app()->end();
         }
