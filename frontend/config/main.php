@@ -20,7 +20,6 @@ return [
                     'site/search' => 'site/search',
                     'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
                     'exchange/<action:\w+>' => 'exchange/<action>',
-                    'exchange/index' => 'exchange/index',
                     'user/login' => 'user/login',
                     'feedback' => 'site/feedback',
                     'tomorrow'  => 'site/tomorrow/cat/1002'

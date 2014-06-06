@@ -2,10 +2,17 @@
 
 /**
  * 积分兑换的model
+ * @property integer $goods_type 商品类型
  * @author zhangchao
  */
 class Exchange extends CActiveRecord
 {
+
+    /**
+     * 商品类型
+     * @var array 
+     */
+    public static $goodsType = [0 => '兑换商品', 1 => '抽奖商品'];
 
     /**
      * 表名
@@ -34,7 +41,7 @@ class Exchange extends CActiveRecord
             ['name, support_name',
                 'length',
                 'max' => 50],
-            ['num, integral, start_time, end_time, taobao_id',
+            ['num, integral, start_time, end_time, taobao_id, goods_type',
                 'length',
                 'max' => 11],
             ['price',
@@ -48,7 +55,7 @@ class Exchange extends CActiveRecord
                 'max' => 100],
             ['id,goodscolor',
                 'safe'],
-            ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete',
+            ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete, goods_type',
                 'safe',
                 'on' => 'search'],
         ];
@@ -77,7 +84,8 @@ class Exchange extends CActiveRecord
             'description' => '描述',
             'img_url' => '图片',
             'is_delete' => '是否删除0否 1是',
-            'goodscolor'=>'商品属性'
+            'goodscolor' => '商品属性',
+            'goods_type' => '商品类型',
         ];
     }
 
@@ -103,6 +111,7 @@ class Exchange extends CActiveRecord
         $criteria->compare('description', $this->description, true);
         $criteria->compare('img_url', $this->img_url, true);
         $criteria->compare('is_delete', 0); //默认只查询未删除的
+        $criteria->compare('goods_type', $this->goods_type);
         $criteria->order = 't.id desc';
 
         return new CActiveDataProvider($this, [

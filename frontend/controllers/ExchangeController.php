@@ -180,4 +180,10 @@ class ExchangeController extends Controller
         Yii::app()->end();
     }
 
+    /**
+     * 幸运抽奖
+     */
+    public function actionRaffle(){
+        
+    }
 }
