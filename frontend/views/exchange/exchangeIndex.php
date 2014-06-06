@@ -28,7 +28,7 @@
     </div>
 
     <div class="right dhdeal">
-        <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="POST">
+        <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="POST" <?php if($data['exchange']->goodscolor):?> onsubmit="return checkcolor()" <?php endif;?> >
             <?php
             $start = "zt3";
             if ($data['exchange']->start_time > time()) {
@@ -128,11 +128,19 @@
          gdcolornum = $(this).attr("stock");
          if (gdcolornum!=0) {
             $(".goodcolor a").attr("style",'');
-            gdcolor = $(this).html();
+            gdcolor = $(this).html(); //颜色
             $(this).attr("style","border: 2px solid red");
             $("#gdcolor").val(gdcolor);
          }
      });
     });
-
+  function checkcolor () 
+  {
+      if($("#gdcolor").val() == '')
+      {
+        alert('请选择一个型号');
+        return false;
+      }
+      return true;
+  }
 </script>

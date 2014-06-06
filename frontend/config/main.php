@@ -22,7 +22,8 @@ return [
                     'exchange/<action:\w+>' => 'exchange/<action>',
                     'exchange/index' => 'exchange/index',
                     'user/login' => 'user/login',
-                    'feedback' => 'site/feedback'
+                    'feedback' => 'site/feedback',
+                    'tomorrow'  => 'site/tomorrow/cat/1002'
                 ],
             ],
             'user' => [
