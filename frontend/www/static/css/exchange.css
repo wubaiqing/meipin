@@ -376,7 +376,7 @@
 .c_red{color:red;}
 .send_code .sendBtn{border:1px solid #f0f0f0;}
 
-.goodcolor {width:280px;}
+.goodcolor {width:400px;}
 .goodcolor a{display: inline-block;width: 75px;height: 24px;line-height: 24px;text-align: center;border: 1px solid #CCC;margin: 8px 10px 10px 0px;color: #000;padding: 1px;overflow:hidden;float: left;
     }
 .goodcolor a.be{color:#CCC;}
