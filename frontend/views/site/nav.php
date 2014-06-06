@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
 $(document).ready(function(e) {
 	$("#nav p").hover(function(){

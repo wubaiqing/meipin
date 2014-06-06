@@ -14,7 +14,7 @@
                 ]
             ]);
             ?>
-            <?php echo $form->errorSummary($model, ''); ?>
+            <?php echo $form->errorSummary($model,'','',$htmlOptions=array ('style'=>'color:red;text-align:center;font-size:14px;')); ?>
             <p>
                 <em>用户名：</em>
                 <?php echo $form->textField($model, 'username', array('class' => 'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
