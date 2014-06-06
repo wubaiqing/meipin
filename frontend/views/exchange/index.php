@@ -44,7 +44,19 @@ $isSignDay = User::isSignDay();
             </div>
             <!--积分广告和积分 登录结束-->
         </div>
-<?php endif; ?>
+    <?php endif; ?>
+    <!-- 抽奖商品 -->
+    <div class="w1040 clearfix"  style='margin-top: 20px;display: inline;'>
+        <span style='font-size: 20px;font: 22px/25px "微软雅黑";'>
+            <em style='font: bold 38px "arial";color: #999;background: url(http://z0.tuanimg.com/v1/jifen/auction/img/nbg.png) no-repeat -295px -50px;'>
+                &nbsp;
+            </em>
+            正在进行的抽奖
+        </span>
+        <span  style='font: 14px "微软雅黑";float: right;padding: 10px;'>
+            <a href='<?php echo Yii::app()->createUrl("exchange/raffle",['time'=>'history'])?>'>历史抽奖活动>></a>
+        </span>
+    </div>
     <!-- 积分兑换商品开始 -->
     <div class="pointsgood mt20">
         <div class="pointsgood-body pb30 tab-pane" id="welfare2" style="display:block;">
@@ -72,13 +84,13 @@ $isSignDay = User::isSignDay();
                             </dl>
                         </div>
                     </li>
-<?php endforeach; ?>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
     <!-- 积分兑换商品开始 -->
     <!-- 分页开始 -->
-<?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
+    <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
     <!-- 分页结束 -->
 </div>
 <script type="text/javascript">

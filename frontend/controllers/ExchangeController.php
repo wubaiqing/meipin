@@ -186,6 +186,9 @@ class ExchangeController extends Controller
     public function actionRaffle(){
         $data = [];
         $page = Yii::app()->request->getQuery('page');
+        //进行中或历史抽奖
+        $time = Yii::app()->request->getQuery('time','');
+        
         $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
