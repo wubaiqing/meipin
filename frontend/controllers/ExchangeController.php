@@ -44,7 +44,7 @@ class ExchangeController extends Controller
             foreach ($gdcolorarr as $key => $value) {
                 if ($value) {
                     $gdcolorstr2 = explode(':', $value);
-                    $arr[$key]['gdcolornum'] = $gdcolorstr2[1]?$gdcolorstr2[1]:0;
+                    $arr[$key]['gdcolornum'] = $gdcolorstr2[1] ? $gdcolorstr2[1] : 0;
                     $arr[$key]['gdcolorname'] = $gdcolorstr2[0];
                 }
             }
@@ -64,17 +64,16 @@ class ExchangeController extends Controller
     public function actionOrder()
     {
         $id = Yii::app()->request->getParam("id", 0);
-        $goodscolor = Yii::app()->request->getParam("gdcolor",'');
+        $goodscolor = Yii::app()->request->getParam("gdcolor", '');
         if (!$this->isLogin) {
-            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id,'gdcolor'=>$goodscolor])]);
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor])]);
             $this->redirect($url);
             Yii::app()->end();
         }
         $goodsId = Des::decrypt($id);
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
-        if ( $goodscolor && !empty($dataResult['data']['exchange'])) 
-        {
+        if ($goodscolor && !empty($dataResult['data']['exchange'])) {
             $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
             $gdcolorarr = explode(';', $gdcolorstr);
             //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 )
@@ -83,9 +82,9 @@ class ExchangeController extends Controller
                 if ($value) {
                     $gdcolorstr2 = explode(':', $value);
                     if ($gdcolorstr2[0] == $goodscolor) {
-                        $strstr .= $gdcolorstr2[0].":".($gdcolorstr2[1]-1).";";
+                        $strstr .= $gdcolorstr2[0] . ":" . ($gdcolorstr2[1] - 1) . ";";
                     } else {
-                        $strstr .= $gdcolorstr2[0].":".$gdcolorstr2[1].";";
+                        $strstr .= $gdcolorstr2[0] . ":" . $gdcolorstr2[1] . ";";
                     }
                 }
             }
@@ -99,7 +98,7 @@ class ExchangeController extends Controller
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'],'gdscolor'=>$goodscolor]]);
+        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
     }
 
     /**
@@ -129,7 +128,7 @@ class ExchangeController extends Controller
         $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page,0);
+        $data = $exchangeModel->showExchangeGoodsList($page, 0);
         //渲染頁面
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
@@ -183,17 +182,24 @@ class ExchangeController extends Controller
     /**
      * 幸运抽奖
      */
-    public function actionRaffle(){
+    public function actionRaffle()
+    {
         $data = [];
         $page = Yii::app()->request->getQuery('page');
         //进行中或历史抽奖
-        $time = Yii::app()->request->getQuery('time','');
-        
+        $timeLine = Yii::app()->request->getQuery('time', '');
+
         $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page,1);
+        $data = $exchangeModel->showExchangeGoodsList($page, 1, $timeLine);
         //渲染頁面
-        $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages'],'goodsType'=>1]);
+        $this->render('index', [
+            'data' => $data['goods'],
+            'pager' => $data['pages'],
+            'goodsType' => 1,
+            'timeLine' => $timeLine,
+        ]);
     }
+
 }

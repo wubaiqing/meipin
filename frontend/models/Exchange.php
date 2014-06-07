@@ -200,16 +200,25 @@ class Exchange extends ActiveRecord
      * 积分兑换首页商品列表
      * @param integer $currentPage 分页页码
      * @param integer $goodsType 商品类型
+     * @param string $timeLine 是否过期商品
      * @return array
      * @author zhangchao
      */
-    public function showExchangeGoodsList($currentPage = 0, $goodsType = 0)
+    public function showExchangeGoodsList($currentPage = 0, $goodsType = 0, $timeLine = '')
     {
+        $time = time();
         //缓存的key
-        $cacheKey = 'exchange_list_' . $currentPage . "_" . $goodsType;
+        $cacheKey = 'exchange_list_' . md5(serialize(func_get_args()));
         $criteria = new CDbCriteria();
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
+        
+        if(empty($timeLine)){
+            $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
+        }else if($timeLine == 'history'){
+            $criteria->addCondition('end_time <= ' . $time);
+        }
+        
         $criteria->compare('goods_type', $goodsType);
 
         //分页类开始
