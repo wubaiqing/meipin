@@ -41,6 +41,7 @@ class ExchangeController extends Controller
         if (isset($_POST['Exchange'])) {
             $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
             if ($exchangeModel->save()) {
+                User::deleteCache();
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
@@ -59,6 +60,7 @@ class ExchangeController extends Controller
         if (isset($_POST['Exchange'])) {
             $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
             if ($exchangeModel->save()) {
+                User::deleteCache();
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
