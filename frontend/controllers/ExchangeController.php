@@ -194,7 +194,7 @@ class ExchangeController extends Controller
         $exchangeModel = new Exchange();
         $data = $exchangeModel->showExchangeGoodsList($page, 1, $timeLine);
         //渲染頁面
-        $this->render('index', [
+        $this->render('indexRaffle', [
             'data' => $data['goods'],
             'pager' => $data['pages'],
             'goodsType' => 1,

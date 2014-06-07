@@ -149,4 +149,33 @@ class SiteController extends Controller
         header("Content-Disposition: attachment; filename=美品网.url;");
         echo $Shortcut;
     }
+    
+    /**
+     * 幸运抽奖
+     */
+    public function actionRaffle($page = 1, $hot = 0, $cat = 0)
+    {
+        $data = [];
+        //进行中或历史抽奖
+        $timeLine = Yii::app()->request->getQuery('time', '');
+
+        //积分兑换首页商品列表
+        $exchangeModel = new Exchange();
+        $data = $exchangeModel->showExchangeGoodsList($page, 1, $timeLine);
+        //渲染頁面
+        $this->render('/exchange/indexRaffle', [
+//            'data' => $data['goods'],
+//            'pager' => $data['pages'],
+//            'goodsType' => 1,
+            'timeLine' => $timeLine,
+            
+            
+            'cat' => $cat, // 分类
+            'hot' => $hot, // 热门
+            'page' => $page, // 当前页
+            'goods' => $data['goods'], // 商品数据
+            'pager' => $data['pages'], // 商品翻页
+        ]);
+    }
+    
 }
