@@ -9,8 +9,8 @@
                 <div class="deal raffle">
                     <div class="">
                         <p>
-                            <a href="<?php echo $goodsUrl;?>" target="_blank">
-                                <img class="goods-item-img" data-url="<?php echo $item['img_url']?>" src="http://www.meipin.com/static/images/lazyloading.jpg" title="冰丝蔓藤沙发垫[多规格可选] 6.8元包邮" alt="冰丝蔓藤沙发垫[多规格可选] 6.8元包邮" width="290" height="190">
+                            <a href="<?php echo $goodsUrl; ?>" target="_blank">
+                                <img class="goods-item-img" data-url="<?php echo $item['img_url'] ?>" src="http://www.meipin.com/static/images/lazyloading.jpg" title="<?php echo $item['name'] ?>" alt="<?php echo $item['name'] ?>" width="290" height="190">
                             </a>
                         </p>
                         <p class="time" date='<?php echo date("Y-m-d H:i:s", $item['end_time']) ?>' url='<?php echo $goodsUrl ?>'>
@@ -127,4 +127,6 @@
             fnTimeCountDown(d, $(this).find("em"), $(this).attr("url"));
         });
     });
+
+
 </script>
