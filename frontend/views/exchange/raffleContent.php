@@ -3,7 +3,7 @@
     <div class="area">
         <?php
         foreach ($goods as $item) :
-            $goodsUrl = Yii::app()->createUrl("exchange/reffle", ['id' => Des::encrypt($item['id'])]);
+            $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item['id'])]);
             ?>
             <div class="dealbox">
                 <div class="deal raffle">

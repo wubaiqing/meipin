@@ -182,23 +182,30 @@ class ExchangeController extends Controller
     /**
      * 幸运抽奖
      */
-    public function actionRaffle()
+    public function actionRaffle($id = 0, $page = 1)
     {
-        $data = [];
-        $page = Yii::app()->request->getQuery('page');
-        //进行中或历史抽奖
-        $timeLine = Yii::app()->request->getQuery('time', '');
+        $goodsId = Des::decrypt($id);
+        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page);
+        if (!$dataResult['status']) {
+            $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
+        }
 
-        $page = $page === null ? 0 : $page;
-        //积分兑换首页商品列表
-        $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page, 1, $timeLine);
+        $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
+        if ($gdcolorstr) {
+            $gdcolorarr = explode(';', $gdcolorstr);
+            foreach ($gdcolorarr as $key => $value) {
+                if ($value) {
+                    $gdcolorstr2 = explode(':', $value);
+                    $arr[$key]['gdcolornum'] = $gdcolorstr2[1] ? $gdcolorstr2[1] : 0;
+                    $arr[$key]['gdcolorname'] = $gdcolorstr2[0];
+                }
+            }
+            $dataResult['data']['exchange']->goodscolor = $arr;
+        }
         //渲染頁面
-        $this->render('indexRaffle', [
-            'data' => $data['goods'],
-            'pager' => $data['pages'],
-            'goodsType' => 1,
-            'timeLine' => $timeLine,
+        $this->render('exchangeIndex', [
+            'data' => $dataResult['data'],
+            'params' => ['goodsId' => $id,]
         ]);
     }
 
