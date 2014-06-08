@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 美品网首页
  * @author wubaiqing<wubaiqing@vip.qq.com>
@@ -7,6 +8,7 @@
  */
 class SiteController extends Controller
 {
+
     /**
      * @var string $layout 继承视图
      */
@@ -28,6 +30,7 @@ class SiteController extends Controller
             'pager' => $goods['pager'], // 商品翻页
         ));
     }
+
     /**
      * 商品预告
      */
@@ -59,8 +62,8 @@ class SiteController extends Controller
     }
 
     /**
-    *  意見反饋
-    */
+     *  意見反饋
+     */
     public function actionfeedback()
     {
         $this->layout = '//layouts/userBase';
@@ -71,16 +74,16 @@ class SiteController extends Controller
         if (!empty($post)) {
             $model->attributes = $post;
             //print_r($model->attributes);
-             if ($model->save()) {
-                   $this->renderIndex('yes', '感谢您的建议我们将及时回馈','/');
-             }
+            if ($model->save()) {
+                $this->renderIndex('yes', '感谢您的建议我们将及时回馈', '/');
+            }
         }
-        $this->render('feedback',['model'=>$model]);
+        $this->render('feedback', ['model' => $model]);
     }
 
     /**
-    *  关于我们
-    */
+     *  关于我们
+     */
     public function actionAbout()
     {
         $this->layout = '//layouts/userBase';
@@ -89,17 +92,17 @@ class SiteController extends Controller
     }
 
     /**
-    *  联系我们
-    */
+     *  联系我们
+     */
     public function actionConnect()
     {
         $this->layout = '//layouts/userBase';
         $this->render('connect');
     }
 
-   /**
-    *  商家报名
-    */
+    /**
+     *  商家报名
+     */
     public function actionBsrg()
     {
         $this->layout = '//layouts/userBase';
@@ -107,8 +110,8 @@ class SiteController extends Controller
     }
 
     /**
-    *  商家报名
-    */
+     *  商家报名
+     */
     public function actionMoreship()
     {
         $this->layout = '//layouts/userBase';
@@ -133,8 +136,8 @@ class SiteController extends Controller
     }
 
     /**
-    *  xiazai
-    */
+     *  xiazai
+     */
     public function actionXiazai()
     {
 
@@ -149,27 +152,17 @@ class SiteController extends Controller
         header("Content-Disposition: attachment; filename=美品网.url;");
         echo $Shortcut;
     }
-    
+
     /**
      * 幸运抽奖
      */
-    public function actionRaffle($page = 1, $hot = 0, $cat = 0)
+    public function actionRaffle($page = 1, $hot = 0, $cat = 0, $t = '')
     {
-        $data = [];
-        //进行中或历史抽奖
-        $timeLine = Yii::app()->request->getQuery('time', '');
-
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page, 1, $timeLine);
+        $data = $exchangeModel->showExchangeGoodsList($page, 1, $t);
         //渲染頁面
         $this->render('/exchange/indexRaffle', [
-//            'data' => $data['goods'],
-//            'pager' => $data['pages'],
-//            'goodsType' => 1,
-            'timeLine' => $timeLine,
-            
-            
             'cat' => $cat, // 分类
             'hot' => $hot, // 热门
             'page' => $page, // 当前页
@@ -177,5 +170,5 @@ class SiteController extends Controller
             'pager' => $data['pages'], // 商品翻页
         ]);
     }
-    
+
 }
