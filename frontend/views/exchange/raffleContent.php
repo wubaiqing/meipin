@@ -9,15 +9,21 @@
                 <div class="deal raffle">
                     <div class="">
                         <p>
-                            <a href="/out/50f227fb8aa40834.html" target="_blank">
-                                <img class="goods-item-img" data-url="http://static.meipin.com/static/images/2014/06/06/7AhFD1402021025539124a135b94.jpg" src="http://static.meipin.com/static/images/2014/06/06/7AhFD1402021025539124a135b94.jpg" title="冰丝蔓藤沙发垫[多规格可选] 6.8元包邮" alt="冰丝蔓藤沙发垫[多规格可选] 6.8元包邮" width="290" height="190">
+                            <a href="<?php echo $goodsUrl;?>" target="_blank">
+                                <img class="goods-item-img" data-url="<?php echo $item['img_url']?>" src="http://www.meipin.com/static/images/lazyloading.jpg" title="冰丝蔓藤沙发垫[多规格可选] 6.8元包邮" alt="冰丝蔓藤沙发垫[多规格可选] 6.8元包邮" width="290" height="190">
                             </a>
                         </p>
                         <p class="time" date='<?php echo date("Y-m-d H:i:s", $item['end_time']) ?>' url='<?php echo $goodsUrl ?>'>
                             <?php
                             $md = date("Y", $item['end_time']) > date("Y") ? date("Y.n.j", $item['end_time']) : date("n.j", $item['end_time']);
-                            ?>
-                            <span>截至<?php echo $md ?>日<i><?php echo date("H:i", $item['end_time']) ?></i></span><em></em>
+//                            echo date("Y年n月j日", $item['end_time']).":".$item['end_time']. ":". time();
+                            if ($item['end_time'] > time()):
+                                ?>
+                                <span>截至<?php echo $md ?>日<i><?php echo date("H:i", $item['end_time']) ?></i></span>
+                            <?php else: ?>
+                                <span><?php echo date("Y年n月j日", $item['end_time']) ?>结束</span>
+                            <?php endif; ?>
+                            <em></em>
                         </p>
                         <h2>
                             <strong>
@@ -30,7 +36,7 @@
                             </a>
                         </h2>
                         <p>
-                            <em><?php echo 29 ?>人已参与</em><span>价值：<?php echo $item['price'] ?>元</span> 中奖名额：<b><?php echo 1 ?></b>
+                            <em><?php echo $item['user_count'] ?>人已参与</em><span>价值：<?php echo $item['price'] ?>元</span> 中奖名额：<b><?php echo $item['limit_count'] ?></b>
                         </p>
                         <h4 class="<?php echo ($history == 'history') ? 'raffle_history' : ''; ?>">
                             <span>
@@ -54,7 +60,7 @@
     <div style="clear:both;"></div>
 </div>
 <div id="contentD" class="area">
-    <a href="<?php echo Yii::app()->createUrl("site/raffle", ['cat' => $cat, 'history' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
+    <a href="<?php echo Yii::app()->createUrl("site/raffle", [ 't' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
 </div>
 <script type="text/javascript">
 
@@ -62,7 +68,7 @@
      * http://www.zhangxinxu.com/
      * 倒计时的实现
      */
-    var fnTimeCountDown = function(d, o,url) {
+    var fnTimeCountDown = function(d, o, url) {
         var f = {
             zero: function(n) {
                 var n = parseInt(n, 10);
@@ -103,8 +109,8 @@
                 str += "<b>" + f.dv().hour + "</b>小时";
                 str += "<b>" + f.dv().mini + "</b>分";
                 str += "<b>" + f.dv().sec + "</b>秒";
-                if ( f.dv().sec =='00' && f.dv().mini =='00' && f.dv().hour =='00' && f.dv().day =='00') {
-                    $(o).html("<a href="+url+" target='_blank'>查看結果>><a>");
+                if (f.dv().sec == '00' && f.dv().mini == '00' && f.dv().hour == '00' && f.dv().day == '00') {
+                    $(o).html("<a href=" + url + " target='_blank'>查看結果>><a>");
                 } else {
                     $(o).html(str);
                 }
@@ -118,7 +124,7 @@
             var str = $(this).attr("date").toString();
             str = str.replace(/-/g, "/");
             var d = new Date(str);
-            fnTimeCountDown(d, $(this).find("em"),$(this).attr("url"));
+            fnTimeCountDown(d, $(this).find("em"), $(this).attr("url"));
         });
     });
 </script>

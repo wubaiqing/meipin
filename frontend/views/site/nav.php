@@ -5,7 +5,7 @@
         <a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1000) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/index', array('cat' => 1000));?>">九块九包邮<i></i></a>
         <a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1001) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/index', array('cat' => 1001));?>">聚美品<i></i></a>
         <a href="<?php echo $this->createUrl('exchange/index');?>" class="<?php echo (Yii::app()->controller->action->id == 'index') ? 'on' : ''; ?>">积分兑换<i></i></a>
-        <a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1003) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/raffle', array('cat' => 1003));?>">幸运抽奖<i></i></a>
+        <a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1003) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/raffle');?>">幸运抽奖<i></i></a>
         <a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1002) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('/tomorrow');?>">明日预告<i></i></a>
         <span class="n"></span>
     </div>

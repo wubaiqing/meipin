@@ -24,7 +24,7 @@ class Exchange extends ActiveRecord
     {
         return [
             ['name, taobaoke_url, support_url, img_url', 'required'],
-            ['need_level, is_delete', 'numerical', 'integerOnly' => true],
+            ['need_level, is_delete,limit_count', 'numerical', 'integerOnly' => true],
             ['price', 'numerical', 'integerOnly' => false],
             ['name, support_name', 'length', 'max' => 50],
             ['num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11],
