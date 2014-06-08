@@ -20,6 +20,7 @@ return [
                     'out/<id:.+?>.html' => 'site/out',
                     'site/search' => 'site/search',
                     'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
+                    'exchange/raffle_<id:.+?>.html' => 'exchange/raffle',
                     'exchange/<action:\w+>' => 'exchange/<action>',
                     'user/login' => 'user/login',
                     'feedback' => 'site/feedback',

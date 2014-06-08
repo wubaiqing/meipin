@@ -156,15 +156,15 @@ class SiteController extends Controller
     /**
      * 幸运抽奖
      */
-    public function actionRaffle($page = 1, $hot = 0, $cat = 0, $t = '')
+    public function actionRaffle($page = 1, $cat = 0, $history = '')
     {
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page, 1, $t);
+        $data = $exchangeModel->showExchangeGoodsList($page, 1, $history);
         //渲染頁面
         $this->render('/exchange/indexRaffle', [
             'cat' => $cat, // 分类
-            'hot' => $hot, // 热门
+            'history'=>$history,//显示历史抽奖数据
             'page' => $page, // 当前页
             'goods' => $data['goods'], // 商品数据
             'pager' => $data['pages'], // 商品翻页

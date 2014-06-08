@@ -12,7 +12,7 @@
 
 <div id="content" class="wp">
     <?php // $this->renderPartial('menuWp', array('pager' => $pager)); ?>
-    <?php $this->renderPartial('/exchange/raffleContent', array('goods' => $goods,'cat'=>$cat)); ?>
+    <?php $this->renderPartial('/exchange/raffleContent', array('goods' => $goods,'cat'=>$cat,'history'=>$history)); ?>
     <?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 </div>
 
