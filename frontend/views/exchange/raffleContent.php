@@ -46,7 +46,7 @@
                                 </em>
                             </span>
                             <?php if ($history == 'history'): ?>
-                                <a class="raffle_history">我要抽奖</a>
+                                <a class="raffle_history">已结束</a>
                             <?php else: ?>
                                 <a class="raffle" href="<?php echo $goodsUrl ?>" target="_blank">我要抽奖</a>
                             <?php endif; ?>

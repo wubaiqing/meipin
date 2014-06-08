@@ -46,7 +46,7 @@ var fnTimeCountDown = function(d, o, url) {
             str += "<b>" + f.dv().mini + "</b>分";
             str += "<b>" + f.dv().sec + "</b>秒";
             if (f.dv().sec == '00' && f.dv().mini == '00' && f.dv().hour == '00' && f.dv().day == '00') {
-                $(o).html("<a href=" + url + " target='_blank'>查看結果>><a>");
+                $(o).html("<a href=" + url + " target='_blank'>查看结果>><a>");
             } else {
                 $(o).html(str);
             }
