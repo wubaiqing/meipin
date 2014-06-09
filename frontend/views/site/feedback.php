@@ -1,7 +1,7 @@
 <?php
 $form = $this->beginWidget('CActiveForm');
 ?>
-<div id="wrap">
+<div id="wrap_p">
     <p>欢迎提出您的宝贵意见和建议！您的意见我们会认真考虑并采纳。<br>如果您有什么想淘的宝贝，也可以跟我们说说，我们会帮您实现！</p>
 
         <div>

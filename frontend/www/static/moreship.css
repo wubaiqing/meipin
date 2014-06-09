@@ -10,17 +10,17 @@ li img {display:block;}
 body {font-family:"微软雅黑";}
 br {clear:both;font-size:0;line-height:0;}
 
-#wrap {
+#wrap_ship {
 	height:1200px;
-	padding-left:50px;
+	padding-left:280px;
 }
-#wrap h3 {
-	font-family:"黑体";
+#wrap_ship h3 {
+	font-family:"宋体";
 	font-size:20px;
 	color:#cc0000;
 	padding:50px 0 35px 0;
 }
-#main {
+#main_ship {
 	width:960px;
 	border-top:1px solid #e5e5e5;
 	padding-bottom:30px;
@@ -40,7 +40,7 @@ br {clear:both;font-size:0;line-height:0;}
 	color:#666666;
 	display:block;
 }
-#wrap a:hover {
+#wrap_ship a:hover {
 	color:red;
 }
 #shenqing h3 {
@@ -50,7 +50,7 @@ br {clear:both;font-size:0;line-height:0;}
 }
 #shenqing p {
 	font-family:"宋体";
-	font:12px;
+	font-size:16px;
 	color:#333;
 	line-height:18px;
 	padding-bottom:10px;

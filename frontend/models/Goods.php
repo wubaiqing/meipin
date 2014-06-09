@@ -93,8 +93,13 @@ class Goods extends ActiveRecord implements IArrayable
 		if($cat ==1002){
 		$criteria->addBetweenCondition('start_time',$start_time,$end_time);
 		}
-		$this->dbCriteria->mergeWith($criteria);
-		return $this;
+		//定时查询预告00:00:00到16:00:00
+		$tu_time=$start_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 00:00:00")));//获取前一天开始时间
+		$four_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 15:59:59")));//获取前一天16点时间
+
+			$this->dbCriteria->mergeWith($criteria);
+			return $this;
+	
 		
 	}
 

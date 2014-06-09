@@ -1,4 +1,4 @@
-<div id="wrap" style='margin-top:38px;'>
+<div id="wrap_p" style='margin-top:38px;'>
     <div id="top">
       <h3 style='font-size:16px;'>美品网：关于我们</h3>
       <br/>
