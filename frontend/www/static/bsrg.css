@@ -10,21 +10,11 @@ li img {display:block;}
 body {font-family:"微软雅黑";}
 br {clear:both;font-size:0;line-height:0;}
 
-#wrap {
+#wrap_bsrg{
 	margin:auto;
 	width:988px;
 }
-#nav {
-	height:42px;
-	background-color:#d9d9d9;
-	margin-top:15px;
-	border-top:1px solid #fafafa;
-	border-left:1px solid #a8a8a8;
-	border-right:1px solid #a8a8a8;
-	border-bottom:1px solid #8b9298;
-	box-shadow:2px 3px 2px #8b9298;
-}
-#nav p {
+#nav_bsrg p {
 	font-family:"微软雅黑";
 	font-size:24px;
 	color:#e93d3d;
@@ -32,21 +22,21 @@ br {clear:both;font-size:0;line-height:0;}
 	padding:0 80px 0 20px;
 	float:left;
 }
-#nav ul {
+#nav_bsrg ul {
 	padding-top:10px;
 	
 }
-#nav ul li {
+#nav_bsrg ul li {
 	float:left;
 	width:110px;
 	position:relative;
 }
-#nav ul li img {
+#nav_bsrg ul li img {
 	position:absolute;
 	top:-10px;
 	left:80px;
 }
-#nav ul li a {
+#nav_bsrg ul li a {
 	font-family:"微软雅黑";
 	font-size:16px;
 	color:#626262;
@@ -67,7 +57,7 @@ br {clear:both;font-size:0;line-height:0;}
 	padding-top:15px;
 }
 #table {
-	height:930px;
+	height:400px;
 	margin-top:20px;
 	border:1px solid #ccc;
 }

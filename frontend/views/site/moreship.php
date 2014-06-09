@@ -2,9 +2,9 @@
 <style>
 .footer {}
 </style>
-<div id="wrap" style="height:630px">
+<div id="wrap_ship" style="height:630px">
     <h3>友情链接</h3><br/>
-    <div id="main">
+    <div id="main_ship">
         <?php
         $links = Links::getLink();
         $linknum = count($links);

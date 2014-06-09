@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css"  href="/static/bsrg.css?v=201404131000" />
 <style>.footer {top :675px}</style>
-<div id="wrap" style="margin-top:30px;">
+<div id="wrap_bsrg" style="margin-top:30px;">
     <div id="main">
         <h1>美品网活动招商规则</h1>
         <p>参与活动前，请一定要认真阅读我们的活动规则和报名要求，磨刀不误砍柴工，知道规则少走弯路，大家都节省时间。</p>

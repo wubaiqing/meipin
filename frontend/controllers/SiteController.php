@@ -95,6 +95,14 @@ class SiteController extends Controller
     {
         $this->layout = '//layouts/userBase';
         $this->render('connect');
+    } 
+	/**
+    *  导航手机APP
+    */
+    public function actionPhone()
+    {
+        $this->layout = '//layouts/userBase';
+        $this->render('phone');
     }
 
    /**
