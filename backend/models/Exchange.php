@@ -46,7 +46,7 @@ class Exchange extends CActiveRecord
             ['img_url',
                 'length',
                 'max' => 100],
-            ['id,goodscolor',
+            ['id,goodscolor,goodscolor2',
                 'safe'],
             ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete',
                 'safe',
@@ -77,7 +77,8 @@ class Exchange extends CActiveRecord
             'description' => '描述',
             'img_url' => '图片',
             'is_delete' => '是否删除0否 1是',
-            'goodscolor'=>'商品属性'
+            'goodscolor2'=>'商品属性',
+            'goodscolor' =>'商品属性'
         ];
     }
 
