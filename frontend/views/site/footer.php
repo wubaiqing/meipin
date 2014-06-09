@@ -10,7 +10,7 @@
         </dl>
         <dl class="dl2">
             <dt>        商务合作        </dt>
-            <dd><a href="/site/bsrg">商家报名</a></dd><a href="/site/moreship" target="_blank">友情链接</a></dd>
+            <dd><a href="/site/bsrg" target="_blank">商家报名</a></dd><a href="/site/moreship" target="_blank">友情链接</a></dd>
         </dl>
         <dl class="dl4">
             <dt>      关注美品      </dt>
@@ -21,20 +21,8 @@
             <dd>记住域名：<a href="javascript:;"><em>meipin.com</em></a></dd><dd>百度搜索：<input type="text" value="美品" onfocus="this.blur()" class="bdtxt"><a href="http://www.baidu.com/s?tn=baiduhome_pg&ie=utf-8&bs=%E7%BE%8E%E5%93%81&f=8&rsv_bp=1&rsv_spt=1&wd=%E7%BE%8E%E5%93%81&inputT=0" target="_blank" class="smt"></a></dd><dd>收藏本站：<a href="javascript:void(0)" onclick="javascript:addToFavorite();"><u>加入收藏</u></a></dd>
         </dl>
         <dl class="dl3">
-            <dt>手机客户端</dt>
+            <dt>Android客户端</dt>
             <dd class="sub"><img src="/static/images/wxcode.png" alt="">
-                <div class="info">
-                    <p>
-                        关注美品网，秒杀早知道
-                    </p>
-                    <p>
-                        如何关注？
-                    </p>
-                    <p>
-                        1) 查找微信号“<em>meipin</em>”<br>
-                        2) 用微信扫描左侧二维码
-                    </p>
-                </div>
             </dd>
         </dl>
     </div>

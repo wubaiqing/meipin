@@ -50,7 +50,7 @@
 
                     <?php foreach ($data['exchange']->goodscolor as $key => $value):?>
 
-                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname'];?></a>
+                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
                     <?php endforeach;?>
 
                     </span>

@@ -7,7 +7,6 @@ $hot = Yii::app()->request->getQuery('hot', 0);
 <?php $this->renderPartial('//site/login'); ?>
 <?php $this->renderPartial('//site/head'); ?>
 <?php $this->renderPartial('//site/nav', array('cat' => $cat)); ?>
-<?php $this->renderPartial('//site/junav', array('cat' => $cat, 'hot' => $hot)); ?>
 
 <div id="content" class="wp">
     <?php $this->renderPartial('//site/menuWp', array('pager' => $pager)); //载入页面?>

@@ -8,13 +8,21 @@
                 <tbody>
                 <tr align="center">
                     <th width="380">礼品详情</th>
+                    <th>颜色分类</th>   
                     <th>订单状态</th>
                     <th>消耗积分</th>
                 </tr>
                 <?php foreach ($welfare as $info) { ?>
-                    <?php $exchange = Exchange::findByGoodsId($info->goods_id); ?>
+                    <?php $exchange = Exchange::findByGoodsId($info->goods_id); 
+                    $exchange1 = ExchangeLog::model()->findByAttributes(array('goods_id' => $info->goods_id));
+                    ?>
                     <tr align="center">
-                        <td bgcolor="#F9FAFC"><a href='<?php echo $exchange->taobaoke_url;?>'><?php echo !empty($exchange) ? $exchange->name : '';?></a></td>
+                     <?php
+                       $jm = Des::encrypt($exchange->id);
+                       $goodsUrl = Yii::app()->createUrl("exchange/detail_{$jm}.html");
+                        ?>
+                        <td bgcolor="#F9FAFC"><a href="<?php if($exchange->taobaoke_url){echo $exchange->taobaoke_url;}else{echo $goodsUrl;};?>" target='_blank'><?php echo !empty($exchange) ? $exchange->name : '';?></a></td>
+                        <td><?php echo !empty($exchange1->gdscolor) ? $exchange1->gdscolor : '无'; ?></td>
                         <td><?php echo $info->status == 1 ? '已发货' : '未发货'; ?></td>
                         <td>-<?php echo !empty($exchange) ? $exchange->integral : ''; ?></td>
                     </tr>
