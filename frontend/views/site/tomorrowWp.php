@@ -1,4 +1,5 @@
 <div class="menu_wp">
+	
     <div class="junav">
         <span>精品预告<em>(<?php echo $pager->getItemCount();?>)</em></span>
         <div class="new_bg r">

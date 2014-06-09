@@ -8,15 +8,23 @@ li {list-style:none;}
 li img {display:block;}
 body {font-family:"微软雅黑";}
 br {clear:both;font-size:0;line-height:0;}
-#wrap { width: 800px;height: 400px; margin: 0 auto;margin-top:20px;}
+#wrap_p { width: 800px;height: 450px; margin: 0 auto;margin-top:20px;}
 
-#wrap p {
+#wrap_p p {
 	font-family:"宋体";
 	font-size:14px;
 	color:black;
 	line-height:22px;
 	padding-bottom:15px;
 }
+ #phone_css {
+    height: 450px;
+    margin-top:2px;
+    overflow: hidden;
+    width:1453px;
+	margin-left:-150px;
+
+} 
 textarea {
 	width:620px;
 	height:105px;

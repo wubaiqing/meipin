@@ -1,6 +1,7 @@
 <?php
 $isSignDay = User::isSignDay();
 ?>
+<link rel="stylesheet" type="text/css"  href="/static/nav_style.css"/>
 <div id="content" class="wp">
     <div class="w1040 clearfix">
         <!--积分广告和积分 登录开始-->

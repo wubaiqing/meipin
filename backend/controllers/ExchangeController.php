@@ -38,8 +38,12 @@ class ExchangeController extends Controller
         $exchangeModel = new Exchange();
         //去掉这几个字段的默认值
         $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
-        if (isset($_POST['Exchange'])) {
-            $exchangeModel->attributes = Yii::app()->request->getPost('Exchange');
+        if (isset($_POST['Exchange'])) 
+        {
+            $attributes = Yii::app()->request->getPost('Exchange');
+
+            $exchangeModel->attributes = $attributes;
+            $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($exchangeModel->save()) {
                 User::deleteCache();
                 $this->redirect($this->createUrl('exchange/Admin'));
