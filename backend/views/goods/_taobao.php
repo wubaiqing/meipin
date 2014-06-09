@@ -74,7 +74,7 @@ CHtml::$errorSummaryCss = 'text-warning';
     <div class="control-group">
         <?php echo $form->labelEx($model,'picture', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->textField($model, 'picture', array('size' => 60, 'maxlength' => 255)); ?>
+            <?php echo $form->textField($model, 'picture', array('size' => 60, 'maxlength' => 255,'id'=>'Goods_picture')); ?>
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/css/jquery.fileupload-ui.css" media="all" />
             <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
             <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>

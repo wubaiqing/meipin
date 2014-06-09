@@ -23,6 +23,7 @@ CHtml::$errorSummaryCss = 'text-warning';
 <div class="control-group">
         <?php echo $form->labelEx($exchangeModel,'goodscolor', array('class' => 'control-label')); ?>
         <div class="controls">
+        <?php echo $form->hiddenField($exchangeModel,'goodscolor2');?> 
         <?php echo $form->textArea($exchangeModel,'goodscolor');?>（格式: 白色:20;黑色:30;青色:10   这样总数量就是60 属性:数量;属性:数量; 注意冒号和分号用英文格式的 ）
         </div>
 </div>

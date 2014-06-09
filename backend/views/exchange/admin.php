@@ -29,7 +29,7 @@
                 'name'=>'name',
                 'value'=>'"<a href=\"$data->taobaoke_url\"  target=\"_blank\">".$data->name."</a>"',
             ),
-            'goodscolor',
+            'goodscolor2',
             'price',
             'num',
             'delenum'=>array(
