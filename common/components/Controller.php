@@ -27,20 +27,20 @@ class Controller extends CController
             'label' => '添加商品',
             'items' => [
                 ['url' => 'goods/create&goodsType=0', 'label' => '添加淘宝'],
-                ['url' => 'goods/create&goodsType=1', 'label' => '添加B2C'],
-                ['url' => 'goods/create&goodsType=2', 'label' => '添加活动'],
+                //['url' => 'goods/create&goodsType=1', 'label' => '添加B2C'],
+                //['url' => 'goods/create&goodsType=2', 'label' => '添加活动'],
             ]
         ],
         [
             'label' => '商品管理',
             'items' => [
-                ['url' => 'bookmark/admin', 'label' => '收藏夹'],
+               // ['url' => 'bookmark/admin', 'label' => '收藏夹'],
                 ['url' => 'goods/admin', 'label' => '商品管理'],
                 ['url' => 'category/create', 'label' => '创建分类'],
                 ['url' => 'category/admin', 'label' => '分类管理'],
             ]
         ],
-        [
+    /*    [
             'label' => '商城管理',
             'items' => [
                 ['url' => 'store/create', 'label' => '添加商城'],
@@ -48,7 +48,7 @@ class Controller extends CController
                 ['url' => 'storecategory/create', 'label' => '创建分类'],
                 ['url' => 'storecategory/admin', 'label' => '分类管理'],
             ]
-        ],
+        ],*/
         [
             'label' => '积分商品管理',
             'items' => [
