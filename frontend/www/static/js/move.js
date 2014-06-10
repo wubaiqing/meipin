@@ -8,7 +8,8 @@ var DRIFT = {};
  * 浮层配置选
  */
 DRIFT.CONFIG = {
-    'version' : 1.0
+    'version' : 1.0,
+    'isShow' : 1
 }
 
 /**
@@ -16,11 +17,22 @@ DRIFT.CONFIG = {
  */
 DRIFT.GOSH = function () {
     return {
+        /**
+         * 关闭浮层
+         */
         'closeFlotage' : function () {
             $('#flotage-close-button').click(function () {
                 $(this).prev().children().hide();
                 $(this).children().hide();
+                DRIFT.CONFIG.isShow = 0;
             });
+        },
+        /**
+         * 是否显示
+         * @returns int {bool}
+         */
+        'isShow' : function () {
+            return DRIFT.CONFIG.isShow;
         }
     }
 }
@@ -33,6 +45,7 @@ var drift = DRIFT.GOSH();
 // 下面代码整体优化。
 
 $(document).ready(function(e) {
+
 	$("#nav p").hover(function(){
     $(this).find("span").show();
 	$(this).find("a img").hide();
@@ -42,15 +55,18 @@ $(document).ready(function(e) {
 	});
 
 	$(window).scroll(function( ){
-	var x = $(this).scrollTop();
-	if(x<100){$("#gosh").hide();
-	}else{
-		$("#gosh").show().css("top",0).css("left",0);}
+        var x = $(this).scrollTop();
+        if(x<100){$("#gosh").hide();
+        }else{
+            $("#gosh").show().css("top",0).css("left",0);
+        }
 	});
 
 });
 //首页收藏
 $(document).ready(function(e) {
+
+
 	$("#nav p").hover(function(){
     $(this).find("span").show();
 	$(this).find("a img").hide();
@@ -60,20 +76,27 @@ $(document).ready(function(e) {
 	});
     
 	$(window).scroll(function( ){
-	var x = $(this).scrollTop();
-	if(x<100){$("#class_new").hide();
-	}else{
-		$("#class_new").show().css("top",0);}
+        var x = $(this).scrollTop();
+        if(x<100){$("#class_new").hide();
+        }else{
+            $("#class_new").show().css("top",0);
+        }
 	});
 
 	$(window).scroll(function( ){
-	var x = $(this).scrollTop();
-	if(x<300){
-		$(".image").hide();
-		$(".X").hide();
-	}else{
-		$(".image").show().css("top",200).css("left","37%");
-		$(".X").show().css("top",300).css("left","63%");}
+        // 是否持续显示图片
+        var isShow = drift.isShow();
+        if (isShow == 0) {
+            return false;
+        }
+        var x = $(this).scrollTop();
+        if(x<300){
+            $(".image").hide();
+            $(".X").hide();
+        }else{
+            $(".image").show().css("top",200).css("left","37%");
+            $(".X").show().css("top",300).css("left","63%");
+        }
 	});
 
     // 关闭浮层
