@@ -72,7 +72,7 @@ $(document).ready(function(e) {
 		$(".image").hide();
 		$(".X").hide();
 	}else{
-		$(".image").show().css("top",200).css("left","40%");
+		$(".image").show().css("top",200).css("left","37%");
 		$(".X").show().css("top",300).css("left","63%");}
 	});
 
