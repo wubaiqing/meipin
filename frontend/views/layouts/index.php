@@ -14,7 +14,7 @@
         <script type="text/javascript" src="/static/js/user.js?v=1.0.2"></script>
         <script type="text/javascript" src="/static/js/sign_day.js?v=1.0.1"></script>
 		<script type="text/javascript" src="/js/jquery-1.9.1.min.js?v=1.0.1"></script>
-		<script type="text/javascript" src="/static/js/move.js?v=1.0.1"></script>
+		<script type="text/javascript" src="/static/js/move.js?v=1.0.2"></script>
     </head>
     <body>
     <?php echo $content;?>
