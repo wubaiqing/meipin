@@ -3,6 +3,7 @@
     <div class="wp">
         <ul class="logininfo r" id="sign">
         <?php if (Yii::app()->user->id) { ?>
+
             <li>
             欢迎您，
             <a href="javascript:void(0);">
