@@ -11,7 +11,7 @@ $(document).ready(function(e) {
 	var x = $(this).scrollTop();
 	if(x<100){$("#class_new").hide();
 	}else{
-		$("#class_new").show().css("top",0);}
+		$("#class_new").show().css("top",0).css("left",0);}
 	});
 	
 	
@@ -58,7 +58,7 @@ $(document).ready(function(e) {
 		$(".X").hide();
 	}else{
 		$(".image").show().css("top",200).css("left","40%");
-		$(".X").show().css("top",300).css("left","40%");}
+		$(".X").show().css("top",300).css("left","63%");}
 	}); 
 	
 	$(".X").click(function(){

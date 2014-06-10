@@ -44,5 +44,5 @@
             <br>
         </ul>   
     </div>
-     <a class="M" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')"><img class="image" src="/static/images/girl.png"></a>    
+     <a class="M" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')"><?php if ($cat ==0) :?><img class="image" src="/static/images/girl.png"><img class="X" src="/static/images/X_03.png"><?php endif;?></a>    
 </div>
