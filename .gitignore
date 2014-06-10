@@ -1,6 +1,8 @@
 .idea/*
 frontend/www/assets/*
 frontend/runtime/*
+backend/www/assets/*
+backend/runtime/*
 Thumbs.db
 .buildpath
 .project
