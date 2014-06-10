@@ -20,11 +20,14 @@ br {clear:both;font-size:0;line-height:0;}
 	width:100%;	
 	display: inline-block;
 	padding-left:275px;
+	*padding-left:-10px;
 }
 #nav ul {
 	margin:auto 0;
 	width:600px;
 	float:left;
+	padding-left:25px;
+	*padding-left:0.5px;
 }
 #nav li {
 	float:left;
@@ -43,7 +46,7 @@ br {clear:both;font-size:0;line-height:0;}
 	background-color:#bb120f;
 }
 #nav .one {
-	padding-left:235px;
+	padding-left:215px;
 	font-family:"宋体";
 	font-size:12px;
 	color:#fff;
@@ -68,12 +71,13 @@ br {clear:both;font-size:0;line-height:0;}
 	display:block;
 }
 #class {
-	width:980px;
+    width:980px;
 	border-top:1px solid #cbcbcb;
 	border-left:1px solid #cbcbcb;
 	border-right:1px solid #cbcbcb;
 	margin-left:300px;
-
+	*margin-left:275px;
+	*width:972px;
 }
 
 
@@ -82,7 +86,6 @@ br {clear:both;font-size:0;line-height:0;}
 	padding-bottom:7px;
 	border-bottom:1px solid #cc0000;
 	text-align:center;
-
 }
 .class_top li {
 	float:left;
