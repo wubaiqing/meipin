@@ -6,7 +6,7 @@
              <li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1001) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/index', array('cat' => 1001));?>">聚美品<i></i></a></li>
             <li><a href="<?php echo $this->createUrl('exchange/index');?>" class="<?php echo (Yii::app()->controller->action->id == 'index') ? 'on' : ''; ?>">积分兑换<i></i></a></li>
             <li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1003) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/raffle');?>">幸运抽奖<i></i></a></li>
-			 <li><a href="/site/phone">手机APP</a></li>
+            <li><a class="<?php echo (Yii::app()->controller->id == 'site' && $this->getAction()->getId() == 'phone') ? 'on' : ''; ?>" href="/site/phone">手机APP</a></li>
             <li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1002) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('/tomorrow');?>">明日预告</a></li>
             <li></li>
             <br>
@@ -50,5 +50,5 @@
             <br>
         </ul>   
     </div>
-     <a class="M" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')"><img class="image" src="/static/images/girl.png"><img class="X" src="/static/images/X_03.png"/></a>    
+     <a class="M" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')"><img class="image" src="/static/images/girl.png"><img class="X" src="/static/images/X_03.png"/></a>
 </div>

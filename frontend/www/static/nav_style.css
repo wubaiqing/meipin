@@ -37,13 +37,17 @@ br {clear:both;font-size:0;line-height:0;}
 	font-family:"宋体";
 	font-size:16px;
 	color:#fff;
-	line-height:34px;
+	line-height:36px;
+    height:36px;
 	display:block;
-	width:90px;
+	width:100px;
 	text-align:center;
 }
 #nav li a:hover {
 	background-color:#bb120f;
+}
+#nav li a.on {
+    background-color: #bb120f;
 }
 #nav .one {
 	padding-left:213px;
@@ -163,4 +167,9 @@ br {clear:both;font-size:0;line-height:0;}
 	z-index:990;
 	margin:auto 0;
 	position:fixed;
+    left:-20px;
+}
+
+.class_top li a.on {
+    color: #cc0000;
 }

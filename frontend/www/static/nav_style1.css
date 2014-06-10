@@ -11,12 +11,12 @@ body {font-family:"微软雅黑";}
 br {clear:both;font-size:0;line-height:0;}
 
 #wrap {
-	margin:-5px 0px 0px 0px;
+	margin:0 auto;
 	background-color:white;
 }
 #nav {
 	background-color:#cf201c;
-	height:36px;*height:40px;
+	height:37px;*height:40px;
 	width:100%;	
 	display: inline-block;
 	margin:0 auto;
@@ -37,9 +37,10 @@ br {clear:both;font-size:0;line-height:0;}
 	font-family:"宋体";
 	font-size:16px;
 	color:#fff;
-	line-height:34px;
+    height:36px;
+	line-height:36px;
 	display:block;
-	width:90px;
+	width:100px;
 	text-align:center;
 }
 #nav li a:hover {
@@ -69,6 +70,9 @@ br {clear:both;font-size:0;line-height:0;}
 	color:#fff;
 	line-height:36px;
 	display:block;
+}
+#nav li a.on {
+    background-color: #bb120f;
 }
 
 #class {
