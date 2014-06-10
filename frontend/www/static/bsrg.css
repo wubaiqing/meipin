@@ -57,7 +57,7 @@ br {clear:both;font-size:0;line-height:0;}
 	padding-top:15px;
 }
 #table {
-	height:400px;
+	height:100%;
 	margin-top:20px;
 	border:1px solid #ccc;
 }

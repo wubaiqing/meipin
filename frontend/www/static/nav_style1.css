@@ -10,40 +10,48 @@ li img {display:block;}
 body {font-family:"微软雅黑";}
 br {clear:both;font-size:0;line-height:0;}
 
+#wrap {
+	margin:-5px 0px 0px 0px;
+	background-color:white;
+}
 #nav {
 	background-color:#cf201c;
-
+	height:36px;*height:40px;
 	width:100%;	
 	display: inline-block;
-	padding-left:295px;*padding-left:260px;
+	margin:0 auto;
+}
+#nav .two {
+	margin:0 auto;
+	width:980px;
 }
 #nav ul {
-	margin:auto 0;
-	width:500px;
+	width:600px;
 	float:left;
 }
 #nav li {
 	float:left;
+	width:100px;
 }
 #nav li a {
 	font-family:"宋体";
-	font-size:14px;
+	font-size:16px;
 	color:#fff;
-	line-height:36px;
+	line-height:34px;
 	display:block;
 	width:90px;
 	text-align:center;
 }
+#nav li a:hover {
+	background-color:#bb120f;
+}
 #nav .one {
-	padding-left:400px;
+	padding-left:213px;
 	font-family:"宋体";
 	font-size:12px;
 	color:#fff;
 	line-height:398px;
 	display:block;
-}
-#nav li a:hover {
-	background-color:#bb120f;
 }
 #nav p {
 	float:left;
@@ -62,31 +70,33 @@ br {clear:both;font-size:0;line-height:0;}
 	line-height:36px;
 	display:block;
 }
+
 #class {
-	width:980px;
+    width:980px;
 	border-top:1px solid #cbcbcb;
 	border-left:1px solid #cbcbcb;
 	border-right:1px solid #cbcbcb;
-	margin-left:290px;
+	
+	margin: 0 auto;
 
 }
 
 
 .class_top {
 	height:53px;
-	padding-bottom:11px;
+	padding-bottom:7px;
 	border-bottom:1px solid #cc0000;
 	text-align:center;
 }
 .class_top li {
 	float:left;
-	width:80px;
+	width:84px;
 	padding-right:5px;
 	position:relative;
 }
 .class_top li img {
 	position:absolute;
-	top:2px;
+	top:5px;
 	left:30px;
 }
 .class_top li a {
@@ -94,7 +104,7 @@ br {clear:both;font-size:0;line-height:0;}
 	font-size:12px;
 	color:#999;
 	line-height:35px;
-	padding-top:19px;
+	padding-top:25px;
 	display:block;
 }
 .class_top li a:hover {
@@ -113,9 +123,11 @@ br {clear:both;font-size:0;line-height:0;}
 	text-align:center;
 	width:100%;
 	position:fixed;
-	padding-left:30px;
-	z-index:998;
+	padding-left:288px;
+	z-index:990;
 	display:none;
+}
+#class_new ul {
 	
 }
 #class_new li {
@@ -143,12 +155,12 @@ br {clear:both;font-size:0;line-height:0;}
 
 .image {
 	position:fixed;
-	z-index:998;
+	z-index:990;
 	display:none;
 	margin:auto 0;
 }
 .X {
-	z-index:998;
+	z-index:990;
 	margin:auto 0;
 	position:fixed;
 }

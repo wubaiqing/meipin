@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css"  href="/static/bsrg.css?v=201404131000" />
-<style>.footer {top :675px}</style>
 <div id="wrap_bsrg" style="margin-top:30px;">
     <div id="main">
         <h1>美品网活动招商规则</h1>
