@@ -20,7 +20,7 @@
         <div id="header">
             <?php $this->renderPartial('//site/login'); ?>
             <?php $this->renderPartial('//site/head'); ?>
-            <?php $this->renderPartial('//site/nav', ['cat' => 0]); ?>
+            <?php $this->renderPartial('//site/nav_person', ['cat' => 0]); ?>
         </div>
         <?php echo $content;?>
         <div id="footer" class="footer">
