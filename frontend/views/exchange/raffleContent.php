@@ -2,14 +2,7 @@
     <!--单个商品 start-->
     <div class="area">
         <?php
-        $arr[] = $goods[0];
-        $arr[] = $goods[0];
-        $arr[] = $goods[0];
-        $arr[] = $goods[0];
-        $arr[] = $goods[0];
-        $arr[] = $goods[0];
-       
-        foreach ($arr as $item) :
+        foreach ($goods as $item) :
             if ($history != 'history' && $item['end_time'] < time()) continue;
             $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item['id'])]);
             ?>

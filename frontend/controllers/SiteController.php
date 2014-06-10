@@ -180,7 +180,7 @@ class SiteController extends Controller
         $exchangeModel = new Exchange();
         $data = $exchangeModel->showExchangeGoodsList($page, 1, $t);
         //渲染頁面
-        $this->render('/exchange/indexRaffle', [
+        $this->render('/exchange/raffleList', [
             'cat' => $cat, // 分类
             'history'=>$t,//显示历史抽奖数据
             'page' => $page, // 当前页

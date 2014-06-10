@@ -163,9 +163,9 @@ class ExchangeController extends Controller
         }
         
         //渲染頁面
-        $this->render('exchangeIndex', [
+        $this->render('raffleIndex', [
             'data' => $dataResult['data'],
-            'params' => ['goodsId' => $id,]
+            'params' => ['goodsId' => $id,'goodsType'=>1]
         ]);
     }
 
