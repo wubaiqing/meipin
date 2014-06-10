@@ -172,7 +172,8 @@ echo Chtml::hiddenField("loginUrl", Yii::app()->createAbsoluteUrl("user/login"))
     });
     User.Address.changeProvince();
     User.Address.sendMobileBindSmsCode();
-     function validOrderConfirm()
+
+    function validOrderConfirm()
     {
         if ($(".welfare_btn").attr("address_id") != "") {
             return true;

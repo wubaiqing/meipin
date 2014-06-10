@@ -15,7 +15,6 @@
         <p><span><img src="/static/images/face.png"></span> <a href="javascript:;" class="signin <?php $isSignDay = User::isSignDay(); echo !$isSignDay ? 'qiandao' : 'cheng'; ?>"><i></i><i class="icon-mini"></i><span id='jryq'></span><img src="/static/images/pen_03_01.png">签到领积分</a></p>	
 		
         <br>
-
     </div>
 	<ul id="class_new">
     	<li><img src="/static/images/gift-w_33.png"> <a href="/" class="<?php echo ($cat == 0) ? 'on' : '';?>">全部</a></li>
