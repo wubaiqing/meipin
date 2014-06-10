@@ -85,8 +85,7 @@ $(document).ready(function(e) {
 
 	$(window).scroll(function( ){
         // 是否持续显示图片
-        var isShow = drift.isShow();
-        if (isShow == 0) {
+        if (DRIFT.CONFIG.isShow == 0) {
             return false;
         }
         var x = $(this).scrollTop();
