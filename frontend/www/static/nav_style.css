@@ -12,6 +12,7 @@ br {clear:both;font-size:0;line-height:0;}
 
 #wrap {
 	margin:auto 0;
+	background-color:white;
 }
 #nav {
 	background-color:#cf201c;
@@ -42,7 +43,7 @@ br {clear:both;font-size:0;line-height:0;}
 	background-color:#bb120f;
 }
 #nav .one {
-	padding-left:320px;
+	padding-left:250px;
 	font-family:"宋体";
 	font-size:12px;
 	color:#fff;
