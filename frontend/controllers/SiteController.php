@@ -36,8 +36,18 @@ class SiteController extends Controller
      */
     public function actionTomorrow($page = 1, $hot = 0, $cat = 0)
     {
-        // 收取商品
-        $goods = Goods::tomorrow($cat, $hot, $page);
+       
+		$start_today=strtotime((date('Y-m-d',time()).'00:00:00'));
+		$end_today=strtotime((date('Y-m-d',time()).'15:59:59'));
+		$now_time=time();
+		if ($now_time > $end_today ) { 
+			// 收取商品
+				$goods = Goods::tomorrow($cat, $hot, $page);
+			} else {
+				$goods=array();
+				$goods['data']=array(); // 商品数据
+				$goods['pager']=array(); // 商品翻页
+			 }
         // 渲染首页
         $this->render('tomorrow', array(
             'cat' => $cat, // 分类

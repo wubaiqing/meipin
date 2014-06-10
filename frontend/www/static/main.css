@@ -85,11 +85,13 @@ input{background:none}
     background: #FFF;
     height: 60px;
     overflow: hidden;
+	
 }
 
 #t-area {
     width:980px;
     margin:0 auto;
+	
 }
 
 
@@ -236,6 +238,7 @@ input{background:none}
 .today-goods-list{
     width:980px;
     margin:0 auto;
+	z-index:980;
 }
 
 .area {
@@ -1330,8 +1333,8 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .affix{position:fixed;top:0;_position:absolute;_padding-top:70px;}
 .affix .logo{_display:block;}
 
-.dealbox{width:1005px;margin-right:-25px;position:relative;z-index:99}
-.deal{width:314px;float:left;margin:0 19px 19px 0;display:inline;z-index:100;text-align:left}
+.dealbox{width:1005px;margin-right:-25px;position:relative;z-index:99;*width:314px;*float:left;*margin:0 10px 10px 0;}
+.deal{width:314px;float:left;margin:0 19px 19px 0;height:328px;display:inline;z-index:100;}
 .deal div{width:310px;padding:0;background:#fff;position:relative;_position:absolute;border:1px solid #e2e2e2;border-color:#fff #e2e2e2 #e2e2e2 #fff;padding:1px}
 .deal div p{padding:10px;background:#fff;overflow:hidden;text-align: center;color: #999;}
 .deal div h2{height:40px;padding:5px 10px;overflow:hidden;text-align:left;font:14px/20px "";background:#fff;}

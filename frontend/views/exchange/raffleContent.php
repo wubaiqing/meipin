@@ -2,7 +2,14 @@
     <!--单个商品 start-->
     <div class="area">
         <?php
-        foreach ($goods as $item) :
+        $arr[] = $goods[0];
+        $arr[] = $goods[0];
+        $arr[] = $goods[0];
+        $arr[] = $goods[0];
+        $arr[] = $goods[0];
+        $arr[] = $goods[0];
+       
+        foreach ($arr as $item) :
             if ($history != 'history' && $item['end_time'] < time()) continue;
             $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item['id'])]);
             ?>
@@ -58,7 +65,7 @@
         <?php endforeach; ?>
     </div>
     <div style="clear:both;"></div>
-</div>
 <div id="contentD" class="area">
     <a href="<?php echo Yii::app()->createUrl("site/raffle", [ 't' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
+</div>
 </div>
