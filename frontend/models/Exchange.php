@@ -238,7 +238,7 @@ class Exchange extends ActiveRecord
             //根据条件查询积分兑换商品
             $data['goods'] = Exchange::model()->findAll($criteria);
             //写入缓存
-            Yii::app()->cache->set($cacheKey, $data['goods']);
+            Yii::app()->cache->set($cacheKey, $data['goods'],  Constants::T_HALF_HOUR);
         }
         //分页类
         $data['pages'] = $pages;

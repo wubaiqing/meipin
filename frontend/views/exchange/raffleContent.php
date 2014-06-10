@@ -3,6 +3,7 @@
     <div class="area">
         <?php
         foreach ($goods as $item) :
+            if ($history != 'history' && $item['end_time'] < time()) continue;
             $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item['id'])]);
             ?>
             <div class="dealbox">
@@ -16,7 +17,6 @@
                         <p class="time" date='<?php echo date("Y-m-d H:i:s", $item['end_time']) ?>' url='<?php echo $goodsUrl ?>'>
                             <?php
                             $md = date("Y", $item['end_time']) > date("Y") ? date("Y.n.j", $item['end_time']) : date("n.j", $item['end_time']);
-//                            echo date("Y年n月j日", $item['end_time']).":".$item['end_time']. ":". time();
                             if ($item['end_time'] > time()):
                                 ?>
                                 <span>截至<?php echo $md ?>日<i><?php echo date("H:i", $item['end_time']) ?></i></span>
