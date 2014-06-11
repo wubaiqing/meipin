@@ -153,7 +153,11 @@
 #contentA .zt5 h4 .btn{display:inline-block;background-position:-137px -48px;}
 #contentA .zt5 h4 span{display: none;}
 #contentA .zt5 h4 em{display:inline-block;}
-#contentA .zt5 h5{display: block;}
+#contentA .zt5 h3 span.time i{padding-left: 30px;font-size: 18px;color:#000;}
+#contentA .zt5 h3 span.time label{display: inline-block;background:url(../images/bg5.png) no-repeat 0px -88px;width: 200px;}
+#contentA .zt5 h3 span.time label em.one{margin-left:7px;}
+#contentA .zt5 h3 span.time label em.two{margin-left:37px;}
+#contentA .zt5 h3 span.time label em.three{margin-left:27px;}
 #contentA .zt5 .blockA{display:none;}
 
 #contentA .zt6 h4 .btn{display:none;}

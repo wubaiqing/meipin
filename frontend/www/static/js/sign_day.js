@@ -4,7 +4,7 @@
  * 倒计时的实现 
  * edit by liukui@ttmzk.com 2014-06-07
  */
-var fnTimeCountDown = function(d, o, url) {
+var fnTimeCountDown = function(d, o, url, t) {
     var f = {
         zero: function(n) {
             var n = parseInt(n, 10);
@@ -51,9 +51,24 @@ var fnTimeCountDown = function(d, o, url) {
                 $(o).html(str);
             }
             setTimeout(f.ui, 1000);
+        },
+        uiDetail: function() {
+            var str = "";
+            $(o).find("i").html(f.dv().day);
+            $(o).find("em.one").html(f.dv().hour);
+            $(o).find("em.two").html(f.dv().mini);
+            $(o).find("em.three").html(f.dv().sec);
+//            str += "<em class='one'>" + f.dv().hour + "</em>";
+//            str += "<em class='two'>" + f.dv().mini + "</em>分";
+//            str += "<em class='three'>" + f.dv().sec + "</em>秒";
+            setTimeout(f.uiDetail, 1000);
         }
     };
-    f.ui();
+    if (!t) {
+        f.ui();
+    }else if(t == 'detail'){
+        f.uiDetail();
+    }
 };
 
 /*积分签到*/
