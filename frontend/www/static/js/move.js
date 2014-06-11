@@ -42,10 +42,8 @@ var drift = DRIFT.GOSH();
 
 
 /* ----------------------浮层方法结束--------------------------- */
-// 下面代码整体优化。
-
+//首页收藏显示图片
 $(document).ready(function(e) {
-
 	$("#nav p").hover(function(){
     $(this).find("span").show();
 	$(this).find("a img").hide();
@@ -53,28 +51,13 @@ $(document).ready(function(e) {
 	$(this).find("span").hide();
 	$(this).find("a img").show();
 	});
-
-	$(window).scroll(function( ){
+   $(window).scroll(function( ){
         var x = $(this).scrollTop();
         if(x<100){$("#gosh").hide();
         }else{
             $("#gosh").show().css("top",0).css("left",0);
         }
 	});
-
-});
-//首页收藏
-$(document).ready(function(e) {
-
-
-	$("#nav p").hover(function(){
-    $(this).find("span").show();
-	$(this).find("a img").hide();
-		},function(){
-	$(this).find("span").hide();
-	$(this).find("a img").show();
-	});
-    
 	$(window).scroll(function( ){
         var x = $(this).scrollTop();
         if(x<100){$("#class_new").hide();
@@ -94,7 +77,7 @@ $(document).ready(function(e) {
             $(".X").hide();
         }else{
             $(".image").show().css("top",200).css("left","37%");
-            $(".X").show().css("top",300).css("left","63%");
+            $(".X").show().css("top",300).css("left","60%");
         }
 	});
 
@@ -103,7 +86,7 @@ $(document).ready(function(e) {
 
 });
 
-//首页收藏 JS 方法
+//首页收藏针对浏览器兼容方法
 var www_meipin_com = function (obj, url, title) {
     var e = window.event || arguments.callee.caller.arguments[0];
     var B = {
