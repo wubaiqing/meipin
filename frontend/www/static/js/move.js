@@ -64,6 +64,18 @@ $(document).ready(function(e) {
 	$(".X").click(function(){
 		$(this).prev().hide();
 		$(this).hide();
+        // 是否持续显示图片
+        if (DRIFT.CONFIG.isShow == 0) {
+            return false;
+        }
+        var x = $(this).scrollTop();
+        if(x<300){
+            $(".image").hide();
+            $(".X").hide();
+        }else{
+            $(".image").show().css("top",200).css("left","37%");
+            $(".X").show().css("top",300).css("left","60%");
+        }
 	});
 });
 
