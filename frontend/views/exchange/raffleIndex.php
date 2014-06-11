@@ -4,27 +4,10 @@
             <img src="<?php echo $data['exchange']->img_url; ?>">
             <span class="bsr"></span>
         </div>
-        <div class="blockA">
-            <h2>热门抽奖活动</h2>
-            <ul>
-                <?php
-                foreach ($data['hotExchangeGoods'] as $goods):
-                    $goodsUrl = Yii::app()->createUrl("exchange/exchangeIndex", array("id" => Des::encrypt($goods->id)));
-                    ?>
-                    <li>
-                        <a href="<?php echo $goodsUrl; ?>" target="_blank">
-                            <img src="<?php echo $goods->img_url ?>">
-                        </a>
-                        <h3>
-                            <a href="<?php echo $goodsUrl; ?>" target="_blank" title="<?php echo $goods->name; ?>">
-                                <?php echo $goods->name; ?>
-                            </a>
-                        </h3>
-                        <p><strong><?php echo $goods->user_count; ?></strong>人已参与</p>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+        <?php
+        $this->renderPartial('hotExchange', array('goodsList' => $data['hotExchangeGoods'], 'goodsType' => $data['exchange']->goods_type));
+        ?>
+
     </div>
 
     <div class="right dhdeal">
@@ -47,7 +30,6 @@
                     <span>抽奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
                     <?php if ($data['exchange']->goodscolor): ?>
                         <span class='goodcolor'>
-
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
 
                                 <a <?php
@@ -66,11 +48,7 @@
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
                     <input class="btn" type="submit" value=""><span></span>
-                    <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已抽奖</a>
-                    <em>(当前库存<b><?php
-                            $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                            echo $leftNum > 0 ? $leftNum : 0;
-                            ?></b>件)</em>
+                    <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已参与</a>
                 </h4>
             </div>
         </form>
@@ -116,37 +94,3 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-    $(function() {
-        try {
-            $(".tb-tabbar").find("li").click(function() {
-                $(".tb-tabbar").find("li").removeClass("selected");
-                $(this).addClass("selected");
-                $(".displayIF").addClass('hid');
-                $("." + $(this).attr("id")).removeClass("hid");
-            });
-        } catch (e) {
-            alert(e);
-        }
-        $('.goodcolor').find("a").click(function() {
-
-            gdcolornum = $(this).attr("stock");
-            if (gdcolornum != 0) {
-                $(".goodcolor a").attr("style", '');
-                gdcolor = $(this).html(); //颜色
-                $(this).attr("style", "border: 2px solid red");
-                $("#gdcolor").val(gdcolor);
-            }
-        });
-    });
-    function checkcolor()
-    {
-        if ($("#gdcolor").val() == '')
-        {
-            alert('请选择一个型号');
-            return false;
-        }
-        return true;
-    }
-</script>

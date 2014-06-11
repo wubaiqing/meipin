@@ -8,6 +8,12 @@ class Exchange extends ActiveRecord
 {
 
     /**
+     * 商品类型
+     * @var array 
+     */
+    public static $goodsType = [0 => '兑换商品', 1 => '抽奖商品'];
+
+    /**
      * 表名
      * @return string
      */
@@ -131,18 +137,19 @@ class Exchange extends ActiveRecord
     /**
      * 获取热门兑换商品列表
      * @param  integer  $goodsId  商品ID
+     * @param  integer  $goodsType 商品类型
      * @param  integer  $pageSize 返回数据大小
      * @return Exchange
      */
-    public static function getHotExchangeGoods($goodsId, $pageSize = 10)
+    public static function getHotExchangeGoods($goodsId, $goodsType, $pageSize = 10)
     {
-        $key = "goods-getHotExchangeGoods-" . $goodsId . "-" . $pageSize;
+        $key = "goods-getHotExchangeGoods-" . $goodsId . "-" . $goodsType . "-" . $pageSize;
         $hotExchangeGoods = Yii::app()->cache->get($key);
         if (!empty($hotExchangeGoods)) {
             return $hotExchangeGoods;
         }
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId
-            . " and is_delete = 0",
+            . " and is_delete = 0 and goods_type = ".$goodsType." and end_time > ".time(),
             'order' => 'sale_num desc',
             'limit' => 10]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
@@ -212,13 +219,13 @@ class Exchange extends ActiveRecord
         $criteria = new CDbCriteria();
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
-        
-        if(empty($timeLine)){
+
+        if (empty($timeLine)) {
             $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
-        }else if($timeLine == 'history'){
+        } else if ($timeLine == 'history') {
             $criteria->addCondition('end_time <= ' . $time);
         }
-        
+
         $criteria->compare('goods_type', $goodsType);
 
         //分页类开始
@@ -238,12 +245,22 @@ class Exchange extends ActiveRecord
             //根据条件查询积分兑换商品
             $data['goods'] = Exchange::model()->findAll($criteria);
             //写入缓存
-            Yii::app()->cache->set($cacheKey, $data['goods'],  Constants::T_HALF_HOUR);
+            Yii::app()->cache->set($cacheKey, $data['goods'], Constants::T_HALF_HOUR);
         }
         //分页类
         $data['pages'] = $pages;
 
         return $data;
+    }
+
+    /**
+     * 获取商品类型名称
+     * @param integer $goodsType 商品类型
+     * @return string 
+     */
+    public static function getGoodsTypeLable($goodsType)
+    {
+        return isset(self::$goodsType[$goodsType]) ? self::$goodsType[$goodsType] : "";
     }
 
 }

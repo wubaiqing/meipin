@@ -12,19 +12,27 @@ class ScoreService
      * 显示积分兑换详情页面
      * @param integer $goodsId 需要兑换的商品ID
      * @param integer $page 页码
+     * @param integer $goodsType 商品类型
      * @return type    
      */
-    public function showExchangeDetial($goodsId, $page)
+    public function showExchangeDetial($goodsId, $page, $goodsType)
     {
         //获取兑换积分商品
         $exchange = Exchange::findByGoodsId($goodsId);
         $exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
+
+        if ($exchange->goods_type != $goodsType) {
+            return CommonHelper::getDataResult(false, [
+                        'message' => "该商品不是" . Exchange::getGoodsTypeLable($goodsType)
+            ]);
+        }
+
         //校验
         if (empty($exchange)) {
             return CommonHelper::getDataResult(false, ['message' => "商品已下线或不存在"]);
         }
         //获取兑换热门商品
-        $hotExchangeGoods = Exchange::getHotExchangeGoods($goodsId);
+        $hotExchangeGoods = Exchange::getHotExchangeGoods($goodsId,$goodsType);
         //获取兑换记录集合
         $logList = ExchangeLog::getLogList($goodsId, $page);
 
@@ -152,7 +160,7 @@ class ScoreService
                 'created_at' => $nowTime,
                 'goods_id' => $goods->id,
                 'remark' => $order['remark'],
-                'gdscolor' =>$order['gdscolor'],
+                'gdscolor' => $order['gdscolor'],
                 'city_id' => $userAddress->city_id,
                 'address' => $userAddress->address,
                 'postcode' => $userAddress->postcode,
@@ -169,7 +177,7 @@ class ScoreService
             Exchange::model()->updateByPk($goods->id, [
                 'sale_num' => new CDbExpression('sale_num+1'),
                 'user_count' => $userCount,
-                'goodscolor' =>$order['goodscolor'],
+                'goodscolor' => $order['goodscolor'],
             ]);
             //兑换扣积分记录
             $score = new Score();
@@ -326,7 +334,7 @@ class ScoreService
 
         return CommonHelper::getDataResult(true, [
                     'message' => "签到成功",
-                     'message2'=>"今日已签",
+                    'message2' => "今日已签",
                     'dr_count' => $user->dr_count,
                     'nextScore' => ($num < 3) ? ($num + 1) : 3,
                     'score' => $num

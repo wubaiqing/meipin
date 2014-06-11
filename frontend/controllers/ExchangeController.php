@@ -32,7 +32,7 @@ class ExchangeController extends Controller
     public function actionExchangeIndex($id = 0, $page = 1)
     {
         $goodsId = Des::decrypt($id);
-        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page);
+        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page, 0);
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
@@ -40,7 +40,7 @@ class ExchangeController extends Controller
         //渲染頁面
         $this->render('exchangeIndex', [
             'data' => $dataResult['data'],
-            'params' => ['goodsId' => $id,]
+            'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
     }
 
@@ -154,19 +154,27 @@ class ExchangeController extends Controller
     public function actionRaffle($id = 0, $page = 1)
     {
         $goodsId = Des::decrypt($id);
-        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page);
+        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page, 1);
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
-        if($dataResult['data']['exchange']->goods_type != 1){
+        if ($dataResult['data']['exchange']->goods_type != 1) {
             $this->pageRedirect('no', "商品不是抽奖商品，请重新选择", Yii::app()->createUrl("site/raffle"));
         }
-        
+
         //渲染頁面
         $this->render('raffleIndex', [
             'data' => $dataResult['data'],
-            'params' => ['goodsId' => $id,'goodsType'=>1]
+            'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
+    }
+
+    /**
+     * 抽奖订单确认
+     */
+    public function actionRaffleOrder()
+    {
+        
     }
 
 }

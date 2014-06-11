@@ -85,7 +85,7 @@ class Exchange extends CActiveRecord
             'img_url' => '图片',
             'is_delete' => '是否删除0否 1是',
             'goods_type' => '商品类型',
-            'goodscolor' =>'商品属性'
+            'goodscolor' => '商品属性'
         ];
     }
 
@@ -154,6 +154,16 @@ class Exchange extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    /**
+     * 获取商品类型名称
+     * @param integer $goodsType 商品类型
+     * @return string 
+     */
+    public static function getGoodsTypeLable($goodsType)
+    {
+        return isset(self::$goodsType[$goodsType]) ? self::$goodsType[$goodsType] : "";
     }
 
 }
