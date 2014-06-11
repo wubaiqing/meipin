@@ -1,6 +1,7 @@
 
 <?php $this->renderPartial('login'); ?>
 <?php $this->renderPartial('head'); ?>
+<?php $this->renderPartial('nav_person', array('cat' => $cat)); ?>
 <?php $this->renderPartial('nav', array('cat' => $cat)); ?>
 <?php // $this->renderPartial('junav', array('cat' => $cat, 'hot' => $hot)); ?>
 
