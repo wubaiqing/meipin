@@ -763,18 +763,19 @@ textarea {border:1px solid #ccc;background:#fff;padding:3px;font-size:12px;}
                documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight) :/*IE6*/
                document.body.scrollTop + (document.body.clientHeight - this.clientHeight));/*IE5 IE5.5*/}}
 .ju-rbar li {position: relative;}
-.ju-rbar a {background: url("images/top.png") no-repeat scroll 4px 2px transparent;cursor: pointer;display: block;height: 44px;margin-top: 6px;width: 44px;}
-.ju-rbar .backtop i {background: url("images/top.png") no-repeat scroll -66px -334px transparent;display: block;height: 40px;position: absolute;right: 44px;top: 5px;width: 0;}
+.ju-rbar a {background: url("images/top.png") no-repeat scroll transparent;cursor: pointer;display: block;height: 54px;width: 54px;}
+.ju-rbar .backtop i {background: url("images/top.png") no-repeat scroll -66px -334px transparent;display: block;height: 40px;position: absolute;right: 10px;top: 0px;width: 0;}
+.ju-rbar .backtop i {background: url("images/top.png") no-repeat scroll -66px -334px transparent;display: block;height: 40px;position: absolute;right: 0px;top: 0px;width: 0;}
 .ju-rbar .urlink {background-position: 4px -51px;}
 .ju-rbar .urlink i { background: url("images/top.png") no-repeat scroll -66px -384px transparent;display: block;height: 40px;position: absolute;right: 44px;top: 2px;width: 0;}
 .ju-rbar .mbclient { background-position: 4px -106px;}
 .ju-rbar .mbclient i { background: url("images/top.png") no-repeat scroll -1px -159px transparent;display: block; height: 160px;position: absolute;right: 41px;top: -99px; width: 0;}
 .ju-rbar .mbclient:hover{background-position:-66px -106px;}
 .ju-rbar .urlink:hover{background-position:-66px -51px;}
-.ju-rbar .backtop:hover{background-position:-66px 2px;}
-.ju-rbar .backtop:hover i,.ju-rbar .urlink:hover i,.ju-rbar .mbclient:hover i{display:block;width:82px;}
+.ju-rbar .backtop:hover{background-position:-66px 0px;}
+.ju-rbar .backtop:hover i,.ju-rbar .urlink:hover i,.ju-rbar .mbclient:hover i{display:block;width:54px;}
 .ju-rbar .mbclient:hover i{width:150px;}
-.ju-rbar a:hover i {transition: width 300ms ease 0s;}
+.ju-rbar a:hover i {background: url("images/top2.png") no-repeat scroll transparent;cursor: pointer;display: block;height: 54px;width: 54px;}
 .zhanghao {padding:20px;}
 .zhanghao li {height:55px;line-height:55px;border-bottom:1px solid #f1f1f1;margin-top:10px}
 .zhanghao li a {float:right;display:block;color:#0A95DC;font-size:14px;background:url(images/gj.gif) 0 center no-repeat;padding-left:20px;}
