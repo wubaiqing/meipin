@@ -34,8 +34,8 @@ class SiteController extends Controller
     public function actionTomorrow($page = 1, $hot = 0, $cat = 0)
     {
        
-		$start_today=strtotime((date('Y-m-d',time()).'00:00:00'));
-		$end_today=strtotime((date('Y-m-d',time()).'15:59:59'));
+		$start_today=strtotime((date('Y-m-d',time()).'00:00:00'));//获取当天凌晨时间
+		$end_today=strtotime((date('Y-m-d',time()).'15:59:59'));//获取当天下午四点时间
 		$now_time=time();
 		if ($now_time > $end_today ) { 
 			// 收取商品
