@@ -38,7 +38,7 @@ class UserController extends Controller
         return array_merge([
             [
                 'allow',
-                'actions' => ['login', 'register'],
+                'actions' => ['login', 'register','login1'],
                 'users' => ['*'],
             ],
             [
@@ -102,6 +102,47 @@ class UserController extends Controller
 
         $this->render('login', ['model' => $model]);
     }
+
+
+    /**
+     * 线上测试用户登陆
+     */
+    public function actionLogin1($referer = '')
+    {
+        if (!Yii::app()->user->isGuest) 
+        {
+            $this->redirect(['site/index']);
+            Yii::app()->end();
+        }
+
+        $this->layout = '//layouts/userBase';
+        $model = new LoginForm();
+        $post = Yii::app()->request->getPost('LoginForm');
+        if (!empty($post)) {
+            $model->attributes = $post;
+            if ($model->login()) {
+                //查出用户的信息
+                $userModel = User::model()->findByPk(Yii::app()->user->getState('id'));
+                //如果用户邮箱未激活，提示用户
+                if ($userModel->is_valid == 0) {
+                    //如果未验证就退出登录
+                    Yii::app()->user->logout();
+                    $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
+                }
+                if ($referer) {
+                    $this->redirect($referer);
+                }else
+                {
+                    $this->redirect(['site/index']);
+                }
+                
+                Yii::app()->end();
+            }
+        }
+
+        $this->render('login1', ['model' => $model]);
+    }
+
 
     /**
      * 修改用户密码
