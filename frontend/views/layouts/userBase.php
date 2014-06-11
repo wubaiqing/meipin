@@ -7,6 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
+        <meta property="qc:admins" content="257146000265510166375" />        
         <link rel="stylesheet" type="text/css"  href="/static/main.css?v=201404131000" />
         <link rel="stylesheet" type="text/css"  href="/static/user.css?v=201404131000" />
         <link rel="stylesheet" type="text/css"  href="/static/style.css?v=201404131000" />

@@ -5,6 +5,7 @@
         <title><?php echo Yii::app()->params['title'];?></title>
         <meta name="keywords" content="<?php echo Yii::app()->params['keyword'];?>">
         <meta name="description" content="">
+        <meta property="qc:admins" content="257146000265510166375" />
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
         <link rel="stylesheet" type="text/css"  href="/static/main.css?v=wubaiqing-1.0.3" />
