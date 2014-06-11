@@ -8,9 +8,9 @@
         <meta name="description" content="">
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">
-        <link rel="stylesheet" type="text/css"  href="/static/main.css?v=wubaiqing-1.0.1" />
+        <link rel="stylesheet" type="text/css"  href="/static/main.css?v=wubaiqing-1.0.2" />
         <link rel="stylesheet" type="text/css"  href="/static/css/exchange.css?v=wubaiqing-1.0.2" />
-        <link rel="stylesheet" type="text/css"  href="/static/nav_style.css"/>
+        <link rel="stylesheet" type="text/css"  href="/static/nav_style.css?v=wubaiqing-1.0.2"/>
         <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/unslider.min.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/jtzdm_lazyload.js?v=1.0.1"></script>
