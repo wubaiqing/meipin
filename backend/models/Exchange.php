@@ -43,7 +43,7 @@ class Exchange extends CActiveRecord
                 'length',
                 'max' => 50
             ],
-            ['num, integral, start_time, end_time,lottery_time, taobao_id, goods_type',
+            ['num, integral, start_time, end_time,lottery_time,limit_count, taobao_id, goods_type',
                 'length',
                 'max' => 11
             ],
@@ -97,7 +97,8 @@ class Exchange extends CActiveRecord
             'is_delete' => '是否删除0否 1是',
             'goods_type' => '商品类型',
             'goodscolor' => '商品属性',
-            'lottery_time' => '开奖时间'
+            'lottery_time' => '开奖时间',
+            'limit_count' => '中奖名额'
         ];
     }
 

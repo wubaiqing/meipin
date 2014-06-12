@@ -101,6 +101,13 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
             <label class="line-note">开奖时间，设定了该时间后将由后台脚本自动进行抽奖</label>
         </div>
     </div>
+    <div class="control-group">
+        <?php echo $form->labelEx($exchangeModel, 'limit_count', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($exchangeModel, 'limit_count',[]); ?>
+            <label class="line-note">最大中奖用户数</label>
+        </div>
+    </div>
 <?php endif; ?>
 <!--<div class="control-group">
 <?php // echo $form->labelEx($exchangeModel,'need_level', array('class' => 'control-label'));  ?>
