@@ -91,10 +91,10 @@ $(function() {
             } else {
                 alert(result.data.message);
                 // $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
-                if ($("#jryq").length > 0)
-                {
-                    $("#jryq").html(result.data.message2);
-                }
+                if ( $("#jryq").length > 0 ) 
+                { 
+                  $("#jryq").html("今日已签&nbsp;&nbsp;&nbsp;&nbsp;"); 
+                } 
 
                 if ($("#jryq2").length > 0)
                 {

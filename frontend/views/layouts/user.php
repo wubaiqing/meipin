@@ -14,13 +14,14 @@
         <link rel="stylesheet" type="text/css"  href="/static/nav_style.css"/>
         <script type="text/javascript" src="/static/js/user.js?v=1.0.2"></script>
         <script type="text/javascript" src="/static/js/sign_day.js?v=1.0.1"></script>
+        <script type="text/javascript" src="/static/js/move.js?v=1.0.2"></script>
         <script type="text/javascript" src="http://malsup.github.io/min/jquery.blockUI.min.js"></script>
     </head>
     <body>
         <div id="header">
             <?php $this->renderPartial('//site/login'); ?>
             <?php $this->renderPartial('//site/head'); ?>
-            <?php $this->renderPartial('//site/nav', ['cat' => 0]); ?>
+            <?php $this->renderPartial('//site/nav_person', ['cat' => 0]); ?>
         </div>
         <div id="content" class="wp">
             <?php $this->renderPartial('//user/left'); ?>
