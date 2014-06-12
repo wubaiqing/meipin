@@ -62,7 +62,7 @@
             ],
             [
                 'class' => 'CButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => '{update} {delete} {water}',
                 'header' => '操作',
                 'buttons' => [
                     'update' => [
@@ -73,6 +73,12 @@
                     'delete' => [
                         'label' => '删除',
                         'imageUrl' => false,
+                    ],
+                    'water' => [
+                        'label' => '注水',
+                        'url' => 'Yii::app()->createUrl("exchange/water", array("id" => $data->id))',
+                        'imageUrl' => false,
+                        'htmlOptions' =>['background' =>'#ccc;']
                     ],
                 ]
             ],
