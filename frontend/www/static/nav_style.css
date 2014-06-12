@@ -122,12 +122,10 @@ br {clear:both;font-size:0;line-height:0;}
     margin:0 auto;
 }
 
-#class_new ul {
-	
-}
 #class_new li {
 	float:left;
 	width:84px;
+	height:53px;
 	padding-right:5px;
 	position:relative;
 }
@@ -146,6 +144,7 @@ br {clear:both;font-size:0;line-height:0;}
 }
 #class_new li a:hover {
 	background-color:#8b1c1c;
+	height:42px;
 }
 
 .image {
