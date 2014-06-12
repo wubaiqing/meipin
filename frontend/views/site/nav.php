@@ -32,11 +32,13 @@
             <br>
         </ul>   
     </div>
+	<div id='my_book'>
 	<a id="floatage-image" class="M" href="javascript:void(0);"onClick="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')">
 	     <img class="image" src="/static/images/girl.png">
 	</a>
 	<a href="javascript:void(0);" id="flotage-close-button">
 	     <img class="X" src="/static/images/X_03.png"/>
 	</a>
+	</div>
 </div>
  <?php endif;?>
