@@ -7,7 +7,7 @@
                 <div class="">
                     <p>
                         <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
-                            <img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://www.meipin.com/static/images/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190">
+                            <img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190">
                         </a>
                     </p>
                     <h2>
