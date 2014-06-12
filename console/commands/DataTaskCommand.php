@@ -26,4 +26,9 @@ class DataTaskCommand extends CConsoleCommand
             echo $goods->id . "\n";
         }
 	}
+        
+        public function actionLottery()
+        {
+            
+        }
 }

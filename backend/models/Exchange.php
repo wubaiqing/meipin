@@ -34,30 +34,41 @@ class Exchange extends CActiveRecord
                 'required'],
             ['need_level, is_delete',
                 'numerical',
-                'integerOnly' => true],
+                'integerOnly' => true
+            ],
             ['price',
                 'numerical',
                 'integerOnly' => false],
             ['name, support_name',
                 'length',
-                'max' => 50],
-            ['num, integral, start_time, end_time, taobao_id, goods_type',
+                'max' => 50
+            ],
+            ['num, integral, start_time, end_time,lottery_time, taobao_id, goods_type',
                 'length',
-                'max' => 11],
+                'max' => 11
+            ],
+            [
+                'lottery_time', 'checkLotteryTime'
+            ],
             ['price',
                 'length',
-                'max' => 10],
+                'max' => 10
+            ],
             ['taobaoke_url, support_url',
                 'length',
-                'max' => 200],
+                'max' => 200
+            ],
             ['img_url',
                 'length',
-                'max' => 100],
+                'max' => 100
+            ],
             ['id,goodscolor,goodscolor2',
-                'safe'],
-            ['id, name, num, price, integral, start_time, end_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete, goods_type',
+                'safe'
+            ],
+            ['id, name, num, price, integral, start_time, end_time,lottery_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete, goods_type',
                 'safe',
-                'on' => 'search'],
+                'on' => 'search'
+            ],
         ];
     }
 
@@ -85,7 +96,8 @@ class Exchange extends CActiveRecord
             'img_url' => '图片',
             'is_delete' => '是否删除0否 1是',
             'goods_type' => '商品类型',
-            'goodscolor' => '商品属性'
+            'goodscolor' => '商品属性',
+            'lottery_time' => '开奖时间'
         ];
     }
 
@@ -125,10 +137,24 @@ class Exchange extends CActiveRecord
      */
     public function beforeValidate()
     {
-        $this->start_time = strtotime($this->start_time);
-        $this->end_time = strtotime($this->end_time);
+//        $this->start_time = strtotime($this->start_time);
+//        $this->end_time = strtotime($this->end_time);
 
         return true;
+    }
+
+    public static function format($post)
+    {
+        if (isset($post['start_time']) && !empty($post['start_time'])) {
+            $post['start_time'] = strtotime($post['start_time']);
+        }
+        if (isset($post['end_time']) && !empty($post['end_time'])) {
+            $post['end_time'] = strtotime($post['end_time']);
+        }
+        if (isset($post['lottery_time']) && !empty($post['lottery_time'])) {
+            $post['lottery_time'] = strtotime($post['lottery_time']);
+        }
+        return $post;
     }
 
     /**
@@ -164,6 +190,15 @@ class Exchange extends CActiveRecord
     public static function getGoodsTypeLable($goodsType)
     {
         return isset(self::$goodsType[$goodsType]) ? self::$goodsType[$goodsType] : "";
+    }
+
+    public function checkLotteryTime()
+    {
+        if ($this->goods_type == 1) {
+            if (empty($this->lottery_time)) {
+                $this->addError("lottery_time", "抽奖时间必选");
+            }
+        }
     }
 
 }

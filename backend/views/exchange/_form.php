@@ -12,11 +12,14 @@ $form = $this->beginWidget('CActiveForm', array(
 CHtml::$errorSummaryCss = 'text-warning';
 ?>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/My97DatePicker/WdatePicker.js"></script>
-<?php echo $form->errorSummary($exchangeModel); ?>
+<?php
+echo $form->errorSummary($exchangeModel);
+$online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchangeModel->start_time < time());
+?>
 <div class="control-group">
     <?php echo $form->labelEx($exchangeModel, 'goods_type', ['class' => 'control-label', 'maxlength' => 50]); ?>
     <div class="controls">
-        <?php echo $form->dropDownList($exchangeModel, 'goods_type', Exchange::$goodsType); ?>
+        <?php echo $form->dropDownList($exchangeModel, 'goods_type', Exchange::$goodsType, ['disabled' => $online ? true : false]); ?>
         <label class="line-note">用于区分积分类商品的不同类型</label>
     </div>
 </div>
@@ -63,6 +66,7 @@ CHtml::$errorSummaryCss = 'text-warning';
             'onfocus' => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss', startDate:'%y-%M-%d 00:00:00', onpicking:function (dp) { $('#Exchange_start_time').val(dp.cal.getNewDateStr()); dp.hide();}})",
             "class" => "Wdate",
             'value' => $exchangeModel->start_time != 0 ? date('Y-m-d H:i:s', $exchangeModel->start_time) : $exchangeModel->start_time,
+            'readonly' => 'readonly',
         ));
         ?>
         <label class="line-note">活动开始时间</label>
@@ -76,11 +80,28 @@ CHtml::$errorSummaryCss = 'text-warning';
             'onfocus' => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss', startDate:'%y-%M-%d 00:00:00', onpicking:function (dp) { $('#Exchange_end_time').val(dp.cal.getNewDateStr()); dp.hide();}})",
             "class" => "Wdate",
             'value' => $exchangeModel->end_time != 0 ? date('Y-m-d H:i:s', $exchangeModel->end_time) : $exchangeModel->end_time,
+            'readonly' => 'readonly',
         ));
         ?>
         <label class="line-note">活动结束时间</label>
     </div>
 </div>
+<?php if ($exchangeModel->goods_type == 1): ?>
+    <div class="control-group">
+        <?php echo $form->labelEx($exchangeModel, 'lottery_time', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php
+            echo $form->textField($exchangeModel, 'lottery_time', array(
+                'onfocus' => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss', startDate:'%y-%M-%d 00:00:00', onpicking:function (dp) { $('#Exchange_lottery_time').val(dp.cal.getNewDateStr()); dp.hide();}})",
+                "class" => "Wdate",
+                'value' => $exchangeModel->lottery_time != 0 ? date('Y-m-d H:i:s', $exchangeModel->lottery_time) : $exchangeModel->lottery_time,
+                'readonly' => 'readonly',
+            ));
+            ?>
+            <label class="line-note">开奖时间，设定了该时间后将由后台脚本自动进行抽奖</label>
+        </div>
+    </div>
+<?php endif; ?>
 <!--<div class="control-group">
 <?php // echo $form->labelEx($exchangeModel,'need_level', array('class' => 'control-label'));  ?>
         <div class="controls">
@@ -136,7 +157,10 @@ CHtml::$errorSummaryCss = 'text-warning';
     </div>
 </div>
 <div class="form-actions">
-    <?php echo CHtml::submitButton($exchangeModel->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save')); ?>
+    <?php
+    echo CHtml::hiddenField("isChange", 0);
+    echo CHtml::submitButton($exchangeModel->isNewRecord ? '添加' : '修改', array('class' => 'btn btn-primary save'));
+    ?>
 </div>
 <?php $this->endWidget(); ?>
 
@@ -164,4 +188,8 @@ CHtml::$errorSummaryCss = 'text-warning';
     }, function() {
         $('#picture-preview').addClass('hide');
     });
+    $("#Exchange_goods_type").change(function() {
+        $("#isChange").val(1);
+        $("#goods-form").submit();
+    })
 </script>
