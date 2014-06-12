@@ -18,11 +18,15 @@
             </tr>
             <tr  align="center"  bgcolor="#f9f9f9">
              <td height="40" width="160">联系客服</td>
-                 <td width="280" height="40"><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E7%BA%A2%E8%8C%B6&site=cnalichn&s=11&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E7%BA%A2%E8%8C%B6&site=cnalichn&s=11&charset=UTF-8" alt="点击这里给我发消息" /><span style="color:#1266c9; vertical-align:top">美品网_红茶</span></a></td>
-              <td width="280" height="40"><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E6%A2%93%E5%BD%A4&site=cnalichn&s=11&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E6%A2%93%E5%BD%A4&site=cnalichn&s=11&charset=UTF-8" alt="点击这里给我发消息" /><span style="color:#1266c9; vertical-align:top">美品网_梓彤</span></a></td>
-              <td width="300" height="40"><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E5%B0%8F%E6%A1%83&site=cnalichn&s=11&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E5%B0%8F%E6%A1%83&site=cnalichn&s=11&charset=UTF-8" alt="点击这里给我发消息" /><span style="color:#1266c9; vertical-align:top">美品网_小桃</span></a></td>
-              <td width="260" height="40"><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E8%96%84%E8%8D%B7&site=cnalichn&s=11&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E8%96%84%E8%8D%B7&site=cnalichn&s=11&charset=UTF-8" alt="点击这里给我发消息" /><span style="color:#1266c9; vertical-align:top">美品网_薄荷</span></a></td>
-              <td width="260" height="40"><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E5%B0%8F%E8%88%9E&site=cnalichn&s=11&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E7%BE%8E%E5%93%81%E7%BD%91_%E5%B0%8F%E8%88%9E&site=cnalichn&s=11&charset=UTF-8" alt="点击这里给我发消息" /><span style="color:#1266c9; vertical-align:top">美品网_小舞</span></a></td>
+                 <td width="280" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_红茶&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_红茶&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
+
+              <td width="280" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_梓彤&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_梓彤&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
+
+              <td width="300" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_小桃&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_小桃&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
+
+              <td width="260" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_薄荷&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_薄荷&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
+
+              <td width="260" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_小舞&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_小舞&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
             </tr>
             </table>
         </div>
