@@ -59,7 +59,7 @@
             </tr>
             <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">动态评分</td>
-              <td width="240" height="40">不限</td>
+              <td width="240" height="40">4.6分以上</td>
               <td width="240" height="40">同行持平及以上</td>
               <td width="240" height="40">同行持平及以上</td>
             </tr>
@@ -72,8 +72,8 @@
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">商品评价</td>
               <td width="240" height="40">不限</td>
-              <td width="240" height="40">>20条</td>
-              <td width="240" height="40">>20条</td>
+              <td width="240" height="40">>10条</td>
+              <td width="240" height="40">>10条</td>
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">报名数量</td>
