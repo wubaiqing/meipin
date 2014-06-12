@@ -153,11 +153,11 @@
 #contentA .zt5 h4 .btn{display:inline-block;background-position:-137px -48px;}
 #contentA .zt5 h4 span{display: none;}
 #contentA .zt5 h4 em{display:inline-block;}
-#contentA .zt5 h3 span.time i{padding-left: 30px;font-size: 18px;color:#000;}
-#contentA .zt5 h3 span.time label{display: inline-block;background:url(../images/bg5.png) no-repeat 0px -88px;width: 200px;}
-#contentA .zt5 h3 span.time label em.one{margin-left:7px;}
-#contentA .zt5 h3 span.time label em.two{margin-left:37px;}
-#contentA .zt5 h3 span.time label em.three{margin-left:27px;}
+#contentA .deal h3 span.time i{padding-left: 30px;font-size: 18px;color:#000;}
+#contentA .deal h3 span.time label{display: inline-block;background:url(../images/bg5.png) no-repeat 0px -88px;width: 200px;}
+#contentA .deal h3 span.time label em.one{margin-left:7px;}
+#contentA .deal h3 span.time label em.two{margin-left:37px;}
+#contentA .deal h3 span.time label em.three{margin-left:27px;}
 #contentA .zt5 .blockA{display:none;}
 
 #contentA .zt6 h4 .btn{display:none;}
@@ -369,7 +369,8 @@
 .exchange .confcls .jadinfo{height:48px;text-align: right;}
 .exchange .confcls .jadinfo span{float:left;line-height: 48px;}
 .exchange .confcls .jadinfo span input {border: 1px solid #CCCCCC;height: 22px;line-height: 22px;text-indent: 5px;width: 350px;}
-.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: url(http://z0.tuanimg.com/v1/2012/images/pro_bg.png) no-repeat -160px 0;border:none;cursor:pointer;}
+/*.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: url(http://z0.tuanimg.com/v1/2012/images/pro_bg.png) no-repeat -160px 0;border:none;cursor:pointer;}*/
+.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: #e02f2f;border:none;cursor:pointer; color:#fff;font-weight:bold;font-size:16px;}
 .exchange .confcls .gift,.exchange .confcls .jadinfo{padding:40px 40px;}
 .exchange .confcls .gift div{border-bottom:1px dotted #d4d4d4;padding-bottom:15px;margin-bottom:15px;}
 .exchange .confcls .gift p{background: #edf9ff;font:800 14px/30px "";height:30px;}
@@ -405,3 +406,4 @@
 .goodcolor a{display: inline-block;width: 90px;height: 24px;line-height: 24px;text-align: center;border: 1px solid #CCC;margin: 8px 10px 10px 0px;color: #000;padding: 1px;overflow:hidden;float: left;
     }
 .goodcolor a.be{color:#CCC;}
+
