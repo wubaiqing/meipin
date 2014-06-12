@@ -44,8 +44,8 @@
             <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">C店要求</td>
               <td width="240" height="40">1钻以上</td>
-              <td width="240" height="40">3钻以上</td>
-              <td width="240" height="40">2钻以上</td>
+              <td width="240" height="40">1钻以上</td>
+              <td width="240" height="40">1钻以上</td>
             </tr>
             <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">B店要求</td>
@@ -73,9 +73,9 @@
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">报名数量</td>
-              <td width="240" height="40">>500件</td>
-              <td width="240" height="40">>500件</td>
-              <td width="240" height="40">>500件</td>
+              <td width="240" height="40">>200件</td>
+              <td width="240" height="40">>200件</td>
+              <td width="240" height="40">>200件</td>
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">发货速度</td>
