@@ -73,9 +73,9 @@
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">报名数量</td>
-              <td width="240" height="40">>500件</td>
-              <td width="240" height="40">>500件</td>
-              <td width="240" height="40">>500件</td>
+              <td width="240" height="40">>300件</td>
+              <td width="240" height="40">>300件</td>
+              <td width="240" height="40">>300件</td>
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">发货速度</td>
