@@ -45,10 +45,10 @@ var drift = DRIFT.GOSH();
 //首页收藏显示图片
 $(document).ready(function(e) {
 	$("#nav p").hover(function(){
-    $(this).find("span").show();
+    $(this).find(".span1").show();
 	$(this).find("a img").hide();
 		},function(){
-	$(this).find("span").hide();
+	$(this).find(".span1").hide();
 	$(this).find("a img").show();
 	});
    $(window).scroll(function( ){
