@@ -4284,7 +4284,7 @@ input[type="submit"].btn.btn-mini {
 }
 .pager .previous > a,
 .pager .previous > span {
-    float: left;
+    /*float: left;*/
 }
 .pager .disabled > a,
 .pager .disabled > a:hover,

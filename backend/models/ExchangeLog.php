@@ -22,15 +22,22 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 {
 
     /**
+     * 用户实体
+     * @var Users
+     */
+    public $user;
+
+    /**
      * 发货状态
      * @var array
      */
     static $status = [0 => '未发货', 1 => '已发货'];
+
     /**
      * 搜索状态显示
      * @var array
      */
-    static $statusSearch = [''=>'请选择',0 => '未发货', 1 => '已发货'];
+    static $statusSearch = ['' => '请选择', 0 => '未发货', 1 => '已发货'];
 
     /**
      * 省份ID
@@ -66,6 +73,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return [
             [
+                'username', 'checkUsername',
+            ],
+            [
                 'user_id,name,username,created_at,goods_id,status,city_id,address,postcode,mobile',
                 'required'
             ],
@@ -95,7 +105,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'city_id' => '城市ID',
             'address' => '配送地址',
             'goods_id' => '商品ID',
-            'gdscolor'  =>'颜色'
+            'gdscolor' => '颜色'
         ];
     }
 
@@ -171,6 +181,22 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         ExchangeLog::model()->updateByPk($id, $post);
 
         return true;
+    }
+
+    /**
+     * 配置注水相关数据
+     */
+    public function checkUsername()
+    {
+        if (!empty($this->user)) {
+            $this->user_id = $this->user->id;
+            $this->name = $this->user->username;
+            $this->created_at = time();
+            $address = UsersAddress::model()->findByAttributes(['user_id' => $this->user->id]);
+            if (empty($address)) {
+                
+            }
+        }
     }
 
 }
