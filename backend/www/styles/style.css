@@ -1865,6 +1865,9 @@ table th[class*="span"],
     width: 924px;
     margin-left: 0;
 }
+.table td.center{
+    text-align: center;
+}
 .table tbody tr.success td {
     background-color: #dff0d8;
 }

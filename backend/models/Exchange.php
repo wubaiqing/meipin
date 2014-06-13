@@ -129,6 +129,10 @@ class Exchange extends CActiveRecord
 
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 2,
+                'pageVar' => 'page'
+            )
         ]);
     }
 
