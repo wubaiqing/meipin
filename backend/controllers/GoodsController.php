@@ -142,9 +142,31 @@ class GoodsController extends Controller
     public function actionUpdate($id, $goodsType)
     {
         $model = $this->loadModel($id);
-
+        $pictureold = $model->picture;
+        
+        
         if (isset($_POST['Goods'])) {
             // 设置商品类型
+            //如果不等于原图并且是在阿里云上的则删除原图
+            if($model->picture != $_POST['Goods']['picture'])
+            {
+
+                //http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/images/2014/06/13/sfh9s1402642385539a9fd190b32.jpg
+                $domain = strstr($pictureold, 'aliyuncs.com'); 
+                if($domain)
+                {
+                    $picoldkey =  strstr($domain, 'images/');
+                    //阿里云接口
+                    if($picoldkey)
+                    {
+                        Yii::import('common.extensions.aliyunapi.OSSClient2');
+                        $OSSClient = new OSSClient2;
+                        $OSSClient->deleteObject($picoldkey);
+                    }
+
+                }
+               
+            }
             $model->goodsType = $goodsType;
 
             $_POST['Goods']['goods_type'] = $goodsType;

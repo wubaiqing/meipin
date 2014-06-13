@@ -62,7 +62,29 @@ class ExchangeController extends Controller
     {
         $id = Yii::app()->request->getQuery('id');
         $exchangeModel = $this->loadModel($id);
-        if (isset($_POST['Exchange'])) {
+        $imgold = $exchangeModel->img_url;
+        if (isset($_POST['Exchange'])) 
+        {
+            //如果不等于原图并且是在 阿里云 上的则删除原图
+            if($imgold != $_POST['Exchange']['img_url'])
+            {
+
+                //http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/images/2014/06/13/sfh9s1402642385539a9fd190b32.jpg
+                $domain = strstr($imgold, 'aliyuncs.com'); 
+                if($domain)
+                {
+                    $picoldkey =  strstr($domain, 'images/');
+                    //阿里云接口
+                    if($picoldkey)
+                    {
+                        Yii::import('common.extensions.aliyunapi.OSSClient2');
+                        $OSSClient = new OSSClient2;
+                        $OSSClient->deleteObject($picoldkey);
+                    }
+
+                }
+               
+            }
             $attributes = Yii::app()->request->getPost('Exchange');
             $attributes = Exchange::format($attributes);
             $exchangeModel->attributes = $attributes;
