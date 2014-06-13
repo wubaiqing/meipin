@@ -115,4 +115,4 @@ var www_meipin_com = function (obj, url, title) {
             a = null;
         }
     }
-};	  
+};	
