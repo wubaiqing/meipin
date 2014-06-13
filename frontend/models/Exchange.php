@@ -149,7 +149,7 @@ class Exchange extends ActiveRecord
             return $hotExchangeGoods;
         }
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId
-            . " and is_delete = 0 and goods_type = ".$goodsType." and end_time > ".time(),
+            . " and is_delete = 0 and goods_type = " . $goodsType . " and end_time > " . time(),
             'order' => 'sale_num desc',
             'limit' => 10]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
@@ -216,6 +216,11 @@ class Exchange extends ActiveRecord
         $time = time();
         //缓存的key
         $cacheKey = 'exchange_list_' . md5(serialize(func_get_args()));
+        $exchangeList = Yii::app()->cache->get($cacheKey);
+        if ($exchangeList) {
+            return $exchangeList;
+        }
+
         $criteria = new CDbCriteria();
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
@@ -237,18 +242,12 @@ class Exchange extends ActiveRecord
         $pages->pageSize = Yii::app()->params['pagination']['exchangePageSize'];
         $pages->applyLimit($criteria);
         $data = [];
-        $exchangeList = Yii::app()->cache->get($cacheKey);
-        //如果能获取到缓存，就直接返回
-        if ($exchangeList !== false || !empty($exchangeList)) {
-            $data['goods'] = $exchangeList;
-        } else {
-            //根据条件查询积分兑换商品
-            $data['goods'] = Exchange::model()->findAll($criteria);
-            //写入缓存
-            Yii::app()->cache->set($cacheKey, $data['goods'], Constants::T_HALF_HOUR);
-        }
+        //根据条件查询积分兑换商品
+        $data['goods'] = Exchange::model()->findAll($criteria);
         //分页类
         $data['pages'] = $pages;
+        //写入缓存
+        Yii::app()->cache->set($cacheKey, $data, Constants::T_HALF_HOUR);
 
         return $data;
     }
