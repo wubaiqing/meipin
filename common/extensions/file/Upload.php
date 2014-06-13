@@ -83,6 +83,36 @@ class Upload extends CComponent
         return $this->saveAs($this->fullPath);
     }
 
+
+
+    /**
+     * Auto sav guoe the file guoll
+     *
+     * @return boolean
+     */
+    public function getFullPath2()
+    {
+        if (!$this->validate()) {
+            return false;
+        }
+
+        if (!is_writable($this->savePath)) {
+            throw new Exception('Save path does not exists or not writable');
+        }
+
+        $dir = date('/Y/m/d');
+        $this->filePath = $this->savePath . $dir;
+        /*if (!is_dir($this->filePath)) {
+            mkdir($this->filePath, 0777, true);
+        }*/
+
+        $this->fileName = Str::random(5) . uniqid(time()) . '.' . $this->file->extensionName;
+        $this->fullPath = $this->filePath . '/' . $this->fileName;
+
+        return $this->fullPath;
+    }
+
+
     /**
      * Save the file as
      *
@@ -95,6 +125,17 @@ class Upload extends CComponent
             return $this->file->saveAs($path);
         }
         return false;
+    }
+
+    /**
+     * get tem name guoll
+     *
+     * @param string $name
+     * @return boolean
+     */
+    function getTmpName()
+    {
+        return $this->file->getTempName();
     }
 
     /**
