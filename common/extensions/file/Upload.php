@@ -90,26 +90,29 @@ class Upload extends CComponent
      *
      * @return boolean
      */
-    public function getFullPath2()
+    public function getFullPath2($file)
     {
-        if (!$this->validate()) {
-            return false;
-        }
+		// OSS
+        Yii::import('common.extensions.aliyunapi.OSSClient2');
+        $OSSClient = new OSSClient2;
 
-        if (!is_writable($this->savePath)) {
-            throw new Exception('Save path does not exists or not writable');
-        }
+		// 域名
+        $domain = "http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/";
 
-        $dir = date('/Y/m/d');
-        $this->filePath = $this->savePath . $dir;
-        /*if (!is_dir($this->filePath)) {
-            mkdir($this->filePath, 0777, true);
-        }*/
+		// 图片信息
+        $size = filesize($this->getTmpName());
+        $content = fopen($this->getTmpName(), 'r');
+        $imagePath = date('Y/m/d/');
+		$imageName = uniqid();
+		$imageExtension = $this->file->extensionName;
 
-        $this->fileName = Str::random(5) . uniqid(time()) . '.' . $this->file->extensionName;
-        $this->fullPath = $this->filePath . '/' . $this->fileName;
+		// 上传图片地址
+		$prefixPath = 'images/';
+		$filePath = $prefixPath . $imagePath . uniqid() . '.' . $imageExtension;
 
-        return $this->fullPath;
+		// 上传图片
+        $OSSClient->putResourceObject($filePath, $content, $size);
+		return $domain . $filePath;
     }
 
 
@@ -157,6 +160,11 @@ class Upload extends CComponent
         }
 
         return $this->error === null;
+    }
+
+    public function getExtensionName()
+    {
+        return $this->file->extensionName;
     }
 
     /**
