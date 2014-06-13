@@ -90,7 +90,7 @@ class Upload extends CComponent
      *
      * @return boolean
      */
-    public function getFullPath2($file)
+    public function uploadOSSImage($file)
     {
 		// OSS
         Yii::import('common.extensions.aliyunapi.OSSClient2');

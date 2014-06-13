@@ -30,7 +30,7 @@ class SiteController extends Controller
     {
         Yii::import('common.extensions.file.Upload');
         $file = new Upload('file');
-		$imageUrl = $file->getFullPath2($file);
+		$imageUrl = $file->uploadOSSImage($file);
 		echo CJSON::encode([
 			'success' => 1,
 			'path' => $imageUrl
