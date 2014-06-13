@@ -41,4 +41,5 @@
 	</a>
 	</div>
 </div>
+<script type="text/javascript" src="/static/js/person_move.js?v=1.0.2"></script>
  <?php endif;?>
