@@ -22,12 +22,6 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 {
 
     /**
-     * 用户实体
-     * @var Users
-     */
-    public $user;
-
-    /**
      * 发货状态
      * @var array
      */
@@ -76,16 +70,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'username', 'checkUsername',
             ],
             [
-                'user_id,name,username,created_at,goods_id,status,city_id,address,postcode,mobile',
-                'required'
-            ],
-            [
                 'id, user_id,created_at,updated_at,goods_id,city_id',
                 'numerical',
                 'integerOnly' => true
             ],
             [
-                'id,name,username,address,updated_at,remark',
+                'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile',
                 'safe'
             ],
         ];
@@ -184,19 +174,52 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 清除列表缓存
+     * @param integer $goodsId 兑换商品ID
+     */
+    public static function deleteExchangeLogListCache($goodsId)
+    {
+        $maxCachePageCount = Yii::app()->params['pageCahceMaxCount'];
+        for ($i = 1; $i <= $maxCachePageCount; $i++) {
+            $cacheKey = self::getLogListKey($goodsId, $i);
+            Yii::app()->cache->delete($cacheKey);
+        }
+    }
+
+    /**
+     * 获取记录
+     * @param integer $goodsId 兑换商品ID
+     * @param integer $page    当前页数
+     */
+    public static function getLogListKey($goodsId, $page)
+    {
+        return 'get-exchangelog-list-cachekey-' . $goodsId . "-" . $page;
+    }
+
+    /**
      * 配置注水相关数据
      */
     public function checkUsername()
     {
-        if (!empty($this->user)) {
-            $this->user_id = $this->user->id;
-            $this->name = $this->user->username;
-            $this->created_at = time();
-            $address = UsersAddress::model()->findByAttributes(['user_id' => $this->user->id]);
-            if (empty($address)) {
-                
+        if (empty($this->username)) {
+            $this->addError("usernmae", "用户名不能为空");
+        } else {
+            $log = self::model()->findAllByAttributes(['username' => trim($this->username)]);
+            if (!empty($log)) {
+                $this->addError("usernmae", "该用户已经存在");
             }
         }
+
+        $this->created_at = time();
+        $this->status = 0;
+    }
+
+    /**
+     * 查询注水中奖用户
+     */
+    public static function findWatterList()
+    {
+        return self::model()->findAll('user_add >0 and winner =1');
     }
 
 }

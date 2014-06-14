@@ -199,26 +199,33 @@ class ExchangeController extends Controller
         }
     }
 
-    public function actionWater()
+    public function actionWater($id)
     {
-        $id = Yii::app()->request->getQuery('id');
         $exchangeModel = $this->loadModel($id);
-
         $exchangeLog = new ExchangeLog();
         if (Yii::app()->request->isPostRequest) {
             $exchangeLog->attributes = Yii::app()->request->getPost("ExchangeLog");
-            $user = Users::model()->findByAttributes(['username' => $exchangeLog->username]);
-            if (empty($user)) {
-                $exchangeLog->addError('username', '用戶不存在');
-            } else {
-                $exchangeLog->user = $user;
-                $exchangeLog->validate();
+            $exchangeLog->winner = 1;
+            $exchangeLog->user_add = 1;
+            $exchangeLog->validate();
+            if ($d = $exchangeLog->save()) {
+                ExchangeLog::deleteExchangeLogListCache($exchangeLog->goods_id);
+                $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
+        //查询注水中奖用户
+        $waterList = ExchangeLog::findWatterList();
         $this->render('water', [
             'exchangeModel' => $exchangeModel,
             'exchangeLog' => $exchangeLog,
+            'waterList' => $waterList,
         ]);
+    }
+
+    public function actionWaterDelete($id)
+    {
+        $res = ExchangeLog::model()->deleteByPk($id);
+        $this->returnData($res>0?true:false, ['message' => '操作成功']);
     }
 
 }

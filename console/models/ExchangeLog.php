@@ -172,5 +172,4 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
         return true;
     }
-
 }

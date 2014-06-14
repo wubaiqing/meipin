@@ -58,9 +58,5 @@ return [
             3 => 3
         ],
         'scorePageSize' => 5,
-        //兑换记录列表大小
-        'exchangeLogPageSize' => 20,
-        //分页最大缓存页面数
-        'pageCahceMaxCount' => 5,
     ],
 ];

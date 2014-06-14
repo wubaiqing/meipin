@@ -34,7 +34,10 @@
     <div class="control-group" style="border-top: 1px solid #ccc;padding-top: 10px;">
         <?php echo $form->labelEx($exchangeLog, 'username', ['class' => 'control-label']); ?>
         <div class="controls">
-            <?php echo $form->textField($exchangeLog, 'username', ['maxlength' => 50]); ?>
+            <?php
+            echo $form->textField($exchangeLog, 'username', ['maxlength' => 50]);
+            echo $form->hiddenField($exchangeLog, 'goods_id', ['value' => $exchangeModel->id]);
+            ?>
         </div>
     </div>
     <div class="form-actions">
@@ -45,23 +48,42 @@
     <h5>中奖用户列表（注水用户）</h5>
     <div class="control-group" style="border-top: 1px solid #ccc;padding-top: 10px;">
         <div class="controls">
-        <table class="table table-striped table-bordered" style="width:300px;">
-            <thead>
-            <tr>
-                <td>用户名</td>
-                <td>添加时间</td>
-            </tr>
-            </thead>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-            </div>
+            <table class="table table-striped table-bordered" style="width:300px;">
+                <thead>
+                    <tr>
+                        <td>用户名</td>
+                        <td>添加时间</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <?php
+                foreach ($waterList as $water):
+                    ?>
+                    <tr>
+                        <td><?php echo $water->username; ?></td>
+                        <td><?php echo date("Y-m-d H:i:s", $water->created_at); ?></td>
+                        <td>
+                            <?php
+                            echo CHtml::link("删除", 'javascript:', ['url' => Yii::app()->createUrl("exchange/waterDelete", ['id' => $water->id]), 'onclick' => 'water_delete(this)']);
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
     </div>
     <?php $this->endWidget(); ?>
 
-    <script>
-
+    <script type="text/javascript">
+        function water_delete(obj) {
+            if (confirm("确定要删除该记录？")) {
+                var url = $(obj).attr("url");
+                $.get(url, {}, function(d) {
+                    if (d.status == true) {
+                        $(obj).parents("tr").remove();
+                    }
+                }, 'json');
+            }
+        }
     </script>
 </div>
