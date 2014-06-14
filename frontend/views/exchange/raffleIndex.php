@@ -29,25 +29,11 @@
                     <span>价值&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><i>&nbsp;&nbsp;&nbsp;￥</i><?php echo $data['exchange']->price; ?></strong><br>
                     <span>抽奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
                     <span class="time" date="<?php echo date("Y-m-d H:i:s",$data['exchange']->end_time)?>">距离抽奖结束：<i>8</i>天<label><em class="one">19</em><em class="two">20</em><em class="three">38</em></label></span>
-                    <?php if ($data['exchange']->goodscolor): ?>
-                        <span class='goodcolor'>
-                            <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
-
-                                <a <?php
-                                if ($value['gdcolornum'] == 0) {
-                                    echo "class='be' stock='0' ";
-                                } else {
-                                    echo 'stock=' . $value["gdcolornum"] . '';
-                                }
-                                ?>  href="javascript:void(0)"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
-                                <?php endforeach; ?>
-
-                        </span>
-                    <?php endif; ?>
                 </h3>
                 <h4>
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
+                    <?php echo CHtml::hiddenField("goods_type", $data['exchange']->goods_type); ?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已参与</a>
                 </h4>

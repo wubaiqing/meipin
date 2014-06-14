@@ -216,10 +216,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 查询注水中奖用户
+     * @param integer $goods_id 商品ID
+     * @return ExchangeLog 
      */
-    public static function findWatterList()
+    public static function findWatterList($goods_id)
     {
-        return self::model()->findAll('user_add >0 and winner =1');
+        return self::model()->findAll("user_add >0 and winner =1 and goods_id=$goods_id");
     }
 
 }

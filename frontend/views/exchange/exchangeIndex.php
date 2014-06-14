@@ -5,7 +5,7 @@
             <span class="bsr"></span>
         </div>
         <?php
-        $this->renderPartial('hotExchange', array('goodsList'=>$data['hotExchangeGoods'], 'goodsType' => $data['exchange']->goods_type));
+        $this->renderPartial('hotExchange', array('goodsList' => $data['hotExchangeGoods'], 'goodsType' => $data['exchange']->goods_type));
         ?>
     </div>
 
@@ -47,6 +47,7 @@
                 <h4>
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
+                    <?php echo CHtml::hiddenField("goods_type", $data['exchange']->goods_type); ?>
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已兑换</a>
                     <em>(当前库存<b><?php

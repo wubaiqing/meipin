@@ -214,7 +214,7 @@ class ExchangeController extends Controller
             }
         }
         //查询注水中奖用户
-        $waterList = ExchangeLog::findWatterList();
+        $waterList = ExchangeLog::findWatterList($id);
         $this->render('water', [
             'exchangeModel' => $exchangeModel,
             'exchangeLog' => $exchangeLog,

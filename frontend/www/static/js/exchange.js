@@ -22,7 +22,8 @@ $(function() {
 });
 function checkcolor()
 {
-    if ($("#gdcolor").val() == '')
+    var goods_type = $("#goods_type").val();
+    if (goods_type !=1 && $("#gdcolor").val() == '')
     {
         alert('请选择一个型号');
         return false;
