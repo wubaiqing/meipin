@@ -27,7 +27,7 @@
                 <h3>
                     <span>所需积分</span><em><?php echo $data['exchange']->integral; ?></em>积分<br>
                     <span>价值&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><i>&nbsp;&nbsp;&nbsp;￥</i><?php echo $data['exchange']->price; ?></strong><br>
-                    <span>抽奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
+                    <span>中奖名额</span><b><?php echo $data['exchange']->limit_count; ?></b><br/>
                     <span class="time" date="<?php echo date("Y-m-d H:i:s",$data['exchange']->end_time)?>">距离抽奖结束：<i>8</i>天<label><em class="one">19</em><em class="two">20</em><em class="three">38</em></label></span>
                 </h3>
                 <h4>
