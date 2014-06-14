@@ -51,6 +51,15 @@
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已参与</a>
                 </h4>
+                <div class="blockA" >
+                    <h2>中奖名单
+                    <ul class="">
+                        <?php foreach($winnerList as $winner):?>
+                        <li><?php echo "<b>".$winner->username."</b>&nbsp;于".date("Y年m月d日",$winner->created_at)."中奖";?> </li>
+                        <?php endforeach;?>
+                    </ul>
+                    </h2>
+                </div>
             </div>
         </form>
         <?php
@@ -70,6 +79,7 @@
         <div class="l displayIF exchangerule <?php echo empty($page) ? "" : "hid"; ?>" id="">
             <div class="topinfo"></div>
             <div class="blockCJ ">
+                <p class="cj"></p>
                 <strong>抽奖礼品规则</strong>
                 1、活动开始后，所有注册会员均可点击“我要抽奖”按钮进行礼品抽奖       <br>
                 2、为了更好的回馈美品网会员，所有礼品不收取任何费用，我们包邮为您送到家      <br>

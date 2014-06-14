@@ -56,7 +56,7 @@
 #contentA .deal h2 em.on{border-color: #ccc;}
 #contentA .deal h2 em.on i{display:block;}
 
-#contentA .deal h3{line-height: 26px;padding:0 20px;color:#333;border-bottom: 1px solid #e6e6e6;}
+#contentA .deal h3{line-height: 26px;padding:0 20px;color:#333;}
 #contentA .deal h3 em{font-size:26px;color:#cc0000;margin-right:5px;font-family: "微软雅黑";}
 #contentA .deal h3 strong{font-size: 14px;margin-left:5px;}
 
@@ -86,12 +86,12 @@
 #contentA .deal h6 b.z4{background-position: -856px 0;}
 #contentA .deal h6 b.z5{background-position: -889px 0;}
 #contentA .deal p{background:#fcfaf9;border:1px solid #f8f3f0;border-width: 1px 0;line-height: 20px;padding:4px 20px;text-align: left;margin-top:30px;max-height: 60px;overflow: hidden;}
-#contentA .deal .blockA{padding:0 20px;margin-top: 20px;display:none;}
-#contentA .deal .blockA h2{height:30px;background: url(../images/bg5.png) no-repeat 0 -124px;position: relative;margin: 0;overflow: hidden;}
+#contentA .deal .blockA{padding:0 20px;margin-top: 20px;display:none;border:0px;}
+#contentA .deal .blockA h2{background: url(../images/bg5.png) no-repeat 0 -124px;height: 98px;position: relative;margin: 0;overflow: hidden;}
 #contentA .deal .blockA h2 span{font:800 14px/30px "";color:#666;width: auto;height: 30px;}
 #contentA .deal .blockA h2 a{width:109px;height:27px;display:inline-block;background: url(../images/bg5.png) no-repeat -197px -91px;position: absolute;top:0;right:0;}
 #contentA .deal .blockA h2 a.on{background-position:-309px -92px; }
-#contentA .deal .blockA ul{border:1px solid #e4e4e4;border-width:0 1px;}
+#contentA .deal .blockA ul{border:1px solid #e4e4e4;border-width:0 1px;color:red;}
 #contentA .deal .blockA li{float:left;width:182px;height:40px;overflow: hidden;line-height: 20px;display:inline;padding:0 10px 20px 10px;}
 #contentA .deal .blockA li img{float:left;width:40px;height:40px;margin-right:10px;display:inline;}
 #contentA .deal .blockA li span,#contentA .deal .blockA li em{display:block;height: 20px;overflow: hidden;}
@@ -106,17 +106,16 @@
 #contentA .deal ul.blockB span a.on,#contentA .deal ul.blockB span a.on:hover{padding:0;border:2px solid #cc0000;}
 #contentA .deal ul.blockB span a.be,#contentA .deal ul.blockB span a.be:hover{border-color: #e6e6e6;color:#ccc;cursor: default;}
 /*兑换新改*/
-#contentA .dhdeal .deal{border-bottom: 1px solid #e6e6e6;}
+/*#contentA .dhdeal .deal{border-bottom: 1px solid #e6e6e6;}*/
 #contentA .dhdeal h3 span{display: inline-block;color:#999;padding-right: 70px;}
 #contentA .dhdeal h3 em{font:bold 23px/26px "Tahoma";}
 #contentA .dhdeal h3 strong{font:bold 12px/26px "Tahoma";margin-left:0px;}
 #contentA .dhdeal h3 strong i{font-family: "微软雅黑";font-style: normal;font-weight: normal;}
 #contentA .dhdeal h3 b{font:12px/26px "Tahoma";}
-#contentA .dhdeal h4{padding-left: 100px;margin: 20px 0;}
+#contentA .dhdeal h4{margin: 20px 0;}
 #contentA .dhdeal h5{margin-top: 0;}
 #contentA .dhdeal h5 b{font-weight: normal;color:#999;float:left;width: 80px;}
 #contentA .dhdeal h5 em{font:bold 12px/30px "Tahoma";background: none;display: inline;}
-#contentA .dhdeal p{background: none;border: none;margin-top: 0;}
 #contentA .dhdeal p em{float:left;width:80px;color:#999;}
 #contentA .dhdeal p span{display: inline-block;width: 524px;}
 #contentA .dhdeal ul.blockB{padding:0 0 5px 0;margin: 5px 20px 10px;}
@@ -163,14 +162,18 @@
 #contentA .zt6 h4 .btn{display:none;}
 #contentA .zt6 h4 span{display: inline-block;background-position:-275px -48px;overflow: hidden;}
 #contentA .zt6 h5{display: block;}
-#contentA .zt6 .blockA{display:none;}
+/*#contentA .zt6 .blockA{display:none;}*/
 
 #contentA .zt7 h4 .btn{display:none;}
 #contentA .zt7 h4 span{display: inline-block;background-position:-400px -48px;overflow: hidden;}
 #contentA .zt7 h5{display: block;}
-#contentA .zt7 .blockA{display:none;}
+#contentA .zt7 .blockA{display:block;}
 
-
+form, ul, ol, li, span, p, dl, dt, dd, img {
+margin: 0;
+padding: 0;
+border: 0;
+}
 #contentA .dhdeal  .zt1 h4 span{background-position:-16px -269px;}
 #contentA .dhdeal  .zt2 h4{height:60px;}
 #contentA .dhdeal  .zt2 h4 .btn{background-position:-137px -269px;}
