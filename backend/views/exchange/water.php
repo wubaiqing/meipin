@@ -38,6 +38,7 @@
             echo $form->textField($exchangeLog, 'username', ['maxlength' => 50]);
             echo $form->hiddenField($exchangeLog, 'goods_id', ['value' => $exchangeModel->id]);
             ?>
+            <label class="line-note">添加后前台将显示该用户名称</label>
         </div>
     </div>
     <div class="form-actions">
