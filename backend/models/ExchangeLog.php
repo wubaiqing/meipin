@@ -203,11 +203,6 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         if (empty($this->username)) {
             $this->addError("usernmae", "用户名不能为空");
-        } else {
-            $log = self::model()->findAllByAttributes(['username' => trim($this->username)]);
-            if (!empty($log)) {
-                $this->addError("usernmae", "该用户已经存在");
-            }
         }
 
         $this->created_at = time();
@@ -224,7 +219,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $data = ExchangeLog::model()->count([
             'condition' => 'goods_id=:goods_id',
             'params' => [":goods_id" => $goods_id],
-            'group' => 'user_id'
+            'group' => 'username'
         ]);
         return count($data);
     }

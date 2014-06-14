@@ -183,7 +183,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $data = ExchangeLog::model()->count([
             'condition' => 'goods_id=:goods_id',
             'params' => [":goods_id" => $goods_id],
-            'group' => 'user_id'
+            'group' => 'username'
         ]);
         return count($data);
     }
