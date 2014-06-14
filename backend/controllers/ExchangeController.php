@@ -209,6 +209,7 @@ class ExchangeController extends Controller
             $exchangeLog->user_add = 1;
             $exchangeLog->validate();
             if ($d = $exchangeLog->save()) {
+                Exchange::model()->updateByPk($log->goods_id, ['user_count'=>$userCount]);
                 ExchangeLog::deleteExchangeLogListCache($exchangeLog->goods_id);
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
@@ -224,8 +225,18 @@ class ExchangeController extends Controller
 
     public function actionWaterDelete($id)
     {
-        $res = ExchangeLog::model()->deleteByPk($id);
-        $this->returnData($res>0?true:false, ['message' => '操作成功']);
+        $log = ExchangeLog::model()->findByPk($id);
+        $trans = Yii::app()->db->beginTransaction();
+        try {
+            $log->delete();
+            $userCount = ExchangeLog::getUserCount($id);
+            Exchange::model()->updateByPk($log->goods_id, ['user_count'=>$userCount]);
+            $trans->commit();
+            $this->returnData(true, ['message' => '操作成功']);
+        } catch (Exception $ex) {
+            $trans->rollback();
+            $this->returnData(false, ['message' => '操作失败']);
+        }
     }
 
 }

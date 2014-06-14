@@ -176,11 +176,7 @@ class ScoreService
             ];
             $exchangeLog->insert();
 
-            $userCount = ExchangeLog::model()->count([
-                'condition' => 'goods_id=:goods_id',
-                'params' => [":goods_id" => $goods->id],
-                'group' => 'user_id'
-            ]);
+            $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
             Exchange::model()->updateByPk($goods->id, [
                 'sale_num' => new CDbExpression('sale_num+1'),

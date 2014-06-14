@@ -173,5 +173,19 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
         return $this;
     }
+    /**
+     * 获取参与用户数
+     * @param integer $goods_id 商品ID
+     * @return integer 
+     */
+    public static function getUserCount($goods_id)
+    {
+        $data = ExchangeLog::model()->count([
+            'condition' => 'goods_id=:goods_id',
+            'params' => [":goods_id" => $goods_id],
+            'group' => 'user_id'
+        ]);
+        return count($data);
+    }
 
 }
