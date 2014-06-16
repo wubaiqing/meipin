@@ -43,12 +43,16 @@ class SiteController extends Controller
             $this->redirect(array('goods/admin'));
         }
 
-        if (Yii::app()->request->isPostRequest && isset($_POST['name'], $_POST['password'])) {
+        if (Yii::app()->request->isPostRequest && isset($_POST['name'], $_POST['password'])) 
+        {
             $identity = new UserIdentity($_POST['name'], $_POST['password']);
             if ($identity->authenticate()) {
                 $duration = 86400;
                 Yii::app()->user->login($identity, $duration);
                 $this->redirect(array('goods/admin'));
+            }else
+            {
+                 $this->redirect(array('site/login','flag'=>1));
             }
         }
 
