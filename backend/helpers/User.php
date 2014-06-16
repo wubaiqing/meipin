@@ -21,6 +21,7 @@ class User
         '小艾' => '8',
         'duoduo' => '9', //侯宝多
         'test'=>'10',
+        'taolaoda'=>'11'
     );
 
     /**
