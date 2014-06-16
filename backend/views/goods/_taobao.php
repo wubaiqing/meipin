@@ -32,7 +32,7 @@ CHtml::$errorSummaryCss = 'text-warning';
     <div class="control-group">
         <?php echo $form->labelEx($model,'is_zhe800', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->dropDownList($model, 'is_zhe800', array('1' => '折800', '2' => '其他' )); ?>
+            <?php echo $form->dropDownList($model, 'is_zhe800', array('2' => '其他' )); ?>
         </div>
     </div>
 

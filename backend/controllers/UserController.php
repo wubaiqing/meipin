@@ -34,6 +34,18 @@ class UserController extends Controller
     }
 
     /**
+     * 用户积分详情
+     */
+    public function actionExdetail($uid,$um)
+    {
+        $model = Score::model();
+        $this->render('score', [
+            'model' => $model,
+            'uid'=>$uid,
+            'um'=>$um,
+        ]);
+    }
+    /**
      * 修改用户信息
      * @param integer $id 用户ID
      */
