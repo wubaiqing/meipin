@@ -31,6 +31,7 @@
                 <input type="submit" value="登 录" class="submit">
             </p>
             <p class="reg">
+                <a href="#" onclick='toQzoneLogin()'><img src="/static/images/qq/Connect_logo_3.png"></a><br>
                 还没有美品网账号？
                 <a href="<?php echo $this->createUrl('user/register'); ?>" class="zhuce">立即注册&gt;&gt;</a>
             </p>
@@ -39,3 +40,15 @@
         <span class="clr"></span>
     </div>
 </div>
+        <script type="text/javascript">
+            var childWindow;
+            function toQzoneLogin()
+            {
+                childWindow = window.open("/user/Qlogin","TencentLogin","width=450,height=320,menubar=0,scrollbars=1, resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+            } 
+            
+            function closeChildWindow()
+            {
+                childWindow.close();
+            }
+        </script>

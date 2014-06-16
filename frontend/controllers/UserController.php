@@ -103,7 +103,12 @@ class UserController extends Controller
         $this->render('login', ['model' => $model]);
     }
 
-
+    public function actionQlogin()
+    {
+        Yii::import('common.extensions.qqlogin.Qlogin');
+        $Occ = new Qlogin;
+        $Occ->qq_login();
+    }
     /**
      * 线上测试用户登陆
      */
