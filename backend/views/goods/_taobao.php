@@ -117,7 +117,7 @@ CHtml::$errorSummaryCss = 'text-warning';
 	<div class="control-group">
         <?php echo $form->labelEx($model,'head_show', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->dropDownList($model, 'head_show', array('3' => '默认','1' => '不显示', '2' => '显示' )); ?>
+            <?php echo $form->dropDownList($model, 'head_show', array('3' => '默认', '2' => '显示', '1' => '不显示' )); ?>
         </div>
     </div>
     <div class="control-group">
