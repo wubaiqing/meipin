@@ -135,6 +135,11 @@
               <td width="240" height="40">价值较大商品</td>
               <td width="240" height="40">价值较大商品</td>
               <td width="240" height="40">价值较大商品</td>
+            </tr> <tr  align="center"  bgcolor="#ffffff">
+             <td height="40" width="140">是否邮寄样品</td>
+              <td width="240" height="40">是</td>
+              <td width="240" height="40">是</td>
+              <td width="240" height="40">是</td>
             </tr>
           </table>
         </div>
