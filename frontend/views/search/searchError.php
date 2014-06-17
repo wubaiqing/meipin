@@ -15,7 +15,6 @@
           </div>
      </div>
 </div>
-<?php $this->renderPartial('//site/side'); ?>
 <div id="footer" class="footer">
     <?php $this->renderPartial('//site/footer'); ?>
 </div>
