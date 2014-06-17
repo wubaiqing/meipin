@@ -96,9 +96,9 @@
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">审核周期</td>
-              <td width="240" height="40">20工作日</td>
-              <td width="240" height="40">20工作日</td>
-              <td width="240" height="40">20工作日</td>
+              <td width="240" height="40">7工作日</td>
+              <td width="240" height="40">7工作日</td>
+              <td width="240" height="40">7工作日</td>
             </tr>
             <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">打折方式</td>
