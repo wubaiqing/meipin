@@ -129,6 +129,7 @@ class Goods extends ActiveRecord implements IArrayable
             'start_time' => '开始时间',
             'end_time' => '结束时间',
             'status' => '状态',
+            'head_show' => '首页永久显示',
             'goods_type' => 'URL转换类型',
             'relation_website' => '关联网站',
             'user_id' => '用户ID',
