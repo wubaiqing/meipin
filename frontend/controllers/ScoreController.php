@@ -12,6 +12,7 @@ class ScoreController extends Controller
     /**
      * @var string $layout
      */
+    public $qq_openid;
     public $layout = '//layouts/user';
 
     /**
@@ -52,13 +53,13 @@ class ScoreController extends Controller
     {
         // 用户ID
         $userId = Yii::app()->user->id;
-
         // 获取用户记录
         $user = User::getUser($userId);
         $page = Yii::app()->request->getParam('page');
         $type = Yii::app()->request->getParam('type');
         $type = key_exists($type, Score::$page_type) ? $type : 'index';
-
+        
+        
         // 获取用户积分记录
         $score = Score::getScoreByUserId($userId, $type, $page);
 

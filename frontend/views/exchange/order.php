@@ -51,6 +51,12 @@
                 </em>
             </li>
             <li>
+                <label>电子邮箱：</label>
+                <em id="li_mobile">
+                    <?php echo $form->textField($data['userAddress'], 'email', array('class' => 'text', 'maxLength' => '15')); ?>
+                </em>
+            </li>
+            <li>
                 <label>邮政编码：</label>
                 <?php echo $form->textField($data['userAddress'], 'postcode', array('class' => 'text', 'maxLength' => '10')); ?>
             </li>
