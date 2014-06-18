@@ -2,7 +2,7 @@
     <?php $this->renderPartial('//site/prompt'); ?>
     <?php $this->renderPartial('//site/login'); ?>
     <?php $this->renderPartial('//site/head'); ?>
-    <?php $this->renderPartial('//site/nav', array('cat' => 0)); ?>
+    <?php $this->renderPartial('//site/nav_person', array('cat' => 0)); ?>
 </div>
 <div id="content" class="wp">
      <div class="search">
@@ -15,7 +15,6 @@
           </div>
      </div>
 </div>
-<?php $this->renderPartial('//site/side'); ?>
 <div id="footer" class="footer">
     <?php $this->renderPartial('//site/footer'); ?>
 </div>

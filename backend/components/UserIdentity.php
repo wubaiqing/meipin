@@ -4,6 +4,7 @@
  */
 class UserIdentity extends CUserIdentity
 {
+    public $flag;
     /**
      * @var array 用户账号密码
      */
@@ -15,11 +16,16 @@ class UserIdentity extends CUserIdentity
         '小艾' => '123456',
         'xiaotao' => 'xiaotao88', //刘雨
         'duoduo' => 'meipinwang5', //侯宝多
-        'test'=>'test'
+        'test'=>'test',
+        'taolaoda'=>'277832054'
     );
 
     /**
      * 用户登录
+     *  const ERROR_NONE=0;
+   *  const ERROR_USERNAME_INVALID=1;
+  *  const ERROR_PASSWORD_INVALID=2;
+   *   const ERROR_UNKNOWN_IDENTITY=100;
      */
     public function authenticate()
     {
@@ -30,8 +36,13 @@ class UserIdentity extends CUserIdentity
         } else {
             $this->errorCode = self::ERROR_NONE;
         }
-        UserLoginLog::setLoginTime($this->username);
 
-        return !$this->errorCode;
+         $flag = !$this->errorCode;
+         if($flag == self::ERROR_USERNAME_INVALID )
+         {
+           UserLoginLog::setLoginTime($this->username);
+         }
+
+        return $flag;
     }
 }

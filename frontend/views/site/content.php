@@ -42,7 +42,8 @@
                     <?php
                     $now = date('Y-m-d', time());
                     $today = date('Y-m-d', $item->created_at);
-                    if ($now == $today) {
+                    $start_time = date('Y-m-d', $item->start_time);
+                    if (($now == $today)||($now == $start_time)) {
                     echo '<span class="newicon"></span>';
                     }
                     ?>

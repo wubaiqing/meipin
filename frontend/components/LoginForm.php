@@ -75,6 +75,34 @@ class LoginForm extends CFormModel
         }
     }
 
+
+
+    /**
+     * 美品网登陆
+     * @return boolean
+     */
+    public function QQlogin()
+    {
+        // 身份识别
+        if ($this->_identity === null) {
+            $this->_identity = new UserIdentity($this->username, $this->password);
+            $this->_identity->Qloginouth();
+        }
+
+        // 验证信息
+       if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) 
+       {
+            Yii::app()->user->login($this->_identity, 0);
+            $this->setReferer();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
     /**
      * 设置跳转页面的cookie
      */

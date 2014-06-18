@@ -116,9 +116,17 @@ class GoodsController extends Controller
             if ($model->goodsType != 0) {
                 $model->tb_id = 0;
             }
-
             $model->user_id = User::getUserName(Yii::app()->user->id);
-
+			//首页显示
+			if ($_POST['Goods']['head_show']==2) {  
+					$model->head_show =$_POST['Goods']['head_show'];//获取首页是否显示字段
+					$model->start_time =date('Y-m-d H:i:s',time());//获取当前时间
+					$year=date('Y-m-d h:i:s',strtotime("+1 year"));//获取一年后时间
+					$model->end_time =$year;//获取结束时间
+					//记录选择选择录入时间
+					$model->log_start_time= strtotime($_POST['Goods']['start_time']);//记录操作开始时间
+					$model->log_end_time=strtotime($_POST['Goods']['end_time']);//记录操作结束时间 
+				}
             if ($model->save()) {
                 //插入操作记录
                 UserLoginLog::addOperation("添加({$model->id}的商品)");
@@ -142,6 +150,7 @@ class GoodsController extends Controller
     public function actionUpdate($id, $goodsType)
     {
         $model = $this->loadModel($id);
+		$modelShow=new Goods;
         $pictureold = $model->picture;
         
         
@@ -171,20 +180,37 @@ class GoodsController extends Controller
 
             $_POST['Goods']['goods_type'] = $goodsType;
             $model->attributes = $_POST['Goods'];
-
+			
             // 根据商品类型设置淘宝ID
             if ($model->goodsType != 0) {
                 $model->tb_id = 0;
             }
-
+			if ($_POST['Goods']['head_show']!=3) {
+				//首页显示
+				if ($_POST['Goods']['head_show']==2) {  
+						$model->head_show =$_POST['Goods']['head_show'];//获取首页是否显示字段
+						$model->start_time =date('Y-m-d H:i:s',time());//获取当前时间
+						$year=date('Y-m-d h:i:s',strtotime("+1 year"));//获取一年后时间
+						$model->end_time =$year;//获取结束时间
+						//记录选择选择录入时间
+						$model->log_start_time= strtotime($_POST['Goods']['start_time']);//记录操作开始时间
+						$model->log_end_time=strtotime($_POST['Goods']['end_time']);//记录操作结束时间 
+					}
+				//首页不显示
+				if ($_POST['Goods']['head_show'] == 1){
+					$model->head_show ='';//获取首页是否显示字段
+					$model->start_time =date('Y-m-d H:i:s',$model['log_start_time']);//还原创建开始时间
+					$model->end_time =date('Y-m-d H:i:s',$model['log_end_time']);//还原创建结束时间
+					//var_dump($model['log_start_time']);die;
+				}
+			}
             if ($model->save()) {
                 //插入操作记录
                 UserLoginLog::addOperation("修改({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
                 $this->redirect(array('admin'));
             }
-        }
-
+        }  
         $model->start_time = Yii::app()->format->datetime($model->start_time);
         $model->end_time = Yii::app()->format->datetime($model->end_time);
 
@@ -193,8 +219,7 @@ class GoodsController extends Controller
             'type' => $goodsType,
         ));
     }
-
-    /**
+	 /**
      * 获取商品
      * @param integer $id 商品ID
      */

@@ -38,7 +38,7 @@ class UsersAddress extends ActiveRecord implements IArrayable
             ['code', 'checkCode'],
             ['city_id','checkCity'],
             ['mobile','checkMobile'],
-            ['id,user_id, name, mobile, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
+            ['id,user_id, name, mobile,email, city_id, county_id, address, postcode, created_at, updated_at', 'safe'],
         ];
     }
 

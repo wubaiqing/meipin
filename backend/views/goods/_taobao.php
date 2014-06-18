@@ -32,7 +32,7 @@ CHtml::$errorSummaryCss = 'text-warning';
     <div class="control-group">
         <?php echo $form->labelEx($model,'is_zhe800', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->dropDownList($model, 'is_zhe800', array('1' => '折800', '2' => '其他' )); ?>
+            <?php echo $form->dropDownList($model, 'is_zhe800', array('2' => '其他' )); ?>
         </div>
     </div>
 
@@ -112,6 +112,12 @@ CHtml::$errorSummaryCss = 'text-warning';
         <?php echo $form->labelEx($model,'status', array('class' => 'control-label')); ?>
         <div class="controls">
             <?php echo $form->dropDownList($model, 'status', array('1' => '显示', '2' => '隐藏' )); ?>
+        </div>
+    </div> 
+	<div class="control-group">
+        <?php echo $form->labelEx($model,'head_show', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model, 'head_show', array('3' => '默认', '2' => '显示', '1' => '不显示' )); ?>
         </div>
     </div>
     <div class="control-group">

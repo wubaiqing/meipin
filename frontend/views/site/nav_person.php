@@ -12,7 +12,7 @@
 		</ul>
 
 		<p class="one"><a href="/site/bsrg" target="_blank">商家报名</a></p>
-		<p><span class='span1' style='display:none;'><img src="/static/images/face.png"></span> <a href="javascript:;" class="signin <?php $isSignDay = User::isSignDay(); echo !$isSignDay ? 'qiandao' : 'cheng'; ?>"><i></i><i class="icon-mini"></i><img src="/static/images/pen_03_01.png"><span id='jryq'><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签&nbsp;&nbsp;&nbsp;&nbsp;'; ?></span></a></p>
+		<p><span class='span1' style='display:none;'><img src="/static/images/face.png"></span> <a href="javascript:;" class="signin <?php $isSignDay = User::isSignDay(); echo !$isSignDay ? 'qiandao' : 'cheng'; ?>"><i></i><i class="icon-mini"></i><img src="/static/images/pen_03_01.png"><span id='jryq'><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签到'; ?></span></a></p>
 
 		<br>
 	</div>

@@ -32,14 +32,8 @@
 
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
 
-                                <a <?php
-                                if ($value['gdcolornum'] == 0) {
-                                    echo "class='be' stock='0' ";
-                                } else {
-                                    echo 'stock=' . $value["gdcolornum"] . '';
-                                }
-                                ?>  href="javascript:void(0)"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
-                                <?php endforeach; ?>
+                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
+                    <?php endforeach;?>
 
                         </span>
                     <?php endif; ?>
@@ -99,3 +93,41 @@
     </div>
 
 </div>
+<<<<<<< HEAD
+=======
+
+<script type="text/javascript">
+    $(function () {
+        try {
+            $(".tb-tabbar").find("li").click(function () {
+                $(".tb-tabbar").find("li").removeClass("selected");
+                $(this).addClass("selected");
+                $(".displayIF").addClass('hid');
+                $("." + $(this).attr("id")).removeClass("hid");
+            });
+        } catch (e) {
+            alert(e);
+        }
+     $('.goodcolor').find("a").click(function () {
+
+         gdcolornum = $(this).attr("stock");
+         if (gdcolornum!=0) {
+            $(".goodcolor a").attr("style",'');
+            //gdcolor = $(this).html(); //颜色
+            gdcolor = $(this).attr("sclor");
+            $(this).attr("style","border: 2px solid red");
+            $("#gdcolor").val(gdcolor);
+         }
+     });
+    });
+  function checkcolor () 
+  {
+      if($("#gdcolor").val() == '')
+      {
+        alert('请选择一个型号');
+        return false;
+      }
+      return true;
+  }
+</script>
+>>>>>>> develop

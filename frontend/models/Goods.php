@@ -110,7 +110,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
         if ($hot == 0) {
-            $criteria->order = 'day DESC, t.list_order DESC';
+            $criteria->order = 'day DESC,head_show DESC, t.list_order DESC';
         } else {
             $criteria->order = 't.id DESC';
         }
