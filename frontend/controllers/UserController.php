@@ -363,6 +363,7 @@ class UserController extends Controller
 
         //获取用户的缓存
         $userModel = User::getUser($uid);
+
         if ($userModel === null) {
             $this->renderIndex('no', '您激活的邮箱不存在');
         }
@@ -372,18 +373,15 @@ class UserController extends Controller
         $userModel->is_valid = 1; //设置为已激活
         if ($userModel->save()) {
             //激活完成删除用户缓存
-           
-            if(Yii::app()->user->getState('qid'))
-            {
-                //修改邮箱
-                $affect = User::model()->updateByPk($uid, [
-                    'email' =>  $email,
-                ]);
-                if ($affect !== 1) {
-                    throw new CHttpException( '403' , '邮箱更新失败' );
-                }
                 User::deleteCache($userModel->id);
-            }
+                //修改邮箱
+                if($userModel->qq_openid)
+                {
+                    $affect = User::model()->updateByPk($userModel->id, [
+                        'email' =>  $email,
+                    ]);
+                }
+            
             $this->renderIndex('yes', '激活成功');
         }
     }
