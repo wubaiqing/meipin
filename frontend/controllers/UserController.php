@@ -103,12 +103,31 @@ class UserController extends Controller
         $this->render('login', ['model' => $model]);
     }
 
+    //qqdenglu 
     public function actionQlogin()
     {
-        Yii::import('common.extensions.qqlogin.Qlogin');
-        $Occ = new Qlogin;
-        $Occ->qq_login();
+        Yii::import('common.extensions.qqlogin.API.qqConnectAPI');
+        require_once('qqlogin/API/qqConnectAPI.php'); 
+        $Occ = new QC();
+        $login_url= $Occ->qq_login();
     }
+
+    public function actionCallBack()
+    {
+        Yii::import('common.extensions.qqlogin.API.qqConnectAPI');
+        require_once('qqlogin/API/qqConnectAPI.php'); 
+        $qc = new QC();  
+        $acs = $qc->qq_callback();//callback主要是验证 code和state,返回token信息，并写入到文件中存储，方便get_openid从文件中度  
+        $oid = $qc->get_openid();//根据callback获取到的token信息得到openid,所以callback必须在openid前调用  
+        $qc = new QC($acs,$oid);  
+        $uinfo = $qc->get_user_info();  
+        $model = new LoginForm();
+        $model->attributes = array('username'=>$oid,'password'=>$uinfo['nickname']);
+        $model->QQlogin();
+        //var_dump($model->QQlogin());
+        $this->redirect(['site/index']);
+    }
+
     /**
      * 线上测试用户登陆
      */
@@ -258,6 +277,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function actionAemail()
+    {
+        $email = Yii::app()->request->getPost('email');
+        if(!empty($email))
+        {
+            $userId = Yii::app()->user->id;
+            $model = User::getUser($userId);
+            $model->email = $email;
+            $body = $this->renderPartial('_mailBody', ['userModel' => $model], true);
+            $mail = new MailService();
+            if (!$mail->sendMail($body, '美品网邮箱注册激活邮件', $model->email)) {
+                $this->renderIndex('no', '邮件发送失败，请联系客服人员。');
+            }
+            $this->renderIndex('yes', '激活邮件已经发出，请到邮箱里点击激活。',Yii::app()->createUrl("user/info"));
+        }
+    }
     /**
      * 保存用户送货地址
      */
@@ -291,6 +326,7 @@ class UserController extends Controller
         if (empty($url)) {
             $url = $this->createAbsoluteUrl('user/login');
         }
+
         $this->layout = '//layouts/userBase';
         $this->render('loginSuccess', [
             'status' => $status,
@@ -324,6 +360,7 @@ class UserController extends Controller
             $this->renderIndex('no', '非法请求，请刷新页面。');
         }
         $uid = Des::decrypt($uid); //解密ID
+
         //获取用户的缓存
         $userModel = User::getUser($uid);
         if ($userModel === null) {
@@ -335,7 +372,18 @@ class UserController extends Controller
         $userModel->is_valid = 1; //设置为已激活
         if ($userModel->save()) {
             //激活完成删除用户缓存
-            User::deleteCache($userModel->id);
+           
+            if(Yii::app()->user->getState('qid'))
+            {
+                //修改邮箱
+                $affect = User::model()->updateByPk($uid, [
+                    'email' =>  $email,
+                ]);
+                if ($affect !== 1) {
+                    throw new CHttpException( '403' , '邮箱更新失败' );
+                }
+                User::deleteCache($userModel->id);
+            }
             $this->renderIndex('yes', '激活成功');
         }
     }

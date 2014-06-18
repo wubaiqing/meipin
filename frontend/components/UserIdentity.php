@@ -32,11 +32,11 @@ class UserIdentity extends CUserIdentity
         ));
 
         if ($user == false) {
-            $this->errorCode = self::ERROR_USERNAME_INVALID;
+            $this->errorCode = self::ERROR_USERNAME_INVALID;//1
 
             return !$this->errorCode;
         } elseif (!$user->validatePassword($this->password)) {
-            $this->errorCode = self::ERROR_PASSWORD_INVALID;
+            $this->errorCode = self::ERROR_PASSWORD_INVALID;//2
         } else {
 
             // 设置用户ID、用户名称
@@ -61,9 +61,68 @@ class UserIdentity extends CUserIdentity
             if ($affect !== 1) {
                 throw new CHttpException( '403' , '登录失败' );
             }
-            $this->errorCode=self::ERROR_NONE;
+            $this->errorCode=self::ERROR_NONE;//0
         }
 
+        return !$this->errorCode;
+    }
+
+    //qq登陆验证
+    public function Qloginouth()
+    {
+        $openid =  $this->username;
+        $nickname = $this->password;
+
+        //先检查是否存在openid 
+        $user = User::model()->findByAttributes(array(
+            'qq_openid' => $openid
+        ));
+
+        //不存在openid 就往数据库里面插入一条数据
+        if($user == false)
+        {
+            $post=new User;
+            $post->username = $nickname;
+            $post->qq_openid= $openid;
+            $post->save();
+            $id = $post->attributes['id'];
+            $this->id = $id;
+            $this->name = $nickname;
+            // 设置最后一次登录时间
+            $time = time();
+            // 设置用户属性
+            Yii::app()->user->setState('singleLoginTime', $time);
+            Yii::app()->user->setState('id', $id);
+            Yii::app()->user->setState('name', $nickname);
+            Yii::app()->user->setState('qid', '1'); //设置是否是qq登陆
+
+            $this->errorCode=self::ERROR_USERNAME_INVALID;
+            return !$this->errorCode;//0
+        }else
+        {  //已经存在openid  然后就开始修改 username 更改时间
+            $this->id = $user->id;
+            $this->name = $user->username;
+
+            // 设置最后一次登录时间
+            $time = time();
+            // 设置用户属性
+            Yii::app()->user->setState('singleLoginTime', $time);
+            Yii::app()->user->setState('id', $user->id);
+            Yii::app()->user->setState('name', $user->username);
+            Yii::app()->user->setState('qid', '1');
+            // 更新用户最后登陆时间
+            $affect = User::model()->updateByPk($user->id, [
+                'last_login' => $time,
+                'last_ip' => Yii::app()->request->userHostAddress,
+                'username' =>$nickname
+            ]);
+
+            // 两个用户同一时间数据库报错
+            if ($affect !== 1) {
+                throw new CHttpException( '403' , '登录失败' );
+            }
+            $this->errorCode=self::ERROR_NONE;//0
+        }
         return !$this->errorCode;
     }
 

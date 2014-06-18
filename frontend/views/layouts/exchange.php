@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title><?php echo Yii::app()->params['title']; ?></title>
         <meta name="keywords" content="<?php echo Yii::app()->params['keyword']; ?>">
-        <meta name="description" content="">
+        <meta name="description" content="<?php echo Yii::app()->params['desc'];?>">
         <meta name="author" content="wubaiqing">
         <meta property="qc:admins" content="257146000265510166375" />
         <meta name="copyright" content="美品网">
@@ -17,6 +17,7 @@
         <script type="text/javascript" src="/static/js/jtzdm_lazyload.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/sign_day.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/user.js?v=1.0.2"></script>
+        <script type="text/javascript" src="/static/js/move.js?v=1.0.2"></script>
     </head>
     <body>
         <div id="header">

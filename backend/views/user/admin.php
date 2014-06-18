@@ -26,6 +26,7 @@
             'id',
             'username',
             'mobile',
+            'email',
             'score'=>array(
                 'class'=>'CLinkColumn',
                         'header'=>'总积分',//显示表名称
@@ -33,6 +34,15 @@
                         'urlExpression'=>'Yii::app()->createUrl("user/exdetail",array("uid"=>$data->id,"um"=>$data->username))',
                         'linkHtmlOptions'=>array('title'=>'详细积分','target'=>'_blank')
                 ),
+            'created_at'=>array(
+                'name'=>'created_at',
+                'type'=>'datetime'
+                ),
+            'last_login'=>array(
+                'name'=>'last_login',
+                'type'=>'datetime'
+                ),
+            'last_ip',
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{update} {delete}',

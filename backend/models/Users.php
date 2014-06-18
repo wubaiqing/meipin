@@ -215,6 +215,9 @@ class Users extends ActiveRecord implements IArrayable
             'mobile' => '手机号',
             'score' => '总积分',
             'created_at' => '创建时间',
+            'last_ip' =>'最后一次登陆ip',
+            'email'=>'邮箱',
+            'last_login'=>'最后一次登陆时间'
         ];
     }
 
