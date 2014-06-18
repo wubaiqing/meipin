@@ -33,10 +33,30 @@ CHtml::$errorSummaryCss = 'text-warning';
         <td colspan="2"  class='v_table_line'>收货信息</td>
     </tr>
     <tr class="exchange_detail">
-        <td class="v_table_label">联系电话：</td>
+        <td class="v_table_label">联系手机：</td>
         <td>
-            <?php echo $form->textField($user, 'mobile'); ?>
+            <?php echo $form->textField($user, 'mobile'); ?><span style='color:red;'>(手机填写正确才可选择下面的 已绑定)</span>
         </td>
+    </tr>
+    <tr class="exchange_detail">
+        <td class="v_table_label">是否绑定手机：</td>
+        <td>
+            <?php echo $form->dropDownList($user, 'mobile_bind', array('0' => '未绑定', '1' => '已绑定' )); ?>
+       </td>
+
+    </tr>
+    <tr class="exchange_detail">
+        <td class="v_table_label">电子邮箱：</td>
+        <td>
+            <?php echo $form->textField($user, 'email'); ?>
+        </td>
+    </tr>
+    <tr class="exchange_detail">
+        <td class="v_table_label">是否验证邮箱：</td>
+        <td>
+            <?php echo $form->dropDownList($user, 'is_valid', array('0' => '否', '1' => '是' )); ?><span style='color:red;'>(邮箱填写正确才可选择下面的 是)</span>
+       </td>
+
     </tr>
     <tr class="exchange_detail">
         <td class="v_table_label">收货地址：</td>
