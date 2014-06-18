@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title><?php echo Yii::app()->params['title'];?></title>
         <meta name="keywords" content="<?php echo Yii::app()->params['keyword'];?>">
-        <meta name="description" content="">
+        <meta name="description" content="<?php echo Yii::app()->params['desc'];?>">
         <meta property="qc:admins" content="257146000265510166375" />
         <meta name="author" content="wubaiqing">
         <meta name="copyright" content="美品网">

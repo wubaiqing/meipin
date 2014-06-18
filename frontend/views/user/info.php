@@ -23,7 +23,12 @@
                         电子邮箱：
                     </td>
                     <td height="32" align="left">
-                        <?php echo $model->email;?>
+                      <?php echo $model->is_valid?$model->email:"<a onclick='bd()' id='bde'>您还没有绑定邮箱,点击开始绑定</a>"; ?>
+                      <form style="display:none" id='bdemail' action='<?php echo Yii::app()->createUrl("user/aemail") ?>' method='post'>
+                         <input type='text' name='email' class="input_off" />
+                         <input type='submit' value='确定'>
+                      </form>
+
                     </td>
                 </tr>
             </tbody>
@@ -31,3 +36,11 @@
         <p class="b_tit"></p>
     </div>
 </div>
+<script type="text/javascript">
+    function bd()
+    {
+        $("#bde").hide();
+        $("#bdemail").show();
+    }
+
+</script>

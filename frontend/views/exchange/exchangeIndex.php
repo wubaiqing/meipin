@@ -50,7 +50,7 @@
 
                     <?php foreach ($data['exchange']->goodscolor as $key => $value):?>
 
-                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
+                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
                     <?php endforeach;?>
 
                     </span>
@@ -128,7 +128,8 @@
          gdcolornum = $(this).attr("stock");
          if (gdcolornum!=0) {
             $(".goodcolor a").attr("style",'');
-            gdcolor = $(this).html(); //颜色
+            //gdcolor = $(this).html(); //颜色
+            gdcolor = $(this).attr("sclor");
             $(this).attr("style","border: 2px solid red");
             $("#gdcolor").val(gdcolor);
          }
