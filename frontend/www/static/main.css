@@ -581,7 +581,7 @@ textarea {border:1px solid #ccc;background:#fff;padding:3px;font-size:12px;}
 .user_login .zc_x form {color:#666;padding:20px 0 0 20px;}
 .user_login .zc_x form input.text {padding:4px;font-size:14px;line-height:20px;height:20px;border:1px solid #ccc;width:230px; background:#fff;}
 .user_login .zc_x form input.submit {margin-right:5px;background:url(images/con_bg.png) 0 0 no-repeat; width:82px;height:28px;color:#2473A2;text-align:center;line-height:28px;border:0;font-size:14px;cursor:pointer;text-indent:0}
-.user_login .zc_x form p {padding:6px 0;line-height:30px;}
+.user_login .zc_x form p {padding:6px 0;line-height:25px;}
 .user_login .zc_x form p em {font-size:14px;width:100px;text-align:right;display:block;float:left}
 .user_login .zc_x form p.gh {padding:0;line-height:20px}
 .user_login .zc_x form p.gh a, .user_login .zc_x .reg a.zhuce {color:#0068CE}
