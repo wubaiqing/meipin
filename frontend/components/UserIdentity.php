@@ -70,8 +70,9 @@ class UserIdentity extends CUserIdentity
     //qq登陆验证
     public function Qloginouth()
     {
+
         $openid =  $this->username;
-        $nickname = $this->password;
+        $nickname = User::generateNickName();
 
         //先检查是否存在openid 
         $user = User::model()->findByAttributes(array(
@@ -98,7 +99,8 @@ class UserIdentity extends CUserIdentity
 
             $this->errorCode=self::ERROR_USERNAME_INVALID;
             return !$this->errorCode;//0
-        }else
+        }
+        else
         {  //已经存在openid  然后就开始修改 username 更改时间
             $this->id = $user->id;
             $this->name = $user->username;
