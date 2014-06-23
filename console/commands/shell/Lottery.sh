@@ -1,7 +1,8 @@
 #!/bin/bash
 shell_dir=$(cd "$(dirname "$0")"; pwd)
 shell_name=$(basename "$0")
-cd "$shell_dir/../../"
+echo $shell_dir;
+cd "$shell_dir/../../../"
 s=`ps aux | grep "yiic.php DataTask Lottery"`;
 mark=`echo $s | grep "php yiic.php"`
 d=`date +%Y-%m-%d' '%H:%M:%S`
