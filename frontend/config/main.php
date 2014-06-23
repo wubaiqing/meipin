@@ -17,6 +17,7 @@ return [
                 'rules' => [
                     'index.html' => 'site/index',
                     'out/<id:.+?>.html' => 'site/out',
+                    'buy/<id:.+?>.html' => 'site/buy',
                     'site/search' => 'site/search',
                     'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
                     'exchange/<action:\w+>' => 'exchange/<action>',
