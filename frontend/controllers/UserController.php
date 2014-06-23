@@ -111,6 +111,31 @@ class UserController extends Controller
         $Occ = new QC();
         $login_url= $Occ->qq_login();
     }
+ // taobao
+    public function actionTbLogin()
+    {
+        Yii::import('common.extensions.taobaolg.TaobaoLg');
+        $Occ = new TaobaoLg();
+        $login_url= $Occ->getTbaoLogin();
+    }
+
+    public function actionTbBack()
+    {
+        Yii::import('common.extensions.taobaolg.TaobaoLg');
+        $Occ = new TaobaoLg();
+        if(!empty($_REQUEST["code"]) && !empty($_REQUEST["state"]))
+        {
+            $code = $_REQUEST["code"];
+            $state = $_REQUEST["state"];
+            $tbinfo =  $Occ->getBackContent($state,$code);
+            //Array ( [taobao_user_id] => 182558410 [taobao_user_nick] => sandbox_cilai_c [status] => 200 ) 
+            if($tbinfo['status']==200)
+            {
+                
+            }
+            print_r($tbinfo);
+        }
+    }
 
     public function actionCallBack()
     {

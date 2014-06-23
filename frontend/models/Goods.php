@@ -48,6 +48,42 @@ class Goods extends ActiveRecord implements IArrayable
 
         return $goodsList;
     }
+
+
+
+    /**
+     * 商品列表
+     * @param  string  $list 是否是列表
+     * @param  intger  $page 当前页数
+     * @param  integer $cat  当前分类
+     * @return array   商品条件
+     */
+    public static function getXgGoodsList($cat, $hot, $page, $goodsid)
+    {
+        // 缓存名称
+        $cacheKey = 'get-Xggoods-list-cachekey-' . $cat . '-' . $hot . '-' .$goodsid. $page;
+
+        // 商品列表
+        $goodsList = Yii::app()->cache->get($cacheKey);
+        if (!empty($goodsList)) {
+            return $goodsList;
+        }
+
+        // 商品列表数据
+        $goodsList = [];
+        $goodsPaginate = Goods::model()->detaiGoodsList($cat, $hot ,$goodsid )->paginate();
+        $goodsList['pager'] = $goodsPaginate->getPagination();
+        $goodsList['data'] = $goodsPaginate->data;
+
+        // 设置缓存
+        Yii::app()->cache->set($cacheKey, [
+            'pager' => $goodsList['pager'],
+            'data' => $goodsList['data']
+        ], 1800);
+
+        return $goodsList;
+    }
+
      /**
      * 商品列表
      * @param  string  $list 是否是列表
@@ -98,6 +134,40 @@ class Goods extends ActiveRecord implements IArrayable
 	}
 
     /**
+     * 数据SQL条件 商品详细页
+     * @param  integer $cat 分类ID
+     * @return object  yii dbcriteria
+     */
+    public function detaiGoodsList($cat, $hot, $goodsid)
+    {
+        $now = strtotime('+1 day 00:00:00') - 1;
+
+        $criteria = new CDbCriteria;
+        $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
+
+       if ($hot == 0) {
+            $criteria->order = 'day DESC,head_show DESC, t.list_order DESC';
+        } else {
+            $criteria->order = 't.id DESC';
+        }
+
+        if ($cat == 1000) {
+            $criteria->compare('t.price', '< 10');
+        } elseif ($cat == 1001) {
+            $criteria->compare('t.price', '>= 10');
+        } elseif ($cat > 0) {
+            $criteria->compare('t.cat_id', '=' . $cat);
+        }
+        $criteria->compare('t.id', '<>'.$goodsid);
+        //$criteria->compare('t.start_time', '<=' . $now);
+        //$criteria->compare('t.end_time', '>=' . $now);
+        //$criteria->compare('t.status', '=1');
+
+        $this->dbCriteria->mergeWith($criteria);
+
+        return $this;
+    }
+    /**
      * 数据SQL条件
      * @param  integer $cat 分类ID
      * @return object  yii dbcriteria
@@ -109,7 +179,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria;
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
-        if ($hot == 0) {
+       if ($hot == 0) {
             $criteria->order = 'day DESC,head_show DESC, t.list_order DESC';
         } else {
             $criteria->order = 't.id DESC';
@@ -123,9 +193,9 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('t.cat_id', '=' . $cat);
         }
 
-        $criteria->compare('t.start_time', '<=' . $now);
-        $criteria->compare('t.end_time', '>=' . $now);
-        $criteria->compare('t.status', '=1');
+        //$criteria->compare('t.start_time', '<=' . $now);
+        //$criteria->compare('t.end_time', '>=' . $now);
+        //$criteria->compare('t.status', '=1');
 
         $this->dbCriteria->mergeWith($criteria);
 

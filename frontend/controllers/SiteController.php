@@ -58,7 +58,7 @@ class SiteController extends Controller
     /**
      * 今天值得买首页
      */
-    public function actionOut($id)
+/*    public function actionOut($id)
     {
         $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
@@ -66,6 +66,28 @@ class SiteController extends Controller
             header("Location:{$goods->url}");
             Yii::app()->end();
         }
+    }*/
+
+
+    /**
+     * 今天值得买首页
+     */
+    public function actionOut($id,$page=1,$hot=0)
+    {
+        $goodsId = Des::decrypt($id);
+        $goods = Goods::getGoods($goodsId);
+        $hotExchangeGoods = Exchange::getHotExchangeDetailGoods();
+        $xggoods = Goods::getXgGoodsList($goods->cat_id,$hot, $page,$goods->id);
+       // print_r($xggoods['data']);
+        $this->render('goodsdetail', array(
+        	'cat'=>0,
+        	'goods'=>$goods,
+        	'hotExchangeGoods'=>$hotExchangeGoods,
+            'hot' => $hot, // 热门
+            'page' => $page, // 当前页
+            'xggoods' => $xggoods['data'], // 商品数据
+            'pager' => $xggoods['pager'], // 商品翻页
+        	));
     }
 
     /**
