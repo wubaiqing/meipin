@@ -2,6 +2,7 @@
     <td><?php echo $data->username; ?></td>
     <td><?php echo date("Y-m-d H:i:s", $data->created_at); ?></td>
     <td><?php echo ($data->winner == 1 ? "中奖" : "未中奖"); ?></td>
+    <td><?php echo ($data->user_add == 1 ? "后台注水" : "用户参与"); ?></td>
     <td>
         <?php
         if ($data->user_add == 1) {

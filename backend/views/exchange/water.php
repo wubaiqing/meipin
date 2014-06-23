@@ -61,7 +61,7 @@
                 'itemsCssClass' => 'table table-striped table-bordered',
                 'emptyText' => '对不起，没有任何搜索结果。',
                 'viewData' => [],
-                'itemtops' => '<th width=7%>用戶名</th><th width=8%>参与时间</th><th width=11%>中奖状态</th><th width=18%>操作</th>',
+                'itemtops' => '<th >用戶名</th><th >参与时间</th><th >中奖状态</th><th>类型</th><th >操作</th>',
                 'itemView' => '_water',
                 'pager' => array(
                     'class' => 'CLinkPager',

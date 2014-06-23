@@ -222,7 +222,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'params' => [":goods_id" => $goods_id],
             'group' => 'username'
         ]);
-        return count($data);
+        return $data;
     }
 
     /**

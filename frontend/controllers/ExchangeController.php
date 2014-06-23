@@ -162,7 +162,7 @@ class ExchangeController extends Controller
             $this->pageRedirect('no', "商品不是抽奖商品，请重新选择", Yii::app()->createUrl("site/raffle"));
         }
         //查询中奖明细
-        $winerList = ExchangeLog::model()->findAllByAttributes(['winner'=>1,'goods_id'=>$goodsId]);
+        $winerList = ExchangeLog::getWinners($goodsId);
         //渲染頁面
         $this->render('raffleIndex', [
             'data' => $dataResult['data'],

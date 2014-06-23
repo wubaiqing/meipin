@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 美品网商品兑换记录
  * @author liukui <liujickson@gmail.com>
@@ -123,7 +124,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      */
     public static function getWelfare($userId, $page)
     {
-        $cacheKey = 'meipin-get-welfare-' . $userId.'-'.$page;
+        $cacheKey = 'meipin-get-welfare-' . $userId . '-' . $page;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
@@ -173,6 +174,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
         return $this;
     }
+
     /**
      * 获取参与用户数
      * @param integer $goods_id 商品ID
@@ -185,7 +187,34 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'params' => [":goods_id" => $goods_id],
             'group' => 'username'
         ]);
-        return count($data);
+        return $data;
+    }
+
+    /**
+     * 获取获奖用户KEY
+     * @param integer $goods_id 商品ID
+     * @return string 
+     */
+    public static function getWinnerKey($goods_id)
+    {
+        return "winner_key_" . $goods_id;
+    }
+
+    /**
+     * 获取获奖用户
+     * @param integer $goods_id 商品ID
+     * @return array 
+     */
+    public static function getWinners($goods_id)
+    {
+        $cacheKey = self::getWinnerKey($goods_id);
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            return $result;
+        } 
+        $result = ExchangeLog::model()->findAllByAttributes(['winner'=>1,'goods_id'=>$goods_id]);
+        Yii::app()->cache->set($cacheKey, $result,  Constants::T_HALF_HOUR);
+        return $result;
     }
 
 }
