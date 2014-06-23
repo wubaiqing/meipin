@@ -32,7 +32,7 @@
             </p>
             <p class="reg">
                 <a href="<?php echo $this->createUrl('user/qlogin'); ?>"><img src="/static/images/qq/Connect_logo_3.png"></a><br>
-                <a href="<?php echo $this->createUrl('user/tblogin'); ?>"><img src="/static/images/qq/Connect_logo_3.png"></a><br>
+          <!--       <a href="<?php //echo $this->createUrl('user/tblogin'); ?>"><img src="/static/images/qq/Connect_logo_3.png"></a><br> -->
                 还没有美品网账号？
                 <a href="<?php echo $this->createUrl('user/register'); ?>" class="zhuce">立即注册&gt;&gt;</a>
             </p>
