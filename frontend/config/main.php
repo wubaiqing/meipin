@@ -17,6 +17,7 @@ return [
                 'rules' => [
                     'index.html' => 'site/index',
                     'out/<id:.+?>.html' => 'site/out',
+                    'buy/<id:.+?>.html' => 'site/buy',
                     'site/search' => 'site/search',
                     'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
                     'exchange/<action:\w+>' => 'exchange/<action>',
@@ -38,6 +39,7 @@ return [
                 'pageVar' => 'page',
                 'pageSize' => 120,
                 'exchangePageSize' => 20,//积分兑换首页，每页显示数量
+                'goodsdetail' => 12,//商品详情页，每页显示数量
             ],
             //前台配置标识
             'platform' => 'frontend',
