@@ -50,6 +50,7 @@ class Goods extends ActiveRecord implements IArrayable
     }
 
 
+
     /**
      * 商品列表
      * @param  string  $list 是否是列表
@@ -121,18 +122,52 @@ class Goods extends ActiveRecord implements IArrayable
      *商品预告前天查询获取数据
      */
 
-	public function datatomorrow($cat, $hot){
-		$start_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 00:00:00")));//获取前一天开始时间
-		$end_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 23:59:59")));//获取前一天结束时间
-		$criteria = new CDbCriteria();
+    public function datatomorrow($cat, $hot){
+        $start_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 00:00:00")));//获取前一天开始时间
+        $end_time=strtotime(date("Y-m-d H:i:s",strtotime("1 day 23:59:59")));//获取前一天结束时间
+        $criteria = new CDbCriteria();
         $criteria->compare('sell_status', '=1');
-		if($cat ==1002){
-		$criteria->addBetweenCondition('start_time',$start_time,$end_time);
-		}
+        if($cat ==1002){
+        $criteria->addBetweenCondition('start_time',$start_time,$end_time);
+        }
         $this->dbCriteria->mergeWith($criteria);
-		return $this;
-	}
+        return $this;
+    }
 
+    /**
+     * 数据SQL条件 商品详细页
+     * @param  integer $cat 分类ID
+     * @return object  yii dbcriteria
+     */
+    public function detaiGoodsList($cat, $hot, $goodsid)
+    {
+        $now = strtotime('+1 day 00:00:00') - 1;
+
+        $criteria = new CDbCriteria;
+        $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
+
+       if ($hot == 0) {
+            $criteria->order = 'day DESC,head_show DESC, t.list_order DESC';
+        } else {
+            $criteria->order = 't.id DESC';
+        }
+
+        if ($cat == 1000) {
+            $criteria->compare('t.price', '< 10');
+        } elseif ($cat == 1001) {
+            $criteria->compare('t.price', '>= 10');
+        } elseif ($cat > 0) {
+            $criteria->compare('t.cat_id', '=' . $cat);
+        }
+        $criteria->compare('t.id', '<>'.$goodsid);
+        //$criteria->compare('t.start_time', '<=' . $now);
+        //$criteria->compare('t.end_time', '>=' . $now);
+        //$criteria->compare('t.status', '=1');
+
+        $this->dbCriteria->mergeWith($criteria);
+
+        return $this;
+    }
     /**
      * 数据SQL条件
      * @param  integer $cat 分类ID
@@ -145,7 +180,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria;
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
-        if ($hot == 0) {
+       if ($hot == 0) {
             $criteria->order = 't.head_show DESC, day DESC, t.list_order DESC';
         } else {
             $criteria->order = 't.id DESC';
