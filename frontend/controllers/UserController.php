@@ -38,7 +38,7 @@ class UserController extends Controller
         return array_merge([
             [
                 'allow',
-                'actions' => ['login', 'register','login1'],
+                'actions' => ['login', 'register'],
                 'users' => ['*'],
             ],
             [
