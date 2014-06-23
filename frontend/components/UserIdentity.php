@@ -101,8 +101,7 @@ class UserIdentity extends CUserIdentity
             Yii::app()->user->setState('singleLoginTime', $time);
             Yii::app()->user->setState('id', $id);
             Yii::app()->user->setState('name', $nickname);
-            Yii::app()->user->setState('qid', '1'); //设置是否是qq登陆
-
+            Yii::app()->user->setState('qid', '1');
             $this->errorCode=self::ERROR_USERNAME_INVALID;
             return !$this->errorCode;//0
         }
