@@ -7,9 +7,9 @@ a {text-decoration:none;}
 a img {border:0;}
 li {list-style:none;}
 li img {display:block;}
-body {font-family:"微软雅黑";}
+
 br {clear:both;font-size:0;line-height:0;} */
- 
+body {background:none;}
 #box {width:980px;margin:0 auto;}
 #wrap1 {width:750px;margin:0 auto;float:left;}
 
