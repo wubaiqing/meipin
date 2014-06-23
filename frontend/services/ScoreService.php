@@ -63,6 +63,7 @@ class ScoreService
     {
         $nowTime = time();
         $order = self::formatPostValue($order);
+        $url = Yii::app()->createUrl("site/index");
         //是否提交
         if (empty($order)) {
             return CommonHelper::getDataResult(false, ['message' => "您访问的页面不存在", 'url' => $url]);
@@ -73,7 +74,6 @@ class ScoreService
         }
         //查询兑换商品数据
         $goods = Exchange::findByGoodsId($goodsId);
-        $url = Yii::app()->createUrl("site/index");
         if (empty($goods)) {
             return CommonHelper::getDataResult(false, ['message' => "对不起，您所操作的商品信息不存在", 'url' => $url]);
         }
