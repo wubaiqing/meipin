@@ -73,6 +73,7 @@ class Goods extends ActiveRecord implements IArrayable
         $goodsList = [];
         $goodsPaginate = Goods::model()->detaiGoodsList($cat, $hot ,$goodsid )->paginate();
         $goodsList['pager'] = $goodsPaginate->getPagination();
+        $goodsList['pager']->pageSize = Yii::app()->params['pagination']['goodsdetail'];
         $goodsList['data'] = $goodsPaginate->data;
 
         // 设置缓存
