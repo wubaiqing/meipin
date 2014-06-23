@@ -5,27 +5,20 @@
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
-class LoginForm extends CFormModel
+class ForgetForm extends CFormModel
 {
     /**
      * @var string 用户名
      */
-    public $username;
+    public $email;
 
-    /**
-     * @var string 密码
-     */
-    public $password;
 
     /**
      * @var string 验证码
      */
     public $verifyCode;
 
-    /**
-     * @var repospone 身份
-     */
-    private $_identity;
+
 
     /**
      * 验证规则
@@ -34,7 +27,7 @@ class LoginForm extends CFormModel
     public function rules()
     {
         return [
-            ['username, password,verifyCode', 'required'],
+            ['email,verifyCode', 'required'],
         ];
     }
 
@@ -42,7 +35,7 @@ class LoginForm extends CFormModel
      * 美品网登陆
      * @return boolean
      */
-    public function login()
+    public function forgetRule()
     {
         // 校验验证码
         $code = Yii::app()->controller->createAction('captcha')->verifyCode;
@@ -57,22 +50,15 @@ class LoginForm extends CFormModel
         }
 
         // 身份识别
-        if ($this->_identity === null) {
-            $this->_identity = new UserIdentity($this->username, $this->password);
-            $this->_identity->authenticate();
-        }
-
-        // 验证信息
-        if ($this->_identity->errorCode == UserIdentity::ERROR_USERNAME_INVALID || $this->_identity->errorCode == UserIdentity::ERROR_PASSWORD_INVALID) {
-            $this->addError('username', '用户名或密码不正确');
-        } elseif ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {
-            Yii::app()->user->login($this->_identity, 0);
-            $this->setReferer();
-
-            return true;
-        } else {
+        if (empty($this->email)) {
+            $this->addError('email', '邮箱不能为空');
             return false;
         }
+
+
+         $this->setReferer();
+         return true;
+     
     }
 
 
@@ -87,11 +73,10 @@ class LoginForm extends CFormModel
         if ($this->_identity === null) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             $this->_identity->Qloginouth();
-	        Yii::app()->user->login($this->_identity, 0);
         }
 
         // 验证信息
-       if ($this->_identity->errorCode === UserIdentity::ERROR_NONE)
+       if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) 
        {
             Yii::app()->user->login($this->_identity, 0);
             $this->setReferer();

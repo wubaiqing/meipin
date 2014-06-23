@@ -38,7 +38,7 @@ class UserController extends Controller
         return array_merge([
             [
                 'allow',
-                'actions' => ['login', 'register','login1'],
+                'actions' => ['login', 'register','login1','forget'],
                 'users' => ['*'],
             ],
             [
@@ -111,6 +111,34 @@ class UserController extends Controller
         $Occ = new QC();
         $login_url= $Occ->qq_login();
     }
+ // taobao
+    public function actionTbLogin()
+    {
+        Yii::import('common.extensions.taobaolg.TaobaoLg');
+        $Occ = new TaobaoLg();
+        $login_url= $Occ->getTbaoLogin();
+    }
+
+    public function actionTbBack()
+    {
+        Yii::import('common.extensions.taobaolg.TaobaoLg');
+        $Occ = new TaobaoLg();
+        if(!empty($_REQUEST["code"]) && !empty($_REQUEST["state"]))
+        {
+            $code = $_REQUEST["code"];
+            $state = $_REQUEST["state"];
+            $tbinfo =  $Occ->getBackContent($state,$code);
+            //Array ( [taobao_user_id] => 182558410 [taobao_user_nick] => sandbox_cilai_c [status] => 200 ) 
+            if($tbinfo['status']==200)
+            {
+                $model = new LoginForm();
+                $model->attributes = array('username'=>$tbinfo['taobao_user_id'],'password'=>$tbinfo['taobao_user_nick']);
+                $model->Tblogin();
+                $this->redirect(['site/index']);
+            }
+           
+        }
+    }
 
     public function actionCallBack()
     {
@@ -126,45 +154,6 @@ class UserController extends Controller
         $model->QQlogin();
         //var_dump($model->QQlogin());
         $this->redirect(['site/index']);
-    }
-
-    /**
-     * 线上测试用户登陆
-     */
-    public function actionLogin1($referer = '')
-    {
-        if (!Yii::app()->user->isGuest) 
-        {
-            $this->redirect(['site/index']);
-            Yii::app()->end();
-        }
-
-        $this->layout = '//layouts/userBase';
-        $model = new LoginForm();
-        $post = Yii::app()->request->getPost('LoginForm');
-        if (!empty($post)) {
-            $model->attributes = $post;
-            if ($model->login()) {
-                //查出用户的信息
-                $userModel = User::model()->findByPk(Yii::app()->user->getState('id'));
-                //如果用户邮箱未激活，提示用户
-                if ($userModel->is_valid == 0) {
-                    //如果未验证就退出登录
-                    Yii::app()->user->logout();
-                    $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
-                }
-                if ($referer) {
-                    $this->redirect($referer);
-                }else
-                {
-                    $this->redirect(['site/index']);
-                }
-                
-                Yii::app()->end();
-            }
-        }
-
-        $this->render('login1', ['model' => $model]);
     }
 
 
@@ -233,8 +222,59 @@ class UserController extends Controller
             }
         }
         $this->render('register', ['model' => $model]);
+    } 
+	/**
+     * 忘记密码
+     */
+    public function actionForget()
+    {
+        $this->layout = '//layouts/userBase';
+        $model_forget = new User('forget');
+		$model = new ForgetForm();
+		$post = Yii::app()->request->getPost('ForgetForm');
+		if (!empty($post)) {
+			$result=$model_forget -> getForget($post['email']);//查询邮箱是否存在
+			$usename=$result['username'];
+			if (empty($result)) {
+				$this->renderIndex('对不起', '此邮箱不存在，请输入注册时邮箱！');
+				} else {
+				$model->attributes = $post;
+				if($model->forgetRule())
+					$model_forget->email = $post['email'];
+					$body = $this->renderPartial('_mailPassword', ['userModel' => $result], true);
+					$mail = new MailService();
+					if (!$mail->sendMail($body, '美品网修改密码激活邮件', $model_forget->email)) {
+						$this->renderIndex('no', '邮件发送失败，请联系客服人员。');
+					}
+				}
+				$this->renderIndex('yes', '邮箱发送成功！请到此'.$post['email'].'邮箱激活！');
+				
+		}
+        $this->render('forget',['model' => $model] );
     }
-
+	   /**
+     *邮箱找回密码进行修改
+     */
+    public function actionChangWord()
+    { 
+		$this->layout = '//layouts/userBase';
+        // 用户ID
+		$userId = $_REQUEST['id'];//获取对应的id
+        $model = User::getUser($userId);
+		$usename=$_REQUEST['username'];//用获取户名
+        $post = Yii::app()->request->getPost('User');
+        if (!empty($post)) {
+            $model->scenario = 'password';
+            $model->attributes = $post;
+            if ($model->save()) {
+                User::deleteCache($userId);
+                Yii::app()->user->logout();
+                $this->renderIndex('yes', '密码修改成功');
+            }
+        }
+        User::clearPassword($model);
+        $this->render('changWord',['model' => $model,'username'=> $usename]);
+    }
     /**
      * 用户注册
      */

@@ -119,7 +119,7 @@ class GoodsController extends Controller
             $model->user_id = User::getUserName(Yii::app()->user->id);
 			//首页显示
 			if ($_POST['Goods']['head_show']==2) {  
-					$model->head_show =$_POST['Goods']['head_show'];//获取首页是否显示字段
+					$model->head_show =time();//获取首页是否显示字段
 					$model->start_time =date('Y-m-d H:i:s',time());//获取当前时间
 					$year=date('Y-m-d h:i:s',strtotime("+1 year"));//获取一年后时间
 					$model->end_time =$year;//获取结束时间
@@ -188,7 +188,7 @@ class GoodsController extends Controller
 			if ($_POST['Goods']['head_show']!=3) {
 				//首页显示
 				if ($_POST['Goods']['head_show']==2) {  
-						$model->head_show =$_POST['Goods']['head_show'];//获取首页是否显示字段
+						$model->head_show =time();//获取首页是否显示字段
 						$model->start_time =date('Y-m-d H:i:s',time());//获取当前时间
 						$year=date('Y-m-d h:i:s',strtotime("+1 year"));//获取一年后时间
 						$model->end_time =$year;//获取结束时间

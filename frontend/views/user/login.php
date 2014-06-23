@@ -29,6 +29,7 @@
             <p>
                 <em>&nbsp;</em>
                 <input type="submit" value="登 录" class="submit">
+				<span><a href="<?php echo $this->createUrl('user/forget'); ?>" class="zhuce">忘记密码!</a></span>
             </p>
             <p class="reg">
                 <a href="<?php echo $this->createUrl('user/qlogin'); ?>"><img src="/static/images/qq/Connect_logo_3.png"></a><br>

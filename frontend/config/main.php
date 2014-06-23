@@ -40,6 +40,7 @@ return [
                 'pageVar' => 'page',
                 'pageSize' => 120,
                 'exchangePageSize' => 20,//积分兑换首页，每页显示数量
+                'goodsdetail'=>12,
             ],
             //前台配置标识
             'platform' => 'frontend',
