@@ -294,7 +294,7 @@ border: 0;
 #dialog_empty_deal_plimg .diginfo{padding:20px;width: 680px;overflow: hidden;}
 
 .blockCJ{text-align: left;font: 14px/24px "";float:left;width:610px;margin-top:10px;}
-.blockCJ p{width:610px;height:33px;background: url(../images/bg5.png) no-repeat 0 -233px;}
+/*.blockCJ p{width:610px;height:33px;background: url(../images/bg5.png) no-repeat 0 -233px;}*/
 .blockCJ p.jp{background-position: 0 -335px;}
 .blockCJ strong{display:block;margin:10px 0 5px 0;color:#333;}
 .blockCJ a{color:#09c;}.blockCJ a:hover{color:#cc0000;}
