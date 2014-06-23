@@ -131,9 +131,12 @@ class UserController extends Controller
             //Array ( [taobao_user_id] => 182558410 [taobao_user_nick] => sandbox_cilai_c [status] => 200 ) 
             if($tbinfo['status']==200)
             {
-                
+                $model = new LoginForm();
+                $model->attributes = array('username'=>$tbinfo['taobao_user_id'],'password'=>$tbinfo['taobao_user_nick']);
+                $model->Tblogin();
+                $this->redirect(['site/index']);
             }
-            print_r($tbinfo);
+           
         }
     }
 
@@ -151,45 +154,6 @@ class UserController extends Controller
         $model->QQlogin();
         //var_dump($model->QQlogin());
         $this->redirect(['site/index']);
-    }
-
-    /**
-     * 线上测试用户登陆
-     */
-    public function actionLogin1($referer = '')
-    {
-        if (!Yii::app()->user->isGuest) 
-        {
-            $this->redirect(['site/index']);
-            Yii::app()->end();
-        }
-
-        $this->layout = '//layouts/userBase';
-        $model = new LoginForm();
-        $post = Yii::app()->request->getPost('LoginForm');
-        if (!empty($post)) {
-            $model->attributes = $post;
-            if ($model->login()) {
-                //查出用户的信息
-                $userModel = User::model()->findByPk(Yii::app()->user->getState('id'));
-                //如果用户邮箱未激活，提示用户
-                if ($userModel->is_valid == 0) {
-                    //如果未验证就退出登录
-                    Yii::app()->user->logout();
-                    $this->renderIndex('no', '您的邮箱未激活，请先去激活邮箱', $referer);
-                }
-                if ($referer) {
-                    $this->redirect($referer);
-                }else
-                {
-                    $this->redirect(['site/index']);
-                }
-                
-                Yii::app()->end();
-            }
-        }
-
-        $this->render('login1', ['model' => $model]);
     }
 
 

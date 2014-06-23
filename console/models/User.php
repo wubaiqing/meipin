@@ -47,9 +47,7 @@ class User extends ActiveRecord implements IArrayable
         return [
             ['username', 'checkUsername', 'on' => 'register'],
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
-			['verifyCode', 'checkVerifyCode', 'on' => 'forget'],
             ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'register'],
-            ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'forget'],
             ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
             ['password', 'checkPassword', 'on' => 'register, password'],
@@ -178,26 +176,6 @@ class User extends ActiveRecord implements IArrayable
         return $user;
     }
 
-	    /**
-     * 获取用户邮件信息
-     * @param integer $userId 用户ID
-     */
-    public static function getForget($email)
-    {
-        $cacheKey = self::getUserCacheKey($email);
-        $result = Yii::app()->cache->get($cacheKey);
-        if ($result) {
-            return $result;
-        }
-
-         //$user = self::model()->findByPk();
-		 $user = self::model()->findByAttributes(array(
-            'email' => $email
-        ));
-        Yii::app()->cache->set($cacheKey, $user, 3600);
-
-        return $user;
-    }
     /**
      * 删除用户缓存
      * @param integer $userId 用户ID
@@ -275,19 +253,5 @@ class User extends ActiveRecord implements IArrayable
 
 		return 'qq'.date('m').$newId.date('d');
 	}
-
-    /**
-     * 生成taobao用户昵称
-     */
-    public static function getTbNickName()
-    {
-        $model = User::model()->find([
-            'order' => 'id desc',
-            'limit' => '1',
-        ]);
-        $newId = $model->id + 1;
-
-        return 'tb'.date('m').$newId.date('d');
-    }
 
 }

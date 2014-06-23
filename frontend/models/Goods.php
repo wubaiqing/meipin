@@ -180,7 +180,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
        if ($hot == 0) {
-            $criteria->order = 'day DESC,head_show DESC, t.list_order DESC';
+            $criteria->order = 't.head_show DESC, day DESC, t.list_order DESC';
         } else {
             $criteria->order = 't.id DESC';
         }
@@ -193,9 +193,9 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('t.cat_id', '=' . $cat);
         }
 
-        //$criteria->compare('t.start_time', '<=' . $now);
-        //$criteria->compare('t.end_time', '>=' . $now);
-        //$criteria->compare('t.status', '=1');
+        $criteria->compare('t.start_time', '<=' . $now);
+        $criteria->compare('t.end_time', '>=' . $now);
+        $criteria->compare('t.status', '=1');
 
         $this->dbCriteria->mergeWith($criteria);
 
