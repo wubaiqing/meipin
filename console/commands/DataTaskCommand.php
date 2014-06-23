@@ -57,17 +57,23 @@ class DataTaskCommand extends CConsoleCommand
             }
             //抽奖
             $limit_count = $goods->limit_count;
-            $result =[];
+            $result = [];
+            $updated = false;
             while (true) {
-                if ($limit_count <= 0) break;
-                $key = rand(0,count($lotteryIds)-1);
+                if ($limit_count <= 0 || count($lotteryIds) <$limit_count) {
+                    break;
+                }
+                $key = rand(0, count($lotteryIds) - 1);
                 $result[] = $lotteryIds[$key];
                 unset($lotteryIds[$key]);
                 sort($lotteryIds);
                 $limit_count--;
+                $updated = true;
             }
-            ExchangeLog::model()->updateByPk($result, ['winner'=>1]);
-            Exchange::model()->updateByPk($goods->id, ['lottery_status'=>1]);
+            if($updated){
+                ExchangeLog::model()->updateByPk($result, ['winner' => 1]);
+                Exchange::model()->updateByPk($goods->id, ['lottery_status' => 1]);
+            }
         }
     }
 
