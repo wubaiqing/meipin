@@ -91,11 +91,6 @@ class UserIdentity extends CUserIdentity
             $this->name = $nickname;
             // 设置最后一次登录时间
             $time = time();
-            // 设置用户属性
-            Yii::app()->user->setState('singleLoginTime', $time);
-            Yii::app()->user->setState('id', $id);
-            Yii::app()->user->setState('name', $nickname);
-            Yii::app()->user->setState('qid', '1'); //设置是否是qq登陆
 
             $this->errorCode=self::ERROR_USERNAME_INVALID;
             return !$this->errorCode;//0
@@ -107,11 +102,6 @@ class UserIdentity extends CUserIdentity
 
             // 设置最后一次登录时间
             $time = time();
-            // 设置用户属性
-            Yii::app()->user->setState('singleLoginTime', $time);
-            Yii::app()->user->setState('id', $user->id);
-            Yii::app()->user->setState('name', $user->username);
-            Yii::app()->user->setState('qid', '1');
             // 更新用户最后登陆时间
             $affect = User::model()->updateByPk($user->id, [
                 'last_login' => $time,
