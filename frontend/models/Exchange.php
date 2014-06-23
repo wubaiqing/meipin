@@ -151,26 +151,6 @@ class Exchange extends ActiveRecord
     }
 
     /**
-     * 商品详细页获取热门兑换商品列表
-     * @param  integer  $goodsId  商品ID
-     * @param  integer  $pageSize 返回数据大小
-     * @return Exchange
-     */
-    public static function getHotExchangeDetailGoods($pageSize = 10)
-    {
-        $key = "goods-getHotExchangedetailGoods-0000" . $pageSize;
-        $hotExchangeGoods = Yii::app()->cache->get($key);
-        if (!empty($hotExchangeGoods)) {
-            return $hotExchangeGoods;
-        }
-        $hotExchangeGoods = Exchange::model()->findAll(['condition' => "is_delete = 0",
-            'order' => 'sale_num desc',
-            'limit' => 10]);
-        Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
-
-        return $hotExchangeGoods;
-    }
-    /**
      * 设置当前兑换key
      * @param  integer $user_id
      * @param  integer $goods_id

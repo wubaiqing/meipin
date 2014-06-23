@@ -89,7 +89,6 @@ class SiteController extends Controller
             'pager' => $xggoods['pager'], // 商品翻页
         	));
     }
-
     /**
     *  意見反饋
     */

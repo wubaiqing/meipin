@@ -38,7 +38,7 @@ class UserController extends Controller
         return array_merge([
             [
                 'allow',
-                'actions' => ['login', 'register'],
+                'actions' => ['login', 'register','login1','forget'],
                 'users' => ['*'],
             ],
             [
@@ -222,8 +222,59 @@ class UserController extends Controller
             }
         }
         $this->render('register', ['model' => $model]);
+    } 
+	/**
+     * 忘记密码
+     */
+    public function actionForget()
+    {
+        $this->layout = '//layouts/userBase';
+        $model_forget = new User('forget');
+		$model = new ForgetForm();
+		$post = Yii::app()->request->getPost('ForgetForm');
+		if (!empty($post)) {
+			$result=$model_forget -> getForget($post['email']);//查询邮箱是否存在
+			$usename=$result['username'];
+			if (empty($result)) {
+				$this->renderIndex('对不起', '此邮箱不存在，请输入注册时邮箱！');
+				} else {
+				$model->attributes = $post;
+				if($model->forgetRule())
+					$model_forget->email = $post['email'];
+					$body = $this->renderPartial('_mailPassword', ['userModel' => $result], true);
+					$mail = new MailService();
+					if (!$mail->sendMail($body, '美品网修改密码激活邮件', $model_forget->email)) {
+						$this->renderIndex('no', '邮件发送失败，请联系客服人员。');
+					}
+				}
+				$this->renderIndex('yes', '邮箱发送成功！请到此'.$post['email'].'邮箱激活！');
+				
+		}
+        $this->render('forget',['model' => $model] );
     }
-
+	   /**
+     *邮箱找回密码进行修改
+     */
+    public function actionChangWord()
+    { 
+		$this->layout = '//layouts/userBase';
+        // 用户ID
+		$userId = $_REQUEST['id'];//获取对应的id
+        $model = User::getUser($userId);
+		$usename=$_REQUEST['username'];//用获取户名
+        $post = Yii::app()->request->getPost('User');
+        if (!empty($post)) {
+            $model->scenario = 'password';
+            $model->attributes = $post;
+            if ($model->save()) {
+                User::deleteCache($userId);
+                Yii::app()->user->logout();
+                $this->renderIndex('yes', '密码修改成功');
+            }
+        }
+        User::clearPassword($model);
+        $this->render('changWord',['model' => $model,'username'=> $usename]);
+    }
     /**
      * 用户注册
      */
