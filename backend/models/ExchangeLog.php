@@ -128,7 +128,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     public function search()
     {
         $criteria = new CDbCriteria;
-        $criteria->order = 't.created_at desc';
+        $criteria->order = 't.winner desc,t.created_at desc';
+        $criteria->compare('goods_id', $this->goods_id);
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
         }
@@ -231,7 +232,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      */
     public static function findWatterList($goods_id)
     {
-        return self::model()->findAll("user_add >0 and winner =1 and goods_id=$goods_id");
+        return self::model()->findAll("user_add >0  and goods_id=$goods_id");
     }
 
 }

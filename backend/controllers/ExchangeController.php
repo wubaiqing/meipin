@@ -216,28 +216,39 @@ class ExchangeController extends Controller
             }
         }
         //查询注水中奖用户
-        $waterList = ExchangeLog::findWatterList($id);
+//        $waterList = ExchangeLog::findWatterList($id);
+        $water = new ExchangeLog();
+        $water->goods_id = $id;
         $this->render('water', [
             'exchangeModel' => $exchangeModel,
             'exchangeLog' => $exchangeLog,
-            'waterList' => $waterList,
+            'water' => $water,
         ]);
     }
 
-    public function actionWaterDelete($id)
+    public function actionWaterUpdate($id,$type,$status = null)
     {
         $trans = Yii::app()->db->beginTransaction();
         try {
             $log = ExchangeLog::model()->findByPk($id);
+            if($type == 'delete'){
+                $log->delete();
+            }
+            else if($type == 'winner' && !is_null($status)){
+                $log->winner = $status;
+                $log->update(['winner']);
+            }else{
+                $this->returnData(false, ['message' => '操作失败']);
+            }
+            //更新用户数
             $userCount = ExchangeLog::getUserCount($log->goods_id);
             Exchange::model()->updateByPk($log->goods_id, ['user_count'=>$userCount]);
-            $log->delete();
             $trans->commit();
 
             Exchange::deleteCache($log->goods_id);
             ExchangeLog::deleteExchangeLogListCache($log->goods_id);
             
-            $this->returnData(true, ['message' => '操作成功']);
+            $this->returnData(false, ['message' => '操作成功']);
         } catch (Exception $ex) {
             $trans->rollback();
             $this->returnData(false, ['message' => '操作失败']);
