@@ -62,10 +62,11 @@ class User extends ActiveRecord implements IArrayable
      * 校验原始密码
      */
     public function checkOldPassword()
-    {
+    {	if (!empty($this->oldModel->password)) {
         if ($this->oldModel->password != $this->hashPassword($this->oldPassword, $this->oldModel->salt)) {
             $this->addError('oldPassword', '原始密码不正确');
         }
+	}
     }
 
     /**
@@ -137,7 +138,7 @@ class User extends ActiveRecord implements IArrayable
      * @return boolean
      */
     public function validatePassword($password)
-    {
+    {	
         return $this->hashPassword($password, $this->salt) === $this->password;
     }
 
@@ -178,7 +179,7 @@ class User extends ActiveRecord implements IArrayable
         return $user;
     }
 
-	    /**
+	      /**
      * 获取用户邮件信息
      * @param integer $userId 用户ID
      */
@@ -191,12 +192,12 @@ class User extends ActiveRecord implements IArrayable
         }
 
          //$user = self::model()->findByPk();
-		 $user = self::model()->findByAttributes(array(
+		 $email = self::model()->findByAttributes(array(
             'email' => $email
         ));
-        Yii::app()->cache->set($cacheKey, $user, 3600);
+        Yii::app()->cache->set($cacheKey, $email, 3600);
 
-        return $user;
+        return $email;
     }
     /**
      * 删除用户缓存
@@ -212,10 +213,11 @@ class User extends ActiveRecord implements IArrayable
      * 清空密码
      */
     public static function clearPassword(& $model)
-    {
+    { 
         $model->password = '';
         $model->oldPassword = '';
         $model->confirmPassword = '';
+		
     }
 
     /**
