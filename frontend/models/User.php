@@ -48,9 +48,10 @@ class User extends ActiveRecord implements IArrayable
             ['username', 'checkUsername', 'on' => 'register'],
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
 			['verifyCode', 'checkVerifyCode', 'on' => 'forget'],
-            ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'register'],
+            ['email', 'email', 'message' => '邮箱地址格式不对', 'pattern'=>"/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i",'on' => 'register'],
+            ['username', 'checkUsername', 'on' => 'register'],
             ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'forget'],
-            ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
+            ['email', 'checkEmail', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
             ['password', 'checkPassword', 'on' => 'register, password'],
             ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode,score,dr_count,last_dr_time'
@@ -102,6 +103,20 @@ class User extends ActiveRecord implements IArrayable
         }
     }
 
+    /**
+     * 校验邮箱
+     */
+    public function checkEmail()
+    {
+        if (empty($this->username)) {
+            $this->addError('email', '邮箱不能为空');
+        }else {
+            $user = self::model()->findByAttributes(['email' => $this->email]);
+            if (!empty($user)) {
+                $this->addError('email', '邮箱已经存在');
+            }
+        }
+    }
     /**
      * 校验验证码
      */
