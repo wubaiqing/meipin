@@ -1,3 +1,8 @@
+<style type="text/css">
+.input_off{float: left;}
+.input_on{float: left;}
+.input_log{float:left;width:150px;color:red;font-size:12px;height: 30px;line-height: 30px;text-align: left;padding-left: 8px;};
+</style>
 <div class="mains" style="clear:both">
     <div class="white_top">
         <div class="white_top_left"></div>
@@ -14,9 +19,9 @@
                     'validateOnSubmit'=>true,
                 )
             )); ?>
-            <div>
-                <?php echo $form->errorSummary($model, '');?>
-            </div>
+<!--             <div>
+    <?php //echo $form->errorSummary($model, '');?>
+</div> -->
 
             <div class="fill">
                 <ul>
@@ -24,32 +29,38 @@
                         <div class="input_left">
                             <label for="username">用户名：</label>
                             <?php echo $form->textField($model, 'username', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+                            <?php echo $form->error($model,'username',array('class'=>'input_log'));?>
                         </div>
                     </li>
                     <li>
                         <div class="input_left">
                             <label for="password">密码：</label>
                             <?php echo $form->passwordField($model, 'password', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+                            <?php echo $form->error($model,'password',array('class'=>'input_log'));?>
                         </div>
                     </li>
                     <li>
                         <div class="input_left">
                             <label for="repassword">确认密码：</label>
                             <?php echo $form->passwordField($model, 'confirmPassword', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+                             <?php echo $form->error($model,'confirmPassword',array('class'=>'input_log'));?>
                         </div>
                     </li>
                     <li>
                         <div class="input_left">
                             <label for="email">邮箱：</label>
                             <?php echo $form->textField($model, 'email', array('class'=>'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
+                             <?php echo $form->error($model,'email',array('class'=>'input_log'));?>
                         </div>
                     </li>
                     <li>
                         <div class="ipt_check">
                             <label for="captcha">验证码：</label>
-                            <?php echo $form->textField($model, 'verifyCode', array('class'=>'check input_text bg text code ', 'onblur' => 'this.className="input_off_c";this.onmouseout=function () {this.className="input_out_c"};', 'onfocus' => 'this.className="input_on_c";this.onmouseout=""', 'maxlength' => 4)); ?>
-                            <?php $this->widget('CCaptcha',array('showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer', 'onclick' => 'captch(this)', 'style' => 'display:inline'))); ?>
+                            <?php echo $form->textField($model, 'verifyCode', array('class'=>'check input_text bg text code ', 'onblur' => 'this.className="input_off_c";this.onmouseout=function () {this.className="input_out_c"};', 'onfocus' => 'this.className="input_on_c";this.onmouseout=""', 'maxlength' => 4, 'style'=>'float:left')); ?>
+                            <?php $this->widget('CCaptcha',array('showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer', 'onclick' => 'captch(this)', 'style' => 'display:inline;float:left'))); ?>
+                             <?php echo $form->error($model,'verifyCode',array('class'=>'input_log'));?>
                         </div>
+
                     </li>
                     <li class="ipt_smt">
                         <input type="submit" name="submits" class="smt" id="submits" value="立即注册" tabindex="5">

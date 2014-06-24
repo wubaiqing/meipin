@@ -160,9 +160,9 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('t.cat_id', '=' . $cat);
         }
         $criteria->compare('t.id', '<>'.$goodsid);
-        //$criteria->compare('t.start_time', '<=' . $now);
-        //$criteria->compare('t.end_time', '>=' . $now);
-        //$criteria->compare('t.status', '=1');
+        $criteria->compare('t.start_time', '<=' . $now);
+        $criteria->compare('t.end_time', '>=' . $now);
+        $criteria->compare('t.status', '=1');
 
         $this->dbCriteria->mergeWith($criteria);
 

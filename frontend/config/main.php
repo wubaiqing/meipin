@@ -18,6 +18,7 @@ return [
                     'index.html' => 'site/index',
                     'raffle' => 'site/raffle',
                     'out/<id:.+?>.html' => 'site/out',
+                    'buy/<id:.+?>.html' => 'site/buy',
                     'site/search' => 'site/search',
                     'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
                     'exchange/raffle_<id:.+?>.html' => 'exchange/raffle',

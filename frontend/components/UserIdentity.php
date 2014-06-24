@@ -72,14 +72,8 @@ class UserIdentity extends CUserIdentity
     {
 
         $openid =  $this->username;
-        $nick = trim($this->password);
-        if(empty($nick))
-        {
-            $nickname = User::generateNickName();
-        }else
-        {
-            $nickname = trim($this->password);
-        }
+        $nickname = User::generateNickName();
+
         //先检查是否存在openid 
         $user = User::model()->findByAttributes(array(
             'qq_openid' => $openid
@@ -106,21 +100,21 @@ class UserIdentity extends CUserIdentity
             return !$this->errorCode;//0
         }
         else
-        {  //已经存在openid  然后就开始修改 username 更改时间
+        {  //已经存在openid  然后就开始修改 更改时间
             $this->id = $user->id;
-            $this->name = $nickname;
+            $this->name = $user->username;
             // 设置最后一次登录时间
             $time = time();
             // 设置用户属性
             Yii::app()->user->setState('singleLoginTime', $time);
             Yii::app()->user->setState('id', $user->id);
-            Yii::app()->user->setState('name', $nickname);
+            Yii::app()->user->setState('name', $user->username);
             Yii::app()->user->setState('qid', '1');
             // 更新用户最后登陆时间
             $affect = User::model()->updateByPk($user->id, [
                 'last_login' => $time,
                 'last_ip' => Yii::app()->request->userHostAddress,
-                'username' =>$nickname
+                //'username' =>$nickname
             ]);
 
             // 两个用户同一时间数据库报错
@@ -136,14 +130,8 @@ class UserIdentity extends CUserIdentity
     public function Tbloginouth()
     {
         $tb_userid =  $this->username;
-        $nick = trim($this->password);
-        if(empty($nick))
-        {
-            $nickname = User::getTbNickName();
-        }else
-        {
-            $nickname = trim($this->password);
-        }
+        $nickname = User::getTbNickName();
+
         //先检查是否存在openid 
         $user = User::model()->findByAttributes(array(
             'tb_userid' => $tb_userid
@@ -171,21 +159,21 @@ class UserIdentity extends CUserIdentity
             return !$this->errorCode;//0
         }
         else
-        {  //已经存在openid  然后就开始修改 username 更改时间
+        {  //已经存在openid  然后就开始修改 更改时间
             $this->id = $user->id;
-            $this->name = $nickname;
+            $this->name = $user->username;
             // 设置最后一次登录时间
             $time = time();
             // 设置用户属性
             Yii::app()->user->setState('singleLoginTime', $time);
             Yii::app()->user->setState('id', $user->id);
-            Yii::app()->user->setState('name', $nickname);
+            Yii::app()->user->setState('name', $user->username);
             Yii::app()->user->setState('qid', '2');
             // 更新用户最后登陆时间
             $affect = User::model()->updateByPk($user->id, [
                 'last_login' => $time,
                 'last_ip' => Yii::app()->request->userHostAddress,
-                'username' =>$nickname
+                //'username' =>$nickname
             ]);
 
             // 两个用户同一时间数据库报错
