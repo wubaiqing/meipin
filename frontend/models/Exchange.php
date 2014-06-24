@@ -8,6 +8,12 @@ class Exchange extends ActiveRecord
 {
 
     /**
+     * 商品类型
+     * @var array 
+     */
+    public static $goodsType = [0 => '兑换商品', 1 => '抽奖商品'];
+
+    /**
      * 表名
      * @return string
      */
@@ -24,7 +30,7 @@ class Exchange extends ActiveRecord
     {
         return [
             ['name, taobaoke_url, support_url, img_url', 'required'],
-            ['need_level, is_delete', 'numerical', 'integerOnly' => true],
+            ['need_level, is_delete,limit_count', 'numerical', 'integerOnly' => true],
             ['price', 'numerical', 'integerOnly' => false],
             ['name, support_name', 'length', 'max' => 50],
             ['num, integral, start_time, end_time, taobao_id', 'length', 'max' => 11],
@@ -131,18 +137,19 @@ class Exchange extends ActiveRecord
     /**
      * 获取热门兑换商品列表
      * @param  integer  $goodsId  商品ID
+     * @param  integer  $goodsType 商品类型
      * @param  integer  $pageSize 返回数据大小
      * @return Exchange
      */
-    public static function getHotExchangeGoods($goodsId, $pageSize = 10)
+    public static function getHotExchangeGoods($goodsId, $goodsType, $pageSize = 10)
     {
-        $key = "goods-getHotExchangeGoods-" . $goodsId . "-" . $pageSize;
+        $key = "goods-getHotExchangeGoods-" . $goodsId . "-" . $goodsType . "-" . $pageSize;
         $hotExchangeGoods = Yii::app()->cache->get($key);
         if (!empty($hotExchangeGoods)) {
             return $hotExchangeGoods;
         }
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId
-            . " and is_delete = 0",
+            . " and is_delete = 0 and goods_type = " . $goodsType . " and end_time > " . time(),
             'order' => 'sale_num desc',
             'limit' => 10]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
@@ -218,16 +225,34 @@ class Exchange extends ActiveRecord
 
     /**
      * 积分兑换首页商品列表
+     * @param integer $currentPage 分页页码
+     * @param integer $goodsType 商品类型
+     * @param string $timeLine 是否过期商品
      * @return array
-     *               @author zhangchao
+     * @author zhangchao
      */
-    public function showExchangeGoodsList($currentPage = 0)
+    public function showExchangeGoodsList($currentPage = 0, $goodsType = 0, $timeLine = '')
     {
+        $time = time();
         //缓存的key
-        $cacheKey = 'exchange_list_' . $currentPage;
+        $cacheKey = 'exchange_list_' . md5(serialize(func_get_args()));
+        $exchangeList = Yii::app()->cache->get($cacheKey);
+        if ($exchangeList) {
+            return $exchangeList;
+        }
+
         $criteria = new CDbCriteria();
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
+
+        if (empty($timeLine)) {
+            $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
+        } else if ($timeLine == 'history') {
+            $criteria->addCondition('end_time <= ' . $time);
+        }
+
+        $criteria->compare('goods_type', $goodsType);
+
         //分页类开始
         $pages = new CPagination();
         $pages->currentPage = $currentPage;
@@ -237,20 +262,24 @@ class Exchange extends ActiveRecord
         $pages->pageSize = Yii::app()->params['pagination']['exchangePageSize'];
         $pages->applyLimit($criteria);
         $data = [];
-        $exchangeList = Yii::app()->cache->get($cacheKey);
-        //如果能获取到缓存，就直接返回
-        if ($exchangeList !== false || !empty($exchangeList)) {
-            $data['goods'] = $exchangeList;
-        } else {
-            //根据条件查询积分兑换商品
-            $data['goods'] = Exchange::model()->findAll($criteria);
-            //写入缓存
-            Yii::app()->cache->set($cacheKey, $data['goods']);
-        }
+        //根据条件查询积分兑换商品
+        $data['goods'] = Exchange::model()->findAll($criteria);
         //分页类
         $data['pages'] = $pages;
+        //写入缓存
+        Yii::app()->cache->set($cacheKey, $data, Constants::T_HALF_HOUR);
 
         return $data;
+    }
+
+    /**
+     * 获取商品类型名称
+     * @param integer $goodsType 商品类型
+     * @return string 
+     */
+    public static function getGoodsTypeLable($goodsType)
+    {
+        return isset(self::$goodsType[$goodsType]) ? self::$goodsType[$goodsType] : "";
     }
 
 }

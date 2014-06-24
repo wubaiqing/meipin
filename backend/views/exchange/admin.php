@@ -3,16 +3,26 @@
 
     <?php $this->renderPartial('_search', ['exchangeModel' => $exchangeModel]); ?>
 
-    <?php $this->widget('zii.widgets.grid.CGridView', array(
-        'id'=>'exchange-grid',
-        'dataProvider'=>$exchangeModel->search(),
-        'enableSorting' => false,
-        'itemsCssClass' => 'table table-striped table-bordered',
-        'pagerCssClass' =>'pagination pagination-small',
-        'template'=>'{items}{pager}',
-        'cssFile' => false,
-        'filter' => $exchangeModel,
-        'filterPosition' => false,
+    <?php
+    $this->widget('ListView', array(
+        'id' => 'exchange-grid',
+        'dataProvider' => $exchangeModel->search(),
+        'pager'=>array('class'=>'CLinkPager'),
+        'template'=>'{sorter}{items}{pager}',
+        'itemsTagName'=>'table',
+        'ajaxUpdate'=>false,
+        'itemsCssClass'=>'table table-striped table-bordered',
+        'emptyText'=>'对不起，没有任何搜索结果。',
+        'viewData'=>[],
+        'itemtops'=>'<th width=7%>ID</th><th width=8%>商品名称</th><th width=11%>商品类型</th><th width=18%>颜色</th><th width=13%>上线时间</th><th width=13%>下线时间</th><th width=7%>参与人数</th><th width=11%>操作</th>',
+//        'enableSorting' => false,
+//        'itemsCssClass' => 'table table-striped table-bordered',
+//        'pagerCssClass' => 'pagination pagination-small',
+//        'template' => '{items}{pager}',
+//        'cssFile' => false,
+//        'filter' => $exchangeModel,
+//        'filterPosition' => false,
+        'itemView'=>'_admin',
         'pager' => array(
             'class' => 'CLinkPager',
             'cssFile' => '',
@@ -22,50 +32,13 @@
             'nextPageLabel' => '下一页',
             'prevPageLabel' => '上一页',
         ),
-        'columns' => array(
-            'id',
-            'name'=>array(
-                'type'=>'raw',
-                'name'=>'name',
-                'value'=>'"<a href=\"$data->taobaoke_url\"  target=\"_blank\">".$data->name."</a>"',
-            ),
-            'goodscolor2',
-            'price',
-            'num',
-            'delenum'=>array(
-                    'name'=>'delenum',
-                    'value'=>'($data->num - $data->sale_num)',
-                ),
-            'integral',
-            'start_time' => array(
-                'name' => 'start_time',
-                'id' => 'start_time',
-                'value' => 'date("Y-m-d", $data->start_time)',
-                'htmlOptions' => array('width' => '80'),
-            ),
-            'end_time' => array(
-                'name' => 'end_time',
-                'id' => 'end_time',
-                'value' => 'date("Y-m-d", $data->end_time)',
-                'htmlOptions' => array('width' => '80')
-            ),
-            array(
-                'class' => 'CButtonColumn',
-                'template' => '{update} {delete}',
-                'header' => '操作',
-                'buttons' => array(
-                    'update' => array(
-                        'label' => '修改',
-                        'url' => 'Yii::app()->createUrl("exchange/update", array("id" => $data->id))',
-                        'imageUrl' => false
-                    ),
-                    'delete'=>array(
-                        'label'=>'删除',
-                        'imageUrl' => false,
-                    ),
-                )
-            ),
-        ),
     ));
     ?>
 </div>
+<script type="text/javascript">
+    function goods_delete(obj){
+        if(confirm("确定要删除该商品？")){
+            window.location.href=$(obj).attr("url");
+        }
+    }
+</script>

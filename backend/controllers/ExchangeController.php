@@ -11,11 +11,11 @@ class ExchangeController extends Controller
     //判断是否登陆，没有登陆就返回登陆
     public function beforeAction($action)
     {
-       if (!Yii::app()->user->id) {
-         $this->redirect(array('site/login'));
-       }
+        if (!Yii::app()->user->id) {
+            $this->redirect(array('site/login'));
+        }
 
-       return parent::beforeAction($action);
+        return parent::beforeAction($action);
     }
 
     public function loadModel($id)
@@ -38,12 +38,14 @@ class ExchangeController extends Controller
         $exchangeModel = new Exchange();
         //去掉这几个字段的默认值
         $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
-        if (isset($_POST['Exchange'])) 
-        {
+        if (isset($_POST['Exchange'])) {
             $attributes = Yii::app()->request->getPost('Exchange');
+            $attributes = Exchange::format($attributes);
+            $isChange = Yii::app()->request->getPost("isChange");
             $exchangeModel->attributes = $attributes;
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
-            if ($exchangeModel->save()) {
+            if ($isChange == 0 && $exchangeModel->save()) {
+                User::deleteCache();
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
@@ -60,32 +62,28 @@ class ExchangeController extends Controller
         $id = Yii::app()->request->getQuery('id');
         $exchangeModel = $this->loadModel($id);
         $imgold = $exchangeModel->img_url;
-        if (isset($_POST['Exchange'])) 
-        {
+        if (isset($_POST['Exchange'])) {
             //如果不等于原图并且是在 阿里云 上的则删除原图
-            if($imgold != $_POST['Exchange']['img_url'])
-            {
+            if ($imgold != $_POST['Exchange']['img_url']) {
 
                 //http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/images/2014/06/13/sfh9s1402642385539a9fd190b32.jpg
-                $domain = strstr($imgold, 'aliyuncs.com'); 
-                if($domain)
-                {
-                    $picoldkey =  strstr($domain, 'images/');
+                $domain = strstr($imgold, 'aliyuncs.com');
+                if ($domain) {
+                    $picoldkey = strstr($domain, 'images/');
                     //阿里云接口
-                    if($picoldkey)
-                    {
+                    if ($picoldkey) {
                         Yii::import('common.extensions.aliyunapi.OSSClient2');
                         $OSSClient = new OSSClient2;
                         $OSSClient->deleteObject($picoldkey);
                     }
-
                 }
-               
             }
             $attributes = Yii::app()->request->getPost('Exchange');
+            $attributes = Exchange::format($attributes);
             $exchangeModel->attributes = $attributes;
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($exchangeModel->save()) {
+                User::deleteCache();
                 $this->redirect($this->createUrl('exchange/Admin'));
             }
         }
@@ -164,8 +162,7 @@ class ExchangeController extends Controller
         $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
 
-        if(empty($model))
-            throw new CHttpException(404, '您所浏览的页面不存在.');
+        if (empty($model)) throw new CHttpException(404, '您所浏览的页面不存在.');
         //获取城市、身份
         $province = City::getByParentId(0);
         $provinceId = City::getProvinceId($model->city_id);
@@ -198,6 +195,62 @@ class ExchangeController extends Controller
         if ($bool) {
             $this->returnData(true, ['message' => '操作成功']);
         } else {
+            $this->returnData(false, ['message' => '操作失败']);
+        }
+    }
+
+    public function actionWater($id)
+    {
+        $exchangeModel = $this->loadModel($id);
+        $exchangeLog = new ExchangeLog();
+        if (Yii::app()->request->isPostRequest) {
+            $exchangeLog->attributes = Yii::app()->request->getPost("ExchangeLog");
+            $exchangeLog->winner = 1;
+            $exchangeLog->user_add = 1;
+            if ($d = $exchangeLog->save()) {
+                $userCount = ExchangeLog::getUserCount($id);
+                Exchange::model()->updateByPk($id, ['user_count'=>$userCount]);
+                Exchange::deleteCache($id);
+                ExchangeLog::deleteExchangeLogListCache($exchangeLog->goods_id);
+                $this->redirect($this->createUrl('exchange/Admin'));
+            }
+        }
+        //查询注水中奖用户
+//        $waterList = ExchangeLog::findWatterList($id);
+        $water = new ExchangeLog();
+        $water->goods_id = $id;
+        $this->render('water', [
+            'exchangeModel' => $exchangeModel,
+            'exchangeLog' => $exchangeLog,
+            'water' => $water,
+        ]);
+    }
+
+    public function actionWaterUpdate($id,$type,$status = null)
+    {
+        $trans = Yii::app()->db->beginTransaction();
+        try {
+            $log = ExchangeLog::model()->findByPk($id);
+            if($type == 'delete'){
+                $log->delete();
+            }
+            else if($type == 'winner' && !is_null($status)){
+                $log->winner = $status;
+                $log->update(['winner']);
+            }else{
+                $this->returnData(false, ['message' => '操作失败']);
+            }
+            //更新用户数
+            $userCount = ExchangeLog::getUserCount($log->goods_id);
+            Exchange::model()->updateByPk($log->goods_id, ['user_count'=>$userCount]);
+            $trans->commit();
+
+            Exchange::deleteCache($log->goods_id);
+            ExchangeLog::deleteExchangeLogListCache($log->goods_id);
+            sleep(1);
+            $this->returnData(true, ['message' => '操作成功']);
+        } catch (Exception $ex) {
+            $trans->rollback();
             $this->returnData(false, ['message' => '操作失败']);
         }
     }

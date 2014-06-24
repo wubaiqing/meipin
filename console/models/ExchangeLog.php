@@ -26,12 +26,11 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @var array
      */
     static $status = [0 => '未发货', 1 => '已发货'];
-
     /**
      * 搜索状态显示
      * @var array
      */
-    static $statusSearch = ['' => '请选择', 0 => '未发货', 1 => '已发货'];
+    static $statusSearch = [''=>'请选择',0 => '未发货', 1 => '已发货'];
 
     /**
      * 省份ID
@@ -67,7 +66,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return [
             [
-                'username', 'checkUsername',
+                'user_id,name,username,created_at,goods_id,status,city_id,address,postcode,mobile',
+                'required'
             ],
             [
                 'id, user_id,created_at,updated_at,goods_id,city_id',
@@ -75,7 +75,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'integerOnly' => true
             ],
             [
-                'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile',
+                'id,name,username,address,updated_at,remark',
                 'safe'
             ],
         ];
@@ -95,7 +95,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'city_id' => '城市ID',
             'address' => '配送地址',
             'goods_id' => '商品ID',
-            'gdscolor' => '颜色'
+            'gdscolor'  =>'颜色'
         ];
     }
 
@@ -128,8 +128,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     public function search()
     {
         $criteria = new CDbCriteria;
-        $criteria->order = 't.winner desc,t.created_at desc';
-        $criteria->compare('goods_id', $this->goods_id);
+        $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
         }
@@ -173,66 +172,4 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
         return true;
     }
-
-    /**
-     * 清除列表缓存
-     * @param integer $goodsId 兑换商品ID
-     */
-    public static function deleteExchangeLogListCache($goodsId)
-    {
-        $maxCachePageCount = Yii::app()->params['pageCahceMaxCount'];
-        for ($i = 1; $i <= $maxCachePageCount; $i++) {
-            $cacheKey = self::getLogListKey($goodsId, $i);
-            Yii::app()->cache->delete($cacheKey);
-        }
-    }
-
-    /**
-     * 获取记录
-     * @param integer $goodsId 兑换商品ID
-     * @param integer $page    当前页数
-     */
-    public static function getLogListKey($goodsId, $page)
-    {
-        return 'get-exchangelog-list-cachekey-' . $goodsId . "-" . $page;
-    }
-
-    /**
-     * 配置注水相关数据
-     */
-    public function checkUsername()
-    {
-        if (empty($this->username)) {
-            $this->addError("usernmae", "用户名不能为空");
-        }
-
-        $this->created_at = time();
-        $this->status = 0;
-    }
-
-    /**
-     * 获取参与用户数
-     * @param integer $goods_id 商品ID
-     * @return integer 
-     */
-    public static function getUserCount($goods_id)
-    {
-        $data = ExchangeLog::model()->count([
-            'condition' => 'goods_id=:goods_id',
-            'params' => [":goods_id" => $goods_id],
-            'group' => 'username'
-        ]);
-        return $data;
-    }
-
-    /**
-     * 查询注水中奖用户
-     * @param integer $goods_id 商品ID
-     * @return ExchangeLog 
-     */
-    public static function findWatterList($goods_id)
-    {
-        return self::model()->findAll("user_add >0  and goods_id=$goods_id");
-    }
-
 }

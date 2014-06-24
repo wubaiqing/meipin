@@ -17,6 +17,7 @@
         <script type="text/javascript" src="/static/js/jtzdm_lazyload.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/sign_day.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/user.js?v=1.0.2"></script>
+        <script type="text/javascript" src="/static/js/exchange.js?v=1.0.2"></script>
         <script type="text/javascript" src="/static/js/move.js?v=1.0.2"></script>
     </head>
     <body>

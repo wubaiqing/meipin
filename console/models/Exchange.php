@@ -129,7 +129,6 @@ class Exchange extends CActiveRecord
 
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,
-            'pagination' =>Yii::app()->params['pagination'],
         ]);
     }
 
@@ -202,20 +201,5 @@ class Exchange extends CActiveRecord
             }
         }
     }
-    /**
-     * 获取商品缓存KEY
-     */
-    public static function getExchangeGoodsCacheKey($goodsId)
-    {
-        return "exchange-findByGoodsId-" . $goodsId;
-    }
-    /**
-     * 刪除商品緩存KEY
-     */
-    public static function deleteCache($goodsId)
-    {
-        Yii::app()->cache->delete(self::getExchangeGoodsCacheKey($goodsId));
-    }
-
 
 }

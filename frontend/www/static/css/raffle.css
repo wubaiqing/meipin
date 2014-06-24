@@ -1,0 +1,9 @@
+.deal div p.time{height: 40px;font: 17px/40px "Tahoma";background: #efefef;padding: 0 6px;color: #333;margin: 0px;}
+.deal div p.time span i{color: #e02f2f;font-style: normal;font-weight: bold;}
+.deal div p span{float:left;}
+.deal div p em{float:right;}
+.deal div p.time em a {color: #e02f2f;float:right;}
+.deal div h4 a.raffle{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat 0 0;_background:url(images/bg2.png) no-repeat 0 0;margin-top:5px;}
+.deal div h4 a.raffle_history{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:#ccc ;_background:url(images/bg2.png) no-repeat 0 0;margin-top:5px;}
+.deal div h4.raffle_history span em {color:#ccc;}
+#contentD{background: #efefef;}

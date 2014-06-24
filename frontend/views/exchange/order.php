@@ -1,3 +1,6 @@
+<?php
+$name = ($data['exchange']->goods_type == 1)?"抽奖":"";
+?>
 <div id="confirm_exchange" class="exchange contentA">
     <div id="address" class="address ">
         <?php
@@ -73,8 +76,8 @@
         <p>
             <em>0元包邮</em>
             <strong>1.</strong>为了更好的回馈折会员，所有礼品不收取任何费用，我们包邮为您送到家<br>
-            <strong>2.</strong>由于参与兑换的人数较多，工作人员会在兑换成功后的15-20个工作日内将礼品发出<br>
-            <strong>3.</strong>兑换成功后您可以到 <strong>个人中心</strong> &gt; <strong>我的礼品</strong> 中根据快递单号查看您的订单配送情况
+            <strong>2.</strong>由于参与<?php echo $name;?>的人数较多，工作人员会在<?php echo $name;?>成功后的15-20个工作日内将礼品发出<br>
+            <strong>3.</strong><?php echo $name;?>成功后您可以到 <strong>个人中心</strong> &gt; <strong>我的礼品</strong> 中根据快递单号查看您的订单配送情况
         </p>
     </div>
     <div class="confcls">
@@ -103,13 +106,16 @@
                     </dl>
                     <dl class="jifn">
                         <dt><em><?php echo $data['exchange']->integral; ?></em><span></span></dt>
-                        <dd>提示：兑换礼品后您将减少<?php echo $data['exchange']->integral; ?>积分，一旦兑换成功，积分将不退还！请确定喜欢此礼品再兑换</dd>
+                        <dd>提示：<?php echo $name;?>礼品后您将减少<?php echo $data['exchange']->integral; ?>积分，一旦<?php echo $name;?>成功，积分将不退还！请确定喜欢此礼品再<?php echo $name;?></dd>
                     </dl>
                 </div>
             </div>
             <div class="jadinfo" data-must_memo="0" data-memo="">
                 <span>备注信息：<input id="memo" name="Exchange[remark]" max="200" type="text"></span>
-                <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="">
+                <?php 
+                $btnVal = ($data['exchange']->goods_type == 0)?"确认兑换":"确认参与"
+                ?>
+                <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="<?php echo $btnVal;?>">
             </div>
         </form>
     </div>

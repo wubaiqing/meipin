@@ -10,19 +10,29 @@ class ScoreService
 
     /**
      * 显示积分兑换详情页面
-     * @param  integer $goodsId 需要兑换的商品ID
-     * @return type    Description
+     * @param integer $goodsId 需要兑换的商品ID
+     * @param integer $page 页码
+     * @param integer $goodsType 商品类型
+     * @return type    
      */
-    public function showExchangeDetial($goodsId, $page)
+    public function showExchangeDetial($goodsId, $page, $goodsType)
     {
         //获取兑换积分商品
         $exchange = Exchange::findByGoodsId($goodsId);
+        $exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
+
+        if ($exchange->goods_type != $goodsType) {
+            return CommonHelper::getDataResult(false, [
+                        'message' => "该商品不是" . Exchange::getGoodsTypeLable($goodsType)
+            ]);
+        }
+
         //校验
         if (empty($exchange)) {
             return CommonHelper::getDataResult(false, ['message' => "商品已下线或不存在"]);
         }
         //获取兑换热门商品
-        $hotExchangeGoods = Exchange::getHotExchangeGoods($goodsId);
+        $hotExchangeGoods = Exchange::getHotExchangeGoods($goodsId, $goodsType);
         //获取兑换记录集合
         $logList = ExchangeLog::getLogList($goodsId, $page);
 
@@ -52,9 +62,8 @@ class ScoreService
     public function doExchange($userId, $order)
     {
         $nowTime = time();
-        //默认跳转
-        $url = Yii::app()->createUrl("exchange/index");
         $order = self::formatPostValue($order);
+        $url = Yii::app()->createUrl("site/index");
         //是否提交
         if (empty($order)) {
             return CommonHelper::getDataResult(false, ['message' => "您访问的页面不存在", 'url' => $url]);
@@ -63,35 +72,44 @@ class ScoreService
         if (empty($userId)) {
             return CommonHelper::getDataResult(false, ['message' => "对不起，请先登录", 'url' => Yii::app()->createUrl("user/login")]);
         }
+        //查询兑换商品数据
+        $goods = Exchange::findByGoodsId($goodsId);
+        if (empty($goods)) {
+            return CommonHelper::getDataResult(false, ['message' => "对不起，您所操作的商品信息不存在", 'url' => $url]);
+        }
+        $indexUrl = "";
+        $name = "";
+        if ($goods->goods_type == 0) {
+            $indexUrl = Yii::app()->createUrl("eachange/index");
+            $name = "兑换";
+        } elseif ($goods->goods_type == 1) {
+            $indexUrl = Yii::app()->createUrl("site/raffle");
+            $name = "抽奖";
+        }
         //验证提交
         $cacheKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
             return CommonHelper::getDataResult(false, [
                         'message' => "本次操作已经失效,正在跳转商品兑换页",
-                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goodsId)])
             ]);
         }
         //
         if ($order['token'] != $token) {
-            return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看更多商品", 'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看其他商品", 'url' => $indexUrl]);
         }
 
-        //查询兑换商品数据
-        $goods = Exchange::findByGoodsId($goodsId);
-        if (empty($goods)) {
-            return CommonHelper::getDataResult(false, ['message' => "对不起，您所兑换的商品不存在，您可以查看其他兑换商品", 'url' => $url]);
-        }
         //校验商品
         if ($goods->start_time > $nowTime) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他兑换商品", 'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他商品", 'url' => $indexUrl]);
         }
         if ($goods->end_time <= $nowTime) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看更多兑换商品", 'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看其他商品", 'url' => $indexUrl]);
         }
         $user = User::getUser($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看更多兑换商品", 'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看其他商品", 'url' => $indexUrl]);
         }
         //配送地址
         $userAddress = UsersAddress::getByUserId($userId);
@@ -104,13 +122,13 @@ class ScoreService
         //判断库存
         if ($user->score < $goods->integral) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "真遗憾！您只有" . $user->score . "积分,不足以兑换此商品,您可以到每天签到，领取更多积分",
-                        'url' => Yii::app()->createUrl("exchange/index")
+                        'message' => "真遗憾！您只有" . $user->score . "积分,不足以{$name}此商品,您可以到每天签到，领取更多积分",
+                        'url' => $indexUrl
             ]);
         }
         if ($user->mobile_bind == 0) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "您必须先进行电话绑定后才能进行商品兑换",
+                        'message' => "您必须先进行电话绑定后才能进行商品" . $name,
                         'url' => Yii::app()->createUrl("user/address")
             ]);
         }
@@ -118,11 +136,11 @@ class ScoreService
         if (!$bool) {
             return CommonHelper::getDataResult(false, [
                         'message' => "系统忙，请返回重试",
-                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)])
+                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goods->id)])
             ]);
         }
 
-        return CommonHelper::getDataResult(true, ['message' => "商品兑换成功", 'url' => $url]);
+        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'url' => $url]);
     }
 
     /**
@@ -150,7 +168,7 @@ class ScoreService
                 'created_at' => $nowTime,
                 'goods_id' => $goods->id,
                 'remark' => $order['remark'],
-                'gdscolor' =>$order['gdscolor'],
+                'gdscolor' => $order['gdscolor'],
                 'city_id' => $userAddress->city_id,
                 'address' => $userAddress->address,
                 'postcode' => $userAddress->postcode,
@@ -158,16 +176,12 @@ class ScoreService
             ];
             $exchangeLog->insert();
 
-            $userCount = ExchangeLog::model()->count([
-                'condition' => 'goods_id=:goods_id',
-                'params' => [":goods_id" => $goods->id],
-                'group' => 'user_id'
-            ]);
+            $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
             Exchange::model()->updateByPk($goods->id, [
                 'sale_num' => new CDbExpression('sale_num+1'),
                 'user_count' => $userCount,
-                'goodscolor' =>$order['goodscolor'],
+                'goodscolor' => $order['goodscolor'],
             ]);
             //兑换扣积分记录
             $score = new Score();
@@ -175,7 +189,7 @@ class ScoreService
                 'score' => $goods->integral * -1,
                 'user_id' => $user->id,
                 'reason' => 2,
-                'remark' => "积分兑换:" . $goods->name
+                'remark' => ($goods->goods_type == 0) ? "积分兑换" : "积分抽奖" . ":" . $goods->name
             ];
             $score->insert();
             //删除放重复提交token
@@ -239,7 +253,7 @@ class ScoreService
 
         //查询兑换商品数据
         $exchange = Exchange::findByGoodsId($goodsId);
-
+//        $exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
         //设置兑换token用于防止重复提交
         $tokenKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $dataToken = Yii::app()->cache->get($tokenKey);
@@ -324,7 +338,7 @@ class ScoreService
 
         return CommonHelper::getDataResult(true, [
                     'message' => "签到成功",
-                     'message2'=>"今日已签",
+                    'message2' => "今日已签",
                     'dr_count' => $user->dr_count,
                     'nextScore' => ($num < 3) ? ($num + 1) : 3,
                     'score' => $num

@@ -33,7 +33,7 @@
             'user_id' => [
                 'type' => 'raw',
                 'header' => '兑换用户',
-                'value' => '"<a href=\"\"  target=\"_blank\">".!empty($data->users)?$data->users->username:""."</a>"',
+                'value' => '"<a href=\"\"  target=\"_blank\">".(!empty($data->users)?$data->users->username:"")."</a>"',
                 'htmlOptions' => array('width' => '150')
             ],
             'created_at' => array(

@@ -32,29 +32,15 @@ class ExchangeController extends Controller
     public function actionExchangeIndex($id = 0, $page = 1)
     {
         $goodsId = Des::decrypt($id);
-        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page);
+        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page, 0);
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
 
-        $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
-        if ($gdcolorstr) {
-            $gdcolorarr = explode(';', $gdcolorstr);
-            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 )
-            foreach ($gdcolorarr as $key => $value) {
-                if ($value) {
-                    $gdcolorstr2 = explode(':', $value);
-                    $arr[$key]['gdcolornum'] = $gdcolorstr2[1]?$gdcolorstr2[1]:0;
-                    $arr[$key]['gdcolorname'] = $gdcolorstr2[0];
-                }
-            }
-            $dataResult['data']['exchange']->goodscolor = $arr;
-        }
-        //print_r($dataResult['data']['exchange']);
         //渲染頁面
         $this->render('exchangeIndex', [
             'data' => $dataResult['data'],
-            'params' => ['goodsId' => $id,]
+            'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
     }
 
@@ -64,33 +50,15 @@ class ExchangeController extends Controller
     public function actionOrder()
     {
         $id = Yii::app()->request->getParam("id", 0);
-        $goodscolor = Yii::app()->request->getParam("gdcolor",'');
+        $goodscolor = Yii::app()->request->getParam("gdcolor", '');
         if (!$this->isLogin) {
-            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id,'gdcolor'=>$goodscolor])]);
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor])]);
             $this->redirect($url);
             Yii::app()->end();
         }
         $goodsId = Des::decrypt($id);
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
-        if ( $goodscolor && !empty($dataResult['data']['exchange'])) 
-        {
-            $gdcolorstr = $dataResult['data']['exchange']->goodscolor;
-            $gdcolorarr = explode(';', $gdcolorstr);
-            //Array ( [0] => 白色:12 [1] => 黑色:30 [2] => 绿色:33 )
-            $strstr = "";
-            foreach ($gdcolorarr as $key => $value) {
-                if ($value) {
-                    $gdcolorstr2 = explode(':', $value);
-                    if ($gdcolorstr2[0] == $goodscolor) {
-                        $strstr .= $gdcolorstr2[0].":".($gdcolorstr2[1]-1).";";
-                    } else {
-                        $strstr .= $gdcolorstr2[0].":".$gdcolorstr2[1].";";
-                    }
-                }
-            }
-            $dataResult['data']['exchange']->goodscolor = $strstr;
-        }
         if (!$dataResult['status']) {
             if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
@@ -99,7 +67,7 @@ class ExchangeController extends Controller
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'],'gdscolor'=>$goodscolor]]);
+        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
     }
 
     /**
@@ -129,7 +97,7 @@ class ExchangeController extends Controller
         $page = $page === null ? 0 : $page;
         //积分兑换首页商品列表
         $exchangeModel = new Exchange();
-        $data = $exchangeModel->showExchangeGoodsList($page);
+        $data = $exchangeModel->showExchangeGoodsList($page, 0);
         //渲染頁面
         $this->render('index', ['data' => $data['goods'], 'pager' => $data['pages']]);
     }
@@ -179,5 +147,29 @@ class ExchangeController extends Controller
         ]);
         Yii::app()->end();
     }
+
+    /**
+     * 幸运抽奖
+     */
+    public function actionRaffle($id = 0, $page = 1)
+    {
+        $goodsId = Des::decrypt($id);
+        $dataResult = $this->scoreService->showExchangeDetial($goodsId, $page, 1);
+        if (!$dataResult['status']) {
+            $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
+        }
+        if ($dataResult['data']['exchange']->goods_type != 1) {
+            $this->pageRedirect('no', "商品不是抽奖商品，请重新选择", Yii::app()->createUrl("site/raffle"));
+        }
+        //查询中奖明细
+        $winerList = ExchangeLog::getWinners($goodsId);
+        //渲染頁面
+        $this->render('raffleIndex', [
+            'data' => $dataResult['data'],
+            'winnerList' => $winerList,
+            'params' => ['goodsId' => $id, 'goodsType' => 1]
+        ]);
+    }
+
 
 }

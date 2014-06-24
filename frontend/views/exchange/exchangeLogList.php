@@ -2,7 +2,7 @@
     <tbody>
         <tr align="center">
             <th>用户名</th>
-            <th>兑换时间</th>
+            <th><?php echo ($goodsType ==0)?"兑换":"抽奖"?>时间</th>
         </tr>
         <?php foreach ($logList['data'] as $log): ?>
             <tr align="center">

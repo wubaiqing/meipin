@@ -56,7 +56,7 @@
 #contentA .deal h2 em.on{border-color: #ccc;}
 #contentA .deal h2 em.on i{display:block;}
 
-#contentA .deal h3{line-height: 26px;padding:0 20px;color:#333;border-bottom: 1px solid #e6e6e6;}
+#contentA .deal h3{line-height: 26px;padding:0 20px;color:#333;}
 #contentA .deal h3 em{font-size:26px;color:#cc0000;margin-right:5px;font-family: "微软雅黑";}
 #contentA .deal h3 strong{font-size: 14px;margin-left:5px;}
 
@@ -86,13 +86,14 @@
 #contentA .deal h6 b.z4{background-position: -856px 0;}
 #contentA .deal h6 b.z5{background-position: -889px 0;}
 #contentA .deal p{background:#fcfaf9;border:1px solid #f8f3f0;border-width: 1px 0;line-height: 20px;padding:4px 20px;text-align: left;margin-top:30px;max-height: 60px;overflow: hidden;}
-#contentA .deal .blockA{padding:0 20px;margin-top: 20px;display:none;}
-#contentA .deal .blockA h2{height:30px;background: url(../images/bg5.png) no-repeat 0 -124px;position: relative;margin: 0;overflow: hidden;}
+#contentA .deal .blockA{padding:0 20px;margin-top: 20px;display:none;border:0px;}
+#contentA .deal .blockA h2{background: url(../images/bg5.png) no-repeat 0 -124px;height: 98px;position: relative;margin: 0;overflow: hidden;width:600px;}
 #contentA .deal .blockA h2 span{font:800 14px/30px "";color:#666;width: auto;height: 30px;}
 #contentA .deal .blockA h2 a{width:109px;height:27px;display:inline-block;background: url(../images/bg5.png) no-repeat -197px -91px;position: absolute;top:0;right:0;}
 #contentA .deal .blockA h2 a.on{background-position:-309px -92px; }
 #contentA .deal .blockA ul{border:1px solid #e4e4e4;border-width:0 1px;}
-#contentA .deal .blockA li{float:left;width:182px;height:40px;overflow: hidden;line-height: 20px;display:inline;padding:0 10px 20px 10px;}
+#contentA .deal .blockA li{float:left;overflow: hidden;line-height: 20px;display:inline;padding:0 3px 0 5px;}
+#contentA .deal .blockA li b{color:red;}
 #contentA .deal .blockA li img{float:left;width:40px;height:40px;margin-right:10px;display:inline;}
 #contentA .deal .blockA li span,#contentA .deal .blockA li em{display:block;height: 20px;overflow: hidden;}
 #contentA .deal .blockA li span a{color:#cc0000;}
@@ -106,17 +107,16 @@
 #contentA .deal ul.blockB span a.on,#contentA .deal ul.blockB span a.on:hover{padding:0;border:2px solid #cc0000;}
 #contentA .deal ul.blockB span a.be,#contentA .deal ul.blockB span a.be:hover{border-color: #e6e6e6;color:#ccc;cursor: default;}
 /*兑换新改*/
-#contentA .dhdeal .deal{border-bottom: 1px solid #e6e6e6;}
+/*#contentA .dhdeal .deal{border-bottom: 1px solid #e6e6e6;}*/
 #contentA .dhdeal h3 span{display: inline-block;color:#999;padding-right: 70px;}
 #contentA .dhdeal h3 em{font:bold 23px/26px "Tahoma";}
 #contentA .dhdeal h3 strong{font:bold 12px/26px "Tahoma";margin-left:0px;}
 #contentA .dhdeal h3 strong i{font-family: "微软雅黑";font-style: normal;font-weight: normal;}
 #contentA .dhdeal h3 b{font:12px/26px "Tahoma";}
-#contentA .dhdeal h4{padding-left: 100px;margin: 20px 0;}
+#contentA .dhdeal h4{margin: 20px 0;}
 #contentA .dhdeal h5{margin-top: 0;}
 #contentA .dhdeal h5 b{font-weight: normal;color:#999;float:left;width: 80px;}
 #contentA .dhdeal h5 em{font:bold 12px/30px "Tahoma";background: none;display: inline;}
-#contentA .dhdeal p{background: none;border: none;margin-top: 0;}
 #contentA .dhdeal p em{float:left;width:80px;color:#999;}
 #contentA .dhdeal p span{display: inline-block;width: 524px;}
 #contentA .dhdeal ul.blockB{padding:0 0 5px 0;margin: 5px 20px 10px;}
@@ -129,23 +129,52 @@
 #contentA .zt1 h4{height:70px;}
 #contentA .zt1 h4 .btn{display:none;}
 #contentA .zt1 h4 span{display: inline-block;background-position:-16px -48px;overflow: hidden;}
-/*#contentA .zt1 h4 i{display:block;}*/
+#contentA .zt1 h4 i{display:block;}
 #contentA .zt1 h5{display: none;}
 #contentA .zt1 .blockA{display:none;}
+
 #contentA .zt2 h4 .btn{display:inline-block;background-position:-137px -48px;}
 #contentA .zt2 h4 span{display: none;}
 #contentA .zt2 h4 em{display:inline-block;}
 #contentA .zt2 h5{display: block;}
 #contentA .zt2 .blockA{display:none;}
+
 #contentA .zt3 h4 .btn{display:none;}
 #contentA .zt3 h4 span{display: inline-block;background-position:-275px -48px;overflow: hidden;}
 #contentA .zt3 h5{display: block;}
 #contentA .zt3 .blockA{display:none;}
+
 #contentA .zt4 h4{height:32px;}
 #contentA .zt4 h4 .btn{display:none;}
 #contentA .zt4 h4 span{width: 130px;height:32px;display: inline-block;background-position:-397px -47px;overflow: hidden;}
-/*#contentA .zt4 h5{display: none;}*/
+#contentA .zt4 h5{display: none;}
 #contentA .zt4 .blockA{display:block;}
+
+#contentA .zt5 h4 .btn{display:inline-block;background-position:-137px -48px;}
+#contentA .zt5 h4 span{display: none;}
+#contentA .zt5 h4 em{display:inline-block;}
+#contentA .deal h3 span.time i{padding-left: 30px;font-size: 18px;color:#000;}
+#contentA .deal h3 span.time label{display: inline-block;background:url(../images/bg5.png) no-repeat 0px -88px;width: 200px;}
+#contentA .deal h3 span.time label em.one{margin-left:7px;}
+#contentA .deal h3 span.time label em.two{margin-left:37px;}
+#contentA .deal h3 span.time label em.three{margin-left:27px;}
+#contentA .zt5 .blockA{display:none;}
+
+#contentA .zt6 h4 .btn{display:none;}
+#contentA .zt6 h4 span{display: inline-block;background-position:-275px -48px;overflow: hidden;}
+#contentA .zt6 h5{display: block;}
+/*#contentA .zt6 .blockA{display:none;}*/
+
+#contentA .zt7 h4 .btn{display:none;}
+#contentA .zt7 h4 span{display: inline-block;background-position:-400px -48px;overflow: hidden;}
+#contentA .zt7 h5{display: block;}
+#contentA .zt7 .blockA{display:block;}
+
+form, ul, ol, li, span, p, dl, dt, dd, img {
+margin: 0;
+padding: 0;
+border: 0;
+}
 #contentA .dhdeal  .zt1 h4 span{background-position:-16px -269px;}
 #contentA .dhdeal  .zt2 h4{height:60px;}
 #contentA .dhdeal  .zt2 h4 .btn{background-position:-137px -269px;}
@@ -265,7 +294,7 @@
 #dialog_empty_deal_plimg .diginfo{padding:20px;width: 680px;overflow: hidden;}
 
 .blockCJ{text-align: left;font: 14px/24px "";float:left;width:610px;margin-top:10px;}
-.blockCJ p{width:610px;height:33px;background: url(../images/bg5.png) no-repeat 0 -233px;}
+/*.blockCJ p{width:610px;height:33px;background: url(../images/bg5.png) no-repeat 0 -233px;}*/
 .blockCJ p.jp{background-position: 0 -335px;}
 .blockCJ strong{display:block;margin:10px 0 5px 0;color:#333;}
 .blockCJ a{color:#09c;}.blockCJ a:hover{color:#cc0000;}
@@ -344,7 +373,8 @@
 .exchange .confcls .jadinfo{height:48px;text-align: right;}
 .exchange .confcls .jadinfo span{float:left;line-height: 48px;}
 .exchange .confcls .jadinfo span input {border: 1px solid #CCCCCC;height: 22px;line-height: 22px;text-indent: 5px;width: 350px;}
-.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: url(http://z0.tuanimg.com/v1/2012/images/pro_bg.png) no-repeat -160px 0;border:none;cursor:pointer;}
+/*.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: url(http://z0.tuanimg.com/v1/2012/images/pro_bg.png) no-repeat -160px 0;border:none;cursor:pointer;}*/
+.exchange .confcls .jadinfo input.welfare_btn{width:116px;height:48px;display:inline-block;background: #e02f2f;border:none;cursor:pointer; color:#fff;font-weight:bold;font-size:16px;}
 .exchange .confcls .gift,.exchange .confcls .jadinfo{padding:40px 40px;}
 .exchange .confcls .gift div{border-bottom:1px dotted #d4d4d4;padding-bottom:15px;margin-bottom:15px;}
 .exchange .confcls .gift p{background: #edf9ff;font:800 14px/30px "";height:30px;}
@@ -380,3 +410,4 @@
 .goodcolor a{display: inline-block;width: 90px;height: 24px;line-height: 24px;text-align: center;border: 1px solid #CCC;margin: 8px 10px 10px 0px;color: #000;padding: 1px;overflow:hidden;float: left;
     }
 .goodcolor a.be{color:#CCC;}
+
