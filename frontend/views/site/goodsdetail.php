@@ -7,7 +7,7 @@
 <div id="wrap1">
 	<div id="main">
 	<h2 style="font-size:20px;"><?php echo $goods->title;?></h2>
-    <div class="main-left"><img src="<?php echo $goods->picture;?>" width=290 height=190 /></div>
+    <div class="main-left"><img src="<?php echo $goods->picture;?>"></div>
     <div class="main-right">
     	<div class="word">
         	<p>￥<span><?php echo $goods->price;?></span>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
