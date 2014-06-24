@@ -107,7 +107,7 @@ class User extends ActiveRecord implements IArrayable
      */
     public function checkEmail()
     {
-        if (empty($this->username)) {
+        if (empty($this->email)) {
             $this->addError('email', '邮箱不能为空');
         }else {
             $user = self::model()->findByAttributes(['email' => $this->email]);
