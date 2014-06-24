@@ -32,6 +32,8 @@ class DataTaskCommand extends CConsoleCommand
      */
     public function actionLottery()
     {
+
+        ini_set('date.timezone', 'Asia/Shanghai');
         $goodsList = Exchange::model()->findAll('end_time<=:end_time and lottery_status=0 and goods_type=1', [':end_time' => time()]);
         $pageSize = 100;
         foreach ($goodsList as $goods) {
@@ -60,20 +62,24 @@ class DataTaskCommand extends CConsoleCommand
             $result = [];
             $updated = false;
             while (true) {
-                if ($limit_count <= 0 || count($lotteryIds) <$limit_count) {
+                if ($limit_count <= 0) {
                     break;
                 }
                 $key = rand(0, count($lotteryIds) - 1);
+                if (!isset($lotteryIds[$key])) {
+                    break;
+                }
                 $result[] = $lotteryIds[$key];
                 unset($lotteryIds[$key]);
                 sort($lotteryIds);
                 $limit_count--;
                 $updated = true;
             }
-            if($updated){
+            if ($updated) {
                 ExchangeLog::model()->updateByPk($result, ['winner' => 1]);
                 Exchange::model()->updateByPk($goods->id, ['lottery_status' => 1]);
             }
+            echo date("Y-m-d H:i:s", time()) . ",抽奖运算,商品ID=" . $goods->id . ",中奖记录ID=" . json_encode($result) . "\n";
         }
     }
 
