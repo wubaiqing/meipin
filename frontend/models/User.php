@@ -49,7 +49,6 @@ class User extends ActiveRecord implements IArrayable
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
 			['verifyCode', 'checkVerifyCode', 'on' => 'forget'],
             ['email', 'email', 'message' => '邮箱地址格式不对', 'pattern'=>"/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i",'on' => 'register'],
-            ['username', 'checkUsername', 'on' => 'register'],
             ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'forget'],
             ['email', 'checkEmail', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
@@ -108,7 +107,7 @@ class User extends ActiveRecord implements IArrayable
      */
     public function checkEmail()
     {
-        if (empty($this->username)) {
+        if (empty($this->email)) {
             $this->addError('email', '邮箱不能为空');
         }else {
             $user = self::model()->findByAttributes(['email' => $this->email]);
