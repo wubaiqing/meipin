@@ -98,7 +98,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
                 'readonly' => 'readonly',
             ));
             ?>
-            <label class="line-note">开奖时间，设定了该时间后将由后台脚本自动进行抽奖</label>
+            <label class="line-note">脚本在后台自动运算中奖人的时间，设定后将由后台脚本自动进行抽奖。请尽量设置为整点，且该时间必须在活动有效期内。</label>
         </div>
     </div>
     <div class="control-group">
