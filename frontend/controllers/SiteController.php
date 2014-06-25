@@ -28,6 +28,18 @@ class SiteController extends Controller
             'pager' => $goods['pager'], // 商品翻页
         ));
     }
+
+
+     /**
+     * 淘宝组件测试
+     */
+    public function actionTbaotest()
+    {
+          $this->layout = '//layouts/userBase';
+
+         $this->render('tbaotest');
+    }
+
     /**
      * 商品预告
      */
