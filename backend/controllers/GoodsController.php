@@ -246,6 +246,16 @@ class GoodsController extends Controller
         }
         Goods::model()->updateByPk($id, array('status' => $status));
     }
+
+    /**
+     * 修改商品排序
+     */
+    public function actionModifyOrder($order,$id)
+    {
+        $goods = Goods::model()->findByPk($id);
+        $list_order = $order;
+        Goods::model()->updateByPk($id, array('list_order' => $list_order));
+    }
     /**
      * 修改商品是否销售完状态
      */

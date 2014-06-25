@@ -29,6 +29,31 @@ class ExchangeController extends Controller
         return $exchaneModel;
     }
 
+
+    /**
+     * 修改积分排序
+     */
+    public function actionModifyOrder($order,$id)
+    {
+        $id = intval($id);
+        $list_order = $order;
+        Exchange::model()->updateByPk($id, array('list_order' => $list_order));
+    }
+
+    /**
+     * 修改积分商品是否显示在首页
+     */
+    public function actionChangeFirst($id)
+    {
+        $exchange = Exchange::model()->findByPk($id);
+        $is_first = 1;
+        if ($exchange->is_first == 1) {
+            $is_first = 2;
+        } else {
+            $is_first = 1;
+        }
+        Exchange::model()->updateByPk($id, array('is_first' => $is_first));
+    }
     /**
      * 添加积分兑换
      * @author zhangchao

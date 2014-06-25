@@ -49,6 +49,16 @@
                 'value' => 'date("Y-m-d", $data->end_time)',
                 'htmlOptions' => array('width' => '80')
             ),
+            'is_first' => array(
+                'type' => 'raw',
+                'name' => 'is_first',
+                'value' => 'CHtml::link(Exchange::$is_firstLabels[$data->is_first], "javascript:void(0);", array("first-id" => $data->id, "class" => "is_first"))',
+            ),
+            'list_order' => array(
+                'type' => 'raw',
+                'name' => 'list_order',
+                'value' => 'CHtml::link($data->list_order, "javascript:void(0);", array("order-id" => $data->id, "class" => "settingOrder"))', 
+            ),
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{update} {delete}',
@@ -69,3 +79,42 @@
     ));
     ?>
 </div>
+<style type="text/css">
+    .orderInput{width:19px;}
+</style>
+<script type="text/javascript">
+
+$(document).ready(function () {
+    $(document).on('click', '.settingOrder', function () {
+
+        if ($(this).attr('class') != 'settingOrder') {
+            return false;
+        }
+        var val = $(this).html();
+        var id = $(this).attr('order-id');
+        $(this).html('<input type="text" class="orderInput" value="'+val+'" oid="'+id+'"/> ');
+        $('.orderInput').select();
+        $(this).removeClass('settingOrder');
+    });
+
+    $(document).on('blur', '.orderInput', function () {
+        var val = $(this).val();
+        //var id = $.trim($(this).parent().prev().prev().prev().prev().prev().html());
+        var id = $(this).attr("oid");
+        var input = this;
+        if (id > 0) {
+            $.get('index.php?r=exchange/modifyOrder', {order : val, id : id}, function (data) {
+               $(input).parent().html(val).attr('class', 'settingOrder');
+            });
+        }
+    });
+
+    //设置是否在首页显示
+    $('.is_first').click(function () {
+        $.get('index.php?r=exchange/changeFirst', {id : $(this).attr('first-id')}, function (json) {
+            location.reload();
+        });
+    });
+});
+
+    </script>

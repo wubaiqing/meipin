@@ -150,6 +150,27 @@ class Exchange extends ActiveRecord
         return $hotExchangeGoods;
     }
 
+
+    /**
+     * 获取首页的积分兑换商品
+     * @param  integer  $goodsId  商品ID
+     * @param  integer  $pageSize 返回数据大小
+     * @return Exchange
+     */
+    public static function getIndexExchange()
+    {
+        //$key = "goods-getIndexExchange-";
+        //$IndexExchange = Yii::app()->cache->get($key);
+        /*if (!empty($IndexExchange)) {
+            return $IndexExchange;
+        }*/
+        $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1",
+            'order' => 'list_order desc ,end_time desc']);
+        //Yii::app()->cache->set($key, $IndexExchange, Constants::T_HALF_HOUR);
+
+        return $IndexExchange;
+    }
+
     /**
      * 商品详细页获取热门兑换商品列表
      * @param  integer  $goodsId  商品ID

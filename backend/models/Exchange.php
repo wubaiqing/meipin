@@ -7,6 +7,10 @@
 class Exchange extends CActiveRecord
 {
 
+    public static $is_firstLabels = array(
+        '1' => '是',
+        '2' => '否',
+    );
     /**
      * 表名
      * @return string
@@ -63,8 +67,8 @@ class Exchange extends CActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
-            'num' => '总数量',
-            'delenum' => '剩余数量',
+            'num' => '总量',
+            'delenum' => '剩余',
             'price' => '价格',
             'integral' => '积分',
             'start_time' => '开始时间',
@@ -78,7 +82,9 @@ class Exchange extends CActiveRecord
             'img_url' => '图片',
             'is_delete' => '是否删除0否 1是',
             'goodscolor2'=>'商品属性',
-            'goodscolor' =>'商品属性'
+            'goodscolor' =>'商品属性',
+            'list_order'=>'排序',
+            'is_first'=>'首页'
         ];
     }
 
