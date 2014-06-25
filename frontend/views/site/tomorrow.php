@@ -17,7 +17,7 @@
 		</div> 
 		<?php else:?>
 		<?php $this->renderPartial('tomorrowWp', array('pager' => $pager)); ?>
-		<?php $this->renderPartial('content', array('goods' => $goods)); ?>
+		<?php $this->renderPartial('content', array('goods' => $goods,'exchange'=>$exchange)); ?>
 		<?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 	<?php endif;?>
 </div>

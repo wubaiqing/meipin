@@ -59,6 +59,7 @@ class SiteController extends Controller
 				$goods['data']=array(); // 商品数据
 				$goods['pager']=array(); // 商品翻页
 			 }
+        $exchange ="";
         // 渲染首页
         $this->render('tomorrow', array(
             'cat' => $cat, // 分类
@@ -66,6 +67,7 @@ class SiteController extends Controller
             'page' => $page, // 当前页
             'goods' => $goods['data'], // 商品数据
             'pager' => $goods['pager'], // 商品翻页
+            'exchange'=>$exchange
         ));
     }
 

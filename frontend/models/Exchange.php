@@ -166,14 +166,14 @@ class Exchange extends ActiveRecord
      */
     public static function getIndexExchange()
     {
-        //$key = "goods-getIndexExchange-";
-        //$IndexExchange = Yii::app()->cache->get($key);
-        /*if (!empty($IndexExchange)) {
+        $key = "goods-getIndexExchange-";
+        $IndexExchange = Yii::app()->cache->get($key);
+        if (!empty($IndexExchange)) {
             return $IndexExchange;
-        }*/
+        }
         $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1",
-            'order' => 'list_order desc ,end_time desc']);
-        //Yii::app()->cache->set($key, $IndexExchange, Constants::T_HALF_HOUR);
+            'order' => 'list_order desc']);
+        Yii::app()->cache->set($key, $IndexExchange, Constants::T_HALF_HOUR);
 
         return $IndexExchange;
     }

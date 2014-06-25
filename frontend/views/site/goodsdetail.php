@@ -7,7 +7,7 @@
 <div id="wrap1">
 	<div id="main">
 	<h2 style="font-size:20px;"><?php echo $goods->title;?></h2>
-    <div class="main-left"><img src="<?php echo $goods->picture;?>"></div>
+    <div class="main-left"><img src="<?php echo $goods->picture;?>" width=290 height=190 ></div>
     <div class="main-right">
     	<div class="word">
         	<p>￥<span><?php echo $goods->price;?></span>包邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -62,7 +62,7 @@
         <ul>
             <li>
                 <a href="<?php echo $goodsUrl; ?>"><img width=200 height=130 src="<?php echo $goods->img_url ?>"></a>
-                <h4>所需积分 <?php echo $goods->integral ?></h4>
+                <h4 style="font-size:12px;"><span style="color:#666"><?php ECHO Front::truncate_utf8_string($goods->name,10); ?></span>  &nbsp;0元+<?php echo $goods->integral ?>分</h4>
             </li>
         </ul>
        <?php endforeach; ?>
