@@ -63,10 +63,17 @@
                     </h2>
                     <h4>
                         <span>
-                            <em>
+						 <?php if ($item->sell_status ==2 ):?>
+                            <em style='color:#a9a9a9'>
+                                <b>¥</b>
+                                <em style='color:#a9a9a9;text-decoration:line-through'><?php echo $item->price; ?></em>
+                            </em>
+						<?php else:?>
+							<em>
                                 <b>¥</b>
                                 <em><?php echo $item->price; ?></em>
                             </em>
+						<?php endif;?>
                         </span>
                         <span>
                             <i>¥<?php echo $item->origin_price;?></i>
