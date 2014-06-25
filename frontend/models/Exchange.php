@@ -151,7 +151,7 @@ class Exchange extends ActiveRecord
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId
             . " and is_delete = 0 and goods_type = " . $goodsType . " and end_time > " . time(),
             'order' => 'sale_num desc',
-            'limit' => 10]);
+            'limit' => 6]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
 
         return $hotExchangeGoods;
@@ -193,7 +193,7 @@ class Exchange extends ActiveRecord
         }
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "is_delete = 0",
             'order' => 'sale_num desc',
-            'limit' => 10]);
+            'limit' => 6]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
 
         return $hotExchangeGoods;
