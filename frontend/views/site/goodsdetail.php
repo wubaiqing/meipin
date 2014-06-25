@@ -46,7 +46,7 @@
 	<?php  foreach ($xggoods as $goods1):?>
 	<ul>
         <li>
-            <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($goods1->id)));?>"><img src="<?php echo $goods1->picture;?>" width=290 height=190 target='_blank' /></a>
+            <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($goods1->id)));?>" target='_blank'><img src="<?php echo $goods1->picture;?>" width=290 height=190 target='_blank' /></a>
             <h4><a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($goods1->id)));?>" target='_blank'><?php echo $goods1->title;?></a></h4>
             <p><a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($goods1->id)));?>" target='_blank'>￥<?php echo $goods1->price;?></a></p>
          </li>      
