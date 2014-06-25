@@ -62,7 +62,7 @@
         <ul>
             <li>
                 <a href="<?php echo $goodsUrl; ?>"><img width=200 height=130 src="<?php echo $goods->img_url ?>"></a>
-                <h4>所需积分 <?php echo $goods->integral ?></h4>
+                <h4 style="font-size:12px;"><span style="color:#666"><?php ECHO Front::truncate_utf8_string($goods->name,10); ?></span>  &nbsp;0元+<?php echo $goods->integral ?>分</h4>
             </li>
         </ul>
        <?php endforeach; ?>
