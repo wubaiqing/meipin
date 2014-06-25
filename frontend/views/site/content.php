@@ -27,8 +27,8 @@
                     <h4>
                         <span>
                             <em>
-                                <b>积分</b>
-                                <em><?php echo $item->integral; ?></em>
+                                <b>0元+</b>
+                                <em><?php echo $item->integral; ?>分</em>
                             </em>
                         </span>
                         <span>
