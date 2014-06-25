@@ -58,11 +58,9 @@
                 'value' => 'CHtml::link(Goods::$statussellLabels[$data->sell_status], "javascript:void(0);", array("data-id" => $data->id, "class" => "statussell"))',
             ),
             'list_order' => array(
-                'id' => 'list_order',
+                'type' => 'raw',
                 'name' => 'list_order',
-                'htmlOptions' => array(
-                    'class' => 'settingOrder'
-                )
+                'value' => 'CHtml::link($data->list_order, "javascript:void(0);", array("order-id" => $data->id, "class" => "settingOrder"))',
             ),
             'user_id'=>array(
                  'name'=>'user_id',
@@ -85,7 +83,9 @@
     ));
     ?>
 </div>
-
+<style type="text/css">
+    .orderInput{width:19px;}
+</style>
 <script type="text/javascript">
 
 $(document).ready(function () {
@@ -95,18 +95,21 @@ $(document).ready(function () {
             return false;
         }
         var val = $(this).html();
-        $(this).html('<input type="text" class="orderInput span1" value="'+val+'" /> ');
+        var id = $(this).attr('order-id');
+        $(this).html('<input type="text" class="orderInput" value="'+val+'" oid="'+id+'"/> ');
         $('.orderInput').select();
         $(this).removeClass('settingOrder');
     });
 
     $(document).on('blur', '.orderInput', function () {
         var val = $(this).val();
-        var id = $.trim($(this).parent().prev().prev().prev().prev().prev().html());
+        //var id = $.trim($(this).parent().prev().prev().prev().prev().prev().html());
+        var id = $(this).attr("oid");
         var input = this;
         if (id > 0) {
             $.get('index.php?r=goods/modifyOrder', {order : val, id : id}, function (data) {
-                $(input).parent().html(val).attr('class', 'settingOrder');
+                //alert(data)
+               $(input).parent().html(val).attr('class', 'settingOrder');
             });
         }
     });
