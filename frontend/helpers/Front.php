@@ -8,7 +8,7 @@
 class Front
 {
 
-    public static function truncate_utf8_string($string, $length, $etc = '...')
+    public static function truncate_utf8_string($string, $length, $etc = '')
     {
         $result = '';
         $string = html_entity_decode(trim(strip_tags($string)), ENT_QUOTES, 'UTF-8');

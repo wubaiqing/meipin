@@ -12,9 +12,17 @@
     	<div class="word">
         	<p>￥<span><?php echo $goods->price;?></span>包邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             <p class="on">
-
-            <!-- <a href="<?php //echo $this->createUrl('site/buy', array('id' => Des::encrypt($goods->id)));?>">去淘宝购买</a> 19886122002 -->
-         <a data-type="0" biz-itemid="<?php echo $goods->tb_id;?>" data-tmpl="192x40" data-tmplid="625" data-rd="2" data-style="2" data-border="1" target="_blank"></a> 
+            <?php 
+                $nowtime = date("Y-m-d H:i:s",time());
+                $start_time = date("Y-m-d H:i:s",$goods->start_time);
+                if($nowtime<$start_time)
+                {
+                    $url = $this->createUrl('site/buy', array('id' => Des::encrypt($goods->id)));
+                    echo '<a href="'.$url.'"" target="_blank" ><img src="/static/images/jjks.png" /></a>';
+                }else{
+            ?>
+             <a data-type="0" biz-itemid="<?php echo $goods->tb_id;?>" data-tmpl="192x40" data-tmplid="625" data-rd="2" data-style="2" data-border="1" target="_blank"></a>  
+         <?php }?>
             </p>
             <br>
         </div>
@@ -62,7 +70,7 @@
         <ul>
             <li>
                 <a href="<?php echo $goodsUrl; ?>"><img width=200 height=130 src="<?php echo $goods->img_url ?>"></a>
-                <h4 style="font-size:12px;"><span style="color:#666"><?php ECHO Front::truncate_utf8_string($goods->name,10); ?></span>  &nbsp;0元+<?php echo $goods->integral ?>分</h4>
+                <h4 style="font-size:12px;"><span style="color:#666"><?php ECHO Front::truncate_utf8_string($goods->name,8); ?></span>  &nbsp;0元+<?php echo $goods->integral ?>分</h4>
             </li>
         </ul>
        <?php endforeach; ?>
