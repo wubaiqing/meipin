@@ -14,8 +14,8 @@ body {background:none;}
 #wrap1 {width:750px;margin:0 auto;float:left;}
 
 
-#main {padding-top:40px;width:750px;height:350px;margin:0 auto;}
-#main h2 {padding-bottom:20px;}
+#main {width:700px;height:350px;border:1px #e1e0e0 solid;margin-top: 30px;padding-left: 20px;}
+#main h2 {padding-bottom:20px;margin-top: 30px;}
 .main-left {height:190px;width:290px;float:left;margin-right:50px;}
 .main-right {float:left;}
 .word {height:80px;width:360px;border-radius:10px 10px;margin-bottom:30px;}
@@ -47,11 +47,11 @@ body {background:none;}
 
 
 
-#right {float:left;padding-top:50px;}
-#right h3 {font-family:"微软雅黑";font-size:16px;color:#333;}
+#right {float:left;margin-top:30px;border:1px #e1e0e0 solid;}
+#right h3 {font-family:"微软雅黑";font-size:16px;color:#333;padding:10px 0 0 10px;}
 #right ul {padding-bottom:15px;}
 #right ul li a img {padding-top:10px;padding-bottom:15px;}
-#right h4 {font-family:Arial;font-size:16px;color:#ff704c;}
+#right h4 {font-family:Arial;font-size:16px;color:#ff704c;text-align:center;}
 #right h4 del {color:#b7b7b7;padding-left:10px;font-size:14px;}
 
 
