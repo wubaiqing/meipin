@@ -105,7 +105,10 @@ class Exchange extends CActiveRecord
             'limit_count' => '中奖名额',
             'goodscolor2'=>'商品属性',
             'list_order'=>'排序',
-            'is_first'=>'首页'
+            'is_first'=>'首页',
+            'lottery_time' => '自动抽奖时间',
+            'limit_count' => '中奖名额'
+
         ];
     }
 
@@ -205,7 +208,10 @@ class Exchange extends CActiveRecord
     {
         if ($this->goods_type == 1) {
             if (empty($this->lottery_time)) {
-                $this->addError("lottery_time", "抽奖时间必选");
+                $this->addError("lottery_time", "自动抽奖时间必选");
+            }
+            if ($this->lottery_time >= $this->end_time){
+                $this->addError("lottery_time", "自动抽奖时间必须在活动有效期内");
             }
         }
     }

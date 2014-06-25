@@ -272,7 +272,6 @@ class ExchangeController extends Controller
 
             Exchange::deleteCache($log->goods_id);
             ExchangeLog::deleteExchangeLogListCache($log->goods_id);
-            sleep(1);
             $this->returnData(true, ['message' => '操作成功']);
         } catch (Exception $ex) {
             $trans->rollback();
