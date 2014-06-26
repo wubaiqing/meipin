@@ -2,6 +2,7 @@
 $isSignDay = User::isSignDay();
 ?>
 <link rel="stylesheet" type="text/css"  href="/static/nav_style.css"/>
+<link rel="stylesheet" type="text/css"  href="/static/css/exchange2.css"/>
 <div id="content" class="wp">
     <div class="w1040 clearfix">
         <!--积分广告和积分 登录开始-->
@@ -42,36 +43,30 @@ $isSignDay = User::isSignDay();
         <!--积分广告和积分 登录结束-->
     </div>
     <!-- 积分兑换商品开始 -->
-    <div class="pointsgood mt20">
-        <div class="pointsgood-body pb30 tab-pane" id="welfare2" style="display:block;">
-            <ul class="clearfix">
-                <?php foreach ($data as $goods): ?>
-                    <?php
-                    $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
-                    ?>
-                    <li>
-                        <div class="convertgood">
-                            <a href="<?php echo $url; ?>" target="_blank" class="convertgood-pic"><img
-                                    src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" data-url="<?php echo $goods['img_url']; ?>" alt="<?php echo $goods['name']; ?> "
-                                    title="<?php echo $goods['name']; ?>" class="exchange-img-list"></a>
-                            <dl class="convertgood-desc">
-                                <dd>
-                                    <h3><a href="<?php echo $url; ?>" target="_blank"><?php echo $goods['name']; ?></a></h3>
-
-                                    <p>剩余：<b class="green"><?php echo $goods['num']; ?></b> 份</p>
-
-                                    <p>需积分：<b class="pink"><?php echo $goods['integral']; ?></b></p>
-                                </dd>
-                                <dt><a target="_blank"
-                                       href="<?php echo $url; ?>"
-                                       _hover-ignore="1">我要换</a></dt>
-                            </dl>
-                        </div>
-                    </li>
-                <?php endforeach; ?>
+   <div id="wrap">
+    <div id="main">
+        <div>
+            <ul>
+            <?php foreach ($data as $goods): ?>
+            <?php
+                $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
+            ?>
+                <li>
+                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="190px" height="124px;" /></a>
+                    <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
+                    <p>剩余：<span><?php echo $goods['num']; ?><span>份</p>
+                    <dl>
+                        <dt><span><?php echo $goods['integral']; ?></span>分</dt>
+                        <dd><a href="<?php echo $url; ?>" target='_blank'><img src="/static/images/woyaohuan.png"></a></dd>
+                        <br>
+                     </dl>
+                </li>
+           <?php endforeach; ?>
+                <br>
             </ul>
         </div>
     </div>
+</div>
     <!-- 积分兑换商品开始 -->
     <!-- 分页开始 -->
     <?php $this->renderPartial('//site/page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>

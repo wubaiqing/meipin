@@ -8,6 +8,10 @@
 class Exchange extends CActiveRecord
 {
 
+    public static $is_firstLabels = array(
+        '1' => '是',
+        '2' => '否',
+    );
     /**
      * 商品类型
      * @var array 
@@ -81,8 +85,8 @@ class Exchange extends CActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
-            'num' => '总数量',
-            'delenum' => '剩余数量',
+            'num' => '总量',
+            'delenum' => '剩余',
             'price' => '价格',
             'integral' => '积分',
             'start_time' => '开始时间',
@@ -97,8 +101,14 @@ class Exchange extends CActiveRecord
             'is_delete' => '是否删除0否 1是',
             'goods_type' => '商品类型',
             'goodscolor' => '商品属性',
+            'lottery_time' => '开奖时间',
+            'limit_count' => '中奖名额',
+            'goodscolor2'=>'商品属性',
+            'list_order'=>'排序',
+            'is_first'=>'首页',
             'lottery_time' => '自动抽奖时间',
             'limit_count' => '中奖名额'
+
         ];
     }
 

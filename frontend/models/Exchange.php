@@ -151,10 +151,31 @@ class Exchange extends ActiveRecord
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "id !=" . $goodsId
             . " and is_delete = 0 and goods_type = " . $goodsType . " and end_time > " . time(),
             'order' => 'sale_num desc',
-            'limit' => 10]);
+            'limit' => 6]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
 
         return $hotExchangeGoods;
+    }
+
+
+    /**
+     * 获取首页的积分兑换商品
+     * @param  integer  $goodsId  商品ID
+     * @param  integer  $pageSize 返回数据大小
+     * @return Exchange
+     */
+    public static function getIndexExchange()
+    {
+        $key = "goods-getIndexExchange-";
+        $IndexExchange = Yii::app()->cache->get($key);
+        if (!empty($IndexExchange)) {
+            return $IndexExchange;
+        }
+        $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1",
+            'order' => 'list_order desc']);
+        Yii::app()->cache->set($key, $IndexExchange, Constants::T_HALF_HOUR);
+
+        return $IndexExchange;
     }
 
     /**
@@ -172,7 +193,7 @@ class Exchange extends ActiveRecord
         }
         $hotExchangeGoods = Exchange::model()->findAll(['condition' => "is_delete = 0",
             'order' => 'sale_num desc',
-            'limit' => 10]);
+            'limit' => 6]);
         Yii::app()->cache->set($key, $hotExchangeGoods, Constants::T_HALF_HOUR);
 
         return $hotExchangeGoods;

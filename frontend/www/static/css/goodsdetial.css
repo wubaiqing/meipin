@@ -13,22 +13,22 @@ body {background:none;}
 #box {width:980px;margin:0 auto;}
 #wrap1 {width:750px;margin:0 auto;float:left;}
 
-
-#main {padding-top:40px;width:750px;height:350px;margin:0 auto;}
-#main h2 {padding-bottom:20px;}
+.jjks{ background:url(images/jjks.png)}
+#main {width:700px;height:300px;border:1px #e1e0e0 solid;margin-top: 30px;padding-left: 20px;}
+#main h2 {padding-bottom:20px;margin-top: 30px;}
 .main-left {height:190px;width:290px;float:left;margin-right:50px;}
 .main-right {float:left;}
-.word {height:80px;width:360px;background-color:#b81b0a;border-radius:10px 10px;margin-bottom:30px;}
-.word p {padding-top:20px;padding-left:15px;font-family:"微软雅黑";font-size:24px;color:white;float:left;padding-right:10px;}
-.word p span {font-family:Arial;}
+.word {height:80px;width:360px;border-radius:10px 10px;margin-bottom:30px;}
+.word p {padding-top:20px;padding-left:15px;font-family:"微软雅黑";font-size:20px;color:black;float:left;padding-right:10px;}
+.word p span {font-family:Arial;font-size: 26px;color:red;padding-right: 5px;}
 .one1 {float:left;margin-top:15px;height:30px;width:120px;background-color:#fde304;border-radius:5px 5px;}
 .one1 a {color:black;font-family:"微软雅黑";font-size:20px;margin-top:-10px;display:block;text-align:center;font-weight:bold;}
 .bot {padding-left:7px;}
-.zhekou {float:left;width:100px;}
+.zhekou {float:left;width:100px;padding-top: 20px;}
 .zhekou p {font-family:"微软雅黑";font-size:16px;color:#999999;}
 .zhekou h3 {color:#ff6600;font-size:16px;font-family:"微软雅黑";}
 .zhekou h3 span {font-family:Arial;font-size:18px;}
-.yuanjia {float:left;width:100px;}
+.yuanjia {float:left;width:100px;padding-top: 20px;}
 .yuanjia p {font-family:"微软雅黑";font-size:16px;color:#999;padding-left:13px;}
 .yuanjia h3 {color:#666;font-size:16px;font-family:"微软雅黑";}
 .clock {padding-top:30px;padding-left:5px;}
@@ -43,15 +43,15 @@ body {background:none;}
 #bottom ul {padding-top:20px;float:left;width:290px;height:220px;margin:10px 35px 10px 10px}
 #bottom ul li h4 a {float:left;font-family:"微软雅黑";font-size:14px;color:#666;}
 #bottom ul li a img{margin-bottom: 8px;}
-#bottom ul li p a {float:right;font-family:"微软雅黑";font-size:16px;color:red;display:block;font-weight:bold;}
+#bottom ul li p a {float:left;font-family:"微软雅黑";font-size:20px;color:red;display:block;font-weight:bold;width: 200px;}
 
 
 
-#right {float:left;padding-top:50px;}
-#right h3 {font-family:"微软雅黑";font-size:16px;color:#333;}
+#right {float:left;margin-top:30px;border:1px #e1e0e0 solid;width: 225px;}
+#right h3 {font-family:"微软雅黑";font-size:16px;color:#333;padding:10px 0 0 10px;}
 #right ul {padding-bottom:15px;}
-#right ul li a img {padding-top:10px;padding-bottom:15px;}
-#right h4 {font-family:Arial;font-size:16px;color:#ff704c;}
+#right ul li a img {padding-top:10px;padding-bottom:15px;margin: 0 auto}
+#right h4 {font-family:Arial;font-size:16px;color:#ff704c;text-align:center;}
 #right h4 del {color:#b7b7b7;padding-left:10px;font-size:14px;}
 
 

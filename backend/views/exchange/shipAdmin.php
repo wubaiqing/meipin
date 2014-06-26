@@ -30,7 +30,8 @@
                 'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
             ),
             'gdscolor' =>[
-                
+                'type' => 'raw',
+                'name' => 'gdscolor',
             ],
             'user_id' => [
                 'type' => 'raw',

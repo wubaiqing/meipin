@@ -21,6 +21,16 @@ class SiteController extends Controller
     {
         // 收取商品
         $goods = Goods::getGoodsList($cat, $hot, $page);
+
+        //首页获取积分兑换的商品
+        if($page==1)
+        {
+            $exchange = Exchange::getIndexExchange();
+        }else
+        {
+            $exchange ="";
+        }
+        // print_r($exchange);
         // 渲染首页
         $this->render('index', array(
             'cat' => $cat, // 分类
@@ -28,6 +38,7 @@ class SiteController extends Controller
             'page' => $page, // 当前页
             'goods' => $goods['data'], // 商品数据
             'pager' => $goods['pager'], // 商品翻页
+            'exchange'=>$exchange,
         ));
     }
 
@@ -48,6 +59,7 @@ class SiteController extends Controller
 				$goods['data']=array(); // 商品数据
 				$goods['pager']=array(); // 商品翻页
 			 }
+        $exchange ="";
         // 渲染首页
         $this->render('tomorrow', array(
             'cat' => $cat, // 分类
@@ -55,13 +67,14 @@ class SiteController extends Controller
             'page' => $page, // 当前页
             'goods' => $goods['data'], // 商品数据
             'pager' => $goods['pager'], // 商品翻页
+            'exchange'=>$exchange
         ));
     }
 
     /**
      * 今天值得买首页
      */
-    public function actionOut($id)
+    public function actionBuy($id)
     {
         $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
@@ -75,13 +88,14 @@ class SiteController extends Controller
     /**
      * 今天值得买首页  --不能删
      */
-/*    public function actionOut($id,$page=1,$hot=0)
+    public function actionOut($id,$page=1,$hot=0)
     {
         $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
         $hotExchangeGoods = Exchange::getHotExchangeDetailGoods();
         $xggoods = Goods::getXgGoodsList($goods->cat_id,$hot, $page,$goods->id);
-       // print_r($xggoods['data']);
+        // print_r($xggoods['data']);
+        Yii::app()->params['title'] =$goods->title."-美品网"; //详细页title
         $this->render('goodsdetail', array(
         	'cat'=>0,
         	'goods'=>$goods,
@@ -91,7 +105,7 @@ class SiteController extends Controller
             'xggoods' => $xggoods['data'], // 商品数据
             'pager' => $xggoods['pager'], // 商品翻页
         	));
-    }*/
+    }
     /**
      *  意見反饋
      */
