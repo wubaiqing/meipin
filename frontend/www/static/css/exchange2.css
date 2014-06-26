@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {margin:0;padding:0;}
+ul.ol {list-style:none;}
+a {text-decoration:none;}
+a img {border:0;}
+li {list-style:none;}
+li img {display:block;}
+body {font-family:"微软雅黑";}
+br {clear:both;font-size:0;line-height:0;}
+
+#main {width:980px;margin:0 auto;border:1px #d6d6d6 solid;background-color:white;margin-top: 5px;}
+#main ul {margin:30px 0 0 20px;}
+#main ul li {padding:19px 14px 0 14px;float:left;border:1px #e0e0e0 solid;height:250px;margin-right:20px;margin-bottom: 10px;}
+#main ul li h4 a {padding:10px 0 10px 0;display:block;font-family:"宋体";font-size:14px;color:black;}
+#main ul li p {font-family:"微软雅黑";font-size:14px;color:#999;padding-bottom:15px;}
+#main ul li p span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;}
+#main ul li dl dt {font-family:"微软雅黑";font-size:16px;color:red;float:left;text-align:center;padding-right:30px;}
+#main ul li dl dt span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;font-size:30px;}
+#main ul li dl a {font-family:"宋体";font-size:18px;line-height:30px;display:block;color:white;float:left;width:92px;height:30px;background-color:#cf201c;border-radius:5px 5px;text-align:center;}
+#main ul li dl dt {float:left;}
+#main ul li dl dd {float:left;}
+#main ul li:hover {border:1px red solid;}
