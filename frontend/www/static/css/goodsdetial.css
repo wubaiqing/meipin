@@ -14,7 +14,7 @@ body {background:none;}
 #wrap1 {width:750px;margin:0 auto;float:left;}
 
 .jjks{ background:url(images/jjks.png)}
-#main {width:700px;height:350px;border:1px #e1e0e0 solid;margin-top: 30px;padding-left: 20px;}
+#main {width:700px;height:300px;border:1px #e1e0e0 solid;margin-top: 30px;padding-left: 20px;}
 #main h2 {padding-bottom:20px;margin-top: 30px;}
 .main-left {height:190px;width:290px;float:left;margin-right:50px;}
 .main-right {float:left;}
@@ -43,11 +43,11 @@ body {background:none;}
 #bottom ul {padding-top:20px;float:left;width:290px;height:220px;margin:10px 35px 10px 10px}
 #bottom ul li h4 a {float:left;font-family:"微软雅黑";font-size:14px;color:#666;}
 #bottom ul li a img{margin-bottom: 8px;}
-#bottom ul li p a {float:right;font-family:"微软雅黑";font-size:16px;color:red;display:block;font-weight:bold;}
+#bottom ul li p a {float:left;font-family:"微软雅黑";font-size:20px;color:red;display:block;font-weight:bold;}
 
 
 
-#right {float:left;margin-top:30px;border:1px #e1e0e0 solid;}
+#right {float:left;margin-top:30px;border:1px #e1e0e0 solid;width: 225px;}
 #right h3 {font-family:"微软雅黑";font-size:16px;color:#333;padding:10px 0 0 10px;}
 #right ul {padding-bottom:15px;}
 #right ul li a img {padding-top:10px;padding-bottom:15px;}
