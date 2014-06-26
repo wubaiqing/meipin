@@ -57,7 +57,7 @@ $isSignDay = User::isSignDay();
                     <p>剩余：<span><?php echo $goods['num']; ?><span>份</p>
                     <dl>
                         <dt><span><?php echo $goods['integral']; ?></span>分</dt>
-                        <dd><a href="<?php echo $url; ?>" target='_blank'>我要换</a></dd>
+                        <dd><a href="<?php echo $url; ?>" target='_blank'><img src="/static/images/woyaohuan.png"></a></dd>
                         <br>
                      </dl>
                 </li>
