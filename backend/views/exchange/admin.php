@@ -1,5 +1,5 @@
 <div class="box">
-    <h3 class="box-header">商品管理</h3>
+    <h3 class="box-header"><?php echo $titleLabel;?></h3>
 
     <?php $this->renderPartial('_search', ['exchangeModel' => $exchangeModel]); ?>
 
@@ -15,13 +15,6 @@
         'emptyText'=>'对不起，没有任何搜索结果。',
         'viewData'=>[],
         'itemtops'=>'<th width=7%>ID</th><th width=8%>商品名称</th><th width=11%>商品类型</th><th width=18%>颜色</th><th width=13%>上线时间</th><th width=13%>下线时间</th><th width=7%>参与人数</th><th width=11%>操作</th>',
-//        'enableSorting' => false,
-//        'itemsCssClass' => 'table table-striped table-bordered',
-//        'pagerCssClass' => 'pagination pagination-small',
-//        'template' => '{items}{pager}',
-//        'cssFile' => false,
-//        'filter' => $exchangeModel,
-//        'filterPosition' => false,
         'itemView'=>'_admin',
         'pager' => array(
             'class' => 'CLinkPager',

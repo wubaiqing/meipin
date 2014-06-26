@@ -106,7 +106,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return array(
             'users' => array(self::HAS_ONE, 'Users', ['id' => 'user_id'], 'together' => true),
-            'exchange' => array(self::HAS_ONE, 'Exchange', ['id' => 'goods_id'], 'together' => true),
+            'exchange' => array(self::HAS_ONE, 'Exchange', ['id' => 'goods_id'], 'together' => true, 'joinType' => 'inner join'),
             'address' => array(self::HAS_ONE, 'UsersAddress', 'user_id', 'together' => true),
         );
     }
@@ -125,16 +125,24 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * 列表搜索
      * @return ActiveDataProvider
      */
-    public function search()
+    public function search($data)
     {
         $criteria = new CDbCriteria;
-        $criteria->order = 't.winner desc,t.created_at desc';
         $criteria->compare('goods_id', $this->goods_id);
+        $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
         }
         $criteria->compare('t.status', $this->status);
-        $criteria->with = array('users', 'exchange');
+        $criteria->compare('t.winner', $this->winner);
+        $criteria->with = array('exchange', 'users');
+        if (isset($data['goods_type'])) {
+            $criteria->compare('exchange.goods_type', $data['goods_type']);
+
+            if ($data['goods_type'] == 1) {
+                $criteria->order = 't.winner desc,t.created_at desc';
+            }
+        }
 
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,

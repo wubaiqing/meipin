@@ -52,9 +52,17 @@ class Controller extends CController
         [
             'label' => '积分商品管理',
             'items' => [
-                ['url' => 'exchange/add', 'label' => '添加商品'],
-                ['url' => 'exchange/admin', 'label' => '商品管理'],
-                ['url' => 'exchange/shipAdmin', 'label' => '积分兑换管理'],
+                ['url' => 'exchange/add', 'label' => '添加兑换商品'],
+                ['url' => 'exchange/admin', 'label' => '兑换商品管理'],
+                ['url' => 'exchange/shipAdmin', 'label' => '兑换发货管理'],
+            ]
+        ],
+        [
+            'label' => '抽奖商品管理',
+            'items' => [
+                ['url' => 'exchange/raffleAdd', 'label' => '添加抽奖商品'],
+                ['url' => 'exchange/raffleAdmin', 'label' => '抽奖商品管理'],
+                ['url' => 'exchange/raffleShipAdmin', 'label' => '中奖发货管理'],
             ]
         ],
         [
