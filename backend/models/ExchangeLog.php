@@ -125,7 +125,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * 列表搜索
      * @return ActiveDataProvider
      */
-    public function search($data)
+    public function search($data = [])
     {
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
