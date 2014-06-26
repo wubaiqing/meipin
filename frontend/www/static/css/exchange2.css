@@ -16,9 +16,9 @@ br {clear:both;font-size:0;line-height:0;}
 #main ul li h4 a {padding:10px 0 10px 0;display:block;font-family:"宋体";font-size:14px;color:black;}
 #main ul li p {font-family:"微软雅黑";font-size:14px;color:#999;padding-bottom:15px;}
 #main ul li p span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;}
-#main ul li dl dt {font-family:"微软雅黑";font-size:16px;color:red;float:left;text-align:center;padding-right:30px;}
+#main ul li dl {position:absolute;}
+#main ul li dl dt {font-family:"微软雅黑";font-size:16px;color:red;float:left;width: 85px;}
 #main ul li dl dt span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;font-size:30px;}
-#main ul li dl a {font-family:"宋体";font-size:18px;line-height:30px;display:block;color:white;float:left;width:92px;height:30px;background-color:#cf201c;border-radius:5px 5px;text-align:center;}
-#main ul li dl dt {float:left;}
-#main ul li dl dd {float:left;}
+#main ul li dl dd {float:right;position:relative;top:-10px;left:10px;}
 #main ul li:hover {border:1px red solid;}
+
