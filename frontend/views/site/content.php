@@ -2,7 +2,7 @@
     <!--单个商品 start-->
     <div class="area">
      <!--首页积分调用 start-->
-       <?php if($exchange) {
+       <?php if(!empty($exchange) || isset($exchange)) {
    
         foreach ($exchange as $item) : ?>
         <div class="dealbox">
