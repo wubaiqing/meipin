@@ -42,7 +42,7 @@
 <script type="text/javascript">
     function goods_delete(obj){
         if(confirm("确定要删除该商品？")){
-            window.location.href= location.href;
+            window.location.href=$(obj).attr("url");
         }
     }
 
