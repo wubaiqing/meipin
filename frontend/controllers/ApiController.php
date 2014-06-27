@@ -32,7 +32,7 @@ class ApiController extends Controller
                 'endTime' => $item->end_time,
                 'price' => $item->price,
                 'originPrice' => $item->origin_price,
-                'click_url' => $this->createAbsoluteUrl('site/out', ['id' => Des::encrypt($item->id)]),
+                'click_url' => $this->createAbsoluteUrl('site/buy', ['id' => Des::encrypt($item->id)]),
             ];
         }
         Yii::app()->cache->set($cacheKey, $data, 1800);
