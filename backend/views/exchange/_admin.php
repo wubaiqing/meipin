@@ -1,7 +1,6 @@
 <tr>
     <td class="center"><?php echo $data->id ?></td>
     <td><?php echo $data->name ?></td>
-    <td><?php echo Exchange::$goodsType[$data->goods_type] ?></td>
     <td><?php echo $data->goodscolor2 ?></td>
     <td><?php echo date("Y-m-d H:i", $data->start_time) ?></td>
     <td><?php echo date("Y-m-d H:i", $data->end_time) ?></td>

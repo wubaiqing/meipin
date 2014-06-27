@@ -1,12 +1,12 @@
 <div class="box">
-    <h3 class="box-header">积分商品兑换管理</h3>
+    <h3 class="box-header"><?php echo $titleLabel;?></h3>
 
     <?php $this->renderPartial('_shipSearch', ['model' => $model]); ?>
 
     <?php
     $this->widget('zii.widgets.grid.CGridView', array(
         'id' => 'exchange-grid',
-        'dataProvider' => $model->search(),
+        'dataProvider' => $model->search($data),
         'enableSorting' => false,
         'itemsCssClass' => 'table table-striped table-bordered',
         'pagerCssClass' => 'pagination pagination-small',
@@ -29,15 +29,18 @@
                 'header' => '商品名称',
                 'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
             ),
-            'gdscolor',
+            'gdscolor' =>[
+                'type' => 'raw',
+                'name' => 'gdscolor',
+            ],
             'user_id' => [
                 'type' => 'raw',
-                'header' => '兑换用户',
+                'header' => '用户名',
                 'value' => '"<a href=\"\"  target=\"_blank\">".(!empty($data->users)?$data->users->username:"")."</a>"',
                 'htmlOptions' => array('width' => '150')
             ],
             'created_at' => array(
-                'name' => 'created_at',
+                'name' => '参与时间',
                 'id' => 'created_at',
                 'value' => 'date("Y-m-d H:i:s", $data->created_at)',
                 'htmlOptions' => array('width' => '180')

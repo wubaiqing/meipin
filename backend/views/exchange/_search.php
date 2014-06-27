@@ -4,9 +4,6 @@
     'htmlOptions' => array('class' => 'form-search')
 )); ?>
 
-<?php echo CHtml::label('商品类型：', 'goods_type')?>
-<?php echo $form->dropDownList($exchangeModel, 'goods_type', array_merge([''=>'全部'],Exchange::$goodsType),['style'=>'width:100px;']).'&nbsp;'; ?>
-
 <?php echo CHtml::label('ID：', 'id')?>
 <?php echo $form->textField($exchangeModel,'id',array('style'=>'width:90px'));
     echo '&nbsp;';

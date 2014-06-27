@@ -61,6 +61,7 @@ class ExchangeController extends Controller
     public function actionAdd()
     {
         $exchangeModel = new Exchange();
+        $exchangeModel->goods_type = 0;
         //去掉这几个字段的默认值
         $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
         if (isset($_POST['Exchange'])) {
@@ -76,6 +77,34 @@ class ExchangeController extends Controller
         }
         $this->render('create', [
             'exchangeModel' => $exchangeModel,
+            'titleLabel' => '添加兑换商品',
+        ]);
+    }
+
+    /**
+     * 添加积分兑换
+     * @author zhangchao
+     */
+    public function actionRaffleAdd()
+    {
+        $exchangeModel = new Exchange();
+        $exchangeModel->goods_type = 1;
+        //去掉这几个字段的默认值
+        $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
+        if (isset($_POST['Exchange'])) {
+            $attributes = Yii::app()->request->getPost('Exchange');
+            $attributes = Exchange::format($attributes);
+            $isChange = Yii::app()->request->getPost("isChange");
+            $exchangeModel->attributes = $attributes;
+            $exchangeModel->goodscolor2 = $attributes['goodscolor'];
+            if ($isChange == 0 && $exchangeModel->save()) {
+                User::deleteCache();
+                $this->redirect($this->createUrl('exchange/Admin'));
+            }
+        }
+        $this->render('create', [
+            'exchangeModel' => $exchangeModel,
+            'titleLabel' => '添加抽奖商品',
         ]);
     }
 
@@ -114,6 +143,7 @@ class ExchangeController extends Controller
         }
         $this->render('update', [
             'exchangeModel' => $exchangeModel,
+            'titleLabel' => $exchangeModel->goods_type == 0 ? "更新兑换商品" : "更新抽奖商品"
         ]);
     }
 
@@ -124,11 +154,30 @@ class ExchangeController extends Controller
     {
         $exchangeModel = new Exchange();
         $exchangeModel->unsetAttributes();
+        $exchangeModel->goods_type = 0;
         if (isset($_GET[CHtml::modelName($exchangeModel)])) {
             $exchangeModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
         }
         $this->render('admin', [
             'exchangeModel' => $exchangeModel,
+            'titleLabel' => '兑换商品管理',
+        ]);
+    }
+
+    /**
+     * 积分兑换列表
+     */
+    public function actionRaffleAdmin()
+    {
+        $exchangeModel = new Exchange();
+        $exchangeModel->unsetAttributes();
+        $exchangeModel->goods_type = 1;
+        if (isset($_GET[CHtml::modelName($exchangeModel)])) {
+            $exchangeModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
+        }
+        $this->render('admin', [
+            'exchangeModel' => $exchangeModel,
+            'titleLabel' => '抽奖商品管理',
         ]);
     }
 
@@ -174,6 +223,37 @@ class ExchangeController extends Controller
         //渲染模板
         $this->render('shipAdmin', [
             'model' => $model,
+            'titleLabel' => '兑换发货管理',
+            'data' => ['goods_type' => 0],
+        ]);
+    }
+
+    /**
+     * 兑换商品列表
+     */
+    public function actionRaffleShipAdmin()
+    {
+        $exchange = Yii::app()->request->getQuery("Exchange");
+        $exchangeLog = Yii::app()->request->getQuery("ExchangeLog");
+
+        $model = new ExchangeLog();
+        $model->winner = 1;
+        //查询赋值
+        if (!empty($exchange)) {
+            $model->exchangeModel->attributes = $exchange;
+        }
+        if (!empty($exchangeLog)) {
+            $model->attributes = $exchangeLog;
+        }
+        //设置默认值
+        if (empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
+            $model->status = "";
+        }
+        //渲染模板
+        $this->render('shipAdmin', [
+            'model' => $model,
+            'titleLabel' => '中奖发货管理 ',
+            'data' => ['goods_type' => 1],
         ]);
     }
 
@@ -187,7 +267,7 @@ class ExchangeController extends Controller
         $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
 
-        if (empty($model)) throw new CHttpException(404, '您所浏览的页面不存在.');
+        if (empty($model)) throw new  CHttpException(404, '您所浏览的页面不存在.');
         //获取城市、身份
         $province = City::getByParentId(0);
         $provinceId = City::getProvinceId($model->city_id);
@@ -275,7 +355,8 @@ class ExchangeController extends Controller
             $this->returnData(true, ['message' => '操作成功']);
         } catch (Exception $ex) {
             $trans->rollback();
-            $this->returnData(false, ['message' => '操作失败']);
+            $this->returnData(false, ['message' => '操作失败
+          ']);
         }
     }
 
