@@ -42,7 +42,10 @@
 <script type="text/javascript">
     function goods_delete(obj){
         if(confirm("确定要删除该商品？")){
-            window.location.href=$(obj).attr("url");
+            var url = $(obj).attr("url");
+            $.post(url,[],function(d){
+                window.location.href=location.href;
+            },'json');
         }
     }
 
