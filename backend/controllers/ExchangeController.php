@@ -356,13 +356,6 @@ class ExchangeController extends Controller
         } catch (Exception $ex) {
             $trans->rollback();
             $this->returnData(false, ['message' => '操作失败
-
-         
-
-          
-
-        
-
           ']);
         }
     }

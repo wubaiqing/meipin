@@ -53,7 +53,7 @@
             <?php
             $this->widget('ListView', array(
                 'id' => 'exchange-grid',
-                'dataProvider' => $water->search(),
+                'dataProvider' => $water->searchLottery(),
                 'pager' => array('class' => 'CLinkPager'),
                 'template' => '{sorter}{items}{pager}',
                 'itemsTagName' => 'table',
@@ -80,7 +80,7 @@
 
     <script type="text/javascript">
         function water_delete(obj) {
-            if (confirm("确定要删除该记录？")) {
+            if (confirm("确定要如此做？")) {
                 var url = $(obj).attr("url");
                 $.get(url, {}, function(d) {
                     if (d.status == true) {

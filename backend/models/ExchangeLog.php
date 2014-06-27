@@ -138,11 +138,30 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $criteria->with = array('exchange', 'users');
         if (isset($data['goods_type'])) {
             $criteria->compare('exchange.goods_type', $data['goods_type']);
-
             if ($data['goods_type'] == 1) {
                 $criteria->order = 't.winner desc,t.created_at desc';
             }
         }
+
+        return new CActiveDataProvider($this, [
+            'criteria' => $criteria,
+        ]);
+    }
+    /**
+     * 列表搜索
+     * @return ActiveDataProvider
+     */
+    public function searchLottery()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->compare('goods_id', $this->goods_id);
+        $criteria->order = 't.created_at desc';
+        if (!empty($this->exchangeModel->name)) {
+            $criteria->compare('exchange.name', $this->exchangeModel->name, true);
+        }
+        $criteria->compare('t.status', $this->status);
+        $criteria->with = array('exchange', 'users');
+        $criteria->order = 't.winner desc,t.created_at desc';
 
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,
