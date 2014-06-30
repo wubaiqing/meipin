@@ -42,7 +42,7 @@ class ApiController extends Controller
      /**
      * 爱淘宝接口
      */
-     public function actionAiTbao($id)
+     public function actionAitbao($id)
      {
 /*        $cacheKey = 'meipin-api-aitaobao-';
         $result = Yii::app()->cache->get($cacheKey);
