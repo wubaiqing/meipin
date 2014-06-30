@@ -38,5 +38,25 @@ class ApiController extends Controller
         Yii::app()->cache->set($cacheKey, $data, 1800);
         $this->returnData(1, $data);
     }
-
+    
+     /**
+     * 爱淘宝接口
+     */
+     public function actionAiTbao($id)
+     {
+/*        $cacheKey = 'meipin-api-aitaobao-';
+        $result = Yii::app()->cache->get($cacheKey);
+        if (!empty($result)) {
+            $this->returnData(1, $result);
+        }*/
+        $where = "";
+        if($id){$where = "where g.id >{$id}";}
+        $model = new Goods();
+        //$NowTime=strtotime(date('Y-m-d 00:00:00',time()));//获取结束时间
+        $sql = "select g.id, g.tb_id, g.picture,g.cat_id, g.title, g.url, g.origin_price, g.price, g.start_time, g.end_time, g.updated_at, c.name from meipin_goods as g join meipin_category as c on g.cat_id=c.id {$where} order by g.id desc limit 30 ";
+        $Rumodel = yii::app()->db->createCommand($sql);
+        $query =$Rumodel->queryAll();
+        //Yii::app()->cache->set($cacheKey, $query, 1800);
+        $this->returnData(1, $query);
+     }
 }
