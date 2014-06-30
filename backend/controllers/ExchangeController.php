@@ -194,9 +194,9 @@ class ExchangeController extends Controller
         }
         $exchangeModel = $this->loadModel($eid);
         if ($exchangeModel->updateByPk($eid, ['is_delete' => 1]) > 0) {
-            $this->redirect($this->createUrl('exchange/Admin'));
+            $this->returnData(true, ['message'=>'删除成功']);
         } else {
-            throw new CHttpException(400, '编辑失败');
+            $this->returnData(false, ['message'=>'删除失败']);
         }
     }
 

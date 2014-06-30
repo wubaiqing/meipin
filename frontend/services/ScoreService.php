@@ -80,7 +80,7 @@ class ScoreService
         $indexUrl = "";
         $name = "";
         if ($goods->goods_type == 0) {
-            $indexUrl = Yii::app()->createUrl("eachange/index");
+            $indexUrl = Yii::app()->createUrl("exchange/index");
             $name = "兑换";
         } elseif ($goods->goods_type == 1) {
             $indexUrl = Yii::app()->createUrl("site/raffle");
