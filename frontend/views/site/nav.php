@@ -2,11 +2,11 @@
 <div id="wrap">
 <script type="text/javascript">
 $(window).scroll(function( ){
-	var x = $(this).scrollTop();
-	if(x<300){$("#banner").hide();
-	}else{
-		$("#banner").show().css("top",0);}
-	});
+    var x = $(this).scrollTop();
+    if(x<300){$("#banner").hide();
+    }else{
+        $("#banner").show().css("top",0);}
+    });
 
 </script>
 <div id="banner">
