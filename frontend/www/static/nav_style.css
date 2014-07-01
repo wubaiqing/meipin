@@ -167,6 +167,8 @@ br {clear:both;font-size:0;line-height:0;}
     z-index: 990;
     display:none;
 }
+
+
 .X {
 	z-index:990;
 	margin:auto 0;
@@ -177,3 +179,46 @@ br {clear:both;font-size:0;line-height:0;}
 .class_top li a.on {
     color: #cc0000;
 }
+
+
+#banner {
+	width:130px;
+	height:515px;
+	background-color:#fff;
+	border:1px solid #e0e0e0;
+	opacity: 0.95;
+    filter: alpha(opacity=95);
+    -moz-opacity: 0.95;
+    opacity: 0.95;
+    text-align: left;
+    position: fixed;
+    margin-left: 150px;
+    z-index: 990;
+    display:none;
+
+}
+.dujia {height:274px;margin-top:10px;}
+.dujia p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";line-height:30px;}
+.dujia ul {padding:15px 0 0 8px;}
+.dujia ul li {float:left;width:55px;padding-bottom:14px;}
+.dujia ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;text-align:center;}
+.dujia ul li a:hover {background-color:#fff1d0;color:#780c00;width:55px;border-radius:5px 5px;}
+#search {padding-bottom:8px;}
+.search_text {width:77px;height:23px;font-family:"微软雅黑";color:#757575;font-size:12px;padding-left:5px;border:0;vertical-align:top;border:1px solid #e5e5e5;}
+.search_btn {height:25px;width:30px;border:0;cursor:pointer;	font-family:"微软雅黑";color:white;font-size:12px;background-color:#ee4743;border-radius:5px 5px;}
+.jingxuan {padding-top:0px;height:150px;}
+.jingxuan p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";padding:6px 0 0 10px;}
+.jingxuan ul {height:42px;border-bottom:1px solid #e5e5e5;}
+.jingxuan ul li {float:left;width:55px;padding:15px 0 14px 0;}
+.jingxuan ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;text-align:center;}
+.jingxuan ul li a:hover {background-color:#fff1d0;color:#780c00;width:55px;border-radius:5px 5px;}
+.jingxuan ol li {height:40px;border-bottom:1px solid #e5e5e5;}
+.jingxuan ol li img {
+	float:left;
+	padding:5px 10px 0 10px;
+}
+.one11 a {
+	padding-left:15px;
+}
+.jingxuan ol li a {font-family:"微软雅黑";font-size:12px;color:#666;float:left;display:block;line-height:35px;text-align:center;}
+.jingxuan ol li a:hover {color:#780c00;}
