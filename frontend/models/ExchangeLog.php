@@ -56,6 +56,15 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'address' => '配送地址',
         ];
     }
+    /**
+     * 多表关连查询
+     */
+    public function relations()
+    {
+        return array(
+            'exchange' => array(self::HAS_ONE, 'Exchange', ['id' => 'goods_id'], 'together' => true, 'joinType' => 'inner join'),
+        );
+    }
 
     /**
      * 获取记录
@@ -151,6 +160,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('user_id', $userId);
+        
         $this->dbCriteria->mergeWith($criteria);
 
         return $this;

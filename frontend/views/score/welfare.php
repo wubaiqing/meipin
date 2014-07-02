@@ -19,7 +19,11 @@
                     <tr align="center">
                      <?php
                        $jm = Des::encrypt($exchange->id);
-                       $goodsUrl = Yii::app()->createUrl("exchange/detail_{$jm}.html");
+                       if($info->exchange->goods_type == 0){
+                            $goodsUrl = Yii::app()->createUrl("exchange/detail_{$jm}.html");
+                       }elseif($info->exchange->goods_type == 1){
+                            $goodsUrl = Yii::app()->createUrl("exchange/raffle_{$jm}.html");
+                       }
                         ?>
                         <td bgcolor="#F9FAFC"><a href="<?php if($exchange->taobaoke_url){echo $exchange->taobaoke_url;}else{echo $goodsUrl;};?>" target='_blank'><?php echo !empty($exchange) ? $exchange->name : '';?></a></td>
                         <td><?php echo !empty($exchange1->gdscolor) ? $exchange1->gdscolor : '无'; ?></td>
