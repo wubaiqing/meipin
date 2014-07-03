@@ -1,18 +1,18 @@
 <?php if ($this->action->id != 'tomorrow') : ?>
 <div id="wrap">
+<link href="" rel="stylesheet" type="text/css" /> 
 <script type="text/javascript">
 $(window).scroll(function( ){
     var x = $(this).scrollTop();
-    if(x<300){$("#banner").hide();
+    if(x<50){$("#banner").hide();
     }else{
-        $("#banner").show().css("top",0);}
+        $("#banner").show().css("top",-5);}
     });
-
 </script>
 <div id="banner">
-	<img src="/static/images/meipin_02.png">
+	<img src="/static/images/meipin_03.png">
     <div class="dujia">
-    	<p>[独家]每天10点更新</p>
+    	<p>[独家折扣]每天10点更新</p>
         <ul>
         	<li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 1));?>" target="_blank" >女装</a></li>
             <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 4));?>" target="_blank" >男装</a></li>
@@ -52,7 +52,7 @@ $(window).scroll(function( ){
             <li><img src="/static/images/kefu_15_15.png"><a href="tencent://message/?Menu=yes&uin=534095228&Site=&Service=200&sigT=f970984f0af8a3b91bcf76a87bd9c00aaecaff7a636976b0aff85eaffed80934b10126a03d75711a">在线客服</a></li>
         </ol>
     </div>
-    <img src="/static/images/bot_05.png">
+    <img src="/static/images/bot_06.png">
 </div>
 
     <div id="class">
