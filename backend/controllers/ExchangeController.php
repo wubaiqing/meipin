@@ -99,7 +99,11 @@ class ExchangeController extends Controller
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($isChange == 0 && $exchangeModel->save()) {
                 User::deleteCache();
-                $this->redirect($this->createUrl('exchange/Admin'));
+                if($exchangeModel->goods_type == 0){
+                    $this->redirect($this->createUrl('exchange/admin'));
+                }else if($exchangeModel->goods_type == 1){
+                    $this->redirect($this->createUrl('exchange/raffleAdmin'));
+                }
             }
         }
         $this->render('create', [
@@ -138,7 +142,11 @@ class ExchangeController extends Controller
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($exchangeModel->save()) {
                 User::deleteCache();
-                $this->redirect($this->createUrl('exchange/Admin'));
+                if($exchangeModel->goods_type == 0){
+                    $this->redirect($this->createUrl('exchange/admin'));
+                }elseif($exchangeModel->goods_type == 1){
+                    $this->redirect($this->createUrl('exchange/raffleAdmin'));
+                }
             }
         }
         $this->render('update', [
