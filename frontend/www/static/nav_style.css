@@ -181,36 +181,50 @@ br {clear:both;font-size:0;line-height:0;}
 }
 
 
-#banner {
-	width:130px;
-	height:515px;
+/* #banner {
+	width:140px;
+	height:435px;
 	background-color:#fff;
-	border:1px solid #e0e0e0;
+	margin-top: 5px;
+	display: block;
     position: fixed;
+    left: 5%;
     z-index: 990;
-    margin-left: 5%;
 }
-.dujia {height:274px;margin-top:10px;}
-.dujia p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";line-height:30px;}
+ */
+
+ #banner {
+	background-color:none repeat 0 0 scroll #fff;
+	left: 50%;
+	margin-left: -642px;
+    position: absolute;
+    position:fixed;
+    text-align: left;
+    top:135px;
+    width:140px;
+    z-index: 990;
+    display: block;
+} 
+.dujia {height:265px;border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;background-color: #fff;}
+.dujia p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";line-height:30px;text-align:center;}
 .dujia ul {padding:15px 0 0 8px;}
 .dujia ul li {float:left;width:55px;padding-bottom:14px;}
-.dujia ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;text-align:center;}
+.dujia ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;}
 .dujia ul li a:hover {background-color:#fff1d0;color:#780c00;width:55px;border-radius:5px 5px;}
 #search {padding-bottom:8px;}
 .search_text {width:77px;height:23px;font-family:"微软雅黑";color:#757575;font-size:12px;padding-left:5px;border:0;vertical-align:top;border:1px solid #e5e5e5;}
 .search_btn {height:25px;width:30px;border:0;cursor:pointer;	font-family:"微软雅黑";color:white;font-size:12px;background-color:#ee4743;border-radius:5px 5px;}
-.jingxuan {padding-top:0px;height:150px;}
+.jingxuan {padding-top:8px;height:100px;border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;background-color: #fff;}
 .jingxuan p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";padding:6px 0 0 10px;}
 .jingxuan ul {height:42px;border-bottom:1px solid #e5e5e5;}
 .jingxuan ul li {float:left;width:55px;padding:15px 0 14px 0;}
 .jingxuan ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;text-align:center;}
 .jingxuan ul li a:hover {background-color:#fff1d0;color:#780c00;width:55px;border-radius:5px 5px;}
 .jingxuan ol li {height:40px;border-bottom:1px solid #e5e5e5;}
-.jingxuan ol li img {
-	float:left;
-	padding:5px 10px 0 10px;
-}
-.one11 a {
+.jingxuan ol li img {float:left;padding:8px 10px 0 10px;}
+.one a {
 	padding-left:15px;
 }
 .jingxuan ol li a {font-family:"微软雅黑";font-size:12px;color:#666;float:left;display:block;line-height:35px;text-align:center;}
