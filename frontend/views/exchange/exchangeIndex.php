@@ -30,11 +30,12 @@
     <div class="right dhdeal">
         <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="POST" <?php if($data['exchange']->goodscolor):?> onsubmit="return checkcolor()" <?php endif;?> >
             <?php
-            $start = "zt3";
+            $leftNum = $data['exchange']->num - $data['exchange']->sale_num; //剩余量
+            $start = "zt3"; //兑换结束
             if ($data['exchange']->start_time > time()) {
-                $start = "zt1";
-            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time()) {
-                $start = "zt2";
+                $start = "zt1"; //即将开始
+            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time() && $leftNum >0) {
+                $start = "zt2"; //我要兑换
             }
             ?>
             <div class="deal <?php echo $start ?>">
