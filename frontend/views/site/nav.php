@@ -4,7 +4,7 @@
 <script type="text/javascript">
 $(window).scroll(function( ){
     var x = $(this).scrollTop();
-    if(x<50){$("#banner").hide();
+    if(x<50){$("#banner").show().css("top",135);
     }else{
         $("#banner").show().css("top",-5);}
     });
