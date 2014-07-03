@@ -13,7 +13,7 @@ $('#getTaobaoData').click(function() {
 
 	$.getJSON('index.php?r=goods/getgoods', {taobaoId:taobaoId}, function (json) {
 		$('#Goods_url').val(json.item_url);
-		//$('#Goods_picture').val(json.pic_url);  //不获取图片
+		$('#Goods_picture').val(json.pic_url);
 		$('#Goods_origin_price').val(json.price);
 		$('#Goods_url').val(json.item_url);
 		$('#Goods_title').val(json.title);
