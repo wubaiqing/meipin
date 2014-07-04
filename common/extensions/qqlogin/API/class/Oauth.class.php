@@ -33,6 +33,7 @@ class Oauth{
         $scope = $this->recorder->readInc("scope");
 
         //-------生成唯一随机串防CSRF攻击
+        $_SESSION['QC_codesession'] = "";
         $state = md5(uniqid(rand(), TRUE));
        // $this->recorder->write('state',$state); 改
         $_SESSION['QC_codesession'] = $state;
