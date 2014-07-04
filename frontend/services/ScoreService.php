@@ -178,11 +178,19 @@ class ScoreService
 
             $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
-            Exchange::model()->updateByPk($goods->id, [
-                'sale_num' => new CDbExpression('sale_num+1'),
+
+            //如果是抽奖商品就不需要增加兑换商品数量了
+            if($goods->goods_type == 1)
+            {
+                $uparray= array('user_count' => $userCount,
+                'goodscolor' => $order['goodscolor']);
+            }else
+            {
+                $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
                 'user_count' => $userCount,
-                'goodscolor' => $order['goodscolor'],
-            ]);
+                'goodscolor' => $order['goodscolor']);
+            }
+            Exchange::model()->updateByPk($goods->id,$uparray);
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [
