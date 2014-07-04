@@ -6,7 +6,7 @@
 
             <li>
             欢迎您，
-            <a href="javascript:void(0);">
+            <a href="<?php echo $this->createUrl('score/index'); ?>">
                 <?php echo Yii::app()->user->name; ?>
             </a>
             <a href="javascript:void(0);" class="level v0"></a>
