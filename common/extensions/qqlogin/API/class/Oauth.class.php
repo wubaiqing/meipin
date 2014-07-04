@@ -53,7 +53,10 @@ class Oauth{
 
     public function qq_callback(){
        // $state = $this->recorder->read("state");改
-        $state = $_SESSION['QC_codesession'];
+        if(!empty($_SESSION['QC_codesession']))
+        {
+           $state = $_SESSION['QC_codesession'];
+        }
         //--------验证state防止CSRF攻击
         if($_GET['state'] != $state){
             $this->error->showError("30001");
