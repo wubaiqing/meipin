@@ -36,7 +36,7 @@
                             </a>
                         </h2>
                         <p>
-                            <em><?php echo $item['user_count'] ?>人已参与</em><span>价值：<?php echo $item['price'] ?>元</span> 中奖名额：<b><?php echo $item['limit_count'] ?></b>
+                            <em><span class="canyu"><?php echo $item['user_count'] ?></span>&nbsp;人已参与</em><span>价值：<?php echo $item['price'] ?>元</span> 中奖名额：<b><?php echo $item['limit_count'] ?></b>
                         </p>
                         <h4 class="<?php echo ($history == 'history') ? 'raffle_history' : ''; ?>">
                             <span>
