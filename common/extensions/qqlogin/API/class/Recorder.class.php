@@ -10,7 +10,7 @@ class Recorder{
     private static $data;
     private $inc;
     private $error;
-
+    private $code;
     public function __construct(){
         $this->error = new ErrorCase();
 

@@ -34,8 +34,8 @@ class Oauth{
 
         //-------生成唯一随机串防CSRF攻击
         $state = md5(uniqid(rand(), TRUE));
-        $this->recorder->write('state',$state);
-
+       // $this->recorder->write('state',$state); 改
+        $_SESSION['QC_codesession'] = $state;
         //-------构造请求参数列表
         $keysArr = array(
             "response_type" => "code",
@@ -51,8 +51,8 @@ class Oauth{
     }
 
     public function qq_callback(){
-        $state = $this->recorder->read("state");
-
+       // $state = $this->recorder->read("state");改
+        $state = $_SESSION['QC_codesession'];
         //--------验证state防止CSRF攻击
         if($_GET['state'] != $state){
             $this->error->showError("30001");
