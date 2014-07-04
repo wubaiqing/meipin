@@ -33,10 +33,10 @@ class Oauth{
         $scope = $this->recorder->readInc("scope");
 
         //-------生成唯一随机串防CSRF攻击
-        $_SESSION['QC_codesession'] = "";
+        
         $state = md5(uniqid(rand(), TRUE));
        // $this->recorder->write('state',$state); 改
-        $_SESSION['QC_codesession'] = $state;
+        setcookie("QC_codesession",$state);
         //-------构造请求参数列表
         $keysArr = array(
             "response_type" => "code",
@@ -53,9 +53,9 @@ class Oauth{
 
     public function qq_callback(){
        // $state = $this->recorder->read("state");改
-        if(!empty($_SESSION['QC_codesession']))
+        if(!empty($_COOKIE['QC_codesession']))
         {
-           $state = $_SESSION['QC_codesession'];
+           $state = $_COOKIE['QC_codesession'];
         }
         //--------验证state防止CSRF攻击
         if($_GET['state'] != $state){
