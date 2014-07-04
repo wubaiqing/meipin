@@ -140,7 +140,7 @@ class ScoreService
             ]);
         }
 
-        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'url' => $url]);
+        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'url' => $indexUrl]);
     }
 
     /**
