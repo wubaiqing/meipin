@@ -5118,6 +5118,8 @@ a.badge:hover {
 
 /**table*/
 .v_table_con { width: 98%;margin: 10px auto 0px;margin-left: 20px;border: 0;}
+.v_table_con ul{list-style-type:none;padding:20px auto 20px 0; margin-left: 0px;margin-top: 30px;};
+.v_table_con ul li{height:30px; text-align:left; margin:0px; padding-bottom: 30px; list-style-type:none;};
 .v_table_label{text-align: right;vertical-align: top;width: 0px;color: #666;word-wrap: break-word;padding: 15px;}
 .v_table_line{border-bottom: 1px solid #e5e5e5;width: 100%;text-align: center;font-weight: bold;font-size: 16px;}
 .userCity,.userProvice{width:100px;}

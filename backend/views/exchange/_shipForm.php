@@ -97,7 +97,21 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo CHtml::hiddenField("formType", 'status'); ?>
             <?php echo $form->hiddenField($model, 'id'); ?>
             <?php echo $form->dropDownList($model, 'status', ExchangeLog::$status, array('status'=>$model->status)); ?>
-            <?php echo CHtml::button("修改", array('class' => 'btn btn-primary save', 'id' => 'status_edit')); ?>
+        </td>
+    </tr>
+    <tr>
+        <td class="v_table_label">物流信息：</td>
+        <td>
+            <ul>
+                <li>快递公司：<?php echo $form->dropDownList($model, 'logistics', Yii::app()->params['logisticsSystem']); ?></li>
+                <li>物流单号：<?php echo $form->textField($model, 'logistics_code', []); ?></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="v_table_label">&nbsp;</td>
+        <td>
+            <?php echo CHtml::button("提交", array('class' => 'btn btn-primary save', 'id' => 'status_edit')); ?>
         </td>
     </tr>
 </table>
