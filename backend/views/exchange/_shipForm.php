@@ -104,7 +104,7 @@ CHtml::$errorSummaryCss = 'text-warning';
         <td>
             <ul>
                 <li>快递公司：<?php echo $form->dropDownList($model, 'logistics', Yii::app()->params['logisticsSystem']); ?></li>
-                <li>物流单号：<?php echo $form->textField($model, 'logistics_code', []); ?></li>
+                <li>快递单号：<?php echo $form->textField($model, 'logistics_code', []); ?></li>
             </ul>
         </td>
     </tr>
