@@ -75,6 +75,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'integerOnly' => true
             ],
             [
+                'logistics','checkLogistic',
+            ],
+            [
                 'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile,logistics,logistics_code',
                 'safe'
             ],
@@ -272,5 +275,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $logistics = ((isset($logisticsSystem[$data->logistics]) && $data->logistics>0)?$logisticsSystem[$data->logistics]:"未填写");
         $logistics_code = (empty($data->logistics_code))?"未填写":$data->logistics_code;
         return "物流公司:".$logistics."<br/> 快递单号:".$logistics_code;
+    }
+    public function checkLogistic(){
+        if($this->status == 1){
+            if(empty($this->logistics) || empty($this->logistics_code)){
+                $this->addError("logistic", "物流信息必须填写");
+            }
+        }
     }
 }

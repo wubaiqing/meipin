@@ -40,6 +40,9 @@ $(function() {
     });
     //详情页面配送状态修改
     $("#status_edit").click(function() {
+        if($("#ExchangeLog_status").val() == 1 && ($("#ExchangeLog_logistics").val() == 0 || $.trim($("#ExchangeLog_logistics_code").val()) == "")){
+            alert("物流信息必须填写");return;
+        }
         var url = $("#status-form").attr("action");
         var params = $("#status-form").serialize();
         $(this).after("<span id='status' style='color:red;'>请稍等...</span>");
