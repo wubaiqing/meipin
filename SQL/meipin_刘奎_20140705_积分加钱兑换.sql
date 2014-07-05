@@ -1,0 +1,1 @@
+alter table `meipin_exchange` add active_price DECIMAL(10,2) default null comment '活动价格';

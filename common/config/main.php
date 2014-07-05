@@ -66,5 +66,16 @@ return [
         'exchangeLogPageSize' => 20,
         //分页最大缓存页面数
         'pageCahceMaxCount' => 5,
+        //物流系统
+        'logisticsSystem' =>[
+            1 => 'EMS',
+            2 => '申通',
+            3 => '圆通',
+            4 => '韵达',
+            5 => '中通',
+            6 => '顺丰',
+            7 => '天天',
+            8 => '汇通',
+        ]
     ],
 ];
