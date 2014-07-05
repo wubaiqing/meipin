@@ -24,20 +24,27 @@
                 <h2>
                     <span><?php echo $data['exchange']->name; ?></span>
                 </h2>
-                <h3>
-                    <span>所需积分</span><em><?php echo $data['exchange']->integral; ?></em>积分<br>
-                    <span>价值&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><i>&nbsp;&nbsp;&nbsp;￥</i><?php echo $data['exchange']->price; ?></strong><br>
-                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
+                <h3 class="border-top-dashed">
+                    <span>现价：</span><em>￥19+<?php echo $data['exchange']->integral; ?></em>积分<br>
+                    <span>原价：</span><i>￥</i><del><?php echo $data['exchange']->price; ?></del>&nbsp;(<?php echo round(($data['exchange']->active_price/$data['exchange']->price)*10, 1)?>折)<br>
+                </h3>
+                <h3 class="border-top-dashed">
+                    <span>销量：</span><b style="color:#cc0000;"><?php echo $data['exchange']->sale_num; ?></b> &nbsp;件<br/>
                     <?php if ($data['exchange']->goodscolor): ?>
                         <span class='goodcolor'>
-
+                            选型：
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
-
                     <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
                     <?php endforeach;?>
-
                         </span>
                     <?php endif; ?>
+                    <span>数量：</span>
+                        <?php 
+                        echo CHtml::textField("Exchange[buyCount]",$data['exchange']->buyCount); 
+                        echo Chtml::link("+","#",['class'=>'jiahao']);
+                        echo Chtml::link("-","#",['class'=>'jianhao']);
+                        ?>
+                    <br>
                 </h3>
                 <h4>
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>

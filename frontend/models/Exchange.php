@@ -14,6 +14,12 @@ class Exchange extends ActiveRecord
     public static $goodsType = [0 => '兑换商品', 1 => '抽奖商品'];
 
     /**
+     * 购买数量
+     * @var integer 
+     */
+    public $buyCount = 1;
+    
+    /**
      * 表名
      * @return string
      */
