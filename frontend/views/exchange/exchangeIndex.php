@@ -32,7 +32,9 @@
                     <span>销量：</span><b style="color:#cc0000;"><?php echo $data['exchange']->sale_num; ?></b> &nbsp;件<br/>
                     <?php if ($data['exchange']->goodscolor): ?>
                         <span class='goodcolor'>
+                            <span>
                             选型：
+                            </span>
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
                     <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
                     <?php endforeach;?>
@@ -40,7 +42,7 @@
                     <?php endif; ?>
                     <span>数量：</span>
                         <?php 
-                        echo CHtml::textField("Exchange[buyCount]",$data['exchange']->buyCount); 
+                        echo CHtml::textField("Exchange[buyCount]",$data['exchange']->buyCount,['id'=>'num']); 
                         echo Chtml::link("+","#",['class'=>'jiahao']);
                         echo Chtml::link("-","#",['class'=>'jianhao']);
                         ?>
