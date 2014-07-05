@@ -54,9 +54,10 @@
                 'htmlOptions' => array('width' => '80')
             ],
             'logic' => array(
+                'type' => 'raw',
                 'name' => '物流信息',
-                'id' => 'created_at',
-                'value' => '',
+                'id' => 'lotistics',
+                'value' => 'ExchangeLog::getLogistics($data)',
                 'htmlOptions' => array('width' => '180')
             ),
             array(

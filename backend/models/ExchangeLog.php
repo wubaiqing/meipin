@@ -262,4 +262,15 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         return self::model()->findAll("user_add >0  and goods_id=$goods_id");
     }
 
+    /**
+     * 生成列表物流信息
+     * @param self $data 
+     * @return string 
+     */
+    public static function getLogistics($data){
+        $logisticsSystem = Yii::app()->params['logisticsSystem'];
+        $logistics = ((isset($logisticsSystem[$data->logistics]) && $data->logistics>0)?$logisticsSystem[$data->logistics]:"未填写");
+        $logistics_code = (empty($data->logistics_code))?"未填写":$data->logistics_code;
+        return "物流系统:".$logistics."<br/> 物流码:".$logistics_code;
+    }
 }
