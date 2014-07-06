@@ -5,7 +5,7 @@
 			<li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1000) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/index', array('cat' => 1000));?>">9.9包邮<i></i></a></li>
 			<li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1001) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/index', array('cat' => 1001));?>">聚美品<i></i></a></li>
 			<li><a href="<?php echo $this->createUrl('exchange/index');?>" class="<?php echo (Yii::app()->controller->id == 'exchange' && ($this->action->id == 'index' || $this->cat == 1004)) ? 'on' : ''; ?>">积分兑换</a></li>
-                        <li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1003 || $this->cat == 1003) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/raffle');?>">幸运抽奖<i></i></a></li>
+                        <li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1003 || Yii::app()->controller->id == 'exchange' && $this->cat == 1003) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('site/raffle');?>">幸运抽奖<i></i></a></li>
 			<li><a class="<?php echo (Yii::app()->controller->id == 'site' && $this->action->id == 'phone') ? 'on' : ''; ?>" href="/site/phone">手机APP</a></li>
 			<li><a class="<?php echo (Yii::app()->controller->id == 'site' && $cat == 1002) ? 'on' : ''; ?>" href="<?php echo $this->createUrl('/tomorrow');?>">明日预告</a></li>
 			<br>
