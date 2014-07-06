@@ -1,7 +1,7 @@
 var exchange = {};
 exchange.numChange = function(obj) {
     var numObj = $("#num");
-    if (!this.validNum(numObj,obj)) {
+    if (!this.validNum(numObj, obj)) {
         return false;
     }
     if ($(obj).hasClass("jiahao")) {
@@ -11,7 +11,7 @@ exchange.numChange = function(obj) {
         numObj.val((parseInt(numObj.val()) - 1) <= 0 ? 1 : (parseInt(numObj.val()) - 1));
     }
 }
-exchange.validNum = function(numObj,obj) {
+exchange.validNum = function(numObj, obj) {
     var currCount = numObj.val();
     var regx = /^\d+$/;
     if (!regx.test(currCount)) {
@@ -20,7 +20,7 @@ exchange.validNum = function(numObj,obj) {
     }
     var limitNum = numObj.attr("limitnum");
     if ($(obj).hasClass("jiahao")) {
-        if (parseInt(currCount) >= parseInt(limitNum)-1) {
+        if (parseInt(currCount) >= parseInt(limitNum) - 1) {
             $(".jiahao").addClass("color_gray");
             numObj.val(limitNum)
             return false;
@@ -29,6 +29,22 @@ exchange.validNum = function(numObj,obj) {
         $(".jiahao").removeClass("color_gray");
     }
     return true;
+}
+
+exchange.moneyExchangePopDiv = function() {
+    $(".mainwrap p span").on('click', function() {
+        $(".mainwrap p span").removeClass("cur");
+        $(this).addClass("cur");
+    });
+}
+exchange.scrollView = function() {
+    var popPosition = $("hgroup").offset().top;
+    var scrollbar = $(document).height() - $(window).height();
+    if (scrollbar == popPosition) {
+        $("hgroup").addClass("fixed");
+    } else {
+        $("hgroup").removeClass("fixed");
+    }
 }
 $(function() {
     try {
@@ -55,8 +71,13 @@ $(function() {
         exchange.numChange(this);
         return false;
     });
-    $("#num").blur(function(){
-       exchange.numChange($(".jiahao"));
+    $("#num").blur(function() {
+        exchange.numChange($(".jiahao"));
+    });
+    //加钱购买详情
+    exchange.moneyExchangePopDiv();
+    $(window).scroll(function() {
+        exchange.scrollView();
     });
 });
 function checkcolor()
