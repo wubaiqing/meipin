@@ -73,8 +73,12 @@ class ExchangeController extends Controller
             }
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
+        $render = "order";
+        if($dataResult['data']['exchange']->goods_type == 0 && $dataResult['data']['exchange']->active_price >0){
+            $render = "moneyOrder";
+        }
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
+        $this->render($render, ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
     }
 
     /**

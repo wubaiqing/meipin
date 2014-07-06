@@ -55,11 +55,11 @@
                     <dd>
                         <?php
                         $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                        echo CHtml::textField("Exchange[buyCount]", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum]);
+                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum]);
                         echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
                         echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
 
-                        echo CHtml::hiddenField("Exchange[xuanxing]", '', ['id' => 'gdcolor']);
+                        echo CHtml::hiddenField("gdcolor", '', ['id' => 'gdcolor']);
                         echo CHtml::hiddenField("id", $params['goodsId']);
                         echo CHtml::hiddenField("goods_type", $data['exchange']->goods_type);
                         ?>
