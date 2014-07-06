@@ -34,7 +34,9 @@ exchange.validNum = function(numObj, obj) {
 exchange.moneyExchangePopDiv = function() {
     $(".mainwrap p span").on('click', function() {
         $(".mainwrap p span").removeClass("cur");
-        $(this).addClass("cur");
+        var id = $(this).addClass("cur").attr("id");
+        $(".dtl").addClass("show_none")
+        $("."+id).removeClass("show_none");
     });
 }
 exchange.scrollView = function() {

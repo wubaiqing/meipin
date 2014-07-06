@@ -1,7 +1,7 @@
 <div id="detail" class="detail">
     <div class="deteilpic l">
         <div style="width: 400px;" id="big_img">
-            <img src="<?php echo $data['exchange']->img_url; ?>">
+            <img width="380" src="<?php echo $data['exchange']->img_url; ?>">
         </div>
 <!--        <ul>
             <li class="cur">
@@ -75,21 +75,22 @@
         <div class="title">
             <hgroup class="">
                 <p class="l">
-                    <span class="cur"><a href="javascript:;">宝贝详情</a></span>
-                    <span><a href="javascript:;">购买须知</a></span>
-                    <span><a href="javascript:;">销量明细<b>(3)</b></a></span>
+                    <span id="productdetail" class=" cur"><a href="javascript:;">宝贝详情</a></span>
+                    <span id="xuzhi" class=""><a href="javascript:;">购买须知</a></span>
+                    <span id="record" class=""><a href="javascript:;">销量明细<b>(3)</b></a></span>
                 </p>
                 <p class="r">
                     <i></i><b><?php echo $data['exchange']->active_price; ?></b><del>￥<?php echo $data['exchange']->price; ?></del>
                     <span class="s2"><a href="#">立即购买</a></span>    </p>
             </hgroup>        
         </div>
-        <div class="productdetail">
+        <div class="dtl productdetail">
             <?php echo $data['exchange']->description ?>
         </div>
-        <div class="xuzhi show_none">
+        <div class="dtl xuzhi show_none">
+            须知
         </div>
-        <div class="record show_none">
+        <div class="dtl record show_none">
             <?php
             $this->renderPartial('exchangeLogList', array('logList' => $data['logList'], 'goodsType' => $data['exchange']->goods_type));
             ?>
