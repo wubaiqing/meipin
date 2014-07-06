@@ -44,7 +44,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                     <th style="width:48%">礼品详情</th>
                     <th style="width:10%">单价（元）</th>
                     <th style="width:10%">数量</th>
-                    <th style="width:10%">小计</th>
+                    <th style="width:10%">小计（元）</th>
                     <th style="width:10%">消耗积分</th>
                     <th style="width:20%">配送方式</th>
                     </thead>
@@ -83,10 +83,10 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                                 echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
                                 ?>
                             </td>
-                            <td><span class="font-red font-bold"><?php
+                            <td><span class="font-red font-bold"><b><?php
                                     $price = floatval($data['exchange']->active_price) * 2;
                                     echo number_format($price, 2);
-                                    ?></span></td>
+                                    ?></b></span></td>
                             <td><?php echo $data['exchange']->integral ?></td>
                             <td>0元包邮</td>
                         </tr>
@@ -100,63 +100,8 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                         <input class="submit_ok" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="确认购买">
                     </span>
                 </div>
-<!--                <p>
-                    <span style="width:48%">礼品详情</span>
-                    <span style="width:10%">单价（元）</span>
-                    <span style="width:10%">数量</span>
-                    <span style="width:10%">小计</span>
-                    <span style="width:20%">配送方式</span>
-                </p>-->
-                <!--                <div class="order_list">
-                                    <dl class="ginfo">
-                                        <dt  style="width:48%">
-                <?php
-                echo CHtml::hiddenField("Exchange[token]", $params['token']);
-                echo CHtml::hiddenField("Exchange[gdscolor]", $params['gdscolor']);
-                echo CHtml::hiddenField("Exchange[goodscolor]", $data['exchange']->goodscolor);
-                echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data['exchange']->id));
-                echo CHtml::hiddenField("Exchange[city_id]", $data['userAddress']->city_id);
-                $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data['exchange']->id)));
-                ?>
-                                        <a href="<?php echo $goodsUrl; ?>" target="_blank">
-                                            <img src="<?php echo $data['exchange']->img_url; ?>">
-                                        </a>
-                                        <span class="maxh40">
-                                            <a target="_blank" href="<?php echo $goodsUrl; ?>">
-                <?php echo StringHelper::Utf8Substr($data['exchange']->name, 0, 20); ?>
-                                            </a><br/>
-                                            <em>
-                <?php if (!empty($params['gdscolor'])): ?>
-                                                        <label>选型：</label><span><?php echo $params['gdscolor']; ?></span>
-                <?php endif; ?>
-                                            </em>
-                                        </span>
-                                        </dt>
-                                        <dd>
-                                        </dd>
-                                        <dd>adsf</dd>
-                                    </dl>
-                                    <dl class="jifn">
-                                        <dt><em><?php echo $data['exchange']->integral; ?></em><span></span></dt>
-                                        <dd>提示：<?php echo $name; ?>礼品后您将减少<?php echo $data['exchange']->integral; ?>积分，一旦<?php echo $name; ?>成功，积分将不退还！请确定喜欢此礼品再<?php echo $name; ?></dd>
-                                    </dl>
-                                </div>-->
-            </div>
-            <!--                        <div class="jadinfo" data-must_memo="0" data-memo="">
-                                        <span>备注信息：<input id="memo" name="Exchange[remark]" max="200" type="text"></span>
-            <?php
-            $btnVal = ($data['exchange']->goods_type == 0) ? "确认兑换" : "确认参与"
-            ?>
-                                        <input class="welfare_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="<?php echo $btnVal; ?>">
-                                    </div>-->
         </form>
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
 </div>
 <input type="hidden" id="getProvinceUrl" value="<?php echo $this->createAbsoluteUrl('userAddress/getProvince') ?>" />
 <?php
