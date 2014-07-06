@@ -139,6 +139,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $criteria->compare('t.status', $this->status);
         $criteria->compare('t.winner', $this->winner);
         $criteria->with = array('exchange', 'users');
+        $criteria->compare("pay_status", 2);
         if (isset($data['goods_type'])) {
             $criteria->compare('exchange.goods_type', $data['goods_type']);
             if ($data['goods_type'] == 1) {

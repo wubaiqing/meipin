@@ -77,6 +77,7 @@ class ScoreService
         if (empty($goods)) {
             return CommonHelper::getDataResult(false, ['message' => "对不起，您所操作的商品信息不存在", 'url' => $url]);
         }
+        //显示不同的积分操作商品类型名称
         $indexUrl = "";
         $name = "";
         if ($goods->goods_type == 0) {
@@ -99,7 +100,13 @@ class ScoreService
         if ($order['token'] != $token) {
             return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看其他商品", 'url' => $indexUrl]);
         }
-
+        //校验加钱兑换商品数据
+        if ($goods->goods_type == 0 && $goods->active_price > 0) {
+            return CommonHelper::getDataResult(false, [
+                        'message' => "支付接口未提供，暂时无法下单",
+                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+            ]);
+        }
         //校验商品
         if ($goods->start_time > $nowTime) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他商品", 'url' => $indexUrl]);
@@ -178,19 +185,16 @@ class ScoreService
 
             $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
-
             //如果是抽奖商品就不需要增加兑换商品数量了
-            if($goods->goods_type == 1)
-            {
-                $uparray= array('user_count' => $userCount,
-                'goodscolor' => $order['goodscolor']);
-            }else
-            {
-                $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
-                'user_count' => $userCount,
-                'goodscolor' => $order['goodscolor']);
+            if ($goods->goods_type == 1) {
+                $uparray = array('user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor']);
+            } else {
+                $uparray = array('sale_num' => new CDbExpression('sale_num+1'),
+                    'user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor']);
             }
-            Exchange::model()->updateByPk($goods->id,$uparray);
+            Exchange::model()->updateByPk($goods->id, $uparray);
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [

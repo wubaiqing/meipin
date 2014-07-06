@@ -55,7 +55,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     <?php echo $form->labelEx($exchangeModel, 'active_price', array('class' => 'control-label')); ?>
     <div class="controls">
         <?php echo $form->textField($exchangeModel, 'active_price'); ?>
-        <label class="line-note">参加活动的价格</label>
+        <label class="line-note">加钱换购金额，除积分外，用户还需要额外支付的金额</label>
     </div>
 </div>
 <div class="control-group">
