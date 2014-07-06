@@ -67,7 +67,13 @@
                 </dl>
                 <dl class="nubD ">
                     <dt>
-                    <input class="submit_ok" type="submit" address_id="" value="立即购买">
+                    <?php
+                    if ($leftNum < 1):
+                        ?>
+                        <input class="submit_no" type="button" address_id="" value="立即购买">
+                    <?php else: ?>
+                        <input class="submit_ok" type="submit" address_id="" value="立即购买">
+                    <?php endif; ?>
                     </dt>
                 </dl>
             </div>
