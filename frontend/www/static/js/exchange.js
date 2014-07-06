@@ -30,13 +30,12 @@ exchange.validNum = function(numObj, obj) {
     }
     return true;
 }
-
 exchange.moneyExchangePopDiv = function() {
     $(".mainwrap p span").on('click', function() {
         $(".mainwrap p span").removeClass("cur");
         var id = $(this).addClass("cur").attr("id");
         $(".dtl").addClass("show_none")
-        $("."+id).removeClass("show_none");
+        $("." + id).removeClass("show_none");
     });
 }
 exchange.scrollView = function() {
@@ -47,6 +46,14 @@ exchange.scrollView = function() {
     } else {
         $("hgroup").removeClass("fixed");
     }
+}
+//验证加钱购买
+exchange.checkMoneyBuy = function() {
+    var colorSel = checkcolor();
+    if (!colorSel) {
+        return false;
+    }
+    return this.validNum($("#num"), null);
 }
 $(function() {
     try {
@@ -60,13 +67,12 @@ $(function() {
         alert(e);
     }
     $('.goodcolor').find("a").click(function() {
-
         gdcolornum = $(this).attr("stock");
         if (gdcolornum != 0) {
             $(".goodcolor a").attr("style", '');
             gdcolor = $(this).html(); //颜色
             $(this).attr("style", "border: 2px solid red");
-            $("#gdcolor").val(gdcolor);
+            $("#gdcolor").val($.trim(gdcolor));
         }
     });
     $(".jiahao,.jianhao").on('click', function() {

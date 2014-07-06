@@ -3,70 +3,76 @@
         <div style="width: 400px;" id="big_img">
             <img width="380" src="<?php echo $data['exchange']->img_url; ?>">
         </div>
-<!--        <ul>
-            <li class="cur">
-                <a href="javascript:;">
-                    <img src="http://z4.tuanimg.com/imagev2/trade/400x400.2a618920812b60ee22edc97feb93f7e2.58x58.jpg" bigimage-data="http://z4.tuanimg.com/imagev2/trade/400x400.2a618920812b60ee22edc97feb93f7e2.400x.jpg">
-                </a>
-            </li>
-        </ul>-->
+        <!--        <ul>
+                    <li class="cur">
+                        <a href="javascript:;">
+                            <img src="http://z4.tuanimg.com/imagev2/trade/400x400.2a618920812b60ee22edc97feb93f7e2.58x58.jpg" bigimage-data="http://z4.tuanimg.com/imagev2/trade/400x400.2a618920812b60ee22edc97feb93f7e2.400x.jpg">
+                        </a>
+                    </li>
+                </ul>-->
     </div>
     <div class="detailmeta r">
-        <h2 ><?php echo $data['exchange']->name; ?></h2>
-        <div class="panelA line_dashed_top">
-            <dl class="nubA ">
-                <dt>现价：</dt>
-                <dd> <strong class="red1 fs26">￥<i info="18"><?php echo $data['exchange']->active_price; ?></i></strong>
-                    +<span class="red1"><em class=" fs26"><?php echo $data['exchange']->integral; ?></em>积分</span>
-                </dd>
-            </dl>
-            <dl class="nubB ">
-                <dt>原价：</dt>
-                <dd>
-                    <del>￥<?php echo $data['exchange']->price; ?></del>
-                    <span id="discount"> （<?php echo round(($data['exchange']->active_price / $data['exchange']->price) * 10, 1) ?>折） </span>
-                </dd>
-            </dl>
-            <dl class="nubD line_dashed_top">
-                <dt>销量：</dt>
-                <dd>
-                    <b class="red1"><?php echo $data['exchange']->sale_num; ?></b>&nbsp;件
-                </dd>
-            </dl>
-            <dl class="nubD ">
-                <dt>选型：</dt>
-                <dd>
-                    <span class="goodcolor">
-                        <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
-                            <a <?php
-                            if ($value['gdcolornum'] == 0) {
-                                echo "class='be' stock='0' ";
-                            } else {
-                                echo 'stock=' . $value["gdcolornum"] . '' . ' sclor=' . $value["gdcolorname"] . '';
-                            }
-                            ?>  href="javascript:void(0)"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
-                            <?php endforeach; ?>
-                    </span>
-                </dd>
-            </dl>
-            <dl class="nubD ">
-                <dt>数量：</dt>
-                <dd>
-                    <?php
-                    $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                    echo CHtml::textField("Exchange[buyCount]", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum]);
-                    echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
-                    echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
-                    ?>
-                </dd>
-            </dl>
-            <dl class="nubD ">
-                <dt>
-                <input class="submit_ok" type="submit" address_id="" value="立即购买">
-                </dt>
-            </dl>
-        </div>
-    </div>    
+        <form method="POST" action="<?php echo Yii::app()->createUrl("exchange/order") ?>" onsubmit="return exchange.checkMoneyBuy();">
+            <h2 ><?php echo $data['exchange']->name; ?></h2>
+            <div class="panelA line_dashed_top">
+                <dl class="nubA ">
+                    <dt>现价：</dt>
+                    <dd> <strong class="red1 fs26">￥<i info="18"><?php echo $data['exchange']->active_price; ?></i></strong>
+                        +<span class="red1"><em class=" fs26"><?php echo $data['exchange']->integral; ?></em>积分</span>
+                    </dd>
+                </dl>
+                <dl class="nubB ">
+                    <dt>原价：</dt>
+                    <dd>
+                        <del>￥<?php echo $data['exchange']->price; ?></del>
+                        <span id="discount"> （<?php echo round(($data['exchange']->active_price / $data['exchange']->price) * 10, 1) ?>折） </span>
+                    </dd>
+                </dl>
+                <dl class="nubD line_dashed_top">
+                    <dt>销量：</dt>
+                    <dd>
+                        <b class="red1"><?php echo $data['exchange']->sale_num; ?></b>&nbsp;件
+                    </dd>
+                </dl>
+                <dl class="nubD ">
+                    <dt>选型：</dt>
+                    <dd>
+                        <span class="goodcolor">
+                            <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
+                                <a <?php
+                                if ($value['gdcolornum'] == 0) {
+                                    echo "class='be' stock='0' ";
+                                } else {
+                                    echo 'stock=' . $value["gdcolornum"] . '' . ' sclor=' . $value["gdcolorname"] . '';
+                                }
+                                ?>  href="javascript:void(0)"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
+                                <?php endforeach; ?>
+                        </span>
+                    </dd>
+                </dl>
+                <dl class="nubD ">
+                    <dt>数量：</dt>
+                    <dd>
+                        <?php
+                        $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
+                        echo CHtml::textField("Exchange[buyCount]", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum]);
+                        echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
+                        echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
+
+                        echo CHtml::hiddenField("Exchange[xuanxing]", '', ['id' => 'gdcolor']);
+                        echo CHtml::hiddenField("id", $params['goodsId']);
+                        echo CHtml::hiddenField("goods_type", $data['exchange']->goods_type);
+                        ?>
+                    </dd>
+                </dl>
+                <dl class="nubD ">
+                    <dt>
+                    <input class="submit_ok" type="submit" address_id="" value="立即购买">
+                    </dt>
+                </dl>
+            </div>
+        </form>
+    </div>
     <div class="clear_div"></div>
     <div class="full_div line_solid_top">
         <img src="http://z0.tuanimg.com/shop/v1/global/img/security.png">
