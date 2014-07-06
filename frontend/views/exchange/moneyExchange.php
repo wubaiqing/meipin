@@ -55,7 +55,7 @@
                     <dd>
                         <?php
                         $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum,'autocomplete'=>'off']);
+                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off']);
                         echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
                         echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
 
@@ -83,7 +83,7 @@
                 <p class="l">
                     <span id="productdetail" class=" cur"><a href="javascript:void(0);">宝贝详情</a></span>
                     <span id="xuzhi" class=""><a href="javascript:void(0);">购买须知</a></span>
-                    <span id="record" class=""><a href="javascript:void(0);">销量明细<b>(<?php echo $data['exchange']->sale_num?>)</b></a></span>
+                    <span id="record" class=""><a href="javascript:void(0);">销量明细<b>(<?php echo $data['exchange']->sale_num ?>)</b></a></span>
                 </p>
                 <p class="r">
                     <i></i><b><?php echo $data['exchange']->active_price; ?></b><del>￥<?php echo $data['exchange']->price; ?></del>
@@ -94,7 +94,24 @@
             <?php echo $data['exchange']->description ?>
         </div>
         <div class="dtl xuzhi show_none">
-            须知
+            <p>商家：<strong style="line-height:1.6">官方积分商城</strong></p>
+
+            <p>发货地点：<span style="line-height:1.6">北京市 &nbsp; &nbsp;</span></p>
+
+            <p>配送范围：<span style="line-height:1.6">全国</span></p>
+
+            <p>运费：<span style="line-height:1.6">内蒙古自治区,西藏自治区,甘肃省,青海省,宁夏回族自治区,新疆维吾尔自治区,台湾,香港,澳门不包邮，首件邮费20元；每加一件,邮费增加20元;全国其他地区包邮;</span></p>
+
+            <p>收货：<span style="line-height:1.6">您确认收货后，将打款给卖家； 发货后，15天内您未操作确认收货，系统将代替您自动完成确认收货。</span></p>
+
+            <p>包裹跟踪：<span style="line-height:1.6">您可在【我的订单】中查询包裹跟踪信息；</span></p>
+
+            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【我的订单】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由折800官方介入处理。</span></p>
+
+            <p><a>退货条件说明</a></p>
+
+            <p>退货运费由买卖双方协商</p>
+
         </div>
         <div class="dtl record show_none">
             <?php
