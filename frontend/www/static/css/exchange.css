@@ -344,6 +344,7 @@ border: 0;
     color: #cf201c;
     padding-top: 10px;
 }
+.border-red{border: 2px solid red}
 .exchange{background:#fff;margin-top:20px;width:980px;}
 .exchange .address,.exchange .paycls,.exchange .confcls,.exchange .confirm{text-align: left;border-bottom: 1px dotted #d4d4d4;padding-bottom: 20px;}
 .exchange .address h2,.exchange .paycls h2,.exchange .confcls h2,.confirm h2{line-height: 40px;height: 40px;text-align: left;color:#333;font:800 20px/40px "微软雅黑";padding: 5px;}

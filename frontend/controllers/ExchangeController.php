@@ -37,10 +37,10 @@ class ExchangeController extends Controller
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
 
-        if($dataResult['data']['exchange']->active_price>0){
+        if ($dataResult['data']['exchange']->active_price > 0) {
             $this->layout = '//layouts/money';
             $render = "moneyExchange";
-        }else{
+        } else {
             $this->layout = '//layouts/exchange';
             $render = "exchangeIndex";
         }
@@ -58,6 +58,7 @@ class ExchangeController extends Controller
     {
         $id = Yii::app()->request->getParam("id", 0);
         $goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        $buyCount = Yii::app()->request->getParam("buyCount", 1);
         if (!$this->isLogin) {
             $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor])]);
             $this->redirect($url);
@@ -74,11 +75,16 @@ class ExchangeController extends Controller
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
         $render = "order";
-        if($dataResult['data']['exchange']->goods_type == 0 && $dataResult['data']['exchange']->active_price >0){
+        if ($dataResult['data']['exchange']->goods_type == 0 && $dataResult['data']['exchange']->active_price > 0) {
             $render = "moneyOrder";
         }
         //渲染页面
-        $this->render($render, ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
+        $this->render($render, ['data' => $dataResult['data'], 'params' => [
+                'goodsId' => $id,
+                'token' => $dataResult['data']['token'],
+                'gdscolor' => $goodscolor,
+                'buyCount' => $buyCount,
+        ]]);
     }
 
     /**
@@ -181,6 +187,5 @@ class ExchangeController extends Controller
             'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
     }
-
 
 }

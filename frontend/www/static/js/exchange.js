@@ -1,16 +1,27 @@
 var exchange = {};
+//点击数量后增减
 exchange.numChange = function(obj) {
     var numObj = $("#num");
-    if (!this.validNum(numObj, obj)) {
-        return false;
+    var valinum = this.validNum(numObj, obj);
+    if (!valinum || obj == null || obj == undefined) {
+        return valinum;
     }
+
     if ($(obj).hasClass("jiahao")) {
-        var currCount = parseInt(numObj.val()) + 1;
-        numObj.val(currCount);
+        var buyCount = parseInt(numObj.val()) + 1;
+        numObj.val(buyCount);
     } else if ($(obj).hasClass("jianhao")) {
-        numObj.val((parseInt(numObj.val()) - 1) <= 0 ? 1 : (parseInt(numObj.val()) - 1));
+        var buyCount = (parseInt(numObj.val()) - 1) <= 0 ? 1 : (parseInt(numObj.val()) - 1);
+        numObj.val(buyCount);
+    }
+    //计算总价
+    var activePrice = $("#active_price").attr("price");
+    if (activePrice != undefined) {
+        var totalPrice = parseFloat(activePrice) * buyCount;
+        $("#total_price").html(totalPrice.toFixed(2));
     }
 }
+//验证购买数量
 exchange.validNum = function(numObj, obj) {
     var currCount = numObj.val();
     var regx = /^\d+$/;
@@ -38,6 +49,7 @@ exchange.moneyExchangePopDiv = function() {
         $("." + id).removeClass("show_none");
     });
 }
+//滚动条滚动后浮动显示
 exchange.scrollView = function() {
     var popPosition = $("hgroup").offset().top;
     var scrollbar = $(document).height() - $(window).height();
@@ -53,9 +65,21 @@ exchange.checkMoneyBuy = function() {
     if (!colorSel) {
         return false;
     }
-    return this.validNum($("#num"), null);
+    return this.numChange();
+}
+//默认选中选型
+exchange.defaultColor = function() {
+    var selectedColor = $.trim($("#gdcolor").val());
+    if ($.trim($("#gdcolor").val()) != "") {
+        $(".goodcolor a").each(function() {
+            if ($.trim($(this).html()) == selectedColor) {
+                $(this).attr("style", "border: 2px solid red");
+            }
+        });
+    }
 }
 $(function() {
+    exchange.defaultColor();
     try {
         $(".tb-tabbar").find("li").click(function() {
             $(".tb-tabbar").find("li").removeClass("selected");
@@ -80,7 +104,7 @@ $(function() {
         return false;
     });
     $("#num").blur(function() {
-        exchange.numChange($(".jiahao"));
+        exchange.numChange();
     });
     //加钱购买详情
     exchange.moneyExchangePopDiv();

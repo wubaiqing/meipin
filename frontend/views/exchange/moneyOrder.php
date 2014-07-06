@@ -75,18 +75,18 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                                     </em>
                                 </div>
                             </td>
-                            <td><?php echo $data['exchange']->active_price ?></td>
+                            <td id="active_price" price="<?php echo $data['exchange']->active_price ?>"><?php echo $data['exchange']->active_price ?></td>
                             <td style="float: left;padding-top: 30px;"><?php
                                 $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                                echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum]);
+                                echo CHtml::textField("buyCount", $params['buyCount'], ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off']);
                                 echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
                                 echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
                                 ?>
                             </td>
-                            <td><span class="font-red font-bold"><b><?php
-                                    $price = floatval($data['exchange']->active_price) * 2;
-                                    echo number_format($price, 2);
-                                    ?></b></span></td>
+                            <td><span class="font-red font-bold" id="total_price"><?php
+                                        $price = floatval($data['exchange']->active_price) * $params['buyCount'];
+                                        echo number_format($price, 2);
+                                        ?></span></td>
                             <td><?php echo $data['exchange']->integral ?></td>
                             <td>0元包邮</td>
                         </tr>

@@ -55,7 +55,7 @@
                     <dd>
                         <?php
                         $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum]);
+                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum,'autocomplete'=>'off']);
                         echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
                         echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
 
@@ -81,14 +81,14 @@
         <div class="title">
             <hgroup class="">
                 <p class="l">
-                    <span id="productdetail" class=" cur"><a href="javascript:;">宝贝详情</a></span>
-                    <span id="xuzhi" class=""><a href="javascript:;">购买须知</a></span>
-                    <span id="record" class=""><a href="javascript:;">销量明细<b>(3)</b></a></span>
+                    <span id="productdetail" class=" cur"><a href="javascript:void(0);">宝贝详情</a></span>
+                    <span id="xuzhi" class=""><a href="javascript:void(0);">购买须知</a></span>
+                    <span id="record" class=""><a href="javascript:void(0);">销量明细<b>(<?php echo $data['exchange']->sale_num?>)</b></a></span>
                 </p>
                 <p class="r">
                     <i></i><b><?php echo $data['exchange']->active_price; ?></b><del>￥<?php echo $data['exchange']->price; ?></del>
-                    <span class="s2"><a href="#">立即购买</a></span>    </p>
-            </hgroup>        
+                    <span class="s2"><a href="javascript:void(0)">立即购买</a></span>    </p>
+            </hgroup>
         </div>
         <div class="dtl productdetail">
             <?php echo $data['exchange']->description ?>
