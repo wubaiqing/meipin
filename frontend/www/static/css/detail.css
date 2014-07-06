@@ -1,0 +1,35 @@
+img{display:inline-block}
+.detail{width:980px;margin: auto;margin-top: 20px;height: 1000px;background: #fff;}
+.clear,.area,.pp,.pt{zoom:1}
+.line_dashed_bottom{border-bottom: 1px dashed #e5e5e5}
+.line_dashed_top{border-top: 1px dashed #e5e5e5}
+
+.goodcolor {width:550px;}
+.goodcolor a{display: inline-block;min-width: 90px;min-height: 24px;line-height: 24px;text-align: center;border: 1px solid #CCC;color: #000;padding: 1px;overflow:hidden;}
+.goodcolor a.be{color:#CCC;}
+
+.border-top-dashed{border-top:1px dashed #000; }
+.border-button-dashed{border-top:1px dashed #000; }
+#num{border: 1px solid #CCC;width: 70px;height: 24px;text-align: center;position: absolute;float: left;}
+.jianhao,.jianhao_disabled{display: block;width: 10px;height: 24px;line-height: 24px;position: relative;top: -23px;left: 0px;padding-left: 5px;font-size: 16px;font-weight: bold;}
+.jiahao,.jiahao_disabled{display: block;width: 10px;height: 24px;line-height: 24px;position: relative;top: 3px;left: 55px;padding-left: 5px;font-size: 16px;font-weight: bold;}
+.color_gray{color:#ccc}
+
+
+.deteilpic{padding: 20px 0 0 20px;}
+.deteilpic ul{width: 408px;margin-top: 15px;}
+.deteilpic ul li{width: 58px;margin-right: 8px;height: 58px;float: left;border: 1px solid #f3f3f3;}
+.deteilpic ul li.cur{border-color: #e02f2f;}
+
+.detailmeta{width: 550px;text-align: left;}
+.detailmeta .panelA{padding: 20px 200px 0 20px;margin-top: 15px;line-height: 30px;float: left;width: 330px;}
+.detailmeta h2{font:400 20px/30px "微软雅黑";color:#333;width:480px;text-align: left;padding:10px;overflow: hidden;}
+
+.detailmeta .panelA dl{margin-bottom:6px}
+.detailmeta .panelA dt{/*width:40px;*/float:left}
+.detailmeta .panelA dd{display:table;*float:left;font-family:'Arial';/*width: 310px*/}
+.detailmeta .nubA{line-height: 26px}/*A 现价 B 原价 C 时间 D销量 E24发货 F 会员等级 */
+.detailmeta .nubA dd .fs26{font-size:26px}
+.detailmeta .red1{color:#e02f2f}
+.detailmeta .nubA dd .fs26{font-size:26px}
+.detailmeta .nubA dd i{font-size:26px}

@@ -37,8 +37,15 @@ class ExchangeController extends Controller
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
 
+        if($dataResult['data']['exchange']->active_price>0){
+            $this->layout = '//layouts/money';
+            $render = "moneyExchange";
+        }else{
+            $this->layout = '//layouts/exchange';
+            $render = "exchangeIndex";
+        }
         //渲染頁面
-        $this->render('exchangeIndex', [
+        $this->render($render, [
             'data' => $dataResult['data'],
             'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);

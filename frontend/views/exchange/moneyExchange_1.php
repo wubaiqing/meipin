@@ -1,4 +1,43 @@
 <div id="contentA" class="contentA">
+    <div class="deteilpic l">
+    <figure style="height: 400px;">
+          <img src="http://z4.tuanimg.com/imagev2/trade/400x400.7b3ff3d7ff22ac777e782c59d149fc4e.400x.jpg">
+    </figure>
+    <ul>
+          <li class="">
+            <a href="javascript:;">
+              <img src="http://z4.tuanimg.com/imagev2/trade/400x400.2a618920812b60ee22edc97feb93f7e2.58x58.jpg" bigimage-data="http://z4.tuanimg.com/imagev2/trade/400x400.2a618920812b60ee22edc97feb93f7e2.400x.jpg">
+            </a>
+          </li>
+          <li class="cur">
+            <a href="javascript:;">
+              <img src="http://z4.tuanimg.com/imagev2/trade/400x400.7b3ff3d7ff22ac777e782c59d149fc4e.58x58.jpg" bigimage-data="http://z4.tuanimg.com/imagev2/trade/400x400.7b3ff3d7ff22ac777e782c59d149fc4e.400x.jpg">
+            </a>
+          </li>
+    </ul>
+  </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <div class="left">
         <div class="pt">
             <img src="<?php echo $data['exchange']->img_url; ?>">
@@ -24,20 +63,30 @@
                 <h2>
                     <span><?php echo $data['exchange']->name; ?></span>
                 </h2>
-                <h3>
-                    <span>所需积分</span><em><?php echo $data['exchange']->integral; ?></em>积分<br>
-                    <span>价值&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><i>&nbsp;&nbsp;&nbsp;￥</i><?php echo $data['exchange']->price; ?></strong><br>
-                    <span>兑奖名额</span><b><?php echo $data['exchange']->num; ?></b><br/>
+                <h3 class="border-top-dashed">
+                    <span>现价：</span><em>￥19+<?php echo $data['exchange']->integral; ?></em>积分<br>
+                    <span>原价：</span><i>￥</i><del><?php echo $data['exchange']->price; ?></del>&nbsp;(<?php echo round(($data['exchange']->active_price/$data['exchange']->price)*10, 1)?>折)<br>
+                </h3>
+                <h3 class="border-top-dashed">
+                    <span>销量：</span><b style="color:#cc0000;"><?php echo $data['exchange']->sale_num; ?></b> &nbsp;件<br/>
                     <?php if ($data['exchange']->goodscolor): ?>
                         <span class='goodcolor'>
-
+                            <span>
+                            选型：
+                            </span>
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
-
                     <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
                     <?php endforeach;?>
-
                         </span>
                     <?php endif; ?>
+                    <span>数量：</span>
+                        <?php 
+                        $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
+                        echo CHtml::textField("Exchange[buyCount]",$data['exchange']->buyCount,['id'=>'num','limitNum'=>$leftNum]); 
+                        echo Chtml::link("+","javascript:",['class'=>'jiahao']);
+                        echo Chtml::link("-","javascript:",['class'=>'jianhao']);
+                        ?>
+                    <br>
                 </h3>
                 <h4>
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>
@@ -46,7 +95,6 @@
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已兑换</a>
                     <em>(当前库存<b><?php
-                            $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
                             echo $leftNum > 0 ? $leftNum : 0;
                             ?></b>件)</em>
                 </h4>
@@ -94,7 +142,6 @@
     </div>
 
 </div>
-
 <script type="text/javascript">
     $(function () {
         try {

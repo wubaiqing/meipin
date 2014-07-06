@@ -1,22 +1,32 @@
 var exchange = {};
 exchange.numChange = function(obj) {
-    var num = $("#num").val();
-    if (!this.validNum(num)) {
-        $("#num").val("1");
+    var numObj = $("#num");
+    if (!this.validNum(numObj,obj)) {
         return false;
     }
     if ($(obj).hasClass("jiahao")) {
-        $("#num").val(parseInt(num) + 1);
+        var currCount = parseInt(numObj.val()) + 1;
+        numObj.val(currCount);
     } else if ($(obj).hasClass("jianhao")) {
-        $("#num").val((parseInt(num) - 1) <= 0 ? 1 : (parseInt(num) - 1));
+        numObj.val((parseInt(numObj.val()) - 1) <= 0 ? 1 : (parseInt(numObj.val()) - 1));
     }
 }
-exchange.validNum = function(num) {
+exchange.validNum = function(numObj,obj) {
+    var currCount = numObj.val();
     var regx = /^\d+$/;
-    if (!regx.test(num)) {
+    if (!regx.test(currCount)) {
         alert("购买数量必须为正整数");
-        x
         return false;
+    }
+    var limitNum = numObj.attr("limitnum");
+    if ($(obj).hasClass("jiahao")) {
+        if (parseInt(currCount) >= parseInt(limitNum)-1) {
+            $(".jiahao").addClass("color_gray");
+            numObj.val(limitNum)
+            return false;
+        }
+    } else if ($(obj).hasClass("jianhao")) {
+        $(".jiahao").removeClass("color_gray");
     }
     return true;
 }
@@ -41,11 +51,13 @@ $(function() {
             $("#gdcolor").val(gdcolor);
         }
     });
-    $(".jiahao,.jianhao").click(function() {
+    $(".jiahao,.jianhao").on('click', function() {
         exchange.numChange(this);
         return false;
     });
-
+    $("#num").blur(function(){
+       exchange.numChange($(".jiahao"));
+    });
 });
 function checkcolor()
 {

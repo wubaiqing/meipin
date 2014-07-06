@@ -45,7 +45,7 @@
 #contentA .left .blockB li img{width:40px;height:40px;}
 
 #contentA .right{width:650px;}
-#contentA .deal{text-align: left;width:auto;height:auto;}
+#contentA .deal{text-align: left;width:95%;height:auto;margin-left: 10px;}
 #contentA .deal h2{padding:5px 20px ;line-height:30px;margin-top:10px;}
 #contentA .deal h2 span{font:400 20px/30px "微软雅黑";color:#333;width:480px;text-align: left;height:60px;overflow: hidden;}
 #contentA .deal h2 a{color:#09c;}
@@ -407,12 +407,12 @@ border: 0;
 .send_code .sendBtn{border:1px solid #f0f0f0;}
 
 .goodcolor {width:550px;}
-.goodcolor a{display: inline-block;min-width: 90px;min-height: 24px;line-height: 24px;text-align: center;border: 1px solid #CCC;color: #000;padding: 1px;overflow:hidden;
-    }
+.goodcolor a{display: inline-block;min-width: 90px;min-height: 24px;line-height: 24px;text-align: center;border: 1px solid #CCC;color: #000;padding: 1px;overflow:hidden;}
 .goodcolor a.be{color:#CCC;}
 
 .border-top-dashed{border-top:1px dashed #000; }
 .border-button-dashed{border-top:1px dashed #000; }
-#num{border: 1px solid #CCC;width: 100px;height: 24px;text-align: center;position: absolute;float: left;}
-.jianhao{display: block;width: 24px;height: 24px;line-height: 24px;position: relative;top: -48px;left: 55px;padding-left: 5px;font-size: 16px;font-weight: bold;}
-.jiahao{display: block;width: 24px;height: 24px;line-height: 24px;position: relative;top: -23px;left: 135px;padding-left: 5px;font-size: 16px;font-weight: bold;}
+#num{border: 1px solid #CCC;width: 70px;height: 24px;text-align: center;position: absolute;float: left;}
+.jianhao,.jianhao_disabled{display: block;width: 10px;height: 24px;line-height: 24px;position: relative;top: -48px;left: 55px;padding-left: 5px;font-size: 16px;font-weight: bold;}
+.jiahao,.jiahao_disabled{display: block;width: 10px;height: 24px;line-height: 24px;position: relative;top: -23px;left: 110px;padding-left: 5px;font-size: 16px;font-weight: bold;}
+.color_gray{color:#ccc}
