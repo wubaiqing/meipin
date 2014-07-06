@@ -20,6 +20,7 @@ class ExchangeController extends Controller
      */
     public $scoreService;
 
+    public $cat = 0;
     public function init()
     {
         parent::init();
@@ -43,6 +44,11 @@ class ExchangeController extends Controller
         } else {
             $this->layout = '//layouts/exchange';
             $render = "exchangeIndex";
+        }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
         }
         //渲染頁面
         $this->render($render, [
@@ -78,6 +84,12 @@ class ExchangeController extends Controller
         if ($dataResult['data']['exchange']->goods_type == 0 && $dataResult['data']['exchange']->active_price > 0) {
             $render = "moneyOrder";
         }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
+        
         //渲染页面
         $this->render($render, ['data' => $dataResult['data'], 'params' => [
                 'goodsId' => $id,
@@ -177,6 +189,11 @@ class ExchangeController extends Controller
         }
         if ($dataResult['data']['exchange']->goods_type != 1) {
             $this->pageRedirect('no', "商品不是抽奖商品，请重新选择", Yii::app()->createUrl("site/raffle"));
+        }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
         }
         //查询中奖明细
         $winerList = ExchangeLog::getWinners($goodsId);
