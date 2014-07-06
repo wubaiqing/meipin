@@ -52,11 +52,15 @@ $isSignDay = User::isSignDay();
                 $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
             ?>
                 <li>
-                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="190px" height="124px;" /></a>
+                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="245px" height="124px;" /></a>
                     <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
                     <p>剩余：<span><?php echo $goods['num']; ?><span>份</p>
                     <dl>
-                        <dt><span><?php echo $goods['integral']; ?></span>分</dt>
+                        <dt>价格：<span>
+                            <?php if($goods['active_price']>0):?>
+                            ￥<?php echo $goods['active_price']?>+
+                            <?php endif;?>
+                                <?php echo $goods['integral']; ?>分</span></dt>
                         <dd><a href="<?php echo $url; ?>" target='_blank'><img src="/static/images/woyaohuan.png"></a></dd>
                         <br>
                      </dl>
