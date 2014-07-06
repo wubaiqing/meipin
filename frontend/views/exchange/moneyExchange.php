@@ -59,10 +59,15 @@
                     ?>
                 </dd>
             </dl>
+            <dl class="nubD ">
+                <dt>
+                    <input class="submit_no" type="submit" address_id="" value="立即购买">
+                </dt>
+            </dl>
         </div>
-        <div class="submit_ok ">
-            <input type="hidden" id="productState" value="3">
-            <span class="s2"><input type="submit" value="立即购买" class="gbtn"></span>
-        </div>  
     </div>    
+    <div class="clear_div"></div>
+    <div class="full_div line_solid_top">
+        <img src="http://z0.tuanimg.com/shop/v1/global/img/security.png">
+    </div>
 </div>
