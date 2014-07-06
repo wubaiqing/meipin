@@ -52,7 +52,7 @@ $isSignDay = User::isSignDay();
                 $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
             ?>
                 <li>
-                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="245px" height="124px;" /></a>
+                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="290" height="290" /></a>
                     <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
                     <p>剩余：<span><?php echo $goods['num']; ?><span>份</p>
                     <dl>
