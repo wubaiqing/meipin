@@ -17,9 +17,9 @@ echo $form->errorSummary($exchangeModel);
 $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchangeModel->start_time < time());
 ?>
 <!--<div class="control-group">
-    <?php echo $form->labelEx($exchangeModel, 'goods_type', ['class' => 'control-label', 'maxlength' => 50]); ?>
+<?php echo $form->labelEx($exchangeModel, 'goods_type', ['class' => 'control-label', 'maxlength' => 50]); ?>
     <div class="controls">
-        <?php echo $form->dropDownList($exchangeModel, 'goods_type', Exchange::$goodsType, ['disabled' => $online ? true : false]); ?>
+<?php echo $form->dropDownList($exchangeModel, 'goods_type', Exchange::$goodsType, ['disabled' => $online ? true : false]); ?>
         <label class="line-note">用于区分积分类商品的不同类型</label>
     </div>
 </div>-->
@@ -49,6 +49,13 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     <div class="controls">
         <?php echo $form->textField($exchangeModel, 'price'); ?>
         <label class="line-note">商品标准售价</label>
+    </div>
+</div>
+<div class="control-group">
+    <?php echo $form->labelEx($exchangeModel, 'active_price', array('class' => 'control-label')); ?>
+    <div class="controls">
+        <?php echo $form->textField($exchangeModel, 'active_price'); ?>
+        <label class="line-note">加钱换购金额，除积分外，用户还需要额外支付的金额</label>
     </div>
 </div>
 <div class="control-group">
@@ -104,7 +111,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     <div class="control-group">
         <?php echo $form->labelEx($exchangeModel, 'limit_count', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->textField($exchangeModel, 'limit_count',[]); ?>
+            <?php echo $form->textField($exchangeModel, 'limit_count', []); ?>
             <label class="line-note">最大中奖用户数</label>
         </div>
     </div>
@@ -161,6 +168,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     <?php echo $form->labelEx($exchangeModel, 'description', array('class' => 'control-label')); ?>
     <div class="controls">
         <?php echo $form->textArea($exchangeModel, 'description'); ?>
+        <script type="text/javascript">CKEDITOR.replace('Exchange[description]');</script>
     </div>
 </div>
 <div class="form-actions">

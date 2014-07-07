@@ -3,8 +3,8 @@ var exchange = {};
  * 更新发货状态
  * @param {type} status 当前操作对象
  * */
-exchange.orderStatusChange = function(url, status) {
-    $.post(url, {'ExchangeLog[status]': status, 'formType': 'status'}, function(d) {
+exchange.orderStatusChange = function(url, params) {
+    $.post(url, params, function(d) {
         if (d.status) {
             window.location.href = location.href;
         }
@@ -40,21 +40,13 @@ $(function() {
     });
     //详情页面配送状态修改
     $("#status_edit").click(function() {
+        if($("#ExchangeLog_status").val() == 1 && ($("#ExchangeLog_logistics").val() == 0 || $.trim($("#ExchangeLog_logistics_code").val()) == "")){
+            alert("物流信息必须填写");return;
+        }
         var url = $("#status-form").attr("action");
-        var status = $("#ExchangeLog_status").val();
-        var oldStatus = $("#ExchangeLog_status").attr("status");
-        $("#status").remove();
-        if (oldStatus == status ||
-                oldStatus == 1 && oldStatus != status && !confirm("当前状态为【已发货】，您确认要修改为【未发货】？")) {
-            $(this).after("<span id='status' style='color:red;'>发货状态没有改变</span>");
-            $("#ExchangeLog_status").attr("value",oldStatus);
-            return false;
-        }
-        else if(oldStatus == 0 && oldStatus != status && !confirm("当前状态为【未发货】，您确认要修改为【已发货】？")){
-            return false;
-        }
+        var params = $("#status-form").serialize();
         $(this).after("<span id='status' style='color:red;'>请稍等...</span>");
-        exchange.orderStatusChange(url, status);
+        exchange.orderStatusChange(url, params);
     });
     //列表页面，配送状态修改
     $(".exchange_list_status").click(function() {

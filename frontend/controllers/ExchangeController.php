@@ -20,6 +20,7 @@ class ExchangeController extends Controller
      */
     public $scoreService;
 
+    public $cat = 0;
     public function init()
     {
         parent::init();
@@ -37,8 +38,20 @@ class ExchangeController extends Controller
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
 
+        if ($dataResult['data']['exchange']->active_price > 0) {
+            $this->layout = '//layouts/money';
+            $render = "moneyExchange";
+        } else {
+            $this->layout = '//layouts/exchange';
+            $render = "exchangeIndex";
+        }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
         //渲染頁面
-        $this->render('exchangeIndex', [
+        $this->render($render, [
             'data' => $dataResult['data'],
             'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
@@ -51,8 +64,9 @@ class ExchangeController extends Controller
     {
         $id = Yii::app()->request->getParam("id", 0);
         $goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        $buyCount = Yii::app()->request->getParam("buyCount", 1);
         if (!$this->isLogin) {
-            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor])]);
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor,"buyCount"=>$buyCount])]);
             $this->redirect($url);
             Yii::app()->end();
         }
@@ -66,8 +80,23 @@ class ExchangeController extends Controller
             }
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
+        $render = "order";
+        if ($dataResult['data']['exchange']->goods_type == 0 && $dataResult['data']['exchange']->active_price > 0) {
+            $render = "moneyOrder";
+        }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
+        
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
+        $this->render($render, ['data' => $dataResult['data'], 'params' => [
+                'goodsId' => $id,
+                'token' => $dataResult['data']['token'],
+                'gdscolor' => $goodscolor,
+                'buyCount' => $buyCount,
+        ]]);
     }
 
     /**
@@ -161,6 +190,11 @@ class ExchangeController extends Controller
         if ($dataResult['data']['exchange']->goods_type != 1) {
             $this->pageRedirect('no', "商品不是抽奖商品，请重新选择", Yii::app()->createUrl("site/raffle"));
         }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
         //查询中奖明细
         $winerList = ExchangeLog::getWinners($goodsId);
         //渲染頁面
@@ -170,6 +204,5 @@ class ExchangeController extends Controller
             'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
     }
-
 
 }

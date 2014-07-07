@@ -94,6 +94,7 @@
     </div>
 
 </div>
+
 <script type="text/javascript">
     $(function () {
         try {
@@ -127,4 +128,6 @@
       }
       return true;
   }
+
 </script>
+

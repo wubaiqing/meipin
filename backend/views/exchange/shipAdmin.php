@@ -53,6 +53,13 @@
                 . ' href=\"javascript:void(0);\">".ExchangeLog::getStatus($data->status)."</a>"',
                 'htmlOptions' => array('width' => '80')
             ],
+            'logic' => array(
+                'type' => 'raw',
+                'name' => '物流信息',
+                'id' => 'lotistics',
+                'value' => 'ExchangeLog::getLogistics($data)',
+                'htmlOptions' => array('width' => '180')
+            ),
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{update}',
