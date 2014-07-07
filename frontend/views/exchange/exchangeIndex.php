@@ -94,9 +94,6 @@
     </div>
 
 </div>
-<<<<<<< HEAD
-=======
-
 <script type="text/javascript">
     $(function () {
         try {
@@ -131,4 +128,3 @@
       return true;
   }
 </script>
->>>>>>> develop
