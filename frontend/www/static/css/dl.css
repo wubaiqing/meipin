@@ -1,0 +1,141 @@
+﻿body, div, p, ul, li, dl, dt, dd, form, input, table, img, h1, h2, h3, h4, h5, h6, header, section, footer, nav, figure, figcaption, article {
+    margin: 0;
+    padding: 0;
+}
+body {
+	background: none repeat scroll 0 0 #EBEBEB;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+body, a {
+    color: #008491;
+}
+a, a:hover {
+    text-decoration: none;
+}
+em, i {
+    font-style: normal;
+}
+img {
+    border: medium none;
+}
+ul {
+    list-style-type: none;
+}
+.l {
+    float: left;
+}
+.r {
+    float: right;
+}
+.clear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.clear {
+}
+.fColor1 {
+    color: #666666;
+}
+.fColor2 {
+    color: #F72434;
+}
+header {
+    border-bottom: 1px solid #D9D9D9;
+    box-shadow: 0 1px 0 #FFFFFF;
+    margin: 30px 30px 25px;
+    padding-bottom: 20px;
+    }
+header img {
+    border-radius: 10px 10px 10px 10px;
+    margin-right: 17px;
+}
+header h2 {
+    font: 320 10px/10px "微软雅黑";
+    margin-bottom: 3px;
+}
+header em {
+    font-size: 20px;
+}
+section {
+    clear: both;
+    margin: 0 20px;
+}
+.cellphone {
+    background: url(/static/images/dl/ard.jpg) no-repeat scroll 0 0 transparent;
+    height: 240px;
+    margin-bottom: 18px;
+    width: 130px;
+}
+.android-cellphone {
+    background: url(/static/images/dl/ard.jpg) no-repeat scroll 0 0 transparent;
+    height: 332px;
+    margin-bottom: 15px;
+    width: 166px;
+}
+.cellphone img {
+    margin: 30px 0 0 10px;
+}
+.android-cellphone img {
+    margin-top: 40px;
+}
+.cph2 {
+    background: url("/static/images/dl/ard.jpg") repeat scroll 0 0 transparent;
+    height: 310px;
+    width: 168px;
+}
+.cph2 img {
+    margin-top: 30px;
+}
+.sp dt {
+    font-size: 16px;
+    margin: 30px 0 16px;
+}
+.sp dd {
+    font-size: 10px;
+    line-height: 30px;
+    margin: 5px 0;
+}
+.sp dd i {
+    background: none repeat scroll 0 0 #A4A4A4;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 3px #FFFFFF;
+    float: left;
+    height: 11px;
+    margin: 8px 8px 0 0;
+    overflow: hidden;
+    width: 11px;
+}
+.dlBtn {
+	background: url(/static/images/dl/btn2.png) repeat scroll 0 0 transparent;
+	border-radius: 10px 10px 10px 10px;
+	clear: both;
+	color: ##E53049;
+	display: block;
+	font-size: 18px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	margin-top: 0;
+	margin-right: 30px;
+	margin-bottom: 20px;
+	margin-left: 30px;
+    }
+.dlBtn:hover {
+	box-shadow: 0 0 10px #FFFFFF inset, 0 0 3px #AAAAAA;
+	background-color: #E53049;
+}
+.dlBtn2 {
+    background: url("/static/images/dl/btn2.png") repeat scroll 0 0 transparent;
+}
+.goVt {
+    text-align: center;
+}
+.goVt a {
+    font-size: 14px;
+    font-weight: 320;
+    text-decoration: underline;
+}
