@@ -39,7 +39,7 @@
     	<dt class="fColor2 STYLE3">特色功能</dt>
         <dd class="STYLE6">美品网精品折扣，精选独家优惠</dd>
         <dd class="STYLE6">支持手机端通过淘宝直接购买</dd>
-        <dd class="STYLE6">提供明日秒杀商品预告 ！！</dd>
+        <dd class="STYLE6">每日更新数百款商品</dd>
         </dl>
     
     <div class="r cellphone"><img src="/static/images/dl/tao800_1.jpg" width="110" height="173"></div>
