@@ -224,4 +224,10 @@ class SiteController extends Controller
         ]);
     }
 
+    function actionDownload()
+    {
+        $this->layout = "";
+        $this->render('download');
+    }
+
 }
