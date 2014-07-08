@@ -160,7 +160,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('user_id', $userId);
-        
+        $criteria->addCondition("order_id =''");
         $this->dbCriteria->mergeWith($criteria);
 
         return $this;

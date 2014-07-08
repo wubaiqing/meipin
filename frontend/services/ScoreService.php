@@ -165,6 +165,8 @@ class ScoreService
         $transaction = Yii::app()->db->beginTransaction();
         try {
             $payOrder = null;
+            $integral = $goods->integral;
+            $scoreLog = ($goods->goods_type == 0) ? "积分兑换" : "积分抽奖" . ":" . $goods->name;
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = [
@@ -185,6 +187,7 @@ class ScoreService
             if ($goods->goods_type == 0 && $goods->active_price > 0) {
                 $buyCount = 2;
                 $orderId = CommonHelper::generateOrderId($exchangeLog->id);
+                $integral = $buyCount * $goods->integral;
                 $payOrder = new Order();
                 $payOrder->attributes = [
                     'order_id' => $orderId,
@@ -215,14 +218,14 @@ class ScoreService
             }
             Exchange::model()->updateByPk($goods->id, $uparray);
             //更新用戶积分
-            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $goods->integral)]);
+            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $integral)]);
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [
-                'score' => $goods->integral * -1,
+                'score' => $integral * -1,
                 'user_id' => $user->id,
                 'reason' => 2,
-                'remark' => ($goods->goods_type == 0) ? "积分兑换" : "积分抽奖" . ":" . $goods->name
+                'remark' => $scoreLog
             ];
             $score->insert();
             //删除放重复提交token
