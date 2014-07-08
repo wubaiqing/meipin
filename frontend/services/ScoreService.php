@@ -102,10 +102,10 @@ class ScoreService
         }
         //校验加钱兑换商品数据
         if ($goods->goods_type == 0 && $goods->active_price > 0) {
-            return CommonHelper::getDataResult(false, [
-                        'message' => "支付接口未提供，暂时无法下单",
-                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
-            ]);
+//            return CommonHelper::getDataResult(false, [
+//                        'message' => "支付接口未提供，暂时无法下单",
+//                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+//            ]);
         }
         //校验商品
         if ($goods->start_time > $nowTime) {
@@ -164,8 +164,7 @@ class ScoreService
         //执行兑换
         $transaction = Yii::app()->db->beginTransaction();
         try {
-            //更新用戶积分
-            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $goods->integral)]);
+            $payOrder = null;
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = [
@@ -182,7 +181,27 @@ class ScoreService
                 'mobile' => $userAddress->mobile,
             ];
             $exchangeLog->insert();
-
+            //积分加钱兑换生成订单
+            if ($goods->goods_type == 0 && $goods->active_price > 0) {
+                $buyCount = 2;
+                $orderId = CommonHelper::generateOrderId($exchangeLog->id);
+                $payOrder = new Order();
+                $payOrder->attributes = [
+                    'order_id' => $orderId,
+                    'pay_status' => 0,
+                    'order_type' => 1,
+                    'created_at' => $nowTime,
+                    'pay_way' => 1,
+                    'buy_count' => $buyCount,
+                    'market_price' => $goods->price,
+                    'pay_price' => $buyCount * $goods->active_price,
+                    'integral' => $buyCount * $goods->integral,
+                ];
+                $payOrder->insert();
+                //更新关联订单号
+                $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
+            }
+            
             $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
             //如果是抽奖商品就不需要增加兑换商品数量了
@@ -195,6 +214,8 @@ class ScoreService
                     'goodscolor' => $order['goodscolor']);
             }
             Exchange::model()->updateByPk($goods->id, $uparray);
+            //更新用戶积分
+            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $goods->integral)]);
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [

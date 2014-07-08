@@ -10,6 +10,12 @@ return [
         'import' => [
             'application.services.*',
         ],
+//        'modules'=>array(
+//            'gii'=>array(
+//                'class'=>'system.gii.GiiModule',
+//                'password'=>'meipin'
+//            ),
+//        ),
         'components' => [
             'urlManager' => [
                 'urlFormat' => 'path',
