@@ -56,6 +56,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'address' => '配送地址',
         ];
     }
+
     /**
      * 多表关连查询
      */
@@ -132,9 +133,32 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @param  integer $page   当前页数
      * @return mixed
      */
-    public static function getWelfare($userId, $page,$type = 0)
+    public static function getWelfareKey($userId, $page, $type = 0)
     {
-        $cacheKey = 'meipin-get-welfare-' . $userId . '-' . $page . "-" . $type;
+        return 'meipin-get-welfare-' . $userId . '-' . $page . "-" . $type;
+    }
+
+    /**
+     * 积分兑换礼品
+     * @param  integer $userId 用户ID
+     * @param  integer $page   当前页数
+     * @return mixed
+     */
+    public static function deleteWelfareCache($userId, $page, $type = 0)
+    {
+        $key = self::getWelfareKey($userId, $page, $type);
+        Yii::app()->cache->delete($key);
+    }
+
+    /**
+     * 积分兑换礼品
+     * @param  integer $userId 用户ID
+     * @param  integer $page   当前页数
+     * @return mixed
+     */
+    public static function getWelfare($userId, $page, $type = 0)
+    {
+        $cacheKey = self::getWelfareKey($userId, $page, $type = 0);
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
@@ -158,16 +182,16 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @param  integer     $type 类型，0：普通兑换；1：支付订单
      * @return CDbCriteria
      */
-    public function welfareDataList($userId,$type = 0)
+    public function welfareDataList($userId, $type = 0)
     {
         $criteria = new CDbCriteria;
         $criteria->compare('t.user_id', $userId);
-        if($type == 0){
+        if ($type == 0) {
             $criteria->addCondition("t.order_id =''");
-        }else if($type == 1){
+        } else if ($type == 1) {
             $criteria->addCondition("t.order_id !=''");
             $criteria->with = ['order'];
-            $criteria->order ='order.created_at desc';
+            $criteria->order = 'order.created_at desc';
         }
         $this->dbCriteria->mergeWith($criteria);
 
@@ -229,9 +253,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
-        } 
-        $result = ExchangeLog::model()->findAllByAttributes(['winner'=>1,'goods_id'=>$goods_id]);
-        Yii::app()->cache->set($cacheKey, $result,  Constants::T_HALF_HOUR);
+        }
+        $result = ExchangeLog::model()->findAllByAttributes(['winner' => 1, 'goods_id' => $goods_id]);
+        Yii::app()->cache->set($cacheKey, $result, Constants::T_HALF_HOUR);
         return $result;
     }
 

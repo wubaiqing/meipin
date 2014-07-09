@@ -182,10 +182,13 @@ class OrderService
                 //该种交易状态只在一种情况下出现——开通了高级即时到账，买家付款成功后。
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
+                $order = Order::model()->findByPk($out_trade_no);
                 Order::model()->updateByPk($out_trade_no, [
                     'pay_time' => strtotime($notify_time),
                     'pay_status' => 4
                 ]);
+                //清楚订单列表缓存
+                ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
             }
             //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
             echo "success";  //请不要修改或删除
@@ -205,8 +208,6 @@ class OrderService
         //计算得出通知验证结果
         $alipayNotify = new AlipayNotify($alipay_config);
         $verify_result = $alipayNotify->verifyReturn();
-        echo json_encode($_GET);
-        die;
         if ($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //请在这里加上商户的业务逻辑程序代码
