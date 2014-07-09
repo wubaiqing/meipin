@@ -189,7 +189,7 @@ class ScoreService
             $exchangeLog->insert();
             //积分加钱兑换生成订单
             if ($goods->goods_type == 0 && $goods->active_price > 0) {
-                $buyCount = 1;
+                $buyCount = $order['buyCount'];
                 $orderId = CommonHelper::generateOrderId($exchangeLog->id);
                 $integral = $buyCount * $goods->integral;
                 $payOrder = new Order();
