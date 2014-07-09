@@ -228,6 +228,12 @@ class OrderService
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
+                if(preg_match("/^\d+$/", $out_trade_no)){
+                    $order = Order::model()->findByPk($out_trade_no);
+                    if(!empty($order)){
+                        ExchangeLog::deleteWelfareCache($order->user_id, 1,1);
+                    }
+                }
                 return CommonHelper::getDataResult(true, ['message' => '付款成功！']);
             } else {
                 echo "trade_status=" . $_GET['trade_status'];
