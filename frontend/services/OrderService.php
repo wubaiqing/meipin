@@ -197,7 +197,7 @@ class OrderService
                     ]);
                     $goods = Exchange::findByGoodsId($order->goods_id);
                     //扣除用户积分
-                    User::model()->updateByPk($order->user_id, ['score' => $order->integral]);
+                    User::model()->updateByPk($order->user_id, ['score' => new CDbExpression('score-' . $order->integral)]);
                     $score = new Score();
                     $score->attributes = [
                         'score' => $order->integral * -1,
