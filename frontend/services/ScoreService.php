@@ -88,18 +88,28 @@ class ScoreService
             $indexUrl = Yii::app()->createUrl("site/raffle");
             $name = "抽奖";
         }
+        $goodsUrl = Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goodsId)]);
         //验证提交
         $cacheKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
             return CommonHelper::getDataResult(false, [
                         'message' => "本次操作已经失效,正在跳转商品兑换页",
-                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goodsId)])
+                        'url' => $goodsUrl
             ]);
         }
         //
         if ($order['token'] != $token) {
             return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看其他商品", 'url' => $indexUrl]);
+        }
+        //校验加钱兑换商品数据
+        if ($goods->goods_type == 0 && $goods->active_price > 0) {
+            if(!preg_match("/^\d+$/", $order['buyCount'])){
+                return CommonHelper::getDataResult(false, ['message' => "购买数量格式不正确", 'url' => $goodsUrl]);
+            }
+            if($order['buyCount']>($goods->num - $goods->sale_num)){
+                return CommonHelper::getDataResult(false, ['message' => "购买数量不能超过最大库存数量", 'url' => $goodsUrl]);
+            }
         }
         //校验商品
         if ($goods->start_time > $nowTime) {
@@ -132,10 +142,6 @@ class ScoreService
                         'message' => "您必须先进行电话绑定后才能进行商品" . $name,
                         'url' => Yii::app()->createUrl("user/address")
             ]);
-        }
-        //校验加钱兑换商品数据
-        if ($goods->goods_type == 0 && $goods->active_price > 0) {
-            $isPayOrder = true;
         }
         $result = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
         if (!$result['status']) {

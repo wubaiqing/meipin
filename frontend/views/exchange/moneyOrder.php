@@ -78,7 +78,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                             <td id="active_price" price="<?php echo $data['exchange']->active_price ?>"><?php echo $data['exchange']->active_price ?></td>
                             <td style="float: left;padding-top: 30px;"><?php
                                 $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                                echo CHtml::textField("buyCount", $params['buyCount'], ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off']);
+                                echo CHtml::textField("Exchange[buyCount]", $params['buyCount'], ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off']);
                                 echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
                                 echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
                                 ?>
