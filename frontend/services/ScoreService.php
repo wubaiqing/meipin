@@ -234,6 +234,7 @@ class ScoreService
             Yii::app()->cache->delete($cacheKey);
             //清除记录缓存
             ExchangeLog::deleteExchangeLogListCache($goods->id);
+            ExchangeLog::deleteWelfareCache($user->id, 1,1);
             //清除积分缓存列表
             Score::deleteScoreListCache($user->id);
             //删除商品缓存
