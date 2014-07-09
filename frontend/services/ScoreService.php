@@ -102,10 +102,10 @@ class ScoreService
         }
         //校验加钱兑换商品数据
         if ($goods->goods_type == 0 && $goods->active_price > 0) {
-//            return CommonHelper::getDataResult(false, [
-//                        'message' => "支付接口未提供，暂时无法下单",
-//                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
-//            ]);
+            return CommonHelper::getDataResult(false, [
+                        'message' => "正在添加支付接口，暂时无法下单",
+                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+            ]);
         }
         //校验商品
         if ($goods->start_time > $nowTime) {
