@@ -97,7 +97,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                 </div>
                 <div class="remark">
                     <span class="r">
-                        <input class="submit_ok" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="确认购买">
+                        <input class="submit_ok" type="button" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="确认购买">
                     </span>
                 </div>
         </form>
