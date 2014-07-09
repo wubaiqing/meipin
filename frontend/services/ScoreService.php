@@ -169,7 +169,7 @@ class ScoreService
         $transaction = Yii::app()->db->beginTransaction();
         try {
             $payOrder = null;
-            $integral = $goods->integral;
+            $integral = 0;
             $scoreLog = ($goods->goods_type == 0) ? "积分兑换" : "积分抽奖" . ":" . $goods->name;
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
@@ -187,11 +187,10 @@ class ScoreService
                 'mobile' => $userAddress->mobile,
             ];
             $exchangeLog->insert();
-            //积分加钱兑换生成订单
+            //积分加钱兑换生成订单（未支付前不扣积分）
             if ($goods->goods_type == 0 && $goods->active_price > 0) {
                 $buyCount = $order['buyCount'];
                 $orderId = CommonHelper::generateOrderId($exchangeLog->id);
-                $integral = $buyCount * $goods->integral;
                 $payOrder = new Order();
                 $payOrder->attributes = [
                     'order_id' => $orderId,
@@ -211,6 +210,9 @@ class ScoreService
                 $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
                 //
                 $result['order_id'] = $orderId;
+            }else{
+                $integral = $goods->integral;
+                $result['order_id'] = '';
             }
             
             $userCount = ExchangeLog::getUserCount($goods->id);
