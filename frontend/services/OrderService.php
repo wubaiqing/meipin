@@ -21,6 +21,7 @@ class OrderService
 
     public static function pay($id, $user_id)
     {
+        $maxTimeout = Yii::app()->params['payTimeout'];
         $url = "/";
         if (!preg_match('/^\d+$/', $id)) {
             return CommonHelper::getDataResult(false, ['message' => '订单号非法', 'url' => $url]);
@@ -32,6 +33,10 @@ class OrderService
         $goodsInfo = self::loadGoods($order);
         if (empty($goodsInfo)) {
             return CommonHelper::getDataResult(false, ['message' => '商品信息不正确，请重新下单后再支付', 'url' => $url]);
+        }
+        //支付超时
+        if(($order->created_at+$maxTimeout) < time()){
+            return CommonHelper::getDataResult(false, ['message' => '付款时间已经超时，不能再进行付款', 'url' => Yii::app()->createUrl("order/list")]);
         }
         $html = self::alipayapi($order->order_id, $goodsInfo['name'], $order->pay_price, $goodsInfo['url'], $goodsInfo['remark']);
         return CommonHelper::getDataResult(true, ['message' => $html]);

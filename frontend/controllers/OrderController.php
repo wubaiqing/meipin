@@ -32,10 +32,11 @@ class OrderController extends Controller
     {
         $id = Des::decrypt($id);
         $data = OrderService::pay($id, $this->userId);
+        $this->layout = '//layouts/exchange';
         if ($data['status'] == false) {
-            echo $data['data']['message'];
+            $this->pageRedirect('no', $data['data']['message'], '/', '/common/message');
         } else {
-            echo $data['data']['message'];
+            $this->pageRedirect('yes', $data['data']['message'], '/', '/common/message');
         }
     }
 
