@@ -11,6 +11,7 @@
                         <th width="240">商品名称</th>
                         <th>颜色分类</th>   
                         <th>订单号</th>
+                        <th>数量</th>
                         <th>消耗积分</th>
                         <th>支付金额(元)</th>
                         <th>订单状态</th>
@@ -44,6 +45,7 @@
                     </td>
                     <td><?php echo!empty($info->exchange->gdscolor) ? $info->exchange->gdscolor : '无'; ?></td>
                     <td><?php echo $info->order_id ?></td>
+                    <td><?php echo $info->order->buy_count; ?></td>
                     <td><?php echo $info->order->integral; ?></td>
                     <td><?php echo $info->order->pay_price; ?></td>
                     <td>
