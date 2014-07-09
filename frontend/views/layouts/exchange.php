@@ -45,32 +45,6 @@
         <div style="display:none;">
             var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1000359564'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000359564%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
         </div>
-        <script>
-            $(".submit_ok").click(function() {
-                var index = layer.tab({
-                    area: ['400px', '240px'],
-                    data: [
-                        {title: '确认支付结果', content: $("#pay_confirm").html()}
-                    ]
-                });
-            });
-            $(function(){
-                $(".btn_pay_no").on('click',function(){
-                    alert(index);
-                    layer.close(index);
-                });
-                
-            })
-        </script>
-        <style>
-            .order_confirm{width:100%;}
-            .order_confirm h2{width:100%;text-align: center;font-size: 20px;margin-top:20px;}
-            .order_confirm div.content{padding:20px 0 20px 80px;}
-            .order_confirm div.button{text-align: center;}
-            .order_confirm div.button input{margin-left: 20px;}
-            .order_confirm .btn_pay_ok{min-width: 120px;height: 28px;display: inline-block;background: #FFBB57;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
-            .order_confirm .btn_pay_no{min-width: 120px;height: 28px;display: inline-block;background: #ccc;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
-        </style>
         <div id="pay_confirm">
             <div class="order_confirm">
                 <div><h2>请在新打开的页面完成支付</h2></div>

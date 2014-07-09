@@ -37,7 +37,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
     </style>
     <div class="confirm">
         <h2><span></span>确认订单信息</h2>
-        <form accept-charset="UTF-8" action="<?php echo Yii::app()->createUrl("exchange/doExchange"); ?>" method="post" onsubmit="return validOrderConfirm();">
+        <form accept-charset="UTF-8" action="<?php echo Yii::app()->createUrl("exchange/doExchange"); ?>" method="post" onsubmit="return validOrderConfirm();" target="_blank">
             <div class="gift">
                 <table>
                     <thead>
@@ -97,7 +97,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                 </div>
                 <div class="remark">
                     <span class="r">
-                        <input class="submit_ok" type="button" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="确认购买">
+                        <input class="submit_ok pay_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="确认购买">
                     </span>
                 </div>
         </form>

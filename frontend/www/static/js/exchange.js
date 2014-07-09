@@ -78,6 +78,22 @@ exchange.defaultColor = function() {
         });
     }
 }
+//支付弹出框
+exchange.payPop = function(){
+        var index = 1;
+        $(".pay_btn").click(function() {
+            index = layer.tab({
+                area: ['400px', '240px'],
+                data: [
+                    {title: '确认支付结果', content: $("#pay_confirm").html()}
+                ]
+            });
+            $(".btn_pay_no").unbind('click');
+            $(".btn_pay_no").on('click',function(){
+                layer.close(index);
+            });
+        });
+}
 $(function() {
     exchange.defaultColor();
     try {
@@ -111,6 +127,8 @@ $(function() {
     $(window).scroll(function() {
         exchange.scrollView();
     });
+    //支付弹出框
+    exchange.payPop();
 });
 function checkcolor()
 {
