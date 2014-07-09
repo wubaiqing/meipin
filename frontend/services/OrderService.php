@@ -34,6 +34,10 @@ class OrderService
         if (empty($goodsInfo)) {
             return CommonHelper::getDataResult(false, ['message' => '商品信息不正确，请重新下单后再支付', 'url' => $url]);
         }
+        $user = User::model()->findByPk($order->user_id);
+        if($user->score < $order->integral){
+            return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此此购买", 'url' => $url]);
+        }
         //支付超时
         if (($order->created_at + $maxTimeout) < time()) {
             return CommonHelper::getDataResult(false, ['message' => '付款时间已经超时，不能再进行付款', 'url' => Yii::app()->createUrl("order/list")]);
