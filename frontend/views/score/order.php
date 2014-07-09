@@ -20,13 +20,13 @@
                         if (!isset($info->order->pay_status)) {
                             continue;
                         }
-                        $exchange = Exchange::findByGoodsId($info->goods_id);
-                        $exchange1 = ExchangeLog::model()->findByAttributes(array('goods_id' => $info->goods_id));
+//                        $exchange = Exchange::findByGoodsId($info->goods_id);
+//                        $exchange1 = ExchangeLog::model()->findByAttributes(array('goods_id' => $info->goods_id));
                         ?>
                         <tr align="center">
                     <a style="text-decoration-line: underline;"></a>
                     <?php
-                    $jm = Des::encrypt($exchange->id);
+                    $jm = Des::encrypt($info->exchange->id);
                     if ($info->exchange->goods_type == 0) {
                         $goodsUrl = Yii::app()->createUrl("exchange/detail_{$jm}.html");
                     } elseif ($info->exchange->goods_type == 1) {
@@ -35,16 +35,16 @@
                     ?>
                     <td bgcolor="#F9FAFC">
                         <a href="<?php
-                        if ($exchange->taobaoke_url) {
-                            echo $exchange->taobaoke_url;
+                        if ($info->exchange->taobaoke_url) {
+                            echo $info->exchange->taobaoke_url;
                         } else {
                             echo $goodsUrl;
                         };
-                        ?>" target='_blank' title="<?php echo $exchange->name; ?>">
-                               <?php echo!empty($exchange) ? StringHelper::Utf8Substr($exchange->name, 0, 20) : ''; ?>
+                        ?>" target='_blank' title="<?php echo $info->exchange->name; ?>">
+                               <?php echo!empty($info->exchange) ? StringHelper::Utf8Substr($info->exchange->name, 0, 20) : ''; ?>
                         </a>
                     </td>
-                    <td><?php echo!empty($exchange1->gdscolor) ? $exchange1->gdscolor : '无'; ?></td>
+                    <td><?php echo!empty($info->exchange->gdscolor) ? $info->exchange->gdscolor : '无'; ?></td>
                     <td><?php echo $info->order_id ?></td>
                     <td><?php echo $info->order->integral; ?></td>
                     <td><?php echo $info->order->pay_price; ?></td>

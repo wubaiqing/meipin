@@ -60,7 +60,7 @@ class OrderController extends Controller
      */
     public function actionList($page = 1)
     {
-        $welfare = ExchangeLog::getWelfare(Yii::app()->user->id, $page, 1);
+        $welfare = ExchangeLog::getWelfare($this->userId, $page, 1);
         $this->render('/score/order', [
             'welfare' => $welfare['data'],
             'pager' => $welfare['pager'],

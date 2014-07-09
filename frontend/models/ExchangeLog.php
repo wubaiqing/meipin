@@ -158,7 +158,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      */
     public static function getWelfare($userId, $page, $type = 0)
     {
-        $cacheKey = self::getWelfareKey($userId, $page, $type = 0);
+        $cacheKey = self::getWelfareKey($userId, $page, $type);
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
@@ -190,7 +190,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             $criteria->addCondition("t.order_id =''");
         } else if ($type == 1) {
             $criteria->addCondition("t.order_id !=''");
-            $criteria->with = ['order'];
+            $criteria->with = ['order','exchange'];
             $criteria->order = 'order.created_at desc';
         }
         $this->dbCriteria->mergeWith($criteria);
