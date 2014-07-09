@@ -35,7 +35,7 @@ class OrderService
             return CommonHelper::getDataResult(false, ['message' => '商品信息不正确，请重新下单后再支付', 'url' => $url]);
         }
         //支付超时
-        if(($order->created_at+$maxTimeout) < time()){
+        if (($order->created_at + $maxTimeout) < time()) {
             return CommonHelper::getDataResult(false, ['message' => '付款时间已经超时，不能再进行付款', 'url' => Yii::app()->createUrl("order/list")]);
         }
         $html = self::alipayapi($order->order_id, $goodsInfo['name'], $order->pay_price, $goodsInfo['url'], $goodsInfo['remark']);
@@ -187,13 +187,33 @@ class OrderService
                 //该种交易状态只在一种情况下出现——开通了高级即时到账，买家付款成功后。
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
-                $order = Order::model()->findByPk($out_trade_no);
-                Order::model()->updateByPk($out_trade_no, [
-                    'pay_time' => strtotime($notify_time),
-                    'pay_status' => 4
-                ]);
-                //清楚订单列表缓存
-                ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
+                //执行兑换
+                $transaction = Yii::app()->db->beginTransaction();
+                try {
+                    $order = Order::model()->findByPk($out_trade_no);
+                    Order::model()->updateByPk($out_trade_no, [
+                        'pay_time' => strtotime($notify_time),
+                        'pay_status' => 4
+                    ]);
+                    $goods = Exchange::findByGoodsId($order->goods_id);
+                    //扣除用户积分
+                    User::model()->updateByPk($order->user_id, ['score' => $order->integral]);
+                    $score = new Score();
+                    $score->attributes = [
+                        'score' => $order->integral * -1,
+                        'user_id' => $order->user_id,
+                        'reason' => 2,
+                        'remark' => "商品(<a href='" . Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)]) . "'>" . $goods->name . ")购买,扣除积分"
+                    ];
+                    $score->insert();
+                    //清楚订单列表缓存
+                    ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
+                    $transaction->commit();
+                } catch (\Exception $ex) {
+                    $transaction->rollback();
+                    echo "fail";
+                    Yii::app()->end();
+                }
             }
             //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
             echo "success";  //请不要修改或删除
@@ -228,10 +248,10 @@ class OrderService
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
-                if(preg_match("/^\d+$/", $out_trade_no)){
+                if (preg_match("/^\d+$/", $out_trade_no)) {
                     $order = Order::model()->findByPk($out_trade_no);
-                    if(!empty($order)){
-                        ExchangeLog::deleteWelfareCache($order->user_id, 1,1);
+                    if (!empty($order)) {
+                        ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
                     }
                 }
                 return CommonHelper::getDataResult(true, ['message' => '付款成功！']);
