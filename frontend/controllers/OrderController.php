@@ -32,21 +32,39 @@ class OrderController extends Controller
     {
         $id = Des::decrypt($id);
         $data = OrderService::pay($id, $this->userId);
-        if($data['status'] ==false){
+        if ($data['status'] == false) {
             echo $data['data']['message'];
-        }else{
+        } else {
             echo $data['data']['message'];
         }
     }
 
-    public function actionReturn()
+    public function actionResult()
     {
-        OrderService::returnUrl();
+        $data = OrderService::result();
+        $this->layout = '//layouts/exchange';
+        if ($data['status']) {
+            $this->pageRedirect('yes', $data['data']['message'], '/', '/common/pay');
+        } else {
+            $this->pageRedirect('no', $data['data']['message'], '/', '/common/pay');
+        }
     }
 
     public function actionNotify()
     {
         OrderService::notify();
+    }
+
+    /**
+     * 订单列表
+     */
+    public function actionList($page = 1)
+    {
+        $welfare = ExchangeLog::getWelfare(Yii::app()->user->id, $page, 1);
+        $this->render('/score/order', [
+            'welfare' => $welfare['data'],
+            'pager' => $welfare['pager'],
+        ]);
     }
 
 }

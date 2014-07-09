@@ -118,15 +118,4 @@ class ScoreController extends Controller
         ]);
         Yii::app()->end();
     }
-    /**
-     * 订单列表
-     */
-    public function actionOrder($page = 1){
-        $welfare = ExchangeLog::getWelfare(Yii::app()->user->id, $page,1);
-        $this->render('order',[
-            'welfare' => $welfare['data'],
-            'pager' => $welfare['pager'],
-        ]);
-    }
-
 }

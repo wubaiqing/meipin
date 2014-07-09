@@ -3,8 +3,6 @@
     <h3><span>我的礼品</span></h3><span class="t_l"></span><span class="t_r"></span>
     <div class="info" id="score">
         <h6>
-            <a href="<?php echo Yii::app()->createUrl("score/welfare")?>" class="tabs_score current">兑换订单</a>|
-            <a href="<?php echo Yii::app()->createUrl("score/order")?>" class="tabs_score ">购买订单</a>
         </h6>
         <div id="index" class="">
             <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">

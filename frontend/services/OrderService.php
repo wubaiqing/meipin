@@ -73,7 +73,7 @@ class OrderService
         $notify_url = Yii::app()->createAbsoluteUrl("order/notify");
         //需http://格式的完整路径，不能加?id=123这类自定义参数
         //页面跳转同步通知页面路径
-        $return_url = Yii::app()->createAbsoluteUrl("order/return");
+        $return_url = Yii::app()->createAbsoluteUrl("order/result");
         //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
         //卖家支付宝帐户
         $seller_email = Yii::app()->params['alipay']['email'];
@@ -162,6 +162,8 @@ class OrderService
             $trade_no = $_POST['trade_no'];
             //交易状态
             $trade_status = $_POST['trade_status'];
+            $notify_time = $_POST['notify_time'];
+
             if ($_POST['trade_status'] == 'TRADE_FINISHED') {
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
@@ -180,6 +182,10 @@ class OrderService
                 //该种交易状态只在一种情况下出现——开通了高级即时到账，买家付款成功后。
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
+                Order::model()->updateByPk($out_trade_no, [
+                    'pay_time' => strtotime($notify_time),
+                    'pay_status' => 4
+                ]);
             }
             //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
             echo "success";  //请不要修改或删除
@@ -192,13 +198,15 @@ class OrderService
         }
     }
 
-    public static function returnUrl()
+    public static function result()
     {
         self::load();
         $alipay_config = self::getAlipayConfig();
         //计算得出通知验证结果
         $alipayNotify = new AlipayNotify($alipay_config);
         $verify_result = $alipayNotify->verifyReturn();
+        echo json_encode($_GET);
+        die;
         if ($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //请在这里加上商户的业务逻辑程序代码
@@ -214,18 +222,18 @@ class OrderService
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
+                return CommonHelper::getDataResult(true, ['message' => '付款成功！']);
             } else {
                 echo "trade_status=" . $_GET['trade_status'];
+                return CommonHelper::getDataResult(false, ['message' => '付款失败！']);
             }
-
-            echo "验证成功<br />";
 
             //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         } else {
-            //验证失败
             //如要调试，请看alipay_notify.php页面的verifyReturn函数
-            echo "验证失败";
+//            echo "验证失败";
+            return CommonHelper::getDataResult(false, ['message' => '付款验证失败，请勿重复操作！']);
         }
     }
 
