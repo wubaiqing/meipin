@@ -81,9 +81,14 @@ return [
         ],
         //支付宝账号信息配置
         'alipay' =>[
+            //收款账号
             'email' => 'meipin2309@163.com',
+            //支付宝ID
             'id' => '2088411283973406',
+            //支付宝验证码
             'key' => '76suwy363u03pkgzbq1qq2b22z6ddnbb',
-        ]
+        ],
+        //支付超时
+        'payTimeout' =>3600,
     ],
 ];

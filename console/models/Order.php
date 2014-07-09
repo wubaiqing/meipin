@@ -29,9 +29,9 @@ class Order extends ActiveRecord implements IArrayable
     public static $pay_status = [
         0 => '未支付',
         1 => '已过期',
-        2 =>'支付中',
-        3 =>'支付失败',
-        4 =>'已付款',
+        2 => '支付中',
+        3 => '支付失败',
+        4 => '已付款',
     ];
 
     /**
@@ -69,7 +69,7 @@ class Order extends ActiveRecord implements IArrayable
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'exchangeLog' => array(self::HAS_ONE, 'ExchangeLog', ['order_id' => 'order_id'], 'together' => true,'joinType' => 'inner join'),
+            'exchangeLog' => array(self::HAS_ONE, 'ExchangeLog', ['order_id' => 'order_id'], 'together' => true, 'joinType' => 'inner join'),
         );
     }
 
@@ -138,17 +138,20 @@ class Order extends ActiveRecord implements IArrayable
      * @param integer $status 订单状态
      * @return string 
      */
-    public static function getPayStatus($status){
-        return isset(self::$pay_status[$status])?self::$pay_status[$status]:"-";
+    public static function getPayStatus($status)
+    {
+        return isset(self::$pay_status[$status]) ? self::$pay_status[$status] : "-";
     }
-    
+
     /**
      * 根据订单号、用户ID获取订单
      * @param fixed $order_id 订单号
      * @param integer $user_id 用户ID
      * @return Order 
      */
-    public static function findByUserId($order_id,$user_id){
-        return self::model()->findByPk($order_id, 'user_id=:user_id',[':user_id' => $user_id]);
+    public static function findByUserId($order_id, $user_id)
+    {
+        return self::model()->findByPk($order_id, 'user_id=:user_id', [':user_id' => $user_id]);
     }
+
 }

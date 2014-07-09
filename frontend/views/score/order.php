@@ -20,8 +20,6 @@
                         if (!isset($info->order->pay_status)) {
                             continue;
                         }
-//                        $exchange = Exchange::findByGoodsId($info->goods_id);
-//                        $exchange1 = ExchangeLog::model()->findByAttributes(array('goods_id' => $info->goods_id));
                         ?>
                         <tr align="center">
                     <a style="text-decoration-line: underline;"></a>

@@ -83,4 +83,26 @@ class DataTaskCommand extends CConsoleCommand
         }
     }
 
+    /**
+     * 订单过期处理
+     */
+    public function actionOrderpay()
+    {
+        $pageSize = 100;
+
+        while (true) {
+            $orderList = Order::model()->findAll('pay_status=0 limit ' . $pageSize);
+            if (empty($orderList)) {
+                break;
+            }
+            $orderIds = [];
+            foreach ($orderList as $order) {
+                if (($order->created_at + Yii::app()->params['payTimeout']) < time()) {
+                    $orderIds[] = $order->order_id;
+                }
+            }
+            Order::model()->updateByPk($orderIds, ['pay_status' => 1]);
+        }
+    }
+
 }
