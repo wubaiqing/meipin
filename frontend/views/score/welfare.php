@@ -2,13 +2,16 @@
 <div class="box admin hei">
     <h3><span>我的礼品</span></h3><span class="t_l"></span><span class="t_r"></span>
     <div class="info" id="score">
-        <h6></h6>
+        <h6>
+            <a href="<?php echo Yii::app()->createUrl("score/welfare")?>" class="tabs_score current">兑换订单</a>|
+            <a href="<?php echo Yii::app()->createUrl("score/order")?>" class="tabs_score ">购买订单</a>
+        </h6>
         <div id="index" class="">
             <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
                 <tbody>
                 <tr align="center">
-                    <th width="380">礼品详情</th>
-                    <th>颜色分类</th>   
+                    <th width="240">礼品详情</th>
+                    <th>颜色分类</th>
                     <th>订单状态</th>
                     <th>消耗积分</th>
                 </tr>
@@ -25,10 +28,20 @@
                             $goodsUrl = Yii::app()->createUrl("exchange/raffle_{$jm}.html");
                        }
                         ?>
-                        <td bgcolor="#F9FAFC"><a href="<?php if($exchange->taobaoke_url){echo $exchange->taobaoke_url;}else{echo $goodsUrl;};?>" target='_blank'><?php echo !empty($exchange) ? $exchange->name : '';?></a></td>
+                        <td bgcolor="#F9FAFC">
+                                <a href="<?php
+                                if ($exchange->taobaoke_url) {
+                                    echo $exchange->taobaoke_url;
+                                } else {
+                                    echo $goodsUrl;
+                                };
+                                ?>" target='_blank' title="<?php echo $exchange->name;?>">
+                                    <?php echo!empty($exchange) ? StringHelper::Utf8Substr($exchange->name, 0, 20) : ''; ?>
+                                </a>
+                        </td>
                         <td><?php echo !empty($exchange1->gdscolor) ? $exchange1->gdscolor : '无'; ?></td>
                         <td><?php echo $info->status == 1 ? '已发货' : '未发货'; ?></td>
-                        <td>-<?php echo !empty($exchange) ? $exchange->integral : ''; ?></td>
+                        <td><?php echo !empty($exchange) ? $exchange->integral : ''; ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>

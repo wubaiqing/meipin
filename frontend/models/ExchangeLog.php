@@ -63,6 +63,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return array(
             'exchange' => array(self::HAS_ONE, 'Exchange', ['id' => 'goods_id'], 'together' => true, 'joinType' => 'inner join'),
+            'order' => array(self::HAS_ONE, 'Order', ['order_id' => 'order_id'], 'together' => true, 'joinType' => 'inner join'),
         );
     }
 
@@ -131,15 +132,15 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @param  integer $page   当前页数
      * @return mixed
      */
-    public static function getWelfare($userId, $page)
+    public static function getWelfare($userId, $page,$type = 0)
     {
-        $cacheKey = 'meipin-get-welfare-' . $userId . '-' . $page;
+        $cacheKey = 'meipin-get-welfare-' . $userId . '-' . $page . "-" . $type;
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
         }
 
-        $welfare = self::model()->welfareDataList($userId)->paginate(Yii::app()->params['exchangeLogPageSize']);
+        $welfare = self::model()->welfareDataList($userId, $type)->paginate(Yii::app()->params['exchangeLogPageSize']);
         $welfareList = [];
         $welfareList['pager'] = $welfare->getPagination();
         $welfareList['data'] = $welfare->data;
@@ -154,13 +155,19 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     /**
      * 积分兑换礼品条件
      * @param  integer     $cat 分类ID
+     * @param  integer     $type 类型，0：普通兑换；1：支付订单
      * @return CDbCriteria
      */
-    public function welfareDataList($userId)
+    public function welfareDataList($userId,$type = 0)
     {
         $criteria = new CDbCriteria;
-        $criteria->compare('user_id', $userId);
-        $criteria->addCondition("order_id =''");
+        $criteria->compare('t.user_id', $userId);
+        if($type == 0){
+            $criteria->addCondition("t.order_id =''");
+        }else if($type == 1){
+            $criteria->addCondition("t.order_id !=''");
+            $criteria->with = ['order'];
+        }
         $this->dbCriteria->mergeWith($criteria);
 
         return $this;
