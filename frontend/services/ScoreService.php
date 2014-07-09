@@ -102,6 +102,17 @@ class ScoreService
         if ($order['token'] != $token) {
             return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看其他商品", 'url' => $indexUrl]);
         }
+        //校验商品
+        if ($goods->start_time > $nowTime) {
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他商品", 'url' => $indexUrl]);
+        }
+        if ($goods->end_time <= $nowTime) {
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看其他商品", 'url' => $indexUrl]);
+        }
+        $user = User::model()->findByPk($userId);
+        if (($goods->num - $goods->sale_num) <= 0) {
+            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看其他商品", 'url' => $indexUrl]);
+        }
         //校验加钱兑换商品数据
         if ($goods->goods_type == 0 && $goods->active_price > 0) {
             if(!preg_match("/^\d+$/", $order['buyCount'])){
@@ -110,17 +121,9 @@ class ScoreService
             if($order['buyCount']>($goods->num - $goods->sale_num)){
                 return CommonHelper::getDataResult(false, ['message' => "购买数量不能超过最大库存数量", 'url' => $goodsUrl]);
             }
-        }
-        //校验商品
-        if ($goods->start_time > $nowTime) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他商品", 'url' => $indexUrl]);
-        }
-        if ($goods->end_time <= $nowTime) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看其他商品", 'url' => $indexUrl]);
-        }
-        $user = User::getUser($userId);
-        if (($goods->num - $goods->sale_num) <= 0) {
-            return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看其他商品", 'url' => $indexUrl]);
+            if($user->score < ($order['buyCount'] * $goods->integral)){
+                return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此此购买", 'url' => $goodsUrl]);
+            }
         }
         //配送地址
         $userAddress = UsersAddress::getByUserId($userId);

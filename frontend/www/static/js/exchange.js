@@ -16,9 +16,11 @@ exchange.numChange = function(obj) {
     }
     //计算总价
     var activePrice = $("#active_price").attr("price");
+    var integral = $("#integral").attr("integral");
     if (activePrice != undefined) {
         var totalPrice = parseFloat(activePrice) * buyCount;
         $("#total_price").html(totalPrice.toFixed(2));
+        $("#integral").html((parseInt(integral)* buyCount));
     }
 }
 //验证购买数量

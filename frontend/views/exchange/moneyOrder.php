@@ -87,7 +87,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                                         $price = floatval($data['exchange']->active_price) * $params['buyCount'];
                                         echo number_format($price, 2);
                                         ?></span></td>
-                            <td><?php echo $data['exchange']->integral ?></td>
+                            <td id="integral" integral="<?php echo $data['exchange']->integral?>"><?php echo $data['exchange']->integral*$params['buyCount'] ?></td>
                             <td>0元包邮</td>
                         </tr>
                     </tbody>
