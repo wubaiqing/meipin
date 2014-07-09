@@ -110,6 +110,16 @@ class ExchangeController extends Controller
         $order = Yii::app()->request->getPost("Exchange", null);
         $dataResult = $this->scoreService->doExchange($userId, $order);
         if ($dataResult['status']) {
+            //支付订单
+            if(!empty($dataResult['data']['orderId'])){
+                $payData = OrderService::pay($dataResult['data']['orderId'], $this->userId);
+                if ($payData['status'] == false) {
+                    $this->pageRedirect('no', $payData['data']['message'], '/', '/common/message');
+                } else {
+                    $this->pageRedirect('yes', $payData['data']['message'], '/', '/common/message');
+                }
+                Yii::app()->end();
+            }
             $this->pageRedirect('yes', $dataResult['data']['message'], $dataResult['data']['url']);
         } else {
             $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url']);

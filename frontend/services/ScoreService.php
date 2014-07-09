@@ -61,6 +61,7 @@ class ScoreService
      */
     public function doExchange($userId, $order)
     {
+        $isPayOrder = false;
         $nowTime = time();
         $order = self::formatPostValue($order);
         $url = Yii::app()->createUrl("site/index");
@@ -100,13 +101,6 @@ class ScoreService
         if ($order['token'] != $token) {
             return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看其他商品", 'url' => $indexUrl]);
         }
-        //校验加钱兑换商品数据
-        if ($goods->goods_type == 0 && $goods->active_price > 0) {
-//            return CommonHelper::getDataResult(false, [
-//                        'message' => "正在添加支付接口，暂时无法下单",
-//                        'url' => Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
-//            ]);
-        }
         //校验商品
         if ($goods->start_time > $nowTime) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他商品", 'url' => $indexUrl]);
@@ -139,15 +133,18 @@ class ScoreService
                         'url' => Yii::app()->createUrl("user/address")
             ]);
         }
-        $bool = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
-        if (!$bool) {
+        //校验加钱兑换商品数据
+        if ($goods->goods_type == 0 && $goods->active_price > 0) {
+            $isPayOrder = true;
+        }
+        $result = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
+        if (!$result['status']) {
             return CommonHelper::getDataResult(false, [
                         'message' => "系统忙，请返回重试",
-                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goods->id)])
+                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goods->id)]),
             ]);
         }
-
-        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'url' => $indexUrl]);
+        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功",'orderId'=>$result['data']['order_id'], 'url' => $indexUrl]);
     }
 
     /**
@@ -161,6 +158,7 @@ class ScoreService
      */
     public static function saveDoExchange($order, $userAddress, $cacheKey, Exchange $goods, User $user, $nowTime)
     {
+        $result = [];
         //执行兑换
         $transaction = Yii::app()->db->beginTransaction();
         try {
@@ -205,6 +203,8 @@ class ScoreService
                 $payOrder->insert();
                 //更新关联订单号
                 $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
+                //
+                $result['order_id'] = $orderId;
             }
             
             $userCount = ExchangeLog::getUserCount($goods->id);
@@ -246,10 +246,10 @@ class ScoreService
         } catch (\Exception $ex) {
             $transaction->rollback();
 
-            return false;
+            return CommonHelper::getDataResult(false, $result);
         }
 
-        return true;
+        return CommonHelper::getDataResult(true, $result);
     }
 
     /**
