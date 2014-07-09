@@ -167,6 +167,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         }else if($type == 1){
             $criteria->addCondition("t.order_id !=''");
             $criteria->with = ['order'];
+            $criteria->order ='order.created_at desc';
         }
         $this->dbCriteria->mergeWith($criteria);
 

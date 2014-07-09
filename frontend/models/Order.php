@@ -17,6 +17,7 @@
  * @property string $pay_price
  * @property integer $integral
  * @property integer $user_id
+ * @property integer $goods_id
  */
 class Order extends ActiveRecord implements IArrayable
 {
@@ -50,13 +51,13 @@ class Order extends ActiveRecord implements IArrayable
         // will receive user inputs.
         return array(
             array('buy_count', 'required'),
-            array('pay_status, order_type, created_at, updated_at, pay_time, pay_way, buy_count, integral,user_id', 'numerical', 'integerOnly' => true),
+            array('pay_status, order_type, created_at, updated_at, pay_time, pay_way, buy_count, integral,user_id,goods_id', 'numerical', 'integerOnly' => true),
             array('order_id', 'length', 'max' => 20),
             array('remark', 'length', 'max' => 200),
             array('market_price, pay_price', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('order_id, pay_status, order_type, created_at, updated_at, pay_time, remark, pay_way, buy_count, market_price, pay_price, integral,user_id', 'safe', 'on' => 'search'),
+            array('order_id, pay_status, order_type, created_at, updated_at, pay_time, remark, pay_way, buy_count, market_price, pay_price, integral,user_id,goods_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -68,7 +69,7 @@ class Order extends ActiveRecord implements IArrayable
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'exchangeLog' => array(self::HAS_ONE, 'ExchangeLog', ['order_id' => 'order_id'], 'together' => true),
+            'exchangeLog' => array(self::HAS_ONE, 'ExchangeLog', ['order_id' => 'order_id'], 'together' => true,'joinType' => 'inner join'),
         );
     }
 
@@ -91,6 +92,7 @@ class Order extends ActiveRecord implements IArrayable
             'pay_price' => '支付价格',
             'integral' => '积分消耗',
             'user_id' => '用户ID',
+            'goods_id' => '商品ID'
         );
     }
 

@@ -31,17 +31,22 @@ class OrderController extends Controller
     public function actionPay($id = 0)
     {
         $id = Des::decrypt($id);
-        echo OrderService::pay($id, $this->userId);
+        $data = OrderService::pay($id, $this->userId);
+        if($data['status'] ==false){
+            echo $data['data']['message'];
+        }else{
+            echo $data['data']['message'];
+        }
     }
 
     public function actionReturn()
     {
-        var_dump(Yii::app()->getParams());
+        OrderService::returnUrl();
     }
 
     public function actionNotify()
     {
-        var_dump(Yii::app()->getParams());
+        OrderService::notify();
     }
 
 }
