@@ -8,9 +8,10 @@
             <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
                 <tbody>
                     <tr align="center">
-                        <th width="240">商品名称</th>
+                        <th width="200">商品名称</th>
                         <th>颜色分类</th>   
                         <th>订单号</th>
+                        <th>下单时间</th>
                         <th>购买数量</th>
                         <th>消耗积分</th>
                         <th>支付金额(元)</th>
@@ -40,11 +41,12 @@
                             echo $goodsUrl;
                         };
                         ?>" target='_blank' title="<?php echo $info->exchange->name; ?>">
-                               <?php echo!empty($info->exchange) ? StringHelper::Utf8Substr($info->exchange->name, 0, 20) : ''; ?>
+                               <?php echo!empty($info->exchange) ? StringHelper::Utf8Substr($info->exchange->name, 0, 15) : ''; ?>
                         </a>
                     </td>
                     <td><?php echo!empty($info->exchange->gdscolor) ? $info->exchange->gdscolor : '无'; ?></td>
                     <td><?php echo $info->order_id ?></td>
+                    <td><?php echo date("Y-m-d H:i:s",$info->order->created_at); ?></td>
                     <td><?php echo $info->order->buy_count; ?></td>
                     <td><?php echo $info->order->integral; ?></td>
                     <td><?php echo $info->order->pay_price; ?></td>
