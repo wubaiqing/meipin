@@ -14,11 +14,6 @@
         <link rel="stylesheet" type="text/css"  href="/static/nav_style.css?v=wubaiqing-1.0.2"/>
         <link rel="stylesheet" type="text/css"  href="/static/layer/skin/layer.css?v=1.0.0"/>
         <link rel="stylesheet" type="text/css"  href="/static/layer/skin/layer.ext.css?v=1.0.0"/>
-    <link rel="dns-prefetch" href="//c.meituan.net">
-    <link rel="dns-prefetch" href="//s0.meituan.net">
-    <link rel="dns-prefetch" href="//s1.meituan.net">
-    <link rel="dns-prefetch" href="//p0.meituan.net">
-    <link rel="dns-prefetch" href="//p1.meituan.net">
         <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/unslider.min.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/jtzdm_lazyload.js?v=1.0.1"></script>
@@ -35,6 +30,11 @@
         <script type="text/javascript" src="http://sentsin.com/lily/lib/png.js"></script>
         <script type="text/javascript">DD_belatedPNG.fix('.ie6PNG');</script>
         <![endif]-->
+    <link rel="dns-prefetch" href="//c.meituan.net">
+    <link rel="dns-prefetch" href="//s0.meituan.net">
+    <link rel="dns-prefetch" href="//s1.meituan.net">
+    <link rel="dns-prefetch" href="//p0.meituan.net">
+    <link rel="dns-prefetch" href="//p1.meituan.net">
     </head>
     <body>
         <div id="header">
