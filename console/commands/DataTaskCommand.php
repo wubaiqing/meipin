@@ -90,7 +90,6 @@ class DataTaskCommand extends CConsoleCommand
     {
         $pageSize = 100;
 
-        $score = new Score();
         while (true) {
             $orderList = Order::model()->findAll('pay_status=0 limit ' . $pageSize);
             if (empty($orderList)) {
@@ -104,6 +103,7 @@ class DataTaskCommand extends CConsoleCommand
                     $integral = $order->integral * $order->buy_count;
                     User::model()->updateByPk($order->user_id, ['score' => new CDbExpression('score+' . $integral)]);
                     //日志
+                    $score = new Score();
                     $score->attributes = [
                         'score' => $integral,
                         'user_id' => $order->user_id,
