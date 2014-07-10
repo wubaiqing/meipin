@@ -272,7 +272,7 @@ class ExchangeController extends Controller
     public function actionShipView($id = 1)
     {
         $criteria = new CDbCriteria();
-        $criteria->compare('t.id', $id, true);
+        $criteria->compare('t.id', $id); //修改不能支持模糊查询
         $criteria->with = array('exchange', 'address');
         $model = ExchangeLog::model()->find($criteria);
 

@@ -11,9 +11,8 @@ $isSignDay = User::isSignDay();
                 <div class="banner has-dots">
                     <ul>
                         <li style="display: block;">
-                            <a target="_blank" href="javascript:;" title="test1"><img width="650" height="210"
-                                                                                      src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/static/test1.jpg"
-                                                                                      alt="测试111"></a>
+                            <a target="_blank" href="javascript:;" title="test1">
+                            <img width="650" height="210"src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/static/test1.jpg"alt="测试111"></a>
                         </li>
                     </ul>
                 </div>
@@ -63,8 +62,25 @@ $isSignDay = User::isSignDay();
                             ￥<?php echo $goods['active_price']?>+
                             <?php endif;?>
                                 <?php echo $goods['integral']; ?>分</span></dt>
-                        <dd><a href="<?php echo $url; ?>" target='_blank'><img src="/static/images/woyaohuan.png"></a></dd>
-                        <br>
+
+                        <dd>
+                    <?php 
+                         if($goods['start_time'] > time())
+                         {
+                            echo "<a href='<?php echo $url; ?>' target='_blank' class='rafflekaishi'><span>即将开始</span>";
+                         }elseif ($goods['start_time'] < time() && $goods['end_time'] > time() && $leftNum >0) {
+                             echo "<a href='<?php echo $url; ?>' target='_blank' class='raffle'>我要兑换";
+                         }else
+                         {
+                            echo "<a href='<?php echo $url; ?>' target='_blank' class='rafflejishu'>";
+                         }
+                        ?> 
+                        
+
+                        </a>
+                        </dd>
+
+                        
                      </dl>
                 </li>
            <?php endforeach; ?>

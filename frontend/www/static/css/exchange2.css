@@ -21,4 +21,12 @@ br {clear:both;font-size:0;line-height:0;}
 #main ul li dl dt span {color:red;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;font-size:25px;}
 #main ul li dl dd {width:230px;}
 #main ul li:hover {border:1px red solid;}
+.raffle{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat 0 0;_background:url(images/bg2.png) no-repeat 0 0;margin-top:5px;margin-left: 15px;}
+
+.rafflekaishi{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll -162px 0px transparent;color: #FFF;font: 14px/30px "Arial";text-align: center;margin-top: 5px;margin-left: 15px;padding-left: 15px;
+}
+.rafflekaishi span{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll 100% 0px transparent;color: #FFF;font: 14px/30px "Arial";padding-right: 15px;
+}
+
+.rafflejishu{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat -80px 0;margin-left: 15px;margin-top: 5px;}
 
