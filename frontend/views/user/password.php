@@ -19,6 +19,7 @@
         ?>
         <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
             <tbody>
+            <?php  ;?>
                 <tr align="center">
                     <?php if ($model->getErrors()) : ;?>
                     <td bgcolor="#F9FAFC" align="left" colspan="2" style="padding:8px;">
@@ -28,6 +29,8 @@
                     </td>
                     <?php endif; ?>
                 </tr>
+
+                <?php if($model->salt){?>
                 <tr align="center">
                     <td bgcolor="#F9FAFC" width="100" align="right">
                         原密码：
@@ -37,6 +40,18 @@
                         <em>*您帐户原来的登录密码</em>
                     </td>
                 </tr>
+                <?php }else{
+                    $qid = Yii::app()->user->getState('qid');
+                    if($qid == 1)
+                    {
+                        echo "<tr align='center'><td  colspan='2'>您是QQ用户,首次只需设置密码</td></tr>";
+                    }else
+                    {
+                        echo "<tr align='center'><td  colspan='2'>您是淘宝用户,首次只需设置密码</td></tr>";
+                    }
+                    
+
+                    }?>
                 <tr align="center">
                     <td bgcolor="#F9FAFC" width="100" align="right">
                         新密码：

@@ -266,7 +266,7 @@ class Exchange extends ActiveRecord
         $criteria->order = ' id desc ';
         $criteria->compare('is_delete', 0);
 
-        if (empty($timeLine)) {
+        if ($timeLine =='ongoing') { //正在进行
             $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
         } else if ($timeLine == 'history') {
             $criteria->addCondition('end_time <= ' . $time);

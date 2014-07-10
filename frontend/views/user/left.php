@@ -10,9 +10,7 @@
         <ul>
             <li><a href="<?php echo $this->createUrl('user/info');?>">基本信息</a></li>
             <li><a href="<?php echo $this->createUrl('user/address');?>">收货地址</a></li>
-            <?php if(!Yii::app()->user->getState('qid')){?>
             <li><a href="<?php echo $this->createUrl('user/password');?>">修改密码</a></li>
-            <?php }?>
         </ul>
         <div class="hr"></div>
     </div>
