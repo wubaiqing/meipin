@@ -44,7 +44,7 @@
                                <?php echo!empty($info->exchange) ? StringHelper::Utf8Substr($info->exchange->name, 0, 15) : ''; ?>
                         </a>
                     </td>
-                    <td><?php echo!empty($info->exchange->gdscolor) ? $info->exchange->gdscolor : '无'; ?></td>
+                    <td><?php echo!empty($info->gdscolor) ? $info->exchange->gdscolor : '无'; ?></td>
                     <td><?php echo $info->order_id ?></td>
                     <td><?php echo date("Y-m-d H:i:s",$info->order->created_at); ?></td>
                     <td><?php echo $info->order->buy_count; ?></td>
