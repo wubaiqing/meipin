@@ -66,8 +66,8 @@ $isSignDay = User::isSignDay();
                                 <?php echo $goods['integral']; ?>分</span></dt>
 
                         <dd>
-                    <?php 
-                         if($goods['start_time'] > time())
+                       <?php 
+                         if($goods['start_time'] > time() && $leftNum >0)
                          {
                             echo "<a href='{$url}' target='_blank' class='rafflekaishi'><span>即将开始</span>";
                          }elseif ($goods['start_time'] < time() && $goods['end_time'] > time() && $leftNum >0) {
