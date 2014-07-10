@@ -62,7 +62,7 @@ class OrderController extends Controller
     public function actionList($page = 1)
     {
         $welfare = ExchangeLog::getWelfare($this->userId, $page, 1);
-        $this->render('/score/order', [
+        $this->render('order', [
             'welfare' => $welfare['data'],
             'pager' => $welfare['pager'],
         ]);
