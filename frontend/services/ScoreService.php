@@ -186,9 +186,22 @@ class ScoreService
                 'goodscolor' => $order['goodscolor']);
             }else
             {
-                $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
-                'user_count' => $userCount,
-                'goodscolor' => $order['goodscolor']);
+                //如果兑换商品的剩余量为0，则修改结束时间为当前时间
+                if($goods->num == ($goods->sale_num +1))
+                {
+                    $dates = date("Y-m-d",time());
+                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
+                    'user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor'],
+                    'end_time' =>strtotime($dates)
+                );
+                }else{
+                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
+                    'user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor']
+                    );
+                }
+                
             }
             Exchange::model()->updateByPk($goods->id,$uparray);
             //兑换扣积分记录
