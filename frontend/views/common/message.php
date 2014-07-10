@@ -15,7 +15,7 @@
                                 中继续支付.
                             </p>
                         <?php endif; ?>
-                        <p>
+                        <p class="msg_btnleft">
                             系统将在10秒后跳转到订单列表页！
                         </p>
                         <script language="javascript">

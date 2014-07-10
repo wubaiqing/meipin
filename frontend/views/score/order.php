@@ -58,6 +58,11 @@
                         }
                         if ($info->order->pay_status == 4) {
                             echo $info->status == 1 ? '(已发货)' : '(等待发货)';
+                            //快递信息
+                            $logisticsSystem = Yii::app()->logisticsSystem;
+                            if(isset($logisticsSystem[$info->logistics])){
+                                echo "快递公司:".$logisticsSystem[$info->logistics].",快递单号:".$info->logistics_code;
+                            }
                         }
                         ?>
                     </td>
