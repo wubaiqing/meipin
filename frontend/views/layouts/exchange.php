@@ -30,11 +30,6 @@
         <script type="text/javascript" src="http://sentsin.com/lily/lib/png.js"></script>
         <script type="text/javascript">DD_belatedPNG.fix('.ie6PNG');</script>
         <![endif]-->
-    <link rel="dns-prefetch" href="//c.meituan.net">
-    <link rel="dns-prefetch" href="//s0.meituan.net">
-    <link rel="dns-prefetch" href="//s1.meituan.net">
-    <link rel="dns-prefetch" href="//p0.meituan.net">
-    <link rel="dns-prefetch" href="//p1.meituan.net">
     </head>
     <body>
         <div id="header">
