@@ -67,12 +67,12 @@ $isSignDay = User::isSignDay();
                     <?php 
                          if($goods['start_time'] > time())
                          {
-                            echo "<a href='<?php echo $url; ?>' target='_blank' class='rafflekaishi'><span>即将开始</span>";
+                            echo "<a href='{$url}' target='_blank' class='rafflekaishi'><span>即将开始</span>";
                          }elseif ($goods['start_time'] < time() && $goods['end_time'] > time() && $leftNum >0) {
-                             echo "<a href='<?php echo $url; ?>' target='_blank' class='raffle'>我要兑换";
+                             echo "<a href='{$url}' target='_blank' class='raffle'>我要兑换";
                          }else
                          {
-                            echo "<a href='<?php echo $url; ?>' target='_blank' class='rafflejishu'>";
+                            echo "<a href='{$url}' target='_blank' class='rafflejishu'>";
                          }
                         ?> 
                         
