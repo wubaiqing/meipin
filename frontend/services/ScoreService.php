@@ -115,13 +115,13 @@ class ScoreService
         }
         //校验加钱兑换商品数据
         if ($goods->goods_type == 0 && $goods->active_price > 0) {
-            if(!preg_match("/^\d+$/", $order['buyCount'])){
+            if (!preg_match("/^\d+$/", $order['buyCount'])) {
                 return CommonHelper::getDataResult(false, ['message' => "购买数量格式不正确", 'url' => $goodsUrl]);
             }
-            if($order['buyCount']>($goods->num - $goods->sale_num)){
+            if ($order['buyCount'] > ($goods->num - $goods->sale_num)) {
                 return CommonHelper::getDataResult(false, ['message' => "购买数量不能超过最大库存数量", 'url' => $goodsUrl]);
             }
-            if($user->score < ($order['buyCount'] * $goods->integral)){
+            if ($user->score < ($order['buyCount'] * $goods->integral)) {
                 return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此此购买", 'url' => $goodsUrl]);
             }
         }
@@ -153,7 +153,7 @@ class ScoreService
                         'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goods->id)]),
             ]);
         }
-        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功",'orderId'=>$result['data']['order_id'], 'url' => $indexUrl]);
+        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'orderId' => $result['data']['order_id'], 'url' => $indexUrl]);
     }
 
     /**
@@ -214,34 +214,31 @@ class ScoreService
                 $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
                 //
                 $result['order_id'] = $orderId;
-                $scoreLog = "积分加钱换购,商品:".$goods->name;
-            }else{
+                $scoreLog = "积分加钱换购,订单号:".$orderId . ",商品：".$goods->name;
+            } else {
                 $integral = $goods->integral;
                 $result['order_id'] = '';
             }
-            
+
             $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
             //如果是抽奖商品就不需要增加兑换商品数量了
-            if($goods->goods_type == 1)
-            {
-                $uparray= array('user_count' => $userCount,
-                'goodscolor' => $order['goodscolor']);
-            }else
-            {
+            if ($goods->goods_type == 1) {
+                $uparray = array('user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor']);
+            } else {
                 //如果兑换商品的剩余量为0，则修改结束时间为当前时间
-                if($goods->num == ($goods->sale_num +1))
-                {
-                    $dates = date("Y-m-d",time());
-                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
-                    'user_count' => $userCount,
-                    'goodscolor' => $order['goodscolor'],
-                    'end_time' =>strtotime($dates)
-                );
-                }else{
-                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
-                    'user_count' => $userCount,
-                    'goodscolor' => $order['goodscolor']
+                if ($goods->num == ($goods->sale_num + 1)) {
+                    $dates = date("Y-m-d", time());
+                    $uparray = array('sale_num' => new CDbExpression('sale_num+1'),
+                        'user_count' => $userCount,
+                        'goodscolor' => $order['goodscolor'],
+                        'end_time' => strtotime($dates)
+                    );
+                } else {
+                    $uparray = array('sale_num' => new CDbExpression('sale_num+1'),
+                        'user_count' => $userCount,
+                        'goodscolor' => $order['goodscolor']
                     );
                 }
             }
@@ -261,7 +258,7 @@ class ScoreService
             Yii::app()->cache->delete($cacheKey);
             //清除记录缓存
             ExchangeLog::deleteExchangeLogListCache($goods->id);
-            ExchangeLog::deleteWelfareCache($user->id, 1,1);
+            ExchangeLog::deleteWelfareCache($user->id, 1, 1);
             //清除积分缓存列表
             Score::deleteScoreListCache($user->id);
             //删除商品缓存
