@@ -205,9 +205,13 @@ br {clear:both;font-size:0;line-height:0;}
     z-index: 990;
     display: block;
 } 
+ #banner .pic {
+ 	position: relative;
+ 	left: -5px;
+ }
 .dujia {height:265px;border-left:1px solid #e0e0e0;
 	border-right:1px solid #e0e0e0;background-color: #fff;}
-.dujia p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";line-height:30px;text-align:center;}
+.dujia p {background-color:#ffeed9;font-size:12px;color:#bf7c53;font-family:"微软雅黑";line-height:30px;text-align:center;margin-top:-5px;}
 .dujia ul {padding:15px 0 0 8px;}
 .dujia ul li {float:left;width:55px;padding-bottom:14px;}
 .dujia ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;}

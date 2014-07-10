@@ -10,7 +10,7 @@ $(window).scroll(function( ){
     });
 </script>
 <div id="banner">
-	<img src="/static/images/meipin_03.png">
+	<img class="pic" src="/static/images/meipin_03.png">
     <div class="dujia">
     	<p>[独家折扣]每天10点更新</p>
         <ul>
