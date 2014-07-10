@@ -3,7 +3,11 @@
     <div class="area">
         <?php
         foreach ($goods as $item) :
-            if ($history != 'history' && $item['end_time'] < time()) continue;
+            //if ($history != 'history' && $item['end_time'] < time()) continue;
+            if($item['end_time'] < time())
+            {
+                $history = "history";
+            }
             $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item['id'])]);
             ?>
             <div class="dealbox">
@@ -60,7 +64,7 @@
         <?php endforeach; ?>
     </div>
     <div style="clear:both;"></div>
-<div id="contentD" class="area">
-    <a href="<?php echo Yii::app()->createUrl("site/raffle", [ 't' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
-</div>
+<!-- <div id="contentD" class="area">
+    <a href="<?php //echo Yii::app()->createUrl("site/raffle", [ 't' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
+</div> -->
 </div>

@@ -48,13 +48,14 @@ $isSignDay = User::isSignDay();
             <ul>
             <?php foreach ($data as $goods): ?>
             <?php
+                $leftNum = $goods['num'] - $goods['sale_num'];
                 $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
             ?>
-                <li>
+                <li <?php if($goods['end_time'] < time() || $leftNum <=0){ echo "class='list2'";}?>>
                     <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="190px" height="124px;" /></a>
                     <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
                     <p>剩余：<span><?php 
-                    $leftNum = $goods['num'] - $goods['sale_num'];
+                    
                             echo $leftNum > 0 ? $leftNum : 0; ?><span>份</p>
                     <dl>
                         <dt><span><?php echo $goods['integral']; ?></span>分</dt>
