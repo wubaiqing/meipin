@@ -3,7 +3,11 @@
     <div class="area">
         <?php
         foreach ($goods as $item) :
-            if ($history != 'history' && $item['end_time'] < time()) continue;
+            //if ($history != 'history' && $item['end_time'] < time()) continue;
+            if($item['end_time'] < time())
+            {
+                $history = "history";
+            }
             $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item['id'])]);
             ?>
             <div class="dealbox">
@@ -14,7 +18,8 @@
                                 <img class="goods-item-img" data-url="<?php echo $item['img_url'] ?>" src="http://www.meipin.com/static/images/lazyloading.jpg" title="<?php echo $item['name'] ?>" alt="<?php echo $item['name'] ?>" width="290" height="190">
                             </a>
                         </p>
-                        <p class="time" date='<?php echo date("Y-m-d H:i:s", $item['end_time']) ?>' url='<?php echo $goodsUrl ?>'>
+                        
+                        <p class="time" date='<?php echo date("Y-m-d H:i:s", $item['end_time']) ?>' sdate='<?php if($item["start_time"]> time()){echo date("Y-m-d H:i:s", $item["start_time"]);}?>' url='<?php echo $goodsUrl ?>'>
                             <?php
                             $md = date("Y", $item['end_time']) > date("Y") ? date("Y.n.j", $item['end_time']) : date("n.j", $item['end_time']);
                             if ($item['end_time'] > time()):
@@ -48,7 +53,8 @@
                             <?php if ($history == 'history'): ?>
                                 <a class="raffle_history">已结束</a>
                             <?php else: ?>
-                                <a class="raffle" href="<?php echo $goodsUrl ?>" target="_blank">我要抽奖</a>
+                                 <?php if($item["start_time"]> time()){echo '<a class="rafflecjkaishi" href="'.$goodsUrl.'" target="_blank"><span>即将开始</span></a>';}else{echo '<a class="raffle" href="'.$goodsUrl.'" target="_blank">我要抽奖</a>';} ?>
+                                
                             <?php endif; ?>
                         </h4>
                         <span class="mgicon"></span>
@@ -58,7 +64,7 @@
         <?php endforeach; ?>
     </div>
     <div style="clear:both;"></div>
-<div id="contentD" class="area">
-    <a href="<?php echo Yii::app()->createUrl("site/raffle", [ 't' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
-</div>
+<!-- <div id="contentD" class="area">
+    <a href="<?php //echo Yii::app()->createUrl("site/raffle", [ 't' => 'history']) ?>" target="_blank">查看历史抽奖活动&gt;&gt;</a>
+</div> -->
 </div>

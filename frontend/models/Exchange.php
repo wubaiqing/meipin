@@ -269,10 +269,13 @@ class Exchange extends ActiveRecord
         }
 
         $criteria = new CDbCriteria();
-        $criteria->order = ' id desc ';
+        //$criteria->order = ' id desc ';
+        $criteria->order = ' IF(UNIX_TIMESTAMP(NOW())<start_time,end_time,IF (start_time<=UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(NOW())<end_time,start_time+POW(2,40),end_time*(-1)+POW(2,41)))';
+        
+
         $criteria->compare('is_delete', 0);
 
-        if (empty($timeLine)) {
+        if ($timeLine =='ongoing') { //正在进行
             $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
         } else if ($timeLine == 'history') {
             $criteria->addCondition('end_time <= ' . $time);

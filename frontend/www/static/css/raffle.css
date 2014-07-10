@@ -8,3 +8,15 @@
 .deal div h4 a.raffle_history{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:#ccc ;_background:url(images/bg2.png) no-repeat 0 0;margin-top:5px;}
 .deal div h4.raffle_history span em {color:#ccc;}
 #contentD{background: #efefef;}
+/* .deal div h4 a.rafflecjkaishi{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll -162px 0px transparent;color: #FFF;font: 14px/30px "Arial";text-align: center;padding-left: 15px;padding-right: 10px;
+}
+
+.deal div h4 a.rafflecjkaishi span{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll 100% 0px transparent;color: #FFF;font: 14px/30px "Arial";text-align: center;padding-right: 15px;margin:0;
+
+
+} */
+
+.deal div h4 a.rafflecjkaishi{width:71px;display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll -162px 0px transparent;color: #FFF;font: 14px/30px "Arial";text-align: center;margin-left: 15px;padding-left: 15px;
+}
+.deal div h4 a.rafflecjkaishi span{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll 100% 0px transparent;color: #FFF;font: 14px/30px "Arial";padding-right: 15px;
+}

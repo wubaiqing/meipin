@@ -4,7 +4,7 @@
  * 倒计时的实现 
  * edit by liukui@ttmzk.com 2014-06-07
  */
-var fnTimeCountDown = function(d, o, url, t) {
+var fnTimeCountDown = function(d, o, url, t, s) {
     var f = {
         zero: function(n) {
             var n = parseInt(n, 10);
@@ -40,7 +40,8 @@ var fnTimeCountDown = function(d, o, url, t) {
             return pms;
         },
         ui: function() {
-            var str = "剩余：";
+            if(s == 'sdate'){var str = "距开始：";}else{var str = "剩余：";}
+            
             str += "<b>" + f.dv().day + "</b>天";
             str += "<b>" + f.dv().hour + "</b>小时";
             str += "<b>" + f.dv().mini + "</b>分";
@@ -54,6 +55,11 @@ var fnTimeCountDown = function(d, o, url, t) {
         },
         uiDetail: function() {
             var str = "";
+            if(s == 'sdate'){
+                $(o).find("span.foour").html("距离抽奖开始：") ;
+            }else{
+                $(o).find("span.foour").html("距离抽奖结束：");
+            }
             $(o).find("i").html(f.dv().day);
             $(o).find("em.one").html(f.dv().hour);
             $(o).find("em.two").html(f.dv().mini);
@@ -116,9 +122,18 @@ $(function() {
     });
     //倒计时
     $("p.time").each(function(i) {
-        var str = $(this).attr("date").toString();
+        
+        if($(this).attr("sdate")!=""){
+            var s= 'sdate';
+            var str = $(this).attr("sdate").toString();
+        }else
+        {
+            var s= 'date';
+            var str = $(this).attr("date").toString();
+        }
+        
         str = str.replace(/-/g, "/");
         var d = new Date(str);
-        fnTimeCountDown(d, $(this).find("em"), $(this).attr("url"));
+        fnTimeCountDown(d, $(this).find("em"), $(this).attr("url"),null,s);
     });
 });

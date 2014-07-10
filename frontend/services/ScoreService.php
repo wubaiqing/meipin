@@ -221,13 +221,27 @@ class ScoreService
             $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
             //如果是抽奖商品就不需要增加兑换商品数量了
-            if ($goods->goods_type == 1) {
-                $uparray = array('user_count' => $userCount,
-                    'goodscolor' => $order['goodscolor']);
-            } else {
-                $uparray = array('sale_num' => new CDbExpression('sale_num+1'),
+            if($goods->goods_type == 1)
+            {
+                $uparray= array('user_count' => $userCount,
+                'goodscolor' => $order['goodscolor']);
+            }else
+            {
+                //如果兑换商品的剩余量为0，则修改结束时间为当前时间
+                if($goods->num == ($goods->sale_num +1))
+                {
+                    $dates = date("Y-m-d",time());
+                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
                     'user_count' => $userCount,
-                    'goodscolor' => $order['goodscolor']);
+                    'goodscolor' => $order['goodscolor'],
+                    'end_time' =>strtotime($dates)
+                );
+                }else{
+                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
+                    'user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor']
+                    );
+                }
             }
             Exchange::model()->updateByPk($goods->id, $uparray);
             //更新用戶积分
