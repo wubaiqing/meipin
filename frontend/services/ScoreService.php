@@ -173,7 +173,7 @@ class ScoreService
         try {
             $payOrder = null;
             $integral = 0;
-            $scoreLog = ($goods->goods_type == 0) ? "积分兑换" : "积分抽奖" . ":" . $goods->name;
+            $scoreLog = (($goods->goods_type == 0) ? "积分兑换" : "积分抽奖") . ",商品:" . $goods->name;
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = [
@@ -194,6 +194,7 @@ class ScoreService
             if ($goods->goods_type == 0 && $goods->active_price > 0) {
                 $buyCount = $order['buyCount'];
                 $orderId = CommonHelper::generateOrderId($exchangeLog->id);
+                $integral = $buyCount * $goods->integral;
                 $payOrder = new Order();
                 $payOrder->attributes = [
                     'order_id' => $orderId,
@@ -204,7 +205,7 @@ class ScoreService
                     'buy_count' => $buyCount,
                     'market_price' => $goods->price,
                     'pay_price' => $buyCount * $goods->active_price,
-                    'integral' => $buyCount * $goods->integral,
+                    'integral' => $integral,
                     'user_id' => $user->id,
                     'goods_id' => $goods->id,
                 ];
@@ -213,6 +214,7 @@ class ScoreService
                 $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
                 //
                 $result['order_id'] = $orderId;
+                $scoreLog = "积分加钱换购,商品:".$goods->name;
             }else{
                 $integral = $goods->integral;
                 $result['order_id'] = '';
