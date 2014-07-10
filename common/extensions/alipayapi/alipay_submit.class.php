@@ -103,7 +103,7 @@ class AlipaySubmit {
 //                $sHtml = $sHtml."<input type='submit' value='".$button_name."'></form>";
                 $sHtml = $sHtml."$button_name</form>";
 		
-		$sHtml = $sHtml."<script>document.forms['alipaysubmit'].submit();</script>";
+		$sHtml = $sHtml."<script>$(function(){document.forms['alipaysubmit'].submit();});</script>";
 		
 		return $sHtml;
 	}
