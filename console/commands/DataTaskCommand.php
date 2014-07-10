@@ -107,7 +107,7 @@ class DataTaskCommand extends CConsoleCommand
                     'score' => $integral,
                     'user_id' => $order->user_id,
                     'reason' => 2,
-                    'remark' => "订单（" . $order->order_id . "）未支付过期，返还积分"
+                    'remark' => "返还积分（加钱换购），未支付订单过期（" . $order->order_id . "）"
                 ];
                 $score->insert();
             }
