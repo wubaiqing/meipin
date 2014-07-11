@@ -173,7 +173,12 @@ class ScoreService
         try {
             $payOrder = null;
             $integral = 0;
+            $pay_status = 1;
             $scoreLog = (($goods->goods_type == 0) ? "积分兑换" : "积分抽奖") . ",商品:" . $goods->name;
+            
+            if ($goods->goods_type == 0 && $goods->active_price > 0) {
+                $pay_status = 0;
+            }
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = [
@@ -188,6 +193,7 @@ class ScoreService
                 'address' => $userAddress->address,
                 'postcode' => $userAddress->postcode,
                 'mobile' => $userAddress->mobile,
+                'pay_status' => $pay_status,
             ];
             $exchangeLog->insert();
             //积分加钱兑换生成订单（未支付前不扣积分）
@@ -198,7 +204,7 @@ class ScoreService
                 $payOrder = new Order();
                 $payOrder->attributes = [
                     'order_id' => $orderId,
-                    'pay_status' => 0,
+                    'pay_status' => $pay_status,
                     'order_type' => 1,
                     'created_at' => $nowTime,
                     'pay_way' => 1,

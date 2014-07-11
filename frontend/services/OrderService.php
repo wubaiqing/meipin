@@ -210,6 +210,11 @@ class OrderService
                         'remark' => "商品(<a href='" . Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)]) . "'>" . $goods->name . ")购买,扣除积分"
                     ];
                     $score->insert();
+                    //更新状态
+                    $exchangeLog = ExchangeLog::model()->find('order_id=:order_id',[':order_id' => $order->order_id]);
+                    $exchangeLog->pay_status = 1;
+                    $exchangeLog->update(['pay_status']);
+                    
                     //清楚订单列表缓存
                     ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
                     $transaction->commit();
