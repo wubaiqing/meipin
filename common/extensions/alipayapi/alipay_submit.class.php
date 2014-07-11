@@ -96,15 +96,14 @@ class AlipaySubmit {
 		
 		$sHtml = "<form id='alipaysubmit' name='alipaysubmit' action='".$this->alipay_gateway_new."_input_charset=".trim(strtolower($this->alipay_config['input_charset']))."' method='".$method."'>";
 		while (list ($key, $val) = each ($para)) {
-                    $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
-                }
+            $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
+        }
 
 		//submit按钮控件请不要含有name属性
 //                $sHtml = $sHtml."<input type='submit' value='".$button_name."'></form>";
                 $sHtml = $sHtml."$button_name</form>";
-		
-		$sHtml = $sHtml."<script>$(document).ready(function (){alert('123')})</script>";
-		
+		$sHtml = $sHtml."<script>$(document).ready(function (){document.forms['alipaysubmit'].submit();})</script>";
+
 		return $sHtml;
 	}
 	
