@@ -2,7 +2,7 @@
     <div class="relief_bg">
         <div class="relief_l">
             <div class="relief_r">
-                <div class="tips_l"><img src="/static/images/<?php echo $status; ?>.png"></div>
+                <div class="tips_l"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/static/<?php echo $status; ?>.png"></div>
                 <div class="tips_r jihuo">
                     <?php echo $title; ?><br/><br/>
                     <div class="" style="color:#898a8c;font-size: 20px;text-align: left;padding-left: 100px;">
