@@ -36,7 +36,7 @@ class OrderService
         }
         $user = User::model()->findByPk($order->user_id);
         if($user->score < $order->integral){
-            return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此此购买", 'url' => $url]);
+            return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此次购买", 'url' => $url]);
         }
         //支付超时
         if (($order->created_at + $maxTimeout) < time()) {
@@ -200,16 +200,7 @@ class OrderService
                         'pay_status' => 4
                     ]);
                     $goods = Exchange::findByGoodsId($order->goods_id);
-                    //扣除用户积分
-                    User::model()->updateByPk($order->user_id, ['score' => new CDbExpression('score-' . $order->integral)]);
-                    $score = new Score();
-                    $score->attributes = [
-                        'score' => $order->integral * -1,
-                        'user_id' => $order->user_id,
-                        'reason' => 2,
-                        'remark' => "商品(<a href='" . Yii::app()->createUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goods->id)]) . "'>" . $goods->name . ")购买,扣除积分"
-                    ];
-                    $score->insert();
+                    
                     //更新状态
                     $exchangeLog = ExchangeLog::model()->find('order_id=:order_id',[':order_id' => $order->order_id]);
                     $exchangeLog->pay_status = 1;
