@@ -1452,3 +1452,13 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .order_confirm div.button input{margin-left: 20px;}
 .order_confirm .btn_pay_ok{min-width: 120px;height: 28px;display: inline-block;background: #FFBB57;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
 .order_confirm .btn_pay_no{min-width: 120px;height: 28px;display: inline-block;background: #ccc;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
+
+
+
+/*积分*/
+ #qdk {width:170px;background-color:#fff;height:125px;border-bottom:1px solid #c11713;border-left:1px solid #c11713;border-right:1px solid #c11713;float: right;z-index: 999;position: relative;margin-top: 2px;}
+
+#qdk dt {font-size:12px;color:#666;line-height:22px;text-align:center;width:170px;padding-top:5px;}
+ #qdk dd {font-size:12px;color:#666;line-height:22px;text-align:center;width:170px;}
+#qdk dd span {color:#e02f2f;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;font-weight:bold;}
+ #qdk dt span {color:#e02f2f;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;font-weight:bold;} 
