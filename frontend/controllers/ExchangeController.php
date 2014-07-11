@@ -77,6 +77,8 @@ class ExchangeController extends Controller
             if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
+            }else{
+                    $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url'], '/common/success');
             }
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }

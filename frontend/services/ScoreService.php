@@ -322,10 +322,13 @@ class ScoreService
         //查询兑换商品数据
         $exchange = Exchange::findByGoodsId($goodsId);
         $goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        $buyCount = Yii::app()->request->getParam("buyCount", '');
 
-        if(!empty($exchange->goodscolor) && empty($goodscolor)){
+        if(!empty($exchange->goodscolor) && empty($goodscolor) || empty($buyCount)){
             return CommonHelper::getDataResult(false, [
-                        'message' => "选型选择错误，请重新选择", 'url' => $url, 'redirect' => true]);
+                        'message' => "参数选择错误，请重新选择", 
+                        'url' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+                ]);
         }
         //设置兑换token用于防止重复提交
         $tokenKey = Exchange::getExchangeCacheKey($userId, $goodsId);
