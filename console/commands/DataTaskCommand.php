@@ -99,7 +99,7 @@ class DataTaskCommand extends CConsoleCommand
             foreach ($orderList as $order) {
                 $orderIds[] = $order->order_id;
                 /*                     * ********返还积分***************** */
-                $integral = $order->integral * $order->buy_count;
+                $integral = $order->integral;
                 User::model()->updateByPk($order->user_id, ['score' => new CDbExpression('score+' . $integral)]);
                 //日志
                 $score = new Score();
