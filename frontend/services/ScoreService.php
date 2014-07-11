@@ -122,7 +122,7 @@ class ScoreService
                 return CommonHelper::getDataResult(false, ['message' => "购买数量不能超过最大库存数量", 'url' => $goodsUrl]);
             }
             if ($user->score < ($order['buyCount'] * $goods->integral)) {
-                return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此此购买", 'url' => $goodsUrl]);
+                return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此次购买", 'url' => $goodsUrl]);
             }
         }
         //配送地址
