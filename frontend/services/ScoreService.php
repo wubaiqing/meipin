@@ -307,9 +307,8 @@ class ScoreService
         }
         $user = User::getUser($userId);
         //验证手机是否绑定
+        $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
         if ($user->mobile_bind == 0) {
-            $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
-
             return CommonHelper::getDataResult(false, [
                         'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => true]);
         }
@@ -322,7 +321,12 @@ class ScoreService
 
         //查询兑换商品数据
         $exchange = Exchange::findByGoodsId($goodsId);
-//        $exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
+        $goodscolor = Yii::app()->request->getParam("gdcolor", '');
+
+        if(!empty($exchange->goodscolor) && empty($goodscolor)){
+            return CommonHelper::getDataResult(false, [
+                        'message' => "选型选择错误，请重新选择", 'url' => $url, 'redirect' => true]);
+        }
         //设置兑换token用于防止重复提交
         $tokenKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $dataToken = Yii::app()->cache->get($tokenKey);
