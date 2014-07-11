@@ -10,6 +10,7 @@
         <meta property="qc:admins" content="257146000265510166375" />
         <meta name="copyright" content="美品网">
         <link rel="stylesheet" type="text/css"  href="/static/main.css?v=wubaiqing-1.0.2" />
+        <link rel = "Shortcut Icon" href="/static/images/favicon.ico">
         <link rel="stylesheet" type="text/css"  href="/static/css/exchange.css?v=wubaiqing-1.0.2" />
         <link rel="stylesheet" type="text/css"  href="/static/nav_style.css?v=wubaiqing-1.0.2"/>
         <link rel="stylesheet" type="text/css"  href="/static/layer/skin/layer.css?v=1.0.0"/>

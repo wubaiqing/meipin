@@ -10,6 +10,7 @@
         <meta name="copyright" content="美品网">
         <link rel="stylesheet" type="text/css"  href="/static/main.css?v=201404131000" />
         <link rel="stylesheet" type="text/css"  href="/static/user.css?v=201404131000" />
+        <link rel = "Shortcut Icon" href="/static/images/favicon.ico">
         <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
         <link rel="stylesheet" type="text/css"  href="/static/nav_style.css"/>
         <script type="text/javascript" src="/static/js/user.js?v=1.0.2"></script>

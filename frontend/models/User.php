@@ -48,7 +48,7 @@ class User extends ActiveRecord implements IArrayable
             ['username', 'checkUsername', 'on' => 'register'],
             ['verifyCode', 'checkVerifyCode', 'on' => 'register'],
 			['verifyCode', 'checkVerifyCode', 'on' => 'forget'],
-            ['email', 'email', 'message' => '邮箱地址格式不对', 'pattern'=>"/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i",'on' => 'register'],
+            ['email', 'email', 'message' => '邮箱地址格式不对', 'on' => 'register'],
             ['email', 'required', 'message' => '邮箱不能为空', 'on' => 'forget'],
             ['email', 'checkEmail', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
