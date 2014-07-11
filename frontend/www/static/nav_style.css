@@ -117,35 +117,7 @@ br {clear:both;font-size:0;line-height:0;}
 
 
 
-#class_new{
-    width:980px;
-    margin:0 auto;
-}
 
-#class_new li {
-	float:left;
-	width:84px;
-	height:53px;
-	padding-right:5px;
-	position:relative;
-}
-#class_new li img {
-	position:absolute;
-	top:5px;
-	left:30px;
-}
-#class_new li a {
-	font-family:"宋体";
-	font-size:12px;
-	color:white;
-	line-height:35px;
-	padding-top:25px;
-	display:block;
-}
-#class_new li a:hover {
-	background-color:#8b1c1c;
-	height:42px;
-}
 
 .image {
 	position:fixed;
@@ -233,3 +205,4 @@ br {clear:both;font-size:0;line-height:0;}
 }
 .jingxuan ol li a {font-family:"微软雅黑";font-size:12px;color:#666;float:left;display:block;line-height:35px;text-align:center;}
 .jingxuan ol li a:hover {color:#780c00;}
+
