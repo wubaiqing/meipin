@@ -53,7 +53,7 @@
                 </div>
                 <div class="button">
                     <a class="btn_pay_ok" href="<?php echo Yii::app()->createUrl("order/list")?>">已完成支付</a>
-                    <a class="btn_pay_no" href="javascript:void(0);">支付失败</a>
+                    <a class="btn_pay_no" href="<?php echo Yii::app()->createUrl("order/list")?>">支付失败</a>
                 </div>
             </div>
         </div>

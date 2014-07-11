@@ -36,7 +36,7 @@ class OrderController extends Controller
         if ($data['status'] == false) {
             $this->pageRedirect('no', $data['data']['message'], '/', '/common/message');
         } else {
-            $this->pageRedirect('yes', $data['data']['message'], '/', '/common/message');
+            $this->renderPartial('/common/alipaySubmit',['title'=>$data['data']['message']]);
         }
     }
 
