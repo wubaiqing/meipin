@@ -169,7 +169,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $welfareList['pager'] = $welfare->getPagination();
         $welfareList['data'] = $welfare->data;
 
-        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HOUR);
+        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HALF_HOUR);
 
         unset($welfare);
 
