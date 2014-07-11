@@ -91,15 +91,25 @@ class DataTaskCommand extends CConsoleCommand
         $pageSize = 100;
 
         while (true) {
-            $orderList = Order::model()->findAll('pay_status=0 limit ' . $pageSize);
+            $orderList = Order::model()->findAll('pay_status=0 and created_at < '.(time()- Yii::app()->params['payTimeout']).' limit ' . $pageSize);
             if (empty($orderList)) {
                 break;
             }
             $orderIds = [];
             foreach ($orderList as $order) {
-                if (($order->created_at + Yii::app()->params['payTimeout']) < time()) {
-                    $orderIds[] = $order->order_id;
-                }
+                $orderIds[] = $order->order_id;
+                /*                     * ********返还积分***************** */
+                $integral = $order->integral;
+                User::model()->updateByPk($order->user_id, ['score' => new CDbExpression('score+' . $integral)]);
+                //日志
+                $score = new Score();
+                $score->attributes = [
+                    'score' => $integral,
+                    'user_id' => $order->user_id,
+                    'reason' => 2,
+                    'remark' => "返还积分（加钱换购），未支付订单过期（" . $order->order_id . "）"
+                ];
+                $score->insert();
             }
             Order::model()->updateByPk($orderIds, ['pay_status' => 1]);
         }

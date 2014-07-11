@@ -8,14 +8,14 @@
             <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
                 <tbody>
                     <tr align="center">
-                        <th width="200">商品名称</th>
-                        <th>颜色分类</th>   
+                        <th width="180">商品名称</th>
+                        <th width="10%">颜色分类</th>   
                         <th>订单号</th>
                         <th>下单时间</th>
                         <th>购买数量</th>
                         <th>消耗积分</th>
                         <th>支付金额(元)</th>
-                        <th>订单状态</th>
+                        <th width="140">订单状态</th>
                     </tr>
                     <?php foreach ($welfare as $info) { ?>
                         <?php
@@ -58,6 +58,11 @@
                         }
                         if ($info->order->pay_status == 4) {
                             echo $info->status == 1 ? '(已发货)' : '(等待发货)';
+                            //快递信息
+                            $logisticsSystem = Yii::app()->params['logisticsSystem'];
+                            if($info->status == 1 && isset($logisticsSystem[$info->logistics])){
+                                echo "<div style='text-align:left;width:100%;'>快递:".$logisticsSystem[$info->logistics]."<br/>单号:".$info->logistics_code.'</div>';
+                            }
                         }
                         ?>
                     </td>

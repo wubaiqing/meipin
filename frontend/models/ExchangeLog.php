@@ -25,7 +25,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return [
             [
-                'user_id,name,username,created_at,goods_id,city_id,address,postcode,mobile',
+                'user_id,name,username,created_at,goods_id,city_id,address,postcode,mobile,pay_status',
                 'required'
             ],
             [
@@ -169,7 +169,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $welfareList['pager'] = $welfare->getPagination();
         $welfareList['data'] = $welfare->data;
 
-        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HOUR);
+        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HALF_HOUR);
 
         unset($welfare);
 

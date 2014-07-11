@@ -116,7 +116,7 @@ class ExchangeController extends Controller
                 if ($payData['status'] == false) {
                     $this->pageRedirect('no', $payData['data']['message'], '/', '/common/message');
                 } else {
-                    $this->pageRedirect('yes', $payData['data']['message'], '/', '/common/message');
+                    $this->renderPartial('/common/alipaySubmit',['title'=>$payData['data']['message']]);
                 }
                 Yii::app()->end();
             }

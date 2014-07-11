@@ -15,7 +15,6 @@
         <link rel="stylesheet" type="text/css"  href="/static/nav_style.css?v=wubaiqing-1.0.2"/>
         <link rel="stylesheet" type="text/css"  href="/static/layer/skin/layer.css?v=1.0.0"/>
         <link rel="stylesheet" type="text/css"  href="/static/layer/skin/layer.ext.css?v=1.0.0"/>
-
         <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/unslider.min.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/jtzdm_lazyload.js?v=1.0.1"></script>
@@ -46,7 +45,7 @@
         <div style="display:none;">
             var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1000359564'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000359564%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
         </div>
-        <div id="pay_confirm">
+        <div id="pay_confirm" style="display: none;">
             <div class="order_confirm">
                 <div><h2>请在新打开的页面完成支付</h2></div>
                 <div class="content">
@@ -55,7 +54,7 @@
                 </div>
                 <div class="button">
                     <a class="btn_pay_ok" href="<?php echo Yii::app()->createUrl("order/list")?>">已完成支付</a>
-                    <a class="btn_pay_no" href="javascript:void(0);">支付失败</a>
+                    <a class="btn_pay_no" href="<?php echo Yii::app()->createUrl("order/list")?>">支付失败</a>
                 </div>
             </div>
         </div>

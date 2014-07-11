@@ -132,6 +132,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
+        $criteria->compare('pay_status', 1);
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
@@ -158,6 +159,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
+        $criteria->compare('pay_status', 1);
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);

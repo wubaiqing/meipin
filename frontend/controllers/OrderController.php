@@ -36,7 +36,7 @@ class OrderController extends Controller
         if ($data['status'] == false) {
             $this->pageRedirect('no', $data['data']['message'], '/', '/common/message');
         } else {
-            $this->pageRedirect('yes', $data['data']['message'], '/', '/common/message');
+            $this->renderPartial('/common/alipaySubmit',['title'=>$data['data']['message']]);
         }
     }
 
@@ -62,7 +62,7 @@ class OrderController extends Controller
     public function actionList($page = 1)
     {
         $welfare = ExchangeLog::getWelfare($this->userId, $page, 1);
-        $this->render('/score/order', [
+        $this->render('order', [
             'welfare' => $welfare['data'],
             'pager' => $welfare['pager'],
         ]);
