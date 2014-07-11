@@ -45,7 +45,7 @@
     <div class="r cellphone"><img src="/static/images/dl/tao800_1.jpg" width="110" height="173"></div>
     
     <a href="http://www.meipin.com/downloads/android.apk" class="dlBtn STYLE8">Android版本免费下载</a>
-	<a href="#" class="dlBtn STYLE8" title='即将上线'>iPhone版本免费下载（即将上线）</a>
+	<a href="#" class="dlBtn STYLE8" title='即将上线'>iPhone版本即将上线</a>
     
     <!-- <h3 class="goVt"><a href="#" class="STYLE1">点击进入美品网wap版本&gt;&gt;</a></h3> -->
 	<br>
