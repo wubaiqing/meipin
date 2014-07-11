@@ -310,7 +310,7 @@ class ScoreService
         $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
         if ($user->mobile_bind == 0) {
             return CommonHelper::getDataResult(false, [
-                        'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => true]);
+                        'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => false]);
         }
         //获取用户邮寄地址
         $userAddress = UsersAddress::getModel($userId);
