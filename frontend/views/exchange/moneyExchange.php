@@ -110,9 +110,9 @@
 
             <p>收货：<span style="line-height:1.6">您确认收货后，将打款给卖家； 发货后，15天内您未操作确认收货，系统将代替您自动完成确认收货。</span></p>
 
-            <p>包裹跟踪：<span style="line-height:1.6">您可在【我的订单】中查询包裹跟踪信息；</span></p>
+            <p>包裹跟踪：<span style="line-height:1.6">您可在【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】中查询包裹跟踪信息；</span></p>
 
-            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【我的订单】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由折800官方介入处理。</span></p>
+            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由折800官方介入处理。</span></p>
 
             <p><a>退货条件说明</a></p>
 
