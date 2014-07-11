@@ -104,7 +104,6 @@ class AlipaySubmit {
                 $sHtml = $sHtml."$button_name</form>";
 		$sHtml = $sHtml."<script>$(document).ready(function (){
 			$('img').load(function () {
-			alert('123');
 				document.forms['alipaysubmit'].submit();
 			})})</script>";
 
