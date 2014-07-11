@@ -14,13 +14,13 @@
                                 <a href="<?php echo Yii::app()->createAbsoluteUrl("order/list") ?>">我的订单</a>
                                 中继续支付.
                             </p>
-                        <?php endif; ?>
-                        <p class="msg_btnleft">
-                            系统将在10秒后跳转到订单列表页！
-                        </p>
+                            <p class="msg_btnleft">
+                                系统将在10秒后跳转到订单列表页！
+                            </p>
                         <script language="javascript">
                             setTimeout("location.href='<?php echo Yii::app()->createAbsoluteUrl("order/list") ?>';", 10 * 1000);
                         </script>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
