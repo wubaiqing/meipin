@@ -60,7 +60,7 @@
                             echo $info->status == 1 ? '(已发货)' : '(等待发货)';
                             //快递信息
                             $logisticsSystem = Yii::app()->params['logisticsSystem'];
-                            if(isset($logisticsSystem[$info->logistics])){
+                            if($info->status == 1 && isset($logisticsSystem[$info->logistics])){
                                 echo "<div style='text-align:left;width:100%;'>快递:".$logisticsSystem[$info->logistics]."<br/>单号:".$info->logistics_code.'</div>';
                             }
                         }
