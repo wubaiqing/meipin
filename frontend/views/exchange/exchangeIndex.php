@@ -13,10 +13,11 @@
         <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="POST" <?php if ($data['exchange']->goodscolor): ?> onsubmit="return checkcolor()" <?php endif; ?> >
             <?php
             $leftNum = $data['exchange']->num - $data['exchange']->sale_num; //剩余量
+            $canBuy = ($leftNum < 1 || $data['exchange']->end_time < time()) ? false : true;
             $start = "zt3"; //兑换结束
             if ($data['exchange']->start_time > time()) {
                 $start = "zt1"; //即将开始
-            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time() && $leftNum >0) {
+            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time() && $leftNum > 0) {
                 $start = "zt2"; //我要兑换
             }
             ?>
@@ -32,9 +33,16 @@
                         <span class='goodcolor'>
 
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
-
-                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
-                    <?php endforeach;?>
+                                <a <?php
+                                if ($value['gdcolornum'] == 0) {
+                                    echo "class='be' stock='0' ";
+                                } else {
+                                    echo 'stock=' . $value["gdcolornum"] . '' . ' sclor=' . $value["gdcolorname"] . ' class="'.($canBuy?"":'disabled bgcolor_gray').'"' ;
+                                }
+                                ?>  href="javascript:void(0)">
+                                        <?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?>
+                                </a>
+                            <?php endforeach; ?>
 
                         </span>
                     <?php endif; ?>
@@ -94,40 +102,3 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        try {
-            $(".tb-tabbar").find("li").click(function () {
-                $(".tb-tabbar").find("li").removeClass("selected");
-                $(this).addClass("selected");
-                $(".displayIF").addClass('hid');
-                $("." + $(this).attr("id")).removeClass("hid");
-            });
-        } catch (e) {
-            alert(e);
-        }
-     $('.goodcolor').find("a").click(function () {
-
-         gdcolornum = $(this).attr("stock");
-         if (gdcolornum!=0) {
-            $(".goodcolor a").attr("style",'');
-            //gdcolor = $(this).html(); //颜色
-            gdcolor = $(this).attr("sclor");
-            $(this).attr("style","border: 2px solid red");
-            $("#gdcolor").val(gdcolor);
-         }
-     });
-    });
-  function checkcolor () 
-  {
-      if($("#gdcolor").val() == '')
-      {
-        alert('请选择一个型号');
-        return false;
-      }
-      return true;
-  }
-
-</script>
-
