@@ -70,6 +70,10 @@ exchange.checkMoneyBuy = function() {
     if (!colorSel) {
         return false;
     }
+    if($("#num").val() < 1){
+        alert("购买数量必须大于0");
+        return false;
+    }
     return this.numChange();
 }
 //默认选中选型
