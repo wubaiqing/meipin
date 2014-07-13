@@ -31,13 +31,15 @@
             ),
             'gdscolor' =>[
                 'type' => 'raw',
+                'header' => '属性',
                 'name' => 'gdscolor',
+                'htmlOptions' => array('width' => '100')
             ],
             'user_id' => [
                 'type' => 'raw',
                 'header' => '用户名',
                 'value' => '"<a href=\"\"  target=\"_blank\">".(!empty($data->users)?$data->users->username:"")."</a>"',
-                'htmlOptions' => array('width' => '150')
+                'htmlOptions' => array('width' => '100')
             ],
             'created_at' => array(
                 'name' => '参与时间',

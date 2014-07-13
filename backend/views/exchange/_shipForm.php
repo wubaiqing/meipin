@@ -100,6 +100,16 @@ CHtml::$errorSummaryCss = 'text-warning';
         </td>
     </tr>
     <tr>
+        <td class="v_table_label">发货时间：</td>
+        <td>
+            <?php 
+            if($model->status == 1 && $model->delivery_time>0){
+                echo date("Y-m-d H:i:s", $model->delivery_time); 
+            }
+            ?>
+        </td>
+    </tr>
+    <tr>
         <td class="v_table_label">物流信息：</td>
         <td>
             <ul>

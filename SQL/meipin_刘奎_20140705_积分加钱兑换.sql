@@ -3,6 +3,7 @@ alter table `meipin_exchange_log` add logistics INT(11) default 0 comment '物�
 alter table `meipin_exchange_log` add logistics_code VARCHAR(50) default '' comment '物流单号';
 alter table `meipin_exchange_log` add order_id VARCHAR(20) default '' comment '订单号';
 alter table `meipin_exchange_log` add pay_status tinyint(4) default '0' comment '0：未支付；1：取消；2：支付中；3：支付失败；4：已支付；';
+alter table `meipin_exchange_log` add delivery_time int default '0' comment '发货时间';
 
 CREATE TABLE `meipin_order` (
   `order_id` varchar(20) NOT NULL DEFAULT '' COMMENT '订单开头,兑换：D;',

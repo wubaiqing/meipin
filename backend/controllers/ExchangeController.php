@@ -304,6 +304,7 @@ class ExchangeController extends Controller
         if ($formType == 'address') {
             $bool = ExchangeLog::upateAddress($id, $post);
         } else {
+            $post['delivery_time'] = time();
             $bool = ExchangeLog::updateStatus($id, $post);
         }
         if ($bool) {
