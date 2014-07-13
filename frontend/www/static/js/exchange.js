@@ -14,7 +14,7 @@ exchange.numChange = function(obj) {
         var buyCount = parseInt(numObj.val()) + 1;
         numObj.val(buyCount);
     } else if ($(obj).hasClass("jianhao")) {
-        var buyCount = (parseInt(numObj.val()) - 1) <= 0 ? 1 : (parseInt(numObj.val()) - 1);
+        var buyCount = (parseInt(numObj.val()) - 1) <= 0 ? 0 : (parseInt(numObj.val()) - 1);
         numObj.val(buyCount);
     }
     //计算总价
