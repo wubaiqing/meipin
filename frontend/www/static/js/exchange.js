@@ -2,6 +2,9 @@ var exchange = {};
 //点击数量后增减
 exchange.numChange = function(obj) {
     var numObj = $("#num");
+    if(numObj.attr("disabled") == 'disabled'){
+        return false;
+    }
     var valinum = this.validNum(numObj, obj);
     if (!valinum || obj == null || obj == undefined) {
         return valinum;
@@ -109,6 +112,9 @@ $(function() {
         alert(e);
     }
     $('.goodcolor').find("a").click(function() {
+        if($(this).hasClass("disabled")){
+            return false;
+        }
         gdcolornum = $(this).attr("stock");
         if (gdcolornum != 0) {
             $(".goodcolor a").attr("style", '');

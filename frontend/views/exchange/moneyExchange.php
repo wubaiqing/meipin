@@ -14,6 +14,10 @@
     <div class="detailmeta r">
         <form method="POST" action="<?php echo Yii::app()->createUrl("exchange/order") ?>" onsubmit="return exchange.checkMoneyBuy();">
             <h2 ><?php echo $data['exchange']->name; ?></h2>
+            <?php
+                $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
+                $canBuy = ($leftNum < 1 || $data['exchange']->end_time< time())? false:true;
+            ?>
             <div class="panelA line_dashed_top">
                 <dl class="nubA ">
                     <dt>现价：</dt>
@@ -45,7 +49,7 @@
                                 } else {
                                     echo 'stock=' . $value["gdcolornum"] . '' . ' sclor=' . $value["gdcolorname"] . '';
                                 }
-                                ?>  href="javascript:void(0)"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
+                                ?>  href="javascript:void(0)" class="<?php echo $canBuy?"":'disabled bgcolor_gray'?>"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
                                 <?php endforeach; ?>
                         </span>
                     </dd>
@@ -54,8 +58,7 @@
                     <dt>数量：</dt>
                     <dd>
                         <?php
-                        $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
-                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off']);
+                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off','disabled'=>!$canBuy,'class'=>!$canBuy?'bgcolor_gray':'']);
                         echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
                         echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
 
@@ -68,7 +71,7 @@
                 <dl class="nubD ">
                     <dt>
                     <?php
-                    if ($leftNum < 1):
+                    if (!$canBuy):
                         ?>
                         <input class="submit_no" type="button" address_id="" value="立即购买">
                     <?php else: ?>
@@ -112,7 +115,7 @@
 
             <p>包裹跟踪：<span style="line-height:1.6">您可在【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】中查询包裹跟踪信息；</span></p>
 
-            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由折800官方介入处理。</span></p>
+            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由折美品网官方介入处理。</span></p>
 
             <p><a>退货条件说明</a></p>
 

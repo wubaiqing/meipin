@@ -10,7 +10,7 @@ img{display:inline-block}
 .jianhao,.jianhao_disabled{display: block;width: 10px;height: 24px;line-height: 24px;position: relative;top: -23px;left: 0px;padding-left: 5px;font-size: 16px;font-weight: bold;}
 .jiahao,.jiahao_disabled{display: block;width: 10px;height: 24px;line-height: 24px;position: relative;top: 3px;left: 55px;padding-left: 5px;font-size: 16px;font-weight: bold;}
 .color_gray{color:#ccc}
-
+.bgcolor_gray{background-color: #ccc};
 
 .deteilpic{padding: 20px 0 0 20px;}
 .deteilpic ul{width: 408px;margin-top: 15px;}
@@ -59,3 +59,4 @@ img{display:inline-block}
 .mainwrap table td {border-color: #CACACA; border-style: none dotted dotted; border-width: 0 1px 1px}
 .productdetail,.xuzhi,record{padding:20px 10px 20px 30px;}
 .show_none{display: none;}
+.xuzhi p{font-size: 16px;line-height: 30px;}

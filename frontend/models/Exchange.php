@@ -17,7 +17,7 @@ class Exchange extends ActiveRecord
      * 购买数量
      * @var integer 
      */
-    public $buyCount = 1;
+    public $buyCount = 0;
     
     /**
      * 表名
