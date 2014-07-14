@@ -1,6 +1,16 @@
 <tr>
     <td class="center"><?php echo $data->id ?></td>
-    <td><?php echo $data->name ?></td>
+    <?php 
+      if($data->goods_type==1)
+      {
+        $url = "http://www.meipin.com/exchange/raffle_".Des::encrypt($data->id).".html";
+    }else
+    {
+        $url = "http://www.meipin.com/exchange/detail_".Des::encrypt($data->id).".html";
+    }
+       
+     ?>
+    <td><a href='<?php echo $url;?>' target='_blank'><?php echo $data->name ?></a></td>
     <td><?php echo $data->goodscolor2 ?></td>
     <td><?php echo date("Y-m-d H:i", $data->start_time) ?></td>
     <td><?php echo date("Y-m-d H:i", $data->end_time) ?></td>
