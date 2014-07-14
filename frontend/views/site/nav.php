@@ -32,7 +32,7 @@ $(window).scroll(function( ){
             <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 1000));?>" target="_blank">9块9</a></li>
             <!-- <li><a href="">20元封顶</a></li>
             <br> -->
-            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('tomorrow');?>" target="_blank" >精选预告</a></li>
+            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('tomorrow');?>" target="_blank" >明日预告</a></li>
             <br/>
              <form target="_self" action="<?php echo $this->createUrl('search/index');?>" id="search">
             	<input class="search_text" type="text" name="title"  />
