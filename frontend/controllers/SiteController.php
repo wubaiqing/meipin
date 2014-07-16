@@ -88,13 +88,16 @@ class SiteController extends Controller
     /**
      * 今天值得买首页  --不能删
      */
-    public function actionOut($id,$page=1,$hot=0)
+    public function actionOut($id,$page=1,$hot=0, $skip = 0)
     {
         $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
+		if ($goods->is_skip == 1) {
+			header('Location:' . $goods->url);
+			Yii::app()->end();
+		}
         $hotExchangeGoods = Exchange::getHotExchangeDetailGoods();
         $xggoods = Goods::getXgGoodsList($goods->cat_id,$hot, $page,$goods->id);
-        // print_r($xggoods['data']);
         Yii::app()->params['title'] =$goods->title."-美品网"; //详细页title
         $this->render('goodsdetail', array(
         	'cat'=>0,

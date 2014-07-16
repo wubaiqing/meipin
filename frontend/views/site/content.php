@@ -43,21 +43,22 @@
         <?php endforeach; }?>
    <!--首页积分调用 end-->
         <?php foreach ($goods as $item) : ?>
+		<?php $goodsUrl = $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>
         <div class="dealbox">
             <div class="deal figure1 zt1">
                 <div class="">
                     <p>
-                        <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
+                        <a href="<?php echo $goodsUrl ?>" target="_blank">
                             <img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190">
                         </a>
                     </p>
                     <h2>
                         <strong>
-                            <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
+                            <a href="<?php echo $goodsUrl ?>" target="_blank">
                                 【<?php echo Store::getStoreByPk($item->relation_website);?>】
                             </a>
                         </strong>
-                        <a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank">
+                        <a href="<?php echo $goodsUrl ?>" target="_blank">
                             <?php echo $item->title;?>
                         </a>
                     </h2>
@@ -79,11 +80,11 @@
                             <i>¥<?php echo $item->origin_price;?></i>
                         </span>
                         <?php if ($item->start_time > time() && $item->sell_status !=2 ) :?>
-						<span><span><a href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a></span></span>
+						<span><span><a href="<?php echo $goodsUrl ?>" target="_blank" ></a></span></span>
                         <?php elseif($item->sell_status ==2) :?> 
-						<span><a  href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a></span>
+						<span><a  href="<?php echo $goodsUrl ?>" target="_blank" ></a></span>
 						<?php else:?>
-						<a  href="<?php echo $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>" target="_blank" ></a>
+						<a  href="<?php echo $goodsUrl ?>" target="_blank" ></a>
                         <?php endif;?>
                     </h4>
                     <span class="mgicon"></span>
