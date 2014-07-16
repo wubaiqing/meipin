@@ -43,7 +43,7 @@
         <?php endforeach; }?>
    <!--首页积分调用 end-->
         <?php foreach ($goods as $item) : ?>
-		<?php $goodsUrl = ($item->is_skip == 0) ? $this->createUrl('site/out', array('id' => Des::encrypt($item->id))) : $item->url;?>
+		<?php $goodsUrl = $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>
         <div class="dealbox">
             <div class="deal figure1 zt1">
                 <div class="">
