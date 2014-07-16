@@ -9,7 +9,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
         <h2><span></span>支付及配送方式</h2>
         <p>
             <em>0元包邮</em>
-            <strong>1.</strong>为了更好的回馈折会员，所有礼品不收取任何费用，我们包邮为您送到家<br>
+            <strong>1.</strong>为了更好的回馈美品网会员，所有礼品不收取任何费用，我们包邮为您送到家<br>
             <strong>2.</strong>由于参与<?php echo $name; ?>的人数较多，工作人员会在<?php echo $name; ?>成功后的15-20个工作日内将礼品发出<br>
             <strong>3.</strong><?php echo $name; ?>成功后您可以到 <strong>个人中心</strong> &gt; <strong>我的礼品</strong> 中根据快递单号查看您的订单配送情况
         </p>
@@ -28,6 +28,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                         echo CHtml::hiddenField("Exchange[goodscolor]", $data['exchange']->goodscolor);
                         echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data['exchange']->id));
                         echo CHtml::hiddenField("Exchange[city_id]", $data['userAddress']->city_id);
+                         echo CHtml::hiddenField("Exchange[buyCount]", $params['buyCount']);
                         $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data['exchange']->id)));
                         ?>
                         <a href="<?php echo $goodsUrl; ?>" target="_blank">

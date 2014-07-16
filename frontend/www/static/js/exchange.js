@@ -9,12 +9,11 @@ exchange.numChange = function(obj) {
     if (!valinum || obj == null || obj == undefined) {
         return valinum;
     }
-
     if ($(obj).hasClass("jiahao")) {
         var buyCount = parseInt(numObj.val()) + 1;
         numObj.val(buyCount);
     } else if ($(obj).hasClass("jianhao")) {
-        var buyCount = (parseInt(numObj.val()) - 1) <= 0 ? 0 : (parseInt(numObj.val()) - 1);
+        var buyCount = (parseInt(numObj.val()) - 1) <= 0 ? 1 : (parseInt(numObj.val()) - 1);
         numObj.val(buyCount);
     }
     //计算总价
@@ -29,16 +28,28 @@ exchange.numChange = function(obj) {
 //验证购买数量
 exchange.validNum = function(numObj, obj) {
     var currCount = numObj.val();
+    //alert(currCount);
     var regx = /^\d+$/;
     if (!regx.test(currCount)) {
         alert("购买数量必须为正整数");
         return false;
     }
-    var limitNum = numObj.attr("limitnum");
+    //var limitNum = numObj.attr("limitnum");
+    var kckc_id = $("#kckc_id").html();
+    var xg_num = $("#xg_num").html();
+    if(parseInt(kckc_id) < parseInt(xg_num))
+    {
+       var limitNum = parseInt(kckc_id);
+    }else
+    {
+        var limitNum = parseInt(xg_num);
+    }
+
     if ($(obj).hasClass("jiahao")) {
         if (parseInt(currCount) >= parseInt(limitNum) - 1) {
             $(".jiahao").addClass("color_gray");
-            numObj.val(limitNum)
+            numObj.val(limitNum);
+            $("#leixing").html("超出库存或超出限制购买件数");
             return false;
         }
     } else if ($(obj).hasClass("jianhao")) {
@@ -66,10 +77,14 @@ exchange.scrollView = function() {
 }
 //验证加钱购买
 exchange.checkMoneyBuy = function() {
-    var colorSel = checkcolor();
-    if (!colorSel) {
-        return false;
-    }
+
+    if($("#is_gdcolor").length>0)
+    {
+        var colorSel = checkcolor();
+        if (!colorSel) {
+            return false;
+        }
+    } 
     if($("#num").val() < 1){
         alert("购买数量必须大于0");
         return false;
@@ -123,8 +138,12 @@ $(function() {
         if (gdcolornum != 0) {
             $(".goodcolor a").attr("style", '');
             gdcolor = $(this).html(); //颜色
+            $("#leixing").html('');
+            $("#num").val('1');
             $(this).attr("style", "border: 2px solid red");
             $("#gdcolor").val($.trim(gdcolor));
+            $("#kckc_id").html(gdcolornum);
+            $("#zhkc").val(gdcolornum);
         }
     });
     $(".jiahao,.jianhao").on('click', function() {
@@ -147,8 +166,17 @@ function checkcolor()
     var goods_type = $("#goods_type").val();
     if (goods_type != 1 && $("#gdcolor").val() == '')
     {
-        alert('请选择一个型号');
+        //alert('请选择一个型号');
+        $("#leixing").html('请选择一个型号');
         return false;
     }
+    //         //先判断是否登陆
+    // url = "/exchange/Islogin";
+    // idid = $("#gdid").val();
+    // $.post(url, {id:idid}, function(d) {
+    //     alert(d)
+    //    if(d)
+    //     { window.location.href=d;}
+    // });
     return true;
 }

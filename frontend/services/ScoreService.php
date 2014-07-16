@@ -64,6 +64,12 @@ class ScoreService
         $isPayOrder = false;
         $nowTime = time();
         $order = self::formatPostValue($order);
+
+        //在这里将 颜色的库存改一下
+        $order = ExchangeHelper::formatExchangeGoodsColorCount($order);
+        //Array ( [token] => 0adda0804413b28bf510ac5e919af9cb [gdscolor] => 白色 [goodscolor] => 白色:1;红色:6; [goods_id] => 12 [city_id] => 1 [buyCount] => 1 [remark] => ) 
+        //print_r($order);
+        //die;
         $url = Yii::app()->createUrl("site/index");
         //是否提交
         if (empty($order)) {
@@ -321,15 +327,16 @@ class ScoreService
 
         //查询兑换商品数据
         $exchange = Exchange::findByGoodsId($goodsId);
-        $goodscolor = Yii::app()->request->getParam("gdcolor", '');
-        $buyCount = Yii::app()->request->getParam("buyCount", '');
+        //$exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
 
-        if(!empty($exchange->goodscolor) && empty($goodscolor) || empty($buyCount)){
+        //$goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        //$buyCount = Yii::app()->request->getParam("buyCount", '');
+/*        if(!empty($exchange->goodscolor) && empty($goodscolor) || empty($buyCount)){
             return CommonHelper::getDataResult(false, [
                         'message' => "参数选择错误，请重新选择", 
                         'url' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
                 ]);
-        }
+        }*/
         //设置兑换token用于防止重复提交
         $tokenKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $dataToken = Yii::app()->cache->get($tokenKey);

@@ -38,10 +38,11 @@
                         <b class="red1"><?php echo $data['exchange']->sale_num; ?></b>&nbsp;件
                     </dd>
                 </dl>
+                <?php if($data['exchange']->goodscolor):?>
                 <dl class="nubD ">
                     <dt>选型：</dt>
                     <dd>
-                        <span class="goodcolor">
+                        <span class="goodcolor" id="is_gdcolor">
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
                                 <a <?php
                                 if ($value['gdcolornum'] == 0) {
@@ -49,29 +50,45 @@
                                 } else {
                                     echo 'stock=' . $value["gdcolornum"] . '' . ' sclor=' . $value["gdcolorname"] . '';
                                 }
-                                ?>  href="javascript:void(0)" class="<?php echo $canBuy?"":'disabled bgcolor_gray'?>"><?php echo $value['gdcolorname'] . "({$value['gdcolornum']})"; ?></a>
+                                ?>  href="javascript:void(0)" class="<?php echo $canBuy?"":'disabled bgcolor_gray'?>"><?php echo $value['gdcolorname'] . ""; ?></a>
                                 <?php endforeach; ?>
                         </span>
                     </dd>
                 </dl>
+                <?php endif;?>
                 <dl class="nubD ">
                     <dt>数量：</dt>
                     <dd>
                         <?php
-                        echo CHtml::textField("buyCount", $data['exchange']->buyCount, ['id' => 'num', 'limitNum' => $leftNum, 'autocomplete' => 'off','disabled'=>!$canBuy,'class'=>!$canBuy?'bgcolor_gray':'']);
+                        echo CHtml::textField("buyCount", $data['exchange']->buyCount?$data['exchange']->buyCount:1, ['id' => 'num','limitNum' => $leftNum, 'autocomplete' => 'off','disabled'=>!$canBuy,'class'=>!$canBuy?'bgcolor_gray':'']);
+            
                         echo Chtml::link("+", "javascript:", ['class' => 'jiahao']);
+
                         echo Chtml::link("-", "javascript:", ['class' => 'jianhao']);
 
                         echo CHtml::hiddenField("gdcolor", '', ['id' => 'gdcolor']);
-                        echo CHtml::hiddenField("id", $params['goodsId']);
+                        echo CHtml::hiddenField("goods_num", '', ['id' => 'goods_num']);
+                        echo CHtml::hiddenField("id", $params['goodsId'],['id'=>'gdid']);
                         echo CHtml::hiddenField("goods_type", $data['exchange']->goods_type);
-                        ?>
-                    </dd>
+                      if($count < $data['exchange']->buy_num){
+                        $zhxz= $data['exchange']->buy_num - $count;}else{
+                        $zhxz= $data['exchange']->buy_num;
+                      }
+                        echo CHtml::hiddenField("zhxz", $zhxz, array('id'=>'zhxz')); //限制件数
+                        echo CHtml::hiddenField("zhkc", $zhxz,array('id'=>'zhkc'));
+                        //选中商品库存数
+                        ?> <a class="sykc">库存<span id='kckc_id'><?php echo $leftNum;?> </span> 件 / 限购 <span id="xg_num"> 
+                        <?php 
+                        if($count <= $data['exchange']->buy_num){
+                            echo $data['exchange']->buy_num - $count;
+                            }else{echo '0';} ?></span> 件</a>
+                    </dd><span id="leixing" style="color:red"><?php if($count >=$data['exchange']->buy_num){echo "您已经超过了限制购买的件数，请重新选择其他商品";} ?></span>
                 </dl>
+
                 <dl class="nubD ">
                     <dt>
                     <?php
-                    if (!$canBuy):
+                    if (!$canBuy || $count >=$data['exchange']->buy_num):
                         ?>
                         <input class="submit_no" type="button" address_id="" value="立即购买">
                     <?php else: ?>
@@ -115,7 +132,7 @@
 
             <p>包裹跟踪：<span style="line-height:1.6">您可在【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】中查询包裹跟踪信息；</span></p>
 
-            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由折美品网官方介入处理。</span></p>
+            <p>特卖商城售后保障：<span style="line-height:1.6">如需退货，需进入【<a href="<?php echo Yii::app()->createUrl("order/list")?>">我的订单</a>】，找到您要退换货的商品，点击对应的&ldquo;申请退款/申请退货&rdquo;，按页面提示填写并提交，商家将在页面给您回复。如与商家沟通中遇到问题，可点击&quot;我要维权&quot;，由美品网官方介入处理。</span></p>
 
             <p><a>退货条件说明</a></p>
 

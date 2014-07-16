@@ -66,7 +66,7 @@ class Exchange extends CActiveRecord
                 'length',
                 'max' => 100
             ],
-            ['id,goodscolor,goodscolor2,description',
+            ['id,goodscolor,goodscolor2,description,buy_num',
                 'safe'
             ],
             ['id, name, num, price,active_price, integral, start_time, end_time,lottery_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete, goods_type',
@@ -109,6 +109,7 @@ class Exchange extends CActiveRecord
             'lottery_time' => '自动抽奖时间',
             'limit_count' => '中奖名额',
             'active_price' => '活动价格',
+            'buy_num'=>'限制件数'
         ];
     }
 

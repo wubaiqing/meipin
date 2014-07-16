@@ -37,11 +37,24 @@ class ExchangeController extends Controller
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
-
-        if ($dataResult['data']['exchange']->active_price > 0) {
+        $count =0;
+        if ($dataResult['data']['exchange']->active_price > 0) 
+        {
+            if($this->isLogin){
+                $userId = Yii::app()->user->id;
+                $order = new Order();
+                $count =$order->getbuyCount($goodsId,$userId);
+                //echo $count;
+            }
             $this->layout = '//layouts/money';
             $render = "moneyExchange";
         } else {
+            if($this->isLogin){
+                $userId = Yii::app()->user->id;
+                $exchangelog = new ExchangeLog();
+                $count =$exchangelog->getdhUserCount($goodsId,$userId);
+                //echo $count;
+            }
             $this->layout = '//layouts/exchange';
             $render = "exchangeIndex";
         }
@@ -53,10 +66,24 @@ class ExchangeController extends Controller
         //渲染頁面
         $this->render($render, [
             'data' => $dataResult['data'],
-            'params' => ['goodsId' => $id, 'goodsType' => 1]
+            'params' => ['goodsId' => $id, 'goodsType' => 1],
+            'count'=>$count,
         ]);
     }
 
+    /**
+     * 判断是否登陆
+     */
+    public function actionIslogin()
+    {
+        $goodsId = Yii::app()->request->getPost("id");
+        //$goodsId = Des::decrypt($goodsId);
+        if (!$this->isLogin && $goodsId) {
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ["id" => $goodsId])]);
+            echo $url;
+            die;
+        }
+    }
     /**
      * 商品兑换订单详情页
      */
@@ -64,9 +91,12 @@ class ExchangeController extends Controller
     {
         $id = Yii::app()->request->getParam("id", 0);
         $goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        $zhxz = Yii::app()->request->getParam("zhxz", ''); //最后限制件数
+        $zhkc = Yii::app()->request->getParam("zhkc", 0);//选中商品库存数
         $buyCount = Yii::app()->request->getParam("buyCount", 1);
+
         if (!$this->isLogin) {
-            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor,"buyCount"=>$buyCount])]);
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ["id" => $id, 'gdcolor' => $goodscolor,"buyCount"=>$buyCount])]);
             $this->redirect($url);
             Yii::app()->end();
         }
@@ -98,9 +128,23 @@ class ExchangeController extends Controller
                 'token' => $dataResult['data']['token'],
                 'gdscolor' => $goodscolor,
                 'buyCount' => $buyCount,
+                'zhxz'=>$zhxz,
+                'zhkc'=>$zhkc
         ]]);
     }
 
+
+    public function actionGetBuycount()
+    {
+        $goodsId = Yii::app()->request->getPost("id");
+        $goodsId = Des::decrypt($goodsId);
+        $userId = Yii::app()->user->id;
+        $count = Order::getbuyCount($goodsId,$userId);
+        echo $count;
+        /*  if (!$valid['status']) {
+            $this->returnData(false, ['message' => $valid['data']['message']]);
+        }*/
+    }
     /**
      * 执行兑换操作
      * @param  integer $goodsId 兑换商品ID

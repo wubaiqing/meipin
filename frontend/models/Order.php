@@ -151,4 +151,17 @@ class Order extends ActiveRecord implements IArrayable
     public static function findByUserId($order_id,$user_id){
         return self::model()->findByPk($order_id, 'user_id=:user_id',[':user_id' => $user_id]);
     }
+
+
+    /*统计每个用户兑换的次数*/
+    public function getbuyCount($goodsId,$userId)
+    {
+        $tbname = $this->tableName();
+        $connection = Yii::app()->db;  
+        $sql = "SELECT sum(buy_count) as count FROM {$tbname} where user_id={$userId} and goods_id={$goodsId}";  
+        $command = $connection->createCommand($sql);  
+        $result = $command->queryAll();  
+        return $result[0]['count'];  
+    }
+
 }

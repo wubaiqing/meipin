@@ -12,23 +12,23 @@ br {clear:both;font-size:0;line-height:0;}
 
 #main {width:980px;margin:0 auto;border:1px #d6d6d6 solid;background-color:white;margin-top: 5px;}
 #main ul {margin:30px 0 0 20px;}
-#main ul li {padding:19px 5px 0 5px;float:left;border:1px #e0e0e0 solid;min-height:460px;margin-right:18px;margin-bottom: 10px; width:290px;}
-#main ul li h4 a {padding:10px 0 10px 0;display:block;font-family:"宋体";font-size:14px;color:black;}
-#main ul li p {font-family:"微软雅黑";font-size:14px;color:#999;padding-bottom:15px;}
+#main ul li {padding: 19px 14px 0px;float: left;border: 1px solid #E0E0E0;height: 300px;margin-right: 18px;margin-bottom: 10px;}
+#main ul li h4 a {padding: 10px 0px;display: block;font-family: "宋体";font-size: 14px;color: #000;}
+#main ul li p {font-family:"微软雅黑";font-size:12px;color:#999;padding-bottom:15px;float: left;}
 #main ul li p span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;}
+.rafflekaishi{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll -162px 0px transparent;color: #FFF;font: 14px/30px "Arial";text-align: center;margin-top: -6px;margin-left: 35px;padding-left: 15px;
+}
 #main ul li dl {position:absolute;color:#999;}
-#main ul li dl dt {font-family:"微软雅黑";font-size:16px;width: 100%;padding:5px 0 5px 0;}
-#main ul li dl dt span {color:red;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;font-size:25px;}
+#main ul li dl dt {font-family:"微软雅黑";font-size:12px;padding:5px 0 5px 0;}
+#main ul li dl dt span {color:red;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;font-size:16px;}
 #main ul li dl dd {width:230px;}
 #main ul li:hover {border:1px red solid;}
-.raffle{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat 0 0;_background:url(images/bg2.png) no-repeat 0 0;margin-top:5px;margin-left: 15px;}
+.raffle{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat 0 0;_background:url(images/bg2.png) no-repeat 0 0;margin-top:-15px;margin-left: 45px;}
 
-.rafflekaishi{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll -162px 0px transparent;color: #FFF;font: 14px/30px "Arial";text-align: center;margin-top: 5px;margin-left: 15px;padding-left: 15px;
-}
 .rafflekaishi span{display: inline-block;height: 31px;background: url('../images/bg2.png') no-repeat scroll 100% 0px transparent;color: #FFF;font: 14px/30px "Arial";padding-right: 15px;
 }
 
-.rafflejishu{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat -80px 0;margin-left: 15px;margin-top: 5px;}
+.rafflejishu{display:inline-block;font: 14px/30px "";text-align: center;color:#fff;width:80px;height:31px;background:url(../images/bg2.png) no-repeat -80px 0;margin-left: 55px;margin-top: -6px;}
 
 #main ul .list2 a{color: #999;}
 #main ul .list2 dl dt span {color: #797979}

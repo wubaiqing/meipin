@@ -11,7 +11,8 @@
        
      ?>
     <td><a href='<?php echo $url;?>' target='_blank'><?php echo $data->name ?></a></td>
-    <td><?php echo $data->goodscolor2 ?></td>
+    <td><span title="剩余<?php echo $data->goodscolor;?>"><?php echo $data->goodscolor2; ?></span></td>
+    <td><?php echo $data->buy_num; ?></td>
     <td><?php echo date("Y-m-d H:i", $data->start_time) ?></td>
     <td><?php echo date("Y-m-d H:i", $data->end_time) ?></td>
     <td><?php echo $data->user_count ?></td>

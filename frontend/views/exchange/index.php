@@ -53,20 +53,12 @@ $isSignDay = User::isSignDay();
             ?>
 
                 <li <?php if($goods['end_time'] < time() || $leftNum <=0){ echo "class='list2'";}?>>
-                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="290px" height="290" /></a>
+                    <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" width="190" height="190" /></a>
                     <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
                     <p>剩余：<span><?php 
                     
                             echo $leftNum > 0 ? $leftNum : 0; ?><span>份</p>
-                    <dl>
-                        <dt>价格：<span>
-                            <?php if($goods['active_price']>0):?>
-                            ￥<?php echo $goods['active_price']?>+
-                            <?php endif;?>
-                                <?php echo $goods['integral']; ?>分</span></dt>
-
-                        <dd>
-                       <?php 
+                        <?php 
                          if($goods['start_time'] > time() && $leftNum >0)
                          {
                             echo "<a href='{$url}' target='_blank' class='rafflekaishi'><span>即将开始</span>";
@@ -76,10 +68,21 @@ $isSignDay = User::isSignDay();
                          {
                             echo "<a href='{$url}' target='_blank' class='rafflejishu'>";
                          }
-                        ?> 
+                        ?>   
+                        </a> 
+                        <br>                        
+                    <dl>
+                        <dt>价格：<span>
+                            <?php if($goods['active_price']>0):?>
+                            ￥<?php echo $goods['active_price']?>+
+                            <?php endif;?>
+                                <?php echo $goods['integral']; ?>分</span></dt>
+
+                        <dd>
+
                         
 
-                        </a>
+                        
                         </dd>
 
                         

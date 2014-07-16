@@ -45,6 +45,13 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     </div>
 </div>
 <div class="control-group">
+    <?php echo $form->labelEx($exchangeModel, 'buy_num', array('class' => 'control-label')); ?>
+    <div class="controls">
+        <?php echo $form->textField($exchangeModel, 'buy_num'); ?>
+        <label class="line-note">限制每人购买件数</label>
+    </div>
+</div>
+<div class="control-group">
     <?php echo $form->labelEx($exchangeModel, 'price', array('class' => 'control-label')); ?>
     <div class="controls">
         <?php echo $form->textField($exchangeModel, 'price'); ?>

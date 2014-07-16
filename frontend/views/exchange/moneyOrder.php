@@ -53,17 +53,22 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                             <td style="">
                                 <?php
                                 echo CHtml::hiddenField("Exchange[token]", $params['token']);
-                                echo CHtml::hiddenField("Exchange[gdscolor]", $params['gdscolor']);
+                                echo CHtml::hiddenField("Exchange[gdscolor]", $params['gdscolor'],array('id'=>'zhcolor'));
                                 echo CHtml::hiddenField("Exchange[goodscolor]", $data['exchange']->goodscolor);
-                                echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data['exchange']->id));
+                                echo CHtml::hiddenField("Exchange[goods_id]", Des::encrypt($data['exchange']->id),array('id'=>'gdid'));
+
                                 echo CHtml::hiddenField("Exchange[city_id]", $data['userAddress']->city_id);
                                 $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data['exchange']->id)));
+                               /* echo CHtml::hiddenField("Exchange[zhxz]", $params['zhxz'],array('id'=>'zhxz'));
+                                echo CHtml::hiddenField("Exchange[zhkc]", $params['zhkc'],array('id'=>"zhkc"));*/
                                 ?>
+                                <span id="kckc_id"><?php echo $params['zhkc'];?></span> <span id="xg_num"><?php echo $params['zhxz'];?></span>
                                 <div class="img">
                                     <a href="<?php echo $goodsUrl; ?>" target="_blank">
                                         <img  style=""width="100" src="<?php echo $data['exchange']->img_url; ?>">
                                     </a>
                                 </div>
+
                                 <div class="txt">
                                     <a target="_blank" href="<?php echo $goodsUrl; ?>">
                                         <?php echo StringHelper::Utf8Substr($data['exchange']->name, 0, 25); ?>

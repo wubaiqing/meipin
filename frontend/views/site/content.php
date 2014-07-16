@@ -27,7 +27,7 @@
                     <h4>
                         <span>
                             <em>
-                                <b>0元+</b>
+                                <b><?php echo $item->active_price;?>元+</b>
                                 <em><?php echo $item->integral; ?>分</em>
                             </em>
                         </span>

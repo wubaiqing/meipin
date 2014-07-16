@@ -231,7 +231,16 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         ]);
         return $data;
     }
-
+    
+    /*获取兑换的次数*/
+    public static function getdhUserCount($goods_id,$userId)
+    {
+        $data = ExchangeLog::model()->count([
+            'condition' => 'goods_id=:goods_id and user_id=:user_id',
+            'params' => [":goods_id" => $goods_id,":user_id"=>$userId],
+        ]);
+        return $data;
+    }
     /**
      * 获取获奖用户KEY
      * @param integer $goods_id 商品ID
