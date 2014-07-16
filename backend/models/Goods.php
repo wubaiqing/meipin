@@ -69,7 +69,7 @@ class Goods extends ActiveRecord implements IArrayable
     public function rules()
     {
         return array(
-            array('goods_type, cat_id, title, url, origin_price, price, picture, status, list_order, start_time, end_time, user_id, is_zhe800', 'required'),
+            array('goods_type, cat_id, title, url, origin_price, price, picture, status, list_order, start_time, end_time, user_id, is_zhe800, is_skip', 'required'),
             array('tb_id, cat_id, status, list_order, created_at, updated_at, user_id', 'numerical', 'integerOnly' => true),
             array('origin_price, price', 'type', 'type' => 'float'),
             array('title, url, picture, searchInput', 'length', 'max' => 255),
@@ -133,7 +133,8 @@ class Goods extends ActiveRecord implements IArrayable
             'relation_website' => '关联网站',
             'user_id' => '用户ID',
             'is_zhe800' => '商品来源',
-            'admin_id' => '创建人'
+            'admin_id' => '创建人',
+            'is_skip' => '跳转'
         );
     }
 
