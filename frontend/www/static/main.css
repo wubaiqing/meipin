@@ -1438,3 +1438,27 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 /*分页选中的样式*/
 .select a{ color: #BB3500}
     
+.submit_ok{min-width: 120px;height: 48px;display: inline-block;background: #e02f2f;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
+.submit_no{min-width: 120px;height: 48px;display: inline-block;background: #CCC;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
+.line_dashed_bottom{border-bottom: 1px dashed #e5e5e5}
+.line_dashed_top{border-top: 1px dashed #e5e5e5}
+.line_solid_bottom{border-bottom: 1px solid #e5e5e5}
+.line_solid_top{border-top: 1px solid #e5e5e5}
+
+.order_confirm{width:100%;}
+.order_confirm h2{width:100%;text-align: center;font-size: 20px;margin-top:20px;}
+.order_confirm div.content{padding:20px 0 20px 80px;}
+.order_confirm div.button{text-align: center;}
+.order_confirm div.button input{margin-left: 20px;}
+.order_confirm .btn_pay_ok{min-width: 120px;height: 28px;display: inline-block;background: #FFBB57;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
+.order_confirm .btn_pay_no{min-width: 120px;height: 28px;display: inline-block;background: #ccc;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
+
+
+
+/*积分*/
+ #qdk {width:170px;background-color:#fff;height:125px;border-bottom:1px solid #c11713;border-left:1px solid #c11713;border-right:1px solid #c11713;float: right;z-index: 999;position: relative;margin-top: 2px;}
+
+#qdk dt {font-size:12px;color:#666;line-height:22px;text-align:center;width:170px;padding-top:5px;}
+ #qdk dd {font-size:12px;color:#666;line-height:22px;text-align:center;width:170px;}
+#qdk dd span {color:#e02f2f;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;font-weight:bold;}
+ #qdk dt span {color:#e02f2f;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;font-weight:bold;} 

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://meipin.me/score -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" type="text/css" href="">
+<title>美品网-美品网独家优惠,折800、九块邮精选美品会</title>
+        <meta name="keywords" content="美品网,美品,折800,九块邮,独家折扣,9.9包邮,秒杀">
+        <meta name="description" content="美品网，一家专门做打折特惠的网站，花最少的钱，买走最好的东西，每日更多众多商品0元换购，美品汇集地。">
+        <meta name="author" content="wubaiqing">
+        <meta property="qc:admins" content="257146000265510166375">
+        <meta name="copyright" content="美品网">
+        <link rel="stylesheet" type="text/css" href="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/main.css">
+        <link rel="stylesheet" type="text/css" href="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/user.css">
+        <script src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/jquery.js"></script>
+        <link rel="stylesheet" type="text/css" href="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/nav_style.css">
+        <script type="text/javascript" src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/user.js"></script>
+        <script type="text/javascript" src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/sign_day.js"></script>
+        <script type="text/javascript" src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/move.js"></script>
+        <script type="text/javascript" src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/jquery.blockUI.min.js"></script><style type="text/css" adt="123"></style>
+    <script>if(!document.URL.match(new RegExp('v\\.baidu\\.com'))){
+(function() {
+    Function.prototype.bind = function() {
+        var fn = this, args = Array.prototype.slice.call(arguments), obj = args.shift();
+        return function() {
+            return fn.apply(obj, args.concat(Array.prototype.slice.call(arguments)));
+        };
+    };
+    function A() {}
+    A.prototype = {
+        rules: {
+            'youku_loader': {
+                'find': /^http:\/\/static\.youku\.com\/.*(loader|player_.*)(_taobao)?\.swf/,
+                'replace': 'http://swf.adtchrome.com/loader.swf'
+            },
+            'youku_out': {
+                'find': /^http:\/\/player\.youku\.com\/player\.php\/sid\/(.*)/,
+                'replace': 'http://swf.adtchrome.com/loader.swf?VideoIDS=$1'
+            },
+            'pps':{
+                'find':/^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                'replace':'http://swf.adtchrome.com/pps_20140420.swf'
+            },
+            'iqiyi': {
+                'find':/^http:\/\/www\.iqiyi\.com\/player\/\d+\/Player\.swf$/,
+                'replace':'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'ku6':{
+                'find':/^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player|loader)\.swf/,
+                'replace':'http://swf.adtchrome.com/ku6_20140420.swf'
+            },
+            'ku6_topic':{
+                'find':/^http:\/\/player\.ku6\.com\/inside\/.*\/v\.swf/,
+                'replace':'http://swf.adtchrome.com/ku6_20140420.swf'
+            }
+        },
+        _done: null,
+        get done() {
+            if(!this._done) {
+                this._done = new Array();
+            }
+            return this._done;
+        },
+        addAnimations: function() {
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = 'object,embed{\
+-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+-ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+-o-animation-duration:.001s;-o-animation-name:playerInserted;\
+animation-duration:.001s;animation-name:playerInserted;}\
+@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        },
+        animationsHandler: function(e) {
+            if(e.animationName === 'playerInserted') {
+                this.replace(e.target);
+            }
+        },
+        replace: function(elem) {
+            if(this.done.indexOf(elem) != -1) return;
+            this.done.push(elem);
+            var player = elem.data || elem.src;
+            if(!player) return;
+            var i, find, replace = false;
+            for(i in this.rules) {
+                find = this.rules[i]['find'];
+                if(find.test(player)) {
+                    replace = this.rules[i]['replace'];
+                    if('function' === typeof this.rules[i]['preHandle']) {
+                        this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                    }else{
+                        this.reallyReplace.bind(this, elem, find, replace)();
+                    }
+                    break;
+                }
+            }
+        },
+        reallyReplace: function(elem, find, replace) {
+            elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+            var b = elem.querySelector("param[name='movie']");
+            this.reloadPlugin(elem);
+        },
+        reloadPlugin: function(elem) {
+            var nextSibling = elem.nextSibling;
+            var parentNode = elem.parentNode;
+            parentNode.removeChild(elem);
+            var newElem = elem.cloneNode(true);
+            this.done.push(newElem);
+            if(nextSibling) {
+                parentNode.insertBefore(newElem, nextSibling);
+            } else {
+                parentNode.appendChild(newElem);
+            }
+        },
+        init: function() {
+            var handler = this.animationsHandler.bind(this);
+            document.body.addEventListener('webkitAnimationStart', handler, false);
+            document.body.addEventListener('msAnimationStart', handler, false);
+            document.body.addEventListener('oAnimationStart', handler, false);
+            document.body.addEventListener('animationstart', handler, false);
+            this.addAnimations();
+        }
+    };
+    new A().init();
+})();
+}
+</script><style type="text/css">object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style>#haloword-pron { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -34px; }#haloword-pron:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -34px; }#haloword-open { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -17px; }#haloword-open:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -17px; }#haloword-close { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px 0; }#haloword-close:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px 0; }#haloword-add { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -51px; }#haloword-add:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -51px; }#haloword-remove { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -68px; }#haloword-remove:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -68px; }</style></head>
+    <body style="zoom: 1;">
+        <div id="header">
+            <div id="t-top">
+    <div class="topnav">
+    <div class="wp">
+        <ul class="logininfo r" id="sign">
+        
+            <li>
+            欢迎您，
+            <a href="http://meipin.me/score/index">
+                liukui            </a>
+            <a href="javascript:void(0);" class="level v0"></a>
+            <span class="nav_split">|</span>
+            <a href="http://meipin.me/score/index">个人中心</a>
+            <span class="nav_split">|</span>
+            <a title="退出" class="lnk_logout" href="http://meipin.me/user/logout">退出</a>
+            </li>
+                        <li class="qd qd_ok">
+        <span href="javascript:;" onmouseover="document.getElementById(&#39;con_qd&#39;).style.display = &#39;block&#39;" onmouseout="document.getElementById(&#39;con_qd&#39;).style.display = &#39;none&#39;" class="">&nbsp;
+                                        <div id="con_qd">
+                                                    <em>连签：<strong class="big" id="dr_count">2</strong> 天，积分<strong id="nowScore">
+                                    +2                                </strong></em>
+                            <em>明日签到可得<strong id="nextCount">3</strong>积分 </em>
+                                </div>
+                                    </span>
+        </li>
+
+        </ul>
+    </div>
+    <input type="hidden" value="http://meipin.me/user/login" name="unlogin_url" id="unlogin_url">    </div>
+</div>
+            <div id="t-header">
+    <div id="t-area">
+    <h1 class="l">
+        <a href="http://www.meipin.com/"><img src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/logo.jpg" width="243" height="47"></a>
+    </h1>
+    <div class="search">
+        <form target="_self" action="http://meipin.me/search/index">
+        <input type="text" name="title" class="txt">
+        <input type="submit" value="" class="smt">
+            </form>
+        </div>
+    <div class="links">
+        <i class="tmall"></i>
+        <i class="lowest"></i>
+        <i class="check"></i>
+    </div>
+    </div>
+</div>
+            <div id="nav">
+	<div class="two">
+		<ul>
+			<li> <a class="" href="http://meipin.me/">首页</a></li>
+			<li><a class="" href="http://meipin.me/index.html?cat=1000">9.9包邮<i></i></a></li>
+			<li><a class="" href="http://meipin.me/index.html?cat=1001">聚美品<i></i></a></li>
+			<li><a href="http://meipin.me/exchange/index" class="">积分兑换</a></li>
+                        <li><a class="" href="http://meipin.me/raffle">幸运抽奖<i></i></a></li>
+			<li><a class="" href="http://meipin.me/site/phone">手机APP</a></li>
+			<li><a class="" href="http://meipin.me/tomorrow">明日预告</a></li>
+			<br>
+		</ul>
+
+		<p class="one"><a href="http://meipin.me/site/bsrg" target="_blank">商家报名</a></p>
+		<p><span class="span1" style="display:none;"><img src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/face.png"></span> <a href="javascript:;" class="signin cheng"><i></i><i class="icon-mini"></i><img src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/pen_03_01.png"><span id="jryq">今日已签到</span></a></p>
+
+		<br>
+	</div>
+</div>
+        <script class="T1xC6MXfthXXcWeqbX" type="text/javascript" src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/analytics.js"></script></div>
+        <div id="content" class="wp">
+            <div class="user_l l">
+    <h3>用户中心</h3>
+    <div class="bor">
+        <h4><span class="a">我的礼品</span></h4>
+        <ul>
+            <li><a href="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/美品网-美品网独家优惠,折800、九块邮精选美品会.html">我的积分</a></li>
+            <li><a href="http://meipin.me/score/welfare">我的礼品</a></li>
+            <li><a href="http://meipin.me/order/list">我的订单</a></li>
+        </ul>
+        <h4><span class="c">个人信息</span></h4>
+        <ul>
+            <li><a href="http://meipin.me/user/info">基本信息</a></li>
+            <li><a href="http://meipin.me/user/address">收货地址</a></li>
+            <li><a href="http://meipin.me/user/password">修改密码</a></li>
+        </ul>
+        <div class="hr"></div>
+    </div>
+</div>
+            <div class="user_r r">
+                <link rel="stylesheet" type="text/css" href="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/score.css">
+<div class="box admin hei">
+    <h3><span>我的积分</span></h3><span class="t_l"></span><span class="t_r"></span>
+    <div class="info" id="score">
+        <p class="tit" style="margin-bottom:10px;">
+            我的可用积分：<strong>988</strong></p>
+        <h6><a href="http://meipin.me/help/index" target="_blank" class="r">积分规则说明</a>
+            <a href="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/美品网-美品网独家优惠,折800、九块邮精选美品会.html" class="tabs_score current">积分明细</a>|
+            <a href="http://meipin.me/score/index/type/add" class="tabs_score ">积分增加</a>|
+            <a href="http://meipin.me/score/index/type/reduce" class="tabs_score ">积分消耗</a></h6>
+        <div id="index" class="">
+            <table cellspacing="1" cellpadding="0" border="0" bgcolor="#DFE2E7" class="table_user">
+                <tbody>
+                    <tr align="center">
+                        <th width="180">日期</th>
+                        <th>操作描述</th>
+                        <th width="80">积分</th>
+                    </tr>
+                                            <tr align="center">
+                            <td bgcolor="#F9FAFC">2014-07-10 22:46:46</td>
+                            <td>积分加钱换购,商品:2014韩版夏季男士V领短袖修身男T恤夏装男短T新款男装男夏装男款</td>
+                            <td><strong style="color:#FF4E00">-12</strong></td>
+                        </tr>
+                                            <tr align="center">
+                            <td bgcolor="#F9FAFC">2014-07-10 22:42:24</td>
+                            <td>积分兑换</td>
+                            <td><strong style="color:#FF4E00">0</strong></td>
+                        </tr>
+                                            <tr align="center">
+                            <td bgcolor="#F9FAFC">2014-07-10 22:42:10</td>
+                            <td>积分兑换</td>
+                            <td><strong style="color:#FF4E00">0</strong></td>
+                        </tr>
+                                            <tr align="center">
+                            <td bgcolor="#F9FAFC">2014-07-10 22:41:56</td>
+                            <td>积分兑换</td>
+                            <td><strong style="color:#FF4E00">0</strong></td>
+                        </tr>
+                                            <tr align="center">
+                            <td bgcolor="#F9FAFC">2014-07-10 22:18:02</td>
+                            <td>积分兑换</td>
+                            <td><strong style="color:#FF4E00">0</strong></td>
+                        </tr>
+                                    </tbody>
+            </table>
+            <ul class="goods-page" id="yw0"><li class="first "><a href="http://meipin.me/score/index">首页</a></li>
+<li class="previous "><a href="http://meipin.me/score/index">上一页</a></li>
+<li class="page select"><a href="http://meipin.me/score/index">1</a></li>
+<li class="page"><a href="http://meipin.me/score/index/page/2">2</a></li>
+<li class="page"><a href="http://meipin.me/score/index/page/3">3</a></li>
+<li class="page"><a href="http://meipin.me/score/index/page/4">4</a></li>
+<li class="page"><a href="http://meipin.me/score/index/page/5">5</a></li>
+<li class="next"><a href="http://meipin.me/score/index/page/2">下一页</a></li>
+<li class="last"><a href="http://meipin.me/score/index/page/14">尾页</a></li></ul>        </div>
+        <div id="add" class="content-box">
+
+        </div>
+        <div id="reduce" class="content-box">
+
+        </div>
+    </div>
+</div>
+            </div>
+            <span class="clear"></span>
+        </div>
+        <div id="footer" class="footer">
+            <div class="area about">
+    <div class="mid">
+        <dl class="dl1">
+            <dt>        关于美品        </dt>
+            <dd><a href="http://meipin.me/site/about" target="_blank">关于我们</a></dd>
+        </dl>
+        <dl class="dl2">
+            <dt>        帮助中心        </dt>
+            <dd><a href="http://meipin.me/site/connect">联系我们</a></dd><dd><a href="http://meipin.me/feedback">意见反馈</a></dd>
+        </dl>
+        <dl class="dl2">
+            <dt>        商务合作        </dt>
+            <dd><a href="http://meipin.me/site/bsrg" target="_blank">商家报名</a></dd><a href="http://meipin.me/site/moreship" target="_blank">友情链接</a>
+        </dl>
+        <dl class="dl4">
+            <dt>      关注美品      </dt>
+            <dd><a href="http://meipin.me/site/xiazai">下载快捷方式到桌面</a></dd>
+        </dl>
+        <dl class="dl5">
+            <dt>下次怎么来?</dt>
+            <dd>记住域名：<a href="javascript:;"><em>meipin.com</em></a></dd><dd>百度搜索：<input type="text" value="美品网" onfocus="this.blur()" class="bdtxt"><a href="http://www.baidu.com/s?tn=baiduhome_pg&ie=utf-8&bs=%E7%BE%8E%E5%93%81%E7%BD%91&f=8&rsv_bp=1&rsv_spt=1&wd=%E7%BE%8E%E5%93%81%E7%BD%91&inputT=0" target="_blank" class="smt"></a></dd><dd>收藏本站：<a href="javascript:void(0)" onclick="javascript:addToFavorite();"><u>加入收藏</u></a></dd>
+        </dl>
+        <dl class="dl3">
+            <dt>Android客户端</dt>
+            <dd class="sub"><img src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/wxcode.png" alt="">
+            </dd>
+        </dl>
+    </div>
+    <div class="footer_yq_div">
+        <h3 class="footer_yq_h3 fl"><a href="javascript:;" target="_blank">友情链接</a></h3>
+                    <a target="_blank" class="youq_a" href="http://0.0.0.121/" title="1212">1212</a>
+                    <a target="_blank" class="youq_a" href="http://0.0.0.12/" title="1212">1212</a>
+                    <a target="_blank" class="youq_a" href="http://0.0.4.188/" title="1212">1212</a>
+            </div>
+    <span style="display:none"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000462720'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1000462720%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1000462720"><a href="http://www.cnzz.com/stat/website.php?web_id=1000462720" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/pic1.gif"></a></span><script src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/z_stat.php" type="text/javascript"></script><script src="./美品网-美品网独家优惠,折800、九块邮精选美品会_files/core.php" charset="utf-8" type="text/javascript"></script></span>
+</div>
+        </div>
+    
+
+<div id="haloword-lookup" class="ui-widget-content ui-draggable"><div id="haloword-title"><span id="haloword-word"></span><a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a><audio id="haloword-audio"></audio><div id="haloword-control-container"><a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a><a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a><a href="http://meipin.me/score#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a><a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a></div><br style="clear: both;"></div><div id="haloword-content"></div></div><embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>

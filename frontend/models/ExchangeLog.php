@@ -25,7 +25,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return [
             [
-                'user_id,name,username,created_at,goods_id,city_id,address,postcode,mobile',
+                'user_id,name,username,created_at,goods_id,city_id,address,postcode,mobile,pay_status',
                 'required'
             ],
             [
@@ -56,6 +56,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'address' => '配送地址',
         ];
     }
+
     /**
      * 多表关连查询
      */
@@ -63,6 +64,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         return array(
             'exchange' => array(self::HAS_ONE, 'Exchange', ['id' => 'goods_id'], 'together' => true, 'joinType' => 'inner join'),
+            'order' => array(self::HAS_ONE, 'Order', ['order_id' => 'order_id'], 'together' => true, 'joinType' => 'inner join'),
         );
     }
 
@@ -131,20 +133,43 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @param  integer $page   当前页数
      * @return mixed
      */
-    public static function getWelfare($userId, $page)
+    public static function getWelfareKey($userId, $page, $type = 0)
     {
-        $cacheKey = 'meipin-get-welfare-' . $userId . '-' . $page;
+        return 'meipin-get-welfare-' . $userId . '-' . $page . "-" . $type;
+    }
+
+    /**
+     * 积分兑换礼品
+     * @param  integer $userId 用户ID
+     * @param  integer $page   当前页数
+     * @return mixed
+     */
+    public static function deleteWelfareCache($userId, $page, $type = 0)
+    {
+        $key = self::getWelfareKey($userId, $page, $type);
+        Yii::app()->cache->delete($key);
+    }
+
+    /**
+     * 积分兑换礼品
+     * @param  integer $userId 用户ID
+     * @param  integer $page   当前页数
+     * @return mixed
+     */
+    public static function getWelfare($userId, $page, $type = 0)
+    {
+        $cacheKey = self::getWelfareKey($userId, $page, $type);
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
         }
 
-        $welfare = self::model()->welfareDataList($userId)->paginate(Yii::app()->params['exchangeLogPageSize']);
+        $welfare = self::model()->welfareDataList($userId, $type)->paginate(Yii::app()->params['exchangeLogPageSize']);
         $welfareList = [];
         $welfareList['pager'] = $welfare->getPagination();
         $welfareList['data'] = $welfare->data;
 
-        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HOUR);
+        Yii::app()->cache->set($cacheKey, ['pager' => $welfareList['pager'], 'data' => $welfareList['data']], Constants::T_HALF_HOUR);
 
         unset($welfare);
 
@@ -154,13 +179,20 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     /**
      * 积分兑换礼品条件
      * @param  integer     $cat 分类ID
+     * @param  integer     $type 类型，0：普通兑换；1：支付订单
      * @return CDbCriteria
      */
-    public function welfareDataList($userId)
+    public function welfareDataList($userId, $type = 0)
     {
         $criteria = new CDbCriteria;
-        $criteria->compare('user_id', $userId);
-        
+        $criteria->compare('t.user_id', $userId);
+        if ($type == 0) {
+            $criteria->addCondition("t.order_id =''");
+        } else if ($type == 1) {
+            $criteria->addCondition("t.order_id !=''");
+            $criteria->with = ['order','exchange'];
+            $criteria->order = 'order.created_at desc';
+        }
         $this->dbCriteria->mergeWith($criteria);
 
         return $this;
@@ -199,7 +231,16 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         ]);
         return $data;
     }
-
+    
+    /*获取兑换的次数*/
+    public static function getdhUserCount($goods_id,$userId)
+    {
+        $data = ExchangeLog::model()->count([
+            'condition' => 'goods_id=:goods_id and user_id=:user_id',
+            'params' => [":goods_id" => $goods_id,":user_id"=>$userId],
+        ]);
+        return $data;
+    }
     /**
      * 获取获奖用户KEY
      * @param integer $goods_id 商品ID
@@ -221,9 +262,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $result = Yii::app()->cache->get($cacheKey);
         if (!empty($result)) {
             return $result;
-        } 
-        $result = ExchangeLog::model()->findAllByAttributes(['winner'=>1,'goods_id'=>$goods_id]);
-        Yii::app()->cache->set($cacheKey, $result,  Constants::T_HALF_HOUR);
+        }
+        $result = ExchangeLog::model()->findAllByAttributes(['winner' => 1, 'goods_id' => $goods_id]);
+        Yii::app()->cache->set($cacheKey, $result, Constants::T_HALF_HOUR);
         return $result;
     }
 

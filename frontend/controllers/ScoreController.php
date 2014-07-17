@@ -118,5 +118,4 @@ class ScoreController extends Controller
         ]);
         Yii::app()->end();
     }
-
 }

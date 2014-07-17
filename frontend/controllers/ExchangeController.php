@@ -20,6 +20,7 @@ class ExchangeController extends Controller
      */
     public $scoreService;
 
+    public $cat = 0;
     public function init()
     {
         parent::init();
@@ -36,14 +37,53 @@ class ExchangeController extends Controller
         if (!$dataResult['status']) {
             $this->pageRedirect('no', $dataResult['data']['message'], Yii::app()->createUrl("exchange/index"));
         }
-
+        $count =0;
+        if ($dataResult['data']['exchange']->active_price > 0) 
+        {
+            if($this->isLogin){
+                $userId = Yii::app()->user->id;
+                $order = new Order();
+                $count =$order->getbuyCount($goodsId,$userId);
+                //echo $count;
+            }
+            $this->layout = '//layouts/money';
+            $render = "moneyExchange";
+        } else {
+            if($this->isLogin){
+                $userId = Yii::app()->user->id;
+                $exchangelog = new ExchangeLog();
+                $count =$exchangelog->getdhUserCount($goodsId,$userId);
+                //echo $count;
+            }
+            $this->layout = '//layouts/exchange';
+            $render = "exchangeIndex";
+        }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
         //渲染頁面
-        $this->render('exchangeIndex', [
+        $this->render($render, [
             'data' => $dataResult['data'],
-            'params' => ['goodsId' => $id, 'goodsType' => 1]
+            'params' => ['goodsId' => $id, 'goodsType' => 1],
+            'count'=>$count,
         ]);
     }
 
+    /**
+     * 判断是否登陆
+     */
+    public function actionIslogin()
+    {
+        $goodsId = Yii::app()->request->getPost("id");
+        //$goodsId = Des::decrypt($goodsId);
+        if (!$this->isLogin && $goodsId) {
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ["id" => $goodsId])]);
+            echo $url;
+            die;
+        }
+    }
     /**
      * 商品兑换订单详情页
      */
@@ -51,8 +91,12 @@ class ExchangeController extends Controller
     {
         $id = Yii::app()->request->getParam("id", 0);
         $goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        $zhxz = Yii::app()->request->getParam("zhxz", ''); //最后限制件数
+        $zhkc = Yii::app()->request->getParam("zhkc", 0);//选中商品库存数
+        $buyCount = Yii::app()->request->getParam("buyCount", 1);
+
         if (!$this->isLogin) {
-            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/order", ["id" => $id, 'gdcolor' => $goodscolor])]);
+            $url = Yii::app()->createAbsoluteUrl("user/login", ['referer' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ["id" => $id, 'gdcolor' => $goodscolor,"buyCount"=>$buyCount])]);
             $this->redirect($url);
             Yii::app()->end();
         }
@@ -63,13 +107,44 @@ class ExchangeController extends Controller
             if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
+            }else{
+                    $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url'], '/common/success');
             }
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
         }
+        $render = "order";
+        if ($dataResult['data']['exchange']->goods_type == 0 && $dataResult['data']['exchange']->active_price > 0) {
+            $render = "moneyOrder";
+        }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
+        
         //渲染页面
-        $this->render('order', ['data' => $dataResult['data'], 'params' => ['goodsId' => $id, 'token' => $dataResult['data']['token'], 'gdscolor' => $goodscolor]]);
+        $this->render($render, ['data' => $dataResult['data'], 'params' => [
+                'goodsId' => $id,
+                'token' => $dataResult['data']['token'],
+                'gdscolor' => $goodscolor,
+                'buyCount' => $buyCount,
+                'zhxz'=>$zhxz,
+                'zhkc'=>$zhkc
+        ]]);
     }
 
+
+    public function actionGetBuycount()
+    {
+        $goodsId = Yii::app()->request->getPost("id");
+        $goodsId = Des::decrypt($goodsId);
+        $userId = Yii::app()->user->id;
+        $count = Order::getbuyCount($goodsId,$userId);
+        echo $count;
+        /*  if (!$valid['status']) {
+            $this->returnData(false, ['message' => $valid['data']['message']]);
+        }*/
+    }
     /**
      * 执行兑换操作
      * @param  integer $goodsId 兑换商品ID
@@ -81,6 +156,16 @@ class ExchangeController extends Controller
         $order = Yii::app()->request->getPost("Exchange", null);
         $dataResult = $this->scoreService->doExchange($userId, $order);
         if ($dataResult['status']) {
+            //支付订单
+            if(!empty($dataResult['data']['orderId'])){
+                $payData = OrderService::pay($dataResult['data']['orderId'], $this->userId);
+                if ($payData['status'] == false) {
+                    $this->pageRedirect('no', $payData['data']['message'], '/', '/common/message');
+                } else {
+                    $this->renderPartial('/common/alipaySubmit',['title'=>$payData['data']['message']]);
+                }
+                Yii::app()->end();
+            }
             $this->pageRedirect('yes', $dataResult['data']['message'], $dataResult['data']['url']);
         } else {
             $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url']);
@@ -132,21 +217,6 @@ class ExchangeController extends Controller
         ]);
     }
 
-    /**
-     * 页面跳转
-     * @param string $status  显示图片控制
-     * @param string $message 提示信息
-     * @param string $url     跳转地址
-     */
-    private function pageRedirect($status = 'no', $message = "您访问的页面不存在", $url = '/')
-    {
-        $this->render('/common/success', [
-            'status' => $status,
-            'title' => $message,
-            'url' => $url
-        ]);
-        Yii::app()->end();
-    }
 
     /**
      * 幸运抽奖
@@ -161,6 +231,11 @@ class ExchangeController extends Controller
         if ($dataResult['data']['exchange']->goods_type != 1) {
             $this->pageRedirect('no', "商品不是抽奖商品，请重新选择", Yii::app()->createUrl("site/raffle"));
         }
+        if($dataResult['data']['exchange']->goods_type ==0){
+            $this->cat = 1004;
+        }else{
+            $this->cat = 1003;
+        }
         //查询中奖明细
         $winerList = ExchangeLog::getWinners($goodsId);
         //渲染頁面
@@ -170,6 +245,5 @@ class ExchangeController extends Controller
             'params' => ['goodsId' => $id, 'goodsType' => 1]
         ]);
     }
-
 
 }

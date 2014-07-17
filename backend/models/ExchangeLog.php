@@ -75,7 +75,10 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'integerOnly' => true
             ],
             [
-                'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile',
+                'logistics','checkLogistic',
+            ],
+            [
+                'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile,logistics,logistics_code,delivery_time',
                 'safe'
             ],
         ];
@@ -129,6 +132,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
+        $criteria->compare('pay_status', 1);
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
@@ -155,6 +159,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
+        $criteria->compare('pay_status', 1);
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
@@ -262,4 +267,22 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         return self::model()->findAll("user_add >0  and goods_id=$goods_id");
     }
 
+    /**
+     * 生成列表物流信息
+     * @param self $data 
+     * @return string 
+     */
+    public static function getLogistics($data){
+        $logisticsSystem = Yii::app()->params['logisticsSystem'];
+        $logistics = ((isset($logisticsSystem[$data->logistics]) && $data->logistics>0)?$logisticsSystem[$data->logistics]:"未填写");
+        $logistics_code = (empty($data->logistics_code))?"未填写":$data->logistics_code;
+        return "物流公司:".$logistics."<br/> 快递单号:".$logistics_code;
+    }
+    public function checkLogistic(){
+        if($this->status == 1){
+            if(empty($this->logistics) || empty($this->logistics_code)){
+                $this->addError("logistic", "物流信息必须填写");
+            }
+        }
+    }
 }
