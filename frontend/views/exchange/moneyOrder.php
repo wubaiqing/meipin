@@ -11,7 +11,8 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
             <em>0元包邮</em>
             <strong>1.</strong>为了更好的回馈折会员，所有礼品不收取任何费用，我们包邮为您送到家<br>
             <strong>2.</strong>由于参与<?php echo $name; ?>的人数较多，工作人员会在<?php echo $name; ?>成功后的15-20个工作日内将礼品发出<br>
-            <strong>3.</strong><?php echo $name; ?>成功后您可以到 <strong>个人中心</strong> &gt; <strong>我的礼品</strong> 中根据快递单号查看您的订单配送情况
+            <strong>3.</strong><?php echo $name; ?>成功后您可以到 <strong>个人中心</strong> &gt; <strong>我的礼品</strong> 中根据快递单号查看您的订单配送情况<br/>
+            <strong>4.</strong>请在下单后1小时内完成支付，否则您的订单将自动关闭。
         </p>
     </div>
     <style>
@@ -59,10 +60,8 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
 
                                 echo CHtml::hiddenField("Exchange[city_id]", $data['userAddress']->city_id);
                                 $goodsUrl = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($data['exchange']->id)));
-                               /* echo CHtml::hiddenField("Exchange[zhxz]", $params['zhxz'],array('id'=>'zhxz'));
-                                echo CHtml::hiddenField("Exchange[zhkc]", $params['zhkc'],array('id'=>"zhkc"));*/
                                 ?>
-                                <span id="kckc_id"><?php echo $params['zhkc'];?></span> <span id="xg_num"><?php echo $params['zhxz'];?></span>
+                                <span id="kckc_id" style='display:none;'><?php echo $params['zhkc'];?></span> <span id="xg_num" style='display:none;'><?php echo $params['zhxz'];?></span>
                                 <div class="img">
                                     <a href="<?php echo $goodsUrl; ?>" target="_blank">
                                         <img  style=""width="100" src="<?php echo $data['exchange']->img_url; ?>">

@@ -33,7 +33,8 @@
                         $goodsUrl = Yii::app()->createUrl("exchange/raffle_{$jm}.html");
                     }
                     ?>
-                    <td bgcolor="#F9FAFC">
+                    <style>.orderlistcss a:hover{color: #785E02;font-weight: 800;}</style>
+                    <td bgcolor="#F9FAFC" class="orderlistcss">
                         <a href="<?php
                         if ($info->exchange->taobaoke_url) {
                             echo $info->exchange->taobaoke_url;
@@ -52,12 +53,15 @@
                     <td><?php echo $info->order->pay_price; ?></td>
                     <td>
                         <?php
+                        if($info->order->pay_status != 4)
+                        {
                         echo Order::getPayStatus($info->order->pay_status);
+                        }
                         if ($info->order->pay_status == 0) {
                             echo "<br/>(<a target='_blank' style='color:red;text-decoration: underline;' href='" . Yii::app()->createUrl("order/pay", ['id' => Des::encrypt($info->order_id)]) . "'>继续支付</a>)";
                         }
                         if ($info->order->pay_status == 4) {
-                            echo $info->status == 1 ? '(已发货)' : '(等待发货)';
+                            echo $info->status == 1 ? '已发货' : '等待发货';
                             //快递信息
                             $logisticsSystem = Yii::app()->params['logisticsSystem'];
                             if($info->status == 1 && isset($logisticsSystem[$info->logistics])){

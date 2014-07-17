@@ -5,7 +5,7 @@
                 <div class="tips_l"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/static/<?php echo $status; ?>.png"></div>
                 <div class="tips_r jihuo">
                     <?php echo $title; ?><br/><br/>
-                    <div class="" style="color:#898a8c;font-size: 20px;text-align: left;padding-left: 100px;">
+                    <div class="" style="color:#898a8c;font-size: 24px;text-align: left;padding-left: 100px;">
                         <?php if ($status == 'no'): ?>
                             <p class="msg_btnleft">
                                 <a href="javascript:" onclick="window.opener = null;
@@ -15,10 +15,10 @@
                                 中继续支付.
                             </p>
                             <p class="msg_btnleft">
-                                系统将在10秒后跳转到订单列表页！
+                                系统将在<span style="color:red">5</span>秒后跳转到订单列表页！
                             </p>
                         <script language="javascript">
-                            setTimeout("location.href='<?php echo Yii::app()->createAbsoluteUrl("order/list") ?>';", 10 * 1000);
+                            setTimeout("location.href='<?php echo Yii::app()->createAbsoluteUrl("order/list") ?>';", 5 * 1000);
                         </script>
                         <?php endif; ?>
                     </div>

@@ -5,7 +5,7 @@
                 <div class="tips_l"><img src="/static/images/<?php echo $status; ?>.png"></div>
                 <div class="tips_r jihuo">
                     <?php echo $title; ?><br/><br/>
-                    <div class="" style="color:#898a8c;font-size: 20px;text-align: left;padding-left: 100px;">
+                    <div class="" style="color:#898a8c;font-size: 24px;text-align: left;padding-left: 100px;">
                         <?php if ($status =='yes'): ?>
                             <p class="msg_btnleft" >
                                 温馨提示：小编会在3个工作日内给您发货，请注意查收！<br/>
@@ -21,10 +21,10 @@
                             </p>
                         <?php endif; ?>
                             <p>
-                                系统将在10秒后跳转到订单列表页！
+                                系统将在<span style="color:red;">5</span>秒后跳转到订单列表页！
                             </p>
                             <script language="javascript">
-                                setTimeout("location.href='<?php echo Yii::app()->createAbsoluteUrl("order/list") ?>';", 10*1000);
+                                setTimeout("location.href='<?php echo Yii::app()->createAbsoluteUrl("order/list") ?>';", 5*1000);
                             </script>
                     </div>
                 </div>

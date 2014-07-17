@@ -307,7 +307,7 @@ class Exchange extends ActiveRecord
         //分页类
         $data['pages'] = $pages;
         //写入缓存
-        Yii::app()->cache->set($cacheKey, $data, Constants::T_HALF_HOUR);
+        Yii::app()->cache->set($cacheKey, $data, Constants::T_SECOND_TEN);
 
         return $data;
     }

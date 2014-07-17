@@ -27,14 +27,14 @@
                     <h4>
                         <span>
                             <em>
-                                <b><?php echo $item->active_price;?>元+</b>
-                                <em><?php echo $item->integral; ?>分</em>
+                                <b style="font-size:16px;font-weight:normal;"><?php echo $item->active_price;?><b style="font-size:12px;font-weight:bold;">元</b>+</b>
+                                <em style="font-size:16px;font-weight:bold;"><?php echo $item->integral; ?>分</em>
                             </em>
                         </span>
                         <span>
                             <i>￥<?php echo $item->price.'元';?></i>
                         </span>                       
-                        <a href="<?php echo $goodsUrl;?>" target="_blank" ></a></span></span>
+                        <a href="<?php echo $goodsUrl;?>" target="_blank"></a></span></span>
                     </h4>
  
                 </div>
