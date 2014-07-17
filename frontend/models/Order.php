@@ -158,7 +158,7 @@ class Order extends ActiveRecord implements IArrayable
     {
         $tbname = $this->tableName();
         $connection = Yii::app()->db;  
-        $sql = "SELECT sum(buy_count) as count FROM {$tbname} where user_id={$userId} and goods_id={$goodsId}";  
+        $sql = "SELECT sum(buy_count) as count FROM {$tbname} where user_id={$userId} and goods_id={$goodsId} and pay_status!=1";  
         $command = $connection->createCommand($sql);  
         $result = $command->queryAll();  
         return $result[0]['count'];  

@@ -1440,6 +1440,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
     
 .submit_ok{min-width: 120px;height: 48px;display: inline-block;background: #e02f2f;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
 .submit_no{min-width: 120px;height: 48px;display: inline-block;background: #CCC;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
+.submit_jiks{min-width: 120px;height: 48px;display: inline-block;background: #43a636;border: none;cursor: pointer;color: #fff;font-weight: bold;font-size: 16px;}
 .line_dashed_bottom{border-bottom: 1px dashed #e5e5e5}
 .line_dashed_top{border-top: 1px dashed #e5e5e5}
 .line_solid_bottom{border-bottom: 1px solid #e5e5e5}

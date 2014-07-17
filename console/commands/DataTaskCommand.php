@@ -110,8 +110,57 @@ class DataTaskCommand extends CConsoleCommand
                     'remark' => "返还积分（加钱换购），未支付订单过期（" . $order->order_id . "）"
                 ];
                 $score->insert();
+
+                //根据goods_id商品积分兑换表 goodscolor sale_num
+                $exchange = Exchange::model()->findByPk($order->goods_id);
+                //根据订单号查询exchange_log gdscolor buy_count 
+                $exchangeLog = ExchangeLog::model()->find('order_id=:order_id',array(':order_id'=>$order->order_id)); 
+
+                $gdcolorstr = $exchange->goodscolor;
+                $sale_num = $exchange->sale_num + $exchangeLog['buy_count'];//返货库存
+                //判断是否存在颜色属性
+                if($gdcolorstr)
+                {
+                    $gdcolorarr = explode(';', $gdcolorstr);
+                    $gdscolornum = "";
+                    foreach ($gdcolorarr as $key => $value) {
+                        if ($value) {
+                            $gdcolorstr2 = explode(':', $value);
+                            if($exchangeLog['gdscolor'] == $gdcolorstr2[0])
+                            {
+                              $gdscolornum .= $gdcolorstr2[0].":".($gdcolorstr2[1]+$exchangeLog['buy_count']).";";
+                            }else
+                            {
+                              $gdscolornum .= $gdcolorstr2[0].":".$gdcolorstr2[1].";";
+                            }
+                        }
+                    }
+                    //修改颜色的库存和商品的销量
+                    Exchange::model()->updateByPk($order->goods_id, ['sale_num' => $sale_num,'goodscolor'=>$gdscolornum]);
+
+                    //操作日志
+                    $operatelog = new OperateLog();
+                    $operatelog->attributes = [
+                        'log_type' =>2,
+                        'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id})."返还销售量".$exchangeLog['buy_count']."件",
+                    ];                 
+                    $operatelog->insert();
+                       
+                }else
+                {
+                    Exchange::model()->updateByPk($order->goods_id, ['sale_num' => $sale_num]);
+                                        //操作日志
+                    $operatelog = new Score();
+                    $operatelog->attributes = [
+                        'log_type' =>2,
+                        'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id})."返还销售量以及".$exchangeLog['gdscolor']."库存量".$exchangeLog['buy_count']."件",
+                    ];                 
+                    $operatelog->insert();
+                }
+
             }
             Order::model()->updateByPk($orderIds, ['pay_status' => 1]);
+
         }
     }
 

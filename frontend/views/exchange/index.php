@@ -54,15 +54,16 @@ $isSignDay = User::isSignDay();
                 <style type="text/css">
                 .lista{display: block;font-family: "宋体";font-size: 14px;color: #000;width:260px;margin: 0 auto;height: 25px;padding-top: 3px;}
                 #main ul li .one_p {font-family:"微软雅黑";font-size:12px;color:#999;padding-bottom:15px;width:260px;margin: 0 auto;margin-top: 10px;}
-                #main ul li .one_p .one_span{width:86px;height: 25px;float: left;text-align: center;}
-                #main ul li .one_p .last_span{width:86px;float: right;text-align: center;}
+                #main ul li .one_p .one_span{width:86px;height: 25px;float: left;text-align: left;}
+                #main ul li .one_p .two_span{width:86px;height: 25px;float: left;text-align: center;}
+                #main ul li .one_p .last_span{width:86px;float: right;text-align: right;}
                  </style>
                 <li <?php if($goods['end_time'] < time() || $leftNum <=0){ echo "class='list2'";}?>>
                     <a href="<?php echo $url; ?>" target='_blank'><img src="<?php echo $goods['img_url']; ?>" /></a>
                     <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>" class="lista"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
                     <p class="one_p">
                     <span class="one_span">价值：<?php echo $goods['price']; ?>元</span>
-                    <span class="one_span">名额：<?php echo $leftNum > 0 ? $leftNum : 0; ?></span>
+                    <span class="two_span">名额：<b style="color:#333"><?php echo $leftNum > 0 ? $leftNum : 0; ?></b></span>
                     <span class="last_span"><?php echo $goods['user_count']; ?>人已参与</span>
                     </p>
                     <br/>                  

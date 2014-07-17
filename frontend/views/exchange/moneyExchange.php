@@ -78,17 +78,19 @@
                         echo CHtml::hiddenField("zhkc", $zhxz,array('id'=>'zhkc'));
                         //选中商品库存数
                         ?> <a class="sykc">库存<span id='kckc_id'><?php echo $leftNum;?> </span> 件 / 限购 <span id="xg_num"> 
-                        <?php 
-                        if($count <= $data['exchange']->buy_num){
-                            echo $data['exchange']->buy_num - $count;
-                            }else{echo '0';} ?></span> 件</a>
+                        <?php echo $data['exchange']->buy_num;?></span> 件</a>
                     </dd><span id="leixing" style="color:red"><?php if($count >=$data['exchange']->buy_num){echo "您已经超过了限制购买的件数，请重新选择其他商品";} ?></span>
                 </dl>
 
                 <dl class="nubD ">
                     <dt>
                     <?php
-                    if (!$canBuy || $count >=$data['exchange']->buy_num):
+
+                    if($data['exchange']->start_time > time() && $leftNum >0):
+                    
+                      echo '<input class="submit_jiks" type="button" address_id="" value="即将开始">';
+                    
+                    elseif (!$canBuy || $count >=$data['exchange']->buy_num):
                         ?>
                         <input class="submit_no" type="button" address_id="" value="立即购买">
                     <?php else: ?>

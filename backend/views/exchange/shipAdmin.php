@@ -27,7 +27,7 @@
             'goods_id' => array(
                 'type' => 'raw',
                 'header' => '商品名称',
-                'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
+                'value' => '"<a href=\"".ExchangeLog::getDetailurl($data->exchange)."\"  target=\"_blank\">". (!is_null($data->exchange)?$data->exchange->name:"1") ."</a>"',
             ),
             'gdscolor' =>[
                 'type' => 'raw',
