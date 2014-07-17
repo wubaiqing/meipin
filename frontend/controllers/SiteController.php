@@ -42,6 +42,12 @@ class SiteController extends Controller
         ));
     }
 
+    /*腾讯临时验证*/
+    public function actionLinshi()
+    {
+        $this->layout = '';
+        $this->render('linshi');
+    }
     /**
      * 商品预告
      */

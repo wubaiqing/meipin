@@ -32,7 +32,8 @@ return [
                     'exchange/index' => 'exchange/index',
                     'user/login' => 'user/login',
                     'feedback' => 'site/feedback',
-                    'tomorrow'  => 'site/tomorrow/cat/1002'
+                    'tomorrow'  => 'site/tomorrow/cat/1002',
+                    '6c5d7ae90439a3538eb535c0757a3816.txt'=>'site/linshi'
                 ],
             ],
             'user' => [
