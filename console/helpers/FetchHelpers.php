@@ -14,7 +14,9 @@
  * 2. 获取淘宝链接
  * 3. 获取淘宝ID
  * 4. 保存商品
- * 5. ........
+ * 5. 设置商品属性
+ * 6. 输出Log日志
+ * 7. ........
  *
  * @author wubaiqing <wubaiqing@55tuan.com>
  */
@@ -89,6 +91,7 @@ class FetchHelpers
 		$data = self::setAttributes($catId, $data);
 		$goods->setAttributes($data);
 		$goods->save();
+		self::trace("更新商品：{$goods->id}");
 	}
 
 	/**
