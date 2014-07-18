@@ -16,9 +16,8 @@ class FetchController extends Controller
 	public function beforeAction($action)
     {
        if (!Yii::app()->user->id) {
-         $this->redirect(array('site/login'));
+         $this->redirect(['site/login']);
        }
-
        return parent::beforeAction($action);
     }
 
@@ -29,15 +28,15 @@ class FetchController extends Controller
 
 		$startTime = strtotime(date('Y-m-d'));
 		$endTime = strtotime('+1 day');
-		$goods = Goods::model()->findAll(array(
+		$goods = Goods::model()->findAll([
 			'condition' => 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id',
 			'params' => array(':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888')
-		));
+		]);
 
-		$this->render('admin', array(
+		$this->render('admin', [
 			'model' => $goods,
 			'catId' => $catId,
-		));
+		]);
 	}
 
 }
