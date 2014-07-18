@@ -16,7 +16,6 @@
  * 4. 保存商品
  * 5. 设置商品属性
  * 6. 输出Log日志
- * 7. ........
  *
  * @author wubaiqing <wubaiqing@55tuan.com>
  */
@@ -28,7 +27,7 @@ class FetchHelpers
 	 * @param bool $time 是否记录时间
 	 * @param bool $n 是否换行
 	 * @param bool $echo 是否输出
-	 * @return string
+	 * @return string 如果$echo为false返回错误信息，否则输出
 	 */
 	public static function trace($message, $time = true, $n = true, $echo = true)
 	{
@@ -73,13 +72,15 @@ class FetchHelpers
 	 * 添加商品数据
 	 * @param integer $catId 分类ID
 	 * @param array $U 淘宝客采集过来的数据
+	 * @return 如果商品结束时间大于当前时间推出商品处理
 	 */
 	public static function update($catId, $U)
 	{
+		// 判断商品是否存在
 		$goods = Goods::model()->find(array(
 			'select' => 'tb_id, end_time',
 			'condition' => 'tb_id =:tb_id',
-			'params' => array(':tb_id' => $data['taobaoId'])
+			'params' => array(':tb_id' => $U['taobaoId'])
 		));
 		if (empty($goods)) {
 			$goods = new Goods();
@@ -88,7 +89,8 @@ class FetchHelpers
 		if ($goods->end_time >= time()) {
 			return false;
 		}
-		$data = self::setAttributes($catId, $data);
+
+		$data = self::setAttributes($catId, $U);
 		$goods->setAttributes($data);
 		$goods->save();
 		self::trace("更新商品：{$goods->id}");
