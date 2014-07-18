@@ -21,7 +21,8 @@ class User
         '小艾' => '8',
         'duoduo' => '9', //侯宝多
         'test'=>'10',
-        'taolaoda'=>'11'
+        'taolaoda'=>'11',
+	    '机器' => '888'
     );
 
     /**
@@ -37,10 +38,11 @@ class User
      */
     public static function getUserID($id)
     {
-
         if($id)
         {
             $arr2 = array_flip(self::$userName);
+	        var_dump($arr2);
+	        exit;
             return $arr2[$id];
         }
     }

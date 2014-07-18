@@ -91,7 +91,7 @@ class FetchHelpers
 		$data['start_time'] = date('Y-m-d H:i:s', $U['startTime']);
 		$data['end_time'] = date('Y-m-d H:i:s', $U['endTime']);
 		$data['user_id'] = 888;
-		$data['status'] = 0;
+		$data['status'] = 2;
 		$data['is_zhe800'] = 2;
 		$data['tb_id'] = $U['taobaoId'];
 		return $data;
