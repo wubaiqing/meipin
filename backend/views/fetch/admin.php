@@ -68,22 +68,22 @@
 
 <script type="text/javascript">
 /**
- * 折800采集管理界面
+ * 抓取管理界面
  * @author wubaiqing <wubaiqing@vip.qq.com>
  */
-var zhe800Admin = {};
+var fetch = {};
 
 /**
 * 配置文件
 */
-zhe800Admin.config = {
+fetch.config = {
 	modifyFlag : true
 };
 
 /**
 * 折800处理事件
 */
-zhe800Admin.event = (function () {
+fetch.event = (function () {
 	return {
 		/**
 		 * Ajax上传图片
@@ -213,11 +213,11 @@ zhe800Admin.event = (function () {
 	}
 })();
 
-zhe800Admin.event.modify();
-zhe800Admin.event.goodsPush();
-zhe800Admin.event.uploadImage();
-zhe800Admin.event.getZhe800Link();
-zhe800Admin.event.blacklist();
+fetch.event.modify();
+fetch.event.goodsPush();
+fetch.event.uploadImage();
+fetch.event.getZhe800Link();
+fetch.event.blacklist();
 
 </script>
 
