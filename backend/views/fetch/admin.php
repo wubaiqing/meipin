@@ -48,7 +48,6 @@
 			<td><span class="modify"><?php echo date('Y-m-d H:i:s', $val->end_time);?></span></td>
 			<td>
 				<a href="javascript:void(0);" class="push" data-cat="<?php echo $val->cat_id;?>" data-origin_price="<?php echo $val->origin_price;?>" data-goods_id="<?php echo $val->id;?>" data-tb_id="<?php echo $val->tb_id;?>" data-url="<?php echo $val->url;?>">保存</a>
-				<a href="javascript:void(0);" class="blacklist" data-goods_id="<?php echo $val->id;?>" data-tb_id="<?php echo $val->tb_id;?>" data-title="<?php echo $val->title;?>">删除</a>
 			</td>
 		</tr>
 
@@ -56,11 +55,6 @@
 	</table>
 </div>
 
-<style type="text/css">
-	.modify{
-		cursor: pointer;
-	}
-</style>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/css/jquery.fileupload-ui.css" media="all" />
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
@@ -92,7 +86,7 @@ fetch.event = (function () {
 		{
 			$('.uploadImage').click(function (){
 				$(this).hide();
-				$(this).before('<input class="span9 custom" onBlur="zhe800Admin.event.uploadImageInputEnter(this,event)" type="text" value="">');
+				$(this).before('<input class="span9 custom" onBlur="fetch.event.uploadImageInputEnter(this,event)" type="text" value="">');
 			});
 		},
 
@@ -105,9 +99,9 @@ fetch.event = (function () {
 			// 可修改class
 			$('span.modify').click( function () {
 				var html = $.trim($(this).html());
-				if (zhe800Admin.config.modifyFlag == true) {
-					$(this).html('<input class="span11 custom" onBlur="zhe800Admin.event.inputEnter(this,event)" type="text" value="'+html+'"/>');
-					zhe800Admin.config.modifyFlag = false;
+				if (fetch.config.modifyFlag == true) {
+					$(this).html('<input class="span11 custom" onBlur="fetch.event.inputEnter(this,event)" type="text" value="'+html+'"/>');
+					fetch.config.modifyFlag = false;
 					$('.span11').focus();
 				}
 			});
@@ -123,7 +117,7 @@ fetch.event = (function () {
 				val = 0;
 			}
 			$(input).parent().html($.trim(val));
-			zhe800Admin.config.modifyFlag = true;
+			fetch.config.modifyFlag = true;
 		},
 
 		/**
@@ -137,7 +131,7 @@ fetch.event = (function () {
 			$(input).prev().children().attr('src', $.trim(url));
 			$(input).next().show();
 			$(input).remove();
-			zhe800Admin.config.modifyFlag = true;
+			fetch.config.modifyFlag = true;
 		},
 
 		/**
@@ -160,7 +154,7 @@ fetch.event = (function () {
 				var origin_price = $(this).attr('data-origin_price');
 				$('#loadingInfo').html('正在处理数据.....');
 
-				$.post('index.php?r=api/updateZhe800', {
+				$.post('index.php?r=fetch/update', {
 					goodsId : goodsId,
 					title : title,
 					price : price,
@@ -190,24 +184,6 @@ fetch.event = (function () {
 			$('#getLink').click(function (){
 				var catId = $('#cate_id').val();
 				window.location.href= 'index.php?r=fetch/admin&cat_id=' + catId;
-			});
-		},
-
-		/**
-		* 抓取链接
-		*/
-		blacklist : function ()
-		{
-			$('.blacklist').click(function (){
-				var goodsId = $(this).attr('data-goods_id');
-				var input = $(this);
-				if (confirm('确认删除?')) {
-					$.get('index.php?r=api/delete', {goodsId:goodsId}, function (data){
-						if (data == 1) {
-							input.parent().parent().remove();
-						}
-					});
-				}
 			});
 		}
 	}
