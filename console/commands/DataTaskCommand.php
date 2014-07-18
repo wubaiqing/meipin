@@ -147,7 +147,7 @@ class DataTaskCommand extends CConsoleCommand
                     $operatelog = new OperateLog();
                     $operatelog->attributes = [
                         'log_type' =>2,
-                        'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id})."返还销售量".$exchangeLog['buy_count']."件",
+                        'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id."返还销售量".$exchangeLog['buy_count']."件",
                     ];                 
                     $operatelog->insert();
                        
@@ -158,14 +158,13 @@ class DataTaskCommand extends CConsoleCommand
                     $operatelog = new Score();
                     $operatelog->attributes = [
                         'log_type' =>2,
-                        'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id})."返还销售量以及".$exchangeLog['gdscolor']."库存量".$exchangeLog['buy_count']."件",
+                        'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id."返还销售量以及".$exchangeLog['gdscolor']."库存量".$exchangeLog['buy_count']."件",
                     ];                 
                     $operatelog->insert();
                 }
 
             }
             Order::model()->updateByPk($orderIds, ['pay_status' => 1]);
-
         }
     }
 
