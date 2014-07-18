@@ -7,7 +7,6 @@
  */
 
 /**
- * 折800淘宝U站抓取
  * Chrome source link ： view-source:http://zhe800.uz.taobao.com/
  *
  * 使用'simple html dom'PHP扩展
@@ -16,7 +15,9 @@
  * 折800淘宝U站URL
  * http://zhe800.uz.taobao.com/
  *
- * 执行命令：php yiic zhe
+ * 脚本采集命令：php yiic zhe
+ *
+ * 计划任务：每天8点、9点
  *
  * @author wubaiqing <wubaiqing@55tuan.com>
  */
@@ -35,15 +36,16 @@ class ZheCommand extends CConsoleCommand
 	 */
 	public function actionIndex()
 	{
-		$html = file_get_html('http://zhe800.uz.taobao.com/', false, [
+		$html = file_get_html('http://zhe800.uz.taobao.com/', false, stream_context_create([
 			'http' => [
 				'method' => "GET",
 				'timeout' => 20,
 			]
-		]);
+		]));
 		foreach ($html->find('.dealinfo') as $dealad) {
 			$data = self::handleData($dealad);
 			unset($dealad);
+			FetchHelpers::update($data);
 		}
 	}
 
@@ -60,19 +62,19 @@ class ZheCommand extends CConsoleCommand
 		$data['url'] = $dealad->find('p', 0)->find('a', 0)->href;
 
 		// 淘宝ID
-		$data['taobaoId'] = self::getInt(substr($data['url'], -13));
+		$data['taobaoId'] = FetchHelpers::getInt(substr($data['url'], -13));
 
 		// 商品标题
-		$data['title'] = self::covert($dealad->find('h2', 0)->find('a', 1)->plaintext);
+		$data['title'] = FetchHelpers::covert($dealad->find('h2', 0)->find('a', 1)->plaintext);
 
 		// 分类名称
-		$data['catName'] = str_replace(['【', '】'], '', self::covert($dealad->find('h2', 0)->find('strong', 0)->plaintext));
+		$data['catName'] = str_replace(['【', '】'], '', FetchHelpers::covert($dealad->find('h2', 0)->find('strong', 0)->plaintext));
 
 		// 商品价格
-		$data['price'] = self::getInt($dealad->find('h4', 0)->find('span', 0)->plaintext);
+		$data['price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 0)->plaintext);
 
 		// 商品原始价格
-		$data['origin_price'] = self::getInt($dealad->find('h4', 0)->find('span', 1)->find('i', 0)->plaintext);
+		$data['origin_price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 1)->find('i', 0)->plaintext);
 
 		// 商品开始结束时间
 		$H = date('H');
@@ -89,25 +91,7 @@ class ZheCommand extends CConsoleCommand
 		return $data;
 	}
 
-	/**
-	 * 字符串转换
-	 * @param string $string 字符串
-	 * @return 转换编UTF-8码字符串
-	 */
-	public static function covert($string)
-	{
-		return mb_convert_encoding($string, 'UTF-8', 'GBK');
-	}
 
-	/**
-	 * 从字符串中获取整形数字
-	 * @param $string 字符串
-	 * @return mixed 字符串中整形结果
-	 */
-	public static function getInt($string)
-	{
-		return preg_replace('/([^0-9.]+)/','',trim($string));
-	}
 
 }
 
