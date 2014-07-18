@@ -27,17 +27,19 @@
             'goods_id' => array(
                 'type' => 'raw',
                 'header' => '商品名称',
-                'value' => '"<a href=\"\"  target=\"_blank\">". !is_null($data->exchange)?$data->exchange->name:"1" ."</a>"',
+                'value' => '"<a href=\"".ExchangeLog::getDetailurl($data->exchange)."\"  target=\"_blank\">". (!is_null($data->exchange)?$data->exchange->name:"1") ."</a>"',
             ),
             'gdscolor' =>[
                 'type' => 'raw',
+                'header' => '属性',
                 'name' => 'gdscolor',
+                'htmlOptions' => array('width' => '100')
             ],
             'user_id' => [
                 'type' => 'raw',
                 'header' => '用户名',
                 'value' => '"<a href=\"\"  target=\"_blank\">".(!empty($data->users)?$data->users->username:"")."</a>"',
-                'htmlOptions' => array('width' => '150')
+                'htmlOptions' => array('width' => '100')
             ],
             'created_at' => array(
                 'name' => '参与时间',
@@ -53,6 +55,13 @@
                 . ' href=\"javascript:void(0);\">".ExchangeLog::getStatus($data->status)."</a>"',
                 'htmlOptions' => array('width' => '80')
             ],
+            'logic' => array(
+                'type' => 'raw',
+                'name' => '物流信息',
+                'id' => 'lotistics',
+                'value' => 'ExchangeLog::getLogistics($data)',
+                'htmlOptions' => array('width' => '180')
+            ),
             array(
                 'class' => 'CButtonColumn',
                 'template' => '{update}',
