@@ -74,10 +74,11 @@ class GoodsController extends Controller
     public function actionAdmin()
     {
         $model = new Goods('search');
-       $v= $model->unsetAttributes();
+        $model->unsetAttributes();
         if(isset($_GET['Goods']))
             $model->attributes = $_GET['Goods'];
 
+	    $model->status = '= 1';
         $this->render('admin',array(
             'model' => $model,
         ));

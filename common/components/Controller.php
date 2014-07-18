@@ -35,6 +35,7 @@ class Controller extends CController
             'label' => '商品管理',
             'items' => [
                // ['url' => 'bookmark/admin', 'label' => '收藏夹'],
+	            ['url' => '', 'label' => '抓取管理'],
                 ['url' => 'goods/admin', 'label' => '商品管理'],
                 ['url' => 'category/create', 'label' => '创建分类'],
                 ['url' => 'category/admin', 'label' => '分类管理'],
