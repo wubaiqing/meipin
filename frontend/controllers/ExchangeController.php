@@ -101,13 +101,19 @@ class ExchangeController extends Controller
             Yii::app()->end();
         }
         $goodsId = Des::decrypt($id);
+        $user = User::getUser($this->userId);
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
+        
         if (!$dataResult['status']) {
-            if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
+
+            if ($user->mobile_bind == 0) {
+
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
             }else{
+
+                    echo "33333";
                     $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url'], '/common/success');
             }
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
