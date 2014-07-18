@@ -157,6 +157,7 @@ class OrderService
     public static function notify()
     {
         try {
+            Yii::log('通知init,'.  json_encode($_POST), CLogger::LEVEL_INFO,'application.notify');
             self::load();
             $alipay_config = self::getAlipayConfig();
             $alipayNotify = new AlipayNotify($alipay_config);
@@ -215,23 +216,25 @@ class OrderService
                         ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
                         $transaction->commit();
                     } catch (\Exception $ex) {
-                        Yii::log($ex->getTraceAsString(), CLogger::LEVEL_ERROR);
+                        Yii::log('通知成功,'.  json_encode($_POST), CLogger::LEVEL_ERROR,'application.notify');
                         $transaction->rollback();
                         echo "fail";
                         Yii::app()->end();
                     }
                 }
+                Yii::log('通知成功,'.  json_encode($_POST), CLogger::LEVEL_INFO,'application.notify');
                 //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
                 echo "success";  //请不要修改或删除
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             } else {
+                Yii::log('通知失败,'.  json_encode($_POST), CLogger::LEVEL_INFO,'application.notify');
                 //验证失败
                 echo "fail";
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
             }
         } catch (\Exception $ex) {
-            Yii::log($ex->getTraceAsString(), CLogger::LEVEL_ERROR);
+            Yii::log(json_encode($_POST).$ex->getTraceAsString(), CLogger::LEVEL_ERROR,'application.notify');
             echo "fail";
         }
     }
@@ -239,6 +242,7 @@ class OrderService
     public static function result()
     {
         try {
+            Yii::log('支付完成init,'.  json_encode($_GET), CLogger::LEVEL_INFO,'application.result');
             self::load();
             $alipay_config = self::getAlipayConfig();
             //计算得出通知验证结果
@@ -265,8 +269,10 @@ class OrderService
                             ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
                         }
                     }
+                    Yii::log('付款成功,'.  json_encode($_GET), CLogger::LEVEL_INFO,'application.result');
                     return CommonHelper::getDataResult(true, ['message' => '付款成功！']);
                 } else {
+                    Yii::log('付款失败,'.  json_encode($_GET), CLogger::LEVEL_INFO,'application.result');
                     return CommonHelper::getDataResult(false, ['message' => '付款失败！']);
                 }
 
@@ -275,11 +281,12 @@ class OrderService
             } else {
                 //如要调试，请看alipay_notify.php页面的verifyReturn函数
 //            echo "验证失败";
+                Yii::log('付款验证失败，请勿重复操作！', CLogger::LEVEL_INFO,'application.result');
                 return CommonHelper::getDataResult(false, ['message' => '付款验证失败，请勿重复操作！']);
             }
         } catch (\Exception $ex) {
-            var_dump($ex);die;
-            Yii::log($ex->getTraceAsString(), CLogger::LEVEL_ERROR);
+            Yii::log($ex->getTraceAsString(), CLogger::LEVEL_ERROR,'application.result');
+            return CommonHelper::getDataResult(false, ['message' => '付款失败,请重试']);
         }
     }
 

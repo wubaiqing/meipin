@@ -10,6 +10,7 @@ return [
         'import' => [
             'application.services.*',
         ],
+        'preload' => array('log'),
 //        'modules'=>array(
 //            'gii'=>array(
 //                'class'=>'system.gii.GiiModule',
@@ -38,7 +39,26 @@ return [
             ],
             'user' => [
                 'loginUrl' => ['user/login']
-            ]
+            ],
+            'log' => array(
+                'class' => 'CLogRouter',
+                'routes' => array(
+                    // 日志
+                    array(
+                        'class' => 'application.components.logging.DateFileLogRoute',
+                        'levels' => 'info,error',
+                        'categories' => 'application.pay',
+                        'logFilename' => 'hessian',
+                        'logFilepath' => 'hessian',
+                    ),
+                    // 错误日志
+                    array(
+                        'class' => 'application.components.logging.DateFileLogRoute',
+                        'levels' => 'warning,info, error'
+                    ),
+                ),
+            ),
+            
         ],
         'params' => [
             'title' => '美品网-美品网独家优惠,折800、九块邮精选美品会',
