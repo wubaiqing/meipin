@@ -43,7 +43,7 @@ class ZheCommand extends CConsoleCommand
 	);
 
 	/**
-	 * 开启多进程执行更新商品数据
+	 * 开启多进程更新商品数据
 	 */
 	public function actionIndex()
 	{
@@ -64,9 +64,9 @@ class ZheCommand extends CConsoleCommand
 	public function actionUpdate($catId, $url)
 	{
 		for ($page = 1; $page <= 6; $page++) {
-			$curUrl = $url . $page;
-			FetchHelpers::trace('正在抓取URL：' . $curUrl);
-			$html = file_get_html('http://zhe800.uz.taobao.com/', false, stream_context_create([
+			$fetchUrl = $url . $page;
+			FetchHelpers::trace('正在抓取URL：' . $fetchUrl);
+			$html = file_get_html($fetchUrl, false, stream_context_create([
 				'http' => [
 					'method' => "GET",
 					'timeout' => 20,

@@ -53,6 +53,9 @@ class FetchHelpers
 	{
 		$yiic = __DIR__ . "/../../yiic";
 		$cmd = "php $yiic $method --cateId='{$catId}' --url='{$url}'";
+		var_dump($cmd);
+		exit;
+		$method = str_replace(' ', '', $method);
 		$logfile = "/tmp/$method.log";
 		exec($cmd . " >> {$logfile} &");
 	}
@@ -82,8 +85,6 @@ class FetchHelpers
 		$data = self::setAttributes($catId, $U);
 		$goods->setAttributes($data);
 		$goods->save();
-		var_dump($goods->getErrors());
-		exit;
 		self::trace("更新商品：{$goods->id}");
 	}
 
