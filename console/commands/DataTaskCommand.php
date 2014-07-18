@@ -90,13 +90,16 @@ class DataTaskCommand extends CConsoleCommand
     {
         $pageSize = 100;
 
-        while (true) {
+        while (true) 
+        {
             $orderList = Order::model()->findAll('pay_status=0 and created_at < '.(time()- Yii::app()->params['payTimeout']).' limit ' . $pageSize);
-            if (empty($orderList)) {
+            if (empty($orderList)) 
+            {
                 break;
             }
             $orderIds = [];
-            foreach ($orderList as $order) {
+            foreach ($orderList as $order) 
+            {
                 $orderIds[] = $order->order_id;
                 /*                     * ********返还积分***************** */
                 $integral = $order->integral;
@@ -123,8 +126,10 @@ class DataTaskCommand extends CConsoleCommand
                 {
                     $gdcolorarr = explode(';', $gdcolorstr);
                     $gdscolornum = "";
-                    foreach ($gdcolorarr as $key => $value) {
-                        if ($value) {
+                    foreach ($gdcolorarr as $key => $value) 
+                    {
+                        if ($value) 
+                        {
                             $gdcolorstr2 = explode(':', $value);
                             if($exchangeLog['gdscolor'] == $gdcolorstr2[0])
                             {

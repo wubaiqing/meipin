@@ -100,7 +100,7 @@ $name = ($data['exchange']->goods_type == 1) ? "抽奖" : "";
                     <span class="l">补充说明：<input id="memo" name="Exchange[remark]" max="200" class="text" type="text"></span>
                 </div>
                 <div class="remark">
-                    <span style="color:red;margin-top:10px;">请在下单后1小时内完成支付，否则您的订单将自动关闭</span>
+                    <span style="color: #F00;margin-top: 22px;float: left;margin-left: 391px;">重要提示：请在下单后1小时内完成支付，否则您的订单将自动关闭</span>
                     <span class="r">
                         <input class="submit_ok pay_btn" type="submit" address_id="<?php echo Des::encrypt($data['userAddress']->id) ?>" value="确认购买">
                     </span>
