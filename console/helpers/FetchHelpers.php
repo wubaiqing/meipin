@@ -52,9 +52,7 @@ class FetchHelpers
 	public static function run($method, $catId, $url)
 	{
 		$yiic = __DIR__ . "/../../yiic";
-		$cmd = "php $yiic $method --cateId='{$catId}' --url='{$url}'";
-		var_dump($cmd);
-		exit;
+		$cmd = "php $yiic $method --catId='{$catId}' --url='{$url}'";
 		$method = str_replace(' ', '', $method);
 		$logfile = "/tmp/$method.log";
 		exec($cmd . " >> {$logfile} &");
