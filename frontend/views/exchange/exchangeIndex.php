@@ -13,10 +13,11 @@
         <form action="<?php echo Yii::app()->createUrl("exchange/order") ?>" method="POST" <?php if ($data['exchange']->goodscolor): ?> onsubmit="return checkcolor()" <?php endif; ?> >
             <?php
             $leftNum = $data['exchange']->num - $data['exchange']->sale_num; //剩余量
+            $canBuy = ($leftNum < 1 || $data['exchange']->end_time < time()) ? false : true;
             $start = "zt3"; //兑换结束
             if ($data['exchange']->start_time > time()) {
                 $start = "zt1"; //即将开始
-            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time() && $leftNum >0) {
+            } elseif ($data['exchange']->start_time < time() && $data['exchange']->end_time > time() && $leftNum > 0) {
                 $start = "zt2"; //我要兑换
             }
             ?>
@@ -32,23 +33,37 @@
                         <span class='goodcolor'>
 
                             <?php foreach ($data['exchange']->goodscolor as $key => $value): ?>
-
-                    <a <?php if ($value['gdcolornum']==0) {echo "class='be' stock='0' ";} else {echo 'stock='.$value["gdcolornum"].''. ' sclor='.$value["gdcolorname"].'';}?>  href="javascript:void(0)"><?php echo $value['gdcolorname']."({$value['gdcolornum']})";?></a>
-                    <?php endforeach;?>
+                                <a <?php
+                                if ($value['gdcolornum'] == 0) {
+                                    echo "class='be' stock='0' ";
+                                } else {
+                                    echo 'stock=' . $value["gdcolornum"] . '' . ' sclor=' . $value["gdcolorname"] . ' class="'.($canBuy?"":'disabled bgcolor_gray').'"' ;
+                                }
+                                ?>  href="javascript:void(0)">
+                                        <?php echo $value['gdcolorname'] ; ?>
+                                </a>
+                            <?php endforeach; ?>
 
                         </span>
+                              
                     <?php endif; ?>
+                    <br/>
+                   <a id="leixing" style="color:red"><?php if($count >=$data['exchange']->buy_num){echo "您已经超过了限制购买的件数，请重新选择其他商品";} ?></a>
                 </h3>
                 <h4>
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>
+                    <?php echo CHtml::hiddenField("buyCount", '1'); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
                     <?php echo CHtml::hiddenField("goods_type", $data['exchange']->goods_type); ?>
-                    <input class="btn" type="submit" value=""><span></span>
+
+                    <?php if($count >=$data['exchange']->buy_num){$btn='button';}else{$btn='submit';} ?>
+
+                    <input class="btn" type="<?php echo $btn;?>" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已兑换</a>
-                    <em>(当前库存<b><?php
+                    <em>(当前库存<b id='kckc_id'><?php
                             $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
                             echo $leftNum > 0 ? $leftNum : 0;
-                            ?></b>件)</em>
+                            ?></b>件 / 每人限兑换<b id='xg_num'> <?php echo $data['exchange']->buy_num;?> </b>次 )</em>
                 </h4>
             </div>
         </form>
@@ -94,37 +109,3 @@
     </div>
 
 </div>
-<script type="text/javascript">
-    $(function () {
-        try {
-            $(".tb-tabbar").find("li").click(function () {
-                $(".tb-tabbar").find("li").removeClass("selected");
-                $(this).addClass("selected");
-                $(".displayIF").addClass('hid');
-                $("." + $(this).attr("id")).removeClass("hid");
-            });
-        } catch (e) {
-            alert(e);
-        }
-     $('.goodcolor').find("a").click(function () {
-
-         gdcolornum = $(this).attr("stock");
-         if (gdcolornum!=0) {
-            $(".goodcolor a").attr("style",'');
-            //gdcolor = $(this).html(); //颜色
-            gdcolor = $(this).attr("sclor");
-            $(this).attr("style","border: 2px solid red");
-            $("#gdcolor").val(gdcolor);
-         }
-     });
-    });
-  function checkcolor () 
-  {
-      if($("#gdcolor").val() == '')
-      {
-        alert('请选择一个型号');
-        return false;
-      }
-      return true;
-  }
-</script>

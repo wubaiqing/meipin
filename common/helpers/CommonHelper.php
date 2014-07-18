@@ -58,4 +58,19 @@ class CommonHelper
         return ['status' => $status, 'data' => $data];
     }
 
+    /**
+     * 生成订单号
+     * @param integer $seqNum 订单序列号
+     * @param string $prefix 订单前缀
+     * @return string 
+     */
+    public static function generateOrderId($seqNum, $prefix = '')
+    {
+        $seqNum = strval($seqNum);
+        $orderId = $prefix;
+        $orderId .= date("Ymd");
+        $orderId .=str_pad(substr($seqNum, (strlen($seqNum)-8),8), 8, '0', STR_PAD_LEFT);
+        return $orderId;
+    }
+
 }

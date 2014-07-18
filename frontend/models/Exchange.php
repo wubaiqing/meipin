@@ -14,6 +14,12 @@ class Exchange extends ActiveRecord
     public static $goodsType = [0 => '兑换商品', 1 => '抽奖商品'];
 
     /**
+     * 购买数量
+     * @var integer 
+     */
+    public $buyCount = 0;
+    
+    /**
      * 表名
      * @return string
      */
@@ -171,7 +177,7 @@ class Exchange extends ActiveRecord
         if (!empty($IndexExchange)) {
             return $IndexExchange;
         }
-        $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1",
+        $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1 and goods_type = 0",
             'order' => 'list_order desc']);
         Yii::app()->cache->set($key, $IndexExchange, Constants::T_HALF_HOUR);
 
@@ -244,6 +250,16 @@ class Exchange extends ActiveRecord
         Yii::app()->cache->delete(self::getExchangeGoodsCacheKey($goodsId));
     }
 
+
+    /**
+     * 查询该用户兑换此商品的件数
+     */
+    public static function getbuyCount($goodsId)
+    {
+        Yii::app()->cache->delete(self::getExchangeGoodsCacheKey($goodsId));
+    }
+
+
     /**
      * 积分兑换首页商品列表
      * @param integer $currentPage 分页页码
@@ -291,7 +307,7 @@ class Exchange extends ActiveRecord
         //分页类
         $data['pages'] = $pages;
         //写入缓存
-        Yii::app()->cache->set($cacheKey, $data, Constants::T_HALF_HOUR);
+        Yii::app()->cache->set($cacheKey, $data, Constants::T_SECOND_TEN);
 
         return $data;
     }
