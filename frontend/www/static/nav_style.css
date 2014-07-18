@@ -173,7 +173,7 @@ br {clear:both;font-size:0;line-height:0;}
     position:fixed;
     text-align: left;
     top:135px;
-    width:140px;
+    width:124px;
     z-index: 990;
     display: block;
 } 
@@ -189,7 +189,7 @@ br {clear:both;font-size:0;line-height:0;}
 .dujia ul li a {color:#666;font-family:"微软雅黑";font-size:12px;display:block;}
 .dujia ul li a:hover {background-color:#fff1d0;color:#780c00;width:55px;border-radius:5px 5px;}
 #search {padding-bottom:8px;}
-.search_text {width:77px;height:23px;font-family:"微软雅黑";color:#757575;font-size:12px;padding-left:5px;border:0;vertical-align:top;border:1px solid #e5e5e5;}
+.search_text {width:75px;height:23px;font-family:"微软雅黑";color:#757575;font-size:12px;padding-left:0px;border:0;vertical-align:top;border:1px solid #e5e5e5;}
 .search_btn {height:25px;width:30px;border:0;cursor:pointer;	font-family:"微软雅黑";color:white;font-size:12px;background-color:#ee4743;border-radius:5px 5px;}
 .jingxuan {padding-top:8px;height:100px;border-left:1px solid #e0e0e0;
 	border-right:1px solid #e0e0e0;background-color: #fff;}

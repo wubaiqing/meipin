@@ -29,12 +29,20 @@ class SiteController extends Controller
     public function actionUpload()
     {
         Yii::import('common.extensions.file.Upload');
-        $file = new Upload('file');
-		$imageUrl = $file->uploadOSSImage($file);
-		echo CJSON::encode([
-			'success' => 1,
-			'path' => $imageUrl
-		]);
+        if(isset($_FILES['file'])){//普通上传
+            $file = new Upload('file');
+            $imageUrl = $file->uploadOSSImage($file);
+            echo CJSON::encode([
+                    'success' => 1,
+                    'path' => $imageUrl
+            ]);
+        }elseif($_FILES['upload']){//富文本编辑器
+            $file = new Upload('upload');
+            $imageUrl = $file->uploadOSSImage($file);
+            $callback = $_REQUEST["CKEditorFuncNum"];
+            echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($callback,'".$imageUrl."','');</script>";
+        }
+        
     }
 
     public function actionLogin()

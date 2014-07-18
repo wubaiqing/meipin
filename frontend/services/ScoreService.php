@@ -61,8 +61,15 @@ class ScoreService
      */
     public function doExchange($userId, $order)
     {
+        $isPayOrder = false;
         $nowTime = time();
         $order = self::formatPostValue($order);
+
+        //在这里将 颜色的库存改一下
+        $order = ExchangeHelper::formatExchangeGoodsColorCount($order);
+        //Array ( [token] => 0adda0804413b28bf510ac5e919af9cb [gdscolor] => 白色 [goodscolor] => 白色:1;红色:6; [goods_id] => 12 [city_id] => 1 [buyCount] => 1 [remark] => ) 
+        //print_r($order);
+        //die;
         $url = Yii::app()->createUrl("site/index");
         //是否提交
         if (empty($order)) {
@@ -77,6 +84,7 @@ class ScoreService
         if (empty($goods)) {
             return CommonHelper::getDataResult(false, ['message' => "对不起，您所操作的商品信息不存在", 'url' => $url]);
         }
+        //显示不同的积分操作商品类型名称
         $indexUrl = "";
         $name = "";
         if ($goods->goods_type == 0) {
@@ -86,20 +94,20 @@ class ScoreService
             $indexUrl = Yii::app()->createUrl("site/raffle");
             $name = "抽奖";
         }
+        $goodsUrl = Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goodsId)]);
         //验证提交
         $cacheKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $token = Yii::app()->cache->get($cacheKey);
         if (!$token) {
             return CommonHelper::getDataResult(false, [
                         'message' => "本次操作已经失效,正在跳转商品兑换页",
-                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goodsId)])
+                        'url' => $goodsUrl
             ]);
         }
         //
         if ($order['token'] != $token) {
             return CommonHelper::getDataResult(false, ['message' => "请不要重复提交,点击查看其他商品", 'url' => $indexUrl]);
         }
-
         //校验商品
         if ($goods->start_time > $nowTime) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动还未开始，您可以查看其他商品", 'url' => $indexUrl]);
@@ -107,9 +115,21 @@ class ScoreService
         if ($goods->end_time <= $nowTime) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！活动已经结束，您可以查看其他商品", 'url' => $indexUrl]);
         }
-        $user = User::getUser($userId);
+        $user = User::model()->findByPk($userId);
         if (($goods->num - $goods->sale_num) <= 0) {
             return CommonHelper::getDataResult(false, ['message' => "真遗憾！没有更多库存了，您可以查看其他商品", 'url' => $indexUrl]);
+        }
+        //校验加钱兑换商品数据
+        if ($goods->goods_type == 0 && $goods->active_price > 0) {
+            if (!preg_match("/^\d+$/", $order['buyCount'])) {
+                return CommonHelper::getDataResult(false, ['message' => "购买数量格式不正确", 'url' => $goodsUrl]);
+            }
+            if ($order['buyCount'] > ($goods->num - $goods->sale_num)) {
+                return CommonHelper::getDataResult(false, ['message' => "购买数量不能超过最大库存数量", 'url' => $goodsUrl]);
+            }
+            if ($user->score < ($order['buyCount'] * $goods->integral)) {
+                return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此次购买", 'url' => $goodsUrl]);
+            }
         }
         //配送地址
         $userAddress = UsersAddress::getByUserId($userId);
@@ -132,15 +152,14 @@ class ScoreService
                         'url' => Yii::app()->createUrl("user/address")
             ]);
         }
-        $bool = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
-        if (!$bool) {
+        $result = self::saveDoExchange($order, $userAddress, $cacheKey, $goods, $user, $nowTime);
+        if (!$result['status']) {
             return CommonHelper::getDataResult(false, [
                         'message' => "系统忙，请返回重试",
-                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goods->id)])
+                        'url' => Yii::app()->createUrl(($goods->goods_type == 0) ? "exchange/exchangeIndex" : "exchange/raffle", ['id' => Des::encrypt($goods->id)]),
             ]);
         }
-
-        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'url' => $indexUrl]);
+        return CommonHelper::getDataResult(true, ['message' => "商品" . $name . "成功", 'orderId' => $result['data']['order_id'], 'url' => $indexUrl]);
     }
 
     /**
@@ -154,11 +173,18 @@ class ScoreService
      */
     public static function saveDoExchange($order, $userAddress, $cacheKey, Exchange $goods, User $user, $nowTime)
     {
+        $result = [];
         //执行兑换
         $transaction = Yii::app()->db->beginTransaction();
         try {
-            //更新用戶积分
-            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $goods->integral)]);
+            $payOrder = null;
+            $integral = 0;
+            $pay_status = 1;
+            $scoreLog = (($goods->goods_type == 0) ? "积分兑换" : "积分抽奖") . ",商品:" . $goods->name;
+            
+            if ($goods->goods_type == 0 && $goods->active_price > 0) {
+                $pay_status = 0;
+            }
             //写入兑换日志
             $exchangeLog = new ExchangeLog();
             $exchangeLog->attributes = [
@@ -173,50 +199,78 @@ class ScoreService
                 'address' => $userAddress->address,
                 'postcode' => $userAddress->postcode,
                 'mobile' => $userAddress->mobile,
+                'pay_status' => $pay_status,
             ];
             $exchangeLog->insert();
+            //积分加钱兑换生成订单（未支付前不扣积分）
+            if ($goods->goods_type == 0 && $goods->active_price > 0) {
+                $buyCount = $order['buyCount'];
+                $orderId = CommonHelper::generateOrderId($exchangeLog->id);
+                $integral = $buyCount * $goods->integral;
+                $payOrder = new Order();
+                $payOrder->attributes = [
+                    'order_id' => $orderId,
+                    'pay_status' => $pay_status,
+                    'order_type' => 1,
+                    'created_at' => $nowTime,
+                    'pay_way' => 1,
+                    'buy_count' => $buyCount,
+                    'market_price' => $goods->price,
+                    'pay_price' => $buyCount * $goods->active_price,
+                    'integral' => $integral,
+                    'user_id' => $user->id,
+                    'goods_id' => $goods->id,
+                ];
+                $payOrder->insert();
+                //更新关联订单号
+                $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
+                //
+                $result['order_id'] = $orderId;
+                $scoreLog = "积分冻结（加钱换购）,订单号:".$orderId . ",商品：".$goods->name;
+            } else {
+                $integral = $goods->integral;
+                $result['order_id'] = '';
+            }
 
             $userCount = ExchangeLog::getUserCount($goods->id);
             //更新兑换商品数量
-
             //如果是抽奖商品就不需要增加兑换商品数量了
-            if($goods->goods_type == 1)
-            {
-                $uparray= array('user_count' => $userCount,
-                'goodscolor' => $order['goodscolor']);
-            }else
-            {
+            if ($goods->goods_type == 1) {
+                $uparray = array('user_count' => $userCount,
+                    'goodscolor' => $order['goodscolor']);
+            } else {
                 //如果兑换商品的剩余量为0，则修改结束时间为当前时间
-                if($goods->num == ($goods->sale_num +1))
-                {
-                    $dates = date("Y-m-d",time());
-                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
-                    'user_count' => $userCount,
-                    'goodscolor' => $order['goodscolor'],
-                    'end_time' =>strtotime($dates)
-                );
-                }else{
-                    $uparray= array('sale_num' => new CDbExpression('sale_num+1'),
-                    'user_count' => $userCount,
-                    'goodscolor' => $order['goodscolor']
+                if ($goods->num == ($goods->sale_num + 1)) {
+                    $dates = date("Y-m-d", time());
+                    $uparray = array('sale_num' => new CDbExpression('sale_num+1'),
+                        'user_count' => $userCount,
+                        'goodscolor' => $order['goodscolor'],
+                        'end_time' => strtotime($dates)
+                    );
+                } else {
+                    $uparray = array('sale_num' => new CDbExpression('sale_num+1'),
+                        'user_count' => $userCount,
+                        'goodscolor' => $order['goodscolor']
                     );
                 }
-                
             }
-            Exchange::model()->updateByPk($goods->id,$uparray);
+            Exchange::model()->updateByPk($goods->id, $uparray);
+            //更新用戶积分
+            User::model()->updateByPk($user->id, ['score' => new CDbExpression('score-' . $integral)]);
             //兑换扣积分记录
             $score = new Score();
             $score->attributes = [
-                'score' => $goods->integral * -1,
+                'score' => $integral * -1,
                 'user_id' => $user->id,
                 'reason' => 2,
-                'remark' => ($goods->goods_type == 0) ? "积分兑换" : "积分抽奖" . ":" . $goods->name
+                'remark' => $scoreLog
             ];
             $score->insert();
             //删除放重复提交token
             Yii::app()->cache->delete($cacheKey);
             //清除记录缓存
             ExchangeLog::deleteExchangeLogListCache($goods->id);
+            ExchangeLog::deleteWelfareCache($user->id, 1, 1);
             //清除积分缓存列表
             Score::deleteScoreListCache($user->id);
             //删除商品缓存
@@ -228,10 +282,10 @@ class ScoreService
         } catch (\Exception $ex) {
             $transaction->rollback();
 
-            return false;
+            return CommonHelper::getDataResult(false, $result);
         }
 
-        return true;
+        return CommonHelper::getDataResult(true, $result);
     }
 
     /**
@@ -259,11 +313,10 @@ class ScoreService
         }
         $user = User::getUser($userId);
         //验证手机是否绑定
+        $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
         if ($user->mobile_bind == 0) {
-            $url = Yii::app()->createAbsoluteUrl("exchange/order", ['id' => Des::encrypt($goodsId)]);
-
             return CommonHelper::getDataResult(false, [
-                        'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => true]);
+                        'message' => "您的用户账号还没有户绑定手机，请绑定手机", 'url' => $url, 'redirect' => false]);
         }
         //获取用户邮寄地址
         $userAddress = UsersAddress::getModel($userId);
@@ -274,7 +327,16 @@ class ScoreService
 
         //查询兑换商品数据
         $exchange = Exchange::findByGoodsId($goodsId);
-//        $exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
+        //$exchange = ExchangeHelper::formatExchangeGoodsColor($exchange);
+
+        //$goodscolor = Yii::app()->request->getParam("gdcolor", '');
+        //$buyCount = Yii::app()->request->getParam("buyCount", '');
+/*        if(!empty($exchange->goodscolor) && empty($goodscolor) || empty($buyCount)){
+            return CommonHelper::getDataResult(false, [
+                        'message' => "参数选择错误，请重新选择", 
+                        'url' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ['id' => Des::encrypt($goodsId)])
+                ]);
+        }*/
         //设置兑换token用于防止重复提交
         $tokenKey = Exchange::getExchangeCacheKey($userId, $goodsId);
         $dataToken = Yii::app()->cache->get($tokenKey);

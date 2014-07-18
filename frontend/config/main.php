@@ -10,6 +10,12 @@ return [
         'import' => [
             'application.services.*',
         ],
+//        'modules'=>array(
+//            'gii'=>array(
+//                'class'=>'system.gii.GiiModule',
+//                'password'=>'meipin'
+//            ),
+//        ),
         'components' => [
             'urlManager' => [
                 'urlFormat' => 'path',
@@ -41,7 +47,7 @@ return [
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => 120,
-                'exchangePageSize' => 20,//积分兑换首页，每页显示数量
+                'exchangePageSize' => 21,//积分兑换首页，每页显示数量
                 'goodsdetail'=>12,
             ],
             //前台配置标识
@@ -66,5 +72,29 @@ return [
             'exchangeLogPageSize' => 20,
             //分页最大缓存页面数
             'pageCahceMaxCount' => 5,
+            //物流系统
+            'logisticsSystem' =>[
+                1 => 'EMS',
+                2 => '申通速递',
+                3 => '圆通速递',
+                4 => '韵达快递',
+                5 => '中通快递',
+                6 => '顺丰速递',
+                7 => '天天快递',
+                8 => '百世汇通',
+                9 => '邮政包裹',
+                10 => '宅急送',
+            ],
+            //支付宝账号信息配置
+            'alipay' =>[
+                //收款账号
+                'email' => 'meipin2309@163.com',
+                //支付宝ID
+                'id' => '2088411283973406',
+                //支付宝验证码
+                'key' => '76suwy363u03pkgzbq1qq2b22z6ddnbb',
+            ],
+                    //支付超时
+            'payTimeout' =>3600,
         ],
     ];

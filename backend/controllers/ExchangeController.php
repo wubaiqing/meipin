@@ -138,6 +138,7 @@ class ExchangeController extends Controller
             }
             $attributes = Yii::app()->request->getPost('Exchange');
             $attributes = Exchange::format($attributes);
+//        var_dump($attributes['description']);die;
             $exchangeModel->attributes = $attributes;
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($exchangeModel->save()) {
@@ -303,6 +304,7 @@ class ExchangeController extends Controller
         if ($formType == 'address') {
             $bool = ExchangeLog::upateAddress($id, $post);
         } else {
+            $post['delivery_time'] = time();
             $bool = ExchangeLog::updateStatus($id, $post);
         }
         if ($bool) {
