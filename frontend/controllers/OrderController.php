@@ -22,7 +22,7 @@ class OrderController extends Controller
         return array_merge([
             [
                 'deny',
-                'actions' => ['index', 'ajax', 'welfare'],
+                'actions' => ['index', 'result', 'notify','list'],
                 'users' => ['?'],
             ]
                 ], parent::accessRules());
