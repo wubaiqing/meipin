@@ -278,7 +278,7 @@ class OrderService
                 return CommonHelper::getDataResult(false, ['message' => '付款验证失败，请勿重复操作！']);
             }
         } catch (\Exception $ex) {
-            var_dump($ex);
+            var_dump($ex);die;
             Yii::log($ex->getTraceAsString(), CLogger::LEVEL_ERROR);
         }
     }
