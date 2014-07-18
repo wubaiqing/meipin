@@ -17,7 +17,7 @@
                                     <label><em>*</em>手机号：</label>
                                     <input type="text" name="UsersAddress[mobile]" id="UsersAddress_mobile" maxlength="11" class="text" id="mobil">
                                     <span class="i_codeP">
-                                        <input class="sendBtn " url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码"/>
+                                        <input class="sendBtn " url="<?php echo Yii::app()->createUrl("user/sendMobileBindSmsCode") ?>" type="button" data-send="true" value="发送短信验证码" style="cursor:pointer"/>
                                     </span>
                                 </div>
                                 <div class="item i_code">

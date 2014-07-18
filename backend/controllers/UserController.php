@@ -60,7 +60,9 @@ class UserController extends Controller
         $post = Yii::app()->request->getPost('Users');
         $postAddress = Yii::app()->request->getPost('UsersAddress');
         if ($post !== null && $postAddress !== null) {
+            $user->mobile_bind = $post['mobile_bind'];
             $user->mobile = $post['mobile'];
+            $user->update(['mobile_bind']);
             $user->update(['mobile']);
 
             $address->user_id = $id;
