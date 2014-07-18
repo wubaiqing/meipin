@@ -44,6 +44,20 @@ class FetchHelpers
 	}
 
 	/**
+	 * 后台运行脚本
+	 * @param string $method 运行方法
+	 * @param integer $catId 分类ID
+	 * @param $url
+	 */
+	public static function run($method, $catId, $url)
+	{
+		$yiic = __DIR__ . "/../../yiic";
+		$cmd = "php $yiic $method --cateId='{$catId}' --url='{$url}'";
+		$logfile = "/tmp/$method.log";
+		exec($cmd . " >> {$logfile} &");
+	}
+
+	/**
 	 * 添加商品数据
 	 * @param integer $catId 分类ID
 	 * @param array $U 淘宝客采集过来的数据

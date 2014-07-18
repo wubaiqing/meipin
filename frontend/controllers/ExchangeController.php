@@ -101,10 +101,14 @@ class ExchangeController extends Controller
             Yii::app()->end();
         }
         $goodsId = Des::decrypt($id);
+        $user = User::getUser($this->userId);
         //加載数据
         $dataResult = $this->scoreService->getOrderdetail($goodsId, $this->userId);
+        
         if (!$dataResult['status']) {
-            if (isset($dataResult['data']['redirect']) && $dataResult['data']['redirect']) {
+
+            if ($user->mobile_bind == 0) {
+
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
             }else{
@@ -213,7 +217,7 @@ class ExchangeController extends Controller
         }
         $this->returnData(true, [
             'message' => "手机绑定成功,页面正跳转至兑换页面，请稍等",
-            'url' => Yii::app()->createAbsoluteUrl("exchange/order", ['id' => $goodsId])
+            'url' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ['id' => $goodsId])
         ]);
     }
 
