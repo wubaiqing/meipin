@@ -257,6 +257,7 @@ class GoodsController extends Controller
         $list_order = $order;
         Goods::model()->updateByPk($id, array('list_order' => $list_order));
     }
+
     /**
      * 修改商品是否销售完状态
      */
