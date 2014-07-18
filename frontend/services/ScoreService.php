@@ -226,7 +226,7 @@ class ScoreService
                 $exchangeLog->updateByPk($exchangeLog->id, ['order_id' => $orderId]);
                 //
                 $result['order_id'] = $orderId;
-                $scoreLog = "积分冻结（加钱换购）,订单号:".$orderId . ",商品：".$goods->name;
+                $scoreLog = "积分换购,订单号:".$orderId . ",商品：".$goods->name;
             } else {
                 $integral = $goods->integral;
                 $result['order_id'] = '';
