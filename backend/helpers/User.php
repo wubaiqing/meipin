@@ -41,8 +41,6 @@ class User
         if($id)
         {
             $arr2 = array_flip(self::$userName);
-	        var_dump($arr2);
-	        exit;
             return $arr2[$id];
         }
     }
