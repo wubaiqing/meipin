@@ -112,8 +112,6 @@ class ExchangeController extends Controller
                 $this->render('/exchange/bind', ['params' => ['goodsId' => $id]]);
                 Yii::app()->end();
             }else{
-
-                    echo "33333";
                     $this->pageRedirect('no', $dataResult['data']['message'], $dataResult['data']['url'], '/common/success');
             }
             $this->pageRedirect('yes', $dataResult['data']['message'], Yii::app()->createUrl('exchange/index'));
@@ -219,7 +217,7 @@ class ExchangeController extends Controller
         }
         $this->returnData(true, [
             'message' => "手机绑定成功,页面正跳转至兑换页面，请稍等",
-            'url' => Yii::app()->createAbsoluteUrl("exchange/order", ['id' => $goodsId])
+            'url' => Yii::app()->createAbsoluteUrl("exchange/exchangeIndex", ['id' => $goodsId])
         ]);
     }
 
