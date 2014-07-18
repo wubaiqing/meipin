@@ -97,11 +97,6 @@ class Goods extends ActiveRecord implements IArrayable
 	 */
 	public function checkRelationWebsite()
 	{
-		if ($this->goodsType == 1 || $this->goodsType ==2) {
-			if (empty($this->relation_website)) {
-				$this->addError('relation_website', '关联网站 cannot be blank.');
-			}
-		}
 	}
 
 	/**
