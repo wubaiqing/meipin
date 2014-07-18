@@ -17,37 +17,12 @@
  * 5. 设置商品属性
  * 6. 输出Log日志
  *
+ * 创建日期：2014-7-18
+ *
  * @author wubaiqing <wubaiqing@55tuan.com>
  */
 class FetchHelpers
 {
-	/**
-	 * 输出Log日志
-	 * @param string $message 日志信息
-	 * @param bool $time 是否记录时间
-	 * @param bool $n 是否换行
-	 * @param bool $echo 是否输出
-	 * @return string 如果$echo为false返回错误信息，否则输出
-	 */
-	public static function trace($message, $time = true, $n = true, $echo = true)
-	{
-		$log = "";
-		if ($time == true) {
-			$log = date('Y/m/d H:i:s') . " ";
-		}
-
-		$log .= $message;
-		if ($n == true) {
-			$log .= "\n";
-		}
-
-		if ($echo == false) {
-			return $log;
-		}
-
-		echo $log;
-	}
-
 	/**
 	 * 字符串转换
 	 * @param string $string 字符串
@@ -93,6 +68,8 @@ class FetchHelpers
 		$data = self::setAttributes($catId, $U);
 		$goods->setAttributes($data);
 		$goods->save();
+		var_dump($goods->getErrors());
+		exit;
 		self::trace("更新商品：{$goods->id}");
 	}
 
@@ -108,15 +85,42 @@ class FetchHelpers
 		$data['cat_id'] = $catId;
 		$data['url'] = $U['url'];
 		$data['title'] = $U['title'];
-		$data['picture'] = '';
+		$data['picture'] = 'null';
 		$data['price'] = $U['price'];
 		$data['origin_price'] = $U['origin_price'];
 		$data['start_time'] = date('Y-m-d H:i:s', $U['startTime']);
 		$data['end_time'] = date('Y-m-d H:i:s', $U['endTime']);
-		$data['relation_website'] = 6;
-		$data['goods_type'] = 0;
-		$data['user_id'] = 5;
+		$data['user_id'] = 888;
+		$data['status'] = 0;
+		$data['is_zhe800'] = 2;
 		$data['tb_id'] = $U['taobaoId'];
 		return $data;
+	}
+
+	/**
+	 * 输出Log日志
+	 * @param string $message 日志信息
+	 * @param bool $time 是否记录时间
+	 * @param bool $n 是否换行
+	 * @param bool $echo 是否输出
+	 * @return string 如果$echo为false返回错误信息，否则输出
+	 */
+	public static function trace($message, $time = true, $n = true, $echo = true)
+	{
+		$log = "";
+		if ($time == true) {
+			$log = date('Y/m/d H:i:s') . " ";
+		}
+
+		$log .= $message;
+		if ($n == true) {
+			$log .= "\n";
+		}
+
+		if ($echo == false) {
+			return $log;
+		}
+
+		echo $log;
 	}
 }

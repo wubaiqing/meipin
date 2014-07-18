@@ -19,6 +19,8 @@
  *
  * 计划任务：每天8点、9点
  *
+ * 创建日期：2014-7-18
+ *
  * @author wubaiqing <wubaiqing@55tuan.com>
  */
 include Yii::getPathOfAlias('common.extensions') . '/simple_html_dom.php';
@@ -45,7 +47,7 @@ class ZheCommand extends CConsoleCommand
 		foreach ($html->find('.dealinfo') as $dealad) {
 			$data = self::handleData($dealad);
 			unset($dealad);
-			FetchHelpers::update($data);
+			FetchHelpers::update(1, $data);
 		}
 	}
 
@@ -90,8 +92,5 @@ class ZheCommand extends CConsoleCommand
 
 		return $data;
 	}
-
-
-
 }
 
