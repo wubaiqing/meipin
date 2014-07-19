@@ -59,7 +59,7 @@ class ZheCommand extends CConsoleCommand
 	 *
 	 * 逻辑
 	 * 1. 获取所有U站分类链接
-	 * 2. 根据分类链接获取当前U站10页的数据
+	 * 2. 根据分类链接获取当前U站6页的数据
 	 */
 	public function actionUpdate($catId, $url)
 	{
