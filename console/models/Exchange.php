@@ -10,7 +10,7 @@ class Exchange extends CActiveRecord
 
     /**
      * 商品类型
-     * @var array 
+     * @var array
      */
     public static $goodsType = [0 => '兑换商品', 1 => '抽奖商品'];
 
@@ -140,7 +140,6 @@ class Exchange extends CActiveRecord
     {
 //        $this->start_time = strtotime($this->start_time);
 //        $this->end_time = strtotime($this->end_time);
-
         return true;
     }
 
@@ -155,6 +154,7 @@ class Exchange extends CActiveRecord
         if (isset($post['lottery_time']) && !empty($post['lottery_time'])) {
             $post['lottery_time'] = strtotime($post['lottery_time']);
         }
+
         return $post;
     }
 
@@ -185,8 +185,8 @@ class Exchange extends CActiveRecord
 
     /**
      * 获取商品类型名称
-     * @param integer $goodsType 商品类型
-     * @return string 
+     * @param  integer $goodsType 商品类型
+     * @return string
      */
     public static function getGoodsTypeLable($goodsType)
     {
