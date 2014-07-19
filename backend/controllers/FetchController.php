@@ -1,15 +1,31 @@
 <?php
 /**
- * 抓取商品管理
+ * 淘宝U站抓取商品管理
+ * @author wubaiqing <wubaiqing@vip.qq.com>
+ * @copyright Copyright (c) 2014 美品网
+ * @since 1.0
+ */
+
+/**
+ * U站列表
  *
- * @author wubaiqing<wubaiqing@vip.qq.com>
- * @copyright Copyright (c) 2013 吴佰清
- * @since 1.4
+ * 1. 折800淘宝U站
+ * http://zhe800.uz.taobao.com/
+ *
+ * 2. 九块邮U站
+ * http://jiukuaiyoucom.uz.taobao.com/
+ *
+ * 3. 卷皮折扣U站
+ * http://juanpi.uz.taobao.com/
+ *
+ * 创建日期：2014-7-19
+ *
+ * @author wubaiqing <wubaiqing@55tuan.com>
  */
 class FetchController extends Controller
 {
     /**
-     * 验证权限
+     * 验证当前账户是否登陆
      * @param  object $action 动作
      * @return bool
      */
@@ -22,7 +38,15 @@ class FetchController extends Controller
        return parent::beforeAction($action);
     }
 
-    public function actionAdmin()
+	/**
+	 * 淘宝U站抓取数据管理页
+	 *
+	 * 数据查询
+	 * 1. 只查询当前抓取的数据
+	 * 2. 分类ID根据当前已选择的分类
+	 * 3. 只查询是机器抓取的数据
+	 */
+	public function actionAdmin()
     {
         // 分类ID
         $catId = Yii::app()->request->getQuery('cat_id', 1);
@@ -41,7 +65,10 @@ class FetchController extends Controller
     }
 
     /**
-     * 更新商品
+     * 更新U站商品
+     *
+     * 1. 加的商品，记录当前编辑账号
+     * 2. 更新商品状态为显示状态
      */
     public function actionUpdate()
     {
@@ -50,7 +77,7 @@ class FetchController extends Controller
         $goods->attributes = $_POST;
         $goods->status = 1;
         if (Yii::app()->user->id == null) {
-            $this->returnData(5, '用户ID获取失败，请重新登录');
+            $this->returnData(5, '用户已退出，请重新登录！');
         }
         $goods->user_id = User::getUserName(Yii::app()->user->id);
         if ($goods->save()) {
