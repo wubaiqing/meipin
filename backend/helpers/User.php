@@ -22,7 +22,7 @@ class User
         'duoduo' => '9', //侯宝多
         'test'=>'10',
         'taolaoda'=>'11',
-	    '机器' => '888'
+        '机器' => '888'
     );
 
     /**
@@ -38,9 +38,9 @@ class User
      */
     public static function getUserID($id)
     {
-        if($id)
-        {
+        if ($id) {
             $arr2 = array_flip(self::$userName);
+
             return $arr2[$id];
         }
     }
@@ -51,22 +51,16 @@ class User
     {
         $frontend = Yii::getPathOfAlias('frontend');//获取前台文件目录
         $dirName=$frontend.'/runtime/cache';//获取清空文件目录
-        if($handle = opendir("$dirName"))
-        {
-           while(false !== ($item = readdir($handle)))
-           {
-                if($item != "." && $item != "..")
-                {
-                   if(is_dir("$dirName/$item"))
-                   {
+        if ($handle = opendir("$dirName")) {
+           while (false !== ($item = readdir($handle))) {
+                if ($item != "." && $item != "..") {
+                   if (is_dir("$dirName/$item")) {
                         delFileUnderDir("$dirName/$item");
-                   }else
-                   {
-                        if(!unlink("$dirName/$item"))
-                        {
+                   } else {
+                        if (!unlink("$dirName/$item")) {
                              echo '删除失败';
                         }
-                   }            
+                   }
                 }
            }
            closedir($handle);

@@ -1,14 +1,12 @@
 <tr>
     <td class="center"><?php echo $data->id ?></td>
-    <?php 
-      if($data->goods_type==1)
-      {
+    <?php
+      if ($data->goods_type==1) {
         $url = "http://www.meipin.com/exchange/raffle_".Des::encrypt($data->id).".html";
-    }else
-    {
+    } else {
         $url = "http://www.meipin.com/exchange/detail_".Des::encrypt($data->id).".html";
     }
-       
+
      ?>
     <td><a href='<?php echo $url;?>' target='_blank'><?php echo $data->name ?></a></td>
     <td><span title="剩余<?php echo $data->goodscolor;?>"><?php echo $data->goodscolor2; ?></span></td>

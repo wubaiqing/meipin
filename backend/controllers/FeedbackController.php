@@ -5,7 +5,7 @@
  *
  * @author guoll
  */
-class FeedBackController extends Controller
+class FeedbackController extends Controller
 {
 
    //判断是否登陆，没有登陆就返回登陆

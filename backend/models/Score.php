@@ -34,6 +34,7 @@ class Score extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria;
         $criteria->compare('user_id', $uid,false);
         $criteria->order = 'id desc';
+
         return new CActiveDataProvider($this,
             [
                 'criteria' => $criteria,

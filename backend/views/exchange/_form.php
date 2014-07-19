@@ -191,7 +191,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     $('.upload-placeholder').fileupload({
         url: 'index.php?r=site/upload',
         dataType: 'json',
-        done: function(e, data) {
+        done: function (e, data) {
             if (data.result.success) {
                 $('#Exchange_img_url').val(data.result.path);
             } else {
@@ -201,16 +201,16 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     });
 
 //鼠标滑过显示图片
-    $('#Exchange_img_url').hover(function() {
+    $('#Exchange_img_url').hover(function () {
         var src = $(this).val();
         if (src != '') {
             $('#picture-preview').position($(this).position());
             $('#picture-preview').attr('src', src).removeClass('hide');
         }
-    }, function() {
+    }, function () {
         $('#picture-preview').addClass('hide');
     });
-    $("#Exchange_goods_type").change(function() {
+    $("#Exchange_goods_type").change(function () {
         $("#isChange").val(1);
         $("#goods-form").submit();
     })
