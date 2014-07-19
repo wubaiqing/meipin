@@ -98,9 +98,6 @@ class ZheCommand extends CConsoleCommand
 		// 商品标题
 		$data['title'] = FetchHelpers::covert($dealad->find('h2', 0)->find('a', 1)->plaintext);
 
-		// 分类名称
-		$data['catName'] = str_replace(['【', '】'], '', FetchHelpers::covert($dealad->find('h2', 0)->find('strong', 0)->plaintext));
-
 		// 商品价格
 		$data['price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 0)->plaintext);
 
