@@ -138,7 +138,6 @@ fetch.event = (function () {
 		*/
 		uploadImageInputEnter : function (input, event)
 		{
-
 			// 回车事件
 			var url = $(input).val();
 			$(input).prev().children().attr('src', $.trim(url));
@@ -166,6 +165,11 @@ fetch.event = (function () {
 				var title = $(this).parent().prev().prev().prev().prev().prev().prev().text().replace('查看', '');
 				var origin_price = $(this).attr('data-origin_price');
 				$('#loadingInfo').html('正在处理数据.....');
+
+				if (image == 'null') {
+					$('#loadingInfo').html('请上传图片!');
+					return false;
+				}
 
 				$.post('index.php?r=fetch/update', {
 					goodsId : goodsId,
