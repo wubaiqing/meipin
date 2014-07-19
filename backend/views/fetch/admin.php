@@ -25,7 +25,7 @@
 		<tr>
 			<td width="">标题</td>
 			<td>现价</td>
-			<td>图片</td>
+			<td width="120">图片</td>
 			<td width="50">排序</td>
 			<td width="150">开始时间</td>
 			<td width="150">结束时间</td>
@@ -40,7 +40,7 @@
 			<td><span class="modify"><?php echo $val->title;?></span> <a href="<?php echo $val->url;?>" target="_blank">查看</a></td>
 			<td><span class="modify"><?php echo $val->price;?></span></td>
 			<td>
-				<a href="<?php echo $val->picture;?>" target="_blank"><img src="<?php echo $val->picture;?>" width="120" height="120"/></a>
+				<a href="<?php echo $val->picture;?>" target="_blank"><img src="<?php echo $val->picture;?>" style="display: none;" width="120" height="120"/></a>
                 <span class="btn fileinput-button">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>上传</span>
@@ -94,7 +94,7 @@ fetch.event = (function () {
 				dataType: 'json',
 				done: function(e, data) {
 					if(data.result.success) {
-						$($(this).parent().prev().children(0)).attr('src', data.result.path);
+						$($(this).parent().prev().children(0)).attr('src', data.result.path).show();
 						$($(this).parent().prev()).attr('href', data.result.path);
 					} else {
 						alert(data.result.message);

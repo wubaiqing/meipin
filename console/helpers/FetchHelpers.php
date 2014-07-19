@@ -82,8 +82,11 @@ class FetchHelpers
 
 		$data = self::setAttributes($catId, $U);
 		$goods->setAttributes($data);
-		$goods->save();
-		self::trace("更新商品：{$goods->id}");
+		if ($goods->save()) {
+			self::trace("更新商品：{$goods->id}");
+		} else {
+			self::trace("更新失败：" . var_export($goods->getErrors()));
+		}
 	}
 
 	/**
