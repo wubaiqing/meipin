@@ -95,6 +95,7 @@ fetch.event = (function () {
 				done: function(e, data) {
 					if(data.result.success) {
 						$($(this).parent().prev().children(0)).attr('src', data.result.path);
+						$($(this).parent().prev()).attr('href', data.result.path);
 					} else {
 						alert(data.result.message);
 					}
