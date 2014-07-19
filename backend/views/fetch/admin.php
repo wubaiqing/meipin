@@ -41,7 +41,12 @@
 			<td><span class="modify"><?php echo $val->price;?></span></td>
 			<td>
 				<a href="<?php echo $val->picture;?>" target="_blank"><img src="<?php echo $val->picture;?>" width="120" height="120"/></a>
-				<a href="javascript:void(0);" class="uploadImage">上传</a>
+                <span class="btn fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>上传</span>
+                    <input class="upload-placeholder" type="file" name="file" />
+                </span>
+            </span>
 			</td>
 			<td><span class="modify">0</span></td>
 			<td><span class="modify"><?php echo date('Y-m-d H:i:s', $val->start_time);?></span></td>
@@ -84,9 +89,16 @@ fetch.event = (function () {
 		 */
 		uploadImage : function ()
 		{
-			$('.uploadImage').click(function (){
-				$(this).hide();
-				$(this).before('<input class="span9 custom" onBlur="fetch.event.uploadImageInputEnter(this,event)" type="text" value="">');
+			$('.upload-placeholder').fileupload({
+				url: 'index.php?r=site/upload',
+				dataType: 'json',
+				done: function(e, data) {
+					if(data.result.success) {
+						$($(this).parent().prev().children(0)).attr('src', data.result.path);
+					} else {
+						alert(data.result.message);
+					}
+				}
 			});
 		},
 
@@ -193,7 +205,6 @@ fetch.event.modify();
 fetch.event.goodsPush();
 fetch.event.uploadImage();
 fetch.event.getZhe800Link();
-fetch.event.blacklist();
 
 </script>
 
