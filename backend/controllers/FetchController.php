@@ -47,7 +47,7 @@ class FetchController extends Controller
 		$id = Yii::app()->request->getPost('goodsId');
 		$goods = Goods::model()->findByPk($id);
 		$goods->attributes = $_POST;
-		$goods->relation_website = 6;
+		$goods->status = 1;
 		if (Yii::app()->user->id == null) {
 			$this->returnData(5, '用户ID获取失败，请重新登录');
 		}
@@ -55,6 +55,7 @@ class FetchController extends Controller
 		if ($goods->save()) {
 			$this->returnData(1, '保存成功');
 		} else {
+			var_dump($goods->getErrors());
 			$this->returnData(4, '保存失败, 联系开发人员!');
 		}
 	}

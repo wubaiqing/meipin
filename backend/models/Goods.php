@@ -76,7 +76,6 @@ class Goods extends ActiveRecord implements IArrayable
             array('origin_price, price, searchType, relation_website', 'length', 'max' => 8),
             array('start_time, end_time', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('tb_id', 'checkTaobaoId'),
-            array('relation_website', 'checkRelationWebsite'),
         );
     }
 
