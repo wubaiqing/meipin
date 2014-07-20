@@ -72,8 +72,8 @@ class JuanpiCommand extends CConsoleCommand
                     'timeout' => 20,
                 ]
             ]));
-	        var_dump($html);
-            foreach ($html->find('.dealinfo') as $dealad) {
+
+            foreach ($html->find('.main-good') as $dealad) {
                 $data = self::handleData($dealad);
                 unset($dealad);
                 FetchHelpers::update($catId, $data);
@@ -91,19 +91,19 @@ class JuanpiCommand extends CConsoleCommand
         $data = [];
 
         // 淘宝URL
-        $data['url'] = $dealad->find('p', 0)->find('a', 0)->href;
+        $data['url'] = $dealad->find('a', 0)->href;
 
         // 淘宝ID
         $data['taobaoId'] = FetchHelpers::getInt(substr($data['url'], -13));
 
         // 商品标题
-        $data['title'] = FetchHelpers::covert($dealad->find('h2', 0)->find('a', 1)->plaintext);
+        $data['title'] = $dealad->find('h3', 0)->find('a', 0)->plaintext;
 
         // 商品价格
         $data['price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 0)->plaintext);
 
         // 商品原始价格
-        $data['origin_price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 1)->find('i', 0)->plaintext);
+        $data['origin_price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 2)->plaintext);
 
         // 商品开始结束时间
         $H = date('H');
