@@ -15,12 +15,12 @@
                     <input type="password" id="password" name="password" />
                 </div>
             </div>
-            <?php if(!empty($_GET['flag'])){?>
+            <?php if (!empty($_GET['flag'])) {?>
             <div class="control-group">
                 <div class="controls">
                     <a style="color:red">用户名或密码错误</a>
                 </div>
-            </div>         
+            </div>
             <?php }?>
             <div class="control-group">
                 <div class="controls">

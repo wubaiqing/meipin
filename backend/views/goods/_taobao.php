@@ -113,14 +113,14 @@ CHtml::$errorSummaryCss = 'text-warning';
         <div class="controls">
             <?php echo $form->dropDownList($model, 'status', array('1' => '显示', '2' => '隐藏' )); ?>
         </div>
-    </div> 
-	<div class="control-group">
+    </div>
+    <div class="control-group">
         <?php echo $form->labelEx($model,'head_show', array('class' => 'control-label')); ?>
         <div class="controls">
             <?php echo $form->dropDownList($model, 'head_show', array('3' => '默认', '2' => '显示', '1' => '不显示' )); ?>
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <?php echo $form->labelEx($model,'is_skip', array('class' => 'control-label')); ?>
         <div class="controls">
             <?php echo $form->dropDownList($model, 'is_skip', array('0' => '商品详情页', '1' => '淘宝客' )); ?>
@@ -130,7 +130,7 @@ CHtml::$errorSummaryCss = 'text-warning';
         <?php echo $form->labelEx($model,'admin_id', array('class' => 'control-label')); ?>
         <div class="controls">
             <span style='width:100px;height:30px;line-height:30px;'>
-            <?php if(User::getUserID($model->user_id)){echo User::getUserID($model->user_id);}else{ echo Yii::app()->user->id;} ;?>
+            <?php if (User::getUserID($model->user_id)) {echo User::getUserID($model->user_id);} else { echo Yii::app()->user->id;} ;?>
             </span>
         </div>
     </div>

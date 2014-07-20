@@ -100,8 +100,8 @@ class Zhe
         $goods->tb_id = $data['tbId'];
         $goods->is_zhe800 = 1;
         $goods->save();
-	    var_dump($goods->getErrors());
-	    exit;
+        var_dump($goods->getErrors());
+        exit;
 
     }
 

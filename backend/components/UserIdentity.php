@@ -38,8 +38,7 @@ class UserIdentity extends CUserIdentity
         }
 
          $flag = !$this->errorCode;
-         if($flag == self::ERROR_USERNAME_INVALID )
-         {
+         if ($flag == self::ERROR_USERNAME_INVALID) {
            UserLoginLog::setLoginTime($this->username);
          }
 

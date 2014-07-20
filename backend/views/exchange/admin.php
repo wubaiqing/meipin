@@ -40,10 +40,11 @@
     .orderInput{width:19px;}
 </style>
 <script type="text/javascript">
-    function goods_delete(obj){
-        if(confirm("确定要删除该商品？")){
+    public function goods_delete(obj)
+    {
+        if (confirm("确定要删除该商品？")) {
             var url = $(obj).attr("url");
-            $.post(url,[],function(d){
+            $.post(url,[],function (d) {
                 window.location.href=location.href;
             },'json');
         }

@@ -76,7 +76,6 @@ class Goods extends ActiveRecord implements IArrayable
             array('origin_price, price, searchType, relation_website', 'length', 'max' => 8),
             array('start_time, end_time', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('tb_id', 'checkTaobaoId'),
-            array('relation_website', 'checkRelationWebsite'),
         );
     }
 
@@ -156,6 +155,7 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('title', $this->searchInput, true);
         }
         $criteria->compare('title', $this->is_zhe800, true);
+        $criteria->compare('status', $this->status);
 
         return new ActiveDataProvider($this, array(
             'criteria' => $criteria
