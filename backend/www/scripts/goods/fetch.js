@@ -84,30 +84,33 @@ fetch.event = (function () {
 
                 $('#loadingInfo').html(null);
                 var goodsId = $(this).attr('data-goods_id');
-                var endTime = $(this).parent().prev().text();
-                var startTime = $(this).parent().prev().prev().text();
-                var listOrder = $(this).parent().prev().prev().prev().text();
-                var image = $($(this).parent().prev().prev().prev().prev().children().get(0)).children().attr('src');
-                var price = $(this).parent().prev().prev().prev().prev().prev().text();
+                var listOrder = $(this).parent().prev().text();
+                var image = $($(this).parent().prev().prev().children().get(0)).children().attr('src');
+                var price = $(this).parent().prev().prev().prev().text();
+                var url = $(this).parent().prev().prev().prev().prev().text();
+                var oldUrl = $(this).parent().prev().prev().prev().prev().attr('data-oldurl');
+                var isSkip = (url == oldUrl) ? 0 : 1;
+                var catId = $($(this).parent().prev().prev().prev().prev().prev().children().get(0)).val();
                 var title = $(this).parent().prev().prev().prev().prev().prev().prev().text().replace('查看', '');
                 var origin_price = $(this).attr('data-origin_price');
                 $('#loadingInfo').html('正在处理数据.....');
 
                 if (image == 'null') {
                     $('#loadingInfo').html('请上传图片!');
-
                     return false;
                 }
 
+
                 $.post('index.php?r=fetch/update', {
+                    url : url,
+                    cat_id : catId,
                     goodsId : goodsId,
                     title : title,
                     price : price,
                     origin_price : origin_price,
                     picture : image,
                     list_order : listOrder,
-                    start_time : startTime,
-                    end_time : endTime,
+                    is_skip : isSkip,
                     dataType : 'json'
                 }, function (data) {
                     if (data.status != 1) {

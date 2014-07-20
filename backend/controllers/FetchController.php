@@ -76,6 +76,8 @@ class FetchController extends Controller
         $goods = Goods::model()->findByPk($id);
         $goods->attributes = $_POST;
         $goods->status = 1;
+	    $goods->start_time = date('Y-m-d H:i:s', $goods->start_time);
+	    $goods->end_time = date('Y-m-d H:i:s', $goods->end_time);
         if (Yii::app()->user->id == null) {
             $this->returnData(5, '用户已退出，请重新登录！');
         }
