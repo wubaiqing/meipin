@@ -13,6 +13,7 @@
 		<h3 class="box-header">抓取管理</h3>
 		<?php
 		echo CHtml::dropDownList('cate_id', $catId, [
+			'0' => '未分类',
 			'1' => '女装',
 			'4' => '男装',
 			'5' => '居家',
