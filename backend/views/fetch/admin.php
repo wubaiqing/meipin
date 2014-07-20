@@ -33,11 +33,11 @@
 
 		<tr>
 			<td width="">标题</td>
+			<td width="50">分类</td>
+			<td width="">URL</td>
 			<td>现价</td>
 			<td width="120">图片</td>
 			<td width="50">排序</td>
-			<td width="150">开始时间</td>
-			<td width="150">结束时间</td>
 			<td width="60">操作</td>
 		</tr>
 
@@ -47,6 +47,23 @@
 
 			<tr>
 				<td><span class="modify"><?php echo $val->title;?></span> <a href="<?php echo $val->url;?>" target="_blank">查看</a></td>
+				<td>
+					<?php
+					echo CHtml::dropDownList('cate_id', $val->cat_id, [
+						'1' => '女装',
+						'4' => '男装',
+						'5' => '居家',
+						'6' => '母婴',
+						'7' => '鞋包',
+						'8' => '配饰',
+						'9' => '美食',
+						'10' => '数码家电',
+						'11' => '化妆品',
+						'12' => '文体'
+					], ['empty' => '请选择']);
+					?>
+				</td>
+				<td><span class="modify"><?php echo $val->url?></span></td>
 				<td><span class="modify"><?php echo $val->price;?></span></td>
 				<td>
 					<a href="<?php echo $val->picture;?>" target="_blank"><img src="<?php echo $val->picture;?>" style="display: none;" width="120" height="120"/></a>
@@ -58,8 +75,6 @@
 					</span>
 				</td>
 				<td><span class="modify">0</span></td>
-				<td><span class="modify"><?php echo date('Y-m-d H:i:s', $val->start_time);?></span></td>
-				<td><span class="modify"><?php echo date('Y-m-d H:i:s', $val->end_time);?></span></td>
 				<td>
 					<a href="javascript:void(0);" class="push" data-cat="<?php echo $val->cat_id;?>" data-origin_price="<?php echo $val->origin_price;?>" data-goods_id="<?php echo $val->id;?>" data-tb_id="<?php echo $val->tb_id;?>" data-url="<?php echo $val->url;?>">保存</a>
 				</td>
