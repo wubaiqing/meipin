@@ -1,21 +1,21 @@
 <?php
 /**
- * 卷皮淘宝U站抓取
+ * 九块邮淘宝U站抓取
  * @author wubaiqing <wubaiqing@vip.qq.com>
  * @copyright Copyright (c) 2014 美品网
  * @since 1.0
  */
 
 /**
- * Chrome source link ： view-source:http://juanpi.uz.taobao.com/
+ * Chrome source link ： view-source:http://jiukuaiyoucom.uz.taobao.com/
  *
  * 使用'simple html dom'PHP扩展
  * http://simplehtmldom.sourceforge.net/
  *
  * 卷皮淘宝U站URL
- * http://juanpi.uz.taobao.com/
+ * http://jiukuaiyoucom.uz.taobao.com/
  *
- * 脚本采集命令：php yiic juanpi
+ * 脚本采集命令：php yiic jiukuaiyou
  *
  * 计划任务：每天8点、9点
  *
@@ -25,21 +25,20 @@
  */
 include Yii::getPathOfAlias('common.extensions') . '/simple_html_dom.php';
 
-class JuanpiCommand extends CConsoleCommand
+class JiukuaiyouCommand extends CConsoleCommand
 {
     /**
      * 抓取
      */
     public static $url = array(
-        '1' => 'http://juanpi.uz.taobao.com/?m=index&cat=nvzhuang&page=',
-        '4' => 'http://juanpi.uz.taobao.com/?m=index&cat=nanzhuang&page=',
-        '5' => 'http://juanpi.uz.taobao.com/?m=index&cat=jujia&page=',
-        '6' => 'http://juanpi.uz.taobao.com/?m=index&cat=muying&page=',
-        '9' => 'http://juanpi.uz.taobao.com/?m=index&cat=meishi&page=',
-        '10' => 'http://juanpi.uz.taobao.com/?m=index&cat=shuma&page=',
-        '11' => 'http://juanpi.uz.taobao.com/?m=index&cat=meizhuang&page=',
-	    '12' => 'http://juanpi.uz.taobao.com/?m=index&cat=wenti&page=',
-	    '1000' => 'http://juanpi.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
+	    '5' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=jujia&page=',
+	    '6' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=muying&page=',
+	    '9' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=meishi&page=',
+	    '10' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=shuma&page=',
+	    '11' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=meizhuang&page=',
+	    '12' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=wenti&page=',
+	    '1000' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=fushi?page=',
+	    '1001' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
     );
 
     /**
@@ -48,7 +47,7 @@ class JuanpiCommand extends CConsoleCommand
     public function actionIndex()
     {
         foreach (self::$url as $catId => $url) {
-            FetchHelpers::run("juanpi update", $catId, $url);
+            FetchHelpers::run("jiukuaiyou update", $catId, $url);
         }
     }
 
