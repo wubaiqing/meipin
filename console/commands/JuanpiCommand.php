@@ -39,6 +39,7 @@ class JuanpiCommand extends CConsoleCommand
         '10' => 'http://juanpi.uz.taobao.com/?m=index&cat=shuma&page=',
         '11' => 'http://juanpi.uz.taobao.com/?m=index&cat=meizhuang&page=',
 	    '12' => 'http://juanpi.uz.taobao.com/?m=index&cat=wenti&page=',
+	    '1000' => 'http://juanpi.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
     );
 
     /**
@@ -71,6 +72,7 @@ class JuanpiCommand extends CConsoleCommand
                     'timeout' => 20,
                 ]
             ]));
+	        var_dump($html);
             foreach ($html->find('.dealinfo') as $dealad) {
                 $data = self::handleData($dealad);
                 unset($dealad);

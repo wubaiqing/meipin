@@ -26,7 +26,7 @@ class FetchHelpers
     /**
      * 字符串转换
      * @param  string          $string 字符串
-     * @return 转换编UTF-8� �字符串
+     * @return 转换编UTF-8� �字符串
      */
     public static function covert($string)
     {
@@ -97,6 +97,9 @@ class FetchHelpers
      */
     public static function setAttributes($catId, $U)
     {
+	    if ($catId > 999) {
+		    $catId = 0;
+	    }
         $data = [];
         $data['cat_id'] = $catId;
         $data['url'] = $U['url'];

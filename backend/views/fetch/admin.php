@@ -35,7 +35,7 @@
 		<tr>
 			<td width="">标题</td>
 			<td width="50">分类</td>
-			<td width="">URL</td>
+			<td width="230">URL</td>
 			<td>现价</td>
 			<td width="120">图片</td>
 			<td width="50">排序</td>
@@ -64,7 +64,7 @@
 					], ['empty' => '请选择']);
 					?>
 				</td>
-				<td data-oldurl="<?php echo $val->url;?>"><span class="modify"><?php echo $val->url?></span></td>
+				<td data-oldurl="<?php echo $val->url;?>"><span class="modify" style="word-break:break-all; "><?php echo $val->url?></span></td>
 				<td><span class="modify"><?php echo $val->price;?></span></td>
 				<td>
 					<a href="<?php echo $val->picture;?>" target="_blank"><img src="<?php echo $val->picture;?>" style="display: none;" width="120" height="120"/></a>
