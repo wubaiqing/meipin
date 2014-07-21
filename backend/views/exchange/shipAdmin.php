@@ -35,6 +35,13 @@
                 'name' => 'gdscolor',
                 'htmlOptions' => array('width' => '100')
             ],
+            'remark' =>[
+                'type' => 'raw',
+                'header' => '备注',
+                'name' => 'remark',
+                'htmlOptions' => array('width' => '100')
+            ],
+            
             'user_id' => [
                 'type' => 'raw',
                 'header' => '用户名',

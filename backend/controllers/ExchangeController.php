@@ -228,6 +228,10 @@ class ExchangeController extends Controller
         if (empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
             $model->status = "";
         }
+        //设置默认值
+        if (empty($exchangeLog) || isset($exchangeLog['pay_status']) && $exchangeLog['pay_status'] == "") {
+            $model->pay_status = 1;
+        }
         //渲染模板
         $this->render('shipAdmin', [
             'model' => $model,

@@ -12,6 +12,13 @@ $form = $this->beginWidget('CActiveForm', array(
 echo $form->dropDownList($model, 'status', ExchangeLog::$statusSearch,['style'=>'width:100px;']);
 echo '&nbsp;';
 ?>
+<?php echo CHtml::label('支付状态：', 'pay_status') ?>
+<?php
+
+echo $form->dropDownList($model, 'pay_status', ExchangeLog::$pay_status,['style'=>'width:100px;']);
+echo '&nbsp;';
+?>
+
 
 <?php echo CHtml::label('商品名称：', 'name'); ?>
 <?php echo $form->textField($model->exchangeModel, 'name'); ?>
