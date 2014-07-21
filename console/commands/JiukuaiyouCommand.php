@@ -12,7 +12,7 @@
  * 使用'simple html dom'PHP扩展
  * http://simplehtmldom.sourceforge.net/
  *
- * 卷皮淘宝U站URL
+ * 九块邮淘宝U站URL
  * http://jiukuaiyoucom.uz.taobao.com/
  *
  * 脚本采集命令：php yiic jiukuaiyou
