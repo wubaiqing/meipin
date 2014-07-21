@@ -47,7 +47,7 @@ class FetchHelpers
      * 后台运行脚本
      * @param string  $method 运行方法
      * @param integer $catId  分类ID
-     *                        @param $url
+     * @param string  $url 抓取URL
      */
     public static function run($method, $catId, $url)
     {
