@@ -64,11 +64,37 @@ class ExchangeController extends Controller
         //去掉这几个字段的默认值
         $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
         if (isset($_POST['Exchange'])) {
+            $bigimg_url ="";
+            $file = CUploadedFile::getInstance($exchangeModel,'bigimg_url');
+            if(is_object($file) && get_class($file) === 'CUploadedFile')
+            {   
+                Yii::import('common.extensions.aliyunapi.OSSClient2');
+                $OSSClient = new OSSClient2;
+                // 域名
+                $domain = "http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/";
+                // 图片信息
+                $size = filesize($file->tempName);
+                $content = fopen($file->tempName, 'r');
+                $imagePath = date('Y/m/d/');
+                $imageName = uniqid();
+                $imageExtension = $file->name;
+
+                // 上传图片地址
+                $prefixPath = 'images/';
+                $filePath = $prefixPath . $imagePath . uniqid()  . $imageExtension;
+
+                // 上传图片
+                $OSSClient->putResourceObject($filePath, $content, $size);
+                //$exchangeModel ->bigimg_url = $domain . $filePath;
+                $bigimg_url =  $domain . $filePath;
+            } 
+           
             $attributes = Yii::app()->request->getPost('Exchange');
             $attributes = Exchange::format($attributes);
             $isChange = Yii::app()->request->getPost("isChange");
             $exchangeModel->attributes = $attributes;
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
+            $exchangeModel->bigimg_url = $bigimg_url;
             if ($isChange == 0 && $exchangeModel->save()) {
                 User::deleteCache();
                 $this->redirect($this->createUrl('exchange/Admin'));
@@ -119,6 +145,7 @@ class ExchangeController extends Controller
         $id = Yii::app()->request->getQuery('id');
         $exchangeModel = $this->loadModel($id);
         $imgold = $exchangeModel->img_url;
+        $bigimgold = $bigimg_url = $exchangeModel->bigimg_url;
         if (isset($_POST['Exchange'])) {
             //如果不等于原图并且是在 阿里云 上的则删除原图
             if ($imgold != $_POST['Exchange']['img_url']) {
@@ -135,11 +162,47 @@ class ExchangeController extends Controller
                     }
                 }
             }
+
+            $file = CUploadedFile::getInstance($exchangeModel,'bigimg_url');
+            if(is_object($file) && get_class($file) === 'CUploadedFile')
+            {  
+                //如果存在上传则，先删除之前的
+                Yii::import('common.extensions.aliyunapi.OSSClient2');
+                $OSSClient = new OSSClient2;
+                $bigimg_url ="";
+                $domain = strstr($bigimgold, 'aliyuncs.com');
+                if ($domain) {
+                    $picoldkey = strstr($domain, 'images/');
+                    //阿里云接口
+                    if ($picoldkey) {
+                        $OSSClient->deleteObject($picoldkey);
+                    }
+                };
+                // 域名
+                $domain = "http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/";
+                // 图片信息
+                $size = filesize($file->tempName);
+                $content = fopen($file->tempName, 'r');
+                $imagePath = date('Y/m/d/');
+                $imageName = uniqid();
+                $imageExtension = $file->name;
+
+                // 上传图片地址
+                $prefixPath = 'images/';
+                $filePath = $prefixPath . $imagePath . uniqid()  . $imageExtension;
+
+                // 上传图片
+                $OSSClient->putResourceObject($filePath, $content, $size);
+                //$exchangeModel ->bigimg_url = $domain . $filePath;
+                $bigimg_url =  $domain . $filePath;
+
+            }
             $attributes = Yii::app()->request->getPost('Exchange');
             $attributes = Exchange::format($attributes);
-//        var_dump($attributes['description']);die;
+  //        var_dump($attributes['description']);die;
             $exchangeModel->attributes = $attributes;
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
+            $exchangeModel->bigimg_url = $bigimg_url;
             if ($exchangeModel->save()) {
                 User::deleteCache();
                 if ($exchangeModel->goods_type == 0) {

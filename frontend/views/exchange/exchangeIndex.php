@@ -72,7 +72,10 @@
         <?php
         $page = Yii::app()->request->getQuery("page");
         ?>
+        <?php if($data['exchange']->description){?>
         <a style="margin-left:20px;float:left;width:400px;"><span style="color:red;font-weight:bold;float:left">兑换说明：</span><?php echo $data['exchange']->description;?> </a>
+        <?php };?>
+
         <div class="J_TabBarWrap clear l">
             <ul class="tb-tabbar">
                 <li id="exchangerule" class=' <?php echo empty($page) ? "selected" : ""; ?>'>
