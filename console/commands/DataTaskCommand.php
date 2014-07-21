@@ -146,7 +146,7 @@ class DataTaskCommand extends CConsoleCommand
                 } else {
                     Exchange::model()->updateByPk($order->goods_id, ['sale_num' => $sale_num]);
                                         //操作日志
-                    $operatelog = new Score();
+                    $operatelog = new OperateLog();
                     $operatelog->attributes = [
                         'log_type' =>2,
                         'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id."返还销售量以及".$exchangeLog['gdscolor']."库存量".$exchangeLog['buy_count']."件",
