@@ -7,6 +7,7 @@ $form = $this->beginWidget('CActiveForm', array(
     'enableAjaxValidation' => false,
     'htmlOptions' => array(
         'class' => 'form-horizontal',
+        'enctype'=>'multipart/form-data',
     ),
         ));
 CHtml::$errorSummaryCss = 'text-warning';
@@ -154,7 +155,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
     </div>
 </div>
 <div class="control-group">
-    <?php echo $form->labelEx($exchangeModel, 'img_url', array('class' => 'control-label')); ?>
+<?php echo $form->labelEx($exchangeModel, 'img_url', array('class' => 'control-label')); ?>
     <div class="controls">
         <?php echo $form->textField($exchangeModel, 'img_url'); ?>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/css/jquery.fileupload-ui.css" media="all" />
@@ -169,8 +170,19 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
                 <input class="upload-placeholder" type="file" name="file" />
             </span>
         </span>
+        <label class="line-note">图片290*190</label>
     </div>
 </div>
+
+<div class="control-group">
+<?php echo $form->labelEx($exchangeModel, 'bigimg_url', array('class' => 'control-label')); ?>
+    <div class="controls">
+          <?php echo CHtml::activeFileField($exchangeModel,'bigimg_url'); ?> 
+          <a class="line-note" href="<?php echo $exchangeModel->bigimg_url;?>"><?php echo $exchangeModel->bigimg_url;?></a> 
+          <label class="line-note">大图400*400</label>
+    </div>
+</div>
+
 <div class="control-group">
     <?php echo $form->labelEx($exchangeModel, 'description', array('class' => 'control-label')); ?>
     <div class="controls">
@@ -187,6 +199,7 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
 <?php $this->endWidget(); ?>
 
 <script>
+
     //上传图片
     $('.upload-placeholder').fileupload({
         url: 'index.php?r=site/upload',
@@ -199,7 +212,6 @@ $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchange
             }
         }
     });
-
 //鼠标滑过显示图片
     $('#Exchange_img_url').hover(function () {
         var src = $(this).val();

@@ -1,7 +1,7 @@
 <div id="detail" class="detail">
     <div class="deteilpic l">
         <div style="width: 400px;" id="big_img">
-            <img width="400" height="400" src="<?php echo $data['exchange']->img_url; ?>">
+            <img width="400" height="400" src="<?php echo $data['exchange']->bigimg_url?$data['exchange']->bigimg_url:$data['exchange']->img_url; ?>">
         </div>
         <!--        <ul>
                     <li class="cur">
