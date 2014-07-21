@@ -112,7 +112,7 @@ class DataTaskCommand extends CConsoleCommand
                 ];
                 $score->insert();
 
-                //根据goods_id商品积分兑换表 goodscolor sale_num
+/*                //根据goods_id商品积分兑换表 goodscolor sale_num
                 $exchange = Exchange::model()->findByPk($order->goods_id);
                 //根据订单号查询exchange_log gdscolor buy_count
                 $exchangeLog = ExchangeLog::model()->find('order_id=:order_id',array(':order_id'=>$order->order_id));
@@ -153,7 +153,7 @@ class DataTaskCommand extends CConsoleCommand
                         'operatedata' => "返还库存(加钱换购),未支付订单过期".$order->order_id."返还销售量以及".$exchangeLog['gdscolor']."库存量".$exchangeLog['buy_count']."件",
                     ];
                     $operatelog->insert();
-                }
+                }*/
 
             }
             Order::model()->updateByPk($orderIds, ['pay_status' => 1]);
