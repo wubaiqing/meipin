@@ -26,7 +26,7 @@ class FetchHelpers
     /**
      * 字符串转换
      * @param  string          $string 字符串
-     * @return 转换编UTF-8� �字符串
+     * @return 转换编UTF-8字符串
      */
     public static function covert($string)
     {
