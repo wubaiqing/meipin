@@ -17,9 +17,9 @@ echo $form->errorSummary($exchangeModel);
 $online = $exchangeModel->id > 0 && $exchangeModel->start_time > 0 && ($exchangeModel->start_time < time());
 ?>
 <!--<div class="control-group">
-<?php echo $form->labelEx($exchangeModel, 'goods_type', ['class' => 'control-label', 'maxlength' => 50]); ?>
+<?php //echo $form->labelEx($exchangeModel, 'goods_type', ['class' => 'control-label', 'maxlength' => 50]); ?>
     <div class="controls">
-<?php echo $form->dropDownList($exchangeModel, 'goods_type', Exchange::$goodsType, ['disabled' => $online ? true : false]); ?>
+<?php //echo $form->dropDownList($exchangeModel, 'goods_type', Exchange::$goodsType, ['disabled' => $online ? true : false]); ?>
         <label class="line-note">用于区分积分类商品的不同类型</label>
     </div>
 </div>-->

@@ -66,10 +66,10 @@ class Exchange extends CActiveRecord
                 'length',
                 'max' => 100
             ],
-            ['id,goodscolor,goodscolor2,description,buy_num',
+            ['id,goodscolor,goodscolor2,description,buy_num,bigimg_url,is_first,list_order',
                 'safe'
             ],
-            ['id, name, num, price,active_price, integral, start_time, end_time,lottery_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete, goods_type',
+            ['id, name, num, price,active_price, integral, start_time, end_time,lottery_time, need_level, taobao_id, taobaoke_url, support_name, support_url, description, img_url, is_delete, goods_type,bigimg_url,is_first,list_order',
                 'safe',
                 'on' => 'search'
             ],

@@ -29,7 +29,6 @@ class BrandController extends Controller
         return $exchaneModel;
     }
 
-
     /**
      * 修改积分排序
      */
@@ -109,7 +108,7 @@ class BrandController extends Controller
             if ($brandModel->save()) {
                 User::deleteCache();
                 $this->redirect($this->createUrl('brand/admin'));
-                
+
             }
         }
         $this->render('update', [
@@ -306,13 +305,12 @@ class BrandController extends Controller
         $trans = Yii::app()->db->beginTransaction();
         try {
             $log = ExchangeLog::model()->findByPk($id);
-            if($type == 'delete'){
+            if ($type == 'delete') {
                 $log->delete();
-            }
-            else if($type == 'winner' && !is_null($status)){
+            } elseif ($type == 'winner' && !is_null($status)) {
                 $log->winner = $status;
                 $log->update(['winner']);
-            }else{
+            } else {
                 $this->returnData(false, ['message' => '操作失败']);
             }
             //更新用户数

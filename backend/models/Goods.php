@@ -72,7 +72,7 @@ class Goods extends ActiveRecord implements IArrayable
             array('goods_type, cat_id, title, url, origin_price, price, picture, status, list_order, start_time, end_time, user_id, is_zhe800, is_skip', 'required'),
             array('tb_id, cat_id, status, list_order, created_at, updated_at, user_id', 'numerical', 'integerOnly' => true),
             array('origin_price, price', 'type', 'type' => 'float'),
-            array('title, url, picture, searchInput', 'length', 'max' => 255),
+        array('title, picture, searchInput', 'length', 'max' => 255),
             array('origin_price, price, searchType, relation_website', 'length', 'max' => 8),
             array('start_time, end_time', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('tb_id', 'checkTaobaoId'),
