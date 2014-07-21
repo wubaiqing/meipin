@@ -240,18 +240,18 @@ class User extends ActiveRecord implements IArrayable
         return false;
     }
 
-	/**
-	 * 生成QQ用户昵称
-	 */
-	public static function generateNickName()
-	{
-		$model = User::model()->find([
-			'order' => 'id desc',
-			'limit' => '1',
-		]);
-		$newId = $model->id + 1;
+    /**
+     * 生成QQ用户昵称
+     */
+    public static function generateNickName()
+    {
+        $model = User::model()->find([
+            'order' => 'id desc',
+            'limit' => '1',
+        ]);
+        $newId = $model->id + 1;
 
-		return 'qq'.date('m').$newId.date('d');
-	}
+        return 'qq'.date('m').$newId.date('d');
+    }
 
 }

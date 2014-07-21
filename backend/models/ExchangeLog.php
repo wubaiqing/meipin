@@ -192,19 +192,16 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         }
     }
 
-
-
     /**
      * 生成商品详细页地址
-     * @param self $data 
-     * @return string 
+     * @param  self   $data
+     * @return string
      */
      public static function getDetailurl($data)
      {
-        if($data->goods_type==0){
+        if ($data->goods_type==0) {
             return $url = "http://www.meipin.com/exchange/detail_".Des::encrypt($data->id).".html";
-        }else
-        {
+        } else {
             return $url = "http://www.meipin.com/exchange/raffle_".Des::encrypt($data->id).".html";
         }
      }
@@ -260,8 +257,8 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 获取参与用户数
-     * @param integer $goods_id 商品ID
-     * @return integer 
+     * @param  integer $goods_id 商品ID
+     * @return integer
      */
     public static function getUserCount($goods_id)
     {
@@ -270,13 +267,14 @@ class ExchangeLog extends ActiveRecord implements IArrayable
             'params' => [":goods_id" => $goods_id],
             'group' => 'username'
         ]);
+
         return $data;
     }
 
     /**
      * 查询注水中奖用户
-     * @param integer $goods_id 商品ID
-     * @return ExchangeLog 
+     * @param  integer     $goods_id 商品ID
+     * @return ExchangeLog
      */
     public static function findWatterList($goods_id)
     {
@@ -285,23 +283,25 @@ class ExchangeLog extends ActiveRecord implements IArrayable
 
     /**
      * 生成列表物流信息
-     * @param self $data 
-     * @return string 
+     * @param  self   $data
+     * @return string
      */
-    public static function getLogistics($data){
+    public static function getLogistics($data)
+    {
         $logisticsSystem = Yii::app()->params['logisticsSystem'];
         $logistics = ((isset($logisticsSystem[$data->logistics]) && $data->logistics>0)?$logisticsSystem[$data->logistics]:"未填写");
         $logistics_code = (empty($data->logistics_code))?"未填写":$data->logistics_code;
         $fhshi='';
-        if($data->delivery_time)
-        {
+        if ($data->delivery_time) {
             $fhshi = '发货:'.date('Y-m-d H:i:s',$data->delivery_time);
         }
+
         return "物流公司:".$logistics."<br/> 快递单号:".$logistics_code."<br/>".$fhshi;
     }
-    public function checkLogistic(){
-        if($this->status == 1){
-            if(empty($this->logistics) || empty($this->logistics_code)){
+    public function checkLogistic()
+    {
+        if ($this->status == 1) {
+            if (empty($this->logistics) || empty($this->logistics_code)) {
                 $this->addError("logistic", "物流信息必须填写");
             }
         }

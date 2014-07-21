@@ -24,7 +24,7 @@ class Order extends ActiveRecord implements IArrayable
 
     /**
      * 订单状态
-     * @var array 
+     * @var array
      */
     public static $pay_status = [
         0 => '未支付',
@@ -106,7 +106,7 @@ class Order extends ActiveRecord implements IArrayable
      * - Pass data provider to CGridView, CListView or any similar widget.
      *
      * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
+     *                             based on the search/filter conditions.
      */
     public function search()
     {
@@ -135,8 +135,8 @@ class Order extends ActiveRecord implements IArrayable
 
     /**
      * 订单状态
-     * @param integer $status 订单状态
-     * @return string 
+     * @param  integer $status 订单状态
+     * @return string
      */
     public static function getPayStatus($status)
     {
@@ -145,9 +145,9 @@ class Order extends ActiveRecord implements IArrayable
 
     /**
      * 根据订单号、用户ID获取订单
-     * @param fixed $order_id 订单号
-     * @param integer $user_id 用户ID
-     * @return Order 
+     * @param  fixed   $order_id 订单号
+     * @param  integer $user_id  用户ID
+     * @return Order
      */
     public static function findByUserId($order_id, $user_id)
     {

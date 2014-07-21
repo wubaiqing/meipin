@@ -102,9 +102,9 @@ CHtml::$errorSummaryCss = 'text-warning';
     <tr>
         <td class="v_table_label">发货时间：</td>
         <td>
-            <?php 
-            if($model->status == 1 && $model->delivery_time>0){
-                echo date("Y-m-d H:i:s", $model->delivery_time); 
+            <?php
+            if ($model->status == 1 && $model->delivery_time>0) {
+                echo date("Y-m-d H:i:s", $model->delivery_time);
             }
             ?>
         </td>

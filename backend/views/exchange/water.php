@@ -79,10 +79,11 @@
     <?php $this->endWidget(); ?>
 
     <script type="text/javascript">
-        function water_delete(obj) {
+        function water_delete(obj)
+        {
             if (confirm("确定要如此做？")) {
                 var url = $(obj).attr("url");
-                $.get(url, {}, function(d) {
+                $.get(url, {}, function (d) {
                     if (d.status == true) {
 //                        $(obj).parents("tr").remove();
                         location.href = location.href;

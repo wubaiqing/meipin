@@ -29,7 +29,6 @@ class ExchangeController extends Controller
         return $exchaneModel;
     }
 
-
     /**
      * 修改积分排序
      */
@@ -99,9 +98,9 @@ class ExchangeController extends Controller
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($isChange == 0 && $exchangeModel->save()) {
                 User::deleteCache();
-                if($exchangeModel->goods_type == 0){
+                if ($exchangeModel->goods_type == 0) {
                     $this->redirect($this->createUrl('exchange/admin'));
-                }else if($exchangeModel->goods_type == 1){
+                } elseif ($exchangeModel->goods_type == 1) {
                     $this->redirect($this->createUrl('exchange/raffleAdmin'));
                 }
             }
@@ -143,9 +142,9 @@ class ExchangeController extends Controller
             $exchangeModel->goodscolor2 = $attributes['goodscolor'];
             if ($exchangeModel->save()) {
                 User::deleteCache();
-                if($exchangeModel->goods_type == 0){
+                if ($exchangeModel->goods_type == 0) {
                     $this->redirect($this->createUrl('exchange/admin'));
-                }elseif($exchangeModel->goods_type == 1){
+                } elseif ($exchangeModel->goods_type == 1) {
                     $this->redirect($this->createUrl('exchange/raffleAdmin'));
                 }
             }
@@ -346,13 +345,12 @@ class ExchangeController extends Controller
         $trans = Yii::app()->db->beginTransaction();
         try {
             $log = ExchangeLog::model()->findByPk($id);
-            if($type == 'delete'){
+            if ($type == 'delete') {
                 $log->delete();
-            }
-            else if($type == 'winner' && !is_null($status)){
+            } elseif ($type == 'winner' && !is_null($status)) {
                 $log->winner = $status;
                 $log->update(['winner']);
-            }else{
+            } else {
                 $this->returnData(false, ['message' => '操作失败']);
             }
             //更新用户数

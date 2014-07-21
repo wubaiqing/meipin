@@ -9,7 +9,6 @@
 class OperateLog extends ActiveRecord implements IArrayable
 {
 
-
     /**
      * 表名
      * @return string
@@ -30,6 +29,5 @@ class OperateLog extends ActiveRecord implements IArrayable
             ['id, log_type, operatedata, created_at, updated_at', 'safe'],
         ];
     }
-
 
 }
