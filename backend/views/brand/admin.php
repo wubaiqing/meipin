@@ -33,7 +33,7 @@
     .orderInput{width:19px;}
 </style>
 <script type="text/javascript">
-    public function goods_delete(obj)
+     function goods_delete(obj)
     {
         if (confirm("确定要删除该商品？")) {
             var url = $(obj).attr("url");

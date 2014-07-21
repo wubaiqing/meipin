@@ -20,7 +20,7 @@
     <td class="button-column">
         <?php
         echo CHtml::link('修改', Yii::app()->createUrl("exchange/update", ["id" => $data->id]), ['class' => 'update']) . "&nbsp;";
-        echo CHtml::link('删除', 'javascript:void(0);', ['class' => 'delete','onclick'=>'goods_delete(this);','url'=>Yii::app()->createUrl("exchange/delete", ["id" => $data->id])]) . "&nbsp;";
+        echo CHtml::link('删除', 'javascript:void(0);', ['class' => 'delete','onclick'=>'goods_delete(this)','url'=>Yii::app()->createUrl("exchange/delete", ["id" => $data->id])]) . "&nbsp;";
         if ($data->goods_type == 1) {
             echo CHtml::link('注水', Yii::app()->createUrl("exchange/water", ["id" => $data->id]), ['class' => 'water']) . "&nbsp;";
         }

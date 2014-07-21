@@ -52,8 +52,8 @@ $isSignDay = User::isSignDay();
                 $url = Yii::app()->createUrl('exchange/exchangeIndex', array('id' => Des::encrypt($goods['id'])));
             ?>
                 <style type="text/css">
-                .lista{display: block;font-family: "宋体";font-size: 14px;color: #000;width:260px;margin: 0 auto;height: 25px;padding-top: 3px;}
-                #main ul li .one_p {font-family:"微软雅黑";font-size:12px;color:#999;padding-bottom:15px;width:260px;margin: 0 auto;margin-top: 10px;}
+                .lista{display: block;font-family: "宋体";font-size: 14px;color: #000;width:290px;margin: 0 auto;height: 25px;padding-top: 3px;}
+                #main ul li .one_p {font-family:"微软雅黑";font-size:12px;color:#999;padding-bottom:15px;width:290px;margin: 0 auto;margin-top: 10px;}
                 #main ul li .one_p .one_span{width:86px;height: 25px;float: left;text-align: left;}
                 #main ul li .one_p .two_span{width:86px;height: 25px;float: left;text-align: center;}
                 #main ul li .one_p .last_span{width:86px;float: right;text-align: right;}
