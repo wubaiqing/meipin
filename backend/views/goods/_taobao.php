@@ -53,7 +53,7 @@ CHtml::$errorSummaryCss = 'text-warning';
     <div class="control-group">
         <?php echo $form->labelEx($model,'url', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->textField($model,'url',array('size'=>60,'maxlength'=>255)); ?>
+            <?php echo $form->textField($model,'url',array('size'=>60,'maxlength'=>500)); ?>
         </div>
     </div>
 

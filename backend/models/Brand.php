@@ -90,7 +90,6 @@ class Brand extends ActiveRecord implements IArrayable
     {
 //        $this->start_time = strtotime($this->start_time);
 //        $this->end_time = strtotime($this->end_time);
-
         return true;
     }
 
@@ -102,6 +101,7 @@ class Brand extends ActiveRecord implements IArrayable
         if (isset($post['end_time']) && !empty($post['end_time'])) {
             $post['end_time'] = strtotime($post['end_time']);
         }
+
         return $post;
     }
 
@@ -118,7 +118,6 @@ class Brand extends ActiveRecord implements IArrayable
         }
         $this->updated_at = time();
         //$this->update_id = User::$userName[Yii::app()->user->id];
-
         return true;
     }
 
@@ -136,7 +135,6 @@ class Brand extends ActiveRecord implements IArrayable
     {
         Yii::app()->cache->delete(self::getExchangeGoodsCacheKey($goodsId));
     }
-
 
     /**
      * 获取首页的积分兑换商品

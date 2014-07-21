@@ -40,7 +40,7 @@ class ZheCommand extends CConsoleCommand
         '9' => 'http://zhe800.uz.taobao.com/list.php?tag_id=6&page=',
         '10' => 'http://zhe800.uz.taobao.com/list.php?tag_id=5&page=',
         '11' => 'http://zhe800.uz.taobao.com/list.php?tag_id=3&page=',
-	    '12' => 'http://zhe800.uz.taobao.com/list.php?tag_id=9&page=',
+        '12' => 'http://zhe800.uz.taobao.com/list.php?tag_id=9&page=',
     );
 
     /**

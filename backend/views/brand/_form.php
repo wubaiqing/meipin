@@ -60,7 +60,6 @@ echo $form->errorSummary($brandModel);
     </div>
 </div>
 
-
 <div class="control-group">
     <?php echo $form->labelEx($brandModel, 'start_time', array('class' => 'control-label')); ?>
     <div class="controls">
@@ -102,7 +101,7 @@ echo $form->errorSummary($brandModel);
         <div class="controls">
             <?php echo $form->dropDownList($brandModel, 'status', array('0' => '显示', '1' => '隐藏' )); ?>
         </div>
-    </div> 
+    </div>
 <div class="form-actions">
     <?php
     echo CHtml::hiddenField("isChange", 0);
@@ -116,7 +115,7 @@ echo $form->errorSummary($brandModel);
     $('.upload-placeholder').fileupload({
         url: 'index.php?r=site/upload',
         dataType: 'json',
-        done: function(e, data) {
+        done: function (e, data) {
             if (data.result.success) {
                 $('#Brand_brand_img').val(data.result.path);
             } else {
@@ -126,13 +125,13 @@ echo $form->errorSummary($brandModel);
     });
 
 //鼠标滑过显示图片
-    $('#Brand_brand_img').hover(function() {
+    $('#Brand_brand_img').hover(function () {
         var src = $(this).val();
         if (src != '') {
             $('#picture-preview').position($(this).position());
             $('#picture-preview').attr('src', src).removeClass('hide');
         }
-    }, function() {
+    }, function () {
         $('#picture-preview').addClass('hide');
     });
 
