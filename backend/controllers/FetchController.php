@@ -50,17 +50,26 @@ class FetchController extends Controller
     {
         // 分类ID
         $catId = Yii::app()->request->getQuery('cat_id', 1);
+	    $taobaoId = Yii::app()->request->getQuery('taobaoId', null);
 
         $startTime = strtotime(date('Y-m-d'));
         $endTime = strtotime('+1 day');
-        $goods = Goods::model()->findAll([
-            'condition' => 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id',
-            'params' => array(':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888')
-        ]);
+	    if (!empty($taobaoId)) {
+		    $goods = Goods::model()->findAll([
+			    'condition' => 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id And tb_id =:tb_id',
+			    'params' => array(':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId)
+		    ]);
+	    } else {
+		    $goods = Goods::model()->findAll([
+			    'condition' => 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id',
+			    'params' => array(':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888')
+		    ]);
+	    }
 
         $this->render('admin', [
             'model' => $goods,
             'catId' => $catId,
+	        'taobaoId' => $taobaoId
         ]);
     }
 
@@ -73,6 +82,7 @@ class FetchController extends Controller
     public function actionUpdate()
     {
         $id = Yii::app()->request->getPost('goodsId');
+
         $goods = Goods::model()->findByPk($id);
         $goods->attributes = $_POST;
         $goods->status = 1;

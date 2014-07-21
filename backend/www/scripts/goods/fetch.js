@@ -131,6 +131,16 @@ fetch.event = (function () {
                 var catId = $('#cate_id').val();
                 window.location.href= 'index.php?r=fetch/admin&cat_id=' + catId;
             });
+        },
+
+        /**
+         * 搜索
+         */
+        search: function () {
+            $('#search').click(function () {
+                var taobaoId = $('#taobaoId').val();
+                window.location.href= 'index.php?r=fetch/admin&taobaoId=' + taobaoId;
+            });
         }
     }
 })();

@@ -32,6 +32,12 @@
 		<?php echo CHtml::link('查看', 'javascript:void(0);', ['id' => 'getLink']); ?>
 		<span id="loadingInfo" style="color:green;"></span>
 
+		<span>宝贝ID：</span>
+		<?php
+			echo CHtml::textField('taobaoId', $taobaoId, ['class' => 'span2', 'id' => 'taobaoId']);
+		?>
+		<?php echo CHtml::link('搜索', 'javascript:void(0);', ['id' => 'search']); ?>
+
 		<tr>
 			<td width="">标题</td>
 			<td width="50">分类</td>
@@ -89,10 +95,11 @@
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.fileupload.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/goods/fetch.js?v=1.0"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/goods/fetch.js?v=1.1"></script>
 <script type="text/javascript">
 	fetch.event.modify();
 	fetch.event.goodsPush();
 	fetch.event.uploadImage();
 	fetch.event.getZhe800Link();
+	fetch.event.search();
 </script>
