@@ -139,7 +139,8 @@ fetch.event = (function () {
         search: function () {
             $('#search').click(function () {
                 var taobaoId = $('#taobaoId').val();
-                window.location.href= 'index.php?r=fetch/admin&taobaoId=' + taobaoId;
+                var title = $('#title').val();
+                window.location.href= 'index.php?r=fetch/admin&taobaoId=' + taobaoId + '&title=' + title;
             });
         }
     }

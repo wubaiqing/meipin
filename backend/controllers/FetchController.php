@@ -50,26 +50,34 @@ class FetchController extends Controller
     {
         // 分类ID
         $catId = Yii::app()->request->getQuery('cat_id', 1);
-	    $taobaoId = Yii::app()->request->getQuery('taobaoId', null);
+	    $taobaoId = trim(Yii::app()->request->getQuery('taobaoId', null));
+	    $title = trim(Yii::app()->request->getQuery('title', null));
 
+	    // 时间限制
         $startTime = strtotime(date('Y-m-d'));
         $endTime = strtotime('+1 day');
+
+	    // 查询条件
 	    if (!empty($taobaoId)) {
-		    $goods = Goods::model()->findAll([
-			    'condition' => 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id And tb_id =:tb_id',
-			    'params' => array(':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId)
-		    ]);
-	    } else {
-		    $goods = Goods::model()->findAll([
-			    'condition' => 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id',
-			    'params' => array(':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888')
-		    ]);
+		    $condition = 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id And tb_id =:tb_id';
+		    $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId];
+	    } elseif (!empty($title)) {
+		    $condition = 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id And title LIKE :title';
+		    $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':title' => "%{$title}%"];
+		}else {
+		    $condition = 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id';
+		    $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888'];
 	    }
+	    $goods = Goods::model()->findAll([
+		    'condition' => $condition,
+		    'params' => $params
+	    ]);
 
         $this->render('admin', [
             'model' => $goods,
             'catId' => $catId,
-	        'taobaoId' => $taobaoId
+	        'taobaoId' => $taobaoId,
+	        'title' => $title
         ]);
     }
 

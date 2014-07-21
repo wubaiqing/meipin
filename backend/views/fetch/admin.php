@@ -36,6 +36,10 @@
 		<?php
 			echo CHtml::textField('taobaoId', $taobaoId, ['class' => 'span2', 'id' => 'taobaoId']);
 		?>
+		<span>标题：</span>
+		<?php
+		echo CHtml::textField('title', $title, ['class' => 'span2', 'id' => 'title']);
+		?>
 		<?php echo CHtml::link('搜索', 'javascript:void(0);', ['id' => 'search']); ?>
 
 		<tr>
@@ -95,7 +99,7 @@
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/jQuery-File-Upload/js/jquery.fileupload.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/goods/fetch.js?v=1.1"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/scripts/goods/fetch.js?v=1.2"></script>
 <script type="text/javascript">
 	fetch.event.modify();
 	fetch.event.goodsPush();
