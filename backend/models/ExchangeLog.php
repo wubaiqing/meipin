@@ -33,6 +33,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      */
     static $statusSearch = ['' => '请选择', 0 => '未发货', 1 => '已发货'];
 
+       /**
+     * 搜索状态显示
+     * @var array
+     */
+    static $pay_status = [ 0 => '未支付', 1 => '已支付'];
+
     /**
      * 省份ID
      * @var integer
@@ -78,7 +84,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
                 'logistics','checkLogistic',
             ],
             [
-                'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile,logistics,logistics_code,delivery_time',
+                'id,name,username,updated_at,remark,user_id,,created_at,goods_id,status,city_id,address,postcode,mobile,logistics,logistics_code,delivery_time,pay_status',
                 'safe'
             ],
         ];
@@ -132,7 +138,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     {
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
-        $criteria->compare('pay_status', 1);
+        $criteria->compare('pay_status', $this->pay_status);
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
