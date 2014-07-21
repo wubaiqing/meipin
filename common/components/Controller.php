@@ -41,6 +41,14 @@ class Controller extends CController
                 ['url' => 'category/admin', 'label' => '分类管理'],
             ]
         ],
+
+         [
+            'label' => '品牌管理',
+            'items' => [
+                ['url' => 'brand/add', 'label' => '添加品牌'],
+                ['url' => 'brand/admin', 'label' => '品牌列表'],
+            ]
+        ],
     /*    [
             'label' => '商城管理',
             'items' => [

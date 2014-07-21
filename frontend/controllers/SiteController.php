@@ -26,11 +26,13 @@ class SiteController extends Controller
         if($page==1)
         {
             $exchange = Exchange::getIndexExchange();
+            $brand = Brand::getIndexBrand();
         }else
         {
+            $brand = "";
             $exchange ="";
         }
-        // print_r($exchange);
+         //print_r($brand);
         // 渲染首页
         $this->render('index', array(
             'cat' => $cat, // 分类
@@ -39,6 +41,7 @@ class SiteController extends Controller
             'goods' => $goods['data'], // 商品数据
             'pager' => $goods['pager'], // 商品翻页
             'exchange'=>$exchange,
+            'brand'=>$brand
         ));
     }
 
