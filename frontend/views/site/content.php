@@ -1,6 +1,47 @@
 <div class="today-goods-list">
     <!--单个商品 start-->
     <div class="area">
+
+
+     <!--首页品牌调用 start-->
+       <?php if(!empty($brand) && isset($brand)) {
+        foreach ($brand as $item) : ?>
+        <div class="dealbox">
+            <div class="deal figure1 zt1">
+                <div class="">
+                    <p>
+                        <a href="<?php echo $item->brand_url;?>" target="_blank">
+                            <img class="goods-item-img" data-url="<?php echo $item->brand_img; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190">
+                        </a>
+                    </p>
+                    <h2>
+                        <strong>
+                            <a href="<?php echo $item->brand_url;?>" target="_blank">
+                                <?php echo $item->describe;?>
+                            </a>
+                        </strong>
+                    </h2>
+                    <h4>
+                        <span style="float: left;font: 22px/36px '微软雅黑';color: #333;width: 200px;overflow: hidden;text-align: left;cursor:pointer;">
+                           
+                          <?php echo $item->title;?>
+                            
+                        </span>
+                        <style type="text/css">
+                            .deal div h4 .qukakan{display: inline-block;width: 67px;height: 31px;background: url('/static/images/icon5.png') no-repeat scroll 0px 0px transparent;margin-top: 5px;}
+                        </style>      
+                        <a class="qukakan" href="<?php echo $item->brand_url;?>" target="_blank"></a></span></span>
+                    </h4>
+                    <?php
+                    //echo '<span class="newicon1111">去看看</span>';
+                    ?>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; }?>
+   <!--首页品牌调用 end-->
+
+
      <!--首页积分调用 start-->
        <?php if(!empty($exchange) && isset($exchange)) {
    
