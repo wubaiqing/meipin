@@ -60,10 +60,10 @@ class FetchController extends Controller
         // 查询条件
         if (!empty($taobaoId)) {
             $condition = 't.start_time >=:start_time And t.start_time <=:end_time And status=:status And user_id=:user_id And tb_id =:tb_id';
-            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId];
+            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId];
         } elseif (!empty($title)) {
             $condition = 't.start_time >=:start_time And t.start_time <=:end_time And status=:status And user_id=:user_id And title LIKE :title';
-            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':title' => "%{$title}%"];
+            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':status' => 2, ':user_id' => '888', ':title' => "%{$title}%"];
         } else {
             $condition = 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id';
             $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888'];
