@@ -31,14 +31,14 @@ class JiukuaiyouCommand extends CConsoleCommand
      * 抓取
      */
     public static $url = array(
-	    '5' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=jujia&page=',
-	    '6' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=muying&page=',
-	    '9' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=meishi&page=',
-	    '10' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=shuma&page=',
-	    '11' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=meizhuang&page=',
-	    '12' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=wenti&page=',
-	    '1000' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=fushi?page=',
-	    '1001' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
+        '5' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=jujia&page=',
+        '6' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=muying&page=',
+        '9' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=meishi&page=',
+        '10' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=shuma&page=',
+        '11' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=meizhuang&page=',
+        '12' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=wenti&page=',
+        '1000' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=fushi?page=',
+        '1001' => 'http://jiukuaiyoucom.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
     );
 
     /**

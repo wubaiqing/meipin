@@ -7,7 +7,7 @@
     <td><a href="<?php echo $data->brand_url; ?>" target="_blank">链接</a></td>
 
     <td><?php echo CHtml::link(Brand::$is_first[$data->status], "javascript:void(0);", array("status-id" => $data->id, "class" => "status")) ?></td>
-    
+
     <td><?php echo CHtml::link($data->order, "javascript:void(0);", array("order-id" => $data->id, "class" => "settingOrder")); ?></td>
 
     <td class="button-column">

@@ -19,7 +19,6 @@ echo $form->dropDownList($model, 'pay_status', ExchangeLog::$pay_status,['style'
 echo '&nbsp;';
 ?>
 
-
 <?php echo CHtml::label('商品名称：', 'name'); ?>
 <?php echo $form->textField($model->exchangeModel, 'name'); ?>
 <?php echo CHtml::submitButton('搜索', ['class' => 'btn']); ?>

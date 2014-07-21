@@ -38,46 +38,46 @@ class FetchController extends Controller
        return parent::beforeAction($action);
     }
 
-	/**
-	 * 淘宝U站抓取数据管理页
-	 *
-	 * 数据查询
-	 * 1. 只查询当前抓取的数据
-	 * 2. 分类ID根据当前已选择的分类
-	 * 3. 只查询是机器抓取的数据
-	 */
-	public function actionAdmin()
+    /**
+     * 淘宝U站抓取数据管理页
+     *
+     * 数据查询
+     * 1. 只查询当前抓取的数据
+     * 2. 分类ID根据当前已选择的分类
+     * 3. 只查询是机器抓取的数据
+     */
+    public function actionAdmin()
     {
         // 分类ID
         $catId = Yii::app()->request->getQuery('cat_id', 1);
-	    $taobaoId = trim(Yii::app()->request->getQuery('taobaoId', null));
-	    $title = trim(Yii::app()->request->getQuery('title', null));
+        $taobaoId = trim(Yii::app()->request->getQuery('taobaoId', null));
+        $title = trim(Yii::app()->request->getQuery('title', null));
 
-	    // 时间限制
+        // 时间限制
         $startTime = strtotime(date('Y-m-d'));
         $endTime = strtotime('+1 day');
 
-	    // 查询条件
-	    if (!empty($taobaoId)) {
-		    $condition = 't.start_time >=:start_time And t.start_time <=:end_time And status=:status And user_id=:user_id And tb_id =:tb_id';
-		    $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId];
-	    } elseif (!empty($title)) {
-		    $condition = 't.start_time >=:start_time And t.start_time <=:end_time And status=:status And user_id=:user_id And title LIKE :title';
-		    $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':title' => "%{$title}%"];
-		}else {
-		    $condition = 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id';
-		    $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888'];
-	    }
-	    $goods = Goods::model()->findAll([
-		    'condition' => $condition,
-		    'params' => $params
-	    ]);
+        // 查询条件
+        if (!empty($taobaoId)) {
+            $condition = 't.start_time >=:start_time And t.start_time <=:end_time And status=:status And user_id=:user_id And tb_id =:tb_id';
+            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':tb_id' => $taobaoId];
+        } elseif (!empty($title)) {
+            $condition = 't.start_time >=:start_time And t.start_time <=:end_time And status=:status And user_id=:user_id And title LIKE :title';
+            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888', ':title' => "%{$title}%"];
+        } else {
+            $condition = 't.start_time >=:start_time And t.start_time <=:end_time And cat_id=:cat_id And status=:status And user_id=:user_id';
+            $params = [':start_time' => $startTime, ':end_time' => $endTime, ':cat_id' => $catId, ':status' => 2, ':user_id' => '888'];
+        }
+        $goods = Goods::model()->findAll([
+            'condition' => $condition,
+            'params' => $params
+        ]);
 
         $this->render('admin', [
             'model' => $goods,
             'catId' => $catId,
-	        'taobaoId' => $taobaoId,
-	        'title' => $title
+            'taobaoId' => $taobaoId,
+            'title' => $title
         ]);
     }
 
@@ -94,8 +94,8 @@ class FetchController extends Controller
         $goods = Goods::model()->findByPk($id);
         $goods->attributes = $_POST;
         $goods->status = 1;
-	    $goods->start_time = date('Y-m-d H:i:s', $goods->start_time);
-	    $goods->end_time = date('Y-m-d H:i:s', $goods->end_time);
+        $goods->start_time = date('Y-m-d H:i:s', $goods->start_time);
+        $goods->end_time = date('Y-m-d H:i:s', $goods->end_time);
         if (Yii::app()->user->id == null) {
             $this->returnData(5, '用户已退出，请重新登录！');
         }

@@ -38,8 +38,8 @@ class JuanpiCommand extends CConsoleCommand
         '9' => 'http://juanpi.uz.taobao.com/?m=index&cat=meishi&page=',
         '10' => 'http://juanpi.uz.taobao.com/?m=index&cat=shuma&page=',
         '11' => 'http://juanpi.uz.taobao.com/?m=index&cat=meizhuang&page=',
-	    '12' => 'http://juanpi.uz.taobao.com/?m=index&cat=wenti&page=',
-	    '1000' => 'http://juanpi.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
+        '12' => 'http://juanpi.uz.taobao.com/?m=index&cat=wenti&page=',
+        '1000' => 'http://juanpi.uz.taobao.com/?m=index&cat=xiebaopeishi&page=',
     );
 
     /**

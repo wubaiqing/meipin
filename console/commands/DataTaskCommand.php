@@ -96,8 +96,7 @@ class DataTaskCommand extends CConsoleCommand
                 break;
             }
             $orderIds = [];
-            foreach ($orderList as $order) 
-            {
+            foreach ($orderList as $order) {
                 $orderIds[] = $order->order_id;
                 /*                     * ********返还积分***************** */
                 $integral = $order->integral;
