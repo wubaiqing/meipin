@@ -154,8 +154,7 @@ class Goods extends ActiveRecord implements IArrayable
         } else {
             $criteria->compare('title', $this->searchInput, true);
         }
-        $criteria->compare('title', $this->is_zhe800, true);
-        $criteria->compare('status', $this->status);
+	    $criteria->compare('status', $this->status);
 
         return new ActiveDataProvider($this, array(
             'criteria' => $criteria
