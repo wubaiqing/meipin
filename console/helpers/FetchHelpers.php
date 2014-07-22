@@ -40,7 +40,7 @@ class FetchHelpers
      */
     public static function getInt($string)
     {
-        return preg_replace('/([^0-9.]+)/','',trim($string));
+        return trim(preg_replace('/([^0-9.]+)/','',$string));
     }
 
     /**
