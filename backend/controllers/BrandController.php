@@ -21,7 +21,7 @@ class BrandController extends Controller
     public function loadModel($id)
     {
         $id = intval($id);
-        $exchaneModel = brand::model()->findByPk($id);
+        $exchaneModel = Brand::model()->findByPk($id);
         if (!$exchaneModel) {
             throw new CHttpException('400', '查询记录失败');
         }
