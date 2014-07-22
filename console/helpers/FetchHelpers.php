@@ -72,7 +72,7 @@ class FetchHelpers
 			'params' => array(':tb_id' => $U['taobaoId'])
 		]);
 	    if ($goods) {
-		    self::trace("已经存在的淘宝ID：{$U['taobaoId']}");
+		    self::trace("已经存在的淘宝ID：{$U['taobaoId']}，商品ID：{$goods->id}");
 	    }
         if (empty($goods)) {
             $goods = new Goods();
