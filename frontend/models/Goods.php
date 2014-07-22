@@ -190,7 +190,10 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('t.price', '< 10');
         } elseif ($cat == 1001) {
             $criteria->compare('t.price', '>= 10');
-        } elseif ($cat > 0) {
+        } elseif ($cat == 1002) {
+            $criteria->compare('t.price', '<= 5');
+        } 
+        elseif ($cat > 0) {
             $criteria->compare('t.cat_id', '=' . $cat);
         }
 
@@ -267,6 +270,7 @@ class Goods extends ActiveRecord implements IArrayable
         // 搜索条件
         $criteria = new CDbCriteria();
         $criteria->addSearchCondition('title', $title);
+        $criteria->compare('status', '= 1'); //状态显示
         $this->dbCriteria->mergeWith($criteria);
         $pagination = $this->paginate();
 
@@ -278,4 +282,43 @@ class Goods extends ActiveRecord implements IArrayable
         return $data;
     }
 
+
+    /**
+     * 品牌搜索
+     * @params string $title
+     */
+    public function searchbrand($cat)
+    {
+        if (empty($cat)) {
+            return false;
+        }
+
+        $cacheKey = 'meipin-search-title-'.md5(trim($cat));
+        $response = Yii::app()->cache->get($cacheKey);
+        if (!empty($response)) {
+            return $response;
+        }
+
+        $data = ['data' => null, 'pager' => null];
+
+        // 清空标题字符
+        $cat = trim($cat);
+
+        // 搜索条件
+        $criteria = new CDbCriteria();
+        if($cat == '5yuan')
+        {
+            $criteria->compare('price', '<= 5');
+        }
+        $criteria->compare('status', '= 1');//状态显示
+        $this->dbCriteria->mergeWith($criteria);
+        $pagination = $this->paginate();
+
+        $data['data'] = $pagination->data;
+        $data['pager'] = $pagination->getPagination();
+
+        Yii::app()->cache->set($cacheKey, $data, 3600);
+
+        return $data;
+    }
 }

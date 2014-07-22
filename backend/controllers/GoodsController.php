@@ -75,10 +75,12 @@ class GoodsController extends Controller
     {
         $model = new Goods('search');
         $model->unsetAttributes();
-        if(isset($_GET['Goods']))
-            $model->attributes = $_GET['Goods'];
+        if(isset($_GET['Goods'])) {
+	        $model->attributes = $_GET['Goods'];
+        } else {
+	        $model->status = '= 1';
+        }
 
-        $model->status = '= 1';
         $this->render('admin',array(
             'model' => $model,
         ));
