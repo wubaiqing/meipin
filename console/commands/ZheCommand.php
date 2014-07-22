@@ -94,7 +94,7 @@ class ZheCommand extends CConsoleCommand
         $data['url'] = $dealad->find('p', 0)->find('a', 0)->href;
 
         // 淘宝ID
-        $data['taobaoId'] = FetchHelpers::getInt(substr($data['url'], -13));
+	$data['taobaoId'] = intval(FetchHelpers::getInt(substr($data['url'], -13)));
 
         // 商品标题
         $data['title'] = FetchHelpers::covert($dealad->find('h2', 0)->find('a', 1)->plaintext);
