@@ -67,10 +67,13 @@ class FetchHelpers
     public static function update($catId, $U)
     {
         // 判断商品是否存在
-	$goods = Goods::model()->find([
-            'condition' => 'tb_id =:tb_id',
-            'params' => array(':tb_id' => $U['taobaoId'])
-	]);
+		$goods = Goods::model()->find([
+			'condition' => 'tb_id =:tb_id',
+			'params' => array(':tb_id' => $U['taobaoId'])
+		]);
+	    if ($goods) {
+		    self::trace("已经存在的淘宝ID：{$U['taobaoId']}");
+	    }
         if (empty($goods)) {
             $goods = new Goods();
         }
@@ -112,6 +115,8 @@ class FetchHelpers
         $data['status'] = 2;
         $data['is_zhe800'] = 2;
         $data['tb_id'] = $U['taobaoId'];
+	    $data['goods_type'] = 0;
+	    $data['list_order'] = 0;
 
         return $data;
     }
