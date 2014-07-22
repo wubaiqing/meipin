@@ -27,6 +27,7 @@ return [
                     'out/<id:.+?>.html' => 'site/out',
                     'buy/<id:.+?>.html' => 'site/buy',
                     'site/search' => 'site/search',
+                    'brand/<cat:.+?>' => 'brand/index',
                     'exchange/detail_<id:.+?>.html' => 'exchange/exchangeIndex',
                     'exchange/raffle_<id:.+?>.html' => 'exchange/raffle',
                     'exchange/<action:\w+>' => 'exchange/<action>',
