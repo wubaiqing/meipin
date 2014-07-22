@@ -117,6 +117,7 @@ class FetchHelpers
         $data['tb_id'] = $U['taobaoId'];
 	    $data['goods_type'] = 0;
 	    $data['list_order'] = 0;
+	    $data['relation_website'] = $U['relation_website'];
 
         return $data;
     }
