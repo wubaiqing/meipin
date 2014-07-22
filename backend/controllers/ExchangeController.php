@@ -71,7 +71,7 @@ class ExchangeController extends Controller
                 Yii::import('common.extensions.aliyunapi.OSSClient2');
                 $OSSClient = new OSSClient2;
                 // 域名
-                $domain = "http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/";
+                $domain = "http://static.meipin.com/";
                 // 图片信息
                 $size = filesize($file->tempName);
                 $content = fopen($file->tempName, 'r');
@@ -179,7 +179,7 @@ class ExchangeController extends Controller
                     }
                 };
                 // 域名
-                $domain = "http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/";
+                $domain = "http://static.meipin.com/";
                 // 图片信息
                 $size = filesize($file->tempName);
                 $content = fopen($file->tempName, 'r');

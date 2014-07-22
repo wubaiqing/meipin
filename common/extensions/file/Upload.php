@@ -97,7 +97,7 @@ class Upload extends CComponent
         $OSSClient = new OSSClient2;
 
 		// 域名
-        $domain = "http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/";
+        $domain = "http://static.meipin.com/";
 
 		// 图片信息
         $size = filesize($this->getTmpName());
