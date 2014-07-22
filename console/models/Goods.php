@@ -73,7 +73,6 @@ class Goods extends ActiveRecord implements IArrayable
             array('origin_price, price, searchType, relation_website', 'length', 'max' => 8),
             array('start_time, end_time', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('tb_id', 'checkTaobaoId'),
-            array('relation_website', 'checkRelationWebsite'),
         );
     }
 
@@ -90,13 +89,6 @@ class Goods extends ActiveRecord implements IArrayable
                 $this->addError('tb_id', '淘宝ID不能重复');
             }
         }
-    }
-
-    /**
-     * 监测关联网站
-     */
-    public function checkRelationWebsite()
-    {
     }
 
     /**
