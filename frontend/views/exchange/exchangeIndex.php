@@ -64,17 +64,18 @@
                             $leftNum = $data['exchange']->num - $data['exchange']->sale_num;
                             echo $leftNum > 0 ? $leftNum : 0;
                             ?></b>件 / 每人限兑换<b id='xg_num'> <?php echo $data['exchange']->buy_num;?> </b>次 )</em>
+                    <br/>
 
                 </h4>
-                
             </div>
+                    <?php if($data['exchange']->description){?>
+                    <a style="width:400px;margin-left:28px;float:left"><span style="color:red;font-weight:bold;font-size:16px;float:left;">兑换说明：</span><?php echo $data['exchange']->description;?> </a>
+                    <?php };?>
         </form>
         <?php
         $page = Yii::app()->request->getQuery("page");
         ?>
-        <?php if($data['exchange']->description){?>
-        <a style="margin-left:20px;float:left;width:400px;"><span style="color:red;font-weight:bold;float:left">兑换说明：</span><?php echo $data['exchange']->description;?> </a>
-        <?php };?>
+
 
         <div class="J_TabBarWrap clear l">
             <ul class="tb-tabbar">
