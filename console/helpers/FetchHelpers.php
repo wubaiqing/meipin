@@ -40,7 +40,7 @@ class FetchHelpers
      */
     public static function getInt($string)
     {
-        return preg_replace('/([^0-9.]+)/','',trim($string));
+        return trim(preg_replace('/([^0-9.]+)/','',$string));
     }
 
     /**
@@ -67,11 +67,10 @@ class FetchHelpers
     public static function update($catId, $U)
     {
         // 判断商品是否存在
-        $goods = Goods::model()->find(array(
-            'select' => 'tb_id, end_time',
+	$goods = Goods::model()->find([
             'condition' => 'tb_id =:tb_id',
             'params' => array(':tb_id' => $U['taobaoId'])
-        ));
+	]);
         if (empty($goods)) {
             $goods = new Goods();
         }
