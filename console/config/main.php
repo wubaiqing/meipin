@@ -31,5 +31,10 @@ return array(
                 ),
             ),
         ),
-    ]
+    ],
+    'params' => [
+        //支付超时
+        'payTimeout' => 3600,
+    ],
+    
 );
