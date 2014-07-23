@@ -115,7 +115,5 @@ return [
                 //支付宝验证码
                 'key' => '76suwy363u03pkgzbq1qq2b22z6ddnbb',
             ],
-                    //支付超时
-            'payTimeout' =>3600,
         ],
     ];
