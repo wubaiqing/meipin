@@ -97,7 +97,7 @@ class DataTaskCommand extends CConsoleCommand
                 $exchangeLog = ExchangeLog::model()->find('order_id=:order_id',array(':order_id'=>$order->order_id));
 
                 $gdcolorstr = $exchange->goodscolor;
-                $sale_num = $exchange->sale_num + $exchangeLog['buy_count'];//返货库存
+                $sale_num = $exchange->sale_num - $exchangeLog['buy_count'];//返货库存
                 //判断是否存在颜色属性
                 if ($gdcolorstr) {
                     $gdcolorarr = explode(';', $gdcolorstr);
