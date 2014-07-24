@@ -295,6 +295,10 @@ class Exchange extends ActiveRecord
 
         //分页类开始
         $pages = new CPagination();
+        if($currentPage>=1)
+        {
+            $currentPage = $currentPage-1;
+        }
         $pages->currentPage = $currentPage;
         //计算总数
         $pages->itemCount = Exchange::model()->count($criteria);
