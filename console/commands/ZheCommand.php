@@ -94,7 +94,7 @@ class ZheCommand extends CConsoleCommand
         $data['url'] = $dealad->find('p', 0)->find('a', 0)->href;
 
         // 淘宝ID
-        $data['taobaoId'] = FetchHelpers::getInt(substr($data['url'], -13));
+		$data['taobaoId'] = intval(FetchHelpers::getInt(substr($data['url'], -13)));
 
         // 商品标题
         $data['title'] = FetchHelpers::covert($dealad->find('h2', 0)->find('a', 1)->plaintext);
@@ -104,6 +104,9 @@ class ZheCommand extends CConsoleCommand
 
         // 商品原始价格
         $data['origin_price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 1)->find('i', 0)->plaintext);
+
+	    // 关联网站
+	    $data['relation_website'] = 1;
 
         // 商品开始结束时间
         $H = date('H');

@@ -104,6 +104,9 @@ class JiukuaiyouCommand extends CConsoleCommand
         // 商品原始价格
         $data['origin_price'] = FetchHelpers::getInt($dealad->find('h4', 0)->find('span', 2)->plaintext);
 
+	    // 关联网站
+	    $data['relation_website'] = 3;
+
         // 商品开始结束时间
         $H = date('H');
         if ($H >= '16') {

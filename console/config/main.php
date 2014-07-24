@@ -2,7 +2,6 @@
 
 return array(
     'basePath' => realpath(__DIR__ . '/../'),
-
     'commandMap' => array(
         'server' => array(
             'class' => 'Likai\YiiWebserver\ServerCommand',
@@ -13,4 +12,29 @@ return array(
             'migrationTable' => 'migration',
         ),
     ),
+    'components' => [
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                // 日志
+                array(
+                    'class' => 'application.components.logging.DateFileLogRoute',
+                    'levels' => 'info,error',
+                    'categories' => 'application.pay',
+                    'logFilename' => 'hessian',
+                    'logFilepath' => 'hessian',
+                ),
+                // 错误日志
+                array(
+                    'class' => 'application.components.logging.DateFileLogRoute',
+                    'levels' => 'warning,info, error'
+                ),
+            ),
+        ),
+    ],
+    'params' => [
+        //支付超时
+        'payTimeout' => 3600,
+    ],
+    
 );

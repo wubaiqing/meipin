@@ -66,5 +66,7 @@ return [
         'exchangeLogPageSize' => 20,
         //分页最大缓存页面数
         'pageCahceMaxCount' => 5,
+        //支付超时
+        'payTimeout' => 3600,
     ],
 ];
