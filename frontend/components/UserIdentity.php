@@ -27,9 +27,22 @@ class UserIdentity extends CUserIdentity
     public function authenticate()
     {
         // 获取用户信息
-        $user = User::model()->findByAttributes(array(
+
+        //从这里判断获取的用户名是手机号，邮箱还是用户名
+
+        /* $user = User::model()->findByAttributes(array(
             'username' => $this->username
         ));
+        */
+        $u_name =$this->username;
+        $criteria = new CDbCriteria; 
+        $criteria->select = '*';//指定的字段
+        $criteria->addCondition("username='{$u_name}'",'OR');
+        $criteria->addCondition("email='{$u_name}'",'OR');
+        $criteria->addCondition("mobile='{$u_name}'",'OR');
+        $criteria->distinct = true; //是否唯一查询 
+        $user=User::model()->find($criteria); // $params isnot needed  
+
 
         if ($user == false) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;//1
