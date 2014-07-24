@@ -16,7 +16,7 @@
         <script type="text/javascript" src="/static/js/user.js?v=1.0.2"></script>
         <script type="text/javascript" src="/static/js/sign_day.js?v=1.0.1"></script>
         <script type="text/javascript" src="/static/js/move.js?v=1.0.2"></script>
-        <script type="text/javascript" src="http://malsup.github.io/min/jquery.blockUI.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.blockUI.min.js"></script>
     </head>
     <body>
         <div id="header">
