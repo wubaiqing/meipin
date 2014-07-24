@@ -70,7 +70,7 @@ class DataTaskCommand extends CConsoleCommand
         $pageSize = 100;
 
         while (true) {
-            $orderList = Order::model()->findAll('pay_status=0 and created_at < '.(time()- Yii::app()->params['payTimeout']).' limit ' . $pageSize);
+            $orderList = Order::model()->findAll('pay_status=0 '.' limit ' . $pageSize);
             if (empty($orderList)) {
                 Yii::log('没有可处理的过期订单', CLogger::LEVEL_INFO,'application.orderpay');
                 break;
