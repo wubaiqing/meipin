@@ -70,8 +70,8 @@ return [
                 'pageSize' => 120,
                 'exchangePageSize' => 21,//积分兑换首页，每页显示数量
                 'goodsdetail'=>12,       
-                'payTimeout' => 3600, //支付超时
             ],
+            'payTimeout' => 3600, //支付超时
             //前台配置标识
             'platform' => 'frontend',
             'linkCacheTime' => 86400,
