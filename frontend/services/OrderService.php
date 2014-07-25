@@ -22,6 +22,8 @@ class OrderService
     public static function pay($id, $user_id)
     {
         $maxTimeout = Yii::app()->params['payTimeout'];
+        //echo $maxTimeout;
+        //die;
         $url = "/";
         if (!preg_match('/^\d+$/', $id)) {
             return CommonHelper::getDataResult(false, ['message' => '订单号非法', 'url' => $url]);
@@ -41,6 +43,7 @@ class OrderService
             return CommonHelper::getDataResult(false, ['message' => "你的积分不足以进行此次购买", 'url' => $url]);
         }*/
         //支付超时
+        echo ($order->created_at+$maxTimeout).'=='.time();
         if (($order->created_at + $maxTimeout) < time()) {
             return CommonHelper::getDataResult(false, ['message' => '付款时间已经超时，不能再进行付款', 'url' => Yii::app()->createUrl("order/list")]);
         }
