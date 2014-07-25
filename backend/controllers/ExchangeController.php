@@ -243,8 +243,14 @@ class ExchangeController extends Controller
         $exchangeModel = new Exchange();
         $exchangeModel->unsetAttributes();
         $exchangeModel->goods_type = 1;
+
+        $post = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
+        //是否是删除的
+        if (empty($post) || isset($post['is_delete']) && $post['is_delete'] == "") {
+            $exchangeModel->is_delete = 0;
+        }
         if (isset($_GET[CHtml::modelName($exchangeModel)])) {
-            $exchangeModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($exchangeModel));
+            $exchangeModel->attributes = $post ;
         }
         $this->render('admin', [
             'exchangeModel' => $exchangeModel,
@@ -323,6 +329,10 @@ class ExchangeController extends Controller
         //设置默认值
         if (empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
             $model->status = "";
+        }
+                //设置默认值
+        if (empty($exchangeLog) || isset($exchangeLog['pay_status']) && $exchangeLog['pay_status'] == "") {
+            $model->pay_status = 1;
         }
         //渲染模板
         $this->render('shipAdmin', [

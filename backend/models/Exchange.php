@@ -12,6 +12,15 @@ class Exchange extends CActiveRecord
         '1' => '是',
         '2' => '否',
     );
+
+
+    /**
+     * 是否删除
+     * @var array
+     */
+    static $is_delete = [ 0 => '显示', 1 => '已删除'];
+
+
     /**
      * 商品类型
      * @var array
@@ -134,7 +143,8 @@ class Exchange extends CActiveRecord
         $criteria->compare('support_url', $this->support_url, true);
         $criteria->compare('description', $this->description, true);
         $criteria->compare('img_url', $this->img_url, true);
-        $criteria->compare('is_delete', 0); //默认只查询未删除的
+        //$criteria->compare('is_delete', 0); //默认只查询未删除的
+        $criteria->compare('is_delete', $this->is_delete); //默认只查询未删除的
         $criteria->compare('goods_type', $this->goods_type);
         $criteria->order = 't.id desc';
 
