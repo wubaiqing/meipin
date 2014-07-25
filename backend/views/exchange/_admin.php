@@ -23,6 +23,7 @@
         echo CHtml::link('删除', 'javascript:void(0);', ['class' => 'delete','onclick'=>'goods_delete(this)','url'=>Yii::app()->createUrl("exchange/delete", ["id" => $data->id])]) . "&nbsp;";
         if ($data->goods_type == 1) {
             echo CHtml::link('注水', Yii::app()->createUrl("exchange/water", ["id" => $data->id]), ['class' => 'water']) . "&nbsp;";
+            echo CHtml::link('中奖', Yii::app()->createUrl("exchange/raffleShipAdmin", ["id" => $data->id]), ['class' => 'water']) . "&nbsp;";
         }
         ?>
     </td>

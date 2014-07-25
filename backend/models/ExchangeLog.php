@@ -40,6 +40,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
     static $pay_status = [ 0 => '未支付', 1 => '已支付'];
 
     /**
+     * 搜索状态显示
+     * @var array
+     */
+    static $zhushui = [ "<>''" => '正常', "=''" => '注水'];
+
+    /**
      * 省份ID
      * @var integer
      */
@@ -139,6 +145,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria;
         $criteria->compare('goods_id', $this->goods_id);
         $criteria->compare('pay_status', $this->pay_status);
+        $criteria->compare('user_id', $this->user_id);
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);

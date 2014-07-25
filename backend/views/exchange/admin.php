@@ -14,7 +14,7 @@
         'itemsCssClass'=>'table table-striped table-bordered',
         'emptyText'=>'对不起，没有任何搜索结果。',
         'viewData'=>[],
-        'itemtops'=>'<th width=7%>ID</th><th width=8%>商品名称</th><th width=18%>颜色</th><th width=7%>限制件数</th><th width=13%>上线时间</th><th width=13%>下线时间</th><th width=7%>参与人数</th><th width=7%>首页</th><th width=7%>排序</th><th width=11%>操作</th>',
+        'itemtops'=>'<th width=7%>ID</th><th width=8%>商品名称</th><th width=18%>颜色</th><th width=7%>限制件数</th><th width=13%>上线时间</th><th width=13%>下线时间</th><th width=7%>参与人数</th><th width=7%>首页</th><th width=7%>排序</th><th width=15%>操作</th>',
 //        'enableSorting' => false,
 //        'itemsCssClass' => 'table table-striped table-bordered',
 //        'pagerCssClass' => 'pagination pagination-small',

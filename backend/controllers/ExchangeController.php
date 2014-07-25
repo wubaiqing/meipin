@@ -286,6 +286,7 @@ class ExchangeController extends Controller
         $exchangeLog = Yii::app()->request->getQuery("ExchangeLog");
 
         $model = new ExchangeLog();
+        $model->user_id ="<>''"; //查询用户id不为空
         //查询赋值
         if (!empty($exchange)) {
             $model->exchangeModel->attributes = $exchange;
@@ -312,13 +313,18 @@ class ExchangeController extends Controller
     /**
      * 兑换商品列表
      */
-    public function actionRaffleShipAdmin()
+    public function actionRaffleShipAdmin($id=0)
     {
         $exchange = Yii::app()->request->getQuery("Exchange");
         $exchangeLog = Yii::app()->request->getQuery("ExchangeLog");
 
         $model = new ExchangeLog();
         $model->winner = 1;
+        if($id!=0)
+        {
+            $model->goods_id = $id;
+        }
+        //$model->user_id ="<>''"; //查询不是注水用户的订单
         //查询赋值
         if (!empty($exchange)) {
             $model->exchangeModel->attributes = $exchange;
@@ -334,6 +340,12 @@ class ExchangeController extends Controller
         if (empty($exchangeLog) || isset($exchangeLog['pay_status']) && $exchangeLog['pay_status'] == "") {
             $model->pay_status = 1;
         }
+
+        //设置默认值
+        if (empty($exchangeLog) || isset($exchangeLog['user_id']) && ($exchangeLog['user_id'] == "" )) {
+            $model->user_id ="<>''"; //查询不是注水用户的订单
+        }
+
         //渲染模板
         $this->render('shipAdmin', [
             'model' => $model,
@@ -398,12 +410,13 @@ class ExchangeController extends Controller
             $exchangeLog->attributes = Yii::app()->request->getPost("ExchangeLog");
             $exchangeLog->winner = 1;
             $exchangeLog->user_add = 1;
+            $exchangeLog->pay_status = 1; //pay_status 
             if ($d = $exchangeLog->save()) {
                 $userCount = ExchangeLog::getUserCount($id);
                 Exchange::model()->updateByPk($id, ['user_count'=>$userCount]);
                 Exchange::deleteCache($id);
                 ExchangeLog::deleteExchangeLogListCache($exchangeLog->goods_id);
-                $this->redirect($this->createUrl('exchange/Admin'));
+                $this->redirect($this->createUrl('exchange/water',["id" => $id]));
             }
         }
         //查询注水中奖用户
