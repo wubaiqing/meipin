@@ -236,6 +236,25 @@ class SiteController extends Controller
         ]);
     }
 
+
+    /**
+     *   测试线上抽奖 调出已删除的抽奖商品进行测试
+     */
+    public function actionDelegds($page = 1, $cat = 1003, $t = '')
+    {
+        //积分兑换首页商品列表
+        $exchangeModel = new Exchange();
+        $data = $exchangeModel->showExchangeGoodsList2($page, 1, $t);
+        //渲染頁面
+        $this->render('/exchange/raffleList', [
+            'cat' => $cat, // 分类
+            'history'=>$t,//显示历史抽奖数据
+            'page' => $page, // 当前页
+            'goods' => $data['goods'], // 商品数据
+            'pager' => $data['pages'], // 商品翻页
+        ]);
+    }
+
     function actionDownload()
     {
         $this->layout = "";

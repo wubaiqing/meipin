@@ -316,6 +316,63 @@ class Exchange extends ActiveRecord
         return $data;
     }
 
+
+
+    /**
+     * 积分兑换首页商品列表  ceshi 
+     * @param integer $currentPage 分页页码
+     * @param integer $goodsType 商品类型
+     * @param string $timeLine 是否过期商品
+     * @return array
+     * @author zhangchao
+     */
+    public function showExchangeGoodsList2($currentPage = 0, $goodsType = 0, $timeLine = '')
+    {
+        $time = time();
+        //缓存的key
+        $cacheKey = 'exchange_list_' . md5(serialize(func_get_args()));
+        $exchangeList = Yii::app()->cache->get($cacheKey);
+        if ($exchangeList) {
+            return $exchangeList;
+        }
+
+        $criteria = new CDbCriteria();
+        //$criteria->order = ' id desc ';
+        $criteria->order = ' IF(UNIX_TIMESTAMP(NOW())<start_time,end_time,IF (start_time<=UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(NOW())<end_time,start_time+POW(2,40),end_time*(-1)+POW(2,41)))';
+        
+
+        $criteria->compare('is_delete', 1);
+
+        if ($timeLine =='ongoing') { //正在进行
+            $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
+        } else if ($timeLine == 'history') {
+            $criteria->addCondition('end_time <= ' . $time);
+        }
+
+        $criteria->compare('goods_type', $goodsType);
+
+        //分页类开始
+        $pages = new CPagination();
+        if($currentPage>=1)
+        {
+            $currentPage = $currentPage-1;
+        }
+        $pages->currentPage = $currentPage;
+        //计算总数
+        $pages->itemCount = Exchange::model()->count($criteria);
+        //每页显示数量，配置文件中可配
+        $pages->pageSize = Yii::app()->params['pagination']['exchangePageSize'];
+        $pages->applyLimit($criteria);
+        $data = [];
+        //根据条件查询积分兑换商品
+        $data['goods'] = Exchange::model()->findAll($criteria);
+        //分页类
+        $data['pages'] = $pages;
+        //写入缓存
+        Yii::app()->cache->set($cacheKey, $data, Constants::T_SECOND_TEN);
+
+        return $data;
+    }
     /**
      * 获取商品类型名称
      * @param integer $goodsType 商品类型
