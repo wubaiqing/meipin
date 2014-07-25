@@ -270,6 +270,7 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $criteria = new CDbCriteria; 
         $criteria->select = '*';//指定的字段
         $criteria->addCondition("winner=1");
+        $criteria->addCondition("pay_status=1");
         $criteria->addCondition("goods_id='{$goods_id}'");
         $criteria->limit = $exhcange->limit_count;;
         $criteria->order = 'user_id DESC' ;//排序条件 
