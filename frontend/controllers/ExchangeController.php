@@ -242,6 +242,9 @@ class ExchangeController extends Controller
         }
         //查询中奖明细
         $winerList = ExchangeLog::getWinners($goodsId);
+        //echo count($winerList);
+        //var_dump($winerList);
+        //die;
         //渲染頁面
         $this->render('raffleIndex', [
             'data' => $dataResult['data'],

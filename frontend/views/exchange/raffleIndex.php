@@ -41,9 +41,9 @@
                     <h2>中奖名单
                     <ul class="">
                         <?php foreach($winnerList as $winner):?>
-                        <?php if($winner->user_id):?>
+                        <?php //if($winner->user_id):?>
                         <li><?php echo "<b>".$winner->username."</b>&nbsp;于".date("Y年m月d日",$winner->created_at)."中奖";?> </li>
-                        <?php endif;?>
+                        <?php // endif;?>
 
                         <?php endforeach;?>
                     </ul>

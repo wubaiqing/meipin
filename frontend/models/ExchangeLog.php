@@ -263,7 +263,19 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         if (!empty($result)) {
             return $result;
         }
-        $result = ExchangeLog::model()->findAllByAttributes(['winner' => 1, 'goods_id' => $goods_id]);
+
+        //$result = ExchangeLog::model()->findAllByAttributes(['winner' => 1, 'goods_id' => $goods_id]);
+        //查询中奖名额限制
+        $exhcange = Exchange::model()->findByAttributes(array('id' => $goods_id));
+        $criteria = new CDbCriteria; 
+        $criteria->select = '*';//指定的字段
+        $criteria->addCondition("winner=1");
+        $criteria->addCondition("goods_id='{$goods_id}'");
+        $criteria->limit = $exhcange->limit_count;;
+        $criteria->order = 'user_id DESC' ;//排序条件 
+        $criteria->distinct = false; //是否唯一查询 
+        $result = ExchangeLog::model()->findAll($criteria); // $params isnot needed  
+
         Yii::app()->cache->set($cacheKey, $result, Constants::T_HALF_HOUR);
         return $result;
     }
