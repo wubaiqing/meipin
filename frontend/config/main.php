@@ -68,7 +68,7 @@ return [
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => 120,
-                'exchangePageSize' => 21,//积分兑换首页，每页显示数量
+                'exchangePageSize' => 60,//积分兑换首页，每页显示数量
                 'goodsdetail'=>12,       
             ],
             'payTimeout' => 3600, //支付超时
