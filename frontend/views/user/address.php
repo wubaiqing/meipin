@@ -66,7 +66,7 @@
                         电子邮箱：
                     </td>
                     <td height="32" align="left">
-                        <?php echo $form->textField($model, 'email', array('class' => 'text', 'maxLength' => '10')); ?>
+                        <?php echo $form->textField($model, 'email', array('class' => 'text', 'maxLength' => '25')); ?>
                     </td>
                 </tr>
                 <tr align="center" class="color">

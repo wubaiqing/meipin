@@ -52,7 +52,7 @@
         <li>
             <label>电子邮箱：</label>
             <em id="li_mobile">
-                <?php echo $form->textField($data['userAddress'], 'email', array('class' => 'text', 'maxLength' => '15')); ?>
+                <?php echo $form->textField($data['userAddress'], 'email', array('class' => 'text', 'maxLength' => '25')); ?>
             </em>
         </li>
         <li>
