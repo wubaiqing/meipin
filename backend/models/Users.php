@@ -215,6 +215,7 @@ class Users extends ActiveRecord implements IArrayable
         $criteria->select = "FROM_UNIXTIME(created_at,'%Y-%m-%d') as created_at,count(id) as id";
         $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $this->created_at);
         $criteria->group="FROM_UNIXTIME(created_at,'%Y-%m-%d')";
+        $criteria->order = 'created_at desc';
         //$result = Users::model()->findAll($criteria);
 
        /*  foreach ($result  as $key => $value) 
