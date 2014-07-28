@@ -77,4 +77,18 @@ class UserController extends Controller
             'city' => $city
         ]);
     }
+
+
+    /*
+     *用户统计
+    */
+    public function actionUserinfo()
+    {
+        $users = new Users();
+        $post = $users->getuserinfo();
+        foreach ($post as $key => $value) {
+            var_dump($value);
+        }
+
+    }
 }

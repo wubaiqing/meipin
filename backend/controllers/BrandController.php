@@ -129,7 +129,7 @@ class BrandController extends Controller
         }
         $this->render('admin', [
             'brandModel' => $brandModel,
-            'titleLabel' => '兑换商品管理',
+            'titleLabel' => '品牌列表',
         ]);
     }
 

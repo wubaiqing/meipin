@@ -203,6 +203,20 @@ class Users extends ActiveRecord implements IArrayable
             ]);
     }
 
+
+    /**
+     * 用户统计
+     * @return array
+     */
+    public function getuserinfo()
+    {
+        $criteria = new CDbCriteria;
+        //SELECT FROM_UNIXTIME(created_at,'%Y-%m-%d') as dltime,count(id) from meipin_users GROUP BY FROM_UNIXTIME(created_at,"%Y-%m-%d");
+        $criteria->select="FROM_UNIXTIME(created_at,'%Y-%m-%d')";
+       //findAllBySql("select *from admin whereusername=:name",array(':name'=>'admin')); 
+        $result = Users::model()->findAll($criteria);
+        return $result;
+    }
     /**
      * 字段属性名称
      * @return array
