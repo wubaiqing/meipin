@@ -51,7 +51,7 @@ class Users extends ActiveRecord implements IArrayable
             ['email', 'email', 'message' => '请填写正确邮箱地址', 'on' => 'register'],
             ['oldPassword', 'checkOldPassword', 'on' => 'password'],
             ['password', 'checkPassword', 'on' => 'register, password'],
-            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode,dr_count,last_dr_time', 'safe'],
+            ['id, username, password, email, salt, created_at, updated_at, confirmPassword, verifyCode,dr_count,last_dr_time, count', 'safe'],
         ];
     }
 
@@ -210,12 +210,49 @@ class Users extends ActiveRecord implements IArrayable
      */
     public function getuserinfo()
     {
+
         $criteria = new CDbCriteria;
-        //SELECT FROM_UNIXTIME(created_at,'%Y-%m-%d') as dltime,count(id) from meipin_users GROUP BY FROM_UNIXTIME(created_at,"%Y-%m-%d");
-        $criteria->select="FROM_UNIXTIME(created_at,'%Y-%m-%d')";
-       //findAllBySql("select *from admin whereusername=:name",array(':name'=>'admin')); 
-        $result = Users::model()->findAll($criteria);
-        return $result;
+        $criteria->select = "FROM_UNIXTIME(created_at,'%Y-%m-%d') as created_at,count(id) as id";
+        $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $this->created_at);
+        $criteria->group="FROM_UNIXTIME(created_at,'%Y-%m-%d')";
+        //$result = Users::model()->findAll($criteria);
+
+       /*  foreach ($result  as $key => $value) 
+        {
+            $ctime = $value->created_at;
+            $sql = "SELECT reason,sum(score) as score from meipin_score where FROM_UNIXTIME(created_at,'%Y-%m-%d')='{$ctime}' GROUP BY FROM_UNIXTIME(created_at,'%Y-%m-%d'),reason";
+            $score = Score::model()->findAllBySql($sql);
+            $result[$key]['score']=$score;
+        }*/
+        return new CActiveDataProvider($this,
+        [
+            'criteria' => $criteria,
+        ]);
+    }
+
+    /**
+     * 用户统计 积分数
+     * @return array
+     */
+    public function getscore($ctime)
+    {
+        $criteria = new CDbCriteria;
+        $criteria->select = "reason,sum(score) as score";
+        $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $ctime);
+        $criteria->group=" FROM_UNIXTIME(created_at,'%Y-%m-%d'),reason";
+        $result = Score::model()->findAll($criteria);
+        $arr =array('zjscore'=>'无','xhscore'=>'无');
+
+        foreach ($result as $key => $value) {
+            if($value->reason ==1)
+            {
+                $arr['zjscore'] = $value->score;
+            }else
+            {
+                $arr['xhscore'] = $value->score;
+            }
+        }
+        return $arr;
     }
     /**
      * 字段属性名称

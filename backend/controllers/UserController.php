@@ -85,10 +85,8 @@ class UserController extends Controller
     public function actionUserinfo()
     {
         $users = new Users();
-        $post = $users->getuserinfo();
-        foreach ($post as $key => $value) {
-            var_dump($value);
-        }
+        $users->attributes = Yii::app()->request->getQuery(CHtml::modelName($users));
+        $this->render("userinfo",['usermodel'=>$users]);
 
     }
 }
