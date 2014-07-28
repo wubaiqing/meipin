@@ -69,7 +69,7 @@
                 </h4>
             </div>
                     <?php if($data['exchange']->description){?>
-                    <a style="width:400px;margin-left:28px;float:left"><span style="color:red;font-weight:bold;font-size:16px;float:left;">兑换说明：</span><?php echo $data['exchange']->description;?> </a>
+                    <a style="width:400px;margin-left:28px;float:left;margin-bottom:20px;"><span style="color:red;font-weight:bold;font-size:16px;float:left;">兑换说明：</span><?php echo $data['exchange']->description;?> </a>
                     <?php };?>
         </form>
         <?php
