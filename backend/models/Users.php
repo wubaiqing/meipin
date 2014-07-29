@@ -242,11 +242,13 @@ class Users extends ActiveRecord implements IArrayable
         $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $ctime);
         $criteria->group=" FROM_UNIXTIME(created_at,'%Y-%m-%d'),reason";
         $result = Score::model()->findAll($criteria);
-        $arr =array('zjscore'=>'无','xhscore'=>'无');
-
+        $arr =array('zjscore'=>'无','xhscore'=>'无','qdrs'=>0);
+        $qdrs = 0;
         foreach ($result as $key => $value) {
             if($value->reason ==1)
             {
+                $qdrs++;
+                $arr['qdrs'] = $qdrs;
                 $arr['zjscore'] = $value->score;
             }else
             {

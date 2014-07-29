@@ -12,7 +12,7 @@
         'itemsCssClass'=>'table table-striped table-bordered',
         'emptyText'=>'对不起，没有任何搜索结果。',
         'viewData'=>[],
-        'itemtops'=>'<th width=10%>时间</th><th width=9%>注册用户</th><th width=9%>增加积分</th><th width=9%>消耗积分</th>',
+        'itemtops'=>'<th width=10%>时间</th><th width=9%>注册用户</th><th width=9%>签到用户</th><th width=9%>签到积分</th><th width=9%>消耗积分</th>',
 
         'itemView'=>'_userinfo',
         'pager' => array(
