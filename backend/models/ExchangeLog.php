@@ -56,11 +56,12 @@ class ExchangeLog extends ActiveRecord implements IArrayable
      * @var Exchange
      */
     public $exchangeModel;
-
+    public $userModel;
     public function init()
     {
         parent::init();
         $this->exchangeModel = new Exchange();
+        $this->userModel = new Users();
     }
 
     /**
@@ -149,6 +150,9 @@ class ExchangeLog extends ActiveRecord implements IArrayable
         $criteria->order = 't.created_at desc';
         if (!empty($this->exchangeModel->name)) {
             $criteria->compare('exchange.name', $this->exchangeModel->name, true);
+        }
+        if (!empty($this->userModel->username)) {
+            $criteria->compare('users.username', $this->userModel->username, true);
         }
         $criteria->compare('t.status', $this->status);
         $criteria->compare('t.winner', $this->winner);

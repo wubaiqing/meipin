@@ -284,6 +284,7 @@ class ExchangeController extends Controller
     {
         $exchange = Yii::app()->request->getQuery("Exchange");
         $exchangeLog = Yii::app()->request->getQuery("ExchangeLog");
+        $users = Yii::app()->request->getQuery("Users");
 
         $model = new ExchangeLog();
         $model->user_id ="<>''"; //查询用户id不为空
@@ -293,6 +294,9 @@ class ExchangeController extends Controller
         }
         if (!empty($exchangeLog)) {
             $model->attributes = $exchangeLog;
+        }
+        if (!empty($users)) {
+            $model->userModel->attributes= $users;
         }
         //设置默认值
         if (empty($exchangeLog) || isset($exchangeLog['status']) && $exchangeLog['status'] == "") {
@@ -317,6 +321,7 @@ class ExchangeController extends Controller
     {
         $exchange = Yii::app()->request->getQuery("Exchange");
         $exchangeLog = Yii::app()->request->getQuery("ExchangeLog");
+        $users = Yii::app()->request->getQuery("Users");
 
         $model = new ExchangeLog();
         $model->winner = 1;
@@ -328,6 +333,9 @@ class ExchangeController extends Controller
         //查询赋值
         if (!empty($exchange)) {
             $model->exchangeModel->attributes = $exchange;
+        }
+        if (!empty($users)) {
+            $model->userModel->attributes= $users;
         }
         if (!empty($exchangeLog)) {
             $model->attributes = $exchangeLog;

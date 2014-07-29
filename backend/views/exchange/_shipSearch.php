@@ -31,6 +31,9 @@ endif;
 <?php echo $form->hiddenField($model,'goods_id');?>  
 <?php echo CHtml::label('商品名称：', 'name'); ?>
 <?php echo $form->textField($model->exchangeModel, 'name'); ?>
+
+<?php echo CHtml::label('用户名：', 'username'); ?>
+<?php echo $form->textField($model->userModel, 'username'); ?>
 <?php echo CHtml::submitButton('搜索', ['class' => 'btn']); ?>
 
 <?php $this->endWidget(); ?>
