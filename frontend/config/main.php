@@ -67,7 +67,7 @@ return [
             'desc' => '美品网，一家专门做打折特惠的网站，花最少的钱，买走最好的东西，每日更多众多商品0元换购，美品汇集地。',
             'pagination' => [
                 'pageVar' => 'page',
-                'pageSize' => 120,
+                'pageSize' => 240,
                 'exchangePageSize' => 60,//积分兑换首页，每页显示数量
                 'goodsdetail'=>12,       
             ],
