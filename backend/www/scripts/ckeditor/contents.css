@@ -99,10 +99,12 @@ pre
 	tab-size: 4;
 }
 
-.marker
-{
-	background-color: Yellow;
-}
+.ck_yellow{	background-color: Yellow;}
+.ck_red{background-color: Red;}
+.ck_green{background-color: Green;}
+.ck_blue{background-color: Blue;}
+.ck_purple{background-color: Purple;}
+
 
 span[lang]
 {

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css"  href="/static/css/contents.css?v=1.0.0.01"/>
 <div id="detail" class="detail">
     <div class="deteilpic l">
         <div style="width: 400px;" id="big_img">

@@ -57,7 +57,11 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Superscript',		element: 'sup' },
 	*/
 
-	{ name: 'Marker',			element: 'span', attributes: { 'class': 'marker' } },
+	{ name: '黄色',			element: 'span', attributes: { 'class': 'ck_yellow' } },
+    { name: '红色',			element: 'span', attributes: { 'class': 'ck_red' } },
+    { name: '绿色',			element: 'span', attributes: { 'class': 'ck_green' } },
+    { name: '蓝色',			element: 'span', attributes: { 'class': 'ck_blue' } },
+    { name: '紫色',			element: 'span', attributes: { 'class': 'ck_purple' } },
 
 	{ name: 'Big',				element: 'big' },
 	{ name: 'Small',			element: 'small' },
