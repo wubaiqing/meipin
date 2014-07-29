@@ -15,9 +15,9 @@ class SearchController extends Controller
     /**
      * 美品网搜索
      */
-    public function actionIndex($title)
+    public function actionIndex($title,$page=1)
     {
-        $search = Goods::model()->search($title);
+        $search = Goods::model()->search($title,$page);
         if (!empty($search)) {
             $this->render('search', ['goods' => $search['data'],'pager' => $search['pager']]);
         } else {

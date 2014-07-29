@@ -15,9 +15,9 @@ class BrandController extends Controller
     /**
      * 美品网品牌
      */
-    public function actionIndex($cat='5yuan')
+    public function actionIndex($cat='5yuan',$page = 1)
     {
-        $search = Goods::model()->searchbrand($cat);
+        $search = Goods::model()->searchbrand($cat,$page);
         if (!empty($search)) {
             $this->render('search', ['goods' => $search['data'],'pager' => $search['pager']]);
         } else {

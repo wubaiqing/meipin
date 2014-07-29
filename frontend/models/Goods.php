@@ -250,13 +250,13 @@ class Goods extends ActiveRecord implements IArrayable
      * 商品搜索
      * @params string $title
      */
-    public function search($title)
+    public function search($title,$page)
     {
         if (empty($title)) {
             return false;
         }
 
-        $cacheKey = 'meipin-search-title-'.md5(trim($title));
+        $cacheKey = 'meipin-search-title-'.md5(trim($title)).'-'.$page;
         $response = Yii::app()->cache->get($cacheKey);
         if (!empty($response)) {
             return $response;
@@ -266,11 +266,12 @@ class Goods extends ActiveRecord implements IArrayable
 
         // 清空标题字符
         $title = trim($title);
-
+        $time = time();
         // 搜索条件
         $criteria = new CDbCriteria();
         $criteria->addSearchCondition('title', $title);
         $criteria->compare('status', '= 1'); //状态显示
+        $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
         $this->dbCriteria->mergeWith($criteria);
         $pagination = $this->paginate();
 
@@ -287,13 +288,13 @@ class Goods extends ActiveRecord implements IArrayable
      * 品牌搜索
      * @params string $title
      */
-    public function searchbrand($cat)
+    public function searchbrand($cat,$page)
     {
         if (empty($cat)) {
             return false;
         }
-
-        $cacheKey = 'meipin-search-title-'.md5(trim($cat));
+ 
+        $cacheKey = 'meipin-search-title-'.md5(trim($cat)).'-'.$page;
         $response = Yii::app()->cache->get($cacheKey);
         if (!empty($response)) {
             return $response;
@@ -303,7 +304,7 @@ class Goods extends ActiveRecord implements IArrayable
 
         // 清空标题字符
         $cat = trim($cat);
-
+        $time = time();
         // 搜索条件
         $criteria = new CDbCriteria();
         if($cat == '5yuan')
@@ -311,7 +312,8 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('price', '<= 5');
         }
         $criteria->compare('status', '= 1');//状态显示
-        $criteria->order="created_at desc,price asc";
+        $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
+        $criteria->order="created_at desc";
         $this->dbCriteria->mergeWith($criteria);
         $pagination = $this->paginate();
 
