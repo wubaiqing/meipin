@@ -34,6 +34,8 @@
             ?>
             <a target="_blank" class="youq_a" href="<?php echo $link->url; ?>" title="<?php echo $link->image_url; ?>"><?php echo $link->image_url; ?></a>
         <?php endforeach; ?>
+       
     </div>
+    <div style="float:right;margin-right:142px;margin-top:18px;">京ICP备14018553号-1</div>
     <span style='display:none'><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000462720'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1000462720%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></span>
 </div>
