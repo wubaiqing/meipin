@@ -311,6 +311,7 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->compare('price', '<= 5');
         }
         $criteria->compare('status', '= 1');//状态显示
+        $criteria->order="created_at desc,price asc";
         $this->dbCriteria->mergeWith($criteria);
         $pagination = $this->paginate();
 
