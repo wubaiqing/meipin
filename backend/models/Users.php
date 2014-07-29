@@ -238,17 +238,16 @@ class Users extends ActiveRecord implements IArrayable
     public function getscore($ctime)
     {
         $criteria = new CDbCriteria;
-        $criteria->select = "reason,sum(score) as score";
+        $criteria->select = "reason,sum(score) as score,count(id) as user_id";
         $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $ctime);
         $criteria->group=" FROM_UNIXTIME(created_at,'%Y-%m-%d'),reason";
         $result = Score::model()->findAll($criteria);
         $arr =array('zjscore'=>'无','xhscore'=>'无','qdrs'=>0);
-        $qdrs = 0;
         foreach ($result as $key => $value) {
+            
             if($value->reason ==1)
             {
-                $qdrs++;
-                $arr['qdrs'] = $qdrs;
+                $arr['qdrs'] = $value->user_id; //用户签到数
                 $arr['zjscore'] = $value->score;
             }else
             {
