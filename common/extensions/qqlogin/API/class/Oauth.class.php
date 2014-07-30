@@ -37,7 +37,7 @@ class Oauth{
         
         $state = md5(uniqid(rand(), TRUE));
        // $this->recorder->write('state',$state); 改
-        setcookie("QCCODESE",$state,time()+30,"/");
+        setcookie("QCCODESE",$state,time()+360,"/",'www.meipin.com',1);
         //-------构造请求参数列表
         $keysArr = array(
             "response_type" => "code",
@@ -54,9 +54,7 @@ class Oauth{
 
     public function qq_callback(){
        // $state = $this->recorder->read("state");改
-
         $state = $_COOKIE["QCCODESE"];
-        
         $state2 = $_GET['state'];
         //--------验证state防止CSRF攻击
         if($state2 != $state){
