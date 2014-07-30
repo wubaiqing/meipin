@@ -19,6 +19,7 @@ class Oauth{
     protected $recorder;
     public $urlUtils;
     protected $error;
+    public $state;
     
 
     function __construct(){
