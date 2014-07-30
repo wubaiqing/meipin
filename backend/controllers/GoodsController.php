@@ -77,7 +77,12 @@ class GoodsController extends Controller
         $model->unsetAttributes();
         if(isset($_GET['Goods'])) {
 	        $model->attributes = $_GET['Goods'];
+            $searchinput = trim($_GET['Goods']['searchInput']);
             $model->status="";
+            if(!$searchinput){
+                $model->status = '= 1';
+            }
+            
         } else {
 	        $model->status = '= 1';
         }
