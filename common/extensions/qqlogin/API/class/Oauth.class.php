@@ -55,7 +55,7 @@ class Oauth{
     public function qq_callback(){
        // $state = $this->recorder->read("state");改
 
-        $state = $_COOKIE['QC_codesession'];
+        $state = $_COOKIE["QC_codesession"];
         
         $state2 = $_GET['state'];
         //--------验证state防止CSRF攻击
