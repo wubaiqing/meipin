@@ -86,17 +86,15 @@ class GoodsController extends Controller
         ));
     }
 
-    public function actionTest1()
+    /*
+     *商品统计
+    */
+    public function actionCount()
     {
-        //$admin_id = 0;
-        echo Yii::app()->user->id;
-        echo '===';
-        echo $this->isLogin;
-        //$admin_id = User::getUserName(Yii::app()->user->id)?User::getUserName(Yii::app()->user->id):0;
-       // print_r($admin_id);
-
+        $model = new Goods();
+        $model->attributes = Yii::app()->request->getQuery(CHtml::modelName($model));
+        $this->render("goodsinfo",['goodsmodel'=>$model]);
     }
-
     /**
      * 添加商品
      * @param integer $goodsType 商品类型

@@ -296,4 +296,22 @@ class Goods extends ActiveRecord implements IArrayable
         return $criteria;
     }
 
+    /**
+     * 商品统计
+     * @return array
+     */
+    public function getgoodsinfo()
+    {
+
+        $criteria = new CDbCriteria;
+        $criteria->select = "FROM_UNIXTIME(created_at,'%Y-%m-%d') as created_at,count(id) as id,user_id";
+        $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $this->created_at);
+        $criteria->group="FROM_UNIXTIME(created_at,'%Y-%m-%d'),user_id";
+        $criteria->order = 'created_at desc';
+        return new CActiveDataProvider($this,
+        [
+            'criteria' => $criteria,
+        ]);
+    }
+
 }
