@@ -77,6 +77,7 @@ class GoodsController extends Controller
         $model->unsetAttributes();
         if(isset($_GET['Goods'])) {
 	        $model->attributes = $_GET['Goods'];
+            $model->status="";
         } else {
 	        $model->status = '= 1';
         }
