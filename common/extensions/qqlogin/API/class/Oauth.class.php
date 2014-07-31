@@ -4,7 +4,7 @@
  * @author connect@qq.com
  * @copyright © 2013, Tencent Corporation. All rights reserved.
  */
-ini_set('date.timezone','Asia/Shanghai');
+ini_set('date.timezone','PRC');
 require_once(CLASS_PATH."Recorder.class.php");
 require_once(CLASS_PATH."URL.class.php");
 require_once(CLASS_PATH."ErrorCase.class.php");
