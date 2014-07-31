@@ -37,7 +37,7 @@ class Oauth{
         
         $state = md5(uniqid(rand(), TRUE));
        // $this->recorder->write('state',$state); 改
-        setcookie("QCCODESE",$state,time()+360);
+        setcookie("QCCODESE",$state,time()+3600*24);
         $_COOKIE["QCCODESE"] = $state;
         //-------构造请求参数列表
         $keysArr = array(
