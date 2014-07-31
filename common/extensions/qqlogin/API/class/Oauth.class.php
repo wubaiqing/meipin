@@ -4,7 +4,7 @@
  * @author connect@qq.com
  * @copyright © 2013, Tencent Corporation. All rights reserved.
  */
-ini_set('date.timezone','PRC');
+
 require_once(CLASS_PATH."Recorder.class.php");
 require_once(CLASS_PATH."URL.class.php");
 require_once(CLASS_PATH."ErrorCase.class.php");
@@ -34,10 +34,10 @@ class Oauth{
         $scope = $this->recorder->readInc("scope");
 
         //-------生成唯一随机串防CSRF攻击
-        
+        date_default_timezone_set('PRC');
         $state = md5(uniqid(rand(), TRUE));
        // $this->recorder->write('state',$state); 改
-        setcookie("QCCODESE",$state,time()+3600*24);
+        setcookie("QCCODESE",$state,time()+360);
         $_COOKIE["QCCODESE"] = $state;
         //-------构造请求参数列表
         $keysArr = array(
@@ -54,6 +54,7 @@ class Oauth{
     }
 
     public function qq_callback(){
+        date_default_timezone_set('PRC');
        // $state = $this->recorder->read("state");改
         $state = $_COOKIE["QCCODESE"];
         $state2 = $_GET['state'];
