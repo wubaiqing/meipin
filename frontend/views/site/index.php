@@ -16,7 +16,7 @@
     <?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 </div>
 <?php $this->renderPartial('right'); ?>
-
+<?php $this->renderPartial('map'); ?>
 <div id="footer" class="footer">
     <?php $this->renderPartial('footer'); ?>
 </div>
