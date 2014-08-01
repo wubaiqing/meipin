@@ -62,6 +62,12 @@
                 'name' => 'list_order',
                 'value' => 'CHtml::link($data->list_order, "javascript:void(0);", array("order-id" => $data->id, "class" => "settingOrder"))',
             ),
+            'updated_at' => array(
+                'name' => 'updated_at',
+                'id' => 'updated_at',
+                'value' => 'date("Y-m-d", $data->updated_at)',
+                'htmlOptions' => array('width' => '80')
+            ),
             'user_id'=>array(
                  'name'=>'user_id',
                  'id' => 'user_id',

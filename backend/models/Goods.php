@@ -304,10 +304,10 @@ class Goods extends ActiveRecord implements IArrayable
     {
 
         $criteria = new CDbCriteria;
-        $criteria->select = "FROM_UNIXTIME(created_at,'%Y-%m-%d') as created_at,count(id) as id,user_id";
-        $criteria->compare("FROM_UNIXTIME(created_at,'%Y-%m-%d')", $this->created_at);
-        $criteria->group="FROM_UNIXTIME(created_at,'%Y-%m-%d'),user_id";
-        $criteria->order = 'created_at desc';
+        $criteria->select = "FROM_UNIXTIME(updated_at,'%Y-%m-%d') as created_at,count(id) as id,user_id";
+        $criteria->compare("FROM_UNIXTIME(updated_at,'%Y-%m-%d')", $this->created_at);
+        $criteria->group="FROM_UNIXTIME(updated_at,'%Y-%m-%d'),user_id";
+        $criteria->order = 'updated_at desc';
         return new CActiveDataProvider($this,
         [
             'criteria' => $criteria,
