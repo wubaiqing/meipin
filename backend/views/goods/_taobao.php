@@ -53,7 +53,7 @@ CHtml::$errorSummaryCss = 'text-warning';
     <div class="control-group">
         <?php echo $form->labelEx($model,'url', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->textArea($model,'url',array('size'=>60,'maxlength'=>255, 'class' => 'span5')); ?>
+            <?php echo $form->textArea($model,'url',array('size'=>60,'maxlength'=>500, 'class' => 'span5')); ?>
         </div>
     </div>
 
