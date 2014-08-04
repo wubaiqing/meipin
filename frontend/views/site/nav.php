@@ -23,7 +23,7 @@ $(window).scroll(function( ){
             <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 7));?>" target="_blank">鞋包</a></li>
             <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 8));?>" target="_blank">配饰</a></li>
             <br>
-            <!-- <li><a href="<?php //echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 9));?>"  target="_blank" >美食</a></li> -->
+            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 9));?>"  target="_blank" >美食</a></li>
             <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 10));?>" target="_blank" >数码家电</a></li>
             <br>
             <li><a href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 11));?>" target="_blank" >化妆品</a></li>
@@ -62,7 +62,7 @@ $(window).scroll(function( ){
         <li><img src="/static/images/cloths_06.png"><a class="<?php echo ($cat == 4) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 4));?>">精品男装</a></li>
         <li><img src="/static/images/shoes_08.png"> <a class="<?php echo ($cat == 7) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 7));?>">鞋子箱包</a></li>
         <li><img src="/static/images/ring_10.png"/><a class="<?php echo ($cat == 8) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 8));?>">时尚配饰</a></li>
-        <!-- <li><img src="/static/images/drink_17.png"> <a class="<?php //echo ($cat == 9) ? 'on' : '';?>" href="<?php //echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 9));?>">美食/特产</a></li> -->
+        <li><img src="/static/images/drink_17.png"> <a class="<?php echo ($cat == 9) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 9));?>">美食/特产</a></li> 
         <li><img src="/static/images/3c_19.png"> <a class="<?php echo ($cat == 10) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 10));?>">数码家电</a></li>
         <li><img src="/static/images/sofa_21.png"><a class="<?php echo ($cat == 5) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 5));?>">家具日用</a></li>
         <li><img src="/static/images/hair_24.png"> <a class="<?php echo ($cat == 11) ? 'on' : '';?>" href="<?php echo Yii::app()->createAbsoluteUrl('site/index', array('cat' => 11));?>">美容护肤</a></li>
