@@ -42,10 +42,10 @@ class ApiController extends Controller
 	 /**
      * 爱淘宝接口
      */
-	 public function actionAtaobao()
+	 public function actionAtaobao($limit=8)
 	 {
 	     $model = new Goods();
-		 $data= $model->getaitaobao();
+		 $data= $model->getaitaobao($limit); //条数
 		 Yii::import('common.extensions.taobao.*');
          $taobao = new Taobao();
 		 foreach($data as $key=>$val)

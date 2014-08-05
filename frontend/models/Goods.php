@@ -61,15 +61,16 @@ class Goods extends ActiveRecord implements IArrayable
 
 
 
-    public function getaitaobao()
+    public function getaitaobao($limit)
     {
         $criteria = new CDbCriteria;
         $criteria->select="t.id, t.tb_id, t.picture,t.cat_id, t.title, t.url, t.origin_price, t.price, t.start_time, t.end_time, t.updated_at, t.goods_type";
-        $criteria->order = 't.created_at desc';
-        $criteria->with = ['category'];
-        //$criteria->compare('t.price', '< 10');
+        $now = time();
         $criteria->compare('t.status', '1');
-        $criteria->limit= 5;
+        $criteria->compare('t.end_time', '>=' . $now);
+        $criteria->order = 't.updated_at desc';
+        $criteria->with = ['category'];
+        $criteria->limit= $limit;
         //$this->dbCriteria->mergeWith($criteria);
 
         return self::model()->findAll($criteria);
