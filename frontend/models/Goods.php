@@ -49,8 +49,31 @@ class Goods extends ActiveRecord implements IArrayable
         return $goodsList;
     }
 
+    /**
+     * 多表关连查询
+     */
+    public function relations()
+    {
+        return array(
+            'category' => array(self::HAS_ONE, 'Category', ['id' => 'cat_id'], 'together' => true, 'joinType' => 'inner join'),
+        );
+    }
 
 
+
+    public function getaitaobao()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->select="t.id, t.tb_id, t.picture,t.cat_id, t.title, t.url, t.origin_price, t.price, t.start_time, t.end_time, t.updated_at, t.goods_type";
+        $criteria->order = 't.created_at desc';
+        $criteria->with = ['category'];
+        //$criteria->compare('t.price', '< 10');
+        $criteria->compare('t.status', '1');
+        $criteria->limit= 5;
+        //$this->dbCriteria->mergeWith($criteria);
+
+        return self::model()->findAll($criteria);
+    }
     /**
      * 商品列表
      * @param  string  $list 是否是列表

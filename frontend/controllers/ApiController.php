@@ -39,24 +39,22 @@ class ApiController extends Controller
         $this->returnData(1, $data);
     }
     
-     /**
+	 /**
      * 爱淘宝接口
      */
-     public function actionAitbao($id=0)
-     {
-/*        $cacheKey = 'meipin-api-aitaobao-';
-        $result = Yii::app()->cache->get($cacheKey);
-        if (!empty($result)) {
-            $this->returnData(1, $result);
-        }*/
-        $where = "";
-        if($id){$where = "where g.id >{$id}";}
-        $model = new Goods();
-        //$NowTime=strtotime(date('Y-m-d 00:00:00',time()));//获取结束时间
-        $sql = "select g.id, g.tb_id, g.picture,g.cat_id, g.title, g.url, g.origin_price, g.price, g.start_time, g.end_time, g.updated_at, c.name from meipin_goods as g join meipin_category as c on g.cat_id=c.id {$where} order by g.id desc limit 30 ";
-        $Rumodel = yii::app()->db->createCommand($sql);
-        $query =$Rumodel->queryAll();
-        //Yii::app()->cache->set($cacheKey, $query, 1800);
-        $this->returnData(1, $query);
-     }
+	 public function actionAtaobao()
+	 {
+	     $model = new Goods();
+		 $data= $model->getaitaobao();
+		 
+		 foreach($data as $key=>$val)
+		 {
+		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
+			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
+		    $data[$key]->title = urlencode($title);
+			$data[$key]->goods_type = urlencode($catname);
+		 }
+		 $this->returnData(1, $data);
+	 }
+	 
 }
