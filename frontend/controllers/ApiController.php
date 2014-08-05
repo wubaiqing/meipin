@@ -46,15 +46,29 @@ class ApiController extends Controller
 	 {
 	     $model = new Goods();
 		 $data= $model->getaitaobao();
-		 
+		 Yii::import('common.extensions.taobao.*');
+         $taobao = new Taobao();
 		 foreach($data as $key=>$val)
 		 {
 		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
 			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
 		    $data[$key]->title = urlencode($title);
 			$data[$key]->goods_type = urlencode($catname);
+            $json = $taobao->getPicurl($val->tb_id)->pic_url;
+            $pic_url = (array)$json;
+            $data[$key]->picture = $pic_url[0];
 		 }
+         //print_r($data);
 		 $this->returnData(1, $data);
 	 }
 	 
+    public function actionGetpic($taobaoId='39189765505')
+    {
+        Yii::import('common.extensions.taobao.*');
+        $taobao = new Taobao();
+        $json = $taobao->getPicurl($taobaoId);
+        $pic_url =  (array)$json->pic_url;
+        print_r($pic_url[0]);
+
+    }
 }

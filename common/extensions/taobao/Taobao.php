@@ -42,4 +42,20 @@ class Taobao extends CComponent
 		$resp = $c->execute($req);
 		return $resp->tbk_items->tbk_item;
 	}
+
+	public function getPicurl($taobaoId)
+	{
+		Yii::import('common.extensions.taobao.top.*');
+		Yii::import('common.extensions.taobao.top.request.*');
+		Yii::import('common.extensions.taobao.lotusphp_runtime.*');
+
+		$c = new TopClient;
+		$c->appkey = '21458915';
+		$c->secretKey = 'de46e97329930b7444bcb0eed6133d5c';
+		$req = new TbkItemsDetailGetRequest;
+		$req->setFields("pic_url");
+		$req->setNumIids($taobaoId);
+		$resp = $c->execute($req);
+		return $resp->tbk_items->tbk_item;
+	}
 }
