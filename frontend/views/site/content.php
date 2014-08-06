@@ -61,8 +61,8 @@
                                 【美品网】
                             </a>
                         </strong>
-                        <a href="<?php echo $goodsUrl;?>" target="_blank">
-                            <?php echo $item->name;?>
+                        <a href="<?php echo $goodsUrl;?>" target="_blank" title="<?php echo $item->name;?>">
+                            <?php ECHO Front::truncate_utf8_string($item->name,10); ?>
                         </a>
                     </h2>
                     <h4>
@@ -99,8 +99,8 @@
                                 【<?php echo Store::getStoreByPk($item->relation_website);?>】
                             </a>
                         </strong>
-                        <a href="<?php echo $goodsUrl ?>" target="_blank">
-                            <?php echo $item->title;?>
+                        <a href="<?php echo $goodsUrl ?>" target="_blank" title="<?php echo $item->title;?>">
+                            <?php ECHO Front::truncate_utf8_string($item->title,10); ?>
                         </a>
                     </h2>
                     <h4>
