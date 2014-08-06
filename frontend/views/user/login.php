@@ -20,7 +20,11 @@
             </style>
             <p>
                 <em>用户名：</em>
-                <?php echo $form->textField($model, 'username', array('class' => 'input_off', 'onblur' => "this.className='input_off';if(!value){value=defaultValue;}", 'onfocus' => 'this.className="input_on";this.onmouseout=""','value'=>'邮箱/手机号/用户名','onclick'=>"if(value==defaultValue){value='';}",'style'=>'font-size:12px;')); ?>
+                <?php if($model->username):?>
+                <?php echo $form->textField($model, 'username', array('class' => 'input_off', 'onblur' => "this.className='input_off';",'style'=>'font-size:12px;')); ?>
+            <?php else:?>
+            <?php echo $form->textField($model, 'username', array('class' => 'input_off', 'onblur' => "this.className='input_off';if(!value){value=defaultValue;}", 'onfocus' => 'this.className="input_on";this.onmouseout=""','value'=>'邮箱/手机号/用户名','onclick'=>"if(value==defaultValue){value='';}",'style'=>'font-size:12px;')); ?>       
+            <?php endif;?>
             <p>
                 <em>密   码：</em>
                 <?php echo $form->passwordField($model, 'password', array('class' => 'input_off', 'onblur' => 'this.className="input_off";', 'onfocus' => 'this.className="input_on";this.onmouseout=""')); ?>
