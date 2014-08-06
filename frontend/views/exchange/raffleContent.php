@@ -36,8 +36,8 @@
                                     【0元包邮】
                                 </a>
                             </strong>
-                            <a href="<?php echo $goodsUrl ?>" target="_blank">
-                                <?php echo $item['name'] ?>
+                            <a href="<?php echo $goodsUrl ?>" target="_blank" title="<?php echo $item['name'] ?>">
+                                <?php ECHO Front::truncate_utf8_string($item['name'],12); ?>
                             </a>
                         </h2>
                         <p>
