@@ -65,8 +65,8 @@
             'updated_at' => array(
                 'name' => 'updated_at',
                 'id' => 'updated_at',
-                'value' => 'date("Y-m-d", $data->updated_at)',
-                'htmlOptions' => array('width' => '80')
+                'value' => 'date("Y-m-d H:i:s", $data->updated_at)',
+                'htmlOptions' => array('width' => '141')
             ),
             'user_id'=>array(
                  'name'=>'user_id',
