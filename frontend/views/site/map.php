@@ -31,9 +31,11 @@ var www_meipin_com = function (obj, url, title) {
     }
 </script>
 
-<div class="endmap"><div style="width:1000px; margin:0px auto;position:relative;"><img src="/static/images/endmap.png" usemap="#endMap" border="0" height="190" width="1000"><span class="mailodlist"><div class="rssbook light " style="width:auto "><div class="mailInput"></div></div></span></div>
+<div class="endmap"><div style="width:1000px; margin:0px auto;position:relative;"><img src="/static/images/endmap.jpg" usemap="#endMap" border="0" height="70" width="931" /><span class="mailodlist"><div class="rssbook light " style="width:auto "><div class="mailInput"></div></div></span></div>
 <span style="display:none"><map name="endMap" id="endMap">
-    <area shape="rect" coords="342,20,657,176" href="http://meipin.com/site/phone" target="_blank">
-    <area shape="rect" coords="677,21,992,174" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')" target="_blank">
+     <area shape="rect" coords="342,20,500,176" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')" target="_blank">
+    <area shape="rect" coords="500,20,700,176" href="http://g.meipin.com/site/xiazai" target="_self">
+    <area shape="rect" coords="677,21,992,174" href="http://meipin.com/site/phone" target="_blank">
+
   </map></span></div>
 </div>

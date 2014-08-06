@@ -207,7 +207,7 @@ class Goods extends ActiveRecord implements IArrayable
        if ($hot == 0) {
             $criteria->order = 't.head_show DESC, day DESC, t.list_order DESC';
         } else {
-            $criteria->order = 't.id DESC';
+            $criteria->order = 't.updated_at DESC';
         }
 
         if ($cat == 1000) {
