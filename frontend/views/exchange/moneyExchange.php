@@ -139,7 +139,7 @@
 
             <p><a>退货条件说明</a></p>
 
-            <p>退货运费由买卖双方协商</p>
+            <p><a style="color:red">退货运费由买卖双方协商,所有积分换购商品，均不提供发票及收据，介意者勿换，谢谢合作</a></p>
 
         </div>
         <div class="dtl record show_none">
