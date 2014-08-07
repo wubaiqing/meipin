@@ -75,6 +75,29 @@ class Goods extends ActiveRecord implements IArrayable
 
         return self::model()->findAll($criteria);
     }
+
+   /*
+    * 获取搜索页面其他商品
+   */
+    public function getothergoods($limit)
+    {
+        $cacheKey = 'getothergoods'.$limit;
+        $otherGoodsList = Yii::app()->cache->get($cacheKey);
+        if (!empty($otherGoodsList)) {
+            return $otherGoodsList;
+        }
+        $criteria = new CDbCriteria;
+        $now = strtotime('+1 day 00:00:00') - 1;
+        $criteria->compare('t.status', '1');
+        $criteria->compare('t.start_time', '<=' . $now);
+        $criteria->compare('t.end_time', '>=' . $now);
+        $criteria->order = 't.list_order desc';
+        $criteria->limit= $limit;
+        $othergoods = self::model()->findAll($criteria);
+        Yii::app()->cache->set($cacheKey,$othergoods);
+        return $othergoods;
+    }
+
     /**
      * 商品列表
      * @param  string  $list 是否是列表

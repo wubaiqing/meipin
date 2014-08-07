@@ -5,7 +5,7 @@
     </h1>
     <div class="search">
         <form target="_self" action="<?php echo $this->createUrl('search/index');?>">
-        <input type="text" name="title" class="txt">
+        <input type="text" name="title" class="txt" value="<?php if(isset($_GET['title'])){echo $_GET['title'];}?>">
         <input type="submit" value="" class="smt">
             </form>
         </div>
