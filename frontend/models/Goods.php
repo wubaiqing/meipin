@@ -61,7 +61,7 @@ class Goods extends ActiveRecord implements IArrayable
 
 
 
-    public function getaitaobao($limit,$time)
+    public function getaitaobao($limit,$time,$page)
     {
         $criteria = new CDbCriteria;
         $criteria->select="t.id, t.tb_id, t.picture,t.cat_id, t.title, t.url, t.origin_price, t.price, t.start_time, t.end_time, t.updated_at, t.goods_type";
@@ -80,8 +80,25 @@ class Goods extends ActiveRecord implements IArrayable
             $criteria->limit= $limit;
         }
         //$this->dbCriteria->mergeWith($criteria);
-
-        return self::model()->findAll($criteria);
+        //分页类开始
+        $pages = new CPagination();
+        if($page>=1)
+        {
+            $page = $page-1;
+        }
+        $pages->currentPage = $page;
+        //计算总数
+        $pages->itemCount = self::model()->count($criteria);
+        //每页显示数量，配置文件中可配
+        $pages->pageSize = 2;
+        $pages->applyLimit($criteria);
+        $data = [];
+        //根据条件查询积分兑换商品
+        $data['goods'] = self::model()->findAll($criteria);
+        //分页类
+        $data['pages'] = $pages;
+        //self::model()->findAll($criteria);
+        return $data['goods'];
     }
 
    /*

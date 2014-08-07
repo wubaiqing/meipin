@@ -42,12 +42,12 @@ class ApiController extends Controller
 	 /**
      * 爱淘宝接口
      */
-	 public function actionAtaobao($limit="")
+	 public function actionAtaobao($limit="100",$page=1)
 	 {
 	     $model = new Goods();
          //$time = date("Y-m-d");
          $time = "";
-		 $data= $model->getaitaobao($limit,$time); //条数
+		 $data= $model->getaitaobao($limit,$time,$page); //条数
 		 Yii::import('common.extensions.taobao.*');
          $taobao = new Taobao();
          $str = "";
@@ -57,7 +57,6 @@ class ApiController extends Controller
 			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
 		    $data[$key]->title = urlencode($title);
 			$data[$key]->goods_type = urlencode($catname);
-            //echo $key."=".$val->tb_id."<br/>";
             $json = $taobao->getPicsurl($val->tb_id);
             if($json)
             {
@@ -77,15 +76,18 @@ class ApiController extends Controller
 		 //$this->returnData(1, $data);
 	 }
 	 
-    public function actionGetpic($taobaoId='37983493995')
+    public function actionGetpic($limit="",$page=1)
     {
-        //19112746137
+/*        //19112746137 37983493995
         Yii::import('common.extensions.taobao.*');
         $taobao = new Taobao();
         $json = $taobao->getPicsurl($taobaoId);
         var_dump($json);
         //$pic_url =  (array)$json->pic_url;
-        //print_r($pic_url[0]);
-
+        //print_r($pic_url[0]);*/
+         $model = new Goods();
+         $time = "";
+         $data= $model->getaitaobao($limit,$time,$page); //条数
+         var_dump($data);
     }
 }
