@@ -30,6 +30,8 @@
                     <span>中奖名额</span><b><?php echo $data['exchange']->limit_count; ?></b><br/>
                     <span class="time" date="<?php echo date("Y-m-d H:i:s",$data['exchange']->end_time)?>" sdate='<?php if($data["exchange"]->start_time> time()){echo date("Y-m-d H:i:s", $data["exchange"]->start_time);}?>'><span style='padding:0' class='foour'>距离抽奖结束：</span><i>8</i>天<label><em class="one">19</em><em class="two">20</em><em class="three">38</em></label></span>
                 </h3>
+    
+
                 <h4>
                     <?php echo CHtml::hiddenField("gdcolor", '', array('id' => 'gdcolor')); ?>
                     <?php echo CHtml::hiddenField("id", $params['goodsId']); ?>
@@ -37,6 +39,8 @@
                     <input class="btn" type="submit" value=""><span></span>
                     <a class="hasbd" href="javascript:void(0);"><?php echo $data['exchange']->user_count ?>人已参与</a>
                 </h4>
+
+
                 <div class="blockA" >
                     <h2>中奖名单
                     <ul class="">
@@ -50,6 +54,9 @@
                     </h2>
                 </div>
             </div>
+            <?php if($data['exchange']->description){?>
+                    <a style="width:400px;margin-left:28px;float:left;margin-bottom:20px;"><span style="color:red;font-weight:bold;font-size:16px;float:left;">抽奖说明：</span><?php echo $data['exchange']->description;?> </a>
+                    <?php }else{echo "222";};?>
         </form>
         <?php
         $page = Yii::app()->request->getQuery("page");
