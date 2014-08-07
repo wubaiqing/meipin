@@ -57,23 +57,27 @@ class ApiController extends Controller
 			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
 		    $data[$key]->title = urlencode($title);
 			$data[$key]->goods_type = urlencode($catname);
-            echo $key."=".$val->tb_id."<br/>";
-            //$json = $taobao->getPicsurl($val->tb_id)->pic_url;
-            //$pic_url = (array)$json;
-            //$data[$key]->picture = $pic_url[0];
-            $starttime = date("Y-m-d H:i:s",$val->start_time);
-            $endtime = date("Y-m-d H:i:s",$val->end_time);
-            $findtime = date("Y-m-d H:i:s",$val->updated_at);
-            //$str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$val->url}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','100');\r\n";
+            //echo $key."=".$val->tb_id."<br/>";
+            $json = $taobao->getPicsurl($val->tb_id);
+            if($json)
+            {
+                $json=$json->pic_url;
+                $pic_url = (array)$json;
+                $data[$key]->picture = $pic_url[0];
+                $starttime = date("Y-m-d H:i:s",$val->start_time);
+                $endtime = date("Y-m-d H:i:s",$val->end_time);
+                $findtime = date("Y-m-d H:i:s",$val->updated_at);
+                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$val->url}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','100');\r\n";
+            }
 		 }
          //$file_pointer = fopen("aa.sql","a+");        
          //fwrite($file_pointer,$str);
          //fclose($file_pointer);
-         //echo $str;
+         echo $str;
 		 //$this->returnData(1, $data);
 	 }
 	 
-    public function actionGetpic($taobaoId='19112746137')
+    public function actionGetpic($taobaoId='37983493995')
     {
         //19112746137
         Yii::import('common.extensions.taobao.*');
