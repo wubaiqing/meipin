@@ -42,12 +42,16 @@ class ApiController extends Controller
 	 /**
      * 爱淘宝接口
      */
-	 public function actionAtaobao($limit=8)
+	 public function actionAtaobao()
 	 {
 	     $model = new Goods();
-		 $data= $model->getaitaobao($limit); //条数
+         //$time = date("Y-m-d");
+         $time = "";
+         $limit = "";
+		 $data= $model->getaitaobao($limit,$time); //条数
 		 Yii::import('common.extensions.taobao.*');
          $taobao = new Taobao();
+         $str = "";
 		 foreach($data as $key=>$val)
 		 {
 		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
@@ -57,9 +61,16 @@ class ApiController extends Controller
             $json = $taobao->getPicurl($val->tb_id)->pic_url;
             $pic_url = (array)$json;
             $data[$key]->picture = $pic_url[0];
+            $starttime = date("Y-m-d H:i:s",$val->start_time);
+            $endtime = date("Y-m-d H:i:s",$val->end_time);
+            $findtime = date("Y-m-d H:i:s",$val->updated_at);
+            $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$val->url}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','100');\r\n";
 		 }
-         //print_r($data);
-		 $this->returnData(1, $data);
+         //$file_pointer = fopen("aa.sql","a+");        
+         //fwrite($file_pointer,$str);
+         //fclose($file_pointer);
+         echo $str;
+		 //$this->returnData(1, $data);
 	 }
 	 
     public function actionGetpic($taobaoId='39189765505')
