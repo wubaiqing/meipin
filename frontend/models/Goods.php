@@ -75,10 +75,6 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->compare('t.status', '1');
         $criteria->order = 't.updated_at desc';
         $criteria->with = ['category'];
-        if($limit)
-        {
-            $criteria->limit= $limit;
-        }
         //$this->dbCriteria->mergeWith($criteria);
         //分页类开始
         $pages = new CPagination();
@@ -90,7 +86,7 @@ class Goods extends ActiveRecord implements IArrayable
         //计算总数
         $pages->itemCount = self::model()->count($criteria);
         //每页显示数量，配置文件中可配
-        $pages->pageSize = 2;
+        $pages->pageSize = $limit;
         $pages->applyLimit($criteria);
         $data = [];
         //根据条件查询积分兑换商品
