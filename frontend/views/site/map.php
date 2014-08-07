@@ -35,7 +35,7 @@ var www_meipin_com = function (obj, url, title) {
 <span style="display:none"><map name="endMap" id="endMap">
 <!--      <area shape="rect" coords="342,20,550,176" href="javascript:void(0);"onMouseDown="www_meipin_com(this, 'http://www.meipin.com', '美品网，畅想折扣新主张！')" target="_blank"> -->
     <area shape="rect" coords="342,20,550,176" href="http://www.baidu.com/s?tn=baiduhome_pg&ie=utf-8&bs=%E7%BE%8E%E5%93%81%E7%BD%91&f=8&rsv_bp=1&rsv_spt=1&wd=%E7%BE%8E%E5%93%81%E7%BD%91&inputT=0" target="_blank">
-    <area shape="rect" coords="500,20,800,176" href="http://g.meipin.com/site/xiazai" target="_self">
+    <area shape="rect" coords="500,20,800,176" href="http://www.meipin.com/site/xiazai" target="_self">
     <area shape="rect" coords="677,21,992,174" href="http://meipin.com/site/phone" target="_blank">
 
   </map></span></div>
