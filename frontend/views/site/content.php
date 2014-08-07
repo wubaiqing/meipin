@@ -112,8 +112,7 @@
                             </em>
 						<?php else:?>
 							<em>
-                                <b>¥</b>
-                                <em><?php echo $item->price; ?></em>
+                                <em><b>¥</b><?php echo $item->price; ?></em>
                             </em>
 						<?php endif;?>
                         </span>
