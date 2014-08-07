@@ -42,12 +42,11 @@ class ApiController extends Controller
 	 /**
      * 爱淘宝接口
      */
-	 public function actionAtaobao()
+	 public function actionAtaobao($limit=20)
 	 {
 	     $model = new Goods();
          //$time = date("Y-m-d");
          $time = "";
-         $limit = 2;
 		 $data= $model->getaitaobao($limit,$time); //条数
 		 Yii::import('common.extensions.taobao.*');
          $taobao = new Taobao();
@@ -73,13 +72,15 @@ class ApiController extends Controller
 		 //$this->returnData(1, $data);
 	 }
 	 
-    public function actionGetpic($taobaoId='39189765505')
+    public function actionGetpic($taobaoId='19112746137')
     {
+        //19112746137
         Yii::import('common.extensions.taobao.*');
         $taobao = new Taobao();
-        $json = $taobao->getPicurl($taobaoId);
-        $pic_url =  (array)$json->pic_url;
-        print_r($pic_url[0]);
+        $json = $taobao->getPicsurl($taobaoId);
+        var_dump($json);
+        //$pic_url =  (array)$json->pic_url;
+        //print_r($pic_url[0]);
 
     }
 }
