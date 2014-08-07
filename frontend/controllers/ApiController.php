@@ -58,7 +58,7 @@ class ApiController extends Controller
 			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
 		    $data[$key]->title = urlencode($title);
 			$data[$key]->goods_type = urlencode($catname);
-            $json = $taobao->getPicurl($val->tb_id)->pic_url;
+            $json = $taobao->getPicsurl($val->tb_id)->pic_url;
             $pic_url = (array)$json;
             $data[$key]->picture = $pic_url[0];
             $starttime = date("Y-m-d H:i:s",$val->start_time);

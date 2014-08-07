@@ -43,7 +43,7 @@ class Taobao extends CComponent
 		return $resp->tbk_items->tbk_item;
 	}
 
-	public function getPicurl($taobaoId)
+	public function getPicsurl($taobaoId)
 	{
 		Yii::import('common.extensions.taobao.top.*');
 		Yii::import('common.extensions.taobao.top.request.*');
