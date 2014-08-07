@@ -42,7 +42,7 @@ class ApiController extends Controller
 	 /**
      * 爱淘宝接口
      */
-	 public function actionAtaobao($limit=20)
+	 public function actionAtaobao($limit="")
 	 {
 	     $model = new Goods();
          //$time = date("Y-m-d");
