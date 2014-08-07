@@ -21,7 +21,7 @@ class SiteController extends Controller
     {
         // 收取商品
         $goods = Goods::getGoodsList($cat, $hot, $page);
-
+        //$todaynum = Goods::gettodaynum();
         //首页获取积分兑换的商品
         if($page==1)
         {

@@ -63,7 +63,7 @@ $isSignDay = User::isSignDay();
                     <h4><a href="<?php echo $url; ?>" target='_blank' title="<?php echo $goods['name']; ?>" class="lista"><?php ECHO Front::truncate_utf8_string($goods['name'],12); ?></a></h4>
                     <p class="one_p">
                     <span class="one_span">价值：<?php echo $goods['price']; ?>元</span>
-                    <span class="two_span">名额：<b style="color:#333"><?php echo $leftNum > 0 ? $leftNum : 0; ?></b></span>
+                    <span class="two_span">剩余名额：<b style="color:#333"><?php echo $leftNum > 0 ? $leftNum : 0; ?></b></span>
                     <span class="last_span"><?php echo $goods['user_count']; ?>人已参与</span>
                     </p>
                     <br/>                  

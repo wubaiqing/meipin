@@ -1,15 +1,48 @@
-<div class="newuserbanner1" id="shortcuts" style="">
-    <div class="fi07_1">
-        <ul style="width: 3920px;">
-	    <li class="current" data-id="0"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/1.png"></li>
-            <li data-id="1"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/2.png"></li>
-            <li data-id="2"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/3.png"></li>
-            <li data-id="3"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/4.png"></li>
-        </ul>
-        <em style="display: none;" data-id="0" class="fi_btn l"><a href="javascript:void(0);"></a></em><em data-id="1" class="fi_btn r"><a href="javascript:void(0);"></a></em><span class="close"><a href="javascript:void(0);" onclick="close_shortcut();"></a></span>
-        <div class="fi_tab">
-            <span data-id="0" class="now"></span><span data-id="1" class=""></span><span data-id="2" class=""></span><span data-id="3" class=""></span>
-        </div>
+<style type="text/css">
+    
+/* 首屏广告*/
+.area{width:980px;margin: 0 auto}/*页面属性 */
+.banner_column{margin-top: 10px;}
+.banner_column .content{overflow: hidden;width: 979px;height: 340px;background: #fff;}
+
+.banner_column dl{width: 980px}
+.banner_column dl dd,.banner_column dl dt{float: left;font-size: 0;border: 1px solid #ececec;overflow: hidden;*position: relative;}
+.banner_column dl dd img,.banner_column dl dt img{-moz-transition:-moz-transform .2s linear;-webkit-transition:-webkit-transform .2s linear;-o-transition:-o-transform .2s linear;-ms-transition:-ms-transform .2s linear;transition:transform .2s linear;}
+.banner_column dl dd img:hover,.banner_column dl dt img:hover{-moz-transform:translateX(-10px); -webkit-transform:translateX(-10px); -o-transform:translateX(-10px); -ms-transform:translateX(-10px); transform:translateX(-10px); }
+.banner_column dl dt{border-width: 0 1px 0 0;}
+.banner_column dl dd{border-width:0 1px 1px 0;}
+
+#news {width:980px;height:35px;padding-top:15px;margin:0 auto;border-bottom:1px solid #CCC;
+}
+#news p {font-family:"微软雅黑";font-size:16px;float:left;width:130px;}
+#news p span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;}
+#news dl {float:right;}
+#news dl dt {float:left;font-family:"微软雅黑";font-size:16px;margin-top: 4px}
+#news dl dd {float:left;border:1px solid #CCC;width:40px;height:20px;font-size:12px;margin-top:2px;padding-top:2px;text-align: center;}
+#news .newred {color:red;}
+
+</style>
+<?php if($page<2):?>
+<div class="banner_column area">
+    <div class="content">
+      <dl>
+        <dt><img alt="" src="/static/images/10.jpg"></dt>
+        <dt><a href="http://www.meipin.com/brand/5yuan" target="_blank"><img alt="" src="/static/images/11.jpg"></a></dt>
+        <dd><a href="http://meipin.com/index.html?cat=1000" target="_blank"><img alt="" src="/static/images/12.jpg"></a></dd>
+        <dd><a href="http://meipin.com/raffle" target="_blank"><img alt="" src="/static/images/13.jpg"></a></dd>
+         <dd><a href="http://meipin.com/exchange/index" target="_blank"><img alt="" src="/static/images/14.jpg"></a></dd>
+         <dd><a href="http://meipin.com/site/phone" target="_blank"><img alt="" src="/static/images/15.jpg"></a></dd>
+      </dl>
     </div>
-</div>
-<div class="newuserbanner2" style="display: none;">    <a href="javascript:void(0);"></a> </div>
+  </div>
+<?php endif;?>
+  <div id="news">
+    <p>今日已更新<span><?php echo Goods::gettodaynum();?></span>款</p>
+    <dl>
+        <dt>排序：</dt>
+        <dd><a href="/?hot=new"><span <?php if(isset($_GET['hot'])){echo " class='newred' ";} ?> >最新</span></a></dd>
+        <dd><a href="/"><span <?php if(!isset($_GET['hot'])){echo " class='newred' ";} ?> >最热</span></a></dd>
+        <br>
+    </dl>
+    <br>
+  </div>

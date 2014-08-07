@@ -207,7 +207,7 @@ class Goods extends ActiveRecord implements IArrayable
        if ($hot == 0) {
             $criteria->order = 't.head_show DESC, day DESC, t.list_order DESC';
         } else {
-            $criteria->order = 't.updated_at DESC';
+            $criteria->order = 't.created_at DESC';
         }
 
         if ($cat == 1000) {
@@ -347,5 +347,26 @@ class Goods extends ActiveRecord implements IArrayable
         Yii::app()->cache->set($cacheKey, $data, 3600);
 
         return $data;
+    }
+
+    /*
+    * 查询今日更新的商品数量
+    */
+    public static function gettodaynum()
+    {
+        $cacheKey = 'meipin-gettodaynum';
+        $response = Yii::app()->cache->get($cacheKey);
+        if (!empty($response)) {
+            return $response;
+        }
+        $now = date("Y-m-d");
+        $time = time();
+        $criteria = new CDbCriteria;
+        $criteria->compare('status', '= 1');//状态显示
+        $criteria->addCondition('start_time <' . $time . ' and end_time > ' . $time);
+        $criteria->compare("FROM_UNIXTIME(start_time,'%Y-%m-%d')",$now);
+        $count=self::model()->count($criteria); 
+        Yii::app()->cache->set($cacheKey, $count, 1800);
+        return $count;
     }
 }

@@ -5,13 +5,17 @@
 <?php $this->renderPartial('nav', array('cat' => $cat)); ?>
 
 <?php
-    if ($cat < 1 && $page < 2) {
-        $this->renderPartial('banner');
+    if ($cat < 1) {
+        $this->renderPartial('banner',array('page'=>$page));
     }
 ?>
 
-<div id="content" class="wp">
-    <?php $this->renderPartial('menuWp', array('pager' => $pager)); ?>
+<div id="content" class="wp"> 
+    <?php
+    if ($cat) {
+        $this->renderPartial('menuWp', array('pager' => $pager)); 
+    }
+   ?>
     <?php $this->renderPartial('content', array('goods' => $goods,'exchange'=>$exchange,'brand'=>$brand)); ?>
     <?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 </div>
