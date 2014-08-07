@@ -47,14 +47,13 @@ class ApiController extends Controller
 	     $model = new Goods();
          //$time = date("Y-m-d");
          $time = "";
-         $limit = "";
+         $limit = 2;
 		 $data= $model->getaitaobao($limit,$time); //条数
 		 Yii::import('common.extensions.taobao.*');
-
+         $taobao = new Taobao();
          $str = "";
 		 foreach($data as $key=>$val)
 		 {
-            $taobao = new Taobao();
 		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
 			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
 		    $data[$key]->title = urlencode($title);
