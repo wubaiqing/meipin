@@ -25,7 +25,7 @@ return array(
     'params' => array(
         'pagination' => array(
             'pageVar' => 'page',
-            'pageSize' => 10,
+            'pageSize' => 50,
         ),
                     //物流系统
             'logisticsSystem' =>[
