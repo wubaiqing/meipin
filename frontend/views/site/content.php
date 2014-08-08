@@ -157,7 +157,8 @@
      <p>2、查看其他商品</p>
   </div>
 </div>
-    <?php foreach ($othergoods as $item) : ?>
+    <?php 
+    if(isset($othergoods)): foreach ($othergoods as $item) : ?>
         <?php $goodsUrl = $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>
         <div class="dealbox">
             <div class="deal figure1 zt1">
@@ -213,7 +214,7 @@
                 </div>
             </div>
         </div>
-        <?php endforeach;  endif;?>
+        <?php endforeach;  endif; endif;?>
 </div>
 <div style="clear:both;"></div>
 
