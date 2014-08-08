@@ -198,6 +198,7 @@ class Goods extends ActiveRecord implements IArrayable
         if($cat ==1002){
         $criteria->addBetweenCondition('start_time',$start_time,$end_time);
         }
+        $criteria->order = "list_order desc";
         $this->dbCriteria->mergeWith($criteria);
         return $this;
     }
