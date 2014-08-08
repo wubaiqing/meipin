@@ -85,6 +85,7 @@ class GoodsController extends Controller
             
         } else {
 	        $model->status = '= 1';
+            $model->gdorder = 'updated_at';
         }
 
         $this->render('admin',array(

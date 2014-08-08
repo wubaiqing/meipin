@@ -8,7 +8,7 @@
 .banner_column dl{width: 980px}
 .banner_column dl dd,.banner_column dl dt{float: left;font-size: 0;border: 1px solid #ececec;overflow: hidden;*position: relative;}
 .banner_column dl dd img,.banner_column dl dt img{-moz-transition:-moz-transform .2s linear;-webkit-transition:-webkit-transform .2s linear;-o-transition:-o-transform .2s linear;-ms-transition:-ms-transform .2s linear;transition:transform .2s linear;}
-.banner_column dl dd img:hover,.banner_column dl dt img:hover{-moz-transform:translateX(-10px); -webkit-transform:translateX(-10px); -o-transform:translateX(-10px); -ms-transform:translateX(-10px); transform:translateX(-10px); }
+/* .banner_column dl dd img:hover,.banner_column dl dt img:hover{-moz-transform:translateX(-10px); -webkit-transform:translateX(-10px); -o-transform:translateX(-10px); -ms-transform:translateX(-10px); transform:translateX(-10px); } */
 .banner_column dl dt{border-width: 0 1px 0 0;}
 .banner_column dl dd{border-width:0 1px 1px 0;}
 

@@ -24,6 +24,11 @@ class Goods extends ActiveRecord implements IArrayable
     public $searchType = '';
 
     /**
+     * @var integer 排序类型
+     */
+    public $gdorder = '';
+
+    /**
      * @var string 搜索内容
      */
     public $searchInput = '';
@@ -73,7 +78,7 @@ class Goods extends ActiveRecord implements IArrayable
             array('tb_id, cat_id, status, list_order, created_at, updated_at, user_id', 'numerical', 'integerOnly' => true),
             array('origin_price, price', 'type', 'type' => 'float'),
         array('title, picture, searchInput', 'length', 'max' => 255),
-            array('origin_price, price, searchType, relation_website', 'length', 'max' => 8),
+            array('origin_price, price, searchType, gdorder,relation_website', 'length', 'max' => 8),
             array('start_time, end_time', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('tb_id', 'checkTaobaoId'),
         );
@@ -143,10 +148,9 @@ class Goods extends ActiveRecord implements IArrayable
      */
     public function search()
     {
-        $criteria = new CDbCriteria(array(
-            'order' => 'id Desc',
-        ));
+        $criteria = new CDbCriteria;
 
+        $criteria->compare("FROM_UNIXTIME(start_time,'%Y-%m-%d')",$this->start_time);
         if ($this->searchType == '1') {
             $criteria->compare('id', $this->searchInput);
         } elseif ($this->searchType == '2') {
@@ -154,10 +158,14 @@ class Goods extends ActiveRecord implements IArrayable
         } else {
             $criteria->compare('title', $this->searchInput, true);
         }
+        $criteria->order = $this->gdorder." desc";
 	    $criteria->compare('status', $this->status);
 
         return new ActiveDataProvider($this, array(
-            'criteria' => $criteria
+            'criteria' => $criteria,
+            'pagination'=>array(
+             'pageSize'=>Yii::app()->params['actdatapagesize'], //代表每页显示50条信息
+            ),
         ));
     }
 
