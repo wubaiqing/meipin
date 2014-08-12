@@ -280,7 +280,7 @@ class Exchange extends ActiveRecord
 
         $criteria = new CDbCriteria();
         //$criteria->order = ' id desc ';
-        $criteria->order = ' update_time desc, IF(UNIX_TIMESTAMP(NOW())<start_time,end_time,IF (start_time<=UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(NOW())<end_time,start_time+POW(2,40),end_time*(-1)+POW(2,41)))';
+        $criteria->order = ' IF(UNIX_TIMESTAMP(NOW())<start_time,end_time,IF (start_time<=UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(NOW())<end_time,start_time+POW(2,40),end_time*(-1)+POW(2,41))),update_time desc';
         
 
         $criteria->compare('is_delete', 0);
