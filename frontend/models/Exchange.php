@@ -279,7 +279,7 @@ class Exchange extends ActiveRecord
         }
 
         $criteria = new CDbCriteria();
-        $criteria->order = ' end_time desc ';
+        //$criteria->order = ' end_time desc ';
         //$criteria->order = 'IF(UNIX_TIMESTAMP(NOW())<start_time,end_time,IF (start_time<=UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(NOW())<end_time,start_time+POW(2,40),end_time*(-1)+POW(2,41)))';
         
 
@@ -329,7 +329,9 @@ class Exchange extends ActiveRecord
         		$endgoods[] = $val;
         	}
         }
-        //print_r($ongoods);
+        $ongoods=array_reverse($ongoods);
+        $nogoods=array_reverse($nogoods);
+        $endgoods=array_reverse($endgoods);
         $allgoods = array_merge_recursive($ongoods,$nogoods,$endgoods);  
         $data['goods'] = $allgoods;
         //分页类
