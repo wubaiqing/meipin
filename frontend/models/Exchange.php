@@ -279,7 +279,10 @@ class Exchange extends ActiveRecord
         }
 
         $criteria = new CDbCriteria();
-        $criteria->order = ' create_time desc ';
+
+        $criteria->select="*,if(start_time < UNIX_TIMESTAMP(now()),(if(end_time > UNIX_TIMESTAMP(now()),'3','1')),'2') as update_time";
+        //creat_time 我要兑换 
+        $criteria->order = ' update_time desc,create_time desc ';
         //$criteria->order = 'IF(UNIX_TIMESTAMP(NOW())<start_time,end_time,IF (start_time<=UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(NOW())<end_time,start_time+POW(2,40),end_time*(-1)+POW(2,41)))';
         
 
@@ -309,31 +312,9 @@ class Exchange extends ActiveRecord
         //根据条件查询积分兑换商品
 
         $goods = Exchange::model()->findAll($criteria);
-        $nowtime = time();
-        $ongoods = [];
-        $nogoods = [];
-        $endgoods =[];
-        foreach ($goods as $key=>$val)
-        {
-        	$start_time = $val->start_time;
-        	$end_time = $val->end_time;
-        	//正在进行
-        	if($start_time<$nowtime && $nowtime<$end_time)
-        	{
-        		$ongoods[]=$val;
-        	}else if($nowtime<$start_time && $start_time<$end_time)//即将开始
-        	{
-        		$nogoods[]= $val;
-        	}else
-        	{
-        		$endgoods[] = $val;
-        	}
-        }
-        //$ongoods=array_reverse($ongoods);
-        //$nogoods=array_reverse($nogoods);
-        //$endgoods=array_reverse($endgoods);
-        $allgoods = array_merge_recursive($ongoods,$nogoods,$endgoods);  
-        $data['goods'] = $allgoods;
+
+
+        $data['goods'] = $goods;
         //分页类
         $data['pages'] = $pages;
         //写入缓存
