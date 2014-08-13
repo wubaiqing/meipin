@@ -18,6 +18,10 @@ class Goods extends ActiveRecord implements IArrayable
         '1' => '正常',
         '2' => '售完',
     );
+    public static $change_price = array(
+        '0' => '否',
+        '1' => '是',
+    );
     /**
      * @var integer 搜索类型
      */
@@ -138,7 +142,9 @@ class Goods extends ActiveRecord implements IArrayable
             'user_id' => '用户ID',
             'is_zhe800' => '商品来源',
             'admin_id' => '创建人',
-            'is_skip' => '跳转'
+            'is_skip' => '跳转',
+            'change_price'=>'拍下减价'
+
         );
     }
 

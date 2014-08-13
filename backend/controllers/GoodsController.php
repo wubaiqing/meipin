@@ -251,6 +251,22 @@ class GoodsController extends Controller
         Goods::model()->updateByPk($id, array('status' => $status));
     }
 
+
+
+    /**
+     * 商品拍下减价
+     */
+    public function actionChangePrice($id)
+    {
+        $goods = Goods::model()->findByPk($id);
+        $change_price = 0;
+        if ($goods->change_price == 0) {
+            $change_price = 1;
+        } else {
+            $change_price = 0;
+        }
+        Goods::model()->updateByPk($id, array('change_price' => $change_price));
+    }
     /**
      * 修改商品排序
      */

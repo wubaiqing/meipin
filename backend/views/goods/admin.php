@@ -33,7 +33,7 @@
                 'id' => 'title',
                 'name' => 'title',
                 'value' => 'Goods::getUpdateLinkTitle($data->url, $data->title, $data->created_at, $data->updated_at, $data->goods_type,$data->picture);',
-                'htmlOptions' => array('height' => '80'),
+                'htmlOptions' => array('height' => '80','width'=>350),
             ),
             'price',
             'start_time' => array(
@@ -52,6 +52,11 @@
                 'type' => 'raw',
                 'name' => 'status',
                 'value' => 'CHtml::link(Goods::$statusLabels[$data->status], "javascript:void(0);", array("data-id" => $data->id, "class" => "changeStatus"))',
+            ),
+            array(
+                'type' => 'raw',
+                'name' => 'change_price',
+                'value' => 'CHtml::link(Goods::$change_price[$data->change_price], "javascript:void(0);", array("data-id" => $data->id, "class" => "changePrice"))',
             ),
             array(
                 'type' => 'raw',
@@ -127,6 +132,13 @@ $(document).ready(function () {
 
     $('.changeStatus').click(function () {
         $.get('index.php?r=goods/changeStatus', {id : $(this).attr('data-id')}, function (json) {
+            location.reload();
+        });
+    });
+
+    //修改拍下减价
+    $('.changePrice').click(function () {
+        $.get('index.php?r=goods/changePrice', {id : $(this).attr('data-id')}, function (json) {
             location.reload();
         });
     });

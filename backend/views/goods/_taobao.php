@@ -70,7 +70,12 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo $form->textField($model, 'price', array('size' => 8, 'maxlength' => 8)); ?>
         </div>
     </div>
-
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'change_price', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model, 'change_price', Goods::$change_price); ?>
+        </div>
+    </div>
     <div class="control-group">
         <?php echo $form->labelEx($model,'picture', array('class' => 'control-label')); ?>
         <div class="controls">
