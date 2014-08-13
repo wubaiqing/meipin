@@ -41,7 +41,8 @@
         echo CHtml::textField('title', $title, ['class' => 'span2', 'id' => 'title']);
         ?>
         <?php echo CHtml::link('搜索', 'javascript:void(0);', ['id' => 'search']); ?>
-
+        <br/>
+        <span style="color:red">先选择拍下减价在改其他的</span>
         <tr>
             <td width="50">拍下减价</td>
             <td width="">标题</td>
