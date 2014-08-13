@@ -27,13 +27,7 @@
             'prevPageLabel' => '上一页',
         ),
         'columns' => array(
-            'id'=>array(
-                'type'=>'raw',
-                'id'=>'id',
-                'name'=>'id',
-                'value'=>'CHtml::CheckBoxList("id","id", array("{$data->id}"=>"{$data->id}"),array("separator"=>"","labelOptions"=>array("style" => "display: inline-block;width:60px;")))',
-                'htmlOptions' => array('width' => '80'),
-                ),
+            'id',
             'title' => array(
                 'type' => 'raw',
                 'id' => 'title',
@@ -97,20 +91,19 @@
                     )
                 )
             ),
+            array(
+                    'selectableRows' => 2,
+                    'footer' => '<button type="button" onclick="GetCheckbox();" style="width:76px">批量删除</button>',
+                    'class' => 'CCheckBoxColumn',
+                    'headerHtmlOptions' => array('width'=>'33px'),
+                    'checkBoxHtmlOptions' => array('name' => 'selectdel[]'),
+            ),
         ),
     ));
     ?>
      <?php $this->renderPartial('_search', ['model' => $model]); ?>
 </div>
-<?php
-//CHtml::image("http://www.meipin.com/static/images/wxcode.png","图片",$htmlOptions=array("width"=>200,"height"=>100));
-//'Goods::getUpdateLinkTitle($data->url, $data->title, $data->created_at, $data->updated_at, $data->goods_type);'.
 
- //echo CHtml::CheckBoxList('title','title', array('2'=>'版本2','3'=>'版本3 ','4'=>'版本4 ','5'=>'版本5'));
-
-//echo $form->CheckBoxList($model,'type', array('2'=>'版本2','3'=>'版本3 ','4'=>'版本4 ','5'=>'版本5'),array("separator"=>"","labelOptions"=>array("style" => "display: inline-block;width:60px;")));
-
-?>
 <style type="text/css">
     .orderInput{width:19px;}
 </style>
@@ -163,4 +156,27 @@ $(document).ready(function () {
 
 });
 
+
+ /*<![CDATA[*/
+  var GetCheckbox = function (){
+        var data=new Array();
+        $("input:checkbox[name='selectdel[]']").each(function (){
+                alert($(this).attr("checked"));
+                if($(this).attr("checked")=="checked"){
+                    alert($(this).val())
+                        //data.push($(this).val());
+                }
+        });
+/*        if(data.length > 0){
+                $.post('<?php echo CHtml::normalizeUrl(array('/admin/words/delall/'));?>',{'selectdel[]':data}, function (data) {
+                        var ret = $.parseJSON(data);
+                        if (ret != null && ret.success != null && ret.success) {
+                                $.fn.yiiGridView.update('yw1');
+                        }
+                });
+        }else{
+                alert("请选择要删除的关键字!");
+        }*/
+}
+/*]]>*/
 </script>
