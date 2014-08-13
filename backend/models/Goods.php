@@ -162,7 +162,8 @@ class Goods extends ActiveRecord implements IArrayable
         } elseif ($this->searchType == '2') {
             $criteria->compare('tb_id', $this->searchInput);
         } else {
-            $criteria->compare('title', $this->searchInput, true);
+            $title = trim($this->searchInput);
+            $criteria->compare('title', $title, true);
         }
         $criteria->order = $this->gdorder." desc";
 	    $criteria->compare('status', $this->status);
