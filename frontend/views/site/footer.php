@@ -21,7 +21,7 @@
             <dd>记住域名：<a href="javascript:;"><em>meipin.com</em></a></dd><dd>百度搜索：<input type="text" value="美品网" onfocus="this.blur()" class="bdtxt"><a href="http://www.baidu.com/s?tn=baiduhome_pg&ie=utf-8&bs=美品网&f=8&rsv_bp=1&rsv_spt=1&wd=美品网&inputT=0" target="_blank" class="smt"></a></dd><dd>收藏本站：<a href="javascript:void(0)" onclick="javascript:addToFavorite();"><u>加入收藏</u></a></dd>
         </dl>
         <dl class="dl3">
-            <dt>Android客户端</dt>
+            <dt>手机客户端下载</dt>
             <dd class="sub"><img src="/static/images/wxcode.png" alt="">
             </dd>
         </dl>
