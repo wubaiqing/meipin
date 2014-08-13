@@ -43,13 +43,14 @@
         <?php echo CHtml::link('搜索', 'javascript:void(0);', ['id' => 'search']); ?>
 
         <tr>
+            <td width="50">拍下减价</td>
             <td width="">标题</td>
             <td width="50">分类</td>
             <td width="230">URL</td>
             <td>现价</td>
             <td width="120">图片</td>
             <td width="50">排序</td>
-            <td width="50">拍下减价</td>
+            
             <td width="60">操作</td>
         </tr>
 
@@ -58,6 +59,7 @@
             ?>
 
             <tr>
+                <td><?php echo CHtml::link(Goods::$change_price[$val->change_price], "javascript:void(0);", array("data-id" => $val->id, "class" => "changePrice"));?></td>
                 <td><span class="modify"><?php echo $val->title;?></span> <a href="<?php echo $val->url;?>" target="_blank">查看</a></td>
                 <td>
                     <?php
@@ -87,7 +89,6 @@
                     </span>
                 </td>
                 <td><span class="modify">0</span></td>
-                <td><?php echo CHtml::link(Goods::$change_price[$val->change_price], "javascript:void(0);", array("data-id" => $val->id, "class" => "changePrice"));?></td>
                 <td>
                     <a href="javascript:void(0);" class="push" data-cat="<?php echo $val->cat_id;?>" data-origin_price="<?php echo $val->origin_price;?>" data-goods_id="<?php echo $val->id;?>" data-tb_id="<?php echo $val->tb_id;?>" data-url="<?php echo $val->url;?>">保存</a>
                 </td>
