@@ -160,14 +160,9 @@ $(document).ready(function () {
    $('.GetCheckbox').click(function () {
         var data=new Array();
         $("input:checkbox[name='selectdel[]']").each(function (){
-            //alert($(this).attr('checked'));
-            alert($(this).checked)
-            //aa= $("input[name='selectdel']").attr("checked");
-            //alert(aa)
-            //alert($(this).val());
-                /*if($(this).attr("checked")=="checked"){
-                        data.push($(this).val());
-                }*/
+            if(this.checked==true){
+                data.push($(this).val());
+            }
         });
 /*        if(data.length > 0){
                 $.post('<?php echo CHtml::normalizeUrl(array('/admin/words/delall/'));?>',{'selectdel[]':data}, function (data) {
