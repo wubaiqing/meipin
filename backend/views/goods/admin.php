@@ -101,7 +101,6 @@
         ),
     ));
     ?>
-     <?php $this->renderPartial('_search', ['model' => $model]); ?>
 </div>
 
 <style type="text/css">
@@ -156,6 +155,16 @@ $(document).ready(function () {
 
 });
 
+/*Array
+(
+    [selectdel] => Array
+        (
+            [0] => 13187
+            [1] => 13178
+            [2] => 10439
+        )
+
+)*/
 
    $('.GetCheckbox').click(function () {
         var data=new Array();
@@ -164,16 +173,17 @@ $(document).ready(function () {
                 data.push($(this).val());
             }
         });
-/*        if(data.length > 0){
-                $.post('<?php echo CHtml::normalizeUrl(array('/admin/words/delall/'));?>',{'selectdel[]':data}, function (data) {
-                        var ret = $.parseJSON(data);
+       if(data.length > 0){
+                $.post('index.php?r=goods/Allupdate',{'selectdel[]':data}, function (data) {
+                       alert(data)
+                        /*var ret = $.parseJSON(data);
                         if (ret != null && ret.success != null && ret.success) {
                                 $.fn.yiiGridView.update('yw1');
-                        }
+                        }*/
                 });
         }else{
                 alert("请选择要删除的关键字!");
-        }*/
+        }
 })
 
 </script>

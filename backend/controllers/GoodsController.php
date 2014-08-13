@@ -69,6 +69,35 @@ class GoodsController extends Controller
     }
 
     /**
+     * 批量修改
+     */
+    public function actionAllupdate()
+    {
+        //print_r($_POST);
+        if (Yii::app()->request->isPostRequest)
+        {
+            $criteria= new CDbCriteria;
+            $criteria->addInCondition('id', $_POST['selectdel']);
+            //Words::model()->deleteAll($criteria);//Words换成你的模型
+            print_r($criteria);
+            die;
+           
+            if(isset(Yii::app()->request->isAjaxRequest)) 
+            {
+                echo CJSON::encode(array('success' => true));
+            }else
+            {
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+            }
+        }
+        else
+        {
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+        }
+        
+    }
+
+    /**
      * 商品管理
      */
     public function actionAdmin()
