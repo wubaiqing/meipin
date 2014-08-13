@@ -27,7 +27,13 @@
             'prevPageLabel' => '上一页',
         ),
         'columns' => array(
-            'id',
+            'id'=>array(
+                'type'=>'raw',
+                'id'=>'id',
+                'name'=>'id',
+                'value'=>'CHtml::CheckBoxList("id","id", array("{$data->id}"=>"{$data->id}"),array("separator"=>"","labelOptions"=>array("style" => "display: inline-block;width:60px;")))',
+                'htmlOptions' => array('width' => '80'),
+                ),
             'title' => array(
                 'type' => 'raw',
                 'id' => 'title',
@@ -94,10 +100,16 @@
         ),
     ));
     ?>
+    
 </div>
 <?php
 //CHtml::image("http://www.meipin.com/static/images/wxcode.png","图片",$htmlOptions=array("width"=>200,"height"=>100));
 //'Goods::getUpdateLinkTitle($data->url, $data->title, $data->created_at, $data->updated_at, $data->goods_type);'.
+
+ //echo CHtml::CheckBoxList('title','title', array('2'=>'版本2','3'=>'版本3 ','4'=>'版本4 ','5'=>'版本5'));
+
+//echo $form->CheckBoxList($model,'type', array('2'=>'版本2','3'=>'版本3 ','4'=>'版本4 ','5'=>'版本5'),array("separator"=>"","labelOptions"=>array("style" => "display: inline-block;width:60px;")));
+
 ?>
 <style type="text/css">
     .orderInput{width:19px;}
