@@ -100,7 +100,7 @@
         ),
     ));
     ?>
-    
+     <?php $this->renderPartial('_search', ['model' => $model]); ?>
 </div>
 <?php
 //CHtml::image("http://www.meipin.com/static/images/wxcode.png","图片",$htmlOptions=array("width"=>200,"height"=>100));
