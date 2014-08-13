@@ -25,9 +25,9 @@ return array(
     'params' => array(
         'pagination' => array(
             'pageVar' => 'page',
-            'pageSize' => 50,
+            'pageSize' => 30,
         ),
-        'actdatapagesize' => 50,
+        'actdatapagesize' => 30,
                     //物流系统
             'logisticsSystem' =>[
                 1 => 'EMS',

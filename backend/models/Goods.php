@@ -187,9 +187,9 @@ class Goods extends ActiveRecord implements IArrayable
      * 列表修改标题链接
      * @return string
      */
-    public static function getUpdateLinkTitle($url, $title, $startTime, $endTime, $isActivity)
+    public static function getUpdateLinkTitle($url, $title, $startTime, $endTime, $isActivity,$picture)
     {
-        return '<a target="_blank" title="创建时间：'.date('Y-m-d H:i:s', $startTime). "\n修改时间：". date('Y-m-d H:i:s', $endTime).'" href="'.$url.'">'.$title.'</a>';
+        return '<a target="_blank" title="创建时间：'.date('Y-m-d H:i:s', $startTime). "\n修改时间：". date('Y-m-d H:i:s', $endTime).'" href="'.$url.'">'.$title.'</a> <br/><img src='.$picture.' width="100px" height="65px;" />';
     }
 
     /**

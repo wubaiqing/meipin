@@ -32,7 +32,8 @@
                 'type' => 'raw',
                 'id' => 'title',
                 'name' => 'title',
-                'value' => 'Goods::getUpdateLinkTitle($data->url, $data->title, $data->created_at, $data->updated_at, $data->goods_type)',
+                'value' => 'Goods::getUpdateLinkTitle($data->url, $data->title, $data->created_at, $data->updated_at, $data->goods_type,$data->picture);',
+                'htmlOptions' => array('height' => '80'),
             ),
             'price',
             'start_time' => array(
@@ -89,6 +90,10 @@
     ));
     ?>
 </div>
+<?php
+//CHtml::image("http://www.meipin.com/static/images/wxcode.png","图片",$htmlOptions=array("width"=>200,"height"=>100));
+//'Goods::getUpdateLinkTitle($data->url, $data->title, $data->created_at, $data->updated_at, $data->goods_type);'.
+?>
 <style type="text/css">
     .orderInput{width:19px;}
 </style>
