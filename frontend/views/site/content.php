@@ -119,7 +119,10 @@
 						<?php endif;?>
                         </span>
                         <span>
-                            <i>¥<?php echo $item->origin_price;?></i>
+                            <i>¥<?php echo $item->origin_price;?></i><br/>
+                            <?php if($item->change_price==1):?>
+                            <b class='i2'></b>
+                        <?php endif;?>
                         </span>
                         <?php if ($item->start_time > time() && $item->sell_status !=2 ) :?>
 						<span><span><a href="<?php echo $goodsUrl ?>" target="_blank" ></a></span></span>
