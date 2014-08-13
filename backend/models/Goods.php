@@ -78,7 +78,7 @@ class Goods extends ActiveRecord implements IArrayable
     public function rules()
     {
         return array(
-            array('goods_type, cat_id, title, url, origin_price, price, picture, status, list_order, start_time, end_time, user_id, is_zhe800, is_skip', 'required'),
+            array('goods_type, cat_id, title, url, origin_price, price, picture, status, list_order, start_time, end_time, user_id, is_zhe800, is_skip,change_price', 'required'),
             array('tb_id, cat_id, status, list_order, created_at, updated_at, user_id', 'numerical', 'integerOnly' => true),
             array('origin_price, price', 'type', 'type' => 'float'),
         array('title, picture, searchInput', 'length', 'max' => 255),
