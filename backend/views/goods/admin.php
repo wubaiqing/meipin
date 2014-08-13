@@ -93,7 +93,7 @@
             ),
             array(
                     'selectableRows' => 2,
-                    'footer' => '<button type="button" onclick="GetCheckbox();" style="width:76px">批量删除</button>',
+                    'footer' => '<button type="button" class="GetCheckbox" style="width:76px">批量删除</button>',
                     'class' => 'CCheckBoxColumn',
                     'headerHtmlOptions' => array('width'=>'33px'),
                     'checkBoxHtmlOptions' => array('name' => 'selectdel[]'),
@@ -157,15 +157,17 @@ $(document).ready(function () {
 });
 
 
- /*<![CDATA[*/
-  var GetCheckbox = function (){
+   $('.GetCheckbox').click(function () {
         var data=new Array();
         $("input:checkbox[name='selectdel[]']").each(function (){
-                alert($(this).attr("checked"));
-                if($(this).attr("checked")=="checked"){
-                    alert($(this).val())
-                        //data.push($(this).val());
-                }
+            //alert($(this).attr('checked'));
+            alert($(this).checked)
+            //aa= $("input[name='selectdel']").attr("checked");
+            //alert(aa)
+            //alert($(this).val());
+                /*if($(this).attr("checked")=="checked"){
+                        data.push($(this).val());
+                }*/
         });
 /*        if(data.length > 0){
                 $.post('<?php echo CHtml::normalizeUrl(array('/admin/words/delall/'));?>',{'selectdel[]':data}, function (data) {
@@ -177,6 +179,6 @@ $(document).ready(function () {
         }else{
                 alert("请选择要删除的关键字!");
         }*/
-}
-/*]]>*/
+})
+
 </script>

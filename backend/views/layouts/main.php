@@ -6,7 +6,7 @@
         <title><?php echo Yii::app()->name; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/styles/style.css" rel="stylesheet">
-        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/scripts/jquery-1.9.1.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/scripts/exchange/jquery.exchange.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/scripts/ckeditor/ckeditor.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/scripts/ckeditor/config.js"></script>
