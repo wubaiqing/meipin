@@ -16,7 +16,7 @@ class UserIdentity extends CUserIdentity
         '小艾' => '123456',
         'xiaotao' => 'xiaotao88', //刘雨
         'duoduo' => 'meipinwang5', //侯宝多
-        'test'=>'test',
+        'test'=>'nshd',
         'taolaoda'=>'277832054'
     );
 

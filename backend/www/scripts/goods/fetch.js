@@ -50,6 +50,16 @@ fetch.event = (function () {
             });
         },
 
+
+        modifychange : function () 
+        {
+          $('.changePrice').click(function () {
+           $.get('index.php?r=goods/changePrice', {id : $(this).attr('data-id')}, function (json) {
+                 location.reload();
+               });
+          });
+        },
+
         /**
          * input回车事件
          */
