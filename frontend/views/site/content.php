@@ -83,7 +83,7 @@
                     <h4>
                         <span>
                             <em>
-                                <b style="font-size:28px;font-weight:'微软雅黑';"><?php echo $item->active_price;?><b style="font-size:12px;font-weight:bold;">元</b>+<b style="font-size:28px;font-weight:'微软雅黑';"><?php echo $item->integral; ?>分</b></b>
+                                <b style="font-size:26px;font-weight:'微软雅黑';"><?php echo $item->active_price;?><b style="font-size:12px;font-weight:bold;">元</b>+<b style="font-size:26px;font-weight:'微软雅黑';"><?php echo $item->integral; ?>分</b></b>
                                 
                             </em>
                         </span>
