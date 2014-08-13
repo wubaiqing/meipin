@@ -32,7 +32,7 @@
         <dd><a href="http://meipin.com/index.html?cat=1000" target="_blank"><img alt="" src="http://static.meipin.com/static/12.png"></a></dd>
         <dd><a href="http://meipin.com/raffle" target="_blank"><img alt="" src="http://static.meipin.com/static/13.png"></a></dd>
          <dd><a href="http://meipin.com/exchange/index" target="_blank"><img alt="" src="http://static.meipin.com/static/14.png"></a></dd>
-         <dd><a href="http://meipin.com/site/phone" target="_blank"><img alt="" src="http://static.meipin.com/static/15.jpg"></a></dd>
+         <dd><a href="http://meipin.com/site/phone" target="_blank"><img alt="" src="http://static.meipin.com/static/15.png"></a></dd>
       </dl>
     </div>
   </div>

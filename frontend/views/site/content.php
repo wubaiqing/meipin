@@ -50,7 +50,18 @@
             <div class="deal figure1 zt1">
                 <div class="">
                     <p>
-                       <?php $goodsUrl = Yii::app()->createUrl("exchange/exchangeIndex", array("id" => Des::encrypt($item->id)));?>
+                       <?php 
+                       if($item->goods_type==0)
+                       {
+                        $goodsUrl = Yii::app()->createUrl("exchange/exchangeIndex", array("id" => Des::encrypt($item->id)));
+                       }else
+                       {
+                         $goodsUrl = Yii::app()->createUrl("exchange/raffle", ['id' => Des::encrypt($item->id)]);
+
+                       }
+
+                       ?>
+
                         <a href="<?php echo $goodsUrl;?>" target="_blank">
                             <img class="goods-item-img" data-url="<?php echo $item->img_url; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->name; ?>" alt="<?php echo $item->name; ?>" width="290" height="190">
                         </a>
@@ -58,7 +69,11 @@
                     <h2>
                         <strong>
                             <a href="<?php echo $goodsUrl;?>" target="_blank">
-                                【美品网】
+                             <?php if($item->goods_type==1):?>
+                                【积分抽奖】
+                             <?php else:?>
+                                【积分兑换】
+                             <?php endif;?>
                             </a>
                         </strong>
                         <a href="<?php echo $goodsUrl;?>" target="_blank" title="<?php echo $item->name;?>">

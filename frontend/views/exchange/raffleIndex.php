@@ -56,7 +56,7 @@
             </div>
             <?php if($data['exchange']->description){?>
                     <a style="width:400px;margin-left:28px;float:left;margin-bottom:20px;"><span style="color:red;font-weight:bold;font-size:16px;float:left;">抽奖说明：</span><?php echo $data['exchange']->description;?> </a>
-                    <?php }else{echo "222";};?>
+                    <?php };?>
         </form>
         <?php
         $page = Yii::app()->request->getQuery("page");
