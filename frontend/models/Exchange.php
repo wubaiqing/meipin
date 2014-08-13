@@ -177,7 +177,7 @@ class Exchange extends ActiveRecord
         if (!empty($IndexExchange)) {
             return $IndexExchange;
         }
-        $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1 and goods_type = 0",
+        $IndexExchange = Exchange::model()->findAll(['condition' => "is_delete = 0 and is_first=1",
             'order' => 'list_order desc']);
         Yii::app()->cache->set($key, $IndexExchange, Constants::T_HALF_HOUR);
 
