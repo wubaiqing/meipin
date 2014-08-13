@@ -27,11 +27,11 @@
     <div class="content">
       <dl>
       
-        <dt><img alt="" src="http://static.meipin.com/static/10.jpg"></dt>
-        <dt><a href="http://www.meipin.com/brand/5yuan" target="_blank"><img alt="" src="http://static.meipin.com/static/11.jpg"></a></dt>
-        <dd><a href="http://meipin.com/index.html?cat=1000" target="_blank"><img alt="" src="http://static.meipin.com/static/12.jpg"></a></dd>
-        <dd><a href="http://meipin.com/raffle" target="_blank"><img alt="" src="http://static.meipin.com/static/13.jpg"></a></dd>
-         <dd><a href="http://meipin.com/exchange/index" target="_blank"><img alt="" src="http://static.meipin.com/static/14.jpg"></a></dd>
+        <dt><img alt="" src="http://static.meipin.com/static/10.png"></dt>
+        <dt><a href="http://www.meipin.com/brand/5yuan" target="_blank"><img alt="" src="http://static.meipin.com/static/11.png"></a></dt>
+        <dd><a href="http://meipin.com/index.html?cat=1000" target="_blank"><img alt="" src="http://static.meipin.com/static/12.png"></a></dd>
+        <dd><a href="http://meipin.com/raffle" target="_blank"><img alt="" src="http://static.meipin.com/static/13.png"></a></dd>
+         <dd><a href="http://meipin.com/exchange/index" target="_blank"><img alt="" src="http://static.meipin.com/static/14.png"></a></dd>
          <dd><a href="http://meipin.com/site/phone" target="_blank"><img alt="" src="http://static.meipin.com/static/15.jpg"></a></dd>
       </dl>
     </div>
