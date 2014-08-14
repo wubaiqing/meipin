@@ -90,7 +90,6 @@ class JiukuaiyouCommand extends CConsoleCommand
     public static function handleData($dealad2)
     {
         $data = [];
-        $price="";
         // 淘宝URL
         $data['url'] = $dealad2->find('a', 0)->href;
 
@@ -102,10 +101,10 @@ class JiukuaiyouCommand extends CConsoleCommand
 
         // 商品价格
         $price = $dealad2->find('h4', 0);
-
-        $price1 = $pirce->find('span', 0)->plaintext;
-        $data['price'] = FetchHelpers::getInt($price1);
-
+        echo $price;
+        //$price1 = $pirce->find('span', 0)->plaintext;
+        $data['price'] = FetchHelpers::getInt($price);
+        
         // 商品原始价格
         $origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
         $data['origin_price'] = FetchHelpers::getInt($origin_price);
@@ -125,6 +124,6 @@ class JiukuaiyouCommand extends CConsoleCommand
             $data['endTime'] = strtotime('+ 5 day 23:59:59');
         }
 
-        return $data;
+        //return $data;
     }
 }
