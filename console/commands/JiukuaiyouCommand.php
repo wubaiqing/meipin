@@ -90,7 +90,6 @@ class JiukuaiyouCommand extends CConsoleCommand
     public static function handleData($dealad2)
     {
         $data = [];
-        var $dealad2;
         // 淘宝URL
         $data['url'] = $dealad2->find('a', 0)->href;
 
@@ -101,12 +100,12 @@ class JiukuaiyouCommand extends CConsoleCommand
         $data['title'] = $dealad2->find('h3', 0)->find('a', 0)->plaintext;
 
         // 商品价格
-        $price = $dealad2->find('h4', 0)->find('span', 0)->plaintext;
-        $data['price'] = FetchHelpers::getInt($price);
+        $price = $dealad2;
+        //$data['price'] = FetchHelpers::getInt($price);
 
         // 商品原始价格
-        $origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
-        $data['origin_price'] = FetchHelpers::getInt($origin_price);
+        //$origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
+        //$data['origin_price'] = FetchHelpers::getInt($origin_price);
 
 	    // 关联网站
 	    $data['relation_website'] = 3;
