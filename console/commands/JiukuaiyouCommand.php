@@ -72,14 +72,12 @@ class JiukuaiyouCommand extends CConsoleCommand
                 ]
             ]));
 
-            if(!empty($html->find('.main-good'))) //判断是否为空
-            {
-                foreach ($html->find('.main-good') as $dealad) {
+            foreach ($html->find('.main-good') as $dealad) {
 
-                    $data = self::handleData($dealad);
-                    unset($dealad);
-                    FetchHelpers::update($catId, $data); 
-                }
+                $data = self::handleData($dealad);
+                unset($dealad);
+                FetchHelpers::update($catId, $data); 
+                
             }
         }
     }
