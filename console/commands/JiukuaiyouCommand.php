@@ -90,6 +90,7 @@ class JiukuaiyouCommand extends CConsoleCommand
     public static function handleData($dealad2)
     {
         $data = [];
+        var $price;
         // 淘宝URL
         $data['url'] = $dealad2->find('a', 0)->href;
 
