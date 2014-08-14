@@ -93,7 +93,7 @@
             ),
             array(
                     'selectableRows' => 2,
-                    'footer' => '<button type="button" class="GetCheckbox" style="width:76px">批量删除</button>',
+                    'footer' => '<button type="button" class="GetCheckbox" style="width:33px">批量</button>',
                     'class' => 'CCheckBoxColumn',
                     'headerHtmlOptions' => array('width'=>'33px'),
                     'checkBoxHtmlOptions' => array('name' => 'selectdel[]'),
@@ -102,7 +102,6 @@
     ));
     ?>
 </div>
-
 <style type="text/css">
     .orderInput{width:19px;}
 </style>
@@ -166,24 +165,29 @@ $(document).ready(function () {
 
 )*/
 
-   $('.GetCheckbox').click(function () {
-        var data=new Array();
-        $("input:checkbox[name='selectdel[]']").each(function (){
-            if(this.checked==true){
-                data.push($(this).val());
+   $('.GetCheckbox').click(function () 
+   {
+        if (confirm("确定要将排序值修改为0")) 
+        {
+            var data=new Array();
+            $("input:checkbox[name='selectdel[]']").each(function (){
+                if(this.checked==true){
+                    data.push($(this).val());
+                }
+            });
+           if(data.length > 0)
+           {
+                    $.post('index.php?r=goods/Allupdate',{'selectdel[]':data}, function (data) {
+                            //alert(data)
+                            var ret = $.parseJSON(data);
+                            if (ret != null && ret.success != null && ret.success) {
+                                   location.reload();
+                            }
+                    });
+            }else{
+                    alert("请选择要修改的排序值！");
             }
-        });
-       if(data.length > 0){
-                $.post('index.php?r=goods/Allupdate',{'selectdel[]':data}, function (data) {
-                       alert(data)
-                        /*var ret = $.parseJSON(data);
-                        if (ret != null && ret.success != null && ret.success) {
-                                $.fn.yiiGridView.update('yw1');
-                        }*/
-                });
-        }else{
-                alert("请选择要删除的关键字!");
-        }
+    }
 })
 
 </script>
