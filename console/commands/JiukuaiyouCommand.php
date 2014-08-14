@@ -100,8 +100,10 @@ class JiukuaiyouCommand extends CConsoleCommand
         $data['title'] = $dealad2->find('h3', 0)->find('a', 0)->plaintext;
 
         // 商品价格
-        $price = $dealad2->find('h4', 0)->plaintext;
-        $data['price'] = FetchHelpers::getInt($price);
+        $price = $dealad2->find('h4', 0);
+
+        $price1 = $pirce->find('span', 0)->plaintext;
+        $data['price'] = FetchHelpers::getInt($price1);
 
         // 商品原始价格
         $origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
