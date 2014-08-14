@@ -102,12 +102,13 @@ class JiukuaiyouCommand extends CConsoleCommand
         // 商品价格
         $price = $dealad2->find('h4', 0);
         echo $price;
+        die;
         //$price1 = $pirce->find('span', 0)->plaintext;
         $data['price'] = FetchHelpers::getInt($price);
         
         // 商品原始价格
-        $origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
-        $data['origin_price'] = FetchHelpers::getInt($origin_price);
+        //$origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
+        $data['origin_price'] = '11';
 
 	    // 关联网站
 	    $data['relation_website'] = 3;
