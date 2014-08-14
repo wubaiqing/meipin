@@ -87,28 +87,26 @@ class JiukuaiyouCommand extends CConsoleCommand
      * @param  object $dealad 当前
      * @return array
      */
-    public static function handleData($dealad2)
+    public static function handleData($dealad)
     {
         $data = [];
+
         // 淘宝URL
-        $data['url'] = $dealad2->find('a', 0)->href;
+        $data['url'] = $dealad->find('a', 0)->href;
 
         // 淘宝ID
         $data['taobaoId'] = FetchHelpers::getInt(substr($data['url'], -13));
 
         // 商品标题
-        $data['title'] = $dealad2->find('h3', 0)->find('a', 0)->plaintext;
+        $data['title'] = $dealad->find('h3', 0)->find('a', 0)->plaintext;
 
         // 商品价格
-        $price = $dealad2->find('h4', 0);
-        echo $price;
-        die;
-        //$price1 = $pirce->find('span', 0)->plaintext;
+        $price = $dealad->find('h4', 0)->find('span', 0)->plaintext;
         $data['price'] = FetchHelpers::getInt($price);
-        
+
         // 商品原始价格
-        //$origin_price = $dealad2->find('h4', 0)->find('span', 2)->plaintext;
-        $data['origin_price'] = '11';
+        $origin_price = $dealad->find('h4', 0)->find('span', 2)->plaintext;
+        $data['origin_price'] = FetchHelpers::getInt($origin_price);
 
 	    // 关联网站
 	    $data['relation_website'] = 3;
@@ -125,6 +123,6 @@ class JiukuaiyouCommand extends CConsoleCommand
             $data['endTime'] = strtotime('+ 5 day 23:59:59');
         }
 
-        //return $data;
+        return $data;
     }
 }
