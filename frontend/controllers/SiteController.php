@@ -89,7 +89,7 @@ class SiteController extends Controller
         $goods = Goods::getGoods($goodsId);
         if (!empty($goods)) {
             //header("Location:{$goods->url}");
-            $url = "http://detail.m.tmall.com/item.htm?id=".$goods->tb_id."&fm=detail";
+            $url = "http://a.m.taobao.com/i".$goods->tb_id.".htm";
             header("Location:{$url}");
             Yii::app()->end();
         }
