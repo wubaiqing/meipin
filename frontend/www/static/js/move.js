@@ -44,12 +44,30 @@ var drift = DRIFT.GOSH();
 /* ----------------------浮层方法结束--------------------------- */
 //首页收藏显示图片
 $(document).ready(function(e) {
+    $(".qiandao1 ol").hover(function(){
+        },function(){
+        $(this).hide();
+    });
+    $(".qiandao1 dl").hover(function(){
+        },function(){
+        $(this).hide();
+    });
 	$("#nav p").hover(function(){
     $(this).find(".span1").show();
 	$(this).find("a img").hide();
+    var islog = $('#is_userloin').val();
+    if(islog==1)
+    {
+        $(".qiandao1 dl").show();
+    }else
+    {
+        $(".qiandao1 ol").show();
+    }
+    //
 		},function(){
 	$(this).find(".span1").hide();
 	$(this).find("a img").show();
+
 	});
    $(window).scroll(function( ){
         var x = $(this).scrollTop();
@@ -116,3 +134,8 @@ var www_meipin_com = function (obj, url, title) {
         }
     }
 };	
+
+function userlogin()
+{
+    window.location.href = $('#unlogin_url').val();
+}

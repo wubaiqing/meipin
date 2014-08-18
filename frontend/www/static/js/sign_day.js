@@ -89,7 +89,10 @@ $(function() {
             if (result.status == false) {
                 //未登录
                 if (!result.data.isLogin) {
-                    window.location.href = $('#unlogin_url').val();
+                    //alert($('#unlogin_url').val());
+                    //alert(11)
+                    $(".qiandao1 ol").show();
+                    //window.location.href = $('#unlogin_url').val();
                 } else {
                     alert(result.data.message);
                 }
@@ -99,9 +102,9 @@ $(function() {
                 // $('.qiandao').removeClass('unsign').addClass('signed').removeClass('qiandao');
                 if ( $("#jryq").length > 0 ) 
                 { 
-                  $("#jryq").html("今日已签&nbsp;&nbsp;&nbsp;&nbsp;"); 
+                  $("#jryq").html("今日已签到"); 
                 } 
-
+                $(".qiandao1 dl").show();
                 if ($("#jryq2").length > 0)
                 {
                     //积分签到更改 样式和文字
@@ -112,13 +115,15 @@ $(function() {
                 //成功提示
                 $("#dr_count").html(result.data.dr_count);
                 $("#nowScore").html(result.data.score);
+                $("#myscore").html(result.data.myscore);
                 $("#nextCount").html(result.data.nextScore);
                 return true;
             }
         }, 'json');
     });
     $('.cheng').click(function() {
-        alert("您已经签过了");
+        $(".qiandao ol").hide();
+        $(".qiandao dl").show();
     });
     //倒计时
     $("p.time").each(function(i) {

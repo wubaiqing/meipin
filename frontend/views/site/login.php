@@ -23,6 +23,7 @@
         <?php } ?>
         <?php
         $isSignDay = User::isSignDay();
+        $isLogin =!empty($this->user)?'1':0;
         ?>
         <li class="qd <?php echo $isSignDay ? 'qd_ok' : ''; ?>">
         <span href="javascript:;"
@@ -59,5 +60,6 @@
         </ul>
     </div>
     <?php echo CHtml::hiddenField('unlogin_url', Yii::app()->createAbsoluteUrl("user/login")); ?>
+    <?php echo CHtml::hiddenField('is_userloin', $isLogin); ?>
     </div>
 </div>
