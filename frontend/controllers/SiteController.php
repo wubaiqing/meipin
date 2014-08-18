@@ -263,4 +263,11 @@ class SiteController extends Controller
         $this->render('download');
     }
 
+    //测试
+    function actionTest()
+    {
+
+         $this->render('login');
+    }
+
 }
