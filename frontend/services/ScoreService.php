@@ -369,10 +369,10 @@ class ScoreService
             return CommonHelper::getDataResult(false, ['message' => "您已经签过了"]);
         }
         //积分cookie验证签到
-        /*if (self::isAreadyDayReg($userId)) {
+        if (self::isAreadyDayReg($userId)) {
             return CommonHelper::getDataResult(false, ['message' => "每台电脑每天只能签到一次"]);
         }
-      */
+      
         $transaction = Yii::app()->db->beginTransaction();
         $now = time();
         try {
