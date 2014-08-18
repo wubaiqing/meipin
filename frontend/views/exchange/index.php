@@ -1,7 +1,6 @@
 <?php
 $isSignDay = User::isSignDay();
 ?>
-<link rel="stylesheet" type="text/css"  href="/static/nav_style.css"/>
 <link rel="stylesheet" type="text/css"  href="/static/css/exchange2.css"/>
 <div id="content" class="wp">
     <div class="w1040 clearfix">

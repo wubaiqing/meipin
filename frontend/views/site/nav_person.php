@@ -27,7 +27,7 @@
 		<p class="one"><a href="/site/bsrg" target="_blank">商家报名</a></p>
 
 		 <div class="qiandao1">
-            <p><span class='span1' style='display:none;'><img src="/static/images/face.png"></span><a href="javascript:;" class="qiandao"><i class="icon-mini"></i><img src="/static/images/pen_03_01.png"><span id='jryq'><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签到'; ?></span></a>
+            <p><span class='span1' style='display:none;'><img src="/static/images/face.png"></span><a href="javascript:;" class="qiandao"><i class="icon-mini"></i><img src="/static/images/qidao.png"><span id='jryq' style="font-size:16px;font-weight:bold;"><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签到'; ?></span></a>
             <?php 
             $isSignDay = User::isSignDay(); //判断是否签到
             if (empty($isSignDay)): ?>

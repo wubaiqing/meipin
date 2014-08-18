@@ -53,8 +53,8 @@ $(document).ready(function(e) {
         $(this).hide();
     });
 	$("#nav p").hover(function(){
-    $(this).find(".span1").show();
-	$(this).find("a img").hide();
+    /*$(this).find(".span1").show();
+	$(this).find("a img").hide();*/
     var islog = $('#is_userloin').val();
     if(islog==1)
     {
@@ -65,8 +65,8 @@ $(document).ready(function(e) {
     }
     //
 		},function(){
-	$(this).find(".span1").hide();
-	$(this).find("a img").show();
+	/*$(this).find(".span1").hide();
+	$(this).find("a img").show();*/
 
 	});
    $(window).scroll(function( ){

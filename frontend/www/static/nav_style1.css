@@ -56,13 +56,13 @@ br {clear:both;font-size:0;line-height:0;}
 }
 #nav p {
 	float:left;
-	padding-left:50px;
+	padding-left:47px;
 	position:relative;
 }
 #nav p img {
 	position:absolute;
-	top:8px;
-	right:73px;
+	top:0px;
+	right:88px;
 }
 #nav p a {
 	font-family:"宋体";
