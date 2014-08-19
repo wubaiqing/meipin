@@ -10,7 +10,7 @@
         </dl>
         <dl class="dl2">
             <dt>        商务合作        </dt>
-            <dd><a href="/site/bsrg" target="_blank">广告资讯</a></dd><a href="/site/moreship" target="_blank">友情链接</a></dd>
+            <dd><a href="/site/bsrg" target="_blank">广告咨询</a></dd><a href="/site/moreship" target="_blank">友情链接</a></dd>
         </dl>
         <dl class="dl4">
             <dt>      关注美品      </dt>
