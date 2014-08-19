@@ -1,23 +1,22 @@
 <link rel="stylesheet" type="text/css"  href="/static/bsrg.css?v=201404131000" />
 <div id="wrap_bsrg" style="margin-top:30px;">
     <div id="main">
-        <h1>美品网活动招商规则</h1>
-        <p>参与活动前，请一定要认真阅读我们的活动规则和报名要求，磨刀不误砍柴工，知道规则少走弯路，大家都节省时间。</p>
+        <h1>美品网活动广告合作</h1>
     </div>
     <div id="table">
-        <h3>商家报名：</h3>
+        <h3>广告咨询：</h3>
         <div class="tab">
             <table width=94% border="0" cellspacing=1 cellpadding=5 bgcolor="#000000"; >
             <tr  align="center"  bgcolor="#f9f9f9">
-             <td height="40" width="160">商品类型</td>
-              <td width="280" height="40">女装、化妆品</td>
-              <td width="280" height="40">男装、数码家电</td>
-              <td width="300" height="40">居家日用、母婴用品</td>
-              <td width="260" height="40">鞋包、配饰</td>
-              <td width="260" height="40">美食、文体用品</td>
+             <td height="40" width="160">联系人</td>
+              <td width="280" height="40">美品网_红茶</td>
+              <td width="280" height="40">美品网_梓彤</td>
+              <td width="300" height="40">美品网_小桃</td>
+              <td width="260" height="40">美品网_薄荷</td>
+              <td width="260" height="40">美品网_小舞</td>
             </tr>
             <tr  align="center"  bgcolor="#f9f9f9">
-             <td height="40" width="160">联系客服</td>
+             <td height="40" width="160">联系旺旺</td>
                  <td width="280" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_红茶&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_红茶&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
 
               <td width="280" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_梓彤&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_梓彤&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
@@ -30,7 +29,7 @@
             </tr>
             </table>
         </div>
-        <h3>招商报名规则：</h3>
+        <h3>活动商品要求：</h3>
         <div class="tab">
             <table width=94% border="0" cellspacing=1 cellpadding=3 bgcolor="#000000"; >
             <tr  align="center"  bgcolor="#f9f9f9">
