@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css"  href="/static/bsrg.css?v=201404131000" />
 <div id="wrap_bsrg" style="margin-top:30px;">
     <div id="main">
-        <h1>美品网活动广告合作</h1>
+        <h1>美品网活动广告合作<span style="font-size:26px;">(本站暂不接受免费报名，谢谢合作)</span></h1>
     </div>
     <div id="table">
         <h3>广告咨询：</h3>
