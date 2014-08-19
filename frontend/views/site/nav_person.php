@@ -24,7 +24,7 @@
 #nav .qiandao1 dl dt span {color:#e02f2f;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;font-weight:bold;font-size:14px;}
 #nav .qiandao1 dl dt em {color:#e02f2f;font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;font-weight:bold;font-size:14px;}
 </style>
-		<p class="one"><a href="/site/bsrg" target="_blank">商家报名</a></p>
+		<p class="one"><a href="/site/bsrg" target="_blank">广告资讯</a></p>
 
 		 <div class="qiandao1">
             <p><span class='span1' style='display:none;'><img src="/static/images/face.png"></span><a href="javascript:;" class="qiandao"><i class="icon-mini"></i><img src="/static/images/qidao.png"><span id='jryq' style="font-size:16px;font-weight:bold;"><?php $isSignDay = User::isSignDay(); echo !$isSignDay ? '签到领积分' : '今日已签到'; ?></span></a>
