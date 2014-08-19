@@ -16,7 +16,7 @@
         $this->renderPartial('menuWp', array('pager' => $pager)); 
     }
    ?>
-    <?php $this->renderPartial('content', array('goods' => $goods,'exchange'=>$exchange,'brand'=>$brand)); ?>
+    <?php $this->renderPartial('content', array('goods' => $goods,'exchange'=>$exchange,'brand'=>$brand,'cat'=>$cat)); ?>
     <?php $this->renderPartial('page', array('pager' => isset($pager) && !empty($pager) ? $pager : '')); ?>
 </div>
 <?php $this->renderPartial('right'); ?>

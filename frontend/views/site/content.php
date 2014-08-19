@@ -43,7 +43,7 @@
 
 
      <!--首页积分调用 start-->
-       <?php if(!empty($exchange) && isset($exchange)) {
+       <?php if(!empty($exchange) && isset($exchange) && isset($cat) && empty($cat)) {
    
         foreach ($exchange as $item) : ?>
         <div class="dealbox">
