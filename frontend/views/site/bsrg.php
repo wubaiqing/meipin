@@ -62,12 +62,7 @@
               <td width="240" height="40">同行持平及以上</td>
               <td width="240" height="40">同行持平及以上</td>
             </tr>
-             <tr  align="center"  bgcolor="#ffffff">
-             <td height="40" width="140">收取样品</td>
-              <td width="240" height="40">需要</td>
-              <td width="240" height="40">需要</td>
-              <td width="240" height="40">需要</td>
-            </tr>
+
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">商品评价</td>
               <td width="240" height="40">不限</td>
@@ -93,12 +88,6 @@
               <td width="240" height="40">>本活动价格</td>
               <td width="240" height="40">>本活动价格</td>
             </tr>
-             <tr  align="center"  bgcolor="#ffffff">
-             <td height="40" width="140">审核周期</td>
-              <td width="240" height="40">7工作日</td>
-              <td width="240" height="40">7工作日</td>
-              <td width="240" height="40">7工作日</td>
-            </tr>
             <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">打折方式</td>
               <td width="240" height="40">限时、VIP</td>
@@ -112,33 +101,10 @@
               <td width="240" height="40">定时上架</td>
             </tr>
             <tr  align="center"  bgcolor="#ffffff">
-             <td height="40" width="140">重复周期</td>
-              <td width="240" height="40">21天后</td>
-              <td width="240" height="40">28天后</td>
-              <td width="240" height="40">31天后</td>
-            </tr>
-            <tr  align="center"  bgcolor="#ffffff">
-             <td height="40" width="140">同店活动</td>
-              <td width="240" height="40">>3天</td>
-              <td width="240" height="40">>3天</td>
-              <td width="240" height="40">>3天</td>
-            </tr>
-            <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">店内客服</td>
               <td width="240" height="40">必须在线</td>
               <td width="240" height="40">必须在线</td>
               <td width="240" height="40">必须在线</td>
-            </tr>
-            <tr  align="center"  bgcolor="#ffffff">
-             <td height="40" width="140">优先通过</td>
-              <td width="240" height="40">价值较大商品</td>
-              <td width="240" height="40">价值较大商品</td>
-              <td width="240" height="40">价值较大商品</td>
-            </tr> <tr  align="center"  bgcolor="#ffffff">
-             <td height="40" width="140">是否邮寄样品</td>
-              <td width="240" height="40">是</td>
-              <td width="240" height="40">是</td>
-              <td width="240" height="40">是</td>
             </tr>
           </table>
         </div>
