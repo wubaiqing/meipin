@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css"  href="/static/bsrg.css?v=201404131000" />
-<div id="wrap_bsrg" style="margin-top:30px;margin-bottom:100px;">
+<div id="wrap_bsrg" style="margin-top:30px;margin-bottom:300px;">
     <div id="main">
         <h1>美品网商家合作</h1>
     </div>
