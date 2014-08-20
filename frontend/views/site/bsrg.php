@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css"  href="/static/bsrg.css?v=201404131000" />
 <div id="wrap_bsrg" style="margin-top:30px;">
     <div id="main">
-        <h1>美品网活动广告合作<span style="font-size:26px;">(本站暂不接受免费报名，谢谢合作)</span></h1>
+        <h1>美品网商家合作</h1>
     </div>
     <div id="table">
         <h3>广告咨询：</h3>
@@ -27,10 +27,25 @@
 
               <td width="260" height="40"><a target=blank href="http://amos.im.alisoft.com/msg.aw?v=2&uid=美品网_小舞&site=cntaobao&s=1&charset=utf-8"><img border="0" SRC="http://amos.im.alisoft.com/online.aw?v=2&uid=美品网_小舞&site=cntaobao&s=1&charset=utf-8" alt="和我联系"></a></td>
             </tr>
+             <tr  align="center"  bgcolor="#f9f9f9">
+             <td height="40" width="160">联系qq</td>
+                 <td width="280" height="40"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1352475269&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1352475269:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></a>
+              </td>
+
+              <td width="280" height="40"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1347125278&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1347125278:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></td>
+
+              <td width="300" height="40"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2459549753&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2459549753:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></td>
+
+              <td width="260" height="40"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1602842441&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1602842441:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></td>
+
+              <td width="260" height="40"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1350141498&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1350141498:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></td>
+            </tr>
             </table>
         </div>
-        <h3>活动商品要求：</h3>
-        <div class="tab">
+
+
+         <h3> 24小时在线客服qq：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=534095228&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:534095228:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></h3>
+        <!--<div class="tab">
             <table width=94% border="0" cellspacing=1 cellpadding=3 bgcolor="#000000"; >
             <tr  align="center"  bgcolor="#f9f9f9">
              <td height="40" width="140">活动类型</td>
@@ -62,7 +77,7 @@
               <td width="240" height="40">同行持平及以上</td>
               <td width="240" height="40">同行持平及以上</td>
             </tr>
-
+        
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">商品评价</td>
               <td width="240" height="40">不限</td>
@@ -71,7 +86,7 @@
             </tr>
              <tr  align="center"  bgcolor="#ffffff">
              <td height="40" width="140">报名数量</td>
-
+        
               <td width="240" height="40">>200件</td>
               <td width="240" height="40">>200件</td>
               <td width="240" height="40">>200件</td>
@@ -106,7 +121,7 @@
               <td width="240" height="40">必须在线</td>
               <td width="240" height="40">必须在线</td>
             </tr>
-          </table>
-        </div>
+          </table> 
+        </div>-->
     </div>
 </div>
