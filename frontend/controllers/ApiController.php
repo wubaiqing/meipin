@@ -54,7 +54,8 @@ class ApiController extends Controller
 		 foreach($data as $key=>$val)
 		 {
 		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
-			$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
+			//$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
+            $catname = $val->cat_id;
 		    $data[$key]->title = urlencode($title);
 			$data[$key]->goods_type = urlencode($catname);
             $json = $taobao->getPicsurl($val->tb_id);
@@ -75,7 +76,23 @@ class ApiController extends Controller
          echo $str;
 		 //$this->returnData(1, $data);
 	 }
-	 
+
+    /**
+     * 爱淘宝接口
+     */
+    public function actionFenlei()
+    {
+        $model = new Category();
+        $data = $model->findAll();
+        $str = "";
+        foreach($data as $key=>$val)
+        {
+            $name =  iconv('UTF-8', 'GBK//IGNORE', $val->name);
+            $str .= "insert into dapailei (sid,gname)values('{$val->id}','$name');<br/>";
+        }
+        echo $str;
+    }
+
     public function actionTest($limit="",$page=1)
     {
          header("content-type:text/html;charset=utf-8");
