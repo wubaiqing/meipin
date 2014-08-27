@@ -40,6 +40,8 @@ class Controller extends CController
                 ['url' => 'category/create', 'label' => '创建分类'],
                 ['url' => 'category/admin', 'label' => '分类管理'],
                 ['url' => 'goods/count', 'label' => '商品统计'],
+                ['url' => 'shai/add', 'label' => '晒单评论添加'],
+                ['url' => 'shai/admin', 'label' => '晒单评论'],
             ]
         ],
 
