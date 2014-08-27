@@ -6,14 +6,16 @@ $(document).ready(function(e)
 { 
     $(".shop").hover(function(){
         $(this).find(".wai").show();
+        // $(this).find(".aa").show();
         },function(){   
         $(this).find(".wai").hide();
+        // $(this).find(".aa").hide(); 
     });
 
-    // $(".shop").click(function(){
-    //   url = $(this).find("#jsgoodsurl").html();
-    //   window.location.href="/"+url;
-    // })
+   $(".deal div").hover(function(){
+     $(this).addClass("ppppp");
+   },function(){ $(this).removeClass("ppppp");  
+    })
 
 });
 
@@ -122,8 +124,8 @@ $(document).ready(function(e)
         <?php foreach ($goods as $item) :?>
             <?php $goodsUrl = $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>
         <div class="shop">
-            <a style="display:none;" id="jsgoodsurl"><?php echo $goodsUrl;?><a>
             <?php if($item->is_zhe800==3):?>
+                <!-- <div class="aa">hkhhjkhjkhk</div> -->
              <div class="wai">
                 <a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a>
                 <p>
@@ -136,7 +138,7 @@ $(document).ready(function(e)
             <a href="<?php echo $goodsUrl ?>" target="_blank"><img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190"></a>
             <h2>
              <?php if($item->is_zhe800==3):?>
-            【附<?php echo $item->shainum;?>张实拍图】相框
+            【附<?php echo $item->shainum;?>张实拍图】<?php ECHO Front::truncate_utf8_string($item->title,10); ?>
             <?php else:?>
                 【<?php echo Store::getStoreByPk($item->relation_website);?>】
             <?php endif;?>

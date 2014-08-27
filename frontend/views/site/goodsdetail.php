@@ -107,7 +107,11 @@
                     <!-- <a rel="example_group" href="/static/images/222.jpg"><img src="/static/images/22.png"></a>
                         <a rel="example_group" href="/static/images/222.jpg"><img src="detail_files/22.png"></a>
                         <a rel="example_group" href="/static/images/222.jpg"><img src="/static/images/22.png"></a> -->
-                        <?php echo $value->img;?>
+                        <?php 
+                        $imgarr = $value->img;
+                        foreach ($imgarr as $key => $value) {
+                           echo "<a rel='example_group' href='{$value}_400x400.jpg'><img src='{$value}'></a>";
+                        };?>
                         <br>
                    </p>
                 </div>

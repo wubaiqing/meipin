@@ -19,6 +19,7 @@ input{background:none}
 	position:relative;
 
 }
+/*.shop .aa{border: 2px solid #cf201c;display: block;width:315px;height:304px;background-color: none;}*/
 .shop a {
      z-index:9999998;
 }
@@ -50,6 +51,7 @@ float:left;}
     width: 102px;
     height: 16px;
 }
+
 .shop h4 .i5 {
     width: 51px;height: 16px;display: inline;
     background: url('images/31.png') no-repeat scroll 5px 0px transparent;
@@ -1451,6 +1453,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0}
 .dealbox{width:1005px;margin-right:-25px;position:relative;z-index:99;*width:314px;*float:left;*margin:0 10px 10px 0;}
 .deal{width:314px;float:left;margin:0 19px 19px 0;display:inline;z-index:100;}
 .deal div{padding:0;position:relative;_position:absolute;border:1px solid #e2e2e2;border-color:#fff #e2e2e2 #e2e2e2 #fff;padding:1px}
+.deal .ppppp{border: 2px solid red;display: block;padding:0px;z-index: 111;}
 .deal div p{padding:10px;background:#fff;overflow:hidden;text-align: center;color: #999;}
 .deal div h2{padding:5px 10px;overflow:hidden;text-align:left;font:16px/20px "";background:#fff;}
 .deal div h2 a{font:15px/20px "";font-family: '微软雅黑'}

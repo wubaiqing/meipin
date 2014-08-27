@@ -95,7 +95,12 @@ class Shai extends ActiveRecord implements IArrayable
         $pages->applyLimit($criteria);
         $data = [];
         //根据条件查询积分兑换商品
-        $goodsList['data'] = self::model()->findAll($criteria);
+        $shaidata = self::model()->findAll($criteria);
+        foreach ($shaidata as $key => $value) {
+            $img = explode(';', $value->img);
+            $shaidata[$key]['img']=$img;
+        }
+        $goodsList['data'] = $shaidata;
         //分页类
         $goodsList['pager'] = $pages;
         //self::model()->findAll($criteria);
