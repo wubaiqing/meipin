@@ -71,16 +71,19 @@ float:left;}
     float: left;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0){
+    .i2{width: 51px;height: 16px;display: block;background: url('images/paig.png') no-repeat scroll 0px 0px transparent;position: absolute;bottom:20px;}
+    .shop h4 span em {
+        padding-right: 8px;
+    }
     .shop h4 .i5 {
-
        position: absolute;
        bottom:20px; 
-       left: 90px;
+       left: 110px;
     }
     .shop h4 .i6 {
         position: absolute;
         bottom: 20px;
-        left: 150px;
+        left: 170px;
 
     }
 }
@@ -93,6 +96,29 @@ float:left;}
 	position:absolute;
 	z-index:9999998;
     cursor: pointer;
+}
+.omg {
+    display: none;
+    width:310px;
+    height:302px;
+    border:2px solid #cf201c;
+    position:absolute;
+    z-index:9999998;
+    cursor: pointer;
+}
+.omg a {
+    width:290px;
+    height:190px;
+    display: block;
+    position: absolute;
+}
+.omg i a {
+    width: 67px;
+    height: 30px;
+    display: block;
+    position: relative;
+    top: 260px;
+    left:230px;
 }
 .wai a {
     width:290px;

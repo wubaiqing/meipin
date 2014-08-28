@@ -6,9 +6,11 @@ $(document).ready(function(e)
 { 
     $(".shop").hover(function(){
         $(this).find(".wai").show();
+        $(this).find(".omg").show();
         // $(this).find(".aa").show();
         },function(){   
         $(this).find(".wai").hide();
+        $(this).find(".omg").hide();
         // $(this).find(".aa").hide(); 
     });
 
@@ -132,6 +134,11 @@ $(document).ready(function(e)
                 <span>历史成交：</span><?php echo $item->pbuy;?>人购买 / <?php echo $item->pnum;?>人评价
                 <br/>
             <span>小编点评：</span><?php echo $item->comment;?></p>
+                <i><a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a></i>
+             </div>
+         <?php else:?>
+             <div class="omg">
+                <a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a>
                 <i><a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a></i>
              </div>
             <?php endif;?>
