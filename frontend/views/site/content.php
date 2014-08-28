@@ -147,7 +147,7 @@ $(document).ready(function(e)
              <?php if($item->is_zhe800==3):?>
             【附<?php echo $item->shainum;?>张实拍图】<?php ECHO Front::truncate_utf8_string($item->title,10); ?>
             <?php else:?>
-                【<?php echo Store::getStoreByPk($item->relation_website);?>】
+                【<?php echo Store::getStoreByPk($item->relation_website);?>】<?php ECHO Front::truncate_utf8_string($item->title,10); ?>
             <?php endif;?>
             </h2>
             <h4>
