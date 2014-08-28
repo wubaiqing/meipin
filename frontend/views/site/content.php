@@ -1,8 +1,7 @@
 <div class="today-goods-list">
     <!--单个商品 start-->
     <div class="area">
-
-
+    
      <!--首页品牌调用 start-->
        <?php if(!empty($brand) && isset($brand)) {
         foreach ($brand as $item) : ?>
@@ -98,70 +97,65 @@
         </div>
         <?php endforeach; }?>
    <!--首页积分调用 end-->
+
+   
         <?php 
-        if(!empty($goods)):
-        foreach ($goods as $item) : ?>
-		<?php $goodsUrl = $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>
-        <div class="dealbox">
-            <div class="deal figure1 zt1">
-                <div class="">
-                    <p>
-                        <a href="<?php echo $goodsUrl ?>" target="_blank">
-                            <img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190">
-                        </a>
-                    </p>
-                    <h2>
-                        <strong>
-                            <a href="<?php echo $goodsUrl ?>" target="_blank">
-                                【<?php echo Store::getStoreByPk($item->relation_website);?>】
-                            </a>
-                        </strong>
-                        <a href="<?php echo $goodsUrl ?>" target="_blank" title="<?php echo $item->title;?>">
-                            <?php ECHO Front::truncate_utf8_string($item->title,10); ?>
-                        </a>
-                    </h2>
-                    <h4>
-                        <span>
-						 <?php if ($item->sell_status ==2 ):?>
-                            <em style='color:#a9a9a9'>
-                                <b>¥</b>
-                                <em style='color:#a9a9a9;text-decoration:line-through'><?php echo $item->price; ?></em>
-                            </em>
-						<?php else:?>
-							<em>
-                                <em><b>¥</b><?php echo $item->price; ?></em>
-                            </em>
-						<?php endif;?>
-                        </span>
-                        <span>
-                            <i>¥<?php echo $item->origin_price;?></i><br/>
-                            <?php if($item->change_price==1):?>
+        if(!empty($goods)): ?>
+        <div id="goods">
+        <?php foreach ($goods as $item) :?>
+            <?php $goodsUrl = $this->createUrl('site/out', array('id' => Des::encrypt($item->id)));?>
+        <div class="shop">
+            <?php if($item->is_zhe800==3):?>
+                <!-- <div class="aa">hkhhjkhjkhk</div> -->
+             <div class="wai">
+                <a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a>
+                <p>
+                <span>历史成交：</span><?php echo $item->pbuy;?>人购买 / <?php echo $item->pnum;?>人评价
+                <br/>
+            <span>小编点评：</span><?php echo $item->comment;?></p>
+                <i><a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a></i>
+             </div>
+            <?php endif;?>
+            <a href="<?php echo $goodsUrl ?>" target="_blank"><img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190"></a>
+            <h2>
+             <?php if($item->is_zhe800==3):?>
+            【附<?php echo $item->shainum;?>张实拍图】<?php ECHO Front::truncate_utf8_string($item->title,10); ?>
+            <?php else:?>
+                【<?php echo Store::getStoreByPk($item->relation_website);?>】
+            <?php endif;?>
+            </h2>
+            <h4>
+                <span>
+                    <em><em><b>¥</b><?php echo $item->price; ?></em></em>
+                </span>
+                <span>
+                    <i>¥<?php echo $item->origin_price;?></i><br>
+                    <em>
+                     <?php if($item->change_price==1):?>
                             <b class='i2'></b>
-                        <?php endif;?>
-                        </span>
-                        <?php if ($item->start_time > time() && $item->sell_status !=2 ) :?>
-						<span><span><a href="<?php echo $goodsUrl ?>" target="_blank" ></a></span></span>
-                        <?php elseif($item->sell_status ==2) :?> 
-						<span><a  href="<?php echo $goodsUrl ?>" target="_blank" ></a></span>
-						<?php else:?>
-						<a  href="<?php echo $goodsUrl ?>" target="_blank" ></a>
-                        <?php endif;?>
-                    </h4>
-                    <span class="mgicon"></span>
-                    <?php
+                    <?php elseif($item->is_zhe800==3):?>
+                            <b class='i5'><?php echo $item->mark;?>评分</b><b class='i6'>晒单(<?php echo $item->shainum;?>)</b>
+                    <?php endif;?>
+                        <br>
+                    </em>
+                </span>
+                <a href="<?php echo $goodsUrl ?>" target="_blank"></a>
+                
+            </h4>
+            <?php
                     $now = date('Y-m-d', time());
                     $today = date('Y-m-d', $item->created_at);
                     $start_time = date('Y-m-d', $item->start_time);
                     if (($now == $today)||($now == $start_time)) {
                     echo '<span class="newicon"></span>';
                     }
-                    ?>
-                </div>
-            </div>
+            ?>
         </div>
-        <?php endforeach; 
-         else:
-        ?>
+
+    <?php endforeach;?>
+        </div>
+         
+         <?php else: ?>
     <link rel="stylesheet" type="text/css"  href="/static/css/search.css?v=1.1.0"/>
    <div class="dsearch area">
     <div class="dsearchtit area">
