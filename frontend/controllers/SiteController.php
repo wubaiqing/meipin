@@ -107,18 +107,43 @@ class SiteController extends Controller
 			header('Location:' . $goods->url);
 			Yii::app()->end();
 		}
+        //如果是推荐商品
+        $shai=array();
+        $shainum ="";
         $hotExchangeGoods = Exchange::getHotExchangeDetailGoods();
-        $xggoods = Goods::getXgGoodsList($goods->cat_id,$hot, $page,$goods->id);
-        Yii::app()->params['title'] =$goods->title."-美品网"; //详细页title
-        $this->render('goodsdetail', array(
-        	'cat'=>0,
-        	'goods'=>$goods,
-        	'hotExchangeGoods'=>$hotExchangeGoods,
+        if($goods->is_zhe800==3)
+        {
+            $shai= Shai::getshaidan($page,$goods->id,Yii::app()->params['pagination']['goodsdetail']);
+            $shainum= Shai::getshaidancount($goods->id);
+            $fuzhi = array(
+            'cat'=>0,
+            'goods'=>$goods,
+            'hotExchangeGoods'=>$hotExchangeGoods,
+            'hot' => $hot, // 热门
+            'page' => $page, // 当前页
+            'shai'=>$shai['data'],
+            'pager'=>$shai['pager'],
+            'shainum'=>$shainum,
+            );
+        }else
+        {
+            $xggoods = Goods::getXgGoodsList($goods->cat_id,$hot, $page,$goods->id);
+            $fuzhi = array(
+            'cat'=>0,
+            'goods'=>$goods,
+            'hotExchangeGoods'=>$hotExchangeGoods,
             'hot' => $hot, // 热门
             'page' => $page, // 当前页
             'xggoods' => $xggoods['data'], // 商品数据
             'pager' => $xggoods['pager'], // 商品翻页
-        	));
+            'shainum'=>$shainum,
+            'shai'=>''
+            );
+        }
+        
+        
+        Yii::app()->params['title'] =$goods->title."-美品网"; //详细页title
+        $this->render('goodsdetail',$fuzhi );
     }
     /**
      *  意見反饋

@@ -32,7 +32,7 @@ CHtml::$errorSummaryCss = 'text-warning';
     <div class="control-group">
         <?php echo $form->labelEx($model,'is_zhe800', array('class' => 'control-label')); ?>
         <div class="controls">
-            <?php echo $form->dropDownList($model, 'is_zhe800', array('2' => '其他' )); ?>
+            <?php echo $form->dropDownList($model, 'is_zhe800', array('2' => '打折商品','3'=>'推荐商品' )); ?>
         </div>
     </div>
 
@@ -105,13 +105,47 @@ CHtml::$errorSummaryCss = 'text-warning';
             )); ?>
         </div>
     </div>
-
     <div class="control-group">
         <?php echo $form->labelEx($model, 'end_time', array('class' => 'control-label')); ?>
         <div class="controls">
             <?php echo $form->textField($model, 'end_time', array('onfocus' => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',startDate:'%y-%M-%d 23:59:00', onpicking:function (dp) { $('#Goods_end_time').val(dp.cal.getNewDateStr()); dp.hide();}})", "class" => "Wdate")); ?>
         </div>
     </div>
+<!-- 宝贝 -->
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'mark', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model, 'mark', array('size' => 8, 'maxlength' => 8)); ?>
+        </div>
+    </div>
+      <div class="control-group">
+        <?php echo $form->labelEx($model,'sales', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model, 'sales', array('size' => 8, 'maxlength' => 8)); ?>
+        </div>
+    </div>
+        <div class="control-group">
+        <?php echo $form->labelEx($model,'pnum', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model, 'pnum', array('size' => 8, 'maxlength' => 8)); ?>
+        </div>
+    </div>  
+
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'pbuy', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model, 'pbuy', array('size' => 8, 'maxlength' => 8)); ?>
+        </div>
+    </div>
+
+        <div class="control-group">
+        <?php echo $form->labelEx($model,'comment', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textArea($model,'comment',array('size'=>60,'maxlength'=>500, 'class' => 'span5')); ?>
+        </div>
+    </div>  
+<!-- end宝贝 -->
+
 
     <div class="control-group">
         <?php echo $form->labelEx($model,'status', array('class' => 'control-label')); ?>

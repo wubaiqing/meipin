@@ -23,41 +23,14 @@ body {background:none;}
 .word p span {font-family:Arial;font-size: 26px;color:red;padding-right: 5px;}
 .one1 {float:left;margin-top:15px;height:30px;width:120px;background-color:#fde304;border-radius:5px 5px;}
 .one1 a {color:black;font-family:"微软雅黑";font-size:20px;margin-top:-10px;display:block;text-align:center;font-weight:bold;}
-#content p a img {
-	margin-right:12px;
-}
-#shaidan {
-	width:228px;
-	padding:0px 0 0 15px;
-}
-#shaidan span {
-	font-size:16px;
-	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
-}
-#shaidan h5 {
-	font-family:"微软雅黑";
-	line-height:30px;
-	height:30px;
-	color:#666;
-	font-weight:bold;
-	font-size:14px;
-}
-#shaidan p {
-	font-family:"微软雅黑";
-	color:#0000ff;
-	font-weight:bold;
-	font-size:14px;
-	line-height:30px;
-	height:30px;
-	}
-/*.bot {padding-left:7px;}
+.bot {padding-left:7px;}
 .zhekou {float:left;width:100px;padding-top: 20px;}
 .zhekou p {font-family:"微软雅黑";font-size:16px;color:#999999;}
 .zhekou h3 {color:#ff6600;font-size:16px;font-family:"微软雅黑";}
 .zhekou h3 span {font-family:Arial;font-size:18px;}
 .yuanjia {float:left;width:100px;padding-top: 20px;}
 .yuanjia p {font-family:"微软雅黑";font-size:16px;color:#999;padding-left:13px;}
-.yuanjia h3 {color:#666;font-size:16px;font-family:"微软雅黑";}*/
+.yuanjia h3 {color:#666;font-size:16px;font-family:"微软雅黑";}
 .clock {padding-top:30px;padding-left:5px;}
 .clock img {float:left;padding-top:3px;}
 .clock p {float:left;padding-left:10px;font-family:"微软雅黑";font-size:16px;color:#666;}
@@ -66,53 +39,11 @@ body {background:none;}
 
 
 #bottom {margin:0 auto;padding-top:20px;}
-#bottom h3 {font-family:"黑体";font-size:16px;color:white;height:50px;
-line-height:50px;
-	background-color:#6db110;text-align:center;width:390px;
-}
-#dress {
-	height:380px;
-	width:720px;
-	margin:20px 0 0 12px;
-	border-bottom:1px dashed #e5e5e5;
-}
-.time {
-	width:710px;
-}
-.time h5 {
-	font-family:"微软雅黑";
-	font-size:16px;
-	color:#333;
-	height:45px;
-	width:485px;
-	float:left;
-}
-#dress .time p {
-	font-family:"微软雅黑";
-	font-size:12px;
-	color:#333;
-	height:45px;
-	width:88px;
-	float:right;
-}
-#dress p {
-	font-family:"微软雅黑";
-	font-size:12px;
-	color:#333;
-	line-height:20px;
-	width: 721px;
-	height:20px;
-}
-#dress ul {
-	margin-top:35px;
-}
-#dress ul li {
-	float:left;
-	width:220px;
-	height:220px;
-	margin-right:15px;
-	cursor:pointer;
-}
+#bottom h3 {font-family:"黑体";font-size:18px;color:black;}
+#bottom ul {padding-top:20px;float:left;width:290px;height:220px;margin:10px 35px 10px 10px}
+#bottom ul li h4 a {float:left;font-family:"微软雅黑";font-size:14px;color:#666;}
+#bottom ul li a img{margin-bottom: 8px;}
+#bottom ul li p a {float:left;font-family:"微软雅黑";font-size:20px;color:red;display:block;font-weight:bold;width: 200px;}
 
 
 

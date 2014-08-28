@@ -15,7 +15,8 @@ class Goods extends ActiveRecord implements IArrayable
     {
         return '{{meipin_goods}}';
     }
-
+    
+    public $shainum;
     /**
      * 商品列表
      * @param  string  $list 是否是列表
@@ -38,7 +39,15 @@ class Goods extends ActiveRecord implements IArrayable
         $goodsList = [];
         $goodsPaginate = Goods::model()->dataList($cat, $hot)->paginate();
         $goodsList['pager'] = $goodsPaginate->getPagination();
-        $goodsList['data'] = $goodsPaginate->data;
+        $goodsdata = $goodsPaginate->data;
+        // 小编点评
+        foreach ($goodsdata as $key => $value) {
+            if($value['is_zhe800']==3)
+            {
+                $goodsdata[$key]['shainum']=Shai::getshaidancount($value->id);
+            }
+        }
+        $goodsList['data'] = $goodsdata;
 
         // 设置缓存
         Yii::app()->cache->set($cacheKey, [

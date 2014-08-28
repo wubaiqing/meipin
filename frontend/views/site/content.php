@@ -1,7 +1,30 @@
 <div class="today-goods-list">
     <!--单个商品 start-->
     <div class="area">
-    
+
+<script type="text/javascript">
+$(document).ready(function(e) 
+{ 
+    $(".shop").hover(function(){
+        $(this).find(".wai").show();
+        $(this).find(".omg").show();
+        // $(this).find(".aa").show();
+        },function(){   
+        $(this).find(".wai").hide();
+        $(this).find(".omg").hide();
+        // $(this).find(".aa").hide(); 
+    });
+
+   $(".deal div").hover(function(){
+     $(this).addClass("ppppp");
+   },function(){ $(this).removeClass("ppppp");  
+    })
+
+});
+
+</script> 
+
+
      <!--首页品牌调用 start-->
        <?php if(!empty($brand) && isset($brand)) {
         foreach ($brand as $item) : ?>
@@ -115,6 +138,13 @@
             <span>小编点评：</span><?php echo $item->comment;?></p>
                 <i><a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a></i>
              </div>
+
+         <?php else:?>
+             <div class="omg">
+                <a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a>
+                <i><a href="<?php echo $goodsUrl;?>" target="_blank">&nbsp;</a></i>
+             </div>
+
             <?php endif;?>
             <a href="<?php echo $goodsUrl ?>" target="_blank"><img class="goods-item-img" data-url="<?php echo $item->picture; ?>" src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/lazyloading.jpg" title="<?php echo $item->title; ?>" alt="<?php echo $item->title; ?>" width="290" height="190"></a>
             <h2>
@@ -126,7 +156,7 @@
             </h2>
             <h4>
                 <span>
-                    <em><em><b>¥</b><?php echo $item->price; ?></em></em>
+                    <em><b>¥</b><?php echo $item->price; ?></em>
                 </span>
                 <span>
                     <i>¥<?php echo $item->origin_price;?></i><br>
