@@ -23,7 +23,9 @@ body {background:none;}
 .word p span {font-family:Arial;font-size: 26px;color:red;padding-right: 5px;}
 .one1 {float:left;margin-top:15px;height:30px;width:120px;background-color:#fde304;border-radius:5px 5px;}
 .one1 a {color:black;font-family:"微软雅黑";font-size:20px;margin-top:-10px;display:block;text-align:center;font-weight:bold;}
-
+#content p a img {
+	margin-right:12px;
+}
 #shaidan {
 	width:228px;
 	padding:0px 0 0 15px;

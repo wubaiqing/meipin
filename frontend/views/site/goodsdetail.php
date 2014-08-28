@@ -110,7 +110,9 @@
                         <?php 
                         $imgarr = $value->img;
                         foreach ($imgarr as $key => $value) {
-                           echo "<a rel='example_group' href='{$value}_400x400.jpg'><img src='{$value}'></a>";
+                              $datu = strrpos($value,'_' );
+                             $datuimg= substr($value,0,$datu);
+                           echo "<a rel='example_group' href='{$datuimg}'><img src='{$value}'></a>";
                         };?>
                         <br>
                    </p>
