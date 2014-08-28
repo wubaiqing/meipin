@@ -21,6 +21,7 @@ echo $form->errorSummary($shaiModel);
     <?php echo $form->labelEx($shaiModel, 'goods_id', ['class' => 'control-label']); ?>
     <div class="controls">
         <?php echo $form->textArea($shaiModel, 'goods_id', ['maxlength' => 50]); ?>
+        <label class="line-note">不是淘宝id是商品id</label>
     </div>
 </div>
 <div class="control-group">
@@ -33,7 +34,7 @@ echo $form->errorSummary($shaiModel);
 <div class="control-group">
     <?php echo $form->labelEx($shaiModel, 'content', array('class' => 'control-label')); ?>
     <div class="controls">
-       <?php echo $form->textArea($shaiModel, 'content', ['maxlength' => 50]); ?>
+       <?php echo $form->textArea($shaiModel, 'content', ['class' => 'span5']); ?>
     </div>
 </div>
 
@@ -42,7 +43,7 @@ echo $form->errorSummary($shaiModel);
 <div class="control-group">
     <?php echo $form->labelEx($shaiModel, 'img', array('class' => 'control-label')); ?>
     <div class="controls">
-        <?php echo $form->textArea($shaiModel, 'img'); ?>
+        <?php echo $form->textArea($shaiModel, 'img',['class' => 'span5']); ?>
     </div>
 </div>
 
