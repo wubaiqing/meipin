@@ -29,6 +29,8 @@ class Controller extends CController
                 ['url' => 'goods/create&goodsType=0', 'label' => '添加淘宝'],
                 //['url' => 'goods/create&goodsType=1', 'label' => '添加B2C'],
                 //['url' => 'goods/create&goodsType=2', 'label' => '添加活动'],
+                ['url' => 'shai/add', 'label' => '晒单评论添加'],
+                ['url' => 'shai/admin', 'label' => '晒单评论'],
             ]
         ],
         [
@@ -40,8 +42,6 @@ class Controller extends CController
                 ['url' => 'category/create', 'label' => '创建分类'],
                 ['url' => 'category/admin', 'label' => '分类管理'],
                 ['url' => 'goods/count', 'label' => '商品统计'],
-                ['url' => 'shai/add', 'label' => '晒单评论添加'],
-                ['url' => 'shai/admin', 'label' => '晒单评论'],
             ]
         ],
 

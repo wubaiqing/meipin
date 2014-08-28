@@ -152,7 +152,7 @@ $(document).ready(function(e)
             </h2>
             <h4>
                 <span>
-                    <em><em><b>¥</b><?php echo $item->price; ?></em></em>
+                    <em><b>¥</b><?php echo $item->price; ?></em>
                 </span>
                 <span>
                     <i>¥<?php echo $item->origin_price;?></i><br>

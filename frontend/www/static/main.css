@@ -33,8 +33,7 @@ input{background:none}
 }
 .shop h4 span{float:left;color:#999;font-family:"tahoma";line-height:16px}
 .shop h4 span em{color:#e02f2f;letter-spacing:-2;font:36px/36px tahoma,Arial;padding-right:3px;}
-.shop h4 span em b{font-family:"Microsoft Yahei",Arial;font-weight:normal;font-size:22px;padding-left:5px;
-float:left;}
+.shop h4 span em b{font-family:"Microsoft Yahei",Arial;font-weight:normal;font-size:22px;padding-left:5px;}
 
 .shop h4 span i{text-decoration:line-through;}
 
