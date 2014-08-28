@@ -18,7 +18,7 @@ class User
         'Guest' => '5',
         'bohe1992' => '6', //张奇
         'zozo929' => '7', //李鑫涵
-        '小艾' => '8',
+        'Zitong' => '8',
         'duoduo' => '9', //侯宝多
         'test'=>'10',
         'taolaoda'=>'11',
