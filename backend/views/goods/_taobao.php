@@ -118,12 +118,12 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo $form->textField($model, 'mark', array('size' => 8, 'maxlength' => 8)); ?>
         </div>
     </div>
-      <div class="control-group">
-        <?php echo $form->labelEx($model,'sales', array('class' => 'control-label')); ?>
-        <div class="controls">
-            <?php echo $form->textField($model, 'sales', array('size' => 8, 'maxlength' => 8)); ?>
-        </div>
-    </div>
+<!--       <div class="control-group">
+  <?php //echo $form->labelEx($model,'sales', array('class' => 'control-label')); ?>
+  <div class="controls">
+      <?php //echo $form->textField($model, 'sales', array('size' => 8, 'maxlength' => 8)); ?>
+  </div>
+    </div> -->
         <div class="control-group">
         <?php echo $form->labelEx($model,'pnum', array('class' => 'control-label')); ?>
         <div class="controls">

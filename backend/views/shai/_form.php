@@ -45,6 +45,7 @@ echo $form->errorSummary($shaiModel);
     <div class="controls">
         <input type="button" value="添加" onclick="addRowToTable();" />
         <input type="button" value="删除" onclick="removeRowFromTable();" />
+        _220x220.jpg
     </div>
 </div>
 <?php endif;?>
@@ -61,7 +62,7 @@ echo $form->errorSummary($shaiModel);
             <td><input type="text" name="Shai[img][1]" id="img1" size="40" /></td>
         </table>
     <?php else:?>
-        <?php echo $form->textArea($shaiModel, 'img',['class' => 'span5']);?>
+        <?php echo $form->textArea($shaiModel, 'img',['style' => 'width:797px;height:148px;']);?>
     <?php endif;?>
     </div>
 </div>
