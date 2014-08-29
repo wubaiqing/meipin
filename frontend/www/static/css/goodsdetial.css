@@ -71,7 +71,7 @@ line-height:50px;
 	background-color:#6db110;text-align:center;width:390px;
 }
 #dress {
-	height:380px;
+	height:268px;
 	width:720px;
 	margin:20px 0 0 12px;
 	border-bottom:1px dashed #e5e5e5;
@@ -83,15 +83,16 @@ line-height:50px;
 	font-family:"微软雅黑";
 	font-size:16px;
 	color:#333;
-	height:45px;
+	height:25px;
 	width:485px;
 	float:left;
+	line-height: 25px;
 }
 #dress .time p {
 	font-family:"微软雅黑";
 	font-size:12px;
 	color:#333;
-	height:45px;
+	height:29px;
 	width:88px;
 	float:right;
 }
@@ -102,6 +103,7 @@ line-height:50px;
 	line-height:20px;
 	width: 721px;
 	height:20px;
+	padding-bottom: 20px;
 }
 #dress ul {
 	margin-top:35px;
