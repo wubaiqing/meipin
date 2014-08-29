@@ -101,7 +101,7 @@
                 ?></p>
                 <br>
             </div>
-            <p><?php echo $value->content;?><span style="float:right;">【点击图片查看大图】</span></p>
+            <p><?php echo $value->content;?><span style="float:right;color:blue;">【点击图片查看大图】</span></p>
              <div id="content">
                     <p>
                     <!-- <a rel="example_group" href="/static/images/222.jpg"><img src="/static/images/22.png"></a>
