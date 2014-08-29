@@ -105,12 +105,12 @@ $(document).ready(function(e)
                     <h4>
                         <span>
                             <em>
-                                <b style="font-size:26px;font-weight:'微软雅黑';"><?php echo $item->active_price;?><b style="font-size:12px;font-weight:bold;">元</b>+<b style="font-size:26px;font-weight:'微软雅黑';"><?php echo $item->integral; ?>分</b></b>
+                                <b style="font-size:26px;font-weight:'微软雅黑';"><?php echo Des::del0($item->active_price);?><b style="font-size:12px;font-weight:bold;">元</b>+<b style="font-size:26px;font-weight:'微软雅黑';"><?php echo $item->integral; ?>分</b></b>
                                 
                             </em>
                         </span>
                         <span>
-                            <i>￥<?php echo $item->price.'元';?></i>
+                            <i>￥<?php echo Des::del0($item->price).'元';?></i>
                         </span>                       
                         <a href="<?php echo $goodsUrl;?>" target="_blank"></a></span></span>
                     </h4>
@@ -156,10 +156,10 @@ $(document).ready(function(e)
             </h2>
             <h4>
                 <span>
-                    <em><b>¥</b><?php echo $item->price; ?></em>
+                    <em><b>¥</b><?php echo Des::del0($item->price); ?></em>
                 </span>
                 <span>
-                    <i>¥<?php echo $item->origin_price;?></i><br>
+                    <i>¥<?php echo Des::del0($item->origin_price);?></i><br>
                     <em>
                      <?php if($item->change_price==1):?>
                             <b class='i2'></b>
@@ -225,16 +225,16 @@ $(document).ready(function(e)
                          <?php if ($item->sell_status ==2 ):?>
                             <em style='color:#a9a9a9'>
                                 <b>¥</b>
-                                <em style='color:#a9a9a9;text-decoration:line-through'><?php echo $item->price; ?></em>
+                                <em style='color:#a9a9a9;text-decoration:line-through'><?php echo Des::del0($item->price); ?></em>
                             </em>
                         <?php else:?>
                             <em>
-                                <em><b>¥</b><?php echo $item->price; ?></em>
+                                <em><b>¥</b><?php echo Des::del0($item->price); ?></em>
                             </em>
                         <?php endif;?>
                         </span>
                         <span>
-                            <i>¥<?php echo $item->origin_price;?></i>
+                            <i>¥<?php echo Des::del0($item->origin_price);?></i>
                         </span>
                         <?php if ($item->start_time > time() && $item->sell_status !=2 ) :?>
                         <span><span><a href="<?php echo $goodsUrl ?>" target="_blank" ></a></span></span>
