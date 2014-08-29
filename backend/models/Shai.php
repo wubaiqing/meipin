@@ -71,7 +71,23 @@ class Shai extends ActiveRecord implements IArrayable
         ]);
     }
 
+    public static function format($post)
+    {
+        if (isset($post['img']) && !empty($post['img'])) 
+        {
+            $str = "";
+            foreach ($post['img'] as $key => $value) 
+            {
+               if($value)
+               {
+                    $str.=$value.";";
+               }
+            }
+            $post['img'] = $str;
+        }
 
+        return $post;
+    }
 
     /**
      * 获取商品缓存KEY

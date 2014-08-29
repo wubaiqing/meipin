@@ -16,7 +16,7 @@ CHtml::$errorSummaryCss = 'text-warning';
 echo $form->errorSummary($shaiModel);
 
 ?>
-
+<style type="text/css">input{width: 700px;}</style>
 <div class="control-group">
     <?php echo $form->labelEx($shaiModel, 'goods_id', ['class' => 'control-label']); ?>
     <div class="controls">
@@ -39,14 +39,34 @@ echo $form->errorSummary($shaiModel);
 </div>
 
 
-
+<!-- 图片 -->
+<?php if($shaiModel->isNewRecord): ?>
+<div class="control-group">
+    <div class="controls">
+        <input type="button" value="添加" onclick="addRowToTable();" />
+        <input type="button" value="删除" onclick="removeRowFromTable();" />
+    </div>
+</div>
+<?php endif;?>
 <div class="control-group">
     <?php echo $form->labelEx($shaiModel, 'img', array('class' => 'control-label')); ?>
     <div class="controls">
-        <?php echo $form->textArea($shaiModel, 'img',['class' => 'span5']); ?>
+        <?php if($shaiModel->isNewRecord): ?>
+        <table border="1" id="tblSample">
+        <tr>
+        <th colspan="3">添加图片</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" name="Shai[img][1]" id="img1" size="40" /></td>
+        </table>
+    <?php else:?>
+        <?php echo $form->textArea($shaiModel, 'img',['class' => 'span5']);?>
+    <?php endif;?>
     </div>
 </div>
 
+<!-- 图片 -->
 <div class="control-group">
     <?php echo $form->labelEx($shaiModel, 'ptime', array('class' => 'control-label')); ?>
     <div class="controls">
@@ -70,28 +90,36 @@ echo $form->errorSummary($shaiModel);
 <?php $this->endWidget(); ?>
 
 <script>
-    //上传图片
-    $('.upload-placeholder').fileupload({
-        url: 'index.php?r=site/upload',
-        dataType: 'json',
-        done: function (e, data) {
-            if (data.result.success) {
-                $('#Brand_brand_img').val(data.result.path);
-            } else {
-                alert(data.result.message);
-            }
-        }
-    });
 
-//鼠标滑过显示图片
-    $('#Brand_brand_img').hover(function () {
-        var src = $(this).val();
-        if (src != '') {
-            $('#picture-preview').position($(this).position());
-            $('#picture-preview').attr('src', src).removeClass('hide');
-        }
-    }, function () {
-        $('#picture-preview').addClass('hide');
-    });
+function addRowToTable()
+{
+    var tbl = document.getElementById('tblSample');
+    var lastRow = tbl.rows.length;
+    // if there's no header row in the table, then iteration = lastRow + 1
 
+    var iteration = lastRow;
+    var row = tbl.insertRow(lastRow);
+    // left cell
+
+    var cellLeft = row.insertCell(0);
+    var textNode = document.createTextNode(iteration);
+    cellLeft.appendChild(textNode);
+    // right cell
+
+    var cellRight = row.insertCell(1);
+    var el = document.createElement('input');
+    el.type = 'text';
+    el.name = 'Shai[img][' + iteration+']';
+    el.id = 'img' + iteration;
+    //el.onkeypress = keyPressTest;
+    cellRight.appendChild(el);
+}
+
+//删除input框
+function removeRowFromTable()
+{
+    var tbl = document.getElementById('tblSample');
+    var lastRow = tbl.rows.length;
+    if (lastRow > 2) tbl.deleteRow(lastRow - 1);
+}
 </script>

@@ -62,6 +62,7 @@ class ShaiController extends Controller
         $shaiModel = new Shai();
         if (isset($_POST['Shai'])) {
             $attributes = Yii::app()->request->getPost('Shai');
+            $attributes = Shai::format($attributes);
             $shaiModel->attributes = $attributes;
             if ( $shaiModel->save()) {
                 User::deleteCache();
