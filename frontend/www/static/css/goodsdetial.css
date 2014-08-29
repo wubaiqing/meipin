@@ -71,13 +71,15 @@ line-height:50px;
 	background-color:#6db110;text-align:center;width:390px;
 }
 #dress {
-	height:268px;
+	height:325px;
 	width:720px;
 	margin:20px 0 0 12px;
 	border-bottom:1px dashed #e5e5e5;
 }
 .time {
-	width:710px;
+	width: 710px;
+	clear: both;
+	height: 29px;
 }
 .time h5 {
 	font-family:"微软雅黑";
