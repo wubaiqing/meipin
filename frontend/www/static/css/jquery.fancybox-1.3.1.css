@@ -21,7 +21,7 @@
 	width:700px;
 	height:220px;
 }
-#content a img{ width:220px; height:220px;float:left;}
+#content a img{ /*width:220px; height:220px;*/float:left;}
 
 #fancybox-loading {
 	position: fixed;
