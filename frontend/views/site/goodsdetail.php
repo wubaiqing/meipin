@@ -92,12 +92,12 @@
     <div id="bottom">
         <h3>美品网为您找到关于这款商品（<?php echo $shainum;?>张实拍图片）</h3>
        <?php foreach ($shai as $key => $value):?>
-        <div id="dress">
+        <div class="dress">
             <div class="time">
                 <h5>【购物晒单】<?php echo $value->username;?></h5>
                 <p><?php 
                 $ptime= strtotime($value->ptime);
-                echo date('m月d日 i:s',$ptime);
+                echo date('m月d日 H:i',$ptime);
                 ?></p>
                 <br>
             </div>
@@ -124,6 +124,7 @@
                
             
         </div>
+        <div class="dress-bottom">&nbsp;</div>
     <?php endforeach;?>
 
      </div>
