@@ -254,8 +254,8 @@ class Goods extends ActiveRecord implements IArrayable
      */
     public function dataList($cat, $hot)
     {
-        $now = strtotime('+1 day 00:00:00') - 1;
-
+        //$now = strtotime('+1 day 00:00:00') - 1;
+        $now = time();
         $criteria = new CDbCriteria;
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
 
