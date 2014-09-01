@@ -80,7 +80,9 @@ class Shai extends ActiveRecord implements IArrayable
             {
                if($value)
                {
-                    $str.=$value.";";
+                    $datu = strrpos($value,'_' );
+                    $datuimg= substr($value,0,$datu);
+                    $str.=$datuimg."_220x220.jpg;";
                }
             }
             $post['img'] = $str;

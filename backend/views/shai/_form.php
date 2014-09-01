@@ -16,7 +16,7 @@ CHtml::$errorSummaryCss = 'text-warning';
 echo $form->errorSummary($shaiModel);
 
 ?>
-<style type="text/css">input{width: 700px;}</style>
+<style type="text/css">table input{width: 1000px;}</style>
 <div class="control-group">
     <?php echo $form->labelEx($shaiModel, 'goods_id', ['class' => 'control-label']); ?>
     <div class="controls">
