@@ -22,6 +22,11 @@ class Goods extends ActiveRecord implements IArrayable
         '0' => '否',
         '1' => '是',
     );
+
+   public static $shunfeng = array(
+        '0' => '否',
+        '1' => '是',
+    );
     /**
      * @var integer 搜索类型
      */
@@ -85,7 +90,7 @@ class Goods extends ActiveRecord implements IArrayable
             array('origin_price, price, searchType, gdorder,relation_website', 'length', 'max' => 8),
             array('start_time, end_time', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('tb_id', 'checkTaobaoId'),
-            array('mark,pnum,sales,pbuy,comment', 'safe'),
+            array('mark,pnum,sales,pbuy,comment,shunfeng', 'safe'),
         );
     }
 
@@ -150,6 +155,7 @@ class Goods extends ActiveRecord implements IArrayable
             'pnum'=>'评价人数',
             'pbuy'=>'购买人数',
             'comment'=>'小编点评',
+            'shunfeng'=>'顺丰包邮'
 
         );
     }
