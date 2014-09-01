@@ -61,3 +61,16 @@ $('.save').click(function () {
 	$('form').submit();
 	$(this).attr('disabled', 'disabled');
 });
+
+//onchange
+function zhe800(obj)
+{
+  zhe = obj.value;
+  if(zhe ==3)
+  {
+  	$("#Goods_end_time").val("2024-10-10 00:00:00");
+  }else
+  {
+  	$("#Goods_end_time").val("");
+  }
+}
