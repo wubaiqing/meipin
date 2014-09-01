@@ -122,9 +122,9 @@
                 </div>
                 
                
-            
+          <div class="dress-bottom">&nbsp;</div>  
         </div>
-        <div class="dress-bottom">&nbsp;</div>
+        
     <?php endforeach;?>
 
      </div>
