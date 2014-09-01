@@ -60,6 +60,23 @@ echo $form->errorSummary($shaiModel);
         <tr>
             <td>1</td>
             <td><input type="text" name="Shai[img][1]" id="img1" size="40" /></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="text" name="Shai[img][2]" id="img1" size="40" /></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><input type="text" name="Shai[img][3]" id="img1" size="40" /></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><input type="text" name="Shai[img][4]" id="img1" size="40" /></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><input type="text" name="Shai[img][5]" id="img1" size="40" /></td>
+        </tr>
         </table>
     <?php else:?>
         <?php echo $form->textArea($shaiModel, 'img',['style' => 'width:797px;height:148px;']);?>
