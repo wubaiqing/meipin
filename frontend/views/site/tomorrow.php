@@ -13,7 +13,7 @@
 <div id="content" class="wp">
   <?php if (empty($goods)) :?>
 	<div id="wrap_p" >
-	    <div id="tomorrow_css"><img src="http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/static/tomorrow.jpg"></div>
+	    <div id="tomorrow_css"><img style="margin-left:250px;" src="http://static.meipin.com/static/yugao.png"></div>
 		</div> 
 		<?php else:?>
 		<?php $this->renderPartial('tomorrowWp', array('pager' => $pager)); ?>
