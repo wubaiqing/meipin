@@ -25,6 +25,7 @@ body {background:none;}
 .one1 a {color:black;font-family:"微软雅黑";font-size:20px;margin-top:-10px;display:block;text-align:center;font-weight:bold;}
 #content p a img {
 	margin-right:12px;
+	margin-bottom: 12px;
 }
 #shaidan {
 	width:228px;
