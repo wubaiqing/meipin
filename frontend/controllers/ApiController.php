@@ -67,7 +67,7 @@ class ApiController extends Controller
                 $starttime = date("Y-m-d H:i:s",$val->start_time);
                 $endtime = date("Y-m-d H:i:s",$val->end_time);
                 $findtime = date("Y-m-d H:i:s",$val->updated_at);
-                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$val->url}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','100');<br/>";
+                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$val->url}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','100');";
             }
 		 }
          //$file_pointer = fopen("aa.sql","a+");        
