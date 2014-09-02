@@ -172,7 +172,7 @@ class Goods extends ActiveRecord implements IArrayable
     public static function tomorrow($cat, $hot, $page)
     {
         // 缓存名称
-        $cacheKey = 'get-goods-list-cachekey-' . $cat . '-' . $hot . '-' . $page;
+        $cacheKey = 'get-goods-list-cachekey1-' . $cat . '-' . $hot . '-' . $page;
         // 商品列表
         $goodsList = Yii::app()->cache->get($cacheKey);
         if (!empty($goodsList)) {
