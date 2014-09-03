@@ -18,7 +18,7 @@
 #news p span {font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;color:red;font-size: 16px;}
 #news dl {float:right;}
 #news dl dt {float:left;font-family:"微软雅黑";font-size:16px;margin-top: 4px;color:#666;}
-#news dl dd {float:left;border:1px solid #CCC;width:40px;height:20px;font-size:12px;margin-top:2px;padding-top:2px;text-align: center;}
+#news dl dd {float:left;border:1px solid #CCC;width:57px;height:20px;font-size:12px;margin-top:2px;padding-top:2px;text-align: center;}
 #news .newred {color:red;}
 
 </style>
@@ -41,8 +41,9 @@
     <p style='font-family:"微软雅黑";font-size:16px;float:left;width:130px;'>今日已更新<span><?php echo Goods::gettodaynum();?></span>款</p>
     <dl>
         <dt>排序：</dt>
-        <dd><a href="/?hot=new"><span <?php if(isset($_GET['hot'])){echo " class='newred' ";} ?> >最新</span></a></dd>
+        <dd><a href="/?hot=new"><span <?php if(isset($_GET['hot']) && $_GET['hot']=='new'){echo " class='newred' ";} ?> >最新</span></a></dd>
         <dd><a href="/"><span <?php if(!isset($_GET['hot'])){echo " class='newred' ";} ?> >最热</span></a></dd>
+        <dd><a href="/?hot=sdan"><span <?php if(isset($_GET['hot']) && $_GET['hot']=='sdan'){echo " class='newred' ";} ?> >实物晒单</span></a></dd>
         <br>
     </dl>
     <br>

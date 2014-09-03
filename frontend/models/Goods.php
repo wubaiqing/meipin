@@ -258,10 +258,15 @@ class Goods extends ActiveRecord implements IArrayable
         $now = time();
         $criteria = new CDbCriteria;
         $criteria->select = '*, FROM_UNIXTIME(t.start_time, "%Y-%m-%d") as day';
-
-       if ($hot == 0) {
+        if($hot === 0) 
+        {
             $criteria->order = 'day DESC, t.list_order DESC';
-        } else {
+        }elseif($hot === 'sdan')
+        {
+            $criteria->compare('t.is_zhe800', '=3');
+            $criteria->order = 'day DESC, t.list_order DESC';
+        }else
+        {
             $criteria->order = 'day DESC';
         }
 
