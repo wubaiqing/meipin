@@ -113,7 +113,7 @@ class SiteController extends Controller
         $hotExchangeGoods = Exchange::getHotExchangeDetailGoods();
         if($goods->is_zhe800==3)
         {
-            $shai= Shai::getshaidan($page,$goods->id,Yii::app()->params['pagination']['goodsdetail']);
+            $shai= Shai::getshaidan($page,$goods->id,100);
             $shainum= Shai::getshaidancount($goods->id);
             $fuzhi = array(
             'cat'=>0,
