@@ -59,15 +59,17 @@ class ApiController extends Controller
 		    $data[$key]->title = urlencode($title);
 			$data[$key]->goods_type = urlencode($catname);
             $json = $taobao->getPicsurl($val->tb_id);
+            //var_dump($json);
             if($json)
             {
-                $json=$json->pic_url;
-                $pic_url = (array)$json;
+                $pic_url=(array)($json->pic_url);
+                $item_url = (array)$json->item_url;
+
                 $data[$key]->picture = $pic_url[0];
                 $starttime = date("Y-m-d H:i:s",$val->start_time);
                 $endtime = date("Y-m-d H:i:s",$val->end_time);
                 $findtime = date("Y-m-d H:i:s",$val->updated_at);
-                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$val->url}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}');";
+                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}');";
             }
 		 }
          //$file_pointer = fopen("aa.sql","a+");        
