@@ -6,7 +6,7 @@ return [
         'behaviors' => [],
         'controllerMap' => [],
         'modules' => [],
-        'name' => '美品网-美品网独家优惠,折800、九块邮精选美品会',
+        'name' => '美品网-一家专门做精选的网站，买家实拍，最真实的购物网站',
         'import' => [
             'application.services.*',
         ],
