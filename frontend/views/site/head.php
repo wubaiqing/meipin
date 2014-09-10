@@ -1,7 +1,7 @@
 <div id="t-header">
     <div id="t-area">
     <h1 class="l">
-        <a href="http://www.meipin.com/"><img src="/static/images/logo.gif" width="247" height="42"></a>
+        <a href="http://www.meipin.com/"><img src="/static/images/logo.gif" height="45" width="250"></a>
     </h1>
     <div class="search">
         <form target="_self" action="<?php echo $this->createUrl('search/index');?>">
