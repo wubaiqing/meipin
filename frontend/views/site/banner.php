@@ -27,7 +27,7 @@
     <div class="content">
       <dl>
       
-        <dt><img alt="" src="http://static.meipin.com/static/10.png"></dt>
+        <dt><a href="http://meipin.com/?hot=sdan" target="_blank"><img alt="" src="http://static.meipin.com/static/10.png"></a></dt>
         <dt><a href="http://www.meipin.com/brand/5yuan" target="_blank"><img alt="" src="http://static.meipin.com/static/11.png"></a></dt>
         <dd><a href="http://meipin.com/index.html?cat=1000" target="_blank"><img alt="" src="http://static.meipin.com/static/12.png"></a></dd>
         <dd><a href="http://meipin.com/user/register" target="_blank"><img alt="" src="http://static.meipin.com/static/13.png"></a></dd>
