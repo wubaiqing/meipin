@@ -73,7 +73,7 @@ class Goods extends ActiveRecord implements IArrayable
     public function getaitaobao($limit,$time,$page)
     {
         $criteria = new CDbCriteria;
-        $criteria->select="t.id, t.tb_id, t.picture,t.cat_id, t.title, t.url, t.origin_price, t.price,t.list_order, t.start_time, t.end_time, t.updated_at, t.goods_type";
+        $criteria->select="t.id, t.tb_id, t.picture,t.cat_id, t.title, t.url, t.origin_price, t.price,t.list_order, t.start_time, t.end_time, t.updated_at, t.goods_type,t.is_zhe800,t.change_price,t.mark,t.pnum,t.pbuy,comment";
         $now = strtotime('+1 day 00:00:00') - 1;
         if($time)
         {

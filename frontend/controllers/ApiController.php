@@ -54,6 +54,7 @@ class ApiController extends Controller
 		 foreach($data as $key=>$val)
 		 {
 		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
+            $comment =  iconv('UTF-8', 'GBK//IGNORE', $val->comment);
 			//$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
             $catname = $val->cat_id;
 		    $data[$key]->title = urlencode($title);
@@ -69,7 +70,7 @@ class ApiController extends Controller
                 $starttime = date("Y-m-d H:i:s",$val->start_time);
                 $endtime = date("Y-m-d H:i:s",$val->end_time);
                 $findtime = date("Y-m-d H:i:s",$val->updated_at);
-                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}');";
+                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu,is_zhe800,change_price,mark,pnum,pbuy,comment)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}','{$val->is_zhe800}','{$val->change_price}','{$val->mark}','{$val->pnum}','{$val->pbuy}','{$comment}');";
             }
 		 }
          //$file_pointer = fopen("aa.sql","a+");        
@@ -91,6 +92,23 @@ class ApiController extends Controller
         {
             $name =  iconv('UTF-8', 'GBK//IGNORE', $val->name);
             $str .= "insert into dapailei (sid,gname)values('{$val->id}','$name');<br/>";
+        }
+        echo $str;
+    }
+
+    /**
+     *  淘宝优站晒单列表
+     */
+    public function actionShai()
+    {
+        $model = new Shai();
+        $data = $model->findAll();
+        $str = "";
+        foreach($data as $key=>$val)
+        {
+            $username =  iconv('UTF-8', 'GBK//IGNORE', $val->username);
+            $content = iconv('UTF-8', 'GBK//IGNORE', $val->content);
+            $str .= "INSERT INTO `meipin_shai` (id,username,content,ptime,img,goods_id,updated_at,created_at,is_delete) VALUES ('{$val->id}', '{$username}', '{$content}', '{$val->ptime}', '{$val->img}', '{$val->goods_id}', '{$val->updated_at}', '{$val->created_at}', '{$val->is_delete}');<br/>";
         }
         echo $str;
     }
