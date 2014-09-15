@@ -112,7 +112,7 @@ class ApiController extends Controller
             $content = $val->content;
             $str .= "INSERT INTO `meipin_shai` (id,username,content,ptime,img,goods_id,updated_at,created_at,is_delete) VALUES ('{$val->id}', '{$username}', '{$content}', '{$val->ptime}', '{$val->img}', '{$val->goods_id}', '{$val->updated_at}', '{$val->created_at}', '{$val->is_delete}');<br/>";
         }
-        echo $str;
+        echo iconv('UTF-8', 'GBK//IGNORE', $str);
     }
 
     public function actionTest($limit="",$page=1)
