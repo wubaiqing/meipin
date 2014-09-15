@@ -54,8 +54,7 @@ class ApiController extends Controller
 		 foreach($data as $key=>$val)
 		 {
 		    $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
-            //$comment =  iconv('UTF-8', 'GBK//IGNORE', $val->comment);
-            $content = $val->comment;
+            $comment =  iconv('UTF-8', 'GBK//IGNORE', $val->comment);
 			//$catname = iconv('UTF-8', 'GBK//IGNORE', $val->category->name);
             $catname = $val->cat_id;
 		    $data[$key]->title = urlencode($title);
@@ -109,7 +108,8 @@ class ApiController extends Controller
         {
             $username =  iconv('UTF-8', 'GBK//IGNORE', $val->username);
             if($val->content)
-            $content = iconv('UTF-8', 'GBK//IGNORE', $val->content);
+            //$content = iconv('UTF-8', 'GBK//IGNORE', $val->content);
+            $content = $val->content;
             $str .= "INSERT INTO `meipin_shai` (id,username,content,ptime,img,goods_id,updated_at,created_at,is_delete) VALUES ('{$val->id}', '{$username}', '{$content}', '{$val->ptime}', '{$val->img}', '{$val->goods_id}', '{$val->updated_at}', '{$val->created_at}', '{$val->is_delete}');<br/>";
         }
         echo $str;
