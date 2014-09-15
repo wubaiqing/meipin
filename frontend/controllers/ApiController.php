@@ -99,20 +99,20 @@ class ApiController extends Controller
     /**
      *  淘宝优站晒单列表
      */
-    public function actionShai()
+    public function actionShai($limit="100",$page=1)
     {
         $model = new Shai();
-        $data = $model->findAll();
+        $data = $model->getshaiAll($limit,$page);
         $str = "";
         foreach($data as $key=>$val)
         {
             $username =  iconv('UTF-8', 'GBK//IGNORE', $val->username);
             if($val->content)
             //$content = iconv('UTF-8', 'GBK//IGNORE', $val->content);
-            $content = $val->content;
+            $content = mb_convert_encoding( $val->content, 'GBK', 'UTF-8'); 
             $str .= "INSERT INTO `meipin_shai` (id,username,content,ptime,img,goods_id,updated_at,created_at,is_delete) VALUES ('{$val->id}', '{$username}', '{$content}', '{$val->ptime}', '{$val->img}', '{$val->goods_id}', '{$val->updated_at}', '{$val->created_at}', '{$val->is_delete}');<br/>";
         }
-        echo iconv('UTF-8', 'GBK//IGNORE', $str);
+        echo $str;
     }
 
     public function actionTest($limit="",$page=1)

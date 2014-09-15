@@ -120,4 +120,55 @@ class Shai extends ActiveRecord implements IArrayable
         return $goodsList;
     }
 
+
+    /**
+     * 商品列表
+     * @param  string  $list 是否是列表
+     * @param  intger  $page 当前页数
+     * @param  integer $cat  当前分类
+     * @return array   商品条件
+     */
+    public static function getshaiAll($limit,$page)
+    {
+/*        // 缓存名称
+        $cacheKey = 'get-getshaiAll-list-cachekey-'. $page;
+
+        // 商品列表
+        $goodsList = Yii::app()->cache->get($cacheKey);
+        if (!empty($goodsList)) {
+            return $goodsList['data'];
+        }
+*/
+        // 商品列表数据
+        $goodsList = [];
+        $criteria = new CDbCriteria;
+        //$criteria->compare('t.goods_id', '=' . $goodsid);
+        $criteria->compare('t.is_delete', '=0');
+        $pages = new CPagination();
+        if($page>=1)
+        {
+            $page = $page-1;
+        }
+        $pages->currentPage = $page;
+        //计算总数
+        $pages->itemCount = self::model()->count($criteria);
+        //每页显示数量，配置文件中可配
+        $pages->pageSize = $limit;
+        $pages->applyLimit($criteria);
+        $data = [];
+        //根据条件查询积分兑换商品
+        $shaidata = self::model()->findAll($criteria);
+        $goodsList['data'] = $shaidata;
+        //分页类
+        $goodsList['pager'] = $pages;
+/*
+        // 设置缓存
+        Yii::app()->cache->set($cacheKey, [
+            'pager' => $goodsList['pager'],
+            'data' => $goodsList['data']
+        ], 1800);*/
+
+        return $goodsList['data'];
+    }
+
 }
