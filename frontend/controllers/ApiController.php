@@ -70,7 +70,9 @@ class ApiController extends Controller
                 $starttime = date("Y-m-d H:i:s",$val->start_time);
                 $endtime = date("Y-m-d H:i:s",$val->end_time);
                 $findtime = date("Y-m-d H:i:s",$val->updated_at);
-                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu,is_zhe800,change_price,mark,pnum,pbuy,comment)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}','{$val->is_zhe800}','{$val->change_price}','{$val->mark}','{$val->pnum}','{$val->pbuy}','{$comment}');";
+                $pbuy = $val->pbuy?$val->pbuy:0;
+                $pnum = $val->pnum?$val->pnum:0;
+                $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu,is_zhe800,change_price,mark,pnum,pbuy,comment)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}','{$val->is_zhe800}','{$val->change_price}','{$val->mark}','{$pnum}','{$pbuy}','{$comment}');";
             }
 		 }
          //$file_pointer = fopen("aa.sql","a+");        
