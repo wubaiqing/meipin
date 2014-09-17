@@ -82,6 +82,7 @@ class Goods extends ActiveRecord implements IArrayable
         $criteria->compare('t.start_time', '<=' . $now);
         $criteria->compare('t.end_time', '>=' . $now);
         $criteria->compare('t.status', '1');
+        $criteria->compare('t.price', '<= 9.9');
         $criteria->order = 't.updated_at desc';
         $criteria->with = ['category'];
         //$this->dbCriteria->mergeWith($criteria);
