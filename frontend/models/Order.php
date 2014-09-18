@@ -146,10 +146,9 @@ class Order extends ActiveRecord implements IArrayable
      * 根据订单号、用户ID获取订单
      * @param fixed $order_id 订单号
      * @param integer $user_id 用户ID
-     * @return Order 
+     * @return Order Cannot use a scalar value as an array guoll
      */
     public static function findByUserId($order_id,$user_id){
-        //Cannot use a scalar value as an array guoll
         return self::model()->findByPk($order_id, 'user_id=:user_id',array(':user_id' => $user_id));
     }
 
