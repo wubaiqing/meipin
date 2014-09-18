@@ -149,9 +149,11 @@ class Order extends ActiveRecord implements IArrayable
      * @return Order Cannot use a scalar value as an array guoll
      */
     public static function findByUserId($order_id,$user_id){
-        return self::model()->findByPk($order_id, 'user_id=:user_id',array(':user_id' => $user_id));
+        return self::model()->findByPk($order_id);
     }
-
+/*    public static function findByUserId($order_id,$user_id){
+        return self::model()->findByPk($order_id, 'user_id=:user_id',array(':user_id' => $user_id));
+    }*/
 
     /*统计每个用户兑换的次数*/
     public function getbuyCount($goodsId,$userId)
