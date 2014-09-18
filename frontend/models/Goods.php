@@ -77,12 +77,14 @@ class Goods extends ActiveRecord implements IArrayable
         $now = strtotime('+1 day 00:00:00') - 1;
         if($time)
         {
-         $criteria->compare("FROM_UNIXTIME(t.start_time,'%Y-%m-%d')",$time);
+            $criteria->compare("FROM_UNIXTIME(t.start_time,'%Y-%m-%d')",$time);
         }
-        $criteria->compare('t.start_time', '<=' . $now);
-        $criteria->compare('t.end_time', '>=' . $now);
+
         $criteria->compare('t.status', '1');
         $criteria->compare('t.price', '<= 9.9');
+        $criteria->addCondition('t.is_zhe800=3','OR');//
+        $criteria->compare('t.start_time', '<=' . $now);
+        $criteria->compare('t.end_time', '>=' . $now);
         $criteria->order = 't.updated_at desc';
         $criteria->with = ['category'];
         //$this->dbCriteria->mergeWith($criteria);
