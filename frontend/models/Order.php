@@ -149,7 +149,8 @@ class Order extends ActiveRecord implements IArrayable
      * @return Order 
      */
     public static function findByUserId($order_id,$user_id){
-        return self::model()->findByPk($order_id, 'user_id=:user_id',[':user_id' => $user_id]);
+        //Cannot use a scalar value as an array guoll
+        return self::model()->findByPk($order_id, 'user_id=:user_id',array(':user_id' => $user_id));
     }
 
 

@@ -93,7 +93,7 @@ class ApiController extends Controller
         foreach($data as $key=>$val)
         {
             $name =  iconv('UTF-8', 'GBK//IGNORE', $val->name);
-            $str .= "insert into dapailei (sid,gname)values('{$val->id}','$name');<br/>";
+            $str .= "insert into shangpinlei (sid,shangpinfenlei,paixu)values('{$val->id}','$name','1');<br/>";
         }
         echo $str;
     }
