@@ -28,7 +28,8 @@ class OrderService
         if (!preg_match('/^\d+$/', $id)) {
             return CommonHelper::getDataResult(false, ['message' => '订单号非法', 'url' => $url]);
         }
-        $order = Order::findByUserId($id, $user_id);
+       // $order = Order::findByUserId($id, $user_id);
+        $order = Order::model()->findByPk($id, 'user_id=:user_id',array(':user_id' => $user_id));
         if (empty($order)) {
             return CommonHelper::getDataResult(false, ['message' => '订单不存在', 'url' => $url]);
         }
