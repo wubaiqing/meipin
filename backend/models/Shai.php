@@ -67,7 +67,10 @@ class Shai extends ActiveRecord implements IArrayable
 
         return new CActiveDataProvider($this, [
             'criteria' => $criteria,
-            'pagination' =>Yii::app()->params['pagination'],
+            //'pagination' =>Yii::app()->params['pagination'],
+            'pagination'=>array(
+             'pageSize'=>Yii::app()->params['shaidanpagesize'], //代表每页显示50条信息
+            ),
         ]);
     }
 

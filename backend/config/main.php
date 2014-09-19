@@ -28,6 +28,7 @@ return array(
             'pageSize' => 30,
         ),
         'actdatapagesize' => 30,
+        'shaidanpagesize'=>50,
                     //物流系统
             'logisticsSystem' =>[
                 1 => 'EMS',
