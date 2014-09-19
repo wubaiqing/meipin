@@ -106,6 +106,10 @@ class ShaiController extends Controller
         $shaiModel->unsetAttributes();
         if (isset($_GET[CHtml::modelName($shaiModel)])) {
             $shaiModel->attributes = Yii::app()->request->getQuery(CHtml::modelName($shaiModel));
+            if($_GET['Shai']['goods_id'])
+            {
+                $shaiModel->goods_id = Des::decrypt($_GET['Shai']['goods_id']);
+            }
         }
         $this->render('admin', [
             'shaiModel' => $shaiModel,
