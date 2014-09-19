@@ -62,7 +62,7 @@ class JiukuaiyouCommand extends CConsoleCommand
      */
     public function actionUpdate($catId, $url)
     {
-        for ($page = 1; $page <= 6; $page++) {
+        for ($page = 1; $page <= 3; $page++) {
             $fetchUrl = $url . $page;
             FetchHelpers::trace('正在抓取URL：' . $fetchUrl);
             $html = file_get_html($fetchUrl, false, stream_context_create([
