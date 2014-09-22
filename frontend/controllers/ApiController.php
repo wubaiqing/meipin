@@ -74,6 +74,8 @@ class ApiController extends Controller
                 $pnum = $val->pnum?$val->pnum:0;
                 $mark = $val->mark?$val->mark:0;
                 $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu,is_zhe800,change_price,mark,pnum,pbuy,comment)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}','{$val->is_zhe800}','{$val->change_price}','{$mark}','{$pnum}','{$pbuy}','{$comment}');<br/>";
+            }else{
+                //echo $title."<br/>";
             }
 		 }
          //$file_pointer = fopen("aa.sql","a+");        
