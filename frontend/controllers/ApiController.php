@@ -75,14 +75,10 @@ class ApiController extends Controller
                 $mark = $val->mark?$val->mark:0;
                 $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu,is_zhe800,change_price,mark,pnum,pbuy,comment)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}','{$val->is_zhe800}','{$val->change_price}','{$mark}','{$pnum}','{$pbuy}','{$comment}')@<br/>";
             }else{
-                //echo $title."<br/>";
+
             }
 		 }
-         //$file_pointer = fopen("aa.sql","a+");        
-         //fwrite($file_pointer,$str);
-         //fclose($file_pointer);
          echo $str;
-		 //$this->returnData(1, $data);
 	 }
 
     /**
@@ -119,21 +115,41 @@ class ApiController extends Controller
         }
         echo $str;
     }
-
-    public function actionTest($limit="",$page=1)
+   
+    //taobao
+    public function actionGuagao()
     {
-         header("content-type:text/html;charset=utf-8");
-        /* //19112746137 37983493995
+        $goods = Goods::getGoodsList($cat=0, $hot=0, $page=1);
+        $goodsdata = $goods['data'];
         Yii::import('common.extensions.taobao.*');
         $taobao = new Taobao();
-        $json = $taobao->getPicsurl($taobaoId);
-        var_dump($json);
-        //$pic_url =  (array)$json->pic_url;
-        //print_r($pic_url[0]);
-         $model = new Goods();
-         $time = "";
-         $data= $model->getaitaobao($limit,$time,$page); //条数
-         var_dump($data);*/
+        $str = '';
+        foreach ($goodsdata as $key => $val) {
+            if($key<=3)
+            {
+                $title =  iconv('UTF-8', 'GBK//IGNORE', $val->title);
+                $comment =  iconv('UTF-8', 'GBK//IGNORE', $val->comment);
+                $catname = $val->cat_id;
+                $json = $taobao->getPicsurl($val->tb_id);
+                if($json)
+                {
+                    $pic_url=(array)($json->pic_url);
+                    $item_url = (array)$json->item_url;
 
+                    $starttime = date("Y-m-d H:i:s",$val->start_time);
+                    $endtime = date("Y-m-d H:i:s",$val->end_time);
+                    $findtime = date("Y-m-d H:i:s",$val->updated_at);
+                    $pbuy = $val->pbuy?$val->pbuy:0;
+                    $pnum = $val->pnum?$val->pnum:0;
+                    $mark = $val->mark?$val->mark:0;
+                    $str .= "insert into huodong (id,cid,gourl,title,imgurl,yuanjia,huodongjia,starttime,endtime,findtime,dianpuleixing,shangpinfenlei,paixu,is_zhe800,change_price,mark,pnum,pbuy,comment,is_gg)values('{$val->id}','{$val->tb_id}','{$item_url[0]}','{$title}','{$pic_url[0]}','{$val->origin_price}','{$val->price}','{$starttime}','{$endtime}','{$findtime}','b','{$catname}','{$val->list_order}','{$val->is_zhe800}','{$val->change_price}','{$mark}','{$pnum}','{$pbuy}','{$comment}','1')@<br/>";
+                    //echo $title.$key."==<br/>";
+                }else
+                {
+                    //echo $title.$key."<br/>";
+                }
+            }
+        }
+        echo $str;
     }
 }
