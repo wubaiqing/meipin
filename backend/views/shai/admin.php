@@ -14,7 +14,7 @@
         'itemsCssClass'=>'table table-striped table-bordered',
         'emptyText'=>'对不起，没有任何搜索结果。',
         'viewData'=>[],
-        'itemtops'=>'<th width=7%>ID</th><th width=1%>图片</th><th width=16%>评价时间</th><th width=13%>操作</th>',
+        'itemtops'=>'<th width=3%>ID</th><th width=3%>商品id</th><th width=1%>图片</th><th width=16%>评价时间</th><th width=13%>操作</th>',
         'itemView'=>'_admin',
         'pager' => array(
             'class' => 'CLinkPager',

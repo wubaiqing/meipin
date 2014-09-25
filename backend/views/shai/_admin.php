@@ -1,5 +1,6 @@
 <tr>
     <td class="center"><?php echo $data->id ?></td>
+    <td class="center"><?php echo $data->goods_id; ?></td>
     <?php //echo $data->goods_id;
       $goodsUrl =  Des::encrypt($data->goods_id);?>
     <?php 

@@ -70,7 +70,8 @@ class ShaiController extends Controller
             $shaiModel->attributes = $attributes;
             if ( $shaiModel->save()) {
                 User::deleteCache();
-                $this->redirect($this->createUrl('Shai/admin'));
+                $goods_id = $shaiModel->goods_id;
+                $this->redirect($this->createUrl("Shai/add&id={$goods_id}"));
             }
         }
         $this->render('create', [
