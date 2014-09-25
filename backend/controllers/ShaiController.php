@@ -57,9 +57,13 @@ class ShaiController extends Controller
      * 添加品牌管理
      * @author zhangchao
      */
-    public function actionAdd()
+    public function actionAdd($id="")
     {
         $shaiModel = new Shai();
+        if($id)
+        {
+            $shaiModel->goods_id = $id;
+        }
         if (isset($_POST['Shai'])) {
             $attributes = Yii::app()->request->getPost('Shai');
             $attributes = Shai::format($attributes);

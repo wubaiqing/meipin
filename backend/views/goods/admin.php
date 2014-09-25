@@ -27,7 +27,11 @@
             'prevPageLabel' => '上一页',
         ),
         'columns' => array(
-            'id',
+            'id'=>array(
+                'type'=>'raw',
+                'name' => 'id',
+                'value' => 'CHtml::link("$data->id", "/index.php?r=shai/add&id=$data->id" )',
+            ),
             'title' => array(
                 'type' => 'raw',
                 'id' => 'title',
