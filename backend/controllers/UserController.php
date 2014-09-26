@@ -34,6 +34,21 @@ class UserController extends Controller
     }
 
     /**
+     * 用户操作日志
+     */
+    public function actionUserlog()
+    {
+        $model = new UserLoginLog();
+        $model->unsetAttributes();
+        if (isset($_GET['UserLoginLog'])) {
+            $model->attributes = Yii::app()->request->getQuery(CHtml::modelName($model));
+        }
+        $this->render('userlog', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * 用户积分详情
      */
     public function actionExdetail($uid,$um)

@@ -28,6 +28,23 @@ class UserLoginLog extends ActiveRecord implements IArrayable
     }
 
     /**
+     * 列表搜索
+     * @return ActiveDataProvider
+     */
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->compare('user_id', $this->user_id, true);
+        //$criteria->compare('username', $this->username, true);
+        $criteria->order = 'id desc';
+
+        return new CActiveDataProvider($this,
+            [
+                'criteria' => $criteria,
+            ]);
+    }
+
+    /**
      * 字段属性名称
      * @return array
      */
