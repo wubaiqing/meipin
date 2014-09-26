@@ -29,6 +29,13 @@ CHtml::$errorSummaryCss = 'text-warning';
             <?php echo $form->textField($user, 'username', array('disabled' => 'disabled')); ?>
         </td>
     </tr>
+    <tr class="exchange_detail">
+        <td class="v_table_label">用户积分：</td>
+        <td>
+            <?php echo $form->textField($user, 'score'); ?>
+            <span style='color:red;'>慎重修改（修改用户积分会同时更新到前台个人中心，并记录更改的人员）<br/>修改的格式为（由于系统出错，管理员xxx将积分改成了多少积分）</span>
+        </td>
+    </tr>
     <tr>
         <td colspan="2"  class='v_table_line'>收货信息</td>
     </tr>

@@ -162,7 +162,7 @@ class GoodsController extends Controller
                 }
             if ($model->save()) {
                 //插入操作记录
-                UserLoginLog::addOperation("添加({$model->id}的商品)");
+                //UserLoginLog::addOperation("添加({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
                 $this->redirect(array('admin'));
             }
@@ -235,7 +235,7 @@ class GoodsController extends Controller
             }
             if ($model->save()) {
                 //插入操作记录
-                UserLoginLog::addOperation("修改({$model->id}的商品)");
+                //UserLoginLog::addOperation("修改({$model->id}的商品)");
                 @file_get_contents('http://www.40zhe.com/api/getpushgoods/goodsId/'.$model->id.'.html');
                 $this->redirect(array('admin'));
             }

@@ -100,4 +100,20 @@ class UserLoginLog extends ActiveRecord implements IArrayable
         }
     }
 
+    /*
+    *    修改订单操作记录
+    */
+    public static function addOrder($operation)
+    {
+        $userId = User::getUserName(Yii::app()->user->id);
+        if (!empty($operation)) {
+            $now = time();
+            $userLoginLog = new UserLoginLog();
+            $userLoginLog->user_id = $userId;
+            $userLoginLog->time = $now;
+            $userLoginLog->operation = $operation;
+            $userLoginLog->save();
+        }
+    }
+
 }

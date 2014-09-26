@@ -60,6 +60,23 @@ class UserController extends Controller
         $post = Yii::app()->request->getPost('Users');
         $postAddress = Yii::app()->request->getPost('UsersAddress');
         if ($post !== null && $postAddress !== null) {
+            //如果不等于之前的积分证明是要修改积分了，此时保存修改记录
+            if($user->score != $post['score'])
+            {
+                //日志
+                $username = Yii::app()->user->id;
+                $score = new Score();
+                $score->attributes = [
+                    'score' => $post['score'],
+                    'user_id' => $user->id,
+                    'reason' => 2,
+                    'remark' => "由于系统出错，管理员{$username}将{$user->score}改成了{$post['score']}"
+                ];
+                $score->insert();
+                $user->score = $post['score'];
+                $user->update(['score']);
+            }
+
             $user->mobile_bind = $post['mobile_bind'];
             $user->mobile = $post['mobile'];
             $user->update(['mobile_bind']);

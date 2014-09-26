@@ -24,6 +24,12 @@
             'prevPageLabel' => '上一页',
         ),
         'columns' => array(
+            'order_id'=>array(
+                'type' => 'raw',
+                'header' => '订单编号',
+                'name' => 'order_id',
+                'value' => '"<a href=\"/index.php?r=order/admin&id=$data->order_id\"  target=\"_blank\">". $data->order_id ."</a>"',
+            ),
             'goods_id' => array(
                 'type' => 'raw',
                 'header' => '商品名称',

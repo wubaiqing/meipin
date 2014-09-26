@@ -91,12 +91,20 @@ CHtml::$errorSummaryCss = 'text-warning';
     <tr class='v_table_line'>
         <td colspan="2">操作状态</td>
     </tr>
+
+        <tr>
+        <td class="v_table_label">支付状态：</td>
+        <td>
+            <?php echo $form->dropDownList($model, 'pay_status', ExchangeLog::$pay_status, array('pay_status'=>$model->pay_status)); ?>
+        </td>
+    </tr>
     <tr>
         <td class="v_table_label">发货状态：</td>
         <td>
             <?php echo CHtml::hiddenField("formType", 'status'); ?>
             <?php echo $form->hiddenField($model, 'id'); ?>
             <?php echo $form->dropDownList($model, 'status', ExchangeLog::$status, array('status'=>$model->status)); ?>
+
         </td>
     </tr>
     <tr>
