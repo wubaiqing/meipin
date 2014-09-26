@@ -92,12 +92,12 @@ CHtml::$errorSummaryCss = 'text-warning';
         <td colspan="2">操作状态</td>
     </tr>
 
-        <tr>
+        <!-- <tr>
         <td class="v_table_label">支付状态：</td>
         <td>
-            <?php echo $form->dropDownList($model, 'pay_status', ExchangeLog::$pay_status, array('pay_status'=>$model->pay_status)); ?>
+            <?php //echo $form->dropDownList($model, 'pay_status', ExchangeLog::$pay_status, array('pay_status'=>$model->pay_status)); ?>
         </td>
-    </tr>
+    </tr> -->
     <tr>
         <td class="v_table_label">发货状态：</td>
         <td>

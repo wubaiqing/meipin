@@ -21,23 +21,14 @@ class OrderController extends Controller
     public function loadModel($id)
     {
         $id = intval($id);
-        $exchaneModel = Order::model()->findByPk($id);
-        if (!$exchaneModel) {
+        $order = Order::model()->findByPk($id);
+        if (!$order) {
             throw new CHttpException('400', '查询记录失败');
         }
 
-        return $exchaneModel;
+        return $order;
     }
 
-    /**
-     * 修改积分排序
-     */
-    public function actionModifyOrder($order,$id)
-    {
-        $id = intval($id);
-        $list_order = $order;
-        Exchange::model()->updateByPk($id, array('list_order' => $list_order));
-    }
 
     /**
      * 将订单改为已支付状态
@@ -47,6 +38,11 @@ class OrderController extends Controller
         $order = Order::model()->findByPk($order_id);
         if($order->pay_status==1){
             //echo '已过期';
+            $exchangeLog = ExchangeLog::model()->findByAttributes([
+            'order_id' => $order_id
+            ]);
+           $exchangeLog->pay_status = 1;
+           $exchangeLog->update(['pay_status']);
             UserLoginLog::addOperation("将({$order_id})改为了已支付状态");
             Order::model()->updateByPk($order_id, array('pay_status' => 4));
             echo "修改成功";
@@ -59,118 +55,6 @@ class OrderController extends Controller
         //Order::model()->updateByPk($order_id, array('pay_status' => $is_first));
     }
 
-
-    /**
-     * 添加积分兑换
-     * @author zhangchao
-     */
-    public function actionRaffleAdd()
-    {
-        $exchangeModel = new Exchange();
-        $exchangeModel->goods_type = 1;
-        //去掉这几个字段的默认值
-        $exchangeModel->unsetAttributes(['num', 'price', 'integral', 'start_time', 'end_time']);
-        if (isset($_POST['Exchange'])) {
-            $attributes = Yii::app()->request->getPost('Exchange');
-            $attributes = Exchange::format($attributes);
-            $isChange = Yii::app()->request->getPost("isChange");
-            $exchangeModel->attributes = $attributes;
-            $exchangeModel->goodscolor2 = $attributes['goodscolor'];
-            if ($isChange == 0 && $exchangeModel->save()) {
-                User::deleteCache();
-                if ($exchangeModel->goods_type == 0) {
-                    $this->redirect($this->createUrl('exchange/admin'));
-                } elseif ($exchangeModel->goods_type == 1) {
-                    $this->redirect($this->createUrl('exchange/raffleAdmin'));
-                }
-            }
-        }
-        $this->render('create', [
-            'exchangeModel' => $exchangeModel,
-            'titleLabel' => '添加抽奖商品',
-        ]);
-    }
-
-    /**
-     * 编辑积分兑换
-     */
-    public function actionUpdate()
-    {
-        $id = Yii::app()->request->getQuery('id');
-        $exchangeModel = $this->loadModel($id);
-        $imgold = $exchangeModel->img_url;
-        $bigimgold = $bigimg_url = $exchangeModel->bigimg_url;
-        if (isset($_POST['Exchange'])) {
-            //如果不等于原图并且是在 阿里云 上的则删除原图
-            if ($imgold != $_POST['Exchange']['img_url']) {
-
-                //http://wubaiqing.oss-cn-hangzhou.aliyuncs.com/images/2014/06/13/sfh9s1402642385539a9fd190b32.jpg
-                $domain = strstr($imgold, 'aliyuncs.com');
-                if ($domain) {
-                    $picoldkey = strstr($domain, 'images/');
-                    //阿里云接口
-                    if ($picoldkey) {
-                        Yii::import('common.extensions.aliyunapi.OSSClient2');
-                        $OSSClient = new OSSClient2;
-                        $OSSClient->deleteObject($picoldkey);
-                    }
-                }
-            }
-
-            $file = CUploadedFile::getInstance($exchangeModel,'bigimg_url');
-            if(is_object($file) && get_class($file) === 'CUploadedFile')
-            {  
-                //如果存在上传则，先删除之前的
-                Yii::import('common.extensions.aliyunapi.OSSClient2');
-                $OSSClient = new OSSClient2;
-                $bigimg_url ="";
-                $domain = strstr($bigimgold, 'aliyuncs.com');
-                if ($domain) {
-                    $picoldkey = strstr($domain, 'images/');
-                    //阿里云接口
-                    if ($picoldkey) {
-                        $OSSClient->deleteObject($picoldkey);
-                    }
-                };
-                // 域名
-                $domain = "http://static.meipin.com/";
-                // 图片信息
-                $size = filesize($file->tempName);
-                $content = fopen($file->tempName, 'r');
-                $imagePath = date('Y/m/d/');
-                $imageName = uniqid();
-                $imageExtension = $file->name;
-
-                // 上传图片地址
-                $prefixPath = 'images/';
-                $filePath = $prefixPath . $imagePath . uniqid()  . $imageExtension;
-
-                // 上传图片
-                $OSSClient->putResourceObject($filePath, $content, $size);
-                //$exchangeModel ->bigimg_url = $domain . $filePath;
-                $bigimg_url =  $domain . $filePath;
-
-            }
-            $attributes = Yii::app()->request->getPost('Exchange');
-            $attributes = Exchange::format($attributes);
-  //        var_dump($attributes['description']);die;
-            $exchangeModel->attributes = $attributes;
-            $exchangeModel->goodscolor2 = $attributes['goodscolor'];
-            $exchangeModel->bigimg_url = $bigimg_url;
-            if ($exchangeModel->save()) {
-                User::deleteCache();
-                if ($exchangeModel->goods_type == 0) {
-                    $this->redirect($this->createUrl('exchange/admin'));
-                } elseif ($exchangeModel->goods_type == 1) {
-                    $this->redirect($this->createUrl('exchange/raffleAdmin'));
-                }
-            }
-        }
-        $this->render('update', [
-            'exchangeModel' => $exchangeModel,
-            'titleLabel' => $exchangeModel->goods_type == 0 ? "更新兑换商品" : "更新抽奖商品"
-        ]);
-    }
 
     /**
      * 积分兑换列表
