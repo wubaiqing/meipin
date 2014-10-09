@@ -47,6 +47,7 @@ class OrderService
         if (($order->created_at + $maxTimeout) < time()) {
 	        $order->pay_status = 1;
 	        $order->update(['pay_status']);
+	        ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
             return CommonHelper::getDataResult(false, ['message' => '付款时间已经超时，不能再进行付款', 'url' => Yii::app()->createUrl("order/list")]);
         }
         $html = self::alipayapi($order->order_id, $goodsInfo['name'], $order->pay_price, $goodsInfo['url'], $goodsInfo['remark']);
