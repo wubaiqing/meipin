@@ -273,6 +273,17 @@ class OrderService
                     {
                         $order_array['order_id'] =  $out_trade_no;
                         $order = Order::model()->findByAttributes($order_array);
+	                    if ($order->pay_status != 4) {
+		                    $order->pay_time = time();
+		                    $order->pay_status = 4;
+		                    $order->update(['pay_time', 'pay_status']);
+		                    $goods = Exchange::findByGoodsId($order->goods_id);
+		                    $exchangeLog = ExchangeLog::model()->find('order_id=:order_id', [':order_id' => $order->order_id]);
+		                    $exchangeLog->pay_status = 1;
+		                    $exchangeLog->update(['pay_status']);
+		                    ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
+	                    }
+
                         if (!empty($order)) {
                             ExchangeLog::deleteWelfareCache($order->user_id, 1, 1);
                         }
