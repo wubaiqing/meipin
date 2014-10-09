@@ -52,12 +52,15 @@
                     <td><?php echo $info->order->integral; ?></td>
                     <td><?php echo $info->order->pay_price; ?></td>
                     <td>
+
                         <?php
-                        if($info->order->pay_status != 4)
-                        {
-                        echo Order::getPayStatus($info->order->pay_status);
+                        if ($info->order->pay_status == 0 && $info->order->created_at + Yii::app()->params['payTimeout'] < time()) {
+	                        echo '已过期';
+                        } else if($info->order->pay_status != 4) {
+                            echo Order::getPayStatus($info->order->pay_status);
                         }
-                        if ($info->order->pay_status == 0) {
+
+                        if ($info->order->pay_status == 0 && $info->order->created_at + Yii::app()->params['payTimeout'] >= time()) {
                             echo "<br/>(<a target='_blank' style='color:red;text-decoration: underline;' href='" . Yii::app()->createUrl("order/pay", ['id' => Des::encrypt($info->order_id)]) . "'>继续支付</a>)";
                         }
                         if ($info->order->pay_status == 4) {
