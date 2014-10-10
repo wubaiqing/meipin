@@ -106,9 +106,6 @@ class SiteController extends Controller
 		if (isset($goods->is_skip) && $goods->is_skip == 1) {
 			header('Location:' . $goods->url);
 			Yii::app()->end();
-		} else {
-			header('Location:http://www.meipin.com');
-			Yii::app()->end();
 		}
         //如果是推荐商品
         $shai=array();
