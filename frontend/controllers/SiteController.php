@@ -103,6 +103,10 @@ class SiteController extends Controller
     {
         $goodsId = Des::decrypt($id);
         $goods = Goods::getGoods($goodsId);
+	    if (empty($goods)) {
+		    header('Location:' . 'http://www.meipin.com/');
+		    Yii::app()->end();
+	    }
 		if (isset($goods->is_skip) && $goods->is_skip == 1) {
 			header('Location:' . $goods->url);
 			Yii::app()->end();
